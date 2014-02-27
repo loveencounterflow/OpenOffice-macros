@@ -1,0 +1,1603 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/JavaScript_Calc.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:37:35 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<title>Macroの杜(JavaScript編 / Calc)</title>
+</head>
+<link rel="stylesheet"
+type="text/css" href="css_macroJavaScript_Gneneral.css">
+<body>
+<left><p><A HREF="index-2.html">Home of site</a></p></left><br>
+<a name="TopOfPage"><h1>Macroの杜(JavaScript編)</h1></a>
+
+<h2>【 Calc(表計算) 】</h2>
+
+<h3><Center>**********************【 Index 】**********************</center></h3>
+<p class="s1">file操作</p class="s1">
+<ul>
+CF-1)<a href="#OOoCF1"><em>[Calc]</em>新規にCalc fileを開く</a><br>
+CF-2)<a href="#OOoCF2"><em>[Calc]</em>任意のCalc fileを開く</a><br>
+CF-)<a href="#OOoCF3a"><em>[Calc]</em>任意のCalc fileの開閉</a><br>
+CF-)<a href="#OOoCF3b"><em>[Calc]</em>任意のCalc fileの開き、上書き保存後に閉じる</a><br>
+</ul>
+
+<p class="s1">Sheet操作</p class="s1">
+<ul>
+CS-1)<a href="#OOoCS1"><em>[Calc]</em>Sheet1にAccessする</a><br>
+CS-2)<a href="#OOoCS2"><em>[Calc]</em>Current Sheetの変更</a><br>
+CS-)<a href="#OOoCS3"><em>[Calc]</em>Current Sheet名の取得1</a><br>
+CS-)<a href="#OOoCS4"><em>[Calc]</em>Current Sheet名の取得2</a><br>
+CS-)<a href="#OOoCS5"><em>[Calc]</em>Sheet名があるかどうかを調べる</a><br>
+CS-)<a href="#OOoCS5b"><em>[Calc]</em>Sheet枚数取得</a><br>
+CS-)<a href="#OOoCS6"><em>[Calc]</em>Sheetの新規挿入</a><br>
+CS-)<a href="#OOoCS7"><em>[Calc]</em>SheetのCopy</a><br>
+CS-)<a href="#OOoCS8"><em>[Calc]</em>Sheetの移動</a><br>
+CS-)<a href="#OOoCS9"><em>[Calc]</em>Sheetの削除</a><br>
+CS-)<a href="#OOoCS10"><em>[Calc]</em>Sheet名の変更</a><br>
+CS-)<a href="#OOoCS11"><em>[Calc]</em>Sheet Style取得</a><br>
+CS-)<a href="#OOoCS"><em>[Calc]</em></a><br>
+</ul>
+
+<p class="s1">Cell操作</p class="s1">
+<ul>
+CC-1)<a href="#OOoCC1"><em>[Calc]</em>Cell入力</a><br>
+CC-2)<a href="#OOoCC1A"><em>[Calc]</em>Cell入力(その2)</a><br>
+CC-3)<a href="#OOoCC2"><em>[Calc]</em>Cell値( A1, A2 )を取得する</a><br>
+CC-4)<a href="#OOoCC3"><em>[Calc]</em>Cell Range( A1:C4 )の選択(取得)準備<em>(但し実Sheet上は変化無し)</em></a><br>
+CC-5)<a href="#OOoCC4"><em>[Calc]</em>値の入力と計算</a><br>
+CC-6)<a href="#OOoCC5"><em>[Calc]</em>Cellの結合</a><br>
+CC-7)<a href="#OOoCC7"><em>[Calc]</em>CellのClear<em>[ com.sun.star.sheet.XSheetOperation ]</em>
+</ul>
+
+<p class="s1">Address</p class="s1">
+<ul>
+CAd-)<a href="#OOoCAd1"><em>[Calc]</em>Active CellのAddress取得</a><br><em>[ getInvocationContext() / frame.XModel / lang.XServiceInfo / sheet.XCellRangeAddressable / sheet.SheetCellRange / getRangeAddress() / .EndColumn / .EndRow ]</em><br>
+CAd-)<a href="#OOoCAd2"><em>[Calc]</em>任意の列のData最終行取得</a><br><em>[ table.XCellRange / table.XColumnRowRange / table.XTableColumns / sheet.XSpreadsheet / sheet.XSpreadsheetDocument / sheet.XSpreadsheets / container.XIndexAccess / sheet.XSheetCellRanges / sheet.CellFlags / sheet.XCellRangesQuery ]</em><br>
+</ul>
+
+<p class="s1">HyperLink</p class="s1">
+<ul>
+CHy-)<a href="#OOoCHy1"><em>[Calc]</em>HyperLink</a><br><em>[ xMultiServiceFactory.createInstance("com.sun.star.text.textfield.URL") / setPropertyValue("URL", "http://www.yahoo.com) / setPropertyValue("Representation", "Link...") ]</em><br>
+CHy-)<a href="#OOoCHy"><em>[Calc]</em></a><br><em>[  ]</em><br>
+</ul>
+
+
+<p class="s1">Style</p class="s1">
+<ul>
+CCS-1)<a href="#OOoCCS1"><em>[Calc]</em>指定Cell( A1, A2 )の背景色設定</a><br>
+CCS-2)<a href="#OOoCCS2"><em>[Calc]</em>指定Cell( A1, A2 )の文字色設定</a><br>
+CCS-3)<a href="#OOoCCS3"><em>[Calc]</em>専用Style<em>(背景色、文字色、Style Name = "MyStyle")</em>の設定<em>(「書式」⇒「スタイルと書式設定」に追加)</em></a><br>
+CCS-4)<a href="#OOoCCS4"><em>[Calc]</em>指定範囲を専用Styleにする</a><br>
+CCS-)<a href="#OOoCCS5a"><em>[Calc]</em>Cell Fontの設定</a><br>
+CCS-)<a href="#OOoCCS6a"><em>[Calc]</em>文字Sizeの設定</a><br>
+CCS-)<a href="#OOoCCS7a"><em>[Calc]</em>Textを自動的に折り返す</a><br>
+</ul>
+
+<p class="s1">Graph Chart作成</p class="s1">
+<ul>
+CG-1)<a href="#OOoCG1"><em>[Calc]</em>Simple Diagram作成</a><br>
+CG-2)<a href="#OOoCG2"><em>[Calc]</em>3D Diagram作成</a><br>
+</ul>
+<br>
+
+<center><h3>**********[ Macro Code ]**********</h3></center>
+<br><br>
+
+<h3>【　Calc(表計算)　】</h3>
+<a name="OOoCF1"><h6>CF-1)<em>[Calc]</em>新規にCalc fileを開く</h6></a><pre><code>
+//Open new Calc file
+importClass(Packages.com.sun.star.beans.PropertyValue);
+importClass(Packages.com.sun.star.comp.helper.Bootstrap);
+importClass(Packages.com.sun.star.comp.helper.BootstrapException);
+importClass(Packages.com.sun.star.frame.XComponentLoader);    //ActiveSheetの変更Cellの結合Cellの結合
+importClass(Packages.com.sun.star.lang.XMultiComponentFactory);
+importClass(Packages.com.sun.star.uno.Exception);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.uno.XComponentContext);
+
+	xContext = XSCRIPTCONTEXT.getComponentContext();
+//	xContext = Bootstrap.bootstrap();　　　　　　　　　　//<= OOo3.1.1以前は動作した。
+	xMultiComponentFactory = xContext.getServiceManager();
+	xtest = xMultiComponentFactory.createInstanceWithContext("com.sun.star.frame.Desktop", xContext);
+	xcomponentloader = UnoRuntime.queryInterface(XComponentLoader,xtest);
+
+		loadURL = "private:factory/scalc";
+		propertyvalue = new Array();
+		xcomponentloader.loadComponentFromURL(loadURL, "_blank", 0, propertyvalue);
+</code></pre><br>
+
+
+<a name="OOoCF2"><h6>CF-2)<em>[Calc]</em>任意のCalc fileを開く</h6></a><pre><code>
+//Open new Calc file
+importClass(Packages.com.sun.star.beans.PropertyValue);
+importClass(Packages.com.sun.star.comp.helper.Bootstrap);
+importClass(Packages.com.sun.star.comp.helper.BootstrapException);
+importClass(Packages.com.sun.star.frame.XComponentLoader);
+importClass(Packages.com.sun.star.lang.XMultiComponentFactory);
+importClass(Packages.com.sun.star.uno.Exception);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.uno.XComponentContext);
+//
+	xContext = XSCRIPTCONTEXT.getComponentContext();
+//	xContext = Bootstrap.bootstrap();　　　　　　　　　　//<= OOo3.1.1以前は動作した。
+	xMultiComponentFactory = xContext.getServiceManager();
+	xtest = xMultiComponentFactory.createInstanceWithContext("com.sun.star.frame.Desktop", xContext);
+	xcomponentloader = UnoRuntime.queryInterface(XComponentLoader,xtest);
+//
+	loadURL = "file:///C:/temp/oBaseMacro.ods";
+//	loadURL = oURL.toString();						// <= String化しなくともOK
+	propertyvalue = new Array();
+	xcomponentloader.loadComponentFromURL(loadURL, "_blank", 0, propertyvalue);
+//
+importClass(Packages.javax.swing.JOptionPane);
+JOptionPane.showMessageDialog(null, "Success");
+</code></pre><br>
+
+
+<a name="OOoCF3a"><h6>CF-)<em>[Calc]</em>任意のCalc fileの開閉</h6></a><pre><code>
+//Open and Close Calc file
+importClass(Packages.com.sun.star.beans.PropertyValue);
+importClass(Packages.com.sun.star.comp.helper.Bootstrap);
+importClass(Packages.com.sun.star.comp.helper.BootstrapException);
+importClass(Packages.com.sun.star.frame.XComponentLoader);
+importClass(Packages.com.sun.star.lang.XMultiComponentFactory);
+importClass(Packages.com.sun.star.uno.Exception);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.uno.XComponentContext);
+//
+	xContext = XSCRIPTCONTEXT.getComponentContext();
+//	xContext = Bootstrap.bootstrap();　　　　　　　　　　//<= OOo3.1.1以前は動作した。
+	xMultiComponentFactory = xContext.getServiceManager();
+	xtest = xMultiComponentFactory.createInstanceWithContext("com.sun.star.frame.Desktop", xContext);
+	xcomponentloader = UnoRuntime.queryInterface(XComponentLoader,xtest);
+//
+	loadURL = "file:///C:/temp/LibreOffice_Calc342.ods";
+//	loadURL = oURL.toString();						// <= String化しなくともOK
+	propertyvalue = new Array();
+	oDoc = xcomponentloader.loadComponentFromURL(loadURL, "_blank", 0, propertyvalue);
+//
+	oDoc.dispose();
+//
+importClass(Packages.javax.swing.JOptionPane);
+JOptionPane.showMessageDialog(null, "Success");
+</code></pre><br>
+
+
+<a name="OOoCF3b"><h6>CF-)<em>[Calc]</em>任意のCalc fileの開き、上書き保存後に閉じる</h6></a><pre><code>
+//Open and Close with save for Calc file
+importClass(Packages.com.sun.star.beans.PropertyValue);
+importClass(Packages.com.sun.star.comp.helper.Bootstrap);
+importClass(Packages.com.sun.star.comp.helper.BootstrapException);
+importClass(Packages.com.sun.star.frame.XComponentLoader);
+importClass(Packages.com.sun.star.lang.XMultiComponentFactory);
+importClass(Packages.com.sun.star.uno.Exception);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.uno.XComponentContext);
+//
+importClass(Packages.com.sun.star.frame.XStorable);
+//
+	xContext = XSCRIPTCONTEXT.getComponentContext();
+//	xContext = Bootstrap.bootstrap();　　　　　　　　　　//<= OOo3.1.1以前は動作した。
+	xMultiComponentFactory = xContext.getServiceManager();
+	xtest = xMultiComponentFactory.createInstanceWithContext("com.sun.star.frame.Desktop", xContext);
+	xcomponentloader = UnoRuntime.queryInterface(XComponentLoader,xtest);
+//
+	loadURL = "file:///C:/temp/LibreOffice_Calc342.ods";
+//	loadURL = oURL.toString();						// <= String化しなくともOK
+	propertyvalue = new Array();
+	oDoc = xcomponentloader.loadComponentFromURL(loadURL, "_blank", 0, propertyvalue);
+//
+	oStoreURL = loadURL;
+	xStorable = UnoRuntime.queryInterface(XStorable,oDoc);
+	storeProps = new PropertyValue();
+	storeProps.Name = "Overwrite";
+	storeProps.Value = true;
+	xStorable.storeAsURL(oStoreURL,[storeProps]);
+//
+	oDoc.dispose();
+//
+importClass(Packages.javax.swing.JOptionPane);
+JOptionPane.showMessageDialog(null, "Success");
+</code></pre><br>
+
+
+
+<p class="s1">Sheet操作</p class="s1">
+<a name="OOoCS1"><h6>CS-1)<em>[Calc]</em>Sheet1にAccessする</h6></a><pre><code>
+//Access to Sheet1
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.container.XIndexAccess);
+importClass(Packages.com.sun.star.sheet.XSpreadsheet);
+
+	loadProps = new Array(); // We need no properties
+	xSheetComponent = XSCRIPTCONTEXT.getDocument();
+	xDocument = UnoRuntime.queryInterface(XSpreadsheetDocument,xSheetComponent);
+	xSheets = xDocument.getSheets();
+	xIndexSheets =UnoRuntime.queryInterface(XIndexAccess, xSheets);
+	xSheet =UnoRuntime.queryInterface(XSpreadsheet,xIndexSheets.getByIndex(0));
+</code></pre><br>
+
+<a name="OOoCS2"><h6>CS-)<em>[Calc]</em>Current Sheetの変更</h6></a><pre><code>
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheets);
+	oDoc = XSCRIPTCONTEXT.getDocument();
+	xSpreadsheetDocument = UnoRuntime.queryInterface(XSpreadsheetDocument, oDoc);
+	xSpreadsheets = xSpreadsheetDocument.getSheets();
+	xIndexAccess = UnoRuntime.queryInterface(XIndexAccess, xSpreadsheets);
+	oSheet0 = xIndexAccess.getByIndex(0);
+	// Current Sheetの変更(Sheet1 ⇒ Sheet2)
+		oSheet1 = xIndexAccess.getByIndex(1);
+		xCellRange1 = UnoRuntime.queryInterface(XCellRange, oSheet1);
+		xCellRange1.getCellByPosition(0, 0).value = 1;
+		xCellRange1.getCellByPosition(0, 1).value = 2;
+		xCellRange1.getCellByPosition(0, 2).formula = "=A1+A2";
+</code></pre><br>
+
+
+<a name="OOoCS3"><h6>CS-)<em>[Calc]</em>Current Sheet名の取得1</h6></a><pre><code>
+<img SRC="JavaScript_Pic/02Calc/01sheet/01sheetname01.png" align="right" hspace="4" vspace="4" width="25%">
+importClass(Packages.com.sun.star.chart.XChartData);
+importClass(Packages.com.sun.star.container.XNamed);
+importClass(Packages.com.sun.star.frame.XController);
+importClass(Packages.com.sun.star.frame.XModel);
+importClass(Packages.com.sun.star.sheet.XSpreadsheet);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetView);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.javax.swing.JOptionPane);
+
+try{
+	xSheetComponent = XSCRIPTCONTEXT.getDocument();
+		xModel = UnoRuntime.queryInterface(XModel, xSheetComponent);
+		xController = xModel.getCurrentController();
+	
+		xSpreadsheetView = UnoRuntime.queryInterface(XSpreadsheetView, xController);
+		xSpreadsheet = xSpreadsheetView.getActiveSheet();
+	
+		xChartData = UnoRuntime.queryInterface(XChartData, xSpreadsheet);
+		fNotANumber = xChartData.getNotANumber();
+	
+		xNamed = UnoRuntime.queryInterface(XNamed, xSpreadsheet);
+	oName = xNamed.getName();
+	JOptionPane.showMessageDialog(null, oName);
+}catch(e){
+	//Error処理
+		errorname = e.name;
+		errormsg = e.message;
+		eDisp= errorname + "\n" + errormsg;
+	JOptionPane.showMessageDialog(null, eDisp);
+}
+</code></pre><br>
+
+
+<a name="OOoCS4"><h6>CS-)<em>[Calc]</em>Current Sheet名の取得2</h6></a><pre><code>
+<img SRC="JavaScript_Pic/02Calc/01sheet/01sheetname02.png" align="right" hspace="4" vspace="4" width="25%">
+//
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.com.sun.star.chart.XChartData);
+importClass(Packages.com.sun.star.container.XNamed);
+importClass(Packages.com.sun.star.frame.XController);
+importClass(Packages.com.sun.star.frame.XModel);
+importClass(Packages.com.sun.star.sheet.XSpreadsheet);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetView);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+
+function oSheetName(oInitialTarget){
+	xModel = UnoRuntime.queryInterface(XModel, oInitialTarget);
+	xController = xModel.getCurrentController();
+	
+	xSpreadsheetView = UnoRuntime.queryInterface(XSpreadsheetView, xController);
+	xSpreadsheet = xSpreadsheetView.getActiveSheet();
+	
+	xChartData = UnoRuntime.queryInterface(XChartData, xSpreadsheet);
+	fNotANumber = xChartData.getNotANumber();
+	
+	xNamed = UnoRuntime.queryInterface(XNamed, xSpreadsheet);
+	oName = xNamed.getName();
+	return oName	
+	}
+// 
+try{
+	xSheetComponent = XSCRIPTCONTEXT.getDocument();
+	oSName = oSheetName(xSheetComponent);
+	JOptionPane.showMessageDialog(null, oSName);
+}catch(e){
+	//Error処理
+		errorname = e.name;
+		errormsg = e.message;
+		eDisp= errorname + "\n" + errormsg;
+	JOptionPane.showMessageDialog(null, eDisp);
+}
+</code></pre><br>
+
+
+<a name="OOoCS5"><h6>CS-)<em>[Calc]</em>Sheet名があるかどうかを調べる</h6></a><pre><code>
+<img SRC="JavaScript_Pic/02Calc/01sheet/02sheetExit01.png" align="right" hspace="4" vspace="4" width="25%">
+//
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.com.sun.star.container.XNameAccess);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheets);
+importClass(Packages.com.sun.star.uno.RuntimeException);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+
+function oExit(oInitialTarget,oSNa)
+{
+	try
+	{
+		xSpreadsheetDocument = UnoRuntime.queryInterface(XSpreadsheetDocument, oInitialTarget);
+		xSpreadsheets = xSpreadsheetDocument.getSheets();
+		
+		xNameAccess = UnoRuntime.queryInterface(XNameAccess, xSpreadsheets);
+		ohasByName = xNameAccess.hasByName(oSNa);
+		return ohasByName
+	}
+	catch (e)
+	{
+		if (e instanceof RuntimeException) {
+			// hasByName
+		} else {
+		}
+	}
+}
+
+try{
+	xSheetComponent = XSCRIPTCONTEXT.getDocument();
+	oN = "Sheet4";
+	if(oExit(xSheetComponent,oN)){
+			oDisp = oN + " は存在します。";
+		}else{
+			oDisp = oN + " は存在しません。";
+		}
+	JOptionPane.showMessageDialog(null, oDisp);
+	JOptionPane.showMessageDialog(null, "Success");
+}catch(e){
+	//Error処理
+		errorname = e.name;
+		errormsg = e.message;
+		eDisp= errorname + "\n" + errormsg;
+	JOptionPane.showMessageDialog(null, eDisp);
+}
+</code></pre><br>
+
+<a name="OOoCS5b"><h6>CS-)<em>[Calc]</em>Sheet枚数取得</h6></a><pre><code>
+<img SRC="JavaScript_Pic/02Calc/01sheet/03sheetNum01.png" align="right" hspace="4" vspace="4" width="25%">
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.com.sun.star.container.XIndexAccess);
+importClass(Packages.com.sun.star.container.XNameAccess);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheets);
+importClass(Packages.com.sun.star.uno.RuntimeException);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+
+function oSheetNum(oInitialTarget)
+{
+	try
+	{
+		xSpreadsheetDocument = UnoRuntime.queryInterface(XSpreadsheetDocument, oInitialTarget);
+		xSpreadsheets = xSpreadsheetDocument.getSheets();
+		
+		xNameAccess = UnoRuntime.queryInterface(XNameAccess, xSpreadsheets);
+		sElementNames = xNameAccess.getElementNames();
+		
+		xIndexAccess = UnoRuntime.queryInterface(XIndexAccess, xSpreadsheets);
+		oCount = xIndexAccess.getCount();
+		return oCount 
+		
+	}
+	catch (e)
+	{
+		if (e instanceof RuntimeException) {
+			// getElementNames
+		} else {
+		}
+	}
+}
+//
+try{
+	xSheetComponent = XSCRIPTCONTEXT.getDocument();
+	oNum = oSheetNum(xSheetComponent)
+		oDisp = "Sheet枚数　=> " + oNum
+	JOptionPane.showMessageDialog(null, oDisp);
+	JOptionPane.showMessageDialog(null, "Success");
+}catch(e){
+	//Error処理
+		errorname = e.name;
+		errormsg = e.message;
+		eDisp= errorname + "\n" + errormsg;
+	JOptionPane.showMessageDialog(null, eDisp);
+}
+</code></pre><br>
+
+
+
+<a name="OOoCS6"><h6>CS-)<em>[Calc]</em>Sheetの新規挿入</h6></a><pre><code>
+<img SRC="JavaScript_Pic/02Calc/01sheet/04addSheet01.png" align="right" hspace="4" vspace="4" width="25%">
+//
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.com.sun.star.container.XIndexAccess);
+importClass(Packages.com.sun.star.container.XNameAccess);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheets);
+importClass(Packages.com.sun.star.uno.RuntimeException);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+
+function oInsertSheet(oInitialTarget,oSN,oPos)
+{
+	try
+	{
+		xSpreadsheetDocument = UnoRuntime.queryInterface(XSpreadsheetDocument, oInitialTarget);
+		xSpreadsheets = xSpreadsheetDocument.getSheets();
+		
+		xNameAccess = UnoRuntime.queryInterface(XNameAccess, xSpreadsheets);
+		sElementNames = xNameAccess.getElementNames();
+		
+		xIndexAccess = UnoRuntime.queryInterface(XIndexAccess, xSpreadsheets);
+		nCount = xIndexAccess.getCount();
+		
+		xSpreadsheets_2 = xSpreadsheetDocument.getSheets();
+		
+		xSpreadsheets_2.insertNewByName(oSN, oPos);
+		
+	}
+	catch (e)
+	{
+		if (e instanceof RuntimeException) {
+			// getElementNames
+		} else {
+		}
+	}
+}
+// 
+function oExit(oInitialTarget,oSNa)
+{
+	try
+	{
+		xSpreadsheetDocument = UnoRuntime.queryInterface(XSpreadsheetDocument, oInitialTarget);
+		xSpreadsheets = xSpreadsheetDocument.getSheets();
+		
+		xNameAccess = UnoRuntime.queryInterface(XNameAccess, xSpreadsheets);
+		ohasByName = xNameAccess.hasByName(oSNa);
+		return ohasByName
+	}
+	catch (e)
+	{
+		if (e instanceof RuntimeException) {
+			// hasByName
+		} else {
+		}
+	}
+}
+//
+try{
+	xSheetComponent = XSCRIPTCONTEXT.getDocument();
+		oSN = "macro"
+		oPos = 0
+	oInsertSheet(xSheetComponent,oSN,oPos)
+	//confirm
+		if(oExit(xSheetComponent,oSN)){
+			oDisp = "Sheet Name 「 " + oSN + " 」を追加しました。"
+		}else{
+			oDisp = "Sheet Name 「 " + oSN + " 」の追加に失敗しました。"
+		}
+	JOptionPane.showMessageDialog(null, oDisp);		
+	JOptionPane.showMessageDialog(null, "Success");	
+}catch(e){
+	//Error処理
+		errorname = e.name;
+		errormsg = e.message;
+		eDisp= errorname + "\n" + errormsg;
+	JOptionPane.showMessageDialog(null, eDisp);
+}
+</code></pre><br>
+
+
+<a name="OOoCS7"><h6>CS-)<em>[Calc]</em>SheetのCopy</h6></a><pre><code>
+<img SRC="JavaScript_Pic/02Calc/01sheet/05CopySheet01.png" align="right" hspace="4" vspace="4" width="25%">
+//
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheets);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+
+function oSheetCopy(oInitialTarget,oSh,oCopy,oPos)
+{
+	xSpreadsheetDocument = UnoRuntime.queryInterface(XSpreadsheetDocument, oInitialTarget);
+	xSpreadsheets = xSpreadsheetDocument.getSheets();
+	
+	xSpreadsheets.copyByName(oSh, oCopy, oPos);	
+}
+//
+try{
+	xSheetComponent = XSCRIPTCONTEXT.getDocument();
+		oSh = "Sheet1";
+		oCopy = "CopySheet";
+		oPos = 0;	
+	oSheetCopy(xSheetComponent,oSh,oCopy,oPos)
+	JOptionPane.showMessageDialog(null, "Success");	
+}catch(e){
+	//Error処理
+		errorname = e.name;
+		errormsg = e.message;
+		eDisp= errorname + "\n" + errormsg;
+	JOptionPane.showMessageDialog(null, eDisp);
+}
+</code></pre><br>
+
+
+<a name="OOoCS8"><h6>CS-)<em>[Calc]</em>Sheetの移動</h6></a><pre><code>
+<img SRC="JavaScript_Pic/02Calc/01sheet/06MoveSheet01.png" align="right" hspace="4" vspace="4" width="25%">
+//
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheets);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+
+function oMoveSheet(oInitialTarget,oSh,oPos)
+{
+	xSpreadsheetDocument = UnoRuntime.queryInterface(XSpreadsheetDocument, oInitialTarget);
+	xSpreadsheets = xSpreadsheetDocument.getSheets();	
+	xSpreadsheets.moveByName(oSh, oPos);
+	
+}
+//
+try{
+	xSheetComponent = XSCRIPTCONTEXT.getDocument();
+		oSh = "CopySheet";
+		oPos = 3;	
+	oMoveSheet(xSheetComponent,oSh,oPos);
+	JOptionPane.showMessageDialog(null, "Success");	
+}catch(e){
+	//Error処理
+		errorname = e.name;
+		errormsg = e.message;
+		eDisp= errorname + "\n" + errormsg;
+	JOptionPane.showMessageDialog(null, eDisp);
+}
+</code></pre><br>
+
+
+<a name="OOoCS9"><h6>CS-)<em>[Calc]</em>Sheetの削除</h6></a><pre><code>
+<img SRC="JavaScript_Pic/02Calc/01sheet/07RemoveSheet01.png" align="right" hspace="4" vspace="4" width="25%">
+//
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.com.sun.star.container.NoSuchElementException);
+importClass(Packages.com.sun.star.container.XNameContainer);
+importClass(Packages.com.sun.star.lang.WrappedTargetException);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheets);
+importClass(Packages.com.sun.star.uno.RuntimeException);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+
+function oRemoveSheet(oInitialTarget,oRSh)
+{
+	try
+	{
+		xSpreadsheetDocument = UnoRuntime.queryInterface(XSpreadsheetDocument, oInitialTarget);
+		xSpreadsheets = xSpreadsheetDocument.getSheets();
+		
+		xNameContainer = UnoRuntime.queryInterface(XNameContainer, xSpreadsheets);
+		xNameContainer.removeByName(oRSh);
+		
+	}
+	catch (e)
+	{
+		if (e instanceof NoSuchElementException) {
+			// removeByName
+		} else if (e instanceof WrappedTargetException) {
+			// removeByName
+		} else if (e instanceof RuntimeException) {
+			// removeByName
+		} else {
+		}
+	}
+}
+//
+try{
+	xSheetComponent = XSCRIPTCONTEXT.getDocument();
+		oRSh = "CopySheet";	
+	oRemoveSheet(xSheetComponent,oRSh);
+	JOptionPane.showMessageDialog(null, "Success");	
+}catch(e){
+	//Error処理
+		errorname = e.name;
+		errormsg = e.message;
+		eDisp= errorname + "\n" + errormsg;
+	JOptionPane.showMessageDialog(null, eDisp);
+}
+</code></pre><br>
+
+
+<a name="OOoCS10"><h6>CS-)<em>[Calc]</em>Sheet名の変更</h6></a><pre><code>
+<img SRC="JavaScript_Pic/02Calc/01sheet/08ReNameSheet01.png" align="right" hspace="4" vspace="4" width="25%">
+//
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.com.sun.star.container.NoSuchElementException);
+importClass(Packages.com.sun.star.container.XNameAccess);
+importClass(Packages.com.sun.star.container.XNamed);
+importClass(Packages.com.sun.star.lang.WrappedTargetException);
+importClass(Packages.com.sun.star.sheet.XSpreadsheet);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheets);
+importClass(Packages.com.sun.star.uno.RuntimeException);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+
+function oReNameSheet(oInitialTarget,oSh,oRen)
+{
+	try
+	{
+		xSpreadsheetDocument = UnoRuntime.queryInterface(XSpreadsheetDocument, oInitialTarget);
+		xSpreadsheets = xSpreadsheetDocument.getSheets();
+		
+		xNameAccess = UnoRuntime.queryInterface(XNameAccess, xSpreadsheets);
+		xSpreadsheet = UnoRuntime.queryInterface(XSpreadsheet, xNameAccess.getByName(oSh));
+		
+		xNamed = UnoRuntime.queryInterface(XNamed, xSpreadsheet);
+		
+		sName = xNamed.getName();
+		
+		xNamed.setName(oRen);
+		
+	}
+	catch (e)
+	{
+		if (e instanceof NoSuchElementException) {
+			// getByName
+		} else if (e instanceof WrappedTargetException) {
+			// getByName
+		} else if (e instanceof RuntimeException) {
+			// getByName
+		} else {
+		}
+	}
+}
+//
+try{
+	xSheetComponent = XSCRIPTCONTEXT.getDocument();
+		oSh = "Sheet2";
+		oRen = "ReName"
+	oReNameSheet(xSheetComponent,oSh,oRen)	
+	JOptionPane.showMessageDialog(null, "Success");	
+}catch(e){
+	//Error処理
+		errorname = e.name;
+		errormsg = e.message;
+		eDisp= errorname + "\n" + errormsg;
+	JOptionPane.showMessageDialog(null, eDisp);
+}
+</code></pre><br>
+
+
+<a name="OOoCS11"><h6>CS-)<em>[Calc]</em>Sheet Style取得</h6></a><pre><code>
+<img SRC="JavaScript_Pic/02Calc/01sheet/09SheetStyle01.png" align="right" hspace="4" vspace="4" width="25%">
+//
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.com.sun.star.beans.UnknownPropertyException);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(Packages.com.sun.star.container.NoSuchElementException);
+importClass(Packages.com.sun.star.container.XNameAccess);
+importClass(Packages.com.sun.star.container.XNamed);
+importClass(Packages.com.sun.star.lang.WrappedTargetException);
+importClass(Packages.com.sun.star.sheet.XSpreadsheet);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheets);
+importClass(Packages.com.sun.star.uno.RuntimeException);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+
+function oSheetStyle(oInitialTarget,oSh,oProp)
+{
+	try
+	{
+		xSpreadsheetDocument = UnoRuntime.queryInterface(XSpreadsheetDocument, oInitialTarget);
+		xSpreadsheets = xSpreadsheetDocument.getSheets();
+		
+		xNameAccess = UnoRuntime.queryInterface(XNameAccess, xSpreadsheets);
+		xSpreadsheet = UnoRuntime.queryInterface(XSpreadsheet, xNameAccess.getByName(oSh));
+		
+		xPropertySet = UnoRuntime.queryInterface(XPropertySet, xSpreadsheet);
+		oPropertyValue = xPropertySet.getPropertyValue(oProp);
+		return oPropertyValue
+		
+	}
+	catch (e)
+	{
+		if (e instanceof NoSuchElementException) {
+			// getByName
+		} else if (e instanceof WrappedTargetException) {
+			// getByName, getPropertyValue
+		} else if (e instanceof UnknownPropertyException) {
+			// getPropertyValue
+		} else if (e instanceof RuntimeException) {
+			// getByName, getPropertyValue
+		} else {
+		}
+	}
+}
+//
+try{
+	xSheetComponent = XSCRIPTCONTEXT.getDocument();
+		oSh = "Sheet1";
+		oProp = "PageStyle"
+	oPStyle = oSheetStyle(xSheetComponent,oSh,oProp)
+	oDisp = oSh + " のSheet Style　=> " + oPStyle
+	JOptionPane.showMessageDialog(null, oDisp);	
+	JOptionPane.showMessageDialog(null, "Success");	
+}catch(e){
+	//Error処理
+		errorname = e.name;
+		errormsg = e.message;
+		eDisp= errorname + "\n" + errormsg;
+	JOptionPane.showMessageDialog(null, eDisp);
+}
+</code></pre><br>
+
+
+<a name="OOoCS"><h6>CS-)<em>[Calc]</em></h6></a><pre><code>
+<img SRC="JavaScript_Pic/02Calc/01sheet/index.html" align="right" hspace="4" vspace="4" width="25%">
+
+</code></pre><br>
+
+
+
+
+
+
+<p class="s1">Cell操作</p class="s1">
+<a name="OOoCC1"><h6>CC-1)<em>[Calc]</em>Cell入力</h6></a><pre><code>
+//[ Cell ] Set values of cells
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheet);
+importClass(Packages.com.sun.star.container.XIndexAccess);
+
+	loadProps = new Array(); // We need no properties
+	xSheetComponent = XSCRIPTCONTEXT.getDocument();
+	xDocument = UnoRuntime.queryInterface(XSpreadsheetDocument,xSheetComponent);
+	xSheets = xDocument.getSheets();
+	xIndexSheets =UnoRuntime.queryInterface(XIndexAccess, xSheets);
+	xSheet =UnoRuntime.queryInterface(XSpreadsheet,xIndexSheets.getByIndex(0));
+	// Cell(A1, B1)への入力(数字)
+		insert(0, 0, 123.456, xSheet, true);
+		insert(1, 0, 789.012, xSheet, true);
+	// Cell(A2)への入力(その他)
+		insert(0, 1, "Hello", xSheet, false);
+	// Cell(A3)への入力(Formuala)
+		insert(0, 2, "=sum(A1:B1", xSheet, false);
+	
+// [ Function :  insert ]
+//Cellへの入力関数(insert)の定義
+	function insert(x, y, content, container, isValue){
+		oCell = container.getCellByPosition(x, y);
+		if(isValue)
+			oCell.setValue(new java.lang.Float(content).floatValue());
+		else
+			oCell.setFormula(content);
+	}
+</code></pre><br>
+
+<a name="OOoCC1A"><h6>CC-1)<em>[Calc]</em>Cell入力(その2)</h6></a><pre><code>
+//[ Cell ] Set values of cells (Case 2)
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheets);
+importClass(Packages.com.sun.star.table.XCellRange);
+importClass(Packages.com.sun.star.container.XIndexAccess);
+importClass(Packages.com.sun.star.text.XTextRange);
+
+	// get document XModel and get specific sheet
+		oDoc = XSCRIPTCONTEXT.getDocument();
+		xSpreadsheetDocument = UnoRuntime.queryInterface(XSpreadsheetDocument, oDoc);
+		xSpreadsheets = xSpreadsheetDocument.getSheets();
+		xIndexAccess = UnoRuntime.queryInterface(XIndexAccess, xSpreadsheets);
+		oSheet = xIndexAccess.getByIndex(0);
+
+	// Cellへの入力
+		xCellRange = UnoRuntime.queryInterface(XCellRange, oSheet);
+		xCellRange.getCellByPosition(0, 0).value = 1;
+		xCellRange.getCellByPosition(0, 1).value = 2;
+		xCellRange.getCellByPosition(0, 2).formula = "Sccess";　	//←文字列入力
+		xCellRange.getCellByPosition(0, 3).formula = "=A1+A2"; 		// ←式入力
+</code></pre><br>
+
+<a name="OOoCC2"><h6>CC-2)<em>[Calc]</em>Cell値( A1 )を取得する</h6></a><pre><code>
+//[ Cell ] Get values of Cells
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheet);
+importClass(Packages.com.sun.star.container.XIndexAccess);
+
+	loadProps = new Array(); // We need no properties
+	xSheetComponent = XSCRIPTCONTEXT.getDocument();
+	xDocument = UnoRuntime.queryInterface(XSpreadsheetDocument,xSheetComponent);
+	xSheets = xDocument.getSheets();
+	xIndexSheets =UnoRuntime.queryInterface(XIndexAccess, xSheets);
+	xSheet =UnoRuntime.queryInterface(XSpreadsheet,xIndexSheets.getByIndex(0));
+	// Cell(A1,A2)を取得
+	oCell =new Array();
+	for(i=0; i<=1; i++){
+		oCell_all = xSheet.getCellByPosition(0, i);
+		oCell[i] = oCell_all.getValue();
+		if(oCell[i] != ""){
+			oCell[i] = oCell_all.getValue();
+		}else{
+			oCell[i] = oCell_all.getFormula();
+				}
+		}
+</code></pre><br>
+
+<a name="OOoCC3"><h6>CC-3)<em>[Calc]</em>Cell Range( A1:C4 )を選択(取得)する。<em>(但し実Sheet上は変化無し)</em></h6></a><pre><code>
+//[ Cell ] Select Range
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheet);
+importClass(Packages.com.sun.star.container.XIndexAccess);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+
+	loadProps = new Array(); // We need no properties
+	xSheetComponent = XSCRIPTCONTEXT.getDocument();
+	xDocument = UnoRuntime.queryInterface(XSpreadsheetDocument,xSheetComponent);
+	xSheets = xDocument.getSheets();
+	xIndexSheets =UnoRuntime.queryInterface(XIndexAccess, xSheets);
+	xSheet =UnoRuntime.queryInterface(XSpreadsheet,xIndexSheets.getByIndex(0));
+	// Cell範囲の選択(cells 0/0 to 3/3 = A1:C4)
+		cellRange = xSheet.getCellRangeByPosition(0, 0, 3, 3);
+</code></pre><br>
+
+<a name="OOoCC4"><h6>C)<em>[Calc]</em>値の入力と計算</h6></a><pre><code>
+//[ Cell ] Set value(2)
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheet);
+importClass(Packages.com.sun.star.container.XIndexAccess);
+
+	loadProps = new Array(); // We need no properties
+	xSheetComponent = XSCRIPTCONTEXT.getDocument();
+	xDocument = UnoRuntime.queryInterface(XSpreadsheetDocument,xSheetComponent);
+	xSheets = xDocument.getSheets();
+	xIndexSheets =UnoRuntime.queryInterface(XIndexAccess, xSheets);
+	xSheet =UnoRuntime.queryInterface(XSpreadsheet,xIndexSheets.getByIndex(0));
+	// 計算(数字)10行10列
+		for(i=0; i<10; i++)
+			{
+			for(j=0; j<10; j++)
+				insert(i, j, i*j, xSheet, true);
+			}
+
+	// 計算(数式(B10セル)&text(C10セル))
+		insert(1, 10, "=SUM(B1:B10)", xSheet, false);
+	// Second, insert a text string
+		insert(2, 10, "-> This is the sum!", xSheet, false);
+
+	// 空白Cell以外(A1～A3)の数値の平均:
+	// (1) Insert dummy data
+		insert(0, 0, 5.2, xSheet, true);
+		insert(0, 2, 2.3, xSheet, true);
+	// (2) Calculate and print average
+		result = avgNonEmpty(0, 0, 0, 2, xSheet);
+		insert(0, 3, result, xSheet, true);
+	// (3) Insert some labels
+		insert(1, 1, "<- Remains empty", xSheet, false);
+		insert(1, 3, "<- The average", xSheet, false);
+
+
+// [ Function :  insert ]
+//Cellへの入力関数(insert)の定義
+function insert(x, y, content, container, isValue)
+{
+oCell = container.getCellByPosition(x, y);
+if(isValue)
+oCell.setValue(new java.lang.Float(content).floatValue());
+else
+oCell.setFormula(content);
+}
+
+// [ Function :  avgNonEmpty ]
+//空白Cell以外の数値の平均関数(avgNonEmpty)の定義
+function avgNonEmpty(fromx, fromy, tox, toy, container)
+{
+sum = 0.0;
+fieldCount = 0;
+for(i=fromx; i<=tox; i++)
+{
+for(j=fromy; j<=toy; j++)
+{
+currentCell = container.getCellByPosition(i, j);
+currentValue = currentCell.getValue();
+if(currentValue != "")
+{
+sum += currentValue;
+fieldCount++;
+}}}
+if(fieldCount > 0)
+return (sum/fieldCount);
+else
+return 0;
+}
+</code></pre><br>
+
+
+<a name="OOoCC5"><h6>C)<em>[Calc]</em>Cellの結合</h6></a><pre><code>
+//Cellの結合
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheets);
+importClass(Packages.com.sun.star.table.XCellRange);
+importClass(Packages.com.sun.star.container.XIndexAccess);
+// get document XModel and get specific sheet
+		oDoc = XSCRIPTCONTEXT.getDocument();
+		xSpreadsheetDocument = UnoRuntime.queryInterface(XSpreadsheetDocument, oDoc);
+		xSpreadsheets = xSpreadsheetDocument.getSheets();
+		xIndexAccess = UnoRuntime.queryInterface(XIndexAccess, xSpreadsheets);
+		oSheet = xIndexAccess.getByIndex(1);
+
+	// Cellへの入力
+		xCellRange = UnoRuntime.queryInterface(XCellRange, oSheet);
+// Merge
+importClass(Packages.com.sun.star.util.XMergeable);
+	xMerge=UnoRuntime.queryInterface(XMergeable, oMergeRange);
+	oMergeRange=xCellRange.getCellRangeByName( "B2:D5" );
+	oMergeRange=xCellRange.getCellRangeByPosition( 1,4,1,5 );
+	xMerge.merge(true);
+</code></pre><br>
+
+
+<a name="OOoCC7"><h6>CC-7)<em>[Calc]</em>CellのClear</h6></a><pre><code>
+//[ Cell ] Cear of cells 
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheets);
+importClass(Packages.com.sun.star.table.XCellRange);
+importClass(Packages.com.sun.star.container.XIndexAccess);
+importClass(Packages.com.sun.star.text.XTextRange);
+importClass(Packages.com.sun.star.sheet.XSheetOperation);
+
+	// get document XModel and get specific sheet
+		oDoc = XSCRIPTCONTEXT.getDocument();
+		xSpreadsheetDocument = UnoRuntime.queryInterface(XSpreadsheetDocument, oDoc);
+		xSpreadsheets = xSpreadsheetDocument.getSheets();
+		xIndexAccess = UnoRuntime.queryInterface(XIndexAccess, xSpreadsheets);
+		oSheet = xIndexAccess.getByIndex(1);
+
+	// Cellへの入力
+		xCellRange = UnoRuntime.queryInterface(XCellRange, oSheet);
+		xCellRange.getCellByPosition(0, 0).value = 1;
+		xCellRange.getCellByPosition(0, 1).value = 2;
+		xCellRange.getCellByPosition(0, 2).formula = "Sccess";　	//←文字列入力
+		xCellRange.getCellByPosition(0, 3).formula = "=A1+A2"; 		// ←式入力
+	// A1 CellをClear
+		xCell=UnoRuntime.queryInterface(XSheetOperation,xCellRange.getCellByPosition(0,0))
+		xCell.clearContents(1+2+4+8+16+32+64+128+256+512)
+	// 
+		importClass(Packages.javax.swing.JOptionPane);
+		JOptionPane.showMessageDialog(null, "Success");
+// CellFlags
+//	1	:	VALUE
+// 	2	:	DATETIME
+//	4	:	STRING
+//	8	:	ANNOTATION
+//	16	:	FORMULA
+//	32	:	HARDATTR
+//	64	:	STYLES
+//	128	:	OBJECTS
+//	256	:	EDITATTR
+//	512	:	FORMATTED
+</code></pre><br>
+
+<a name="OOoCC"><h6>CC-)<em>[Calc]</em>CellのInsert</h6></a><pre><code>
+//[ Cell ] Insert of cells 
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheets);
+importClass(Packages.com.sun.star.table.XCellRange);
+importClass(Packages.com.sun.star.container.XIndexAccess);
+
+	// get document XModel and get specific sheet
+		oDoc = XSCRIPTCONTEXT.getDocument();
+		xSpreadsheetDocument = UnoRuntime.queryInterface(XSpreadsheetDocument, oDoc);
+		xSpreadsheets = xSpreadsheetDocument.getSheets();
+		xIndexAccess = UnoRuntime.queryInterface(XIndexAccess, xSpreadsheets);
+		oSheet = xIndexAccess.getByIndex(1);
+
+	// Cellへの入力
+		xCellRange = UnoRuntime.queryInterface(XCellRange, oSheet);
+		xCellRange.getCellByPosition(0, 0).value = 1;
+		xCellRange.getCellByPosition(0, 1).value = 2;
+		xCellRange.getCellByPosition(0, 2).formula = "Sccess";　	//←文字列入力
+		xCellRange.getCellByPosition(0, 3).formula = "=A1+A2"; 		// ←式入力
+	// A1 Cell　Copy
+		importClass(Packages.com.sun.star.sheet.XCellRangeMovement);
+		importClass(Packages.com.sun.star.sheet.CellInsertMode);
+		xinterface=UnoRuntime.queryInterface(XCellRangeMovement, xCellRange);
+		icell = xCellRange.getCellByPosition(0, 0);
+		xinterface.insertCells(icell,DOWN)
+
+// Hello World in JavaScript
+importClass(Packages.javax.swing.JOptionPane);
+JOptionPane.showMessageDialog(null, "Success");
+</code></pre><br>
+
+
+
+
+<p class="s1">Address</p class="s1">
+<a name="OOoCAd1"><h6>CAd)<em>[Calc]</em>Active CellのAddress取得</h6></a><pre><code>
+// get address for active cell
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.frame.XModel);
+importClass(Packages.com.sun.star.lang.XServiceInfo);
+importClass(Packages.com.sun.star.sheet.XCellRangeAddressable);brbr
+importClass(Packages.com.sun.star.awt.XWindowPeer);
+importClass(Packages.com.sun.star.awt.XWindow);
+importClass(Packages.com.sun.star.awt.XMessageBoxFactory);
+importClass(Packages.com.sun.star.awt.Rectangle);
+
+// shows message in the message box
+function showMessage(xDesktop, message)
+{
+  xFrame = xDesktop.getCurrentFrame();
+  xWindow = xFrame.getContainerWindow();
+  xWindowPeer = UnoRuntime.queryInterface(XWindowPeer, xWindow);
+  xToolkit = xWindowPeer.getToolkit();
+  xMessageboxFactory = UnoRuntime.queryInterface(XMessageBoxFactory, xToolkit);
+  xMessageBox = xMessageboxFactory.createMessageBox(xWindowPeer, new Rectangle(), 'messbox', 1, "", message);
+  return xMessageBox.execute();
+} 
+
+oDoc = UnoRuntime.queryInterface(XModel,XSCRIPTCONTEXT.getInvocationContext());
+if ( !oDoc )
+  oDoc = XSCRIPTCONTEXT.getDocument();
+
+xModel = UnoRuntime.queryInterface(XModel, oDoc);
+obj = xModel.getCurrentSelection();
+xServiceInfo = UnoRuntime.queryInterface(XServiceInfo, obj);
+if (xServiceInfo != null) {
+  xCellRange = null;
+  if (xServiceInfo.supportsService("com.sun.star.sheet.SheetCellRange")) {
+    xCellRangeAddressable = UnoRuntime.queryInterface(XCellRangeAddressable, obj);
+    aRangeAddress = xCellRangeAddressable.getRangeAddress();
+    
+    result = "Column: " + aRangeAddress.EndColumn + "\n" + "Row: " + aRangeAddress.EndRow;
+    showMessage(XSCRIPTCONTEXT.getDesktop(), result);
+  }
+}
+</code></pre><br>
+
+<a name="OOoCAd2"><h6>CAd)<em>[Calc]</em>任意の列のData最終行取得</h6></a><pre><code>
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.frame.XModel);
+importClass(Packages.com.sun.star.lang.XServiceInfo);
+importClass(Packages.com.sun.star.sheet.XCellRangeAddressable);
+importClass(Packages.com.sun.star.awt.XWindowPeer);
+importClass(Packages.com.sun.star.awt.XWindow);
+importClass(Packages.com.sun.star.awt.XMessageBoxFactory);
+importClass(Packages.com.sun.star.awt.Rectangle);
+importClass(Packages.com.sun.star.table.XCellRange);
+importClass(Packages.com.sun.star.table.XColumnRowRange);
+importClass(Packages.com.sun.star.table.XTableColumns);
+importClass(Packages.com.sun.star.sheet.XSpreadsheet);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheets);
+importClass(Packages.com.sun.star.container.XIndexAccess);
+importClass(Packages.com.sun.star.sheet.XSheetCellRanges);
+importClass(Packages.com.sun.star.sheet.CellFlags);
+importClass(Packages.com.sun.star.sheet.XCellRangesQuery);
+
+
+// shows message in the message box
+function showMessage(xDesktop, message)
+{
+  xFrame = xDesktop.getCurrentFrame();
+  xWindow = xFrame.getContainerWindow();
+  xWindowPeer = UnoRuntime.queryInterface(XWindowPeer, xWindow);
+  xToolkit = xWindowPeer.getToolkit();
+  xMessageboxFactory = UnoRuntime.queryInterface(XMessageBoxFactory, xToolkit);
+  xMessageBox = xMessageboxFactory.createMessageBox(xWindowPeer, new Rectangle(), 'messbox', 1, "", message);
+  return xMessageBox.execute();
+}
+
+// column index to find its last row index
+nColumn = 3;
+nSheet = 0;
+
+// content flags
+nFlags = CellFlags.VALUE + CellFlags.DATETIME + CellFlags.STRING + 
+  CellFlags.ANNOTATION + CellFlags.FORMULA + CellFlags.HARDATTR + 
+  CellFlags.STYLES + CellFlags.OBJECTS + CellFlags.EDITATTR + CellFlags.FORMATTED;
+
+
+oDoc = UnoRuntime.queryInterface(XModel,XSCRIPTCONTEXT.getInvocationContext());
+if ( !oDoc )
+  oDoc = XSCRIPTCONTEXT.getDocument();
+
+// get sheets
+xSpreadsheetDocument = UnoRuntime.queryInterface(XSpreadsheetDocument, oDoc);
+xSpreadsheets = xSpreadsheetDocument.getSheets();
+xIndexAccess = UnoRuntime.queryInterface(XIndexAccess, xSpreadsheets);
+xSpreadsheet = UnoRuntime.queryInterface(XSpreadsheet, xIndexAccess.getByIndex(nSheet));
+
+// get cellrange including entire column specified by the column index
+xColumnRowRange = UnoRuntime.queryInterface(XColumnRowRange, xSpreadsheet);
+xTableColumns = xColumnRowRange.getColumns();
+xIndexAccess_2 = UnoRuntime.queryInterface(XIndexAccess, xTableColumns);
+xCellRange = UnoRuntime.queryInterface(XCellRange, xIndexAccess_2.getByIndex(nColumn));
+
+// get list of used cell
+xCellRangesQuery = UnoRuntime.queryInterface(XCellRangesQuery, xCellRange);
+xSheetCellRanges = xCellRangesQuery.queryContentCells(nFlags);
+
+n = 0
+addresses = xSheetCellRanges.getRangeAddresses();
+// find biggest row index
+for (i = 0; i < xSheetCellRanges.getCount(); i++)
+{
+  address = addresses[i];
+  if (n < address.EndRow)
+  {
+    n = address.EndRow;
+  }
+}
+
+showMessage(XSCRIPTCONTEXT.getDesktop(), "index of used last row: " + n);
+</code></pre><br>
+
+
+<p class="s1">HyperLink</p class="s1">
+<a name="OOoCHy1"><h6>CHy-)<em>[Calc]</em>HyperLink</h6></a><pre><code>
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.frame.XModel);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheets);
+importClass(Packages.com.sun.star.sheet.XSheetCellRanges);
+importClass(Packages.com.sun.star.sheet.XCellRangesAccess);
+importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(Packages.com.sun.star.text.XText);
+importClass(Packages.com.sun.star.text.XTextContent);
+importClass(Packages.com.sun.star.text.XSimpleText);
+importClass(Packages.com.sun.star.text.XTextCursor);
+
+oDoc = UnoRuntime.queryInterface(XModel,XSCRIPTCONTEXT.getInvocationContext());
+if ( !oDoc )
+  oDoc = XSCRIPTCONTEXT.getDocument();
+
+xMultiServiceFactory = UnoRuntime.queryInterface(XMultiServiceFactory, oDoc);
+
+// get cell
+xSpreadsheetDocument = UnoRuntime.queryInterface(XSpreadsheetDocument, oDoc);
+xSpreadsheets = xSpreadsheetDocument.getSheets();
+xCellRangesAccess = UnoRuntime.queryInterface(XCellRangesAccess, xSpreadsheets);
+xCell = xCellRangesAccess.getCellByPosition(0, 0, 0);
+
+// create new link field
+field = xMultiServiceFactory.createInstance("com.sun.star.text.textfield.URL");
+xPropSet = UnoRuntime.queryInterface(XPropertySet, field);
+xPropSet.setPropertyValue("URL", "http://oooug.jp/faq/index.php?faq/5/422");
+xPropSet.setPropertyValue("Representation", "Link...");
+
+xText = UnoRuntime.queryInterface(XText, xCell);
+xSimpleText = UnoRuntime.queryInterface(XSimpleText, xCell);
+xTextCursor = xSimpleText.createTextCursor();
+
+// insert field into the cell
+xText.insertTextContent(xTextCursor, UnoRuntime.queryInterface(XTextContent, field), true);
+</code></pre><br>
+
+
+
+<p class="s1">Style</p class="s1">
+<a name="OOoCCS1"><h6>CCS-1)<em>[Calc]</em>指定Cell( A1, A2 )の背景色設定</h6></a><pre><code>
+//[ Cell ] Backcolor of Cells
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheet);
+importClass(Packages.com.sun.star.container.XIndexAccess);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+
+	loadProps = new Array(); // We need no properties
+	xSheetComponent = XSCRIPTCONTEXT.getDocument();
+	xDocument = UnoRuntime.queryInterface(XSpreadsheetDocument,xSheetComponent);
+	xSheets = xDocument.getSheets();
+	xIndexSheets =UnoRuntime.queryInterface(XIndexAccess, xSheets);
+	xSheet =UnoRuntime.queryInterface(XSpreadsheet,xIndexSheets.getByIndex(0));
+	// Cell(A1,A2)を取得
+	oCell =new Array();
+	for(i=0; i<=1; i++){
+		oCell_all = xSheet.getCellByPosition(0, i);
+		//Cellの背景
+			oCellProperties1 =UnoRuntime.queryInterface(XPropertySet, oCell_all);			
+			oCellProperties1.setPropertyValue("IsCellBackgroundTransparent", new java.lang.Boolean(false));
+			oCellProperties1.setPropertyValue("CellBackColor", new java.lang.Integer(16309472)); // = hex f8dce0
+		}
+</code></pre><br>
+
+<a name="OOoCCS2"><h6>CCS-2)<em>[Calc]</em>指定Cell( A1, A2 )の文字色設定</h6></a><pre><code>
+//[ Cell ] Charactor Color of Cells
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheet);
+importClass(Packages.com.sun.star.container.XIndexAccess);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+
+	loadProps = new Array(); // We need no properties
+	xSheetComponent = XSCRIPTCONTEXT.getDocument();
+	xDocument = UnoRuntime.queryInterface(XSpreadsheetDocument,xSheetComponent);
+	xSheets = xDocument.getSheets();
+	xIndexSheets =UnoRuntime.queryInterface(XIndexAccess, xSheets);
+	xSheet =UnoRuntime.queryInterface(XSpreadsheet,xIndexSheets.getByIndex(0));
+	// Cell(A1,A2)を取得
+	oCell =new Array();
+	for(i=0; i<=1; i++){
+		oCell_all = xSheet.getCellByPosition(0, i);
+		//文字色
+			oCellProperties1 =UnoRuntime.queryInterface(XPropertySet, oCell_all);			
+			oCellProperties1.setPropertyValue("CharColor", new java.lang.Integer(16777215)); // = hex FF FF FF　( = White)
+		}
+</code></pre><br>
+
+
+<a name="OOoCCS3"><h6>CCS-3)<em>[Calc]</em>専用Style<em>(背景色、文字色、Style Name = "MyStyle")</em>の設定<em>(「書式」⇒「スタイルと書式設定」に追加)</em></h6></a><pre><code><img SRC="http://error.fc2.com/web/404.html" align="right" hspace="4" vspace="4" width="25%">
+//[ Cell ] Add Cell Style
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheet);
+importClass(Packages.com.sun.star.container.XIndexAccess);
+importClass(Packages.com.sun.star.style.XStyleFamiliesSupplier);
+importClass(Packages.com.sun.star.container.XNameAccess);
+importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+importClass(Packages.com.sun.star.container.XNameContainer);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+
+	loadProps = new Array(); // We need no properties
+	xSheetComponent = XSCRIPTCONTEXT.getDocument();
+	xDocument = UnoRuntime.queryInterface(XSpreadsheetDocument,xSheetComponent);
+	xSheets = xDocument.getSheets();
+	xIndexSheets =UnoRuntime.queryInterface(XIndexAccess, xSheets);
+	xSheet =UnoRuntime.queryInterface(XSpreadsheet,xIndexSheets.getByIndex(0));
+	// CellのStyle設定
+		xStyleFamiliesSupplier =UnoRuntime.queryInterface(XStyleFamiliesSupplier, xDocument);
+		xStyleFamilies = xStyleFamiliesSupplier.getStyleFamilies();
+		//任意の名前にてAccess出来る様にする
+		xCellStyles =UnoRuntime.queryInterface(XNameAccess, xStyleFamilies.getByName("CellStyles"));
+		xDocumentMultiServiceFactory =UnoRuntime.queryInterface(XMultiServiceFactory, xDocument);
+		oStyleFamilyNameContainer =UnoRuntime.queryInterface(XNameContainer, xCellStyles);
+		//Style Name設定
+			style = xDocumentMultiServiceFactory.createInstance("com.sun.star.style.CellStyle");
+			oStyleFamilyNameContainer.insertByName("MyStyle", style);
+		//Cell Style設定
+			oCellProperties1 =UnoRuntime.queryInterface(XPropertySet, style);
+		//Cellの背景
+			oCellProperties1.setPropertyValue("IsCellBackgroundTransparent", new java.lang.Boolean(false));
+			oCellProperties1.setPropertyValue("CellBackColor", new java.lang.Integer(6710932)); // = hex 66 66 94
+		//文字色設定
+			oCellProperties1.setPropertyValue("CharColor", new java.lang.Integer(16777215)); // = hex FF FF FF ( = White)
+
+[ Note ] : 同名のStyleが存在する場合は上書きされる。
+</code></pre><br>
+
+<a name="OOoCCS4"><h6>CCS-4)<em>[Calc]</em>指定範囲を専用Styleにする</h6></a><pre><code>
+//[ Cell ] Set Style of the Range  
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheet);
+importClass(Packages.com.sun.star.container.XIndexAccess);
+importClass(Packages.com.sun.star.style.XStyleFamiliesSupplier);
+importClass(Packages.com.sun.star.container.XNameAccess);
+importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+importClass(Packages.com.sun.star.container.XNameContainer);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+
+	loadProps = new Array(); // We need no properties
+	xSheetComponent = XSCRIPTCONTEXT.getDocument();
+	xDocument = UnoRuntime.queryInterface(XSpreadsheetDocument,xSheetComponent);
+	xSheets = xDocument.getSheets();
+	xIndexSheets =UnoRuntime.queryInterface(XIndexAccess, xSheets);
+	xSheet =UnoRuntime.queryInterface(XSpreadsheet,xIndexSheets.getByIndex(0));
+	// 指定範囲のStyle設定
+		xStyleFamiliesSupplier =UnoRuntime.queryInterface(XStyleFamiliesSupplier, xDocument);
+		xStyleFamilies = xStyleFamiliesSupplier.getStyleFamilies();
+		xCellStyles =UnoRuntime.queryInterface(XNameAccess, xStyleFamilies.getByName("CellStyles"));
+		xDocumentMultiServiceFactory =UnoRuntime.queryInterface(XMultiServiceFactory, xDocument);
+		oStyleFamilyNameContainer =UnoRuntime.queryInterface(XNameContainer, xCellStyles);
+		style = xDocumentMultiServiceFactory.createInstance("com.sun.star.style.CellStyle");
+		oStyleFamilyNameContainer.insertByName("MyStyle", style);
+		oCellProperties1 =UnoRuntime.queryInterface(XPropertySet, style);
+		oCellProperties1.setPropertyValue("IsCellBackgroundTransparent", new java.lang.Boolean(false));
+		oCellProperties1.setPropertyValue("CellBackColor", new java.lang.Integer(16309472)); // = hex f8dce0
+		oCellProperties1 =UnoRuntime.queryInterface(XPropertySet, oCell_all);			
+		oCellProperties1.setPropertyValue("CharColor", new java.lang.Integer(16777215)); // = hex FF FF FF　( = White)
+		cellRange = xSheet.getCellRangeByPosition(0, 0, 3, 3);
+		// get existing properties of cells in range
+			cellProperties =UnoRuntime.queryInterface(XPropertySet, cellRange);
+		// redefine properties of cells in range
+			cellProperties.setPropertyValue("CellStyle", "MyStyle");
+</code></pre><br>
+
+
+<a name="OOoCCS5a"><h6>CCS-)<em>[Calc]</em>Cell Fontの設定</h6></a><pre><code>
+<img SRC="JavaScript_Pic/02Calc/03Style/01FontName01.png" align="right" hspace="4" vspace="4" width="25%">
+//[ Cell Font ]
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheets);
+importClass(Packages.com.sun.star.table.XCellRange);
+importClass(Packages.com.sun.star.container.XIndexAccess);
+importClass(Packages.com.sun.star.text.XTextRange);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+	//
+	// get document XModel and get specific sheet
+		oDoc = XSCRIPTCONTEXT.getDocument();
+		xSpreadsheetDocument = UnoRuntime.queryInterface(XSpreadsheetDocument, oDoc);
+		xSpreadsheets = xSpreadsheetDocument.getSheets();
+		xIndexAccess = UnoRuntime.queryInterface(XIndexAccess, xSpreadsheets);
+		oSheet = xIndexAccess.getByIndex(0);
+	//
+	// Cellへの入力
+		xCellRange = UnoRuntime.queryInterface(XCellRange, oSheet);
+		xCellRange.getCellByPosition(0, 0).value = 1;
+		xCellRange.getCellByPosition(0, 1).value = 2;
+		xCellRange.getCellByPosition(0, 2).formula = "表計算";　	//←文字列入力
+		xCellRange.getCellByPosition(0, 3).formula = "=A1+A2"; 		// ←式入力
+	// Cell Font
+	for(i=0; i<=3; i++){
+	 switch(i){
+	   case 0: xFontName = "Arial"; xFontNameAsia = "Arial"; break;
+	   case 1: xFontName = "HGコシックE"; xFontNameAsia = "HGコシックE"; break;
+	   case 2: xFontName = "HG行書体"; xFontNameAsia = "HG行書体"; break;
+	   case 3: xFontName = "Impact"; xFontNameAsia = "Impact"; break;
+		}
+	 xCell = xCellRange.getCellByPosition(0, i)
+	 xFont = UnoRuntime.queryInterface(XPropertySet,xCell);
+	 xFont.setPropertyValue("CharFontName",xFontName);
+	 xFont.setPropertyValue("CharFontNameAsian",xFontNameAsia);
+	}
+</code></pre><br>
+
+
+<a name="OOoCCS6a"><h6>CCS-)<em>[Calc]</em></h6></a><pre><code>
+<img SRC="JavaScript_Pic/02Calc/03Style/02FontHeight01.png" align="right" hspace="4" vspace="4" width="25%">
+//[ Cell FontHeight ]
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheets);
+importClass(Packages.com.sun.star.table.XCellRange);
+importClass(Packages.com.sun.star.container.XIndexAccess);
+importClass(Packages.com.sun.star.text.XTextRange);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+	//
+	// get document XModel and get specific sheet
+		oDoc = XSCRIPTCONTEXT.getDocument();
+		xSpreadsheetDocument = UnoRuntime.queryInterface(XSpreadsheetDocument, oDoc);
+		xSpreadsheets = xSpreadsheetDocument.getSheets();
+		xIndexAccess = UnoRuntime.queryInterface(XIndexAccess, xSpreadsheets);
+		oSheet = xIndexAccess.getByIndex(0);
+	//
+	// Cellへの入力
+		xCellRange = UnoRuntime.queryInterface(XCellRange, oSheet);
+		xCellRange.getCellByPosition(0, 0).value = 1;
+		xCellRange.getCellByPosition(0, 1).value = 2;
+		xCellRange.getCellByPosition(0, 2).formula = "表計算";　	//←文字列入力
+		xCellRange.getCellByPosition(0, 3).formula = "=A1+A2"; 		// ←式入力
+	// Cell Font
+	for(i=0; i<=3; i++){
+	 switch(i){
+	   case 0: xFontHigh = 10; xFontAsiaHigh = 10; break;
+	   case 1: xFontHigh = 15; xFontAsiaHigh = 15; break;
+	   case 2: xFontHigh = 20; xFontAsiaHigh = 20; break;
+	   case 3: xFontHigh = 25; xFontAsiaHigh = 25; break;
+		}
+	 xCell = xCellRange.getCellByPosition(0, i)
+	 xFont = UnoRuntime.queryInterface(XPropertySet,xCell);
+	 xFont.setPropertyValue("CharHeight",xFontHigh);
+	 xFont.setPropertyValue("CharHeightAsian",xFontAsiaHigh);
+	}
+</code></pre><br>
+
+
+<a name="OOoCCS7a"><h6>CCS-)<em>[Calc]</em>Textを自動的に折り返す</h6></a><pre><code>
+<img SRC="JavaScript_Pic/02Calc/03Style/03IsTextWrapped01.png" align="right" hspace="4" vspace="4" width="15%">
+//[ Cell IsTextWapped ]
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheets);
+importClass(Packages.com.sun.star.table.XCellRange);
+importClass(Packages.com.sun.star.container.XIndexAccess);
+importClass(Packages.com.sun.star.text.XTextRange);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+	//
+	// get document XModel and get specific sheet
+		oDoc = XSCRIPTCONTEXT.getDocument();
+		xSpreadsheetDocument = UnoRuntime.queryInterface(XSpreadsheetDocument, oDoc);
+		xSpreadsheets = xSpreadsheetDocument.getSheets();
+		xIndexAccess = UnoRuntime.queryInterface(XIndexAccess, xSpreadsheets);
+		oSheet = xIndexAccess.getByIndex(0);
+	//
+	// Cellへの入力
+		xCellRange = UnoRuntime.queryInterface(XCellRange, oSheet);
+		xCellRange.getCellByPosition(0, 0).formula = "abcdefghijklmnopqrstuvwxyz";
+		xCellRange.getCellByPosition(0, 1).formula = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		xCellRange.getCellByPosition(0, 2).formula = "あいうえおかきくけこさしすせそ";　	//←文字列入力
+		xCellRange.getCellByPosition(0, 3).formula = "Textを自動的に折り返す";
+	// Cell Font
+	for(i=0; i<=3; i++){
+	 xCell = xCellRange.getCellByPosition(0, i)
+	 xFont = UnoRuntime.queryInterface(XPropertySet,xCell);
+	 xFont.setPropertyValue("IsTextWrapped",new java.lang.Boolean(true));
+	}
+</code></pre><br>
+
+
+<a name="OOoCCS"><h6>CCS-)<em>[Calc]</em></h6></a><pre><code>
+<img SRC="JavaScript_Pic/02Calc/03Style/index.html" align="right" hspace="4" vspace="4" width="25%">
+
+</code></pre><br>
+
+
+<a name="OOoCCS"><h6>CCS-)<em>[Calc]</em></h6></a><pre><code>
+<img SRC="JavaScript_Pic/02Calc/03Style/index.html" align="right" hspace="4" vspace="4" width="25%">
+
+</code></pre><br>
+
+
+
+<p class="s1">Graph Chart作成</p class="s1">
+<a name="OOoCG1"><h6>C)<em>[Calc]</em>Simple Diagram作成</h6></a><pre><code>
+//[ Chart ] Simple Diagram
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheet);
+importClass(Packages.com.sun.star.container.XIndexAccess);
+importClass(Packages.com.sun.star.table.XCellRange);
+importClass(Packages.com.sun.star.sheet.XCellRangeAddressable);
+importClass(Packages.com.sun.star.table.CellRangeAddress);
+importClass(Packages.com.sun.star.table.XTableChartsSupplier);
+
+	loadProps = new Array(); // We need no properties
+	xSheetComponent = XSCRIPTCONTEXT.getDocument();
+	xDocument = UnoRuntime.queryInterface(XSpreadsheetDocument,xSheetComponent);
+	xSheets = xDocument.getSheets();
+	xIndexSheets =UnoRuntime.queryInterface(XIndexAccess, xSheets);
+	xSheet =UnoRuntime.queryInterface(XSpreadsheet,xIndexSheets.getByIndex(1));
+	// [ Graph Data ]
+		for(i=0; i<5; i++)
+			{
+			for(j=0; j<4; j++)
+				insert(i, j, i+j, xSheet, true);
+			}
+
+	// Graph枠の作成
+		oRect = new Packages.com.sun.star.awt.Rectangle();
+		oRect.X = 500;
+		oRect.Y = 3000;
+		oRect.Width = 25000;
+		oRect.Height = 11000;
+	// Graph Dataの取得
+		oRange =UnoRuntime.queryInterface(XCellRange, xSheet);
+		myRange = oRange.getCellRangeByName("A1:E4");
+		oRangeAddr =UnoRuntime.queryInterface(XCellRangeAddressable, myRange);
+		myAddr = oRangeAddr.getRangeAddress()
+	// 新規Grahの作成&Data Rangeの指定
+		cellRangeAddressName = myAddr.CellRangeAddress
+		oAddr = new Array();
+		oAddr[0] = myAddr;
+	// Graph描画start. Graph Name 「example」とする
+		oSupp =UnoRuntime.queryInterface(XTableChartsSupplier, xSheet);
+		oCharts = oSupp.getCharts();
+		oCharts.addNewByName("Example", oRect, oAddr, true, true);
+
+JOptionPane.showMessageDialog(null, "Success");
+
+// [ Function :  insert ]
+//Cellへの入力関数(insert)の定義
+function insert(x, y, content, container, isValue)
+{
+oCell = container.getCellByPosition(x, y);
+if(isValue)
+oCell.setValue(new java.lang.Float(content).floatValue());
+else
+oCell.setFormula(content);
+}
+</code></pre><br>
+
+<a name="OOoCG2"><h6>CG-2)<em>[Calc]</em>3D Diagram作成</h6></a><pre><code>
+//[ Chart ] 3D Diagram
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.sheet.XSpreadsheetDocument);
+importClass(Packages.com.sun.star.sheet.XSpreadsheet);
+importClass(Packages.com.sun.star.container.XIndexAccess);
+importClass(Packages.com.sun.star.table.XCellRange);
+importClass(Packages.com.sun.star.sheet.XCellRangeAddressable);
+importClass(Packages.com.sun.star.table.CellRangeAddress);
+importClass(Packages.com.sun.star.table.XTableChartsSupplier);
+importClass(Packages.com.sun.star.table.XTableChart);
+importClass(Packages.com.sun.star.chart.XChartDocument);
+importClass(Packages.com.sun.star.document.XEmbeddedObjectSupplier);
+
+	loadProps = new Array(); // We need no properties
+	xSheetComponent = XSCRIPTCONTEXT.getDocument();
+	xDocument = UnoRuntime.queryInterface(XSpreadsheetDocument,xSheetComponent);
+	xSheets = xDocument.getSheets();
+	xIndexSheets =UnoRuntime.queryInterface(XIndexAccess, xSheets);
+	xSheet =UnoRuntime.queryInterface(XSpreadsheet,xIndexSheets.getByIndex(0));
+	// [ Graph Data ]
+		for(i=0; i<5; i++)
+			{
+			for(j=0; j<4; j++)
+				insert(i, j, i+j+1, xSheet, true);
+			}
+
+	// Graph枠の作成
+		oRect = new Packages.com.sun.star.awt.Rectangle();
+		oRect.X = 500;
+		oRect.Y = 3000;
+		oRect.Width = 10000;
+		oRect.Height = 5000;
+	// Graph Dataの取得
+		oRange =UnoRuntime.queryInterface(XCellRange, xSheet);
+		myRange = oRange.getCellRangeByName("A1:E4");
+		oRangeAddr =UnoRuntime.queryInterface(XCellRangeAddressable, myRange);
+		myAddr = oRangeAddr.getRangeAddress()
+	// 新規Grahの作成&Data Rangeの指定
+		cellRangeAddressName = myAddr.CellRangeAddress
+		oAddr = new Array();
+		oAddr[0] = myAddr;
+	// Graph描画start. Graph Name 「example」とする
+		oSupp =UnoRuntime.queryInterface(XTableChartsSupplier, xSheet);
+		oCharts = oSupp.getCharts();
+		oCharts.addNewByName("Example", oRect, oAddr, true, true);
+	// Graph属性設定
+		tempName =UnoRuntime.queryInterface(XNameAccess, oCharts).getByName("Example");
+		oChart =UnoRuntime.queryInterface(XTableChart, tempName);
+		oEOS =UnoRuntime.queryInterface(XEmbeddedObjectSupplier,oChart);
+		oInt = oEOS.getEmbeddedObject();
+		xChart =UnoRuntime.queryInterface(XChartDocument, oInt);
+		oDiag = xChart.getDiagram();
+	// 3-Dへ変更
+		oCPS =UnoRuntime.queryInterface(XPropertySet, oDiag);
+		oCPS.setPropertyValue("Dim3D", new java.lang.Boolean(true));
+	
+JOptionPane.showMessageDialog(null, "Success");
+
+// [ Function :  insert ]
+//Cellへの入力関数(insert)の定義
+function insert(x, y, content, container, isValue)
+{
+oCell = container.getCellByPosition(x, y);
+if(isValue)
+oCell.setValue(new java.lang.Float(content).floatValue());
+else
+oCell.setFormula(content);
+}
+</code></pre><br>
+<br>
+<br>
+
+
+<br>
+<center><h6><a href="#TopOfPage">Top of Page</a></h6></center><BR>
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/JavaScript_Calc.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:37:42 GMT -->
+</html>

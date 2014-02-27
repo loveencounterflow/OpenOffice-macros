@@ -1,0 +1,311 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/macro_ippo.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:09:53 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<SCRIPT language="JavaScript">
+		<!--
+			renew = new Date(document.lastModified);
+			y=renew.getYear();
+			m=renew.getMonth() + 1;
+			d=renew.getDate();
+			if(y<1900) {y=y+1900;}
+				oDate="更新日："+y+"/"+m+"/"+d;
+			document.write(oDate);
+		//-->
+	</SCRIPT>
+	
+	<title>Macroの一歩(「Macro使い」への8分間)</title>
+</head>
+<link rel="stylesheet" type="text/css" href="css_macro_ippo.css">
+<body>
+<a name="TopOfPage"><left><p><A HREF="index-2.html">Home of site</a></p></left></a><br>
+<h1>Macroの一歩</h1>
+<h2><u>(「Macro使い」への8分間 )</u></h2>
+
+<h3>【　目次　】</h3>
+<h6 href="#mOOoa0">0.準備</h6>
+<ul>
+Pre-1)<a href="#mOOo0">マクロを実行させる為の準備</a><BR>
+Pre-2)<a href="#mOOo0A">マクロを作成するIDE(Macroを記す専用Editor)を開く</a><BR>
+</ul>
+<br>
+<h6 href="#mOOoa1">1.はじめの第一歩</h6>
+<ul>
+1-1)&emsp;<a href="#mOOo1">最もポピュラーなマクロ（Hello World)</a><br>
+1-2)&emsp;<a href="#mOOo2">MsgBoxのいろは</a><br>
+1-3)&emsp;<a href="#mOOo3">Debug時に使用するPrint</a><br>
+1-4)&emsp;<a href="#mOOo4">データのInputBox</a><br>
+1-5)&emsp;<a href="#mOOo5">条件分岐(If～else～End if)
+1-6)&emsp;<a href="#mOOo6">結果次第の命令実行（Select～End Select</a><BR>
+1-7)&emsp;<a href="#mOOo7">回数の決まった繰り返し文（For～next)</a><br>
+1-8)&emsp;<a href="#mOOo8">回数未定の繰り返し文（Do～Loop)</a><br>
+1-9)&emsp;<a href="#mOOo9">Comment文</a><br>
+</ul>
+<h6 href="#mOOoa2">2.OOo Basicの基本</h6>
+<ul>
+2-1)&emsp;<a href="#mOOo2-1">URL(Uniform Resource Locator)の作成</a><br>
+2-2)&emsp;<a href="#mOOo2-2">URLからPC Locationへの変換</a><br>
+</ul>
+<br><br><br><br><br>
+<h3>【　Macro Code　】</h3>
+<h6 name="mOOoa0">0.準備</h6>
+<a name="mOOo0"><h5>Pre-1)マクロを実行させる為の準備</h5></a>
+<p>
+<IMG SRC="macro_Prepare1.png" BORDER="0" WIDTH="30%" ALIGN="Right">
+1)OpenOffice.orgの何れかのApplicaion(今回は「Calc」とします)を起動する。<br>
+2)「ツール」⇒「オプション」⇒左側画面の「OpenOffice.org」⇒「セキュリティ」⇒右側画面の「マクロセキュリティ」<br>
+⇒マクロセキュリティレベルが「中」以下でないとマクロが実行されません。<br>
+3)セキュリティレベルを「中」を選択<br>
+4)「OK」<br>
+</p>
+<br clear="right">
+<br><br><br>
+
+
+<a name="mOOo0A"><h5>Pre-2)マクロを作成するIDE(極端に言うとMacroを記す専用Editor)を開く</h5></a>
+<p>
+1)OpenOffice.orgの何れかのApplicaion(今回は「Calc」とします)を起動する。<br>
+2)Menu Barの「ツール」⇒「マクロ」⇒「マクロの管理」⇒「OpenOffice.orb Basic」を選択。<br>
+3)「マクロの記録先」を今回開いたCalc file名を選択する。(「マイマクロ」の選択はMacroを少し理解してから使えば良いと思います。)<br>
+4)「新規作成」⇒「新しいモジュール」Windowが表示されるのでmodeule名(今回は「OOoMacro」)を入力して、「OK」をクリック。<br>
+5)IDEが起動するので、「Sub Main」と「End SUb」の間にMacoro Code(下記1-1)の場合は「MsgBox("Hello World")」)を記述。<br>
+6)Menu Barの「ツール」⇒「マクロ」⇒「マクロの実行」を選択。<br>
+<br>
+以上でMacroが実行されます。<br>
+<IMG SRC="macro_Prepare2_1.png" BORDER="0" WIDTH="30%" ALIGN="Left">
+<IMG SRC="macro_Prepare2_2.png" BORDER="0" WIDTH="30%" ALIGN="Left" hspace="100px" margin-left="100px"><br>
+</p>
+<br clear="left">
+<br><br><br>
+
+
+<a name="mOOoa0"><h6>1.はじめの第一歩</h6></a>
+<p>
+マクロには変数の宣言等色々と文法がありますが、取敢えずマクロを体験しましょう<br>
+</p>
+<br>
+<a name="mOOo1"><h5>1-1)最もポピュラーなマクロ（Hello World)</h5></a>
+<p>
+<code>
+Sub Main1<br>
+&emsp;MsgBox("Hello World")<br>
+End Sub<br>
+</code>
+<br>
+これだけで立派なMacroが出来ており、あなたは<em><u>「Macro使い」</u></em>の山頂に向かって歩き始めました。<br>
+</p>
+<br><br>
+
+<a name="mOOo2"><h5>1-2)MsgBoxのいろは</h5></a>
+<p>
+MsgBoxにはOptionを付けれます。Optionを付けた形式は以下の様になります。<br>
+&emsp;<em>MsgBox("メッセージ文"，<em class="s2">Option No,"Title名"</em class="s2">)</em><br>
+Option NoとTitle名は<u>省略可</u><br>
+<em class="s3">[ Sample Code ]</em class="s3"><br>
+<code>
+Sub Main2<br>
+&emsp;a=MsgBox("あなたは男性ですか?",4,"性別確認")<br>
+End Sub<br>
+</code>
+</p>
+<br><br>
+
+<a name="mOOo3"><h5>1-3)Debug時に使用するPrint</h5></a>
+<p>
+Macroを組む時に途中で変数の値を確認する事は非常に重要な事です。<br>
+そのような時はPrintを使いましょう。Printならば<br>
+・「はい」と「キャンセル」のボタンがあって途中キャンセルが出来る事<br>
+・複数の変数を表示する場合に変数間にスペースが自動で付いて、値が分り易いというメリットがあります。<br>
+<em class="s3">[ Sample Code ]</em class="s3"><br>
+<code>
+Sub Main3<br>
+&emsp;a="値は"<br>
+&emsp;b=10<br>
+&emsp;Print a,b<br>
+End Sub<br>
+</code>
+</p>
+<br><br>
+
+<a name="mOOo4"><h5>1-4)データのInputBox</h5>
+<p>
+MsgBoxやPrintがデータの出力Boxとすれば、データの入力Boxも有る筈です。それが「InputBox」です。<br>
+<em class="s3">[ Sample Code ]</em class="s3"><br>
+<code>
+Sub Main4<br>
+&emsp;a=InputBox("値を入力して下しさい。")<br>
+&emsp;MsgBox("入力値は" & a & "ですね”)　'←変数の羅列はPrintでは｢,」、MsgBoxでは｢&｣<br>
+End Sub<br>
+</code>
+</p>
+<br><br>
+
+<a name="mOOo5"><h5>1-5)条件分岐(If～else～End if)</h5></a>
+<p>
+Macroはif文に始まりif文で終わる位に多用します。<br>
+<em class="s3">[ Sample Code ]</em class="s3"><br>
+<code>
+Sub Main5<br>
+&emsp;a=MsgBox("あなたは男性ですか?",4,"性別確認")<br>
+&emsp;if a=6 then <br>
+&emsp;&emsp;MsgBox("あなたは男性です。")<br>
+&emsp;else<br>
+&emsp;&emsp;MsgBox("あなたは女性です。")<br>
+&emsp;end if<br>
+End Sub<br>
+</code>
+</p>
+<br><br>
+
+<a name="mOOo6"><h5>1-6)結果次第の命令実行（Select～End Select</h5></a>
+<p>
+条件分岐が多い時に使います。但し日本語を判定に使用するとBugが生じる可能性があります。<br>
+<em class="s3">[ Sample Code ]</em class="s3"><br>
+<code>
+Sub Main6<br>
+&emsp;a=InputBox("あなたの出身地は「北海道」「青森」「東京」「愛知」「大阪」「広島」「高知」「福岡」どこですか？")<br>
+&emsp;select case a<br>
+&emsp;&emsp;case "北海道"<br>
+&emsp;&emsp;&emsp;MsgBox("あなたの出身は北海道地区ですね")<br>
+&emsp;&emsp;case "青森"<br>
+&emsp;&emsp;&emsp;MsgBox("あなたの出身は東北地区ですね")<br>	
+&emsp;&emsp;case "東京"<br>
+&emsp;&emsp;&emsp;MsgBox("あなたの出身は関東地区ですね")<br>
+&emsp;&emsp;case "愛知"<br>
+&emsp;&emsp;&emsp;MsgBox("あなたの出身は中部地区ですね")<br>
+&emsp;&emsp;case "大阪"<br>
+&emsp;&emsp;&emsp;MsgBox("あなたの出身は近畿地区ですね")<br>
+&emsp;&emsp;case "広島"<br>
+&emsp;&emsp;&emsp;MsgBox("あなたの出身は中国地区ですね")<br>
+&emsp;&emsp;case "高知"<br>
+&emsp;&emsp;&emsp;MsgBox("あなたの出身は四国地区ですね")<br>
+&emsp;&emsp;case "福岡"<br>
+&emsp;&emsp;&emsp;MsgBox("あなたの出身は九州地区ですね")<br>
+&emsp;End Select<br>
+End Sub<br>
+</code>
+</p>
+<br><br>
+
+<a name="mOOo7"><h5>1-7)回数の決まった繰り返し文（For～next)</h5></a>
+<p>
+IF文と同じ位多用されるものです。下記は1から10の数字をMessgeBoxに表示させるものです。<br>
+<em class="s3">[ Sample Code ]</em class="s3"><br>
+<code>
+Sub main7<br>
+&emsp;for i=1 to 10 <br>
+&emsp;&emsp;msgbox i<br>
+&emsp;next<br>
+End Sub<br>
+</code></p>
+<br><br>
+
+<a name="mOOo8"><h5>1-8)回数未定の繰り返し文（Do～Loop)</h5></a>
+<p>
+条件に一致するまで命令文を繰り返す。但し、条件式が悪いと無限Loopになってしまい、PCのハングアップになるので注意。<br>
+また今回の例文のデータには配列を使います。<br>
+<br>
+<em class="s3">[ Sample Code ]</em class="s3"><br>
+<code>
+Sub main8<br>
+Dim oName(11)		'←配列データName(0)～Name(11)を宣言しています。<br>
+&emsp;flag=0<br>
+&emsp;i=1<br>
+&emsp;Do While flag=0 and i < 12		'←flag=1又はi=11になるまで命令文を繰り返す。<br>
+&emsp;&emsp;oName(i)=i+1<br>
+&emsp;&emsp;oMonth=msgbox("今は" & oName(i) & "月です",4)<br>
+&emsp;&emsp;if oMonth=6 then<br>
+&emsp;&emsp;&emsp;flag=1<br>
+&emsp;&emsp;end if<br>
+&emsp;&emsp;i=i+1<br>
+&emsp;Loop<br>
+End sub<br>
+</code></p>
+<br><br>
+
+<a name="mOOo9"><h5>1-9)Comment文</h5></a>
+<p>
+Macro Code中にCommentを残したい場合は以下の2つの方法があります。<br>
+&emsp;･「'」をつける。<br>
+&emsp;･「Rem」をつける。<br>
+両者共に、行の先頭に付ける必要は有りません。Program Codeの後に「'」or「Rem」を付ければ以降の文字は全てComment文として
+認識されます。但し、Comment文が複数行になる時は各行に「'」or「Rem」が必要です。
+</p>
+<br><br>
+
+<a name="mOOoa2"><h6>2.OOo Basicの基本</h6></a>
+<a name="mOOo2-1"><h5>2-1)URL(Uniform Resource Locator)の作成</h5></a>
+<p>
+OpenOffice.oeg Basic(以後：OOoBasic)ではFile位置の管理をURL(Uniform Resource Locator)にて行います。<br>
+MS-OfficeのVBAがPC内のみの作業を前提であるのに対して、OOoBasicではNetwork上での作業を前提としています。<br>
+これはNetworkを用いて作業するのは、OOoBasic ＞＞ VBA　である事を意味しています。<br>
+以下にURL作成Codeをしるします。<br>
+<em class="s3">[ Sample Code ]</em class="s3"><br>
+<code>
+Sub oURL<br>
+&emsp;Dim oFileName<br>
+&emsp;Dim oFileURL<br>
+&emsp;&emsp;oFileName = "c:\temp\test.html"<br>
+&emsp;&emsp;oFileURL = ConvertToUrl(oFileName)<br>
+&emsp;MsgBox("File Name = " & oFileName & Chr$(10) & _<br>
+&emsp;&emsp;"   から" & Chr$(10) & _<br>
+&emsp;&emsp;"URL = " & oFileURL & Chr$(10) & _<br>
+&emsp;&emsp;"   に変換しました。" , 0,"[ URLの作成 ]")<br>
+End sub<br>
+</code></p>
+<br><br>
+
+<a name="mOOo2-2"><h5>2-2)URLからPC Locationへの変換</h5></a>
+<p>
+<em class="s3">[ Sample Code ]</em class="s3"><br>
+<code>
+Sub oURL<br>
+&emsp;Dim oFileName<br>
+&emsp;Dim oFileURL<br>
+&emsp;&emsp;oFileURL = "file:///c:/temp/test.html"<br>
+&emsp;&emsp;oFileName = ConvertFromUrl(oFileURL)<br>
+&emsp;MsgBox("URL = " & oFileURL & Chr$(10) & _<br>
+&emsp;&emsp;"   から" & Chr$(10) & _<br>
+&emsp;&emsp;"File Name = " & oFileName & Chr$(10) & _<br>
+&emsp;&emsp;"   に変換しました。" , 0,"[ URLからの変換 ]")<br>
+End sub<br>
+</code></p>
+<br><br>
+
+<p class="c2">
+以上でOpenOffice.org Basicを用いたMacroの基本は終了です。<em>「Macro使い」への道程</em>として、<br>
+・ただ単純に読んだだけの方は<em class="s2">3合目</em class="s2"><br>
+・Copy、Pasteして実行した方は<em class="s2">5合目</em class="s2"><br>
+・Codeを自分でType入力して実行された方は<em class="s2">6合目</em class="s2"><br>
+まで到達していると思います。<br>
+本PageにてOpenOffice.org Basicに興味を持たれた方は、<a href="http://hermione.s41.xrea.com/pukiwiki/index.php?FrontPage">「はにゃ?」さんの個人サイト</a>を訪れて下さい。大体の事は分かると思います。<br>
+</p class="c2">
+<br><br>
+<BR>
+
+<br class="right">
+<h6><center><a href="#TopOfPage">Top of Page</a></center></h6><BR>
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/macro_ippo.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:10:00 GMT -->
+</html>

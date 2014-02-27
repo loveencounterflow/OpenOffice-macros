@@ -1,0 +1,5342 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/OOoBasic_General3.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:12:15 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<SCRIPT language="JavaScript">
+		<!--
+			renew = new Date(document.lastModified);
+			y=renew.getYear();
+			m=renew.getMonth() + 1;
+			d=renew.getDate();
+			if(y<1900) {y=y+1900;}
+				oDate="更新日："+y+"/"+m+"/"+d;
+			document.write(oDate);
+		//-->
+	</SCRIPT>
+	
+	<title>Macroの杜(OpenOffice.org/LibreOffice Basic編)/ General No.3</title>
+</head>
+<link rel="stylesheet"
+type="text/css" href="css_macro_Basic.css">
+
+<body>
+<a name="TopOfPage"><left><p><A HREF="index-2.html">Home of site</a></p></left></a><br>
+<h1>Macroの杜<br>
+(OpenOffice.org/LibreOffice Basic編)</h1>
+		
+<h2>General No.3</h2>
+
+<center><h1>###【 Continued from <a href="OOoBasic_General2.html">General No.2</a> 】###</h1></center>
+<br>
+
+<h3><Center>**********************【 Index 】**********************</center></h3>
+
+<p class="s1">Text</p class="s1">
+<p class="s3">[ Text ]</p class="s3">
+<ul>
+GTxt-)<a href="#OOoGF15"><em>[General]</em>DummyのText fileを作成</a><BR>
+GTxt-)<a href="#OOoGTxt01b"><em>[General]</em>Unicode形式のText file作成<em>[ "Text (encoded)" / "UCS2" ]</em></a><BR>
+GTxt-)<a href="#OOoGF16"><em>[General]</em>Text fileの読み込み</a><BR>
+GTxt-)<a href="#OOoGF17"><em>[General]</em>HTML fileをText fileに変換</a><BR>
+GTxt-)<a href="#OOoGTxt04a"><em>[General]</em>Text Fileへ出力</a><BR>
+</ul>
+<br>
+
+
+<p class="s3">[ Read / Write ]</p class="s3">
+<ul>
+GRW-)<a href="#OOoGRW01a"><em>[General]</em>OpenFileRead<em>[ com.sun.star.ucb.SimpleFileAccess ]</em></a><br>
+GRW-)<a href="#OOoGRW02a"><em>[General]</em>OpenFileWrite<em>[ com.sun.star.ucb.SimpleFileAccess ]</em></a><br>
+GRW-)<a href="#OOoGRW03a"><em>[General]</em>OpenFileReadWrite<em>[ com.sun.star.ucb.SimpleFileAccess ]</em></a><br>
+</ul>
+<br>
+
+
+<p class="s1">XML</p class="s1">
+<ul>
+GXML-)<a href="#OOoGXML"><em>[General]</em>XML Fileの構文解析<em>[  ]</em></a><br>
+GXML-)<a href="#OOoGXML"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+
+<p class="s1">Network</p class="s1">
+<p class="s3">[ Web ]</p class="s3">
+<ul>
+GWeb-1)<a href="#OOoGWeb01a"><em>[General]</em>任意のWeb Siteを開く</a><br>
+GWeb-)<a href="#OOoGWeb02a"><em>[General]</em>Internet Explorer起動<em>[ com.sun.star.bridge.OleObjectFactory / InternetExplorer.Application.1 / .Visible / .Navigate() ]</em></a><br>
+</ul>
+<br>
+
+
+<p class="s3">[ Google ]</p class="s3">
+<ul>
+GGgle-)<a href="#OOoGGgle01a"><em>[General]</em>Google Translateを使って文字発音( Only Windows )</a><br>
+</ul>
+<br>
+
+
+<p class="s1">Media</p class="s1">
+<ul>
+GMda-)<a href="#OOoGMda01a"><em>[General]</em>Sound 再生<em>[ com.sun.star.media.Manager_DirectX / com.sun.star.media.Manager_GStreamer / createPlayer / getDuration / setMediaTime / setStopTime / getMediaTime / isPlaying ]</em></a><br>
+GMda-)<a href="#OOoGMda"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+
+<p class="s1">Library / Module</p class="s1">
+<ul>
+GLyMd-)<a href="#OOoGLyMd01a"><em>[General]</em>Module Source取得<em>[ GlobalScope / basicLibraries / getByName() ]</em></a><BR>
+GLyMd-)<a href="#OOoGLyMd02a"><em>[General]</em>Library List取得<em>[ .getElementNames ]</em></a><BR>
+GLyMd-)<a href="#OOoGLyMd02b"><em>[General]</em>Module List取得<em>[ .getElementNames ]</em></a><BR>
+GLyMd-)<a href="#OOoGLyMd03a"><em>[General]</em>任意のLibrary / Moduleの有無Check<em>[ hasByName() ]</em></a><BR>
+GLyMd-)<a href="#OOoGLyMd"><em>[General]</em><em>[  ]</em></a><BR>
+</ul>
+<br>
+
+
+<p class="s1">Listener</p class="s1">
+<ul>
+[ 「Listener」の詳細は<a href="http://hermione.s41.xrea.com/pukiwiki/index.php?OOoBasic%2FGeneric%2Flistener"><em class="s1">「はにゃ?」さんの個人サイト</em class="s1"></a>を参照下さい。　]<br>
+GL-)<a href="#OOoGL03a"><em>[General]</em>各ListenerのMethod(1)<em>[ com.sun.star.lang.XEventListener / .beans.XPropertiesChangeListener / .awt.XActionListener / .awt.XActivateListener / .awt.XAdjustmentListener / .awt.XFocusListener ]</em></a><br>
+GL-)<a href="#OOoGL03b"><em>[General]</em>各ListenerのMethod(2)<em>[ com.sun.star.awt.XItemListener / .awt.XKeyListener / .awt.XMenuListener / .awt.XMouseListener / .awt.XMouseMotionListener ]</em></a><br>
+GL-)<a href="#OOoGL03c"><em>[General]</em>各ListenerのMethod(3)<em>[ com.sun.star.awt.XPaintListener / .awt.XSpinListener / .awt.XTextListener / .util.XModeChageListener / .util.XModeChageApproveListener ]</em></a><br>
+GL-)<a href="#OOoGL03d"><em>[General]</em>各ListenerのMethod(4)<em>[ com.sun.star.awt.XTopWindowListener / .awt.XWindowListener / .view.XSelectionChangeListener / .container.XContainerListener ]</em></a><br>
+GL-)<a href="#OOoGL03e"><em>[General]</em>各ListenerのMethod(5)<em>[ com.sun.star.frame.XBorderResizeListener / .frame.XTitleChangeListener / .frame.XFrameActionListener / .beans.XVetoableChangeListener ]</em></a><br>
+GL-)<a href="#OOoGL03f"><em>[General]</em>各ListenerのMethod(6)<em>[ com.sun.star.sheet.XRangeSelectionListener / .sheet.XRangeSelectionChangeListener / .sheet.XActivationEventListener ]</em></a><br>
+GL-)<a href="#OOoGL03g"><em>[General]</em>各ListenerのMethod(7)<em>[ com.sun.star.util.XCloseListener / .util.XModifyListener / .util.XChangesListener / .view.XPrintJobListener / .document.XStorageChangeListener ]</em></a><br>
+GL-)<a href="#OOoGL03h"><em>[General]</em>各ListenerのMethod(8)<em>[ com.sun.star.chart.XChartDataChangeEventListener / .beans.XPropertyChangeListener ]</em></a><br>
+GL-)<a href="#OOoGL05"><em>[General]</em>Event Sourceの取得[ Listener ](未完成)</a><br>
+GL-)<a href="#OOoGL06"><em>[General]</em>Selection　Listenerの作成及び削除[ Listener ]</a><br>
+GL-)<a href="#OOoGL07a"><em>[General]</em>既存DialogにXMouseListener追加/削除<em>[ com.sun.star.awt.XMouseListener / com.sun.star.lang.EventObject / com.sun.star.awt.MouseEvent / addMouseListener / removeMouseListener / disposing / mousePressed / mouseReleased / mouseEntered / mouseExited ]</em></a><br>
+GL-)<a href="#OOoGL08a"><em>[General]</em>既存DialogにXMouseMotionListener追加/削除<em>[ com.sun.star.awt.XMouseMotionListener / mouseDragged / mouseMoved ]</em></a><br>
+GL-)<a href="#OOoGL09a"><em>[General]</em>既存DialogにXFocusListener追加/削除<em>[ com.sun.star.awt.XFocusListener / com.sun.star.awt.FocusEvent / addFocusListener / removeFocusListener / FocusGained / FocusLost ]</em></a><br>
+GL-)<a href="#OOoGL10a"><em>[General]</em>既存DialogにXTopWindowListener追加/削除<em>[ com.sun.star.awt.XTopWindowListener / addTopWindowListener / removeTopWindowListener / windowOpened / windowClosing / windowClosed / windowMinimized / windowNormalized / windowActivated / windowDeactivated ]</em></a><br>
+GL-)<a href="#OOoGL11a"><em>[General]</em>既存DialogにXWindowListener追加/削除<em>[ com.sun.star.awt.XWindowListener / addWindowListener / removeWindowListener / windowResized / windowMoved / windowShown / windowHidden ]</em></a><br>
+GL-)<a href="#OOoGL12a"><em>[General]</em>既存DialogにXKeyListener追加/削除<em>[ com.sun.star.awt.XKeyListener / addKeyListener / removeKeyListener / keyPressed / keyReleaseed ]</em></a><br>
+GL-)<a href="#OOoGL13a"><em>[General]</em>既存DialogにXPaintListener追加/削除<em>[ com.sun.star.awt.XPaintListener / addPaitListener / removePaintListener / windowPaint ]</em></a><br>
+GL-)<a href="#OOoGL"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+<p class="s3">[ Handler ]</p class="s3">
+<ul>
+GLHr-)<a href="#OOoGLHr01a"><em>[General]</em>XMouseClickHandlerの登録/削除<em>[ com.sun.star.awt.XMouseClickHandler / addMouseClickHandler / removeMouseClickHandler / mousePressed / mouseReleased ]</em></a><br>
+GLHr-)<a href="#OOoGLHr02a"><em>[General]</em>XEnhancedMouseClickHandlerの登録/削除<em>[  ]</em></a><br>
+GLHr-)<a href="#OOoGLHr03a"><em>[General]</em>XKeyHandlerの登録/削除<em>[ com.sun.star.awt.XKeyHandler / addKeyHandler / removeKeyHandler / keyPressed / keyReleased ]</em></a><br>
+GLHr-)<a href="#OOoGLHr"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+
+<p class="s1">Event</p class="s1">
+<p class="s3">[ Dialog ]</p class="s3">
+<ul>
+GEvDg-)<a href="#OOoGEvDg01a"><em>[General]</em>Dialog中のMouse Cursor形状設定<em>[ com.sun.star.awt.Pointer / com.sun.star.awt.SystemPointer / .Source.Peer.setPointer() ]</em></a><br>
+GEvDg-)<a href="#OOoGEvDg"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+
+<p class="s3">[ Document ]</p class="s3">
+<ul>
+GEvDoc-)<a href="#GEvDoc01a"><em>[General]</em>Documentにて使用可能なEvent Listener( Calc )<em>[ com.sun.star.document.XEventSupplier / getEvents() ]</em></a><br>
+GEvDoc-)<a href="#GEvDoc01a1"><em>[General]</em>Sheetにて使用可能なEvent Listener( Calc Sheet )<em>[  ]</em></a><br>
+GEvDoc-)<a href="#GEvDoc01b"><em>[General]</em>Documentにて使用可能なEvent Listener( writer )<em>[  ]</em></a><br>
+GEvDoc-)<a href="#GEvDoc01c"><em>[General]</em>Documentにて使用可能なEvent Listener( Draw )<em>[  ]</em></a><br>
+GEvDoc-)<a href="#GEvDoc01d"><em>[General]</em>Documentにて使用可能なEvent Listener( Impress )<em>[  ]</em></a><br>
+GEvDoc-)<a href="#GEvDoc01e"><em>[General]</em>Documentにて使用可能なEvent Listener( Base )<em>[  ]</em></a><br>
+GEvDoc-)<a href="#GEvDoc02a"><em>[General]</em>Event Listener<em>[ com.sun.star.document.XEventListener / com_sun_star_document_XEventBroadcaster_addEventListener / com_sun_star_document_XEventBroadcaster_removeEventListener ]</em></a><br>
+GEvDoc-)<a href="#GEvDoc03a"><em>[General]</em>Application Event Container設定<em>[ com.sun.star.frame.GlobalEventBroadcaster ]</em></a><br>
+GEvDoc-)<a href="#GEvDoc"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+
+
+<p class="s1">Document Settings</p class="s1">
+<p class="s3">[ General ]<em>( com.sun.star.document.Settings[ <a href="http://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1document_1_1Settings.html">LibreOffice</a> / <a href="http://www.openoffice.org/api/docs/common/ref/com/sun/star/document/Settings.html">Apache OpenOffice</a> ] )</em></p class="s3">
+<ul>
+GDStGn-)<a href="#OOoGDStGn01a"><em>[General]</em>Default Printer Name取得<em>[ PrinterName ]</em></a><br>
+GDStGn-)<a href="#OOoGDStGn02a"><em>[General]</em>読込む時のLinkの更新の取得/設定<em>[ LinkUpdateMode ]</em></a><br>
+GDStGn-)<a href="#OOoGDStGn03a"><em>[General]</em>カーニング( 文字間隔をバランスよく整える )設定の取得/設定(1)<em>[ IsKernAsianPunctuation ]</em></a><br>
+GDStGn-)<a href="#OOoGDStGn03b"><em>[General]</em>カーニング( 文字間隔をバランスよく整える )設定の取得/設定(2)[ Only Calc ]<em>[ com.sun.star.comp.SpreadsheetSettings / IsKernAsianPunctuation ]</em></a><br>
+GDStGn-)<a href="#OOoGDStGn04a"><em>[General]</em>文字間隔の調整設定の取得/設定(1)<em>[ CharacterCompressionType ]</em></a><br>
+GDStGn-)<a href="#OOoGDStGn04b"><em>[General]</em>文字間隔の調整設定の取得/設定(2)[ Only Calc ]<em>[ com.sun.star.comp.SpreadsheetSettings / CharacterCompressionType ]</em></a><br>
+GDStGn-)<a href="#OOoGDStGn05a"><em>[General]</em>「ユーザーデータを使用する」設定の取得/設定(1)<em>[ ApplyUserData ]</em></a><br>
+GDStGn-)<a href="#OOoGDStGn05b"><em>[General]</em>「ユーザーデータを使用する」設定の取得/設定(2)[ Only Calc ]<em>[ com.sun.star.comp.SpreadsheetSettings / ApplyUserData ]</em></a><br>
+GDStGn-)<a href="#OOoGDStGn"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+
+<p class="s3">[ Calc ]<em>( com.sun.star.sheet.DocumentSettings[ <a href="http://api.libreoffice.org/docs/common/ref/com/sun/star/sheet/DocumentSettings.html">LibreOffice</a> / <a href="http://www.openoffice.org/api/docs/common/ref/com/sun/star/sheet/DocumentSettings.html">Apache OpenOffice</a> ] )</em></p class="s3">
+<ul>
+GDStCalc-)<a href="#OOoGDStCalc01a"><em>[General / Calc]</em>Zero( = 0 )表示/非表示の確認<em>[ ShowZeroValues ]</em></a><br>
+GDStCalc-)<a href="#OOoGDStCalc02a"><em>[General / Calc]</em>Comment常時表示/通常表示の確認<em>[ ShowNotes ]</em></a><br>
+GDStCalc-)<a href="#OOoGDStCalc03a"><em>[General / Calc]</em>Grid Line表示/非表示の確認<em>[ ShowGrid ]</em></a><br>
+GDStCalc-)<a href="#OOoGDStCalc04a"><em>[General / Calc]</em>Grid Line色の取得<em>[ GridColor ]</em></a><br>
+GDStCalc-)<a href="#OOoGDStCalc05a"><em>[General / Calc]</em>Page Breake Line表示/非表示の確認<em>[ ShowPageBreaks ]</em></a><br>
+GDStCalc-)<a href="#OOoGDStCalc06a"><em>[General / Calc]</em>行･列番号表示/非表示の確認<em>[ HasColumnRowHeaders ]</em></a><br>
+GDStCalc-)<a href="#OOoGDStCalc07a"><em>[General / Calc]</em>Sheet Tab表示/非表示の確認<em>[ HasSheetTabs ]</em></a><br>
+GDStCalc-)<a href="#OOoGDStCalc08a"><em>[General / Calc]</em>「 グリッド線で位置合わせ 」設定取得<em>[ IsSnapToRaster ]</em></a><br>
+GDStCalc-)<a href="#OOoGDStCalc09a"><em>[General / Calc]</em>「 グリッド線の表示 」設定取得<em>[ RasterIsVisible ]</em></a><br>
+GDStCalc-)<a href="#OOoGDStCalc10a"><em>[General / Calc]</em>「 解像度 」取得<em>[ RasterResolutionX / RasterResolutionY ]</em></a><br>
+GDStCalc-)<a href="#OOoGDStCalc11a"><em>[General / Calc]</em>「 サブ目盛 」取得<em>[ RasterSubdivisionX / RasterSubdivisionY ]</em></a><br>
+GDStCalc-)<a href="#OOoGDStCalc12a"><em>[General / Calc]</em>「 軸を同期させる 」取得<em>[ IsRasterAxisSynchronized ]</em></a><br>
+</ul>
+<br>
+
+<p class="s3">[ Writer ]<em>( com.sun.star.text.DocumentSettings[ <a href="http://api.libreoffice.org/docs/common/ref/com/sun/star/text/DocumentSettings.html">LibreOffice</a> / <a href="http://www.openoffice.org/api/docs/common/ref/com/sun/star/text/DocumentSettings.html">Apache OpenOffice</a> ] )</em></p class="s3">
+<ul>
+GDStWriter-)<a href="#OOoGDStWriter01a"><em>[General / Writer]</em>「自動」→「グラフ」更新設定の取得/設定<em>[ ChartAutoUpdate ]</em></a><br>
+GDStWriter-)<a href="#OOoGDStWriter02a"><em>[General / Writer]</em>「段落と表との間にスペースを入れる(現在のドキュメント)」設定の取得/設定<em>[ AddParaTableSpacing ]</em></a><br>
+GDStWriter-)<a href="#OOoGDStWriter03a"><em>[General / Writer]</em>「ページの最上部に段落と表の間隔を追加する」設定の取得/設定<em>[ AddParaTableSpacingAtStart ]</em></a><br>
+GDStWriter-)<a href="#OOoGDStWriter04a"><em>[General / Writer]</em>「OpenOffice.org1.1タブストップフォーマットを使用」設定の取得/設定<em>[ AlignTabStopPosition ]</em></a><br>
+GDStWriter-)<a href="#OOoGDStWriter05a"><em>[General / Writer]</em>Current Documentの「ラベルを同期させる」設定の取得/設定<em>[ IsLabelDocument ]</em></a><br>
+GDStWriter-)<a href="#OOoGDStWriter06a"><em>[General / Writer]</em>「OpenOffice.org1.1行間隔を使用」設定の取得/設定<em>[ UseFormerLineSpacing ]</em></a><br>
+GDStWriter-)<a href="#OOoGDStWriter07a"><em>[General / Writer]</em>「テーブルセルの最下部に段落とテーブルの間隔を入れる」設定の取得/設定<em>[ AddParaSpacingToTableCells ]</em></a><br>
+GDStWriter-)<a href="#OOoGDStWriter08a"><em>[General / Writer]</em>「OpenOffice.org1.1オブジェクト位置を使用」設定の取得/設定<em>[ UseFormerObjectPositioning ]</em></a><br>
+GDStWriter-)<a href="#OOoGDStWriter09a"><em>[General / Writer]</em>「オブジェクトを配置するときに折り返しスタイルを考える」設定の取得/設定<em>[ ConsiderTextWrapOnObjPos ]</em></a><br>
+GDStWriter-)<a href="#OOoGDStWriter10a"><em>[General / Writer]</em>「数式のベースライン調整」設定の取得/設定<em>[ MathBaselineAlignment ]</em></a><br>
+GDStWriter-)<a href="#OOoGDStWriter"><em>[General / Writer]</em>？<em>[ SaveGlobalDocumentLinks ]</em></a><br>
+</ul>
+<br>
+
+
+<p class="s3">[ Draw ]<em>( com.sun.star.drawing.DocumentSettings[ <a href="http://api.libreoffice.org/docs/common/ref/com/sun/star/drawing/DocumentSettings.html">LibreOffice</a> / <a href="http://www.openoffice.org/api/docs/common/ref/com/sun/star/drawing/DocumentSettings.html">Apache OpenOffice</a> ] )</em></p class="s3">
+<ul>
+GDStDraw-)<a href="#OOoGDStDraw01a"><em>[General / Draw]</em>「使う単位」の取得/設定<em>[ MeasureUnit ]</em></a><br>
+GDStDraw-)<a href="#OOoGDStDraw02a"><em>[General / Draw]</em>「図形の縮尺」の取得/設定<em>[ ScaleNumerator / ScaleDenominator ]</em></a><br>
+GDStDraw-)<a href="#OOoGDStDraw03a"><em>[General / Draw]</em>「印刷」→「ページのオプション」の取得<em>[ IsPrintFitPage / IsPrintTilePage ]</em></a><br>
+GDStDraw-)<a href="#OOoGDStDraw"><em>[General / Draw]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+
+<p class="s3">[ Impress ]<em>( com.sun.star.presentation.DocumentSettings[ <a href="http://api.libreoffice.org/docs/common/ref/com/sun/star/presentation/DocumentSettings.html">LibreOffice</a> / <a href="http://www.openoffice.org/api/docs/common/ref/com/sun/star/presentation/DocumentSettings.html">Apache OpenOffice</a> ] )</em></p class="s3">
+<ul>
+GDStImpress-)<a href="#OOoGDStImpress01a"><em>[General / Impress]</em>「印刷」→「ページのオプション」の取得<em>[ IsPrintFitPage / IsPrintTilePage ]</em></a><br>
+GDStImpress-)<a href="#OOoGDStImpress02a"><em>[General / Impress]</em>「 段落と表との間に間隔を入れる(現在のドキュメント) 」Check ON/OFF取得<em>[ ParagraphSummation ]</em></a><br>
+GDStImpress-)<a href="#OOoGDStImpress"><em>[General / Impress]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+<p class="s1">Link</p class="s1">
+<ul>
+GLik-)<a href="#OOoGLik02"><em>[General]</em>DocumentのLink情報<em>[ XLinkTargetSupplier / getLinks() ]</em></a><br>
+</ul>
+<br>
+
+<p class="s1">Generic Document Method</p class="s1">
+<ul>
+GDMd-)<a href="#OOoGDMd01"><em>[General]</em>DocumentのProperty取得<em>[ getPropertySetInfo() / getProperties() ]</em></a><br>
+GDMd-)<a href="#OOoGDMd02"><em>[General]</em>Document情報取得(<em class="s1"> Old </em class="s1">)<em>[  ]</em></a><br>
+</ul>
+<br>
+
+<p class="s1">Locale</p class="s1">
+<ul>
+GLo-)<a href="#OOoGLo01a"><em>[General]</em>Spell Check<em>[ Locale ]</em></a><br>
+GLo-)<a href="#OOoGLo01b"><em>[General]</em>Spell Check開始<em>[ .uno:SpellDialog ]</em></a><br>
+GLo-)<a href="#OOoGLo01c"><em>[General]</em>Auto Spell Check( Spell記号の表示/非表示 )<em>[ .uno:SpellDialog ]</em></a><br>
+GLo-)<a href="#OOoGLo02a"><em>[General]</em>単語のHyphenation位置<em>(行末に収まらない長い単語を前後に分割)</em><em>[ Locale ]</em></a><br>
+GLo-)<a href="#OOoGLo03a"><em>[General]</em>単語辞典<em>[ Locale ]</em></a><br>
+GLo-)<a href="#OOoGLo04a"><em>[General]</em>初期設定Locale取得<em>[ com.sun.star.lang.Locale / Language / Country / Variant ]</em></a><br>
+</ul>
+<br>
+
+<p class="s1">Dialog</p class="s1">
+<ul>
+GD-)<a href="#OOoGD01a"><em>[General]</em>既存Dialog1の表示(Dialog1は作成済)</a><br>
+GD-2)<a href="#OOoGD2"><em>[General]</em>既存Dialog1のTitle設定(Dialog1は作成済)</a><BR>
+GD-3)<a href="#OOoGD3"><em>[General]</em>ListBoxへの初期値設定(Dialog1は作成済)</a><BR>
+GD-)<a href="#OOoGD03h"><em>[General]</em>Dialog1にTab Page追加(Dialog1は作成済)</a><BR>
+GD-)<a href="#OOoGD04a"><em>[General]</em>Dialogからfileを取得(1a)[ System Dialog ]<em>[ com.sun.star.ui.dialogs.FilePicker / .appendFilter() ]</em></a><BR>
+GD-)<a href="#OOoGD04a2"><em>[General]</em>Dialogからfileを取得(1b)[ System Dialog ]<em>[ com.sun.star.ui.dialogs.SystemFilePicker ]</em></a><BR>
+GD-)<a href="#OOoGD04b"><em>[General]</em>Dialogからfileを取得/表示Directory指定(2a)[ Office Dialog ]<em>[ com.sun.star.ui.dialogs.OfficeFilePicker / .setDisplayDirectory() / .setTitle() ]</em></a><BR>
+GD-)<a href="#OOoGD04b2"><em>[General]</em>Dialogからfileを取得/表示Directory指定(2b)[ Office Dialog ]<em>[ com.sun.star.ui.dialogs.FilePicker ]</em></a><BR>
+GD-)<a href="#OOoGD05a"><em>[General]</em>DialogからFolderを取得(1)<em>[ com.sun.star.ui.dialogs.FolderPicker ]</em></a><BR>
+GD-)<a href="#OOoGD05b"><em>[General]</em>DialogからFolderを取得(2)<em>[ com.sun.star.ui.dialogs.SystemFolderPicker ]</em></a><br>
+GD-)<a href="#OOoGD05c"><em>[General]</em>DialogからFolderを取得(3)<em>[ com.sun.star.ui.dialogs.OfficeFolderPicker ]</em></a><br>
+GD-)<a href="#OOoGD06a"><em>[General]</em>Plane Dialog作成<em>[ com.sun.star.awt.UnoControlDialogModel / com.sun.star.awt.UnoControlDialog / com.sun.star.awt.Toolkit / .createPeer(,) / .execute() ]</em></a><BR>
+GD-)<a href="#OOoGD07a"><em>[General]</em>Dialog with OK / Cancel Button<em>[ com.sun.star.awt.UnoControlButtonModel ]</em></a><BR>
+GD-)<a href="#OOoGD08a"><em>[General]</em>Dialog with ProgressBar<em>[ com.sun.star.awt.UnoControlProgressBarModel ]</em></a><BR>
+GD-)<a href="#OOoGD09a"><em>[General]</em>Edit Dialog<em>[ com.sun.star.awt.UnoControlEditModel ]</em></a><BR>
+GD-)<a href="#OOoGD10a"><em>[General]</em>Radio Button Dialog<em>[ com.sun.star.awt.UnoControlRadioButtonModel ]</em></a><BR>
+GD-)<a href="#OOoGD11a"><em>[General]</em>Check Box Dialog<em>[ com.sun.star.awt.UnoControlCheckBoxModel ]</em></a><BR>
+GD-)<a href="#OOoGD11b"><em>[General]</em>DialogのCheck Box有無確認<em>[ com.sun.star.awt.UnoControlCheckBox ]</em></a><BR>
+GD-)<a href="#OOoGD12a"><em>[General]</em>Combo Box Dialog<em>[ com.sun.star.awt.UnoControlComboBoxModel ]</em></a><BR>
+GD-)<a href="#OOoGD13a"><em>[General]</em>List Box Dialog<em>[ com.sun.star.awt.UnoControlListBoxModel ]</em></a><BR>
+GD-)<a href="#OOoGD14a"><em>[General]</em>Date Field Dialog<em>[ com.sun.star.awt.UnoControlDateFieldModel ]</em></a><BR>
+GD-)<a href="#OOoGD15a"><em>[General]</em>Time Field Dialog<em>[ com.sun.star.awt.UnoControlTimeFieldModel ]</em></a><BR>
+GD-)<a href="#OOoGD16a"><em>[General]</em>File Dialog<em>[ com.sun.star.awt.UnoControlFileControlModel ]</em></a><BR>
+GD-)<a href="#OOoGD17a"><em>[General]</em>Label in Dialog<em>[ com.sun.star.awt.UnoControlFixedTextModel ]</em></a><BR>
+GD-)<a href="#OOoGD18a"><em>[General]</em>Color Picker<em>[ com.sun.star.ui.dialogs.ColorPicker ]</em></a><BR>
+GD-)<a href="#OOoGD19a"><em>[General]</em>Tree表示 Dialog<em>[ com.sun.star.awt.tree.TreeControlModel / com.sun.star.awt.tree.MutableTreeDataModel ]</em></a><BR>
+GD-)<a href="#OOoGD"><em>[General]</em><em>[  ]</em></a><BR>
+</ul>
+<br>
+
+
+<p class="s1">Menu</p class="s1">
+<p class="s3">[ Menu Dialog ]</p class="s3">
+<ul>
+GOMDg-)<a href="#OOoGOMDg01a"><em>[General]</em>Option Dialog表示<em>[ .uno:OptionsTreeDialog ]</em></a><br>
+GOMDg-)<a href="#OOoGOMDg02a"><em>[General]</em>Auto Correct Dialog表示<em>[ .uno:AutoCorrectDlg ]</em></a><br>
+GOMDg-)<a href="#OOoGOMDg03a"><em>[General]</em>XML Filterの設定Dialog表示<em>[ com.sun.star.ui.dialogs.XSLTFilterDialog ]</em></a><br>
+GOMDg-)<a href="#OOoGOMDg"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+
+<p class="s1">UserInterface( ui )</p class="s1">
+<ul>
+GUi-)<a href="#OOoGUi01a"><em>[General]</em>Address Book Data Source Wizard表示<em>[ com.sun.star.ui.dialogs.AddressBookSourcePilot ]</em></a><BR>
+GUi-)<a href="#OOoGUi02a"><em>[General]</em>Template: Address Bookの割り当てWizard表示<em>[ com.sun.star.ui.AddressBookSourceDialog ]</em></a><BR>
+GUi-)<a href="#OOoGUi03a"><em>[General]</em>FilterOptionsDialog Service<em>[ com.sun.star.ui.dialogs.FilterOptionsDialog ]</em></a><BR>
+GUi-)<a href="#OOoGUi"><em>[General]</em><em>[  ]</em></a><BR>
+</ul>
+<br>
+
+
+
+<br><br><br>
+<center><h1>###【 Following <a href="OOoBasic_General4.html">General No.4</a> 】###</h1></center>
+
+
+
+<br><br><br><br><br><br><br><br><br><br>
+<h3><Center>**********************【 Macro Code 】**********************</center></h3>
+
+<p class="s1">Text</p class="s1">
+<p class="s3">[ Text ]</p class="s3">
+<a name="OOoGF15"><h6>GTxt-)<em>[General]</em>DummyのText　fileを作成</h6></a><pre><code>
+Sub Main
+	name_html="C:/OOo_test/test2/test_html"		 
+	dim args2(1) as new com.sun.star.beans.PropertyValue
+	dim Dummy()
+		args1(2).Name="FilterOption"
+			oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_blank", 0, Dummy())
+			document   = ThisComponent.CurrentController.Frame
+		dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+			args2(0).Name="FileName"
+			args2(0).Value="file:///" & name_html
+			args2(1).Name="Filteroption"
+			args2(1).Value="text"
+		dispatcher.executeDispatch(document, ".uno:SaveAs", "", 0, args2())
+	oDoc.Close(false)
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGTxt01b"><h6>GTxt-)<em>[General]</em>Unicode形式のText file作成</h6></a><pre><code>
+Sub Unicode16Text()
+	Dim oDoc As Object, oText as Object
+	Dim oProp(1) As new com.sun.star.beans.PropertyValue
+	Dim oTextName As String, oTextUrl as String, oStrTxt as String
+	Dim Dummy()
+			oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_blank", 0, Dummy())
+			oText = oDoc.getText()
+			oStrTxt = "[ Unicode Text ] " & Chr$(13) &"マクロ"
+			oText.insertString(oText.getStart(), oStrTxt , false)
+			' Save as text encoded( utf-16 )
+			oProp(0).Name = "FilterName"
+			oProp(0).Value = "Text (encoded)"
+			oProp(1).Name = "FilterOptions"
+			oProp(1).Value = "UCS2" 		'  Unicode 16 bits
+			oTextName = "c:\temp\Unicode8.txt"
+			oTextUrl = ConvertToURL(oTextName)
+			oDoc.storeAsURL(oTextUrl, oProp() )
+			oDoc.Close(false)
+		msgbox "Success"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGF16"><h6>GTxt-)<em>[General]</em>Text　fileの読み込み</h6></a><pre><code>
+Sub Main
+	Dim FileNo As Integer
+	Dim CurrentLine As String
+	Dim outdata as String
+	Dim TxtFile,oTxtF As String
+		TxtFile="c:\OOo_test\test.txt"
+		oTxtF=ConvertToUrl(TxtFile)
+		fileNo=Freefile
+		Open oTxtF For Input As FileNo
+			Do While not eof(FileNo)
+				' Read line 
+				Line Input #FileNo, CurrentLine   
+				If CurrentLine <>"" then
+					outdata = outdata & CurrentLine & Chr(13)
+				end if
+			Loop
+		Close #fileNo
+	Msgbox(outdata)
+End Sub
+</code></pre><br>
+<br>
+
+
+<a name="OOoGF17"><h6>GTxt-)<em>[General]</em>HTML fileをTextfileに変換</h6></a><pre><code>
+Global sPath As String
+Global sDoc As Object
+Sub Main
+'現在のfile名の絶対Path
+		sDoc = ThisComponent
+		sUrl = sDoc.getLocation()
+		sPath = ConvertFromURL(sUrl) ':msgbox(spath)
+	'現ファイル名を取得
+		GlobalScope.BasicLibraries.LoadLibrary("Tools")
+		nUrl = ThisComponent.getURL
+		nFile=FileNameOutOfPath(nUrl) ':msgbox(nFile)
+		
+		oNum=Len(spath)-Len(nFile)
+	'現在のフォルダまでのPath
+		osPath=Left(sPath,oNum) ': msgbox osPath		
+	'
+		Cfolder="C:\OOo_test"
+		ofname="8test_html.html"
+		fText=Left(ofname,InStr(1,ofname,".")-1)
+
+	'batコマンド実行
+		bat_file=osPath & "Type1.bat" &" "& Cfolder & " " & ofname & " " & fText & ".txt" & " " & osPath
+	msgbox bat_file
+	Shell(bat_file)
+	'TextファイルOpen
+		Dim args1(1) as new com.sun.star.beans.PropertyValue
+		Textfile=ConvertToUrl(Cfolder & "\" & fText & ".txt")
+		wait 1000
+		args1(0).Name="Hidden"
+ 		args1(0).value=false
+ 		args1(1).Name="Readonly"
+ 		args1(1).Value=false
+ 	 	oDoc = StarDesktop.loadComponentFromURL(Textfile, "_blank", 0, args1())
+ 		oDoc.close(false)
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGTxt04a"><h6>GTxt-)<em>[General]</em>Text Fileへ出力</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/01Text/01OutPutToTextFile01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oTextFileMacro
+	Dim oPath as String
+	Dim oFileName as String
+	Dim oFileNumber as Integer
+	Dim oFullFileName as String
+	Dim oPntData as String
+	Dim oJp() as String
+	Dim oEn() as String
+		oJp = Array("日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日")
+		oEn = Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
+		'
+		oPath = "c:\temp\"
+		oFileName = "oTextMacro.txt"
+		'
+		oPntData = "----- [ Text Fileへの出力 ] -----" & Chr$(10) & Chr$(10)
+		for i = 0 to UBound(oEn)
+			oPntData = oPntData & i & ") " & oEn(i) & Chr$(9) & oJp(i) & Chr$(10)
+		next i
+	' Text Fileへの出力
+		oFileNumber = FreeFile()
+		oFullFileName = oPath & oFileName
+		
+		Open oFullFileName for Append as oFileNumber
+			print #oFileNumber, oPntData		' Data Into File 
+		Close #oFileNumber
+		'
+		msgbox "Success"
+End Sub
+'
+' << File Open時のMode >>
+&emsp;'[ For Append ]
+&emsp;&emsp;'Text Fileの書き出し位置	: End
+&emsp;&emsp;'同名Fileがある時		: Open
+&emsp;&emsp;'指定Fileが無い時		: Create
+&emsp;&emsp;'Data Read 可否			: Yes 
+&emsp;&emsp;'Data Write 可否		: Yes
+&emsp;&emsp;'Comment				: Sequential Access
+&emsp;&emsp;'Mode CheckのReturn		: 8
+'
+&emsp;'[ For Imput ]
+&emsp;&emsp;'Text Fileの書き出し位置	: Start
+&emsp;&emsp;'同名Fileがある時		: Open
+&emsp;&emsp;'指定Fileが無い時		: Error
+&emsp;&emsp;'Data Read 可否			: Yes 
+&emsp;&emsp;'Data Write 可否		: No
+&emsp;&emsp;'Comment				: Sequential Access
+&emsp;&emsp;'Mode CheckのReturn		: 1
+'
+&emsp;'[ For Output ]
+&emsp;&emsp;'Text Fileの書き出し位置	: Start
+&emsp;&emsp;'同名Fileがある時		: Delete
+&emsp;&emsp;'指定Fileが無い時		: Create
+&emsp;&emsp;'Data Read 可否			: Yes 
+&emsp;&emsp;'Data Write 可否		: Yes
+&emsp;&emsp;'Comment				: Sequential Access
+&emsp;&emsp;'Mode CheckのReturn		: 2
+'
+&emsp;'[ For Binart ]
+&emsp;&emsp;'Text Fileの書き出し位置	: Start
+&emsp;&emsp;'同名Fileがある時		: Delet
+&emsp;&emsp;'指定Fileが無い時		: Create
+&emsp;&emsp;'Data Read 可否			: Yes 
+&emsp;&emsp;'Data Write 可否		: Yes
+&emsp;&emsp;'Comment				: Random Access
+&emsp;&emsp;'Mode CheckのReturn		: 16
+&emsp;'[ For random ]
+&emsp;&emsp;'Text Fileの書き出し位置	: Start
+&emsp;&emsp;'同名Fileがある時		: Delete
+&emsp;&emsp;'指定Fileが無い時		: Create
+&emsp;&emsp;'Data Read 可否			: Yes 
+&emsp;&emsp;'Data Write 可否		: Yes
+&emsp;&emsp;'Comment				: Random Access
+&emsp;&emsp;'Mode CheckのReturn		: 4
+</code></pre><br>
+
+
+
+
+<p class="s3">[ Read / Write ]</p class="s3">
+<a name="OOoGRW01a"><h6>GRW-)<em>[General]</em>OpenFileRead</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/01general2/01Read_Write/oOpenFileRead_Text.png" align="right" hspace="4" vspace="4"><IMG SRC="OOoBasic_pic/01general2/01Read_Write/oOpenFileRead.png" align="right" hspace="4" vspace="4">
+Sub oOpenFileReadSFA
+	Dim oSimpleFileAccess as Object
+	Dim oFile as String
+	Dim oOpenFileRead as Object
+	Dim oOFRTypes(100) as Long
+	Dim oOFRID(100) as Long
+	Dim oOFRPos as Long
+	Dim oOFRLen as Long
+		oSimpleFileAccess = createUnoService("com.sun.star.ucb.SimpleFileAccess")
+		oFile = "C:\temp\oTextMacro.txt"
+		If oSimpleFileAccess.Exists(oFile) then
+			oOpenFileRead = oSimpleFileAccess.openFileRead(oFile)
+			'oA = oOpenFileRead.dbg_methods	: msgbox(oA)	: 'Exit Sub
+			'oB = oOpenFileRead.dbg_properties	: msgbox(oB)	: 'Exit Sub
+			'
+			oOFRTypes = oOpenFileRead.Types
+			oOFRID = oOpenFileRead.ImplementationID
+			oOFRPos = oOpenFileRead.Position
+			oOFRLen = oOpenFileRead.Length
+			'
+			oDisp = "File Name :   " &	oFile & Chr$(10)
+			oDisp = oDisp & "<< OpenFileRead >>" & Chr$(10)  
+			oDisp = oDisp & "[ Types数 ] = " & UBound(oOFRTypes) & Chr$(10)
+			oDisp = oDisp & "[ ImplementationID数 ] = " & UBound(oOFRID) & Chr$(10)
+			oDisp = oDisp & "[ Position ] = " & oOFRPos & Chr$(10)
+			oDisp = oDisp & "[ Length ] = " & oOFRLen & " bytes"
+			MsgBox( oDisp, 0, "OpenFileRead")
+			'
+			oOpenFileRead.closeInput()
+		else
+			MsgBox( oFile & " は存在しません", 0, "Caution !!")
+			Exit Sub
+		End If
+End Sub
+'[ Note ]
+'「1」=1, 「,」=1, 「２」=2,「坂本龍馬」=8, 「ｱ」=1,「a」=1,「A」=1,「ａ」=2,「Ａ」=2
+'1+1*6+2+8+1+1+1+2+2+2(改行1回)　⇒ 26 bytes
+</code></pre><br>
+
+
+<a name="OOoGRW02a"><h6>GRW-)<em>[General]</em>OpenFileWrite</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/01general2/01Read_Write/oOpenFileWrite.png" align="right" hspace="4" vspace="4">
+Sub oOpenFileWriteSFA
+	Dim oSimpleFileAccess as object
+	Dim oFile as String
+	Dim oOpenFileWrite as Object
+	Dim oOFWTypes(100) as Long
+	Dim oOFWID(100) as Long
+	Dim oOFWPos as Long
+	Dim oOFWLen as Long
+		oSimpleFileAccess = createUnoService("com.sun.star.ucb.SimpleFileAccess")
+		oFile = "C:\temp\test.csv"
+		If oSimpleFileAccess.Exists(oFile) then
+			oOpenFileWrite = oSimpleFileAccess.openFileWrite(oFile)
+			'oA = oOpenFileRead.dbg_methods	: msgbox(oA)	: 'Exit Sub
+			'oB = oOpenFileWrite.dbg_properties	: msgbox(oB)	: 'Exit Sub
+			oOFWTypes = oOpenFileWrite.Types
+			oOFWID = oOpenFileWrite.ImplementationID
+			oOFWPos = oOpenFileWrite.Position
+			oOFWLen = oOpenFileWrite.Length
+			oDisp = "File Name :   " &	oFile & Chr$(10)
+			oDisp = oDisp & "<< OpenFile Write >>" & Chr$(10)  
+			oDisp = oDisp & "[ Types数 ] = " & UBound(oOFWTypes) & Chr$(10)
+			oDisp = oDisp & "[ ImplementationID数 ] = " & UBound(oOFWID) & Chr$(10)
+			oDisp = oDisp & "[ Position ] = " & oOFWPos & Chr$(10)
+			oDisp = oDisp & "[ Length ] = " & oOFWLen & " bytes"
+			MsgBox( oDisp, 0, "OpenFileWrite")
+			'
+			oOpenFileWrite.closeOutput()
+			' oOpenFileWrite.closeInput()		' closeInput()でも動作する
+		else
+			MsgBox( oFile & " は存在しません", 0, "Caution !!")
+			Exit Sub
+		End If
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGRW03a"><h6>GRW-)<em>[General]</em>OpenFileReadWrite</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/01general2/01Read_Write/oOpenFileReadWrite.png" align="right" hspace="4" vspace="4">
+Sub oOpenFileReadWriteSFA
+	Dim oSimpleFileAccess as Object
+	Dim oFile as String
+	Dim oOpenFileReadWrite as Object
+	Dim oOFRWTypes(100) as Long
+	Dim oOFRWID(100) as Long
+	Dim oOFRWPos as Long
+	Dim oOFRWLen as Long
+		oSimpleFileAccess = createUnoService("com.sun.star.ucb.SimpleFileAccess")
+		oFile = "C:\temp\test.csv"
+		If oSimpleFileAccess.Exists(oFile) then
+			oOpenFileReadWrite = oSimpleFileAccess.openFileReadWrite(oFile)
+			oOFRWTypes = oOpenFileReadWrite.Types
+			oOFRWID = oOpenFileReadWrite.ImplementationID
+			oOFRWPos = oOpenFileReadWrite.Position
+			oOFRWLen = oOpenFileReadWrite.Length
+			oDisp = "File Name :   " &	oFile & Chr$(10)
+			oDisp = oDisp & "<< OpenFileReadWrite >>" & Chr$(10)  
+			oDisp = oDisp & "[ Types数 ] = " & UBound(oOFRWTypes) & Chr$(10)
+			oDisp = oDisp & "[ ImplementationID数 ] = " & UBound(oOFRWID) & Chr$(10)
+			oDisp = oDisp & "[ Position ] = " & oOFRWPos & Chr$(10)
+			oDisp = oDisp & "[ Length ] = " & oOFRWLen & " bytes"
+			MsgBox( oDisp, 0, "OpenFileReadWrite")
+			'
+			oOpenFileReadWrite.closeInput()
+			' oOpenFileReadWrite.closeoutput()		' closeoutput()でも動作する。
+		else
+			MsgBox( oFile & " は存在しません", 0, "Caution !!")
+			Exit Sub
+		End If
+End Sub
+</code></pre><br>
+
+
+<p class="s1">XML</p class="s1">
+<a name="OOoGXML"><h6>GXML-)<em>[General]</em>XML Fileの構文解析</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/02XML/01aAnalysisXML02.png" align="right" hspace="4" vspace="4" width="35%"><img src="OOoBasic_pic/01general2/02XML/01aAnalysisXML01.png" align="right" hspace="4" vspace="4" width="12%">
+Sub NetDom()
+	Dim oDocBuilder as Object
+	Dim oDom as Object
+	Dim oFile as String, oURL as String
+	Dim oDmElmt as Object
+	Dim oTopItem as String
+	Dim oChdNode1 as Object, oChdNode2 as Object
+	Dim oNodeItem1 as Object, oNodeItem2 as Object
+		oFile = "c:\temp\PythonMacroTest.xml"
+		oURL = ConvertToUrl( oFile )
+		oDocBuilder = createUnoService("com.sun.star.xml.dom.DocumentBuilder")
+		oDom = oDocBuilder.parseURI(oURL)
+		oDom.normalize()
+		'
+		oDmElmt = oDom.getDocumentElement()
+		oTopItem = oDmElmt.TagName
+		oDisp = oTopItem & Chr$(10)
+		'
+		oChdNode1 = oDmElmt.getChildNodes()
+		for i = 0 to oChdNode1.getLength() -1
+			oNodeItem1 = oChdNode1.item(i)		' item : method / not property
+			if oNodeItem1.HasChildNodes() = true then
+				oDisp = oDisp & Chr$(9) & oNodeItem1.LocalName & Chr$(10)
+				oChdNode2 = oNodeItem1.getChildNodes()
+				for k = 0 to oChdNode2.getLength() -1
+					oNodeItem2 = oChdNode2.item(k)
+					if oNodeItem2.HasChildNodes() = true then
+						oDisp = oDisp & Chr$(9) & Chr$(9) & oNodeItem2.LocalName & Chr$(10)
+					end if
+				next k
+			end if
+		next i
+		msgbox oDisp,0,"Node Name of XML"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGXML"><h6>GXML-)<em>[General]</em></h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/02XML/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+
+
+<br clear="right">
+<p class="s1">Network</p class="s1">
+<p class="s3">[ Web ]</p class="s3">
+<a name="OOoGWeb01a"><h6>GWeb-1)<em>[General]</em>任意のWeb　Siteを開く</h6></a><pre><code>
+Sub hizuke
+	dim b as integer
+		'var = CreateUnoStruct("com.sun.star.util.DateTime").Seconds(10)
+	Shell ("C:\Program Files\Mozilla Firefox\firefox", 1, "http://hanko-api.web-career.com/seal/?name=谷&size=50&type=maru&color=red")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGWeb02a"><h6>GWeb-)<em>[General]</em>Internet Explorer起動</h6></a><pre><code>
+Sub oIE
+	Dim oOLE as Object
+	Dim oIE as Object
+	Dim oUnoService as String
+	Dim oURL as String
+		oUnoService = "com.sun.star.bridge.OleObjectFactory"
+		oOLE = createUnoService(oUnoService)
+		'
+		oURL = "http://www.yahoo.co.jp/"
+		oIE = oOLE.createInstance("InternetExplorer.Application.1")
+		oIE.Visible = 1
+		oIE.Navigate(oURL)
+End Sub
+</code></pre><br>
+
+
+
+
+<br><br><br><br><br><br>
+<p class="s3">[ Google ]</p class="s3">
+<a name="OOoGGgle01a"><h6>GGgle-)<em>[General]</em>Google Translateを使って文字発音</h6></a><pre><code>
+' Windows DirectX機能を利用しているので、Windows環境で動作します。
+'
+Sub GoogleTrns()
+	Dim oGoogleURL as String
+	Dim oMediaDirectX as Object
+	Dim oPlayer as Object
+	Dim oWord(2) as String
+	' Google Translate
+		oWord(0) = "Japan"
+		oWord(1) = "Apache OpenOffice"
+		oWord(2) = "LibreOffice"
+		for i = 0 to UBound(oWord)
+			If Trim(oWord(i)) <> "" then
+				oGoogleURL = "http://translate.google.com/translate_tts?tl=en&q=" & oWord(i)
+ 				oMediaDirectX = CreateUnoService("com.sun.star.media.Manager_DirectX")
+ 				oPlayer =  oMediaDirectX.createPlayer(ConvertToURL(oGoogleURL))
+ 				oPlayer.start()
+ 				m = 1
+ 				while oPlayer.MediaTime < oPlayer.Duration and m < 10000
+ 				Rem while oPlayer.MediaTime < oPlayer.StopTime and m < 10000
+   					wait 100
+   					m=m+1
+ 				wend
+			End If
+		next i
+End Sub
+'
+' [ Note ]
+' LibreOffice 4系では Duration : ○ / StopTime:× の模様
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">Media</p class="s1">
+<a name="OOoGMda01a"><h6>GMda-)<em>[General]</em>Sound 再生</h6></a><pre><code>
+Sub SoundMovie()
+	Dim oShtFnc as Object
+	Dim oOsName as String
+	Dim array_name(0) as String
+	Dim oManager as Object
+	Dim oSoundURL as String
+		array_name(0)="system"
+		oShtFnc = CreateUnoService("com.sun.star.sheet.FunctionAccess")
+		oOsName = oShtFnc.callFunction("INFO",array_name())
+		Select Case oOsName
+			Case "WNT"
+				oManager = CreateUnoService("com.sun.star.media.Manager_DirectX")
+			Case "Linux"
+				oManager = CreateUnoService("com.sun.star.media.Manager_GStreamer")
+		End Select
+		'
+		oSoundURL = ConvertToUrl("C:\Users\Public\Music\Sample Music\Kalimba.mp3")
+		'
+		' Set Player
+		oPlayer = oManager.createPlayer(oSoundURL)
+		'
+	' 5 [ sec ]位置からStart / 10 [ sec ]の位置で終了 
+	Dim oStartTime as Long
+	Dim oStopTime as Long
+	Dim oTotalTime as Long
+		oStartTime = 5
+		oStopTime = 10
+		oTotalTime = oPlayer.getDuration()
+	' Total Time が Start / End Timeより長い事を確認
+		if oStartTime > oTotalTime then
+			oStartTime = 0
+			oStopTime = oTotalTime
+		else
+			if oStopTime > oTotalTime then
+				oStopTime = oTotalTime
+			end if
+		end if
+		' Set Start Time and Stop Time
+		oPlayer.setMediaTime( oStartTime )
+		oPlayer.setStopTime( oStopTime )
+		' Start
+		oPlayer.start()
+		'
+		n = 0
+		Do while oPlayer.getMediaTime() < oStopTime and n < 100		' 演奏の位置( sec )が oStopTime 未満( 以下にすると無限Loop )
+			wait 500
+			n = n+ 1
+			if n > 100 then
+				Exit Do
+			end if
+			' if oPlayer.isPlaying() = false then		' 演奏が終わったらLoopを抜ける / setStopTimeの時間では True のまま
+			'	Exit Do
+			' end if
+		Loop
+		'
+		' 演奏中の場合のStop
+		if oPlayer.isPlaying() then
+			oPlayer.stop()
+		end if
+		msgbox "Success"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGMda"><h6>GMda-)<em>[General]</em></h6></a><pre><code>
+
+</code></pre><br>
+
+
+
+
+<br clear="right">
+<p class="s1">Library / Module</p class="s1">
+<a name="OOoGLyMd01a"><h6>GLyMd-)<em>[General]</em>Module Source取得</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/16Library_Module/01Module_Source01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub Library()
+	Dim oLibry as Object
+	Dim oSrc as String
+		oLibry = GlobalScope.basicLibraries.getByName("Standard")
+		oSrc = oLibry.getByName("Module1")
+	msgbox oSrc,0,"Module Source"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGLyMd02a"><h6>GLyMd-)<em>[General]</em>Library List取得</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/16Library_Module/02LibraryList01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub Library()
+	Dim oLibry as Object
+	Dim oDisp as String
+		oLibry = GlobalScope.basicLibraries.getElementNames()
+		oDisp = "[ Library List ]" & Chr(10)
+		for i = 0 to UBound(oLibry)
+			oDisp = oDisp & oLibry(i) & Chr(10)
+		next i
+	msgbox oDisp,0,"Library List"
+End Sub
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<a name="OOoGLyMd02b"><h6>GLyMd-)<em>[General]</em>Module List取得</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/16Library_Module/02ModuleList01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub LibraryModule()
+	Dim oBLibrys as Object
+	Dim oLibry as Object
+	Dim oLibName as String
+	Dim oMdle() as String
+		oBLibrys = GlobalScope.basicLibraries
+		oLibName = "Gimmicks"
+		'
+		oDisp = "[ Module List ]" & Chr$(10)
+		if oBLibrys.hasByName(oLibName) then
+			oMdle = oBLibrys.getByName(oLibName).getElementNames()
+			for i = 0 to UBound(oMdle)
+				oDisp = oDisp & oMdle(i) & Chr$(10)
+			next i
+		else
+			oDisp = oDisp & " Library  : " & oLibName & " does not exist."
+		end if
+	msgbox oDisp,0,"Module List"
+End Sub
+</code></pre><br>
+
+
+
+<a name="OOoGLyMd03a"><h6>GLyMd-)<em>[General]</em>任意のLibrary / Moduleの有無Check</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/16Library_Module/03LibraryModule_hasByName01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub Library()
+	Dim oLibry as Object
+	Dim oLibName as String
+	Dim oMdleName as String
+		oLibry = GlobalScope.basicLibraries
+		oLibName = "Gimmicks"
+		oMdleName = "AutoText"
+		'
+		oDisp = "[ Library and Moduleの有無Check ]" & Chr$(10)
+		if oLibry.hasByName(oLibName) then
+			if oLibry.getByName(oLibName).hasByName(oMdleName) then
+				oDisp = oDisp & Chr$(9) & oMdleName & " of " & oLibName & " exists."
+			else
+				oDisp = oDisp & Chr$(9) & oMdleName & " of " & oLibName & " does not exist."
+			end if
+		else
+			oDisp = oDisp & " Library  : " & oLibName & " does not exist."
+		end if
+	msgbox oDisp,0,"Library / Modueの有無"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGLyMd"><h6>GLyMd-)<em>[General]</em></h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/16Library_Module/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+
+<br clear="right">
+<p class="s1">Listen</p class="s1">
+<a name="OOoGL03a"><h6>GL-)<em>[General]</em>各Listenerのmethod(1)</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/Listen/03ListenerMethod01a.png" align="right" hspace="4" vspace="4" width="30%">
+Global oGbEventLisner as Object
+Sub oListen()
+	Dim oEventObj As New com.sun.star.lang.EventObject
+	Dim oPrefix$
+	Dim oService$
+	Dim oMethods()
+		oPrefix = "TestListen_"
+		'
+		oService = "com.sun.star.lang.XEventListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = ""
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.beans.XPropertiesChangeListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.awt.XActionListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.awt.XActivateListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.awt.XAdjustmentListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.awt.XFocusListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		msgbox(oDisp,0,"Listner の method")
+End Sub
+'
+' Listener
+Sub TestListen_disposing()		REM  "Prefix" + "_" + "Method" つまり、disposing が methodになる
+	'　REM　何もせず。Listenerを終了する時のeventのCodeをここに記す。
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGL03b"><h6>GL-)<em>[General]</em>各Listenerのmethod</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/Listen/03ListenerMethod02b.png" align="right" hspace="4" vspace="4" width="25%">
+Global oGbEventLisner as Object
+Sub oListen()
+	Dim oEventObj As New com.sun.star.lang.EventObject
+	Dim oPrefix$
+	Dim oService$
+	Dim oMethods()
+		oPrefix = "TestListen_"
+		'
+		oService = "com.sun.star.awt.XItemListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = ""
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.awt.XKeyListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.awt.XMenuListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		'
+		oService = "com.sun.star.awt.XMouseListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.awt.XMouseMotionListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		msgbox(oDisp,0,"Listner の method")
+End Sub
+'
+' Listener
+Sub TestListen_disposing()		REM  "Prefix" + "_" + "Method" つまり、disposing が methodになる
+	'　REM　何もせず。Listenerを終了する時のeventのCodeをここに記す。
+End Sub
+</code></pre><br>
+
+<a name="OOoGL03c"><h6>GL-)<em>[General]</em>各Listenerのmethod(3)</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/Listen/03ListenerMethod03c.png" align="right" hspace="4" vspace="4" width="25%">
+Global oGbEventLisner as Object
+Sub oListen()
+	Dim oEventObj As New com.sun.star.lang.EventObject
+	Dim oPrefix$
+	Dim oService$
+	Dim oMethods()
+		oPrefix = "TestListen_"
+		'
+		oService = "com.sun.star.awt.XPaintListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = ""
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.awt.XSpinListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.awt.XTextListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.util.XModeChangeListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.util.XModeChangeApproveListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		msgbox(oDisp,0,"Listner の method")
+End Sub
+'
+' Listener
+Sub TestListen_disposing()		REM  "Prefix" + "_" + "Method" つまり、disposing が methodになる
+	'　REM　何もせず。Listenerを終了する時のeventのCodeをここに記す。
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGL03d"><h6>GL-)<em>[General]</em>各Listenerのmethod(4)</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/Listen/03ListenerMethod04d.png" align="right" hspace="4" vspace="4" width="25%">
+Global oGbEventLisner as Object
+Sub oListen()
+	Dim oEventObj As New com.sun.star.lang.EventObject
+	Dim oPrefix$
+	Dim oService$
+	Dim oMethods()
+		oPrefix = "TestListen_"
+		'
+		oService = "com.sun.star.awt.XTopWindowListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = ""
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.awt.XWindowListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.view.XSelectionChangeListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.container.XContainerListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		msgbox(oDisp,0,"Listner の method")
+End Sub
+'
+' Listener
+Sub TestListen_disposing()		REM  "Prefix" + "_" + "Method" つまり、disposing が methodになる
+	'　REM　何もせず。Listenerを終了する時のeventのCodeをここに記す。
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGL03e"><h6>GL-)<em>[General]</em>各Listenerのmethod(5)</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/Listen/03ListenerMethod03e.png" align="right" hspace="4" vspace="4" width="25%">
+Global oGbEventLisner as Object
+Sub oListen()
+	Dim oEventObj As New com.sun.star.lang.EventObject
+	Dim oPrefix$
+	Dim oService$
+	Dim oMethods()
+		oPrefix = "TestListen_"
+		'
+		oService = "com.sun.star.frame.XBorderResizeListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = ""
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.frame.XTitleChangeListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.beans.XVetoableChangeListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		msgbox(oDisp,0,"Listner の method")
+End Sub
+'
+' Listener
+Sub TestListen_disposing()		REM  "Prefix" + "_" + "Method" つまり、disposing が methodになる
+	'　REM　何もせず。Listenerを終了する時のeventのCodeをここに記す。
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGL03f"><h6>GL-)<em>[General]</em>各Listenerのmethod(6)</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/Listen/03ListenerMethod03f.png" align="right" hspace="4" vspace="4" width="25%">
+Global oGbEventLisner as Object
+Sub oListen()
+	Dim oEventObj As New com.sun.star.lang.EventObject
+	Dim oPrefix$
+	Dim oService$
+	Dim oMethods()
+		oPrefix = "TestListen_"
+		'
+		oService = "com.sun.star.sheet.XRangeSelectionListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = ""
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.sheet.XRangeSelectionChangeListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.sheet.XActivationEventListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		msgbox(oDisp,0,"Listner の method")
+End Sub
+'
+' Listener
+Sub TestListen_disposing()		REM  "Prefix" + "_" + "Method" つまり、disposing が methodになる
+	'　REM　何もせず。Listenerを終了する時のeventのCodeをここに記す。
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGL03g"><h6>GL-)<em>[General]</em>各Listenerのmethod(7)</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/Listen/03ListenerMethod03g.png" align="right" hspace="4" vspace="4" width="25%">
+Global oGbEventLisner as Object
+Sub oListen()
+	Dim oEventObj As New com.sun.star.lang.EventObject
+	Dim oPrefix$
+	Dim oService$
+	Dim oMethods()
+		oPrefix = "TestListen_"
+		'
+		oService = "com.sun.star.util.XCloseListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = ""
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.util.XModifyListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.util.XChangesListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.view.XPrintJobListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.document.XStorageChangeListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		msgbox(oDisp,0,"Listner の method")
+End Sub
+'
+' Listener
+Sub TestListen_disposing()		REM  "Prefix" + "_" + "Method" つまり、disposing が methodになる
+	'　REM　何もせず。Listenerを終了する時のeventのCodeをここに記す。
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGL03h"><h6>GL-)<em>[General]</em>各Listenerのmethod(8)</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/Listen/03ListenerMethod03h.png" align="right" hspace="4" vspace="4" width="25%">
+Global oGbEventLisner as Object
+Sub oListen()
+	Dim oEventObj As New com.sun.star.lang.EventObject
+	Dim oPrefix$
+	Dim oService$
+	Dim oMethods()
+		oPrefix = "TestListen_"
+		'
+		oService = "com.sun.star.chart.XChartDataChangeEventListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = ""
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.beans.XPropertyChangeListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.awt.XVclContainerListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		oService = "com.sun.star.awt.XDockableWindowListener"
+		oGbEventLisner = CreateUnoListener(oPrefix, oService)	
+		oMethods = Split(oGbEventLisner.dbg_methods,";")
+		oDisp = oDisp & Chr$(10)
+		for i = 0 to UBound(oMethods)
+			oDisp = oDisp & oMethods(i)
+		next i
+		oGbEventLisner.disposing(oEventObj)
+		'
+		msgbox(oDisp,0,"Listner の method")
+End Sub
+'
+' Listener
+Sub TestListen_disposing()
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGL05"><h6>GL-)<em>[General]</em>Event Sourceの取得[ UNO Listener ](未完成)</h6></a>
+<pre><code>
+Sub sel_change_disposing(vE)						'disposingは必須	
+	msgbox("Disposing the selection change listener")
+End Sub
+
+Sub sel_change_selectionChanged(vE)			'selectionChangedは必須	
+	Dim oCurrentSelection As Object	    
+		oCurrentSelection = vE.source
+		a = oCurrentSection.getSelection().getcount()
+		Print "Number of selectiond areas = " & a
+End Sub
+
+Sub oListenAll
+	Dim oL
+	Dim oEventObj As New com.sun.star.lang.EventObject
+	Dim oPrefix$
+	Dim oService$
+		oPrefix = "sel_change_"
+		oService = "com.sun.star.view.XSelectionChangeListener"
+		oL = CreateUnoListener(oPrefix, oService)
+		oL.disposing(oEventObj)						'disposingは必須	
+		oL.selectionChanged(oEventObj)			'selectionChangedは必須	
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGL06"><h6>GL-)<em>[General]</em>Selection　Listenerの作成及び削除[ UNO Listener ]</h6></a>
+<pre><code>
+Global vSelChangeListener					'Must be Global
+Global vSelChangeBroadCast
+Sub oStartListeningToSelChangeEvents
+	Dim oPrefix$
+	Dim oService$
+		oPrefix = "sel_change_"
+		oService = "com.sun.star.view.XSelectionChangeListener"
+		'Must register
+			vSelChangeBroadCast = ThisComponent.getCurrentController
+		'create a listener to intercept the selection change event
+			vSelChangeListener = CreateUnoListener(oPrefix, oService)
+		'Resister the listener to the document controller
+				vSelChangeBroadCast.addSelectionChangeListener(vSelChangeListener)
+		'Remove the listener
+				vSelChangeBroadCast.removeSelectionChangeListener(vSelChangeListener)
+End Sub
+</code></pre><br>
+
+
+
+<a name="OOoGL07a"><h6>GL-)<em>[General]</em>DialogにXMouseListener追加/削除</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/Listen/07MouseListener01.png" align="right" hspace="4" vspace="4" width="20%">
+Global oUnoDialog As Object
+Sub DialogListener()
+	Dim oMouseListener as Object
+		DialogLibraries.LoadLibrary("Standard")
+		oUnoDialog = CreateUnoDialog(DialogLibraries.Standard.Dialog1)
+		'
+		' Dialog1 に MouseClick Listenerの追加
+		oMouseListener = CreateUnoListener("Ltn_","com.sun.star.awt.XMouseListener")
+		oUnoDialog.addMouseListener(oMouseListener)
+    	oUnoDialog.execute
+    	'
+    	' Mouse Listenerの削除
+    	oUnoDialog.removeMouseListener(oMouseListener)
+    	'
+    	oUnoDialog.dispose()
+    	msgbox "Success"
+End Sub
+
+' MethodはDummyでも全て定義の事
+Sub Ltn_disposing(oEvent as com.sun.star.lang.EventObject)
+End Sub
+
+' Mouse Buutonが押された時
+Sub Ltn_mousePressed(oEvent as com.sun.star.awt.MouseEvent)
+	Select Case oEvent.Buttons
+		Case com.sun.star.awt.MouseButton.LEFT
+			MsgBox("Left mouse button is clicked !!",0,"MouseListener")
+		Case com.sun.star.awt.MouseButton.RIGHT
+			MsgBox("Right mouse button is clicked !!",0,"MouseListener")
+	End Select
+End Sub
+
+' Mouse Buutonがreleaseされた時
+Sub Ltn_mouseReleased(oEvent as com.sun.star.awt.MouseEvent)
+	Select Case oEvent.Buttons
+		Case com.sun.star.awt.MouseButton.LEFT
+			' MsgBox("Mouseの左BuutonがReleaseされました。",0,"MouseListener")
+		Case com.sun.star.awt.MouseButton.RIGHT
+			' MsgBox("Mouseの左BuutonがReleaseされました。",0,"MouseListener")
+	End Select
+End Sub
+
+Sub Ltn_mouseEntered(oEvent as com.sun.star.awt.MouseEvent)
+	' MoｕｓｅがDialg上に入った時の処理	←　厳密でな無いので、外にある時に処理される事もある。
+	' msgbox "Mouse In"
+End Sub
+
+Sub Ltn_mouseExited(oEvent as com.sun.star.awt.MouseEvent)
+	' MouseがDialogから外れた時の処理	←　厳密でな無いので、内にある時に処理される事もある。
+	' msgbox "Mouse Out"
+End Sub
+'
+' 全部のEventに対してmsgboxで表示すると、終了出来なくなる可能性がある。
+' 常に何らかのmesgboxが表示されてしまう。
+</code></pre><br>
+
+
+<a name="OOoGL08a"><h6>GL-)<em>[General]</em>既存DialogにXMouseMotionListener追加/削除</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/Listen/08MouseMotionListener01.png" align="right" hspace="4" vspace="4" width="25%">
+Global oUnoDialog As Object
+Sub DialogListener()
+	Dim oMouseListener as Object
+		DialogLibraries.LoadLibrary("Standard")
+		oUnoDialog = CreateUnoDialog(DialogLibraries.Standard.Dialog1)
+		'
+		' Dialog1 に Listenerの追加
+		oMouseListener = CreateUnoListener("Ltn_","com.sun.star.awt.XMouseMotionListener")
+		oUnoDialog.addMouseMotionListener(oMouseListener)
+    	oUnoDialog.execute
+    	'
+    	' Listenerの削除
+    	oUnoDialog.removeMouseMotionListener(oMouseListener)
+    	'
+    	oUnoDialog.dispose()
+    	msgbox "Success"
+End Sub
+
+' MethodはDummyでも全て定義の事
+Sub Ltn_disposing(oEvent as com.sun.star.lang.EventObject)
+End Sub
+
+' 
+Sub Ltn_mouseDragged(oEvent as com.sun.star.awt.MouseEvent)
+	Select Case oEvent.Buttons
+		Case com.sun.star.awt.MouseButton.LEFT
+			MsgBox("Dialog内へLeft Button で Drag されました。",0,"MouseListener")
+		Case com.sun.star.awt.MouseButton.RIGHT
+			MsgBox("Dialog内へ Right Button で Drag されました。",0,"MouseListener")
+	End Select
+End Sub
+
+'
+Sub Ltn_mouseMoved(oEvent as com.sun.star.awt.MouseEvent)
+	MsgBox("Dialog内でMouseが動作しました。",0,"MouseListener")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGL09a"><h6>GL-)<em>[General]</em>既存DialogにXFocusListener追加/削除</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/Listen/09FocusListener01.png" align="right" hspace="4" vspace="4" width="25%">
+Global oUnoDialog As Object
+Sub DialogListener()
+	Dim oLtrObj as Object
+		DialogLibraries.LoadLibrary("Standard")
+		oUnoDialog = CreateUnoDialog(DialogLibraries.Standard.Dialog1)
+		'
+		'  Listenerの追加
+		oLtrObj = CreateUnoListener("Ltn_","com.sun.star.awt.XFocusListener")
+		oUnoDialog.addFocusListener(oLtrObj)
+    	oUnoDialog.execute
+    	'
+    	' Listenerの削除
+    	oUnoDialog.removeFocusListener(oLtrObj)
+    	'
+    	oUnoDialog.dispose()
+    	msgbox "Success"
+End Sub
+
+
+' MethodはDummyでも全て定義の事
+Sub Ltn_disposing(oEvent as com.sun.star.lang.EventObject)
+End Sub
+
+' 
+Sub Ltn_FocusGained(oEvent as com.sun.star.awt.FocusEvent)
+	' [ Attention]
+	' FocusGained　に処置を記述する時は注意。Dialogが1つで次のWindowへForcusするタイミングが無いと無限Loopになる可能性有り。
+End Sub
+
+
+Sub Ltn_FocusLost(oEvent as com.sun.star.awt.FocusEvent)
+	msgbox("Forcusが移りました。",0,"FocusEnvent")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGL10a"><h6>GL-)<em>[General]</em>既存DialogにXTopWindowListener追加/削除</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/Listen/10TopWindowListener02.png" align="right" hspace="4" vspace="4" width="15%"><img src="OOoBasic_pic/01general2/Listen/10TopWindowListener01.png" align="right" hspace="4" vspace="4" width="15%">
+Global oUnoDialog As Object
+Sub DialogListener()
+	Dim oLtrObj as Object
+		DialogLibraries.LoadLibrary("Standard")
+		oUnoDialog = CreateUnoDialog(DialogLibraries.Standard.Dialog1)
+		'
+		'  Listenerの追加
+		oLtrObj = CreateUnoListener("Ltn_","com.sun.star.awt.XTopWindowListener")
+		oUnoDialog.addTopWindowListener(oLtrObj)
+    	oUnoDialog.execute
+    	'
+    	' Listenerの削除
+    	oUnoDialog.removeTopWindowListener(oLtrObj)
+    	'
+    	oUnoDialog.dispose()
+    	msgbox "Success"
+End Sub
+
+' MethodはDummyでも全て定義の事
+Sub Ltn_disposing(oEvent as com.sun.star.lang.EventObject)
+End Sub
+
+' Open前
+Sub Ltn_windowOpened(oEvent as com.sun.star.lang.EventObject)
+	msgbox("これからDialogを表示します。",0,"Listener_Event")
+End Sub
+
+'　Close処理中
+Sub Ltn_windowClosing(oEvent  as com.sun.star.lang.EventObject)
+	msgbox("これからDialogを閉じます。",0,"Listener_Event")
+End Sub
+
+
+Sub Ltn_windowClosed(oEvent  as com.sun.star.lang.EventObject)
+	msgbox("Dialogを閉じました",0,"Lisnter_Event")
+End Sub
+
+' 最少Sizeにされた後
+Sub Ltn_windowMinimized(oEvent as com.sun.star.lang.EventObject)	
+End Sub
+
+' 標準Sizeにされた後
+Sub Ltn_windowNormalized(oEvent as com.sun.star.lang.EventObject)
+End Sub
+
+' Activeになった後
+Sub Ltn_windowActivated(oEvent as com.sun.star.lang.EventObject)
+	' [ Attention]
+	' windowActivated　に処置を記述する時は注意。Dialogが1つで他へActivateするタイミングが無いと無限Loopになる可能性有り。		
+End Sub
+
+' Activeから外れた後
+Sub Ltn_windowDeactivated(oEvent as com.sun.star.lang.EventObject)	
+	msgbox("ActivateがDialog以外へ移りました。",0,"Listener_Event")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGL11a"><h6>GL-)<em>[General]</em>既存DialogにXWindowListener追加/削除</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/Listen/11WindowListener02.png" align="right" hspace="4" vspace="4" width="15%"><img src="OOoBasic_pic/01general2/Listen/11WindowListener01.png" align="right" hspace="4" vspace="4" width="15%">
+Global oUnoDialog As Object
+Sub DialogListener()
+	Dim oLtrObj as Object
+		DialogLibraries.LoadLibrary("Standard")
+		oUnoDialog = CreateUnoDialog(DialogLibraries.Standard.Dialog1)
+		'
+		'  Listenerの追加
+		oLtrObj = CreateUnoListener("Ltn_","com.sun.star.awt.XWindowListener")
+		oUnoDialog.addWindowListener(oLtrObj)
+    	oUnoDialog.execute
+    	'
+    	' Listenerの削除
+    	oUnoDialog.removeWindowListener(oLtrObj)
+    	'
+    	oUnoDialog.dispose()
+    	msgbox "Success"
+End Sub
+
+' MethodはDummyでも全て定義の事
+Sub Ltn_disposing(oEvent as com.sun.star.lang.EventObject)
+End Sub
+
+'
+Sub Ltn_windowResized(oEvent as com.sun.star.lang.EventObject)
+End Sub
+
+'　Close処理中
+Sub Ltn_windowMoved(oEvent  as com.sun.star.lang.EventObject)
+	msgbox("これからDialogが移動します。" & Chr$(10) & "( Resize、表示/非表示含む )",0,"Listener_Event")
+End Sub
+
+
+Sub Ltn_windowShown(oEvent  as com.sun.star.lang.EventObject)
+	msgbox("これからDialogが表示されます。",0,"Lisnter_Event")
+End Sub
+
+' 
+Sub Ltn_windowHidden(oEvent as com.sun.star.lang.EventObject)
+	msgbox("Dialogが非表示になりました。" & Chr$(10) & "(終了含む)",0,"Lisnter_Event")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGL12a"><h6>GL-)<em>[General]</em>既存DialogにXKeyListener追加/削除</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/Listen/12KeyListenerKeyPressed01.png" align="right" hspace="4" vspace="4" width="15%">
+Global oUnoDialog As Object
+Sub DialogListener()
+	Dim oLtrObj as Object
+		DialogLibraries.LoadLibrary("Standard")
+		oUnoDialog = CreateUnoDialog(DialogLibraries.Standard.Dialog1)
+		'
+		'  Listenerの追加
+		oLtrObj = CreateUnoListener("Ltn_","com.sun.star.awt.XKeyListener")
+		oUnoDialog.addKeyListener(oLtrObj)
+    	oUnoDialog.execute
+    	'
+    	' Listenerの削除
+    	oUnoDialog.removeKeyListener(oLtrObj)
+    	'
+    	oUnoDialog.dispose()
+    	msgbox "Success"
+End Sub
+
+' MethodはDummyでも全て定義の事
+Sub Ltn_disposing(oEvent as com.sun.star.lang.EventObject )
+End Sub
+
+'
+Sub Ltn_keyPressed(oEvent as com.sun.star.awt.KeyEvent )
+	msgbox("Keyが押されました。", 0, "Listener/Event")
+End Sub
+
+'
+Sub Ltn_keyReleased(oEvent  as com.sun.star.awt.KeyEvent )
+	' msgbox("Released Key !!", 0, "Listener/Event")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGL13a"><h6>GL-)<em>[General]</em>既存DialogにXPaintListener追加/削除</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/Listen/13PaintListener01.png" align="right" hspace="4" vspace="4" width="25%">
+Global oUnoDialog As Object
+Sub DialogListener()
+	Dim oLtrObj as Object
+		DialogLibraries.LoadLibrary("Standard")
+		oUnoDialog = CreateUnoDialog(DialogLibraries.Standard.Dialog1)
+		'
+		'  Listenerの追加
+		oLtrObj = CreateUnoListener("Ltn_","com.sun.star.awt.XPaintListener")
+		oUnoDialog.addPaintListener(oLtrObj)
+    	oUnoDialog.execute
+    	'
+    	' Listenerの削除
+    	oUnoDialog.removePaintListener(oLtrObj)
+    	'
+    	oUnoDialog.dispose()
+    	msgbox "Success"
+End Sub
+
+' MethodはDummyでも全て定義の事
+Sub Ltn_disposing( oEvent as com.sun.star.lang.EventObject )
+End Sub
+
+'
+Sub Ltn_windowPaint( oEvent As com.sun.star.awt.PaintEvent )
+	oDips = "Dialogが画面外から中へ" & Chr$(10) & "移動されたされようとする時" & Chr$(10) & "  または" & Chr$(10) & "移動された後" & Chr$(10) & "messgaeが表示されます。"
+	msgbox(oDips, 0, "Listener/Event")
+End Sub
+'
+
+' 上記Codeでは移動開始時と移動後の2回messageが表示される。
+' 但し、開始時のmessage表示中はFrame外（ windowsのTask bar等 ）にCurosorは移動出来ない。(移動中の為?)
+' また、Dialogが最初に表示される時もmessage表示
+</code></pre><br>
+
+
+<a name="OOoGL"><h6>GL-)<em>[General]</em></h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/Listen/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ Handler ]</p class="s3">
+<a name="OOoGLHr01a"><h6>GLHr-)<em>[General]</em>MouseClickHandlerの登録/削除</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/Listen/02Handler/01MouseClickHandler01.png" align="right" hspace="4" vspace="4" width="25%">
+Global oLtrObj As Object
+Global oDisp as String
+Global oDoc As Object 
+Global oCtrl As Object
+' 登録時に実行
+Sub RegisterToController()
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		'
+		' Handler を Listener Objectにする
+		oLtrObj = CreateUnoListener("Ltn_","com.sun.star.awt.XMouseClickHandler")
+		oCtrl.addMouseClickHandler(oLtrObj)
+		'
+		oDisp = "XMouseClickHandler を" & Chr$(10) & "CurrentController に登録しました。"
+		msgbox(oDisp,0,"Listener/Handler")
+End Sub
+
+' 削除時に実行
+Sub RemoveRegister()
+		oCtrl.removeMouseClickHandler(oLtrObj)
+		'
+		oDisp = "XMouseClickHandler を" & Chr$(10) & "CurrentController から削除しました。"
+		msgbox(oDisp,0,"Listener/Handler")
+End Sub
+'
+' disposingは Subroutine で OK
+Sub Ltn_disposing( oEvent As com.sun.start.lang.EventObject )
+End Sub
+
+' Press時の操作を無効にする。
+Function Ltn_mousePressed( oEvent as com.sun.star.awt.MouseEvent ) as Boolean
+	Ltn_mousePressed = false
+End Function
+
+' Release時に処理を記述
+Function Ltn_mouseReleased( oEvent as com.sun.star.awt.MouseEvent ) as Boolean
+	select case oEvent.Buttons
+		case com.sun.star.awt.MouseButton.LEFT
+			oDisp = "Left Button" & Chr$(10) & "が Click されました。" 
+			msgbox(oDisp,0,"Listener / Handler")
+		case com.sun.star.awt.MouseButton.RIGHT
+			' Calc では msgbox より 右ClickでのMenu表示が優先されるので殆ど意味が無い
+			' oDisp = "Right Button" & Chr$(10) & "が Click されました。" 
+	end select 
+	'
+	' 理由は不明だが、毎回 Removeしないと RemoveRegister() で削除出来なくなる。
+	oCtrl.removeMouseClickHandler(oLtrObj)
+	oCtrl.addMouseClickHandler(oLtrObj)
+	'
+	' false を返して毎回 処理のResetを行う
+  	Ltn_mouseReleased = False
+End Function
+'
+' [ 注意 ]
+' Subroutine で Listener処理 を記すと Crashする様です。
+' <a href="http://oooug.jp/faq/index.php?faq/4/1798">OpenOffice.orgユーザー会 : faq/4/1798</a>より
+</code></pre><br>
+
+
+
+<a name="OOoGLHr02a"><h6>GLHr-)<em>[General]</em></h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/Listen/02Handler/02EnhancedMouseClickHandler01.png" align="right" hspace="4" vspace="4" width="25%">
+Global oLtrObj As Object
+Global oDisp as String
+Global oDoc As Object 
+Global oCtrl As Object
+' 登録時に実行
+Sub RegisterToController()
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		'
+		' Handler を Listener Objectにする
+		oLtrObj = CreateUnoListener("Ltn_","com.sun.star.awt.XEnhancedMouseClickHandler")
+		oCtrl.addEnhancedMouseClickHandler(oLtrObj)
+		'
+		oDisp = "XEnhancedMouseClickHandler を" & Chr$(10) & "CurrentController に登録しました。"
+		msgbox(oDisp,0,"Listener/Handler")
+End Sub
+
+' 削除時に実行
+Sub RemoveRegister()
+	oCtrl.removeEnhancedMouseClickHandler(oLtrObj)
+	'
+	oDisp = "XEnhancedMouseClickHandler を" & Chr$(10) & "CurrentController から削除しました。"
+	msgbox(oDisp,0,"Listener/Handler")
+End Sub
+'
+' disposingは Subroutine で OK
+Sub Ltn_disposing( oEvent As com.sun.start.lang.EventObject )
+End Sub
+
+' Press時の操作を無効にする。
+Function Ltn_mousePressed( oEvent as com.sun.star.awt.MouseEvent ) as Boolean
+	Ltn_mousePressed = false
+End Function
+
+' Release時に処理を記述
+Function Ltn_mouseReleased( oEvent as com.sun.star.awt.MouseEvent ) as Boolean
+	select case oEvent.Buttons
+		case com.sun.star.awt.MouseButton.LEFT
+			oDisp = "Left Button" & Chr$(10) & "が Click されました。" & Chr$(10) & "( XEnhancedMouseClickHandler )" 
+			msgbox(oDisp,0,"Listener / Handler")
+		case com.sun.star.awt.MouseButton.RIGHT
+			' Calc では msgbox より 右ClickでのMenu表示が優先されるので殆ど意味が無い
+			' oDisp = "Right Button" & Chr$(10) & "が Click されました。" 
+	end select 
+	'
+	' 理由は不明だが、毎回 Removeしないと RemoveRegister() で削除出来なくなる。
+	oCtrl.removeEnhancedMouseClickHandler(oLtrObj)
+	oCtrl.addEnhancedMouseClickHandler(oLtrObj)
+	'
+	' false を返して毎回 処理のResetを行う
+  	Ltn_mouseReleased = False
+End Function
+'
+' [ Note ]
+' XMouceClickHander と XEnhoucedMouseClickHandler との違いは下記参照
+' <a href="http://blog.livedoor.jp/addinbox/archives/51274091.html">AddinBox/VBAユーザーの為のOpenOffice.org 備忘録 / シート上でのマウスイベント構築</a>
+</code></pre><br>
+
+
+
+<a name="OOoGLHr03a"><h6>GLHr-)<em>[General]</em>XKeyHandlerの登録/削除</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/Listen/02Handler/03KeyHander01.png" align="right" hspace="4" vspace="4" width="25%">
+Global oLtrObj As Object
+Global oDisp as String
+Global oDoc As Object 
+Global oCtrl As Object
+' 登録時に実行
+Sub RegisterToController()
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		'
+		' Handler を Listener Objectにする
+		oLtrObj = CreateUnoListener("Ltn_","com.sun.star.awt.XKeyHandler")
+		oCtrl.addKeyHandler(oLtrObj)
+		'
+		oDisp = "XKeyHandler を" & Chr$(10) & "CurrentController に登録しました。"
+		msgbox(oDisp,0,"Listener/Handler")
+End Sub
+
+' 削除時に実行
+Sub RemoveRegister()
+		oCtrl.removeKeyHandler(oLtrObj)
+		'
+		oDisp = "XKeyHandler を" & Chr$(10) & "CurrentController から削除しました。"
+		msgbox(oDisp,0,"Listener/Handler")
+End Sub
+'
+'
+' disposingは Subroutine で OK
+Sub Ltn_disposing( oEvent As com.sun.start.lang.EventObject )
+End Sub
+
+' Press時の操作を無効にする。
+Function Ltn_keyPressed( oEvent as com.sun.star.awt.KeyEvent ) as Boolean
+	Ltn_keyPressed = false
+End Function
+
+' Release時に処理を記述
+Function Ltn_keyReleased( oEvent  as com.sun.star.awt.KeyEvent ) as Boolean
+	msgbox("Released Key !!", 0, "Listener/Event")
+	'
+	' 理由は不明だが、毎回 Removeしないと RemoveRegister() で削除出来なくなる。
+	oCtrl.removeKeyHandler(oLtrObj)
+	oCtrl.addKeyHandler(oLtrObj)
+	'
+	' false を返して毎回 処理のResetを行う
+  	Ltn_keyReleased = False
+End Function
+</code></pre><br>
+
+
+<a name="OOoGLHr"><h6>GLHr-)<em>[General]</em></h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/Listen/02Handler/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">Event</p class="s1">
+<p class="s3">[ Dialog ]</p class="s3">
+<a name="OOoGEvDg01a"><h6>GEvDg-)<em>[General]</em>Dialog中のMouse Cursor設定</h6></a><pre><code>
+Global oUnoDialog As Object
+Sub DialogListener()
+	Dim oLtrObj as Object
+		DialogLibraries.LoadLibrary("Standard")
+		oUnoDialog = CreateUnoDialog(DialogLibraries.Standard.Dialog1)
+		'
+		'  Listenerの追加
+		oLtrObj = CreateUnoListener("Ltn_","com.sun.star.awt.XFocusListener")
+		oUnoDialog.addFocusListener(oLtrObj)
+    	oUnoDialog.execute
+    	'
+    	' Listenerの削除
+    	oUnoDialog.removeFocusListener(oLtrObj)
+    	'
+    	oUnoDialog.dispose()
+    	msgbox "Success"
+End Sub
+
+
+' MethodはDummyでも全て定義の事
+Sub Ltn_disposing(oEvent as com.sun.star.lang.EventObject)
+End Sub
+
+' 
+Sub Ltn_FocusGained(oEvent as com.sun.star.awt.FocusEvent)
+	Dim oPointer as Object
+		oPointer= CreateUnoService("com.sun.star.awt.Pointer")
+		oPointer.setType(com.sun.star.awt.SystemPointer.PEN)
+		oEvent.Source.Peer.setPointer(oPointer)
+End Sub
+
+
+Sub Ltn_FocusLost(oEvent as com.sun.star.awt.FocusEvent)
+End Sub
+'
+' [ Note ]
+' Pointerの種類は下記URL参照
+' <a href="http://www.openoffice.org/api/docs/common/ref/com/sun/star/awt/SystemPointer.html">Apache OpenOffice / constants group SystemPointer</a><br>
+' <a href="http://api.libreoffice.org/docs/common/ref/com/sun/star/awt/SystemPointer.html">LiberOffice / constants group SystemPointer</a>
+</code></pre><br>
+
+
+<a name="OOoGEvDg"><h6>GEvDg-)<em>[General]</em></h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/08Event/01Dialog/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ Document ]</p class="s3">
+<a name="GEvDoc01a"><h6>GEvDg-)<em>[General]</em>Documentにて使用可能なEvent Listener( Calc )</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/08Event/02Document/01aCalcEventListener01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oXEventSup()
+	Dim oAppName as String
+	Dim oListeners as Object
+	Dim oEventNames()
+	Dim oDummy() as String
+	Dim oDisp as String
+		oAppName = "calc"
+		oDoc=StarDesktop.loadComponentFromUrl("private:factory/s" & oAppName, "_blank", 0, oDummy())
+		oListeners = oDoc.getEvents()
+		oEventNames = oListeners.getElementNames()
+		oDisp = "[ " & oAppName & " ]" & Chr$(10) & "Total = " & UBound(oEventNames) & Chr$(10) & _
+					"*************" & Chr$(10) & Join(oEventNames, Chr$(10))
+		MsgBox (oDisp, 0, "Listener Name List")
+		oDoc.dispose()
+End Sub
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<a name="GEvDoc01a1"><h6>GEvDg-)<em>[General]</em>Sheetにて使用可能なEvent Listener( Calc Sheet )</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/08Event/02Document/01a1CalcSheetEventListener01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oXEventSup()
+	Dim oDoc as Object
+	Dim oSheet as Object
+	Dim oShtEvent as Object
+	Dim oEventNames()
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oSheet = oDoc.getSheets().getByIndex(0)
+		oShtEvent = oSheet.getEvents()
+		oEventNames = oShtEvent.getElementNames()
+		oDisp = "[ Sheet ]" & Chr$(10) & "Total = " & UBound(oEventNames) & Chr$(10) & _
+					"*************" & Chr$(10) & Join(oEventNames, Chr$(10))
+		MsgBox (oDisp, 0, "Event Name List")
+End Sub
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<a name="GEvDoc01b"><h6>GEvDg-)<em>[General]</em>Documentにて使用可能なEvent Listener( writer )</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/08Event/02Document/01bWriterEventListener01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oXEventSup()
+	Dim oAppName as String
+	Dim oListeners as Object
+	Dim oEventNames()
+	Dim oDummy() as String
+	Dim oDisp as String
+		oAppName = "writer"
+		oDoc=StarDesktop.loadComponentFromUrl("private:factory/s" & oAppName, "_blank", 0, oDummy())
+		oListeners = oDoc.getEvents()
+		oEventNames = oListeners.getElementNames()
+		oDisp = "[ " & oAppName & " ]" & Chr$(10) & "Total = " & UBound(oEventNames) & Chr$(10) & _
+					"*************" & Chr$(10) & Join(oEventNames, Chr$(10))
+		MsgBox (oDisp, 0, "Listener Name List")
+		oDoc.dispose()
+End Sub
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<a name="GEvDoc01c"><h6>GEvDg-)<em>[General]</em>Documentにて使用可能なEvent Listener( Draw )</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/08Event/02Document/01cDrawEventListener01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oXEventSup()
+	Dim oAppName as String
+	Dim oListeners as Object
+	Dim oEventNames()
+	Dim oDummy() as String
+	Dim oDisp as String
+		oAppName = "draw"
+		oDoc=StarDesktop.loadComponentFromUrl("private:factory/s" & oAppName, "_blank", 0, oDummy())
+		oListeners = oDoc.getEvents()
+		oEventNames = oListeners.getElementNames()
+		oDisp = "[ " & oAppName & " ]" & Chr$(10) & "Total = " & UBound(oEventNames) & Chr$(10) & _
+					"*************" & Chr$(10) & Join(oEventNames, Chr$(10))
+		MsgBox (oDisp, 0, "Listener Name List")
+		oDoc.dispose()
+End Sub
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<a name="GEvDoc01d"><h6>GEvDg-)<em>[General]</em>Documentにて使用可能なEvent Listener( Impress )</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/08Event/02Document/01dDImpressEventListener01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oXEventSup()
+	Dim oAppName as String
+	Dim oListeners as Object
+	Dim oEventNames()
+	Dim oDummy() as String
+	Dim oDisp as String
+		oAppName = "impress"
+		oDoc=StarDesktop.loadComponentFromUrl("private:factory/s" & oAppName, "_blank", 0, oDummy())
+		oListeners = oDoc.getEvents()
+		oEventNames = oListeners.getElementNames()
+		oDisp = "[ " & oAppName & " ]" & Chr$(10) & "Total = " & UBound(oEventNames) & Chr$(10) & _
+					"*************" & Chr$(10) & Join(oEventNames, Chr$(10))
+		MsgBox (oDisp, 0, "Listener Name List")
+		oDoc.dispose()
+End Sub
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<a name="GEvDoc01e"><h6>GEvDg-)<em>[General]</em>Documentにて使用可能なEvent Listener( Base )</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/08Event/02Document/01eBaseEventListener01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oXEventSup()
+	Dim oAppName as String
+	Dim oListeners as Object
+	Dim oEventNames()
+	Dim oDummy() as String
+	Dim oDisp as String
+		oAppName = "database"
+		oDoc=StarDesktop.loadComponentFromUrl("private:factory/s" & oAppName, "_blank", 0, oDummy())
+		oListeners = oDoc.getEvents()
+		oEventNames = oListeners.getElementNames()
+		oDisp = "[ " & oAppName & " ]" & Chr$(10) & "Total = " & UBound(oEventNames) & Chr$(10) & _
+					"*************" & Chr$(10) & Join(oEventNames, Chr$(10))
+		MsgBox (oDisp, 0, "Listener Name List")
+		oDoc.dispose()
+End Sub
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<a name="GEvDoc02a"><h6>GEvDg-)<em>[General]</em>Event Listener</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/08Event/02Document/02aEventListener01.png" align="right" hspace="4" vspace="4" width="20%">
+Global oDoc as Object
+Global oUnoListener as Object
+Global oDisp as String
+' 登録時に実行 / Document側から実行。IDEで実行しても効果無し
+Sub AddEvent()
+	Dim oAddNull as Object			' 初期化の為に毎回宣言する必要あり
+		oDoc = ThisComponent
+		if IsNull(oUnoListener) then
+			oUnoListener = oAddNull		' ← IsNull が失敗した時の為。(多々ある模様)
+			oUnoListener = CreateUnoListener("Ltn_", "com.sun.star.document.XEventListener")
+			oDoc.com_sun_star_document_XEventBroadcaster_addEventListener( oUnoListener )
+			oDisp = "Documentに" & Chr$(10) & "  Event Listener" & Chr$(10) & "を追加しました。" 
+		else
+			' 削除済みなのに、Nullになっていない事がある為、Null値を設定
+			oUnoListener = oAddNull
+			oDisp = "既にEvent Listenerが設定されています。"
+		end if
+		msgbox(oDisp, 0,"Event Listener")
+End Sub
+'
+' 登録削除時に実行 / 削除に失敗すると再起動以外にremoveする方法無し
+Sub RemoveEvent()
+	Dim oRmNull as Object	
+		if IsNull(oUnoListener) then
+			oUnoListener = CreateUnoListener("Ltn_", "com.sun.star.document.XEventListener")
+			ThisComponent.com_sun_star_document_XEventBroadcaster_removeEventListener( oUnoListener )
+				' Listenerを削除する為に、何もないObjectを入力してReset
+					oUnoListener = oRmNull
+			oDisp = "Documentから" & Chr$(10) & "  Event Listener" & Chr$(10) & "を削除したと思いますが、" & Chr$(10) & "実際にEventを実行して確認せずに、" & Chr$(10) & "2重登録すると削除出来なくなります。"
+		else
+				oUnoListener = oRmNull
+			oDisp = "既にEvent Listenerは削除されていると思いますが、" & Chr$(10) & "実際にEventを実行して確認せずに、" & Chr$(10) & "2重登録すると削除出来なくなります。"
+		end if
+		msgbox(oDisp, 0,"Event Listener")
+End Sub
+'
+'
+Sub Ltn_disposing()
+End Sub
+'
+' 
+Sub Ltn_notifyEvent( oEvent as com.sun.star.document.EventObject )
+		' Eventの種類によっては無限Loopになる。( OnFocus / OnUnfocusなど )
+		Select Case oEvent.EventName
+			Case "OnPrepareViewClosing"
+				msgbox "文書を閉じようとしています。"
+		End Select
+    	'
+    	' 理由は分らないが毎回削除しないと削除出来なくなる。
+    		ThisComponent.com_sun_star_document_XEventBroadcaster_removeEventListener( oUnoListener )
+    		Dim oEvtNull as Object	
+   				oUnoListener = oEvtNull
+				'
+			'  ここで再登録しても削除出来なくなる模様
+	'		ThisComponent.com_sun_star_document_XEventBroadcaster_addEventListener( oUnoListener )
+End Sub
+'
+' [ Note ]
+' document の Listener は 一度削除に失敗すると再起動きないと削除不可。
+' また、削除の失敗や IsNullの失敗で2回以上登録すると再起動しないと削除出来ない模様
+'
+' 素直に、tool → customaize → event で登録した方が確実
+</code></pre><br>
+
+
+<a name="GEvDoc03a"><h6>GEvDoc-)<em>[General]</em>Application Event Container設定</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/08Event/02Document/03aGlobalEventBroadcaster01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub GlobalEvent()
+	Dim oGlobalEB as Object
+	Dim oEvents as Object
+	Dim oProp(1) As New com.sun.star.beans.PropertyValue
+		oGlobalEB = CreateUnoService("com.sun.star.frame.GlobalEventBroadcaster")
+		oEvents = oGlobalEB.getEvents()
+ 		oProp(0).Name = "EventType"
+ 		oProp(0).Value = "StarBasic"
+ 		oProp(1).Name = "Script"
+ 		oProp(1).Value = "vnd.sun.star.script:Standard.Module1.ScriptOnPrepareViewClosing?language=Basic&location=document"
+ 		oEvents.replaceByName("OnPrepareViewClosing",oProp)
+    	msgbox "Success"
+End Sub
+'
+'
+Sub ScriptOnPrepareViewClosing()
+	msgbox("文書を閉じようとしています。",0,"Event")
+End Sub
+
+' [ Note ]
+'終わる時に以下を実行しておかないと次から常に ScriptOfUnFocus が無いとError Messageが表示される
+Sub RemoveEvent()
+	Dim oGlobalEB as Object
+	Dim oEvents as Object
+	Dim oProp(0) As New com.sun.star.beans.PropertyValue
+		oGlobalEB = CreateUnoService("com.sun.star.frame.GlobalEventBroadcaster")
+		oEvents = oGlobalEB.getEvents()
+		' 無効時
+ 		oProp(0).Name = "EventType"
+ 		oProp(0).Value = "None"
+ 		oEvents.replaceByName("OnPrepareViewClosing",oProp)
+    	msgbox "Success"
+End Sub
+'
+' [ Note ]
+' Eventによっては、以下にError messageが表示される。( expample : OnUnfocus )
+<img src="OOoBasic_pic/01general2/08Event/02Document/03aGlobalEventBroadcaster02.png" align="Left" hspace="4" vspace="4" width="40%">
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br><br>
+<a name="GEvDoc"><h6>GEvDoc-)<em>[General]</em></h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/08Event/02Document/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">Document Settings</p class="s1">
+<a name="OOoGDStGn01a"><h6>GDStGn-)<em>[General]</em>Default Printer Name取得</h6></a><pre><code>
+Sub DocSettinsGen()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oPrtName as String
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.document.Settings")
+		oPrtName = oDocSet.PrinterName
+		oDisp = "[ Document Setting ]" & Chr$(10) & oPrtName
+		msgbox oDisp, 0, "Settings"
+End Sub
+'
+' [ Note ]
+' 新規File時は取得出来ない（空Name）
+' 事前に File → Printerの設定で Default Printerを取得しておく必要がある。
+' Writer / Calc / Draw / Impress / Mathにて取得可能。Baseは項目が無い
+</code></pre><br>
+
+
+<a name="OOoGDStGn02a"><h6>GDStGn-)<em>[General]</em>読込む時のLinkの更新の取得/設定</h6></a><pre><code>
+Sub DocSettinsGen()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oBfrLinkUpMode as Integer, oAftLinkUpMode
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.document.Settings")
+		oBfrLinkUpMode = oDocSet.LinkUpdateMode
+		'
+		oDocSet.LinkUpdateMode = 0
+		'
+		oAftLinkUpMode = oDocSet.LinkUpdateMode
+		oDisp = "[ Document Setting ]" & Chr$(10) & "Before = " & oBfrLinkUpMode & Chr$(10) & "After = " & oAftLinkUpMode
+		msgbox oDisp, 0, "Settings"
+End Sub
+'
+' [ Note ]
+' Tool → Option → LiberOffice Calc( Writer ) → 全般 → 「更新」項の「読込む時のリンクの更新」
+' Writer / Calcのみ。Draw / Impress / Math / Base には LinkUpdateModeは無い 
+'
+' com.sun.star.document.LinkUpdateModes( constants group ) / <a href="http://api.libreoffice.org/docs/common/ref/com/sun/star/document/LinkUpdateModes.html">LibreOffice</a> , <a href="http://www.openoffice.org/api/docs/common/ref/com/sun/star/document/LinkUpdateModes.html">Apache Openoffice</a>
+' 0 : NEVER  / 常に確認する( automatic update on load )  
+' 1 : AUTO   / 確認しない( never update links )
+' 2 : MANUAL / 確認する( update links when confirmed on request during loading the document )  
+' 3 : GLOBAL_SETTING / Defaut設定[ 確認する ](use the setting that is configured in your installed application. This may be one of the above behaviours.)
+</code></pre><br>
+
+
+<a name="OOoGDStGn03a"><h6>GDStGn-)<em>[General]</em>カーニング( 文字間隔をバランスよく整える )設定の取得/設定(1)</h6></a><pre><code>
+Sub DocSettinsGen()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oBfrKerning as Boolean, oAftKerning as Boolean
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.document.Settings")
+		oBfrKerning = oDocSet.IsKernAsianPunctuation
+		'
+		oDocSet.IsKernAsianPunctuation = true
+		'
+		oAftKerning = oDocSet.IsKernAsianPunctuation
+		oDisp = "[ Document Setting ]" & Chr$(10) & "Before = " & oBfrKerning & Chr$(10) & "After = " & oAftKerning
+		msgbox oDisp, 0, "Settings"
+End Sub
+'
+' [ Note ]
+' Tool → Option → 言語設定 → 日本語レイアウト → 「カーニング」
+' Writer / calc / Draw / Impress / Base / Math の何れでもOK
+' 
+' False : 英字のみ
+' True  : 半角英字と日本語の区切り記号
+</code></pre><br>
+
+
+<a name="OOoGDStGn03b"><h6>GDStGn-)<em>[General]</em>カーニング( 文字間隔をバランスよく整える )設定の取得/設定(2)[ Only Calc ]</h6></a><pre><code>
+Sub DocSettinsCalc()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oBfrKerning as Boolean, oAftKerning as Boolean
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.comp.SpreadsheetSettings")
+		oBfrKerning = oDocSet.IsKernAsianPunctuation
+		'
+		oDocSet.IsKernAsianPunctuation = true
+		'
+		oAftKerning = oDocSet.IsKernAsianPunctuation
+		oDisp = "[ Document Setting ]" & Chr$(10) & "Before = " & oBfrKerning & Chr$(10) & "After = " & oAftKerning
+		msgbox oDisp, 0, "Settings"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGDStGn04a"><h6>GDStGn-)<em>[General]</em>文字間隔の調整(1)</h6></a><pre><code>
+Sub DocSettinsGen()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oBfrCharSpace as Integer, oAftCharSpace as Integer
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.document.Settings")
+		oBfrCharSpace = oDocSet.CharacterCompressionType
+		'
+		oDocSet.CharacterCompressionType = 2
+		'
+		oAftCharSpace = oDocSet.CharacterCompressionType
+		oDisp = "[ Document Setting ]" & Chr$(10) & "Before = " & oBfrCharSpace & Chr$(10) & "After = " & oAftCharSpace
+		msgbox oDisp, 0, "Settings"
+End Sub
+'
+' [ Note ]
+' Tool → Option → 言語設定 → 日本語レイアウト → 「 文字間隔の調整 」項
+' Writer / calc / Draw / Impress / Base / Math の何れでもOK
+'
+' com.sun.star.text.CharacterCompressionType( constant Group ) / <a href="http://api.libreoffice.org/docs/common/ref/com/sun/star/text/CharacterCompressionType.html">LibreOffice</a>, <a href="http://www.openoffice.org/api/docs/common/ref/com/sun/star/text/CharacterCompressionType.html">Apache OpenOffice</a>
+' 0 : 間隔を詰めない( NONE / the characters are uncompressed. )
+' 1 : 句読点のみを詰める( PUNCTUATION_ONLY / only punctuation is compressed. )
+' 2 : 句読点とかなを詰める( PUNCTUATION_AND_KANA / punctuation and japanese kana are compressed. )
+</code></pre><br>
+
+
+<a name="OOoGDStGn04b"><h6>GDStGn-)<em>[General]</em>文字間隔の調整(2)[ Calc ]</h6></a><pre><code>
+Sub DocSettinsCalc()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oBfrCharSpace as Integer, oAftCharSpace as Integer
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.comp.SpreadsheetSettings")
+		oBfrCharSpace = oDocSet.CharacterCompressionType
+		'
+		oDocSet.CharacterCompressionType = 2
+		'
+		oAftCharSpace = oDocSet.CharacterCompressionType
+		oDisp = "[ Document Setting ]" & Chr$(10) & "Before = " & oBfrCharSpace & Chr$(10) & "After = " & oAftCharSpace
+		msgbox oDisp, 0, "Settings"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGDStGn05a"><h6>GDStGn-)<em>[General]</em>「ユーザーデータを使用する」設定の取得/設定(1)</h6></a><pre><code>
+Sub DocSettinsGen()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oBfrUserData as Boolean, oAftUserData as Boolean
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.document.Settings")
+		oBfrUserData = oDocSet.ApplyUserData
+		'
+		oDocSet.ApplyUserData = false
+		'
+		oAftUserData = oDocSet.ApplyUserData
+		oDisp = "[ Document Setting ]" & Chr$(10) & "Before = " & oBfrUserData & Chr$(10) & "After = " & oAftUserData
+		msgbox oDisp, 0, "Settings"
+End Sub
+'
+' [ Note ]
+' File → Properties → 全般Tab → 「 ユーザーデータを使用する 」のCheck
+' Writer / Calcのみ。Draw / Impress / Math / Base には ApplyUserDataは無い 
+'
+' true  : Check ON
+' false : Check OFF
+</code></pre><br>
+
+
+<a name="OOoGDStGn05b"><h6>GDStGn-)<em>[General]</em>「ユーザーデータを使用する」設定の取得/設定(2)[ Only Calc ]</h6></a><pre><code>
+Sub DocSettinsCalc()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oBfrUserData as Boolean, oAftUserData as Boolean
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.comp.SpreadsheetSettings")
+		oBfrUserData = oDocSet.ApplyUserData
+		'
+		oDocSet.ApplyUserData = false
+		'
+		oAftUserData = oDocSet.ApplyUserData
+		oDisp = "[ Document Setting ]" & Chr$(10) & "Before = " & oBfrUserData & Chr$(10) & "After = " & oAftUserData
+		msgbox oDisp, 0, "Settings"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGDStGn"><h6>GDStGn-)<em>[General]</em></h6></a><pre><code>
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ Calc ]<em>( com.sun.star.sheet.DocumentSettings[ <a href="http://api.libreoffice.org/docs/common/ref/com/sun/star/sheet/DocumentSettings.html">LibreOffice</a> / <a href="http://www.openoffice.org/api/docs/common/ref/com/sun/star/sheet/DocumentSettings.html">Apache OpenOffice</a> ] )</em></p class="s3">
+<a name="OOoGDStCalc01a"><h6>GDStCalc-)<em>[General / Calc]</em>Zero( = 0 )表示/非表示の確認</h6></a><pre><code>
+Sub DocSettinscalc()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oDispZero as Boolean
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.sheet.DocumentSettings")
+		'
+		oDispZero = oDocSet.ShowZeroValues
+		msgbox "Zero( = 0 ) 表示 =" & oDispZero,0,"CalcView"
+End Sub
+'
+' [ Note ]
+' com.sun.star.sheet.DocumentSettings は Readonly
+' oDocSet.ShowZeroValues = true ( or false ) としても Errorは発生しないが設定もされない。
+' 変更する際は、com.sun.star.sheet.SpreadsheetViewSettings　を用いる。( Calc編 → View )参照
+</code></pre><br>
+
+
+<a name="OOoGDStCalc02a"><h6>GDStCalc-)<em>[General / Calc]</em>Comment常時表示/通常表示の確認</h6></a><pre><code>
+Sub DocSettinscalc()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oDispNote as Boolean
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.sheet.DocumentSettings")
+		'
+		oDispNote = oDocSet.ShowNotes
+		msgbox "Comment 表示 =" & oDispNote,0,"CalcView"
+End Sub
+'
+' [ Note ]
+' com.sun.star.sheet.DocumentSettings は Readonly
+' oDocSet.ShowNotes = true ( or false ) としても Errorは発生しないが設定もされない。
+' 変更する際は、com.sun.star.sheet.SpreadsheetViewSettings　を用いる。( Calc編 → View )参照
+</code></pre><br>
+
+
+<a name="OOoGDStCalc03a"><h6>GDStCalc-)<em>[General / Calc]</em>Grid Line表示/非表示の確認</h6></a><pre><code>
+Sub DocSettinscalc()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oDispGrid as Boolean
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.sheet.DocumentSettings")
+		'
+		oDispGrid = oDocSet.ShowGrid
+		msgbox "Grid Line 表示 =" & oDispGrid,0,"CalcView"
+End Sub
+'
+' [ Note ]
+' com.sun.star.sheet.DocumentSettings は Readonly
+' oDocSet.ShowGrid = true ( or false ) としても Errorは発生しないが設定もされない。
+' 変更する際は、com.sun.star.sheet.SpreadsheetViewSettings　を用いる。( Calc編 → View )参照
+</code></pre><br>
+
+
+<a name="OOoGDStCalc04a"><h6>GDStCalc-)<em>[General / Calc]</em>Grid Line色の取得</h6></a><pre><code>
+Sub DocSettinscalc()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oDispGdColor as Long
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.sheet.DocumentSettings")
+		'
+		oDispGdColor = oDocSet.GridColor
+		msgbox "Grid LineのColor =" & oDispGdColor,0,"CalcView"
+End Sub
+'
+' [ Note ]
+' com.sun.star.sheet.DocumentSettings は Readonly
+' oDocSet.GridColor = &HFF0000 としても Errorは発生しないが表示が変わらない。但し、値を取得すると変化している。
+' 変更する際は、com.sun.star.sheet.SpreadsheetViewSettings　を用いる。( Calc編 → View )参照
+</code></pre><br>
+
+
+<a name="OOoGDStCalc05a"><h6>GDStCalc-)<em>[General / Calc]</em>Page Breake Line表示/非表示の確認</h6></a><pre><code>
+Sub DocSettinscalc()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oDispPageBreak as Boolean
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.sheet.DocumentSettings")
+		'
+		oDispPageBreak = oDocSet.ShowPageBreaks
+		msgbox "改Page線の表示 =" & oDispPageBreak,0,"CalcView"
+End Sub
+'
+' [ Note ]
+' com.sun.star.sheet.DocumentSettings は Readonly
+' oDocSet.ShowPageBreaks = true ( or false ) としても Errorは発生しないが設定もされない。
+' 変更する際は、com.sun.star.sheet.SpreadsheetViewSettings　を用いる。( Calc編 → View )参照
+</code></pre><br>
+
+
+<a name="OOoGDStCalc06a"><h6>GDStCalc-)<em>[General / Calc]</em>行･列番号表示/非表示の確認</h6></a><pre><code>
+Sub DocSettinscalc()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oDispColRowNo as Boolean
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.sheet.DocumentSettings")
+		'
+		oDispColRowNo = oDocSet.HasColumnRowHeaders
+		msgbox "行･列番号の表示 =" & oDispColRowNo,0,"CalcView"
+End Sub
+'
+' [ Note ]
+' com.sun.star.sheet.DocumentSettings は Readonly
+' oDocSet.HasColumnRowHeaders = true ( or false ) としても Errorは発生しないが設定もされない。
+' 変更する際は、com.sun.star.sheet.SpreadsheetViewSettings　を用いる。( Calc編 → View )参照
+</code></pre><br>
+
+
+<a name="OOoGDStCalc07a"><h6>GDStCalc-)<em>[General / Calc]</em>Sheet Tab表示/非表示の確認</h6></a><pre><code>
+Sub DocSettinscalc()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oDispShtTab as Boolean
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.sheet.DocumentSettings")
+		'
+		oDispShtTab = oDocSet.HasSheetTabs
+		msgbox "Sheet Tabの表示 =" & oDispShtTab,0,"CalcView"
+End Sub
+'
+' [ Note ]
+' com.sun.star.sheet.DocumentSettings は Readonly
+' oDocSet.HasSheetTabs = true ( or false ) としても Errorは発生しないが設定もされない。
+' 変更する際は、com.sun.star.sheet.SpreadsheetViewSettings　を用いる。( Calc編 → View )参照
+</code></pre><br>
+
+
+<a name="OOoGDStCalc08a"><h6>GDStCalc-)<em>[General / Calc]</em>「 グリッド線で位置合わせ 」設定取得</h6></a><pre><code>
+Sub DocSettinscalc()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oDispRaster as Boolean
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.sheet.DocumentSettings")
+		'
+		oDispRaster = oDocSet.IsSnapToRaster
+		msgbox "「 グリッド線で位置合わせ 」 =" & oDispRaster,0,"CalcView"
+End Sub
+'
+' [ Note ]
+' IsSnapToRaster は Readonly
+</code></pre><br>
+
+
+<a name="OOoGDStCalc09a"><h6>GDStCalc-)<em>[General / Calc]</em>「 グリッド線の表示 」設定取得</h6></a><pre><code>
+Sub DocSettinscalc()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oDispRaster as Boolean
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.sheet.DocumentSettings")
+		'
+		oDispRaster = oDocSet.RasterIsVisible
+		msgbox "「 グリッド線の表示 」 =" & oDispRaster,0,"CalcView"
+End Sub
+'
+' [ Note ]
+' IsSnapToRaster は Readonly
+</code></pre><br>
+
+
+<a name="OOoGDStCalc"><h6>GDStCalc-)<em>[General / Calc]</em>「 解像度 」取得</h6></a><pre><code>
+Sub DocSettinscalc()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oRstX as Long, oRstY as Long
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.sheet.DocumentSettings")
+		'
+		oRstX = oDocSet.RasterResolutionX
+		oRstY = oDocSet.RasterResolutionY
+		'
+		oDisp = "解像度 / 「横に」 =  " & oRstX & Chr$(10) & "解像度 / 「縦に」 =  " & oRstY
+		msgbox oDisp,0,"CalcView"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGDStCalc11a"><h6>GDStCalc-)<em>[General / Calc]</em>「 サブ目盛 」取得</h6></a><pre><code>
+Sub DocSettinscalc()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oRstSubX as Long, oRstSubY as Long
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.sheet.DocumentSettings")
+		'
+		oRstSubX = oDocSet.RasterSubdivisionX
+		oRstSubY = oDocSet.RasterSubdivisionY
+		'
+		oDisp = "サブ目盛 / 「横に」 =  " & oRstSubX & Chr$(10) & "サブ目盛 / 「縦に」 =  " & oRstSubY
+		msgbox oDisp,0,"CalcView"
+End Sub
+' [ Note ]
+' Option → LibreOffice Calc → グリッド線で表示される値から -1
+' 4 ならば 取得値は 3
+</code></pre><br>
+
+
+<a name="OOoGDStCalc12a"><h6>GDStCalc-)<em>[General / Calc]</em>「 軸を同期させる 」取得</h6></a><pre><code>
+Sub DocSettinscalc()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oIsRstSync as Boolean
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.sheet.DocumentSettings")
+		'
+		oIsRstSync = oDocSet.IsRasterAxisSynchronized
+		msgbox "「 軸を同期させる 」 =" & oIsRstSync,0,"CalcView"
+End Sub
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ Writer ]</p class="s3"><br>
+<a name="OOoGDStWriter01a"><h6>GDStWriter-)<em>[General / Writer]</em>「自動」→「グラフ」更新設定の取得/設定</h6></a><pre><code>
+Sub DocSettinsWriter()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oBfrUserData as Boolean, oAftUserData as Boolean
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.text.DocumentSettings")
+		oBfrUserData = oDocSet.ChartAutoUpdate
+		'
+		oDocSet.ChartAutoUpdate = false
+		'
+		oAftUserData = oDocSet.ChartAutoUpdate
+		oDisp = "[ Document Setting ]" & Chr$(10) & "Before = " & oBfrUserData & Chr$(10) & "After = " & oAftUserData
+		msgbox oDisp, 0, "Settings"
+End Sub
+'
+' [ Note ]
+' Tool → Option → LibreOffice Writer → 全般 → 更新 → 自動 → グラフのCheck ON/OFF  
+'
+<img src="OOoBasic_pic/01general2/10DocumentSetting/02Writer/01aChartAutoUpdate02.png" align="right" hspace="4" vspace="4" width="45%"><img src="OOoBasic_pic/01general2/10DocumentSetting/02Writer/01aChartAutoUpdate01.png" align="right" hspace="4" vspace="4" width="45%">
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
+<a name="OOoGDStWriter02a"><h6>GDStWriter-)<em>[General / Writer]</em>「段落と表との間にスペースを入れる(現在のドキュメント)」設定の取得/設定</h6></a><pre><code>
+Sub DocSettinsWriter()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oBfrUserData as Boolean, oAftUserData as Boolean
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.text.DocumentSettings")
+		oBfrUserData = oDocSet.AddParaTableSpacing
+		'
+		oDocSet.AddParaTableSpacing = false
+		'
+		oAftUserData = oDocSet.AddParaTableSpacing
+		oDisp = "[ Document Setting ]" & Chr$(10) & "Before = " & oBfrUserData & Chr$(10) & "After = " & oAftUserData
+		msgbox oDisp, 0, "Settings"
+End Sub
+' [ Note ]
+' Tool → Option → LibreOffice Writer → 互換性 → 「段落と表との間にスペースを入れる(現在のドキュメント)」のCheck ON/OFF  
+'
+<img src="OOoBasic_pic/01general2/10DocumentSetting/02Writer/02aAddParaTableSpacing02.png" align="right" hspace="4" vspace="4" width="45%"><img src="OOoBasic_pic/01general2/10DocumentSetting/02Writer/02aAddParaTableSpacing01.png" align="right" hspace="4" vspace="4" width="45%">
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
+<a name="OOoGDStWriter03a"><h6>GDStWriter-)<em>[General / Writer]</em>「ページの最上部に段落と表の間隔を追加する」設定の取得/設定</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/10DocumentSetting/02Writer/03aAddParaTableSpacingAtStart01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub DocSettinsWriter()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oBfrUserData as Boolean, oAftUserData as Boolean
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.text.DocumentSettings")
+		oBfrUserData = oDocSet.AddParaTableSpacingAtStart
+		'
+		oDocSet.AddParaTableSpacingAtStart = true
+		'
+		oAftUserData = oDocSet.AddParaTableSpacingAtStart
+		oDisp = "[ Document Setting ]" & Chr$(10) & "Before = " & oBfrUserData & Chr$(10) & "After = " & oAftUserData
+		msgbox oDisp, 0, "Settings"
+End Sub
+' [ Note ]
+' Tool → Option → LibreOffice Writer → 互換性 → 「ページの最上部に段落と表の間隔を追加する(現在のドキュメント)」のCheck ON/OFF  
+</code></pre><br>
+
+
+<a name="OOoGDStWriter04a"><h6>GDStWriter-)<em>[General / Writer]</em>「OpenOffice.org1.1タブストップフォーマットを使用」設定の取得/設定</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/10DocumentSetting/02Writer/04aAlignTabStopPosition01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub DocSettinsWriter()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oBfrUserData as Boolean, oAftUserData as Boolean
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.text.DocumentSettings")
+		oBfrUserData = oDocSet.AlignTabStopPosition
+		'
+		oDocSet.AlignTabStopPosition = false
+		'
+		oAftUserData = oDocSet.AlignTabStopPosition
+		oDisp = "[ Document Setting ]" & Chr$(10) & "Before = " & oBfrUserData & Chr$(10) & "After = " & oAftUserData
+		msgbox oDisp, 0, "Settings"
+End Sub
+' [ Note ]
+' Tool → Option → LibreOffice Writer → 互換性 → 「OpenOffice.org1.1タブストップフォーマットを使用」のCheck ON/OFF  
+' true  : Check OFF
+' false : Check ON
+</code></pre><br>
+
+
+<a name="OOoGDStWriter05a"><h6>GDStWriter-)<em>[General / Writer]</em>Current Documentの「ラベルを同期させる」設定の取得/設定</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/10DocumentSetting/02Writer/05aIsLabelDocument01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub DocSettinsWriter()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oBfrUserData as Boolean, oAftUserData as Boolean
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.text.DocumentSettings")
+		oBfrUserData = oDocSet.IsLabelDocument
+		'
+		oDocSet.IsLabelDocument = true
+		'
+		oAftUserData = oDocSet.IsLabelDocument
+		oDisp = "[ Document Setting ]" & Chr$(10) & "Before = " & oBfrUserData & Chr$(10) & "After = " & oAftUserData
+		msgbox oDisp, 0, "Settings"
+End Sub
+'
+' [ Note ]
+' 「ラベルの同期」は差し込み印刷時等に使う機能。
+' File → 新規作成 → ラベル → 「オプション」Tab → 「内容を同期させる」にCheck → 新規作成で「ラベルを同期させる」Dialogが表示される。
+' Manualでは、新規作成時に設定しておかないと「ラベルを同期させる」のDialogは表示されないが、上記Codeでは開いているDocumentでDialogが表示される。
+' 但し、正常に機能するかどうかは不明。
+</code></pre><br>
+
+
+<a name="OOoGDStWriter06a"><h6>GDStWriter-)<em>[General / Writer]</em>「OpenOffice.org1.1行間隔を使用」設定の取得/設定</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/10DocumentSetting/02Writer/06aUseFormerLineSpacing01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub DocSettinsWriter()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oBfrUserData as Boolean, oAftUserData as Boolean
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.text.DocumentSettings")
+		oBfrUserData = oDocSet.UseFormerLineSpacing
+		'
+		oDocSet.UseFormerLineSpacing = true
+		'
+		oAftUserData = oDocSet.UseFormerLineSpacing
+		oDisp = "[ Document Setting ]" & Chr$(10) & "Before = " & oBfrUserData & Chr$(10) & "After = " & oAftUserData
+		msgbox oDisp, 0, "Settings"
+End Sub
+'
+' [ Note ]
+' Tool → Option → LibreOffice Writer → 互換性 → 「OpenOffice.org1.1行間隔を使用」のCheck ON/OFF  
+' true  : Check ON
+' false : Check OFF
+</code></pre><br>
+
+
+<a name="OOoGDStWriter07a"><h6>GDStWriter-)<em>[General / Writer]</em>「テーブルセルの最下部に段落とテーブルの間隔を入れる」」設定の取得/設定</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/10DocumentSetting/02Writer/07aAddParaSpacingToTableCells01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub DocSettinsWriter()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oBfrUserData as Boolean, oAftUserData as Boolean
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.text.DocumentSettings")
+		oBfrUserData = oDocSet.AddParaSpacingToTableCells
+		'
+		oDocSet.AddParaSpacingToTableCells = false
+		'
+		oAftUserData = oDocSet.AddParaSpacingToTableCells
+		oDisp = "[ Document Setting ]" & Chr$(10) & "Before = " & oBfrUserData & Chr$(10) & "After = " & oAftUserData
+		msgbox oDisp, 0, "Settings"
+End Sub
+'
+' [ Note ]
+' Tool → Option → LibreOffice Writer → 互換性 → 「テーブルセルの最下部に段落とテーブルの間隔を入れる」のCheck ON/OFF  
+' true  : Check ON
+' false : Check OFF
+</code></pre><br>
+
+
+
+<a name="OOoGDStWriter08a"><h6>GDStWriter-)<em>[General / Writer]</em>「OpenOffice.org1.1オブジェクト位置を使用」設定の取得/設定</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/10DocumentSetting/02Writer/08aUseFormerObjectPositioning01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub DocSettinsWriter()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oBfrUserData as Boolean, oAftUserData as Boolean
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.text.DocumentSettings")
+		oBfrUserData = oDocSet.UseFormerObjectPositioning
+		'
+		oDocSet.UseFormerObjectPositioning = true
+		'
+		oAftUserData = oDocSet.UseFormerObjectPositioning
+		oDisp = "[ Document Setting ]" & Chr$(10) & "Before = " & oBfrUserData & Chr$(10) & "After = " & oAftUserData
+		msgbox oDisp, 0, "Settings"
+End Sub
+'
+' [ Note ]
+' Tool → Option → LibreOffice Writer → 互換性 → 「OpenOffice.org1.1オブジェクト位置を使用」のCheck ON/OFF  
+' true  : Check ON
+' false : Check OFF
+</code></pre><br>
+
+
+<a name="OOoGDStWriter09a"><h6>GDStWriter-)<em>[General / Writer]</em>「オブジェクトを配置するときに折り返しスタイルを考える」設定の取得/設定</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/10DocumentSetting/02Writer/09aConsiderTextWrapOnObjPos01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub DocSettinsWriter()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oBfrUserData as Boolean, oAftUserData as Boolean
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.text.DocumentSettings")
+		oBfrUserData = oDocSet.ConsiderTextWrapOnObjPos
+		'
+		oDocSet.ConsiderTextWrapOnObjPos = true
+		'
+		oAftUserData = oDocSet.ConsiderTextWrapOnObjPos
+		oDisp = "[ Document Setting ]" & Chr$(10) & "Before = " & oBfrUserData & Chr$(10) & "After = " & oAftUserData
+		msgbox oDisp, 0, "Settings"
+End Sub
+'
+' [ Note ]
+' Tool → Option → LibreOffice Writer → 互換性 → 「オブジェクトを配置するときに折り返しスタイルを考える」のCheck ON/OFF  
+' true  : Check ON
+' false : Check OFF
+</code></pre><br>
+
+
+<a name="OOoGDStWriter10a"><h6>GDStWriter-)<em>[General / Writer]</em>「数式のベースライン調整」設定の取得/設定</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/10DocumentSetting/02Writer/10aMathBaselineAlignment01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub DocSettinsWriter()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oBfrUserData as Boolean, oAftUserData as Boolean
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.text.DocumentSettings")
+		oBfrUserData = oDocSet.MathBaselineAlignment
+		'
+		oDocSet.MathBaselineAlignment = false
+		'
+		oAftUserData = oDocSet.MathBaselineAlignment
+		oDisp = "[ Document Setting ]" & Chr$(10) & "Before = " & oBfrUserData & Chr$(10) & "After = " & oAftUserData
+		msgbox oDisp, 0, "Settings"
+End Sub
+'
+' [ Note ]
+' Tool → Option → LibreOffice Writer → 書式サポート → レイアウトの支援 → 「数式のベースライン調整」のCheck ON/OFF  
+' true  : Check ON
+' false : Check OFF
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br><br><br><br>
+<p class="s3">[ Draw ]<em>( com.sun.star.drawing.DocumentSettings[ <a href="http://api.libreoffice.org/docs/common/ref/com/sun/star/drawing/DocumentSettings.html">LibreOffice</a> / <a href="http://www.openoffice.org/api/docs/common/ref/com/sun/star/drawing/DocumentSettings.html">Apache OpenOffice</a> ] )</em></p class="s3">
+<a name="OOoGDStDraw01a"><h6>GDStDraw-)<em>[General / Draw]</em>「使う単位」の取得/設定</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/10DocumentSetting/03Draw/01aMeasureUnit01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub DocSettinsDraw()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oBfrUserData as Integer, oAftUserData as Integer
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.drawing.DocumentSettings")
+		oBfrUserData = oDocSet.MeasureUnit
+		'
+		oDocSet.MeasureUnit = com.sun.star.util.MeasureUnit.MM
+		'
+		oAftUserData = oDocSet.MeasureUnit
+		oDisp = "[ Document Setting ]" & Chr$(10) & "Before = " & oBfrUserData & Chr$(10) & "After = " & oAftUserData
+		msgbox oDisp, 0, "Settings"
+End Sub
+'
+' [ Note ]
+' Tool → Option → LibreOffice Draw → 全般 → 設定 → 「使う単位」  
+' 空白         : Empty =  0
+' ミリメータ   : com.sun.star.util.MeasureUnit.MM    =  2
+' センチメータ : com.sun.star.util.MeasureUnit.CM    =  3
+' メータ       : com.sun.star.util.MeasureUnit.M     = 10
+' インチ       : com.sun.star.util.MeasureUnit.INCH  =  7
+' フィート     : com.sun.star.util.MeasureUnit.FOOT  = 13
+' マイル       : com.sun.star.util.MeasureUnit.MILE  = 14
+' マイカ       : com.sun.star.util.MeasureUnit.PICA  = 12
+' ポイント     : com.sun.star.util.MeasureUnit.POINT =  8
+' 文字         : -16680
+' 行           : -16680
+</code></pre><br>
+
+
+<a name="OOoGDStDraw02a"><h6>GDStDraw-)<em>[General / Draw]</em>「図形の縮尺」の取得/設定</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/10DocumentSetting/03Draw/02aScaleNumDen01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub DocSettinsDraw()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oBfrUserDataN as Long, oAftUserDataN as Long
+	Dim oBfrUserDataD as Long, oAftUserDataD as Long
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.drawing.DocumentSettings")
+		oBfrUserDataN = oDocSet.ScaleNumerator
+		oBfrUserDataD = oDocSet.ScaleDenominator
+		'
+		oDocSet.ScaleNumerator = 1
+		oDocSet.ScaleDenominator = 16
+		'
+		oAftUserDataN = oDocSet.ScaleNumerator
+		oAftUserDataD = oDocSet.ScaleDenominator
+		oDisp = "[ Document Setting ]" & Chr$(10) & "Before = " & oBfrUserDataN & " : " & oBfrUserDataD & Chr$(10) & _
+					"After = " & oAftUserDataN & " : " & oAftUserDataD
+		msgbox oDisp, 0, "Settings"
+End Sub
+'
+' [ Note ]
+' Tool → Option → LibreOffice Draw → 全般 → 設定 → 「図形の縮尺」
+'
+' 拡大( 例 2:1 )  から 縮小( 例 1:8 )の変更は可能だが、
+' 縮小から拡大への設定は不可。全て 1:1 になる。
+' 拡大から拡大は可能。
+</code></pre><br>
+
+
+<a name="OOoGDStDraw03a"><h6>GDStDraw-)<em>[General / Draw]</em>「印刷」→「ページのオプション」の取得</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/10DocumentSetting/03Draw/03aIsPrintFit_TilePage01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub DocSettinsDraw()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.drawing.DocumentSettings")
+		'
+		oDisp = "[ Document Setting ]" & Chr$(10)
+		if oDocSet.IsPrintFitPage = true then
+			oDisp = oDisp & "ページサイズに合わせる"
+		else
+			if oDocSet.IsPrintTilePage = true then
+				oDisp = oDisp & "ページにタイル状配置"
+			else
+				oDisp = oDisp & "「 既定 」 or 「 パンフレット 」"
+			end if
+		end if
+		'
+		msgbox oDisp, 0, "Settings"
+End Sub
+'
+' [ Note ]
+' IsPrintFitPage / IsPrintTilePage は Readonly
+'
+' Tool → Option → LibreOffice Draw → 印刷 → ページのオプション
+</code></pre><br>
+
+
+<a name="OOoGDStDraw"><h6>GDStDraw-)<em>[General / Draw]</em></h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/10DocumentSetting/03Draw/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br><br><br><br>
+<p class="s3">[ Impress ]</p class="s3">
+<a name="OOoGDStImpress01a"><h6>GDStImpress-)<em>[General / Impress]</em>「印刷」→「ページのオプション」の取得</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/10DocumentSetting/04Impress/01aIsPrintFit_TilePage01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub DocSettinsImp()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.presentation.DocumentSettings")
+		'
+		oDisp = "[ Document Setting ]" & Chr$(10)
+		if oDocSet.IsPrintFitPage = true then
+			oDisp = oDisp & "ページサイズに合わせる"
+		else
+			if oDocSet.IsPrintTilePage = true then
+				oDisp = oDisp & "ページにタイル状配置"
+			else
+				oDisp = oDisp & "「 既定 」 or 「 パンフレット 」"
+			end if
+		end if
+		'
+		msgbox oDisp, 0, "Settings"
+End Sub
+'
+' [ Note ]
+' IsPrintFitPage / IsPrintTilePage は Readonly
+'
+' Tool → Option → LibreOffice Impress → 印刷 → ページのオプション
+</code></pre><br>
+
+
+<a name="OOoGDStImpress02a"><h6>GDStImpress-)<em>[General / Impress]</em>「 段落と表との間に間隔を入れる(現在のドキュメント) 」Check ON/OFF取得</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/10DocumentSetting/04Impress/02aParagraphSummation01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub DocSettinsImp()
+	Dim oDoc as Object
+	Dim oDocSet as Object
+	Dim oUserData as Boolean
+		oDoc = ThisComponent
+		oDocSet = oDoc.createInstance("com.sun.star.presentation.DocumentSettings")
+		oUserData = oDocSet.ParagraphSummation
+		'
+		oDisp = "[ Document Setting ]" & Chr$(10) & oUserData
+		msgbox oDisp, 0, "Settings"
+End Sub
+'
+' [ Note ]
+' ParagraphSummation は Readonly
+' oDocSet.ParagraphSummation = true( or false ) としても設定されない。Macro中のReturnが変わるのみ。
+'
+' Tool → Option → LibreOffice Impress → 全般 → 互換性 → 「 段落と表との間に間隔を入れる(現在のドキュメント) 」Check ON/OFF取得
+</code></pre><br>
+
+
+<a name="OOoGDStImpress"><h6>GDStImpress-)<em>[General / Impress]</em></h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/10DocumentSetting/04Impress/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+
+
+<br><br><br><br><br><br><br><br><br><br>
+<p class="s1">Link</p class="s1">
+<a name="OOoGLik02"><h6>Gik-)<em>[General]</em>DocumentのLink情報</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/Link/01LinkTypeName.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oXLinkTargetSup
+	Dim oLink As Object
+	Dim oLinkNames
+	Dim oLinkType
+	Dim i%
+	Dim oResult
+	Dim oDummy()
+		On Error Goto oBad
+		oFile = "c:\temp\oUno.ods"
+		oURL = convertToUrl(oFile)
+		oDoc=StarDesktop.loadComponentFromUrl(oURL, "_blank", 0, oDummy())
+		oLink = oDoc.getLinks()
+		oLinkNames = oLink.getElementNames()	
+		For i = 0 to UBound(oLinkNames)
+			oResult = oResult & "[ " & Chr$(9)
+			oResult = oResult & oLinkNames(i)
+			oResult = oResult & Chr$(9) & "]" & Chr$(10)
+			oLinkTypes = oLink.getByName(oLinkNames(i)).getTypes()
+			for j = 0 to UBound(oLinkTypes)
+				If IsEmpty(oLinkTypes(j)) Then
+					oResult = oResult & "Empty"
+				else
+					oResult = oResult & oLinkTypes(j).Name
+				End If
+				oResult = oResult & Chr$(10)
+			next j
+		next i
+		MsgBox("Total = " & UBound(oLinkNames) & Chr$(10) & _
+				　"***************" & Chr$(10) & oResult, 0, "Link Target")
+		oDoc.dispose
+		Exit Sub
+	oBad: 
+		mErr = Error
+		eline = Erl
+		msgbox("Line : " & eline & Chr$(10) & mErr & Chr$(10) &" : i = " & i, 0,"Error Message" )
+		oDoc.dispose
+End Sub
+</code></pre><br>
+
+
+
+
+<p class="s1">Generic Document Method</p class="s1">
+<a name="OOoGDMd01"><h6>GDMd-1)<em>[General]</em>DocumentのProperty取得</h6></a><pre><code>
+<img src="http://error.fc2.com/web/404.html" align="right" hspace="4" vspace="4" width="15%">
+Sub oXPropertySet
+	Dim oPropertyInfo As Object
+	Dim oProperty()
+	Dim oProp
+	Dim oVal
+	Dim i%
+	Dim sInfo$ As String
+	Dim oCount%
+		oPropertyInfo = ThisComponent.getPropertySetInfo()
+		oProperty = oPropertyInfo.getProperties()
+		for i = 0 to UBound(oProperty)
+			If oCount = 50 then
+				oCount = 0
+				MsgBox(sInfo, 0, "Properties") 
+				sInfo =""
+			End if
+			oCount = oCount +1
+			oProp = oProperty(i)
+			sInfo = sInfo & oProp.Name & " =  "
+			oVal = ThisComponent.getPropertyValue(oProp.Name)
+			If IsNull(oVal) then
+				sInfo = sInfo & "Null"
+			ElseIf IsEmpty(oVal) then
+						sInfo = sInfo & "Empty"
+			ElseIf VarType(oVal) < 9 then
+						sInfo = sInfo & CStr(oVal)
+				Else
+						sInfo = sInfo & ""	:	'Data is "Object or Array"
+			End If
+			sInfo = sInfo & Chr$(10)
+		next i
+		MsgBox(sInfo, 0, "XPropertyset")	
+End Sub
+</code></pre><br>
+
+<a name="OOoGDMd02"><h6>GFD-)<em>[General]</em>Document情報取得(<em class="s1"> Old </em class="s1">)</h6></a><pre><code>
+Sub oDocumentInfo1()
+	Dim oDoc
+	Dim OOo
+	Dim SufOOo
+	Dim oTempName
+	Dim oDummy()
+	Dim oArray(0)  As New com.sun.star.beans.PropertyValue
+	Dim oProp
+		oProp = "com.sun.star.document.DocumentInfo"
+		oPreName = "c:\temp\oDocProp."
+		' Initialize Display
+			oDisp = "<< " & oProp & " >>" & Chr$(10)
+			for n= 0 to 5
+				Select case n
+					case = 0
+						OOo = "writer"
+						SufOOo = "odt"
+					case = 1
+						OOo = "calc"
+						SufOOo = "ods"
+					case = 2
+						OOo = "draw"
+						SufOOo = "odg"
+					case = 3
+						OOo = "impress"
+						SufOOo = "odp"
+					case = 4
+						OOo = "math"
+						SufOOo = "odf"
+					case = 5
+						OOo = "database"
+						SufOOo = "odb"
+				End Select
+				oFileName = oPreName & SufOOo
+				oFileURL = ConvertToUrl(oFileName)
+				oDoc = StarDesktop.loadComponentFromURL(oFileURL , "_blank", 0, oDummy())
+				oTempName = ConvertToUrl("c:\temp\oDocProp." & SufOOo)
+				oArray(0).Name = "Overwrite"
+				oArray(0).Value = true
+				oDoc.storeAsURL(oTempName,oArray())
+	'Document Information
+		Dim oDocInfo
+		Dim sStr(10) as String
+		Dim oStr(6) as String
+		Dim aStr(2) as String
+		Dim iStr(1) as String
+		Dim oAuthor
+		Dim oCreationDate
+		Dim oTitle
+		Dim oDescription
+		'On Error Resume Next
+			oDisp = oDisp & "[  " & OOo & "  ]" & Chr$(10)
+			oDocInfo = oDoc.getDocumentInfo()
+			'String
+				oAuthor = oDocInfo.Author
+				oTitle = oDocInfo.Title
+				oSubject = oDocInfo.Subject
+				oModifiedBy = oDocInfo.ModifiedBy
+				oPrintedBy = oDocInfo.PrintedBy				
+				oDescription = oDocInfo.Description
+				oTemplate = oDocInfo.Template
+				oTemplateFileName = oDocInfo.TemplateFileName
+				oDefaultTarget = oDocInfo.DefaultTarget
+				oKeywords = oDocInfo.Keywords
+				oMIMEType = oDocInfo.MIMEType
+			'Object
+				oCreationDate = oDocInfo.CreationDate
+				oModifyDate = oDocInfo.ModifyDate
+				oPrintDate = oDocInfo.PrintDate
+				oLanguage = oDocInfo.Language
+				oPropertySetInfo = oDocInfo.PropertySetInfo	': msgbox(oPropertySetInfo.dbg_properties)		:	print "S1"	: ' <= Arrayにて取得出来る。
+				oDocumentProperties = oDocInfo.DocumentProperties	': msgbox(oDocumentProperties.dbg_properties)	
+				'oTemplateDate = oDocInfo.TemplateDate			:	' 取得不可
+			'Array
+				Dim oPropertyValues
+				Dim oTypes
+				Dim oDocumentStatistics
+				oPropertyValues = oDocInfo.PropertyValues	
+				oTypes = oDocInfo.Types
+				'oDocumentStatistics = oDocInfo.DocumentStatistics		:	' 取得不可
+					
+			'Srting
+				sStr(0) = "Author"
+				sStr(1) = "Title"
+				sStr(2) = "Subject"
+				sStr(3) = "ModifiedBy"
+				sStr(4) = "PrintedBy"
+				sStr(5) = "Discription"
+				sStr(6) = "Template"
+				sStr(7) = "TemplateFileName"
+				sStr(8) = "DefaultTarget"
+				sStr(9) = "Keywords"
+				sStr(10) = "MIMEType"
+			'Object
+				oStr(0) = "CreationDate"
+				oStr(1) = "ModifyDate"
+				oStr(2) = "PrintDate"
+				oStr(3) = "Language"
+				oStr(4) = "PropertySetInfo"
+				oStr(5) = "DocumentProperties"
+				oStr(6) = "TemplateDate"
+				'Array
+				aStr(0) = "PropertyValues"
+				aStr(1) = "Types"
+				aStr(2) = "DocumentStatistics"
+				'Integer
+				iStr(0) = "UserFieldCount"
+				iStr(1) = "EditingCycle"
+				
+		'String		
+				oDisp = oDisp & sStr(0) & " = " & oAuthor	:	' 空白
+					oDisp = oDisp & Chr$(10)
+			oDisp = oDisp & sStr(1) & " = " & oTitle
+				oDisp = oDisp & Chr$(10)
+				oDisp = oDisp & sStr(2) & " = " & oSubjec		:	' 空白
+					oDisp = oDisp & Chr$(10)
+			oDisp = oDisp & sStr(3) & " = " & oModifiedBy
+				oDisp = oDisp & Chr$(10)
+				oDisp = oDisp & sStr(4) & " = " & oPrintedBy		:	' 空白
+					oDisp = oDisp & Chr$(10)
+				oDisp = oDisp & sStr(5) & Chr$(10) & oDiscription		:	' 空白
+				oDisp = oDisp & sStr(6) & " = " & oTemplate		:	' 空白
+					oDisp = oDisp & Chr$(10)
+				oDisp = oDisp & sStr(7) & " = " & oTemplateFileName		:	' 空白
+					oDisp = oDisp & Chr$(10)
+				oDisp = oDisp & sStr(8) & " = " & oDefaultTarget		:	' 空白
+					oDisp = oDisp & Chr$(10)
+			oDisp = oDisp & sStr(9) & " = " & oKeywords
+				oDisp = oDisp & Chr$(10)
+				oDisp = oDisp & sStr(10) & " = " & oMIMEType		:	' 空白
+					oDisp = oDisp & Chr$(10)
+		'Object
+			oDisp = oDisp & "CreationDate" & " = [ "
+			oDisp = oDisp & oCreationDate.Year & " / "  & oCreationDate.Month & " / "  & oCreationDate.Day & " ]/[ "  _
+						& oCreationDate.Hours & " : "  & oCreationDate.Minutes & " : "  & oCreationDate.Seconds
+				oDisp = oDisp & " ]" &Chr$(10)
+			oDisp = oDisp & oStr(1) & " = [ "
+			oDisp = oDisp & oModifyDate.Year & " / "  & oModifyDate.Month & " / "  & oModifyDate.Day & " ]/[ "  _
+						& oModifyDate.Hours & " : "  & oModifyDate.Minutes & " : "  & oModifyDate.Seconds
+				oDisp = oDisp & " ]" &Chr$(10)
+			oDisp = oDisp & oStr(2) & " = [ "
+			oDisp = oDisp & oPrintDate.Year & " / "  & oPrintDate.Month & " / "  & oPrintDate.Day & " ]/[ "  _
+						& oPrintDate.Hours & " : "  & oPrintDate.Minutes & " : "  & oPrintDate.Seconds
+				oDisp = oDisp & " ]" &Chr$(10)
+			oDisp = oDisp & oStr(3) & Chr$(10) & Chr$(9) &"[ Language ]  = "
+				oDisp = oDisp & oLanguage.Language & Chr$(10) & Chr$(9) & "[ Country ] = "  & oLanguage.Country & Chr$(10) & Chr$(9) & " [ Variant ] =  "  & oLanguage.Variant &Chr$(10)	:	' 空白
+			oDisp = oDisp & oStr(5) & Chr$(10) & Chr$(9) &"[ ImplementationName ] " & Chr$(10) & " => " & oDocumentProperties.ImplementationName & Chr$(10) & _
+						Chr$(9) & "[ Generator ] " & Chr$(10) & " => " & oDocumentProperties.Generator & Chr$(10)		
+		'Array
+			On Error Resume Next
+			oDisp = oDisp & "[ PropertyValues  ]" & Chr$(10)
+			for i = 0 to UBound(oPropertyValues)
+				If NOT IsError(oPropertyValues(i).Value) then
+				oDisp = oDisp & Chr$(9) & i+1 & ") " & oPropertyValues(i).Name & Chr$(9) & " = "
+				oDisp = oDisp & oPropertyValues(i).Value
+				oDisp = oDisp  & Chr$(10)
+				End If
+			next i
+			oDisp = oDisp & "[ Types ]" & Chr$(10)
+			for i = 0 to UBound(oTypes)
+				oDisp = oDisp & Chr$(9) & i+1 & ") " &  oTypes(i).Name
+				oDisp = oDisp  & Chr$(10)
+			next i
+			
+			oDisp = oDisp & Chr$(10)
+				oDoc.close(true)
+				If n > 5 then Exit Sub
+			
+		If oDisp = "<< " & oProp & " >>" & Chr$(10) & "   " then
+			oDisp = oDisp & Chr$(10) & "  に関する情報はありません"
+		End If
+		msgbox(oDisp, 0, oProp & " of Properties" )
+		oDisp = ""	
+		next n					
+End Sub
+</code></pre><br>
+
+
+
+
+
+
+
+<p class="s1">Locale</p class="s1">
+<a name="OOoGLo01a"><h6>GLo-)<em>[General]</em>Spell Check</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/Locale/01oSpellCheck.png" align="right" hspace="4" vspace="4">
+Sub oSpellCheck
+	Dim oCheckedWord(7)
+	Dim oLocale as new com.sun.star.lang.Locale
+		oLocale.Language = "en"
+		oLocale.Country= "US"
+		'Check Word
+			oCheckedWord(0) = "hello"
+			oCheckedWord(1) = "mechanical"
+			oCheckedWord(2) = "anesthesiologist"
+			oCheckedWord(3) = "PNEUMONOULTRAMICROSCOICSLLICOVOLCANOCONIOSIS"
+			oCheckedWord(4) = "Python"
+			oCheckedWord(5) = "oPython"
+			oCheckedWord(6) = "misspell"
+			oCheckedWord(7) = "missspell"
+		'Spell Check
+			Dim oSpeller as Variant
+			Dim oReturn
+			Dim oEmptyArgs() as new com.sun.star.beans.PropertyValue 
+				oSpeller = createUnoService("com.sun.star.linguistic2.SpellChecker")
+				for i = LBound(oCheckedWord) to UBound(oCheckedWord)
+					oReturn = oSpeller.isValid(oCheckedWord(i), oLocale, oEmptyArgs)
+					msg = msg & oReturn & " for " & oCheckedWord(i) & Chr$(10)
+				next i
+			Msgbox(msg, 0, "Spell Check Words")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGLo01b"><h6>GLo-)<em>[General]</em>Spell Check開始</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/Locale/01bUnoSpellDialog01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub GnlUnoSpellCheck()
+	Dim oDoc as Object, oCtrl as Object, oFrame as Object
+	Dim oDispatcher as Object
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		oDispatcher.executeDispatch( oFrame, ".uno:SpellDialog", "", 0, Array())
+End Sub
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<a name="OOoGLo01c"><h6>GLo-)<em>[General]</em>Auto Spell Check( Spell記号の表示/非表示 )</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/Locale/01cUnoSpellOnline01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub GnlUnoSpellCheck()
+	Dim oDoc as Object, oCtrl as Object, oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+			oProp(0).Name = "SpellOnline"
+			oProp(0).Value = true
+		oDispatcher.executeDispatch( oFrame, ".uno:SpellOnline", "", 0, oProp())
+		msgbox "Auto Spell Check / ON",0,"Spell Check"
+		'
+			oProp(0).Name = "SpellOnline"
+			oProp(0).Value = false
+		oDispatcher.executeDispatch( oFrame, ".uno:SpellOnline", "", 0, oProp())
+		msgbox "Auto Spell Check / OFF"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGLo02a"><h6>GLo-)<em>[General]</em>単語のHyphenation位置</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/Locale/02oHyphenate.png" align="right" hspace="4" vspace="4">
+Sub oHyphenation
+	Dim oCheckedWord(5) as String
+	Dim oLocale as new com.sun.star.lang.Locale
+		oLocale.Language = "en"
+		oLocale.Country= "US"
+		'Check Word
+			oCheckedWord(0) = "hello"
+			oCheckedWord(1) = "mechanical"
+			oCheckedWord(2) = "anesthesiologist"
+			oCheckedWord(3) = "JavaScript"
+			oCheckedWord(4) = "Python"
+			oCheckedWord(5) = "misspell"
+		'Hyphenation
+			Dim oReturn
+			Dim oEmptyArgs() as new com.sun.star.beans.PropertyValue 
+			Dim oHyphen as Variant
+				oHyphen = createUnoService("com.sun.star.linguistic2.Hyphenator")
+				for i = LBound(oCheckedWord) to UBound(oCheckedWord)
+					oReturn = oHyphen.createPossibleHyphens(oCheckedWord(i), oLocale, oEmptyArgs())
+					If IsNull(oReturn) then
+						msg = msg & " null for " & oCheckedWord(i) & Chr$(10)
+					else
+						msg = msg & oReturn.getPossibleHyphens() & " for " & oCheckedWord(i) & Chr$(10)
+					End if
+				next i
+			Msgbox(msg, 0, "Hyphenate Words")
+End Sub
+</code></pre><br>
+
+<a name="OOoGLo03a"><h6>GLo-)<em>[General]</em>単語辞典</h6></a><pre><code>
+Sub oThesaurus
+	Dim oCheckedWord(2) as String
+	Dim oLocale as new com.sun.star.lang.Locale
+		oLocale.Language = "en"
+		oLocale.Country= "US"
+		'Check Word
+			oCheckedWord(0) = "hello"
+			oCheckedWord(1) = "stamp"
+			oCheckedWord(2) = "cool"			
+		'Thesaurus
+			Dim oReturn
+			Dim oEmptyArgs() as new com.sun.star.beans.PropertyValue
+			Dim oThesaurus as Variant
+				oThesaurus = createUnoService("com.sun.star.linguistic2.Thesaurus")
+				for i = LBound(oCheckedWord) to UBound(oCheckedWord)
+					oReturn = oThesaurus.queryMeanings(oCheckedWord(i), oLocale, oEmptyArgs())
+					If UBound(oReturn) < 0 then
+						msg = "Thesaurus found nothing for " & oCheckedWord(i) & Chr$(10)
+						MsgBox(msg, 0, "Althernate Meanings")
+					else
+						msg = "Word 「  " & oCheckedWord(i) & " 」 has the following meanings:" & Chr$(10)
+						for j = LBound(oReturn) to UBound(oReturn)
+							msg = msg & Chr$(10) & "Meaning = " & oReturn(j).getMeaning() & Chr$(10)
+							msg = msg & Join( oReturn(j).querySynonyms(), " ") & Chr$(10)
+						next j
+						MsgBox(msg, 0, "Althernate Meanings")
+					End If
+				next i			
+End Sub
+<img SRC="OOoBasic_pic/01general2/Locale/03oThesaurus.png" align="left" hspace="4" vspace="4">
+<br clear="left">
+</code></pre><br>
+
+
+<a name="OOoGLo04a"><h6>GLo-)<em>[General]</em>初期設定Locale取得</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/Locale/04lang_Locale01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub LocaleObj()
+	Dim oLocale as Object
+	Dim oLocaleLang as String, oLocaleCnt as String, oLocaleVnt as String
+	Dim oDisp as String
+		oLocale = createUnoStruct("com.sun.star.lang.Locale")
+		oLocaleLang = oLocale.Language
+		oLocaleCnt  = oLocale.Country
+		oLocaleVnt = oLocale.Variant
+		oDisp = "[ 初期設定Locale ]" & Chr$(10) & "Language = " & oLocaleLang & Chr$(10) & _
+					"Country = " & oLocaleCnt & Chr$(10) & "Variant = " & oLocaleVnt
+		msgbox(oDisp,0,"Locale")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGLo"><h6>GLo-)<em>[General]</em></h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/Locale/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">･Dialog関係</p class="s1">
+<a name="OOoGD01a"><h6>GD-)<em>[General]</em>既存Dialog1の表示</h6></a><pre><code><p2>
+Private oUnoDialog As Object
+Sub oUnoDialogOpen(Optional vOptionalObj)
+	Dim oObj as Object
+	Dim oUnoDialog as Object
+		'If the object is not provied, use the current document
+		If IsMissing(vOptionalObj) then
+			oObj = ThisComponent
+		Else
+			oObj = vOptionalObj
+		End If
+		DialogLibraries.LoadLibrary("Standard")
+		oUnoDialog = CreateUnoDialog(DialogLibraries.Standard.Dialog1)
+    	oUnoDialog.execute
+End Sub
+</code></pre><br></p2>
+
+
+<a name="OOoGD2"><h6>GD-2)<em>[General]</em>既存DialogのTitle設定</h6></a><pre><code><p2>
+Private oUnoDialog As Object
+Sub oUnoDialogOpen(Optional vOptionalObj)
+	Dim oCont
+	Dim oStr$
+	Dim oObj
+		'If the object is not provied, use the current document
+		If IsMissing(vOptionalObj) then
+			oObj = ThisComponent
+		Else
+			oObj = vOptionalObj
+		End If
+			DialogLibraries.LoadLibrary("Standard")
+			oUnoDialog = CreateUnoDialog(DialogLibraries.Standard.Dialog1)
+    	With oUnoDialog
+    		.setTitle("Open Dialog " & TypeName(oObj))
+    		.execute
+     	End With	
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGD3"><h6>GD-3)<em>[General]</em>ListBoxへの初期値設定</h6></a><pre><code>
+Sub ListBox
+	Dim oDialog As Object
+	Dim oFolderList As Object
+	Dim sData
+		DialogLibraries.LoadLibrary("kensaku1")
+ 		oDialog = CreateUnoDialog(DialogLibraries.kensaku1.oDialog1)
+		oFolderList = oDialog.getControl("ListBox1")
+		sData = Array("みかん", "りんご", "柿", "西瓜")
+ 		oFolderList.AddItems(sData,0)
+ 	oDialog.execute()
+End Sub
+
+又は
+sub oListBox2
+  	Dim A(3)
+  	Dim oList1 as Object
+  	DialogLibraries.LoadLibrary("Current")
+ 		oDialog = CreateUnoDialog(DialogLibraries.Current.cDialog1)
+ 		oList1 = oDialog.getControl("ListBox1")
+  	'ListBoxへの入力
+  			A(0)="Apple"
+  			A(1)="Orange"
+  			A(2)="Lemon"
+  			A(3)="Melon"
+  		oList1.Model.StringItemList=A()
+  	'ListBoxからの出力
+  		B()=oList1.Model.StringItemList '←注)Dispatcherの後ではクリアされている
+  	Print B(0)
+  	Print B(1)
+  	Print B(2)
+  	Print B(3)
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGD03h"><h6>GD-)<em>[General]</em>Dialog1にTab Page追加(Dialog1は作成済)</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/12Dialog/03h_AddTabPage02.png" align="right" hspace="4" vspace="4" width="20%"><img SRC="OOoBasic_pic/01general2/12Dialog/03h_AddTabPage01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub DialogTabPage()
+	On Error Goto oBad
+	Dim oDlg as Object
+	Dim oDlgModel as Object
+	Dim oTabModel as Object
+	Dim oTab as Object
+	Dim oTabPageName as String
+	Dim oTabPage as Object
+	Dim oTabPageModel as Object
+	Dim oTabNo as Long
+	Dim oProp As New com.sun.star.beans.NamedValue
+  		oDlg = CreateUnoDialog(DialogLibraries.Standard.Dialog1)
+  		oDlgModel = oDlg.getModel()
+  		'
+  		' Create タブコンテナ
+  		oTabModel = oDlgModel.createInstance("com.sun.star.awt.UnoMultiPageModel")
+  		With oTabModel
+    		.PositionX = 0
+    		.PositionY = 0
+    		.Width = 125			' Dialog1 のSizeによって 最大値が違う。Default は約155 max。それ以上の場合、PageがDialog以上になり、Diallg内に表示出来ないPageの部分が出来る。
+    		.Height = 100			' 同上, 但し Default は約120 max
+  		End With
+  		'
+  		' DialogにTabコンテナをInsert
+  		oDlgModel.insertByName("tab", oTabModel)
+  		oTab = oDlg.getControl("tab")
+  		'
+  		oTabPage = oTab.getModel()
+  		
+  		' Tab作成
+  		for i = 1 to 3
+  			oTabPageName = "TabName" & i
+  			'
+  			oTabPage = oTab.getModel()
+  			oTabPageModel = oTabPage.createInstance("com.sun.star.awt.UnoPageModel")
+ 			oTabPage.insertByName(oTabPageName , oTabPageModel)
+ 		 	'
+  			oTabNo = UBound(oTabPage.getElementNames())
+  			oProp.Name = "Title"
+  			oProp.Value = "TabTitle" & i
+  			oTab.setTabProps(oTabNo+1, Array(oProp))
+  		next i
+  		'
+  		oDlg.execute()
+  		oDlg.dispose()
+  		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGD04a"><h6>GD-)<em>[General]</em>Dialogからfileを取得</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/12Dialog/04aFilePickerDialog01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub DialogFile()
+	Dim oFilePicker As Object, oAccept As Integer
+	Dim oFiles()
+	Dim oFileURL as String, oGetFileName as String
+		oFilePicker = createUnoService("com.sun.star.ui.dialogs.FilePicker")
+		' 表示するFileのFilter設定
+		oFilePicker.appendFilter("All Files (*.*)", "*.*")
+		oFilePicker.appendFilter("Writer(*.odt)","*.odt")
+		oFilePicker.appendFilter("Calc(*.ods)","*.ods")
+		oFilePicker.appendFilter("Base(*.odb)","*.odb")
+		oFilePicker.appendFilter("Draw(*.odg)","*.odg")
+		oFilePicker.appendFilter("Impress(*.odp)","*.odp")
+		oFilePicker.appendFilter("Math(*.odf)","*.odf" )
+		oAccept = oFilePicker.execute()
+		If oAccept = 1 Then
+			oFiles() = oFilePicker.getFiles()
+     		oFileURL = oFiles(0)
+     		oGetFileName = ConvertFromURL(oFileURL)
+     		'
+     		oDisp = oGetFileName
+     	else
+     		oDisp = "Fileが選択されませんでした。"
+   		End If
+   		msgbox(oDisp,0,"取得したFile名")
+End Sub
+'
+'[ Note ]
+' Tool → Option → 全般 → 開くDialogと保存Dialog → 「LibreOfficeのDialogを使う」 に Check OFF なのでWindowsの「開く」Dialogが用いられる。
+</code></pre><br>
+
+
+<a name="OOoGD04a2"><h6>GD-)<em>[General]</em>Dialogからfileを取得(1b)</h6></a><pre><code>
+Sub DialogFile()
+	Dim oFilePicker As Object, oAccept As Integer
+	Dim oFiles()
+	Dim oFileURL as String, oGetFileName as String, oIniFolder as String
+		oFilePicker = createUnoService("com.sun.star.ui.dialogs.SystemFilePicker")
+		' 
+		oIniFolder = "C:\temp\test\PickFolder\"
+		with oFilePicker
+			.appendFilter("All Files (*.*)", "*.*")
+		'	.setTitle("LibreOfficeのDialog / File選択")			← 設定不可
+		'	.setDisplayDirectory(ConvertToURL(oIniFolder))　← 設定不可
+		end with
+		oAccept = oFilePicker.execute()
+		If oAccept = 1 Then
+			oFiles() = oFilePicker.getFiles()
+     		oFileURL = oFiles(0)
+     		oGetFileName = ConvertFromURL(oFileURL)
+     		'
+     		oDisp = oGetFileName
+     	else
+     		oDisp = "Fileが選択されませんでした。"
+   		End If
+   		msgbox(oDisp,0,"取得したFile名")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGD04b"><h6>GD-)<em>[General]</em>Dialogからfileを取得/表示Directory指定(2a)</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/12Dialog/04bOfficeFilePickerDlg01.png" align="right" hspace="4" vspace="4" width="40%">
+Sub DialogFile()
+	Dim oFilePicker As Object, oAccept As Integer
+	Dim oFiles()
+	Dim oFileURL as String, oGetFileName as String, oIniFolder as String
+		oFilePicker = createUnoService("com.sun.star.ui.dialogs.OfficeFilePicker")
+		' 
+		oIniFolder = "C:\temp\test\PickFolder\"
+		with oFilePicker
+			.appendFilter("All Files (*.*)", "*.*")
+			.setTitle("LibreOfficeのDialog / File選択")
+			.setDisplayDirectory(ConvertToURL(oIniFolder))
+		end with
+		oAccept = oFilePicker.execute()
+		If oAccept = 1 Then
+			oFiles() = oFilePicker.getFiles()
+     		oFileURL = oFiles(0)
+     		oGetFileName = ConvertFromURL(oFileURL)
+     		'
+     		oDisp = oGetFileName
+     	else
+     		oDisp = "Fileが選択されませんでした。"
+   		End If
+   		msgbox(oDisp,0,"取得したFile名")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGD04b2"><h6>GD-)<em>[General]</em>Dialogからfileを取得/表示Directory指定(2b)</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/12Dialog/04bSetDisplayFolder01.png" align="right" hspace="4" vspace="4" width="40%">
+Sub DialogFile()
+	Dim oFilePicker As Object
+	Dim oAccept As Integer
+	Dim oFiles() as String
+	Dim oFileURL as String
+	Dim oGetFileName as String
+	Dim oIniFolder as String
+		oFilePicker = createUnoService("com.sun.star.ui.dialogs.FilePicker")
+		oIniFolder = "C:\temp\test\PickFolder\"
+		with oFilePicker
+			' Dailpg Title設定
+			.setTitle("LibreOfficeのDialog / File選択")
+			' 表示するFileのFilter設定
+			.appendFilter("All Files (*.*)", "*.*")
+			' Initial Folderの設定
+			.setDisplayDirectory(ConvertToURL(oIniFolder))
+		end with
+		oAccept = oFilePicker.execute()
+		If oAccept = 1 Then
+			oFiles() = oFilePicker.getFiles()
+     		oFileURL = oFiles(0)
+     		oGetFileName = ConvertFromURL(oFileURL)
+     		'
+     		oDisp = oGetFileName
+     	else
+     		oDisp = "Fileが選択されませんでした。"
+   		End If
+   		msgbox(oDisp,0,"取得したFile名")
+End Sub
+'
+' [ Note ]
+' .setTitle / .setDisplayDirectory について  
+' Windows7 では 「LibreOffice( Apache openOffice ) のDialogを使う」のCheck ON にしておく必要がある。 
+' OFFではWindowsのDialogが用いられ、初期Folderの設定が出来ない。
+' Tool → Option → 全般 → 開くDialogと保存Dialog → LibreOfficeのDialogを使う
+' <a href="http://hermione.s41.xrea.com/pukiwiki/pukiwiki.php?OOoBasic%2FGeneric%2Ffiledialog#tde29393">Peersonal HP of Mr.hanya / 表示ディレクトリ </a> 及び <a href="http://www.sys9.org/libreo01.php">SYSTEM-9/</a> より
+' 又は、
+' com.sun.star.ui.dialogs.OfficeFilePicker を用いれば、上記Checkの ON/OFF は関係無しで .setTitle / .setDisplayDirectory にて設定可能。
+</code></pre><br>
+
+
+<a name="OOoGD05a"><h6>GD-)<em>[General]</em>DialogからFolderを取得(1)</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/12Dialog/05aFolderPickerDlg01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub DialogFolder()
+	Dim oFolderPicker As Object
+	Dim oAccept As Integer
+	Dim oFolder()
+	Dim oFolderURL as String, oGetFolderName as String
+		oFolderPicker = createUnoService("com.sun.star.ui.dialogs.FolderPicker")
+		' Dailpg Title設定
+		oFolderPicker.setTitle ("Folder選択")
+		' 最初に表示するFolder設定
+		oFolderPicker.setDisplayDirectory("c:\temp")
+		' Dialogに表示する説明
+		oFolderPicker.setDescription("Folderを選択して下さい")
+		oAccept = oFolderPicker.execute()
+		If oAccept = 1 Then
+			oFolder() = oFolderPicker.getDirectory()
+     		oFolderURL = oFolder(0)
+     		oGetFolderName = ConvertFromURL(oFolderURL)
+     		'
+     		msgbox(oGetFolderName,0,"取得したFolder名")
+     	else
+     		oFolderPicker.cancel()
+   		End If
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGD05b"><h6>GD-)<em>[General]</em>DialogからFolderを取得(2)</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/12Dialog/05bSystemFolderPickerDlg02.png" align="right" hspace="4" vspace="4" width="15%"><img src="OOoBasic_pic/01general2/12Dialog/05bSystemFolderPickerDlg01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub DialogFolder()
+	Dim oFolderPicker As Object
+	Dim oAccept As Integer
+	Dim oFolder()
+	Dim oFolderURL as String, oGetFolderName as String
+		oFolderPicker = createUnoService("com.sun.star.ui.dialogs.SystemFolderPicker")
+		' Dailpg Title設定
+		oFolderPicker.setTitle ("Folder選択(System)")
+		' 最初に表示するFolder設定
+		oFolderPicker.setDisplayDirectory("c:\temp")
+		' Dialogに表示する説明
+		oFolderPicker.setDescription("Folderを選択して下さい(SystemFolderPicker)")
+		oAccept = oFolderPicker.execute()
+		If oAccept = 1 Then
+			oFolder() = oFolderPicker.getDirectory()
+     		oFolderURL = oFolder(0)
+     		oGetFolderName = ConvertFromURL(oFolderURL)
+     		'
+     		msgbox(oGetFolderName,0,"取得したFolder名")
+     	else
+     		oFolderPicker.cancel()
+   		End If
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGD05c"><h6>GD-)<em>[General]</em>DialogからFolderを取得(3)</h6></a><pre><code>
+Sub DialogFolder()
+	Dim oFolderPicker As Object
+	Dim oAccept As Integer
+	Dim oFolder()
+	Dim oFolderURL as String, oGetFolderName as String
+		oFolderPicker = createUnoService("com.sun.star.ui.dialogs.OfficeFolderPicker")
+		' Dailpg Title設定
+		oFolderPicker.setTitle ("Folder選択(OfficeFolderPicker)")
+		' 最初に表示するFolder設定
+		oFolderPicker.setDisplayDirectory("c:\temp")
+		' Dialogに表示する説明 ← OfficeFolderPickerでは設定不可
+		' oFolderPicker.setDescription("Folderを選択して下さい(OfficeFolderPicker)")
+		oAccept = oFolderPicker.execute()
+		If oAccept = 1 Then
+			oFolder() = oFolderPicker.getDirectory()
+     		oFolderURL = oFolder(0)
+     		oGetFolderName = ConvertFromURL(oFolderURL)
+     		'
+     		msgbox(oGetFolderName,0,"取得したFolder名(OfficeFP)")
+     	else
+     		oFolderPicker.cancel()
+   		End If
+End Sub
+<img src="OOoBasic_pic/01general2/12Dialog/05cOfficeFolderPickerDlg02.png" align="right" hspace="4" vspace="4" width="20%"><img src="OOoBasic_pic/01general2/12Dialog/05cOfficeFolderPickerDlg01.png" align="right" hspace="4" vspace="4" width="45%">
+</code></pre><br>
+
+
+<br clear="right">
+<a name="OOoGD06a"><h6>GD-)<em>[General]</em>Plane Dialog作成</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/12Dialog/06CreatePlaneDialog01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub DialogMacro()
+	Dim oDlg as Object					'The created dialog.
+  	Dim oDlgModel as Object			'The created dialog's model.
+  	'
+  	' Create the dialog's model
+  		oDlgModel = CreateUnoService("com.sun.star.awt.UnoControlDialogModel")
+  		'
+  	' Size of Dialog
+  		oDlgModel.Width = 100
+  		oDlgModel.Height = 75
+  	' Title of Dialog
+  		oDlgModel.Title = "Dialog Title" 
+  		'
+  	' Create the dialog and set the model
+  		oDlg = CreateUnoService("com.sun.star.awt.UnoControlDialog")
+  		oDlg.setModel(oDlgModel)
+  		'
+  	' Create a window and then tell the dialog to use the created window.
+  	Dim oWindow as Object
+  		oWindow = CreateUnoService("com.sun.star.awt.Toolkit")
+  		oDlg.createPeer(oWindow, null)
+  		'
+  	' Dialogの表示実行 
+  		oDlg.execute()
+  		'
+  	msgbox "Success"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGD07a"><h6>GD-)<em>[General]</em>Dialog with OK / Cancel Button</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/12Dialog/07OkCancelButtonDialog01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub DialogMacro()
+	Dim oDlg as Object			'The created dialog.
+  	Dim oDlgModel as Object			'The created dialog's model.
+  	Dim oTabIndex%				'The current tab index while creating controls.
+  	Dim oModel as Object			'Model for a control.
+  	Dim oDlgWth as Long
+  	Dim oDlgHgt as Long
+  	'
+  	' Create the dialog's model
+  		oDlgModel = CreateUnoService("com.sun.star.awt.UnoControlDialogModel")
+  		'
+  	' Size of Dialog
+  		oDlgWth = 120
+  		oDlgHgt = 80
+  		'
+  		oDlgModel.Width = oDlgWth
+  		oDlgModel.Height = oDlgHgt
+  	' Title of Dialog
+  		oDlgModel.Title = "Dialog Title" 
+  		'
+  	' ***** [ OK / Cancel  Button 設定 ] *****
+  		' OK Button 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlButtonModel")
+  			oTabIndex = 0			' Tab番号
+  			' 
+  			oModel.Name = "OKButton"
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = CLng(oDlgWth/2 - 40)
+  			oModel.PositionY = oDlgHgt - 20
+  			oModel.Width = 30
+  			oModel.Height = 15
+  			oModel.Label = "OKです"
+  			oModel.PushButtonType = com.sun.star.awt.PushButtonType.OK
+  			'
+  		' Dialog Modelの仕様に OK Button の仕様を設定
+  			oDlgModel.insertByName("OKButton", oModel)
+  			'
+  			'
+  		' Cancel Button 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlButtonModel")			' OK Button の Objectの流用不可
+  			oTabIndex = oTabIndex + 1
+  			'
+  			oModel.Name = "CANCELButton"
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = CLng(oDlgWth/ 2 + 10)
+  			oModel.PositionY = oDlgHgt-20
+  			oModel.Width = 30
+  			oModel.Height = 15
+  			oModel.Label = "Cancelです"
+  			oModel.PushButtonType = com.sun.star.awt.PushButtonType.CANCEL
+  			'
+  		' Dialog Modelの仕様に Cancel Button の仕様を設定
+  			oDlgModel.insertByName("CANCELButton", oModel)
+  		' ***** [ OK / Cancel  Button 設定 ] *****
+  		'
+  	' Create the dialog and set the model
+  		oDlg = CreateUnoService("com.sun.star.awt.UnoControlDialog")
+  		oDlg.setModel(oDlgModel)
+  		'
+  		'
+  	' Create a window and then tell the dialog to use the created window.
+  	Dim oWindow as Object
+  		oWindow = CreateUnoService("com.sun.star.awt.Toolkit")
+  		oDlg.createPeer(oWindow, null)
+  		'
+  	' Dialogの表示実行
+  	Dim oClick as Long
+  		oClick = oDlg.execute()
+  		'
+  	' Click Button
+  	Dim oDisp as String
+  		Select case oClick
+  			case 1
+  				oDisp = "OK Button　がClickされました。"
+  			case 0
+  				oDisp = "Click Cancel Button or ×　がClickされました。"
+  		End Select
+  		'
+  	' Dialog End
+  		oDlg.endExecute()
+  		'
+  	msgbox(oDisp,0,"Click Button")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGD08a"><h6>GD-)<em>[General]</em>Dialog with ProgressBar</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/12Dialog/08ProgressBarDialog01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub DialogMacro()
+	Dim oDlg as Object			'The created dialog.
+  	Dim oDlgModel as Object			'The created dialog's model.
+  	Dim oTabIndex%				'The current tab index while creating controls.
+  	Dim oModel as Object			'Model for a control.
+  	Dim oDlgWth as Long
+  	Dim oDlgHgt as Long
+  	'
+  	' Create the dialog's model
+  		oDlgModel = CreateUnoService("com.sun.star.awt.UnoControlDialogModel")
+  		'
+  	' Size of Dialog
+  		oDlgWth = 120
+  		oDlgHgt = 80
+  		'
+  		oDlgModel.Width = oDlgWth
+  		oDlgModel.Height = oDlgHgt
+  	' Title of Dialog
+  		oDlgModel.Title = "Dialog Title" 
+  		'
+  	' ***** [ OK Button 設定 ] *****
+  		' OK Button 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlButtonModel")
+  			oTabIndex = 0			' Tab番号
+  			' 
+  			oModel.Name = "StepButton"
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = CLng(oDlgWth/2 - 20)
+  			oModel.PositionY = oDlgHgt - 20
+  			oModel.Width = 40
+  			oModel.Height = 15
+  			oModel.Label = "Step"
+  			oModel.PushButtonType = com.sun.star.awt.PushButtonType.OK
+  			'
+  		' Dialog Modelの仕様に OK Button の仕様を設定
+  			oDlgModel.insertByName("StepButton", oModel)
+  			'
+  	' ***** [ OK  Button 設定 ] *****
+  		'
+  		'
+  	' ***** [ ProgressBar 設定 ] *****
+  		' ProgressBar 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlProgressBarModel")
+  			oTabIndex = oTabIndex + 1
+  			' 
+  			oModel.Name = "Progress"
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = 10
+  			oModel.PositionY = oDlgHgt - 45
+  			oModel.Width = oDlgWth - 20
+  			oModel.Height = 15
+  			oModel.ProgressValueMin = 0
+  			oModel.ProgressValueMax = 100
+  			'
+  		' Dialog Modelの仕様に OK Button の仕様を設定
+  			oDlgModel.insertByName("Progress", oModel)
+  	' ***** [ ProgressBar 設定 ] *****
+  		'
+  		'
+  	' Create the dialog and set the model
+  		oDlg = CreateUnoService("com.sun.star.awt.UnoControlDialog")
+  		oDlg.setModel(oDlgModel)
+  		'
+  		'
+  	' Create a window and then tell the dialog to use the created window.
+  	Dim oWindow as Object
+  		oWindow = CreateUnoService("com.sun.star.awt.Toolkit")
+  		oDlg.createPeer(oWindow, null)
+  		'
+  	' Dialogの表示実行
+  	Dim oClick as Long
+  		'
+  		oProgressBar = oDlgModel.getByName("Progress")
+  		
+  		oProgressBar.ProgressValue = 0
+  		for i = 0 to 10
+  			'
+  			oProgressBar.ProgressValue = i * 10
+  			If oProgressBar.ProgressValue >100 then
+  				Exit For
+  			End If
+  			'
+  			oDlg.execute()	' OK Button( Step ) Click でProgressBarを増分
+  		next i
+  			'
+  	' End Dialog
+  		oDlg.endExecute()
+  		'
+  		oDisp = "Success"
+  	msgbox(oDisp,0,"Click Button")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGD09a"><h6>GD-)<em>[General]</em>Edit Dialog</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/12Dialog/09EditDialog02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="OOoBasic_pic/01general2/12Dialog/09EditDialog01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub DialogMacro()
+	Dim oDlg as Object
+  	Dim oDlgModel as Object
+  	Dim oTabIndex%
+  	Dim oModel as Object
+  	Dim oDlgWth as Long
+  	Dim oDlgHgt as Long
+  	'
+  	' Create the dialog's model
+  		oDlgModel = CreateUnoService("com.sun.star.awt.UnoControlDialogModel")
+  		'
+  	' Size of Dialog
+  		oDlgWth = 120
+  		oDlgHgt = 80
+  		'
+  		oDlgModel.Width = oDlgWth
+  		oDlgModel.Height = oDlgHgt
+  	' Title of Dialog
+  		oDlgModel.Title = "Dialog Title" 
+  		'
+  	' ***** [ OK Button 設定 ] *****
+  		' OK Button 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlButtonModel")
+  			oTabIndex = 0			' Tab番号
+  			' 
+  			oModel.Name = "OKButton"
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = CLng(oDlgWth/2 - 20)
+  			oModel.PositionY = oDlgHgt - 20
+  			oModel.Width = 40
+  			oModel.Height = 15
+  			oModel.Label = "OK"
+  			oModel.PushButtonType = com.sun.star.awt.PushButtonType.OK
+  			'
+  		' Dialog Modelの仕様に OK Button の仕様を設定
+  			oDlgModel.insertByName("OKButton", oModel)
+  			'
+  	' ***** [ OK  Button 設定 ] *****
+  		'
+  		'
+  	' ***** [ Edit Dialog 設定 ] *****
+  		' Edit Dialog 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlEditModel")
+  			oTabIndex = oTabIndex + 1
+  			' 
+  			oModel.Name = "Edit"
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = 10
+  			oModel.PositionY = 10
+  			oModel.Width = oDlgWth - 20
+  			oModel.Height = CLng(oDlgHgt -40)
+  			oModel.HScroll = true
+  			oModel.VScroll = true
+  			oModel.MultiLine = true
+  			oModel.HardLineBreaks = false
+  			'
+  		' Dialog Modelの仕様に Edit Dialog の仕様を設定
+  			oDlgModel.insertByName("Edit", oModel)
+  			'
+  	' ***** [ Edit Dialog 設定 ] *****
+  		'
+  		'
+  	' Create the dialog and set the model
+  		oDlg = CreateUnoService("com.sun.star.awt.UnoControlDialog")
+  		oDlg.setModel(oDlgModel)
+  		'
+  		'
+  	' Create a window and then tell the dialog to use the created window.
+  	Dim oWindow as Object
+  		oWindow = CreateUnoService("com.sun.star.awt.Toolkit")
+  		oDlg.createPeer(oWindow, null)
+  		'
+  	' Dialogの表示実行
+  	Dim oClick as Long
+  	Dim oDisp as String
+  		oClick = oDlg.execute()
+  		'
+  		if oClick = 1 then
+  			oTxtEdit = oDlgModel.getByName("Edit")
+  			oDisp = oTxtEdit.text
+  			msgbox(oDisp,0,"Edit Dialogへの入力")
+  		else
+  			' End Dialog
+  			oDlg.endExecute()
+  		end if
+  		'
+  		oDisp = "Success"
+  	msgbox(oDisp,0,"Edit Control")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGD10a"><h6>GD-)<em>[General]</em>Radio Button Dialog</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/12Dialog/10RadioButtonDialog02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="OOoBasic_pic/01general2/12Dialog/10RadioButtonDialog01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub DialogMacro()
+	Dim oDlg as Object
+  	Dim oDlgModel as Object
+  	Dim oTabIndex%
+  	Dim oModel as Object
+  	Dim oDlgWth as Long
+  	Dim oDlgHgt as Long
+  	'
+  	' Create the dialog's model
+  		oDlgModel = CreateUnoService("com.sun.star.awt.UnoControlDialogModel")
+  		'
+  	' Size of Dialog
+  		oDlgWth = 120
+  		oDlgHgt = 80
+  		'
+  		oDlgModel.Width = oDlgWth
+  		oDlgModel.Height = oDlgHgt
+  	' Title of Dialog
+  		oDlgModel.Title = "Dialog Title" 
+  		'
+  	' ***** [ OK Button 設定 ] *****
+  		' OK Button 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlButtonModel")
+  			oTabIndex = 0			' Tab番号
+  			' 
+  			oModel.Name = "OKButton"
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = CLng(oDlgWth/2 - 20)
+  			oModel.PositionY = oDlgHgt - 20
+  			oModel.Width = 40
+  			oModel.Height = 15
+  			oModel.Label = "OK"
+  			oModel.PushButtonType = com.sun.star.awt.PushButtonType.OK
+  			'
+  		' Dialog Modelの仕様に OK Button の仕様を設定
+  			oDlgModel.insertByName("OKButton", oModel)
+  			'
+  	' ***** [ OK  Button 設定 ] *****
+  	'
+  	Dim oRadioName(2) as String
+  		oRadioName(0) = "RadioButton01( Properties )"
+  		oRadioName(1) = "RadioButton02( Methods )"
+  		oRadioName(2) = "RadioButton03( Object )"
+  	'
+  	' ***** [ Radio Button1 設定 ] *****
+  		' Radio Button 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlRadioButtonModel")
+  			oTabIndex = oTabIndex + 1			' Tab番号
+  			' 
+  			oModel.Name = oRadioName(0)
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = 10
+  			oModel.PositionY = 10
+  			oModel.Width = 100
+  			oModel.Height = 15
+  			oModel.Label = oRadioName(0)
+  			oModel.State = 1						' Default 設定 Button
+  			'
+  		' Dialog Modelの仕様に Prop Button の仕様を設定
+  			oDlgModel.insertByName(oRadioName(0), oModel)
+  			'
+  	' ***** [ Radio  Button1 設定 ] *****
+  	'
+  	' ***** [ Radio Button2 設定 ] *****
+  		' Radio Button 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlRadioButtonModel")
+  			oTabIndex = oTabIndex + 1
+  			' 
+  			oModel.Name = oRadioName(1)
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = 10
+  			oModel.PositionY = 25
+  			oModel.Width = 100
+  			oModel.Height = 15
+  			oModel.Label = oRadioName(1)
+  			'
+  		' Dialog Modelの仕様に Prop Button の仕様を設定
+  			oDlgModel.insertByName(oRadioName(1), oModel)
+  			'
+  	' ***** [ Radio  Button2 設定 ] *****
+  	'
+  	' ***** [ Radio Button3 設定 ] *****
+  		' Radio Button 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlRadioButtonModel")
+  			oTabIndex = oTabIndex + 1
+  			' 
+  			oModel.Name = oRadioName(2)
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = 10
+  			oModel.PositionY = 40
+  			oModel.Width = 100
+  			oModel.Height = 15
+  			oModel.Label = oRadioName(2)
+  			'
+  		' Dialog Modelの仕様に Prop Button の仕様を設定
+  			oDlgModel.insertByName(oRadioName(2), oModel)
+  			'
+  	' ***** [ Radio  Button3 設定 ] *****
+  		'
+  		'
+  	' Create the dialog and set the model
+  		oDlg = CreateUnoService("com.sun.star.awt.UnoControlDialog")
+  		oDlg.setModel(oDlgModel)
+  		'
+  		'
+  	' Create a window and then tell the dialog to use the created window.
+  	Dim oWindow as Object
+  		oWindow = CreateUnoService("com.sun.star.awt.Toolkit")
+  		oDlg.createPeer(oWindow, null)
+  		'
+  	' Dialogの表示実行
+  	Dim oClick as Long
+  	Dim oDisp as String
+  	Dim oDMdl as Object
+  	Dim oEmtName() as String
+  		oClick = oDlg.execute()
+  		'
+  		oDisp = "Selected Button is " & Chr$(10) & "  "
+  		if oClick = 1 then
+  			oDMdl = oDlg.getModel()
+  			oEmtName = oDMdl.getElementNames()
+  			for i = 0 to UBound(oEmtName)
+  				if oDMdl.getByName(oEmtName(i)).State = 1 then
+  					oDisp = oDisp & oRadioName(i-1)
+  					Exit For
+  				end if
+  			next i
+  		else
+  			' End Dialog
+  			oDlg.endExecute()
+  		end if
+  		'
+  	msgbox(oDisp,0,"Radio Button")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGD11a"><h6>GD-)<em>[General]</em>Check Box Dialog</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/12Dialog/11CheckBoxDialog02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="OOoBasic_pic/01general2/12Dialog/11CheckBoxDialog01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub DialogMacro()
+	Dim oDlg as Object
+  	Dim oDlgModel as Object
+  	Dim oTabIndex%
+  	Dim oModel as Object
+  	Dim oDlgWth as Long
+  	Dim oDlgHgt as Long
+  	'
+  	' Create the dialog's model
+  		oDlgModel = CreateUnoService("com.sun.star.awt.UnoControlDialogModel")
+  		'
+  	' Size of Dialog
+  		oDlgWth = 120
+  		oDlgHgt = 80
+  		'
+  		oDlgModel.Width = oDlgWth
+  		oDlgModel.Height = oDlgHgt
+  	' Title of Dialog
+  		oDlgModel.Title = "Dialog Title" 
+  		'
+  	' ***** [ OK Button 設定 ] *****
+  		' OK Button 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlButtonModel")
+  			oTabIndex = 0			' Tab番号
+  			' 
+  			oModel.Name = "OKButton"
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = CLng(oDlgWth/2 - 20)
+  			oModel.PositionY = oDlgHgt - 20
+  			oModel.Width = 40
+  			oModel.Height = 15
+  			oModel.Label = "OK"
+  			oModel.PushButtonType = com.sun.star.awt.PushButtonType.OK
+  			'
+  		' Dialog Modelの仕様に OK Button の仕様を設定
+  			oDlgModel.insertByName("OKButton", oModel)
+  			'
+  	' ***** [ OK  Button 設定 ] *****
+  	'
+  	Dim oChkBName(2) as String
+  		oChkBName(0) = "Check Box01( USA )"
+  		oChkBName(1) = "Check Box02( Germany )"
+  		oChkBName(2) = "Check Box03( Japan )"
+  	'
+  	' ***** [ Check Box1 設定 ] *****
+  		' Check Box 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlCheckBoxModel")
+  			oTabIndex = oTabIndex + 1			' Tab番号
+  			' 
+  			oModel.Name = oChkBName(0)
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = 10
+  			oModel.PositionY = 10
+  			oModel.Width = 100
+  			oModel.Height = 15
+  			oModel.Label = oChkBName(0)
+  			'
+  		' Dialog Modelの仕様に Prop Button の仕様を設定
+  			oDlgModel.insertByName(oChkBName(0), oModel)
+  			'
+  	' ***** [ Check Box1 設定 ] *****
+  	'
+  	' ***** [ Check Box2 設定 ] *****
+  		' Check Box 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlCheckBoxModel")
+  			oTabIndex = oTabIndex + 1
+  			' 
+  			oModel.Name = oChkBName(1)
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = 10
+  			oModel.PositionY = 25
+  			oModel.Width = 100
+  			oModel.Height = 15
+  			oModel.Label = oChkBName(1)
+  			'
+  		' Dialog Modelの仕様に Prop Button の仕様を設定
+  			oDlgModel.insertByName(oChkBName(1), oModel)
+  			'
+  	' ***** [ Check Box2 設定 ] *****
+  	'
+  	' ***** [ Check Box3 設定 ] *****
+  		' Check Box 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlCheckBoxModel")
+  			oTabIndex = oTabIndex + 1
+  			' 
+  			oModel.Name = oChkBName(2)
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = 10
+  			oModel.PositionY = 40
+  			oModel.Width = 100
+  			oModel.Height = 15
+  			oModel.Label = oChkBName(2)
+  			'
+  		' Dialog Modelの仕様に Prop Button の仕様を設定
+  			oDlgModel.insertByName(oChkBName(2), oModel)
+  			'
+  	' ***** [ Check Box3 設定 ] *****
+  		'
+  		'
+  	' Create the dialog and set the model
+  		oDlg = CreateUnoService("com.sun.star.awt.UnoControlDialog")
+  		oDlg.setModel(oDlgModel)
+  		'
+  		'
+  	' Create a window and then tell the dialog to use the created window.
+  	Dim oWindow as Object
+  		oWindow = CreateUnoService("com.sun.star.awt.Toolkit")
+  		oDlg.createPeer(oWindow, null)
+  		'
+  	' Dialogの表示実行
+  	Dim oClick as Long
+  	Dim oDisp as String
+  	Dim oDMdl as Object
+  	Dim oEmtName() as String
+  	Dim nn as Integer
+  		oClick = oDlg.execute()
+  		'
+  		oDisp = "[ 選択された項目 ]" & Chr$(10)
+  		nn = 1
+  		if oClick = 1 then
+  			oDMdl = oDlg.getModel()
+  			oEmtName = oDMdl.getElementNames()
+  			for i = 0 to UBound(oEmtName)
+  				if oDMdl.getByName(oEmtName(i)).State = 1 then
+  					oDisp = oDisp & nn & ") " & oChkBName(i-1) & Chr$(10)
+  					nn = nn + 1
+  				end if
+  			next i
+  			'
+  			if nn = 1 then
+  				oDsp = "Check Boxが１つも選択されていません。"
+  			end if
+  		else
+  			' End Dialog
+  			oDlg.endExecute()
+  		end if
+  		'
+  	msgbox(oDisp,0,"Check Box")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGD11b"><h6>GD-)<em>[General]</em>DialogのCheck Box有無確認</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/12Dialog/11ExistCheckBox01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub DialogMacro()
+	Dim oDialog As Object
+   	Dim oCtrl As Object
+   	Dim oDialogCtrl as Object
+   	Dim i As Long
+   		DialogLibraries.loadLibrary("Standard")
+   		oDialog = CreateUnoDialog(DialogLibraries.getByName("Standard").getByName("Dialog1"))
+   		'
+   		oDialogCtrl = oDialog.getControls()
+   		'
+  		oDisp = "[ Checkboxの有無確認 ]" & Chr$(10) & "Dialog1に Checkboxは"
+   		for i = 0 to UBound(oDialogCtrl)
+      		oCtrl = oDialogCtrl(i)
+      		if oCtrl.supportsService("com.sun.star.awt.UnoControlCheckBox") then
+         		oDisp = oDisp &  "含まれます。"
+      		end if
+   		next i
+   		if oDisp = "[ Checkboxの有無確認 ]" & Chr$(10) & "Dialog1に Checkboxは" then
+   			oDisp = oDisp & "含まれません。"
+   		end if
+   		msgbox oDisp, 0,"Checkbox"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGD12a"><h6>GD-)<em>[General]</em>Combo Box Dialog</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/12Dialog/12ComboBoxDialog02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="OOoBasic_pic/01general2/12Dialog/12ComboBoxDialog01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub DialogMacro()
+	Dim oDlg as Object
+  	Dim oDlgModel as Object
+  	Dim oTabIndex%
+  	Dim oModel as Object
+  	Dim oDlgWth as Long
+  	Dim oDlgHgt as Long
+  	'
+  	' Create the dialog's model
+  		oDlgModel = CreateUnoService("com.sun.star.awt.UnoControlDialogModel")
+  		'
+  	' Size of Dialog
+  		oDlgWth = 120
+  		oDlgHgt = 80
+  		'
+  		oDlgModel.Width = oDlgWth
+  		oDlgModel.Height = oDlgHgt
+  	' Title of Dialog
+  		oDlgModel.Title = "Dialog Title" 
+  		'
+  	' ***** [ OK Button 設定 ] *****
+  		' OK Button 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlButtonModel")
+  			oTabIndex = 0			' Tab番号
+  			' 
+  			oModel.Name = "OkButton"
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = CLng(oDlgWth/2 - 20)
+  			oModel.PositionY = oDlgHgt - 20
+  			oModel.Width = 40
+  			oModel.Height = 15
+  			oModel.Label = "OK"
+  			oModel.PushButtonType = com.sun.star.awt.PushButtonType.OK
+  			'
+  		' Dialog Modelの仕様に OK Button の仕様を設定
+  			oDlgModel.insertByName("OkButton", oModel)
+  			'
+  	' ***** [ OK  Button 設定 ] *****
+  		'
+  	Dim oList(5) as String
+    	oList(0) = "Mathmatics( 数学 )"
+    	oList(1) = "Phyics( 物理 )"
+    	oList(2) = "Chemistry( 化学 )"
+    	oList(3) = "English( 英語 )"
+    	oList(4) = "German( ドイツ語 )"
+    	oList(5) = "World History( 世界史 )"
+  		'
+  	' ***** [ ComboBox 設定 ] *****
+  		' ComboBox 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlComboBoxModel")
+  			oTabIndex = oTabIndex + 1
+  			' 
+  			oModel.Name = "ComboBox"
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = 10
+  			oModel.PositionY = oDlgHgt - 60
+  			oModel.Width = oDlgWth - 20
+  			oModel.Height = 15
+  			oModel.Text = oList(0)
+			oModel.Dropdown = True
+			oModel.StringItemList = oList()
+  			'
+  		' Dialog Modelの仕様に Combo Box の仕様を設定
+  			oDlgModel.insertByName("ComboBox", oModel)
+  	' ***** [ ComboBox 設定 ] *****
+  		'
+  		'
+  	' Create the dialog and set the model
+  		oDlg = CreateUnoService("com.sun.star.awt.UnoControlDialog")
+  		oDlg.setModel(oDlgModel)
+  		'
+  		'
+  	' Create a window and then tell the dialog to use the created window.
+  	Dim oWindow as Object
+  		oWindow = CreateUnoService("com.sun.star.awt.Toolkit")
+  		oDlg.createPeer(oWindow, null)
+  			'
+  	' Dialogの表示実行
+  	Dim oClick as Long
+  	Dim oDisp as String
+  	Dim oComboTxt as Object
+  		oClick = oDlg.execute()
+  		'
+  		if oClick = 1 then
+  			oComboTxt = oDlgModel.getByName("ComboBox")
+  			oDisp = oComboTxt.text
+  		else
+  			' End Dialog
+  			oDlg.endExecute()
+  		end if
+  		'
+  	msgbox(oDisp,0,"ComboBox")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGD13a"><h6>GD-)<em>[General]</em>List Box Dialog</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/12Dialog/13ListBoxDialog02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="OOoBasic_pic/01general2/12Dialog/13ListBoxDialog01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub DialogMacro()
+	Dim oDlg as Object
+  	Dim oDlgModel as Object
+  	Dim oTabIndex%
+  	Dim oModel as Object
+  	Dim oDlgWth as Long
+  	Dim oDlgHgt as Long
+  	'
+  	' Create the dialog's model
+  		oDlgModel = CreateUnoService("com.sun.star.awt.UnoControlDialogModel")
+  		'
+  	' Size of Dialog
+  		oDlgWth = 120
+  		oDlgHgt = 80
+  		'
+  		oDlgModel.Width = oDlgWth
+  		oDlgModel.Height = oDlgHgt
+  	' Title of Dialog
+  		oDlgModel.Title = "Dialog Title" 
+  		'
+  	' ***** [ OK Button 設定 ] *****
+  		' OK Button 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlButtonModel")
+  			oTabIndex = 0			' Tab番号
+  			' 
+  			oModel.Name = "OkButton"
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = CLng(oDlgWth/2 - 20)
+  			oModel.PositionY = oDlgHgt - 20
+  			oModel.Width = 40
+  			oModel.Height = 15
+  			oModel.Label = "OK"
+  			oModel.PushButtonType = com.sun.star.awt.PushButtonType.OK
+  			'
+  		' Dialog Modelの仕様に OK Button の仕様を設定
+  			oDlgModel.insertByName("OkButton", oModel)
+  			'
+  	' ***** [ OK  Button 設定 ] *****
+  		'
+  	Dim oList(5) as String
+    	oList(0) = "Mathmatics( 数学 )"
+    	oList(1) = "Phyics( 物理 )"
+    	oList(2) = "Chemistry( 化学 )"
+    	oList(3) = "English( 英語 )"
+    	oList(4) = "German( ドイツ語 )"
+    	oList(5) = "World History( 世界史 )"
+  		'
+  	' ***** [ ListBox 設定 ] *****
+  		' ComboBox 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlListBoxModel")
+  			oTabIndex = oTabIndex + 1
+  			' 
+  			oModel.Name = "ListBox"
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = 10
+  			oModel.PositionY = oDlgHgt - 70
+  			oModel.Width = oDlgWth - 20
+  			oModel.Height = 45
+  			oModel.DropDown = false								' DropDown表示　MultiSelect => trueならば　falseにする
+  		'	oModel.LineCount = 3							' DropDown表示の時の最大表示項目数
+			oModel.Enabled = True 
+			oModel.MultiSelection =  true						' 複数選択
+			oModel.BackgroundColor = &HC8FFB9			 'verdolino 
+			
+  			oModel.StringItemList = oList()
+  			'
+  		' Dialog Modelの仕様に ListBox の仕様を設定
+  			oDlgModel.insertByName("ListBox", oModel)
+  	' ***** [ ListBox 設定 ] *****
+  		'
+  		'
+  	' Create the dialog and set the model
+  		oDlg = CreateUnoService("com.sun.star.awt.UnoControlDialog")
+  		oDlg.setModel(oDlgModel)
+  		'
+  		'
+  	' Create a window and then tell the dialog to use the created window.
+  	Dim oWindow as Object
+  		oWindow = CreateUnoService("com.sun.star.awt.Toolkit")
+  		oDlg.createPeer(oWindow, null)
+  			'
+  	' Dialogの表示実行
+  	Dim oClick as Long
+  	Dim oDisp as String
+  	Dim oLstVal as Object
+  	Dim oSeledItem() as Long
+  	Dim oTmpNo as long
+  		oClick = oDlg.execute()
+  		'
+  		if oClick = 1 then
+  			oLstVal = oDlgModel.getByName("ListBox")
+  			oSeledItem = oLstVal.SelectedItems
+  			'
+  			for i = 0 to UBound(oSeledItem)
+  				oTmpNo = oSeledItem(i)
+  				oDisp = oDisp & i+1 & ") " & oList(oTmpNo) & Chr$(10)
+  			next i
+  		else
+  			' End Dialog
+  			oDlg.endExecute()
+  		end if
+  		'
+  	msgbox(oDisp,0,"ListBox")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGD14a"><h6>GD-)<em>[General]</em>Date Field Dialog</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/12Dialog/14DateFieldDialog02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="OOoBasic_pic/01general2/12Dialog/14DateFieldDialog01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub DialogMacro()
+	Dim oDlg as Object
+  	Dim oDlgModel as Object
+  	Dim oTabIndex%
+  	Dim oModel as Object
+  	Dim oDlgWth as Long
+  	Dim oDlgHgt as Long
+  	'
+  	' Create the dialog's model
+  		oDlgModel = CreateUnoService("com.sun.star.awt.UnoControlDialogModel")
+  		'
+  	' Size of Dialog
+  		oDlgWth = 120
+  		oDlgHgt = 80
+  		'
+  		oDlgModel.Width = oDlgWth
+  		oDlgModel.Height = oDlgHgt
+  	' Title of Dialog
+  		oDlgModel.Title = "Dialog Title" 
+  		'
+  	' ***** [ OK Button 設定 ] *****
+  		' OK Button 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlButtonModel")
+  			oTabIndex = 0			' Tab番号
+  			' 
+  			oModel.Name = "OkButton"
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = CLng(oDlgWth/2 - 20)
+  			oModel.PositionY = oDlgHgt - 20
+  			oModel.Width = 40
+  			oModel.Height = 15
+  			oModel.Label = "OK"
+  			oModel.PushButtonType = com.sun.star.awt.PushButtonType.OK
+  			'
+  		' Dialog Modelの仕様に OK Button の仕様を設定
+  			oDlgModel.insertByName("OkButton", oModel)
+  			'
+  	' ***** [ OK  Button 設定 ] *****
+  	'
+  	'
+  	' ***** [ DateField 設定 ] *****
+  		' DateField 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlDateFieldModel")
+  			oTabIndex = oTabIndex + 1
+  			' 
+  			oModel.Name = "DateF"
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = 10
+  			oModel.PositionY = oDlgHgt - 60
+  			oModel.Width = oDlgWth - 20
+  			oModel.Height = 15
+  			oModel.DateFormat = 9			' Dialogに表示されるFormat / 9 : YYYY/MM/DD
+  			oModel.Dropdown = True			' DropDownでCalender表示
+			oModel.Enabled = true
+  			'
+  		' Dialog Modelの仕様に DateField の仕様を設定
+  			oDlgModel.insertByName("DateF", oModel)
+  	' ***** [ DateField 設定 ] *****
+  		'
+  		'
+  	' Create the dialog and set the model
+  		oDlg = CreateUnoService("com.sun.star.awt.UnoControlDialog")
+  		oDlg.setModel(oDlgModel)
+  		'
+  		'
+  	' Create a window and then tell the dialog to use the created window.
+  	Dim oWindow as Object
+  		oWindow = CreateUnoService("com.sun.star.awt.Toolkit")
+  		oDlg.createPeer(oWindow, null)
+  			'
+  	' Dialogの表示実行
+  	Dim oClick as Long
+  	Dim oDisp as String
+  	Dim oDateVal as Object
+  		oClick = oDlg.execute()
+  		'
+  		if oClick = 1 then
+  			oDateVal = oDlgModel.getByName("DateF")
+  			' .DateのＲｅｔｕｒｎは区切り無しの YYYYMMDD
+  			oDisp = Left(oDateVal.Date, 4) & " 年 " & Mid(oDateVal.Date,5,2) & " 月 " & Right(oDateVal.Date, 2) & " 日"
+  		else
+  			' End Dialog
+  			oDlg.endExecute()
+  		end if
+  		'
+  	msgbox(oDisp,0,"Date Field")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGD15a"><h6>GD-)<em>[General]</em>Time Ffield Dialog</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/12Dialog/15TimeFieldDialog02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="OOoBasic_pic/01general2/12Dialog/15TimeFieldDialog01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub DialogMacro()
+	Dim oDlg as Object
+  	Dim oDlgModel as Object
+  	Dim oTabIndex%
+  	Dim oModel as Object
+  	Dim oDlgWth as Long
+  	Dim oDlgHgt as Long
+  	'
+  	' Create the dialog's model
+  		oDlgModel = CreateUnoService("com.sun.star.awt.UnoControlDialogModel")
+  		'
+  	' Size of Dialog
+  		oDlgWth = 120
+  		oDlgHgt = 80
+  		'
+  		oDlgModel.Width = oDlgWth
+  		oDlgModel.Height = oDlgHgt
+  	' Title of Dialog
+  		oDlgModel.Title = "Dialog Title" 
+  		'
+  	' ***** [ OK Button 設定 ] *****
+  		' OK Button 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlButtonModel")
+  			oTabIndex = 0			' Tab番号
+  			' 
+  			oModel.Name = "OkButton"
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = CLng(oDlgWth/2 - 20)
+  			oModel.PositionY = oDlgHgt - 20
+  			oModel.Width = 40
+  			oModel.Height = 15
+  			oModel.Label = "OK"
+  			oModel.PushButtonType = com.sun.star.awt.PushButtonType.OK
+  			'
+  		' Dialog Modelの仕様に OK Button の仕様を設定
+  			oDlgModel.insertByName("OkButton", oModel)
+  			'
+  	' ***** [ OK  Button 設定 ] *****
+  	'
+  	'
+  	' ***** [ TimeField 設定 ] *****
+  		' TimeField 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlTimeFieldModel")
+  			oTabIndex = oTabIndex + 1
+  			' 
+  			oModel.Name = "TimeF"
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = 10
+  			oModel.PositionY = oDlgHgt - 60
+  			oModel.Width = oDlgWth - 20
+  			oModel.Height = 15
+  			oModel.TimeFormat = 3			' 
+  			oModel.Spin = true
+  			'
+  		' Dialog Modelの仕様に TimeField の仕様を設定
+  			oDlgModel.insertByName("TimeF", oModel)
+  	' ***** [ TimeField 設定 ] *****
+  		'
+  		'
+  	' Create the dialog and set the model
+  		oDlg = CreateUnoService("com.sun.star.awt.UnoControlDialog")
+  		oDlg.setModel(oDlgModel)
+  		'
+  		'
+  	' Create a window and then tell the dialog to use the created window.
+  	Dim oWindow as Object
+  		oWindow = CreateUnoService("com.sun.star.awt.Toolkit")
+  		oDlg.createPeer(oWindow, null)
+  			'
+  	' Dialogの表示実行
+  	Dim oClick as Long
+  	Dim oDisp as String
+  	Dim oTimeVal as Object
+  	Dim oTime as Long
+  	Dim oHr, oMin, oSec as Integer
+  		oClick = oDlg.execute()
+  		'
+  		if oClick = 1 then
+  			oTimeVal = oDlgModel.getByName("TimeF")
+  			'
+  			oTime = oTimeVal.Time
+  			oHr = CInt(oTime / 1000000)
+  			oMin = CInt( oTime / 10000 mod 100 )
+  			oSec = CInt( oTime / 100 mod 100 )
+  			'
+  			oDisp = oHr & " 時 " & oMin & " 分 " & oSec & " 秒 "
+  		else
+  			' End Dialog
+  			oDlg.endExecute()
+  		end if
+  		'
+  	msgbox(oDisp,0,"Time Field")
+End Sub
+'
+'
+' [ TimeFormat ]
+&emsp;&emsp;0&emsp;:&emsp;HH:MM
+&emsp;&emsp;1&emsp;:&emsp;HH:MM;SS
+&emsp;&emsp;2&emsp;:&emsp;HH:MM AM/PM
+&emsp;&emsp;3&emsp;:&emsp;HH:MM:SS AM/PM
+&emsp;&emsp;4&emsp;:&emsp;HH:MM
+&emsp;&emsp;5&emsp;:&emsp;HH:MM:SS
+</code></pre><br>
+
+
+
+<a name="OOoGD16a"><h6>GD-)<em>[General]</em>File Dialog</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/12Dialog/16FileControlDialog02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="OOoBasic_pic/01general2/12Dialog/16FileControlDialog01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub DialogMacro()
+	Dim oDlg as Object
+  	Dim oDlgModel as Object
+  	Dim oTabIndex%
+  	Dim oModel as Object
+  	Dim oDlgWth as Long
+  	Dim oDlgHgt as Long
+  	'
+  	' Create the dialog's model
+  		oDlgModel = CreateUnoService("com.sun.star.awt.UnoControlDialogModel")
+  		'
+  	' Size of Dialog
+  		oDlgWth = 120
+  		oDlgHgt = 80
+  		'
+  		oDlgModel.Width = oDlgWth
+  		oDlgModel.Height = oDlgHgt
+  	' Title of Dialog
+  		oDlgModel.Title = "Dialog Title" 
+  		'
+  	' ***** [ OK Button 設定 ] *****
+  		' OK Button 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlButtonModel")
+  			oTabIndex = 0			' Tab番号
+  			' 
+  			oModel.Name = "OkButton"
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = CLng(oDlgWth/2 - 20)
+  			oModel.PositionY = oDlgHgt - 20
+  			oModel.Width = 40
+  			oModel.Height = 15
+  			oModel.Label = "OK"
+  			oModel.PushButtonType = com.sun.star.awt.PushButtonType.OK
+  			'
+  		' Dialog Modelの仕様に OK Button の仕様を設定
+  			oDlgModel.insertByName("OkButton", oModel)
+  			'
+  	' ***** [ OK  Button 設定 ] *****
+  	'
+  	'
+  	' ***** [ FileCntrol 設定 ] *****
+  		' FileControl 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlFileControlModel")
+  			oTabIndex = oTabIndex + 1
+  			' 
+  			oModel.Name = "FileCtrl"
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = 10
+  			oModel.PositionY = oDlgHgt - 60
+  			oModel.Width = oDlgWth - 20
+  			oModel.Height = 15
+  			oModel.Border = 1
+  			oModel.Enabled = true
+  			'
+  		' Dialog Modelの仕様に File Control の仕様を設定
+  			oDlgModel.insertByName("FileCtrl", oModel)
+  	' ***** [ FileControl 設定 ] *****
+  		'
+  		'
+  	' Create the dialog and set the model
+  		oDlg = CreateUnoService("com.sun.star.awt.UnoControlDialog")
+  		oDlg.setModel(oDlgModel)
+  		'
+  		'
+  	' Create a window and then tell the dialog to use the created window.
+  	Dim oWindow as Object
+  		oWindow = CreateUnoService("com.sun.star.awt.Toolkit")
+  		oDlg.createPeer(oWindow, null)
+  			'
+  	' Dialogの表示実行
+  	Dim oClick as Long
+  	Dim oDisp as String
+  	Dim oSelFile as Object
+  		oClick = oDlg.execute()
+  		'
+  		if oClick = 1 then
+  			oSelFile = oDlgModel.getByName("FileCtrl")
+  			oDisp = oSelFile.Text
+  		else
+  			' End Dialog
+  			oDlg.endExecute()
+  		end if
+  		'
+  	msgbox(oDisp,0,"File Cntrol")
+End Sub
+'
+'
+' [ Border ]
+&emsp;&emsp;0&emsp;:&emsp;外形線無しBox
+&emsp;&emsp;1&emsp;:&emsp;3D Box
+&emsp;&emsp;2&emsp;:&emsp;外形線有り Box
+</code></pre><br>
+
+
+<a name="OOoGD17a"><h6>GD-)<em>[General]</em>Label in Dialog</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/12Dialog/17FixedTextDialog01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub DialogMacro()
+	Dim oDlg as Object
+  	Dim oDlgModel as Object
+  	Dim oTabIndex%
+  	Dim oModel as Object
+  	Dim oDlgWth as Long
+  	Dim oDlgHgt as Long
+  	'
+  	' Create the dialog's model
+  		oDlgModel = CreateUnoService("com.sun.star.awt.UnoControlDialogModel")
+  		'
+  	' Size of Dialog
+  		oDlgWth = 120
+  		oDlgHgt = 80
+  		'
+  		oDlgModel.Width = oDlgWth
+  		oDlgModel.Height = oDlgHgt
+  	' Title of Dialog
+  		oDlgModel.Title = "Dialog Title" 
+  		'
+  	' ***** [ OK Button 設定 ] *****
+  		' OK Button 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlButtonModel")
+  			oTabIndex = 0			' Tab番号
+  			' 
+  			oModel.Name = "OkButton"
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = CLng(oDlgWth/2 - 20)
+  			oModel.PositionY = oDlgHgt - 20
+  			oModel.Width = 40
+  			oModel.Height = 15
+  			oModel.Label = "OK"
+  			oModel.PushButtonType = com.sun.star.awt.PushButtonType.OK
+  			'
+  		' Dialog Modelの仕様に OK Button の仕様を設定
+  			oDlgModel.insertByName("OkButton", oModel)
+  			'
+  	' ***** [ OK  Button 設定 ] *****
+  	'
+  	'
+  	' ***** [ Label  設定 ] *****
+  		' FileControl 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlFixedTextModel")
+  			oTabIndex = oTabIndex + 1
+  			' 
+  			oModel.Name = "FixedLabel"
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = 20
+  			oModel.PositionY = oDlgHgt - 72
+  			oModel.Width = oDlgWth - 40
+  			oModel.Height = 10
+  			oModel.Label = "Pick up File !!"
+  			oModel.Align = 1			' 0 : Left / 1 : Center / 2 : Right
+  			oModel.Border = 0
+  			oModel.TextColor = &HFF0000			'  &H + RGB / Red  → &H( 16進数と言う意味 ) + RGP(255,0,0) → &HFF0000  
+  			oModel.Enabled = true
+  			'
+  		' Dialog Modelの仕様に Label の仕様を設定
+  			oDlgModel.insertByName("FixedLabel", oModel)
+  	' ***** [ Label 設定 ] *****
+  	'
+  	'
+  	' ***** [ FileCntrol 設定 ] *****
+  		' FileControl 仕様
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.UnoControlFileControlModel")
+  			oTabIndex = oTabIndex + 1
+  			' 
+  			oModel.Name = "FileCtrl"
+  			oModel.TabIndex = oTabIndex
+  			oModel.PositionX = 10
+  			oModel.PositionY = oDlgHgt - 60
+  			oModel.Width = oDlgWth - 20
+  			oModel.Height = 15
+  			oModel.Border = 1
+  			oModel.Enabled = true
+  			'
+  		' Dialog Modelの仕様に File Control の仕様を設定
+  			oDlgModel.insertByName("FileCtrl", oModel)
+  	' ***** [ FileControl 設定 ] *****
+  	'
+  	'
+  	' Create the dialog and set the model
+  		oDlg = CreateUnoService("com.sun.star.awt.UnoControlDialog")
+  		oDlg.setModel(oDlgModel)
+  		'
+  		'
+  	' Create a window and then tell the dialog to use the created window.
+  	Dim oWindow as Object
+  		oWindow = CreateUnoService("com.sun.star.awt.Toolkit")
+  		oDlg.createPeer(oWindow, null)
+  			'
+  	' Dialogの表示実行
+  	Dim oClick as Long
+  	Dim oDisp as String
+  	Dim oSelFile as Object
+  		oClick = oDlg.execute()
+  		'
+  		if oClick = 1 then
+  			oSelFile = oDlgModel.getByName("FileCtrl")
+  			oDisp = oSelFile.Text
+  		else
+  			' End Dialog
+  			oDlg.endExecute()
+  		end if
+  		'
+  	msgbox(oDisp,0,"File Cntrol")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGD18a"><h6>GD-)<em>[General]</em>Color Picker</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/12Dialog/18ColorPicker01.png" align="right" hspace="4" vspace="4" width="25%"><img SRC="OOoBasic_pic/01general2/12Dialog/18ColorPicker02.png" align="right" hspace="4" vspace="4" width="15%">
+Sub DialogMacro()
+	Dim oColorPick as Object
+	Dim oGetProps() as Object
+  	' Dim oProps(0) As New com.sun.star.beans.PropertyValue
+  	Dim oDisp as String
+  	Dim oColorVal as Long
+  	'
+  	' Create the Color Picker model
+  		oColorPick = CreateUnoService("com.sun.star.ui.dialogs.ColorPicker")
+  		'
+  	' 設定可能Propertiy Name 取得
+  		oGetProps = oColorPick.getPropertyValues()
+  		oDisp = ""
+  		for i = 0 to UBound(oGetProps)
+  			oDisp = oDisp & oGetProps(i).Name & Chr(10)
+  		next i
+  		msgbox oDisp,0,"GetPropertyValues"
+  		'
+  		' Color Picker 設定
+  		' oProps(0).Name = "Color"
+  		' oProps(0).Value = RGB(255,0,0)
+  		' oColorPick.initialize(oProps)					' ← 初期色設定不可
+  		' oColorPick.setPropertyValues(oProps)		' ← 初期色設定不可
+  		' Title
+  		REM oColorPick.setTitle("Color Picker Dialog")		' ← DialogのTitle 設定は不可 / Errorは発生しないが反映されない
+  		' Execute
+  		oColorPick.execute()
+  		'
+  		' 選択色の Long値取得
+  		oGetProps = oColorPick.getPropertyValues()
+  		oColorVal = oGetProps(0).Value
+  		'
+  		' RGB形式に変換
+  		Dim oRed
+  		Dim oGreen
+  		Dim oBlue
+  			oRed = CLng("&H"  & CStr(Left(Hex(oColorVal), 2)))
+  			oGreen = CLng("&H"  & CStr(mid(Hex(oColorVal),3,2)))
+  			oBlue = CLng("&H"  & CStr(Right(Hex(oColorVal),2)))
+  		' Display
+  		oDisp = "Number of Selected Color" & Chr$(10) & " = " & oColorVal & Chr$(10) & " = RGB( " & oRed & " , " & oGreen & " , " & oBlue & " )"
+  		msgbox(oDisp,0,"Color picker Dialog")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGD19a"><h6>GD-)<em>[General]</em>Tree表示 Dialog</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/12Dialog/19aTreeCntlModel01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub DialogMacro()
+	Dim oDlg as Object
+  	Dim oDlgModel as Object
+  	Dim oModel as Object
+  	Dim oDlgWth as Long
+  	Dim oDlgHgt as Long
+  	'
+  	' Create the dialog's model
+  		oDlgModel = CreateUnoService("com.sun.star.awt.UnoControlDialogModel")
+  		'
+  	' Size of Dialog
+  		oDlgWth = 120
+  		oDlgHgt = 80
+  		'
+  		oDlgModel.Width = oDlgWth
+  		oDlgModel.Height = oDlgHgt
+  	' Title of Dialog
+  		oDlgModel.Title = "Dialog Title" 
+  		'
+  	' ***** [ Tree 表示Dialog設定 ] *****
+  		' 
+  		oModel = oDlgModel.createInstance("com.sun.star.awt.tree.TreeControlModel")
+  		'
+  			oModel.Height = 180
+  			oModel.Width = 150
+  			oModel.PositionX = 0
+  			oModel.PositionY = 20
+  			oModel.SelectionType = ST_SINGLE
+  		oDlgModel.insertByName("tree", oModel)
+        '
+	'*****[ ここからTree設定 ] *****
+	Dim oTreeDataModel as Object
+	Dim oRootNode as Object
+	Dim n1 as Object, n2 as Object, n3 as Object
+	Dim s1 as Object, s2 as Object, s3 as Object
+		'
+		oTreeDataModel = CreateUnoService("com.sun.star.awt.tree.MutableTreeDataModel")
+		'
+		' Root 設定		
+		oRootNode = oTreeDataModel.createNode("Root",true)
+		oTreeDataModel.setRoot(oRootNode)
+		'
+		oModel.DataModel = oTreeDataModel
+		oModel.RootDisplayed = true			' Rootを表示
+        '
+        ' Node 作成
+        n1 = oTreeDataModel.createNode("Node_1", True)
+    	n2 = oTreeDataModel.createNode("Node_2", True)
+    	n3 = oTreeDataModel.createNode("Node_3", True)
+    	'　Root に Nodeを追加
+    	oRootNode.appendChild(n1)
+    	oRootNode.appendChild(n2)
+    	oRootNode.appendChild(n3)
+    	'
+    	' Subnode作成
+    	s1 = oTreeDataModel.createNode("Child 1", True)
+    	s2 = oTreeDataModel.createNode("Child 2", True)
+    	s3 = oTreeDataModel.createNode("Child 3", True)
+    	' Nodeに Subnode 追加
+    	n1.appendChild(s1)
+    	n2.appendChild(s2)
+    	' Subnodeに SubNode追加
+    	s1.appendChild(s3)
+    	'
+    '*****[ ここまでTree設定 ] *****
+    	'
+        ' Create the dialog and set the model
+  		oDlg = CreateUnoService("com.sun.star.awt.UnoControlDialog")
+  		oDlg.setModel(oDlgModel)
+  		'
+  		'
+  	' Create a window and then tell the dialog to use the created window.
+  	Dim oWindow as Object
+  		oWindow = CreateUnoService("com.sun.star.awt.Toolkit")
+  		oDlg.createPeer(oWindow, null)
+  		'
+  	' Dialogの表示実行
+  		oDlg.execute()
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGD"><h6>GD-)<em>[General]</em></h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/12Dialog/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br clear="right">
+<p class="s1">Menu</p class="s1">
+<p class="s3">[ Menu Dialog ]</p class="s3">
+<a name="OOoGOMDg01a"><h6>GOGCp-)<em>[General]</em>Option Dialog表示</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/20Menu/01MenuDialog/01aOptionDialog01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub GeneralMenu()
+	Dim oDoc as Object, oCtrl as Object, oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		oDispatcher.executeDispatch( oFrame, ".uno:OptionsTreeDialog", "", 0, oProp())
+		msgbox "Success"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGOMDg02a"><h6>GOGCp-)<em>[General]</em></h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/20Menu/01MenuDialog/02aAutoCorrectDlg01.png" align="right" hspace="4" vspace="4" width="40%">
+Sub GeneralMenu()
+	Dim oDoc as Object, oCtrl as Object, oFrame as Object
+	Dim oDispatcher as Object
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		oDispatcher.executeDispatch( oFrame, ".uno:AutoCorrectDlg", "", 0, Array())
+		msgbox "Success"
+End Sub
+</code></pre><br>
+
+
+<br clear="right">
+<a name="OOoGOMDg03a"><h6>GOGCp-)<em>[General]</em>XML Filterの設定Dialog表示</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/20Menu/01MenuDialog/03aXMLFilterDlg01.png" align="right" hspace="4" vspace="4" width="45%">
+Sub UiDialog()
+	Dim oServiceName as String
+	Dim oUiDlg as Object
+	Dim oRtn as Integer
+		oServiceName = "com.sun.star.ui.dialogs.XSLTFilterDialog"
+		oUiDlg = createUnoService(oServiceName)
+		oRtn = oUiDlg.execute()
+		msgbox oRtn		
+End Sub
+</code></pre><br>
+
+
+<br clear="right">
+<a name="OOoGOMDg"><h6>GOGCp-)<em>[General]</em></h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/20Menu/01MenuDialog/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br clear="right">
+<p class="s1">UserInterface( ui )</p class="s1">
+<a name="OOoGUi01a"><h6>GUi-)<em>[General]</em>Address Book Data Source Wizard表示</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/20UserInterface/01AddrBookSrcPilot01.png" align="right" hspace="4" vspace="4" width="35%">
+Sub AddressDialog()
+	Dim oServiceName as String
+	Dim oAddrPilot as Object
+	Dim oRtn as Integer
+		oServiceName = "com.sun.star.ui.dialogs.AddressBookSourcePilot"
+		oAddrPilot = createUnoService(oServiceName)
+		'
+		oRtn = oAddrPilot.execute()			
+End Sub
+'
+' [ Note ]
+' oRtn は DialogのMessageに従って処理した後の　完了 = 1, キャンセル = 0 のみ取得
+</code></pre><br>
+
+
+<br clear="right">
+<a name="OOoGUi02a"><h6>GUi-)<em>[General]</em>Template: Address Bookの割り当てWizard表示</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/20UserInterface/02AddrBookDialog01.png" align="right" hspace="4" vspace="4" width="35%">
+Sub AddressDialog()
+	Dim oServiceName as String
+	Dim oUnoServiceObj as Object
+	Dim oRtn as Integer
+		oServiceName = "com.sun.star.ui.AddressBookSourceDialog"
+		oUnoServiceObj = createUnoService(oServiceName)
+		'
+		oRtn = oUnoServiceObj.execute()	
+		msgbox( oRtn, 0, "Wizard Dialog" )	
+End Sub
+'
+' DialogのMessageに従って処理した後の　完了 = 1, キャンセル = 0 のみ取得
+</code></pre><br>
+
+
+<a name="OOoGUi03a"><h6>GUi-)<em>[General]</em>FilterOptionsDialog Service</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/20UserInterface/03aFlrOptionDlg01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub UiDialog()
+	Dim oServiceName as String
+	Dim oUiDlg as Object
+	Dim oRtn as Integer
+		oServiceName = "com.sun.star.ui.dialogs.FilterOptionsDialog"
+		oUiDlg = createUnoService(oServiceName)
+		oRtn = oUiDlg.execute()
+		msgbox oRtn		
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGUi"><h6>GUi-)<em>[General]</em></h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/20UserInterface/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+<br clear="right">
+<center><h6><a href="#TopOfPage">Top of Page</a></h6></center><BR>
+
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/OOoBasic_General3.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:14:08 GMT -->
+</html>

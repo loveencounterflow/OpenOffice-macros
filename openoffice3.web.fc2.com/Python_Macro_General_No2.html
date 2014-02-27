@@ -1,0 +1,4220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/Python_Macro_General_No2.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:33:09 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<title>Macroの杜(Python編 / General No.2)</title>
+</head>
+<link rel="stylesheet"
+type="text/css" href="css_macroPython.css">
+<body>
+<a name="TopOfPage"><left><p><A HREF="index-2.html">Home of site</a></p></left></a><br>
+<h1>Macroの杜( Python編 )<br>
+[ Python for LibreOffice( Apache OpenOffice ) ]
+</h1>
+
+<h2>【 General No.2 】</h2>
+
+<center><h1>###【 Continued from <a href="Python_Macro_General_No1.html">Python / General No.1</a> 】###</h1></center>
+<br>
+
+<h3><Center>**********************【 Index 】**********************</center></h3>
+
+<p class="s1">Data( <em1>Python はＣ言語と違い、あらかじめ変数やそのData型を宣言する必要はありません。</em1>)</p class="s1">
+<ul>
+GDa-)<a href="#OOoGDa01a"><em>[General]</em>変数の型をCheck・判別<em>[ isinstance ]</em></a><br>
+GDa-)<a href="#OOoGDa01b"><em>[General]</em>文字列のCheck・判別[ 2.7系 ]<em>[ isinstance ]</em></a><br>
+GDa-)<a href="#OOoGDa01b2"><em>[General]</em>文字列のCheck・判別[ 3.3系 ]<em>[ isinstance(,str) ]</em></a><br>
+GDa-)<a href="#OOoGDa01c"><em>[General]</em>File ObjectのCheck・判別[ 2.7系 ]<em>[ isinstance(,file) ]</em></a><br>
+GDa-)<a href="#OOoGDa01c2"><em>[General]</em>File ObjectのCheck・判別[ 3.3系 ]<em>[ isinstance(,IOBase) / from io import IOBase ]</em></a><br>
+GDa-)<a href="#OOoGDa02a"><em>[General]</em>float型に関する情報<em>[ sys / .float_info ]</em></a><br>
+GDa-)<a href="#OOoGDa03a"><em>[General]</em>int型の最大値の定数[ 2.7系 ]<em>[ sys / .maxint ]</em></a><br>
+GDa-)<a href="#OOoGDa04a"><em>[General]</em>int型の最大値の定数[ 3.3系 ]<em>[ sys / .maxsize ]</em></a><br>
+GDa-)<a href="#OOoGDa05a"><em>[General]</em>Dataの圧縮/解凍[ 2.7系 ]<em>[ import zlib,binascii / .compress() / .hexlify() / .decompress() ]</em></a><br>
+GDa-)<a href="#OOoGDa05b"><em>[General]</em>Dataの圧縮/解凍[ 3.3系 ]<em>[ import zlib,binascii / .compress() / .hexlify() / .decompress() ]</em></a><br>
+GDa-)<a href="#OOoGDa"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+<p class="s3">[ Number ]</p class="s3">
+<ul>
+GDN-)<a href="#OOoGDN1"><em>[General]</em>足し算</a><br>
+GDN-)<a href="#OOoGDN2"><em>[General]</em>引き算</a><br>
+GDN-)<a href="#OOoGDN3"><em>[General]</em>掛け算</a><br>
+GDN-)<a href="#OOoGDN4a"><em>[General]</em>割り算(1)[整数/整数](ver2.7)</a><br>
+GDN-)<a href="#OOoGDN4b"><em>[General]</em>割り算(2)[実数/実数]</a><br>
+GDN-)<a href="#OOoGDN4c"><em>[General]</em>整数の余り<em>[ % ]</em></a><br>
+GDN-)<a href="#OOoGDN4dV2"><em>[General]</em>整数の割り算(ver2.7)</a><br>
+GDN-)<a href="#OOoGDN4dV3"><em>[General]</em>整数の割り算(ver3.3)</a><br>
+GDN-)<a href="#OOoGDN4e"><em>[General]</em>整数の割り算と余り<em>[ divmod(,) ]</em></a><br>
+GDN-)<a href="#OOoGDN4f"><em>[General]</em>浮動小数点の余り<em>[ import math / math.fmod ]</em></a><br>
+GDN-)<a href="#OOoGDN4g"><em>[General]</em>精度の良い計算( Decimal型 )<em>[from decimal import * /  Decimal ]</em></a><br>
+GDN-)<a href="#OOoGDN05a"><em>[General]</em>実数(浮動小数点)<em>[ float() ]</em></a><br>
+GDN-)<a href="#OOoGDN06a"><em>[General]</em>整数型<em>[ int() ]</em></a><br>
+GDN-)<a href="#OOoGDN6b"><em>[General]</em>指数<em>[ math.exp / math.expm1() ]</em></a><br>
+GDN-)<a href="#OOoGDN6c"><em>[General]</em>対数<em>[ math.log(,) / .log() / .log10() / .log1p() / .log2() ]</em></a><br>
+GDN-)<a href="#OOoGDN6d"><em>[General]</em>平方根<em>[ math.sqrt ]</em></a><br>
+GDN-)<a href="#OOoGDN07a"><em>[General]</em>複素数<em>[ .real /  ]</em></a><br>
+GDN-)<a href="#OOoGDN08a"><em>[General]</em>絶対値(1)<em>[ abs() ]</em></a><br>
+GDN-)<a href="#OOoGDN08b"><em>[General]</em>絶対値(2)<em>[ math.fabs() ]</em></a><br>
+GDN-)<a href="#OOoGDN9a"><em>[General]</em>乱数<em>[ import random / random / .seed() / .random / .randrange / .randint / .randform / .choice / .sample / .shuffle ]</em></a><br>
+GDN-)<a href="#OOoGDN10a"><em>[General]</em>四捨五入<em>[ round ]</em></a><br>
+GDN-)<a href="#OOoGDN10e"><em>[General]</em>Decimal型の四捨五入<em>[ Decimal().quantize() ]</em></a><br>
+GDN-)<a href="#OOoGDN10b"><em>[General]</em>小数点第1位の切り捨て / 整数表示<em>[ math.trunc ]</em></a><br>
+GDN-)<a href="#OOoGDN10c"><em>[General]</em>小数点第1位の切り捨て / 浮動小数点表示(2.7系),整数表示(3.3系)<em>[ math.floor() ]</em></a><br>
+GDN-)<a href="#OOoGDN10d"><em>[General]</em>小数点第1位の切り上げ / 浮動小数点表示(2.7系),整数表示(3.3系)<em>[ math.ceil() ]</em></a><br>
+GDN-)<a href="#OOoGDN11a"><em>[General]</em>Max / Min<em>[ max / min ]</em></a><br>
+GDN-)<a href="#OOoGDN12a"><em>[General]</em>10進数(int型) ⇒ 16進数<em>[ hex() ]</em></a><br>
+GDN-)<a href="#OOoGDN12b"><em>[General]</em>10進数(float型) ⇒ 16進数 ⇒ 10進数(float型)<em>[ float.hex() / float.fromhex() ]</em></a><br>
+GDN-)<a href="#OOoGDN13a"><em>[General]</em>8進数<em>[ oct() ]</em></a><br>
+GDN-)<a href="#OOoGDN14a"><em>[General]</em>べき数<em>[ pow / math.pow(x, y) ]</em></a><br>
+GDN-)<a href="#OOoGDN15a"><em>[General]</em>浮動小数点を小数点部と整数部に分ける(+値のみ)<em>[ math.modf() ]</em></a><br>
+GDN-)<a href="#OOoGDN16a"><em>[General]</em>円周率 π<em>[ math.pi ]</em></a><br>
+GDN-)<a href="#OOoGDN17a"><em>[General]</em>自然対数基数 e <em>[ math.e ]</em></a><br>
+GDN-)<a href="#OOoGDN18a"><em>[General]</em>精度の違う表記を統一<em>[ from decimal import * / .normalize() ]</em></a><br>
+GDN-)<a href="#OOoGDN19a"><em>[General]</em>比較演算[ 2.7系 ]<em>[ cmp ]</em></a><br>
+GDN-)<a href="#OOoGDN19b"><em>[General]</em>複数の比較演算<em>[  ]</em></a><br>
+GDN-)<a href="#OOoGDN20a"><em>[General]</em>合計取得<em>[ sum() / math.fsum() ]</em></a><br>
+GDN-)<a href="#OOoGDN21a"><em>[General]</em>int型に変換可能かcheck<em>[ .isdigt() ]</em></a><br>
+GDN-)<a href="#OOoGDN21b"><em>[General]</em>数値型( int / float / +,-付 )に変更可能かcheck<em>[  ]</em></a><br>
+GDN-)<a href="#OOoGDN"><em>[General]</em>未完成<em>[ .isdecimal() ]</em></a><br>
+GDN-)<a href="#OOoGDN"><em>[General]</em>未完成<em>[ .isnumeric() ]</em></a><br>
+GDN-)<a href="#OOoGDN22a"><em>[General]</em>x に y の符号を付ける<em>[ math.copysign(x, y) ]</em></a><br>
+GDN-)<a href="#OOoGDN23a"><em>[General]</em>階乗<em>[ math.factorial() ]</em></a><br>
+GDN-)<a href="#OOoGDN24a"><em>[General]</em>仮数と指数のPair(x,y)<em>[ math.frexp() ]</em></a><br>
+GDN-)<a href="#OOoGDN24b"><em>[General]</em>x * (2**y)<em>[ math.ldexp(x, y) ]</em></a><br>
+GDN-)<a href="#OOoGDN25a"><em>[General]</em>無限大かどうかCheck<em>[ math.isinf() ]</em></a><br>
+GDN-)<a href="#OOoGDN26a"><em>[General]</em>NaN( Not a number )Check<em>[ math.isnan() ]</em></a><br>
+GDN-)<a href="#OOoGDN27a"><em>[General]</em>無限大 or NaNかどうかCheck<em>[ math.isfinite() ]</em></a><br>
+GDN-)<a href="#OOoGDN30a"><em>[General]</em>角度変換<em>[ math.radians() / math.degrees() ]</em></a><br>
+GDN-)<a href="#OOoGDN31a"><em>[General]</em>三角関数<em>[ math.sin() / math.cos() / math.tan() / math.asin() / math.acos() / math.atan() / math.atan2(,) / math.hypot(,) ]</em></a><br>
+GDN-)<a href="#OOoGDN32a"><em>[General]</em>双曲線関数<em>[ math.sinh() / math.cosh() / math.tanh() / math.asinh() / math.acosh() / math.atanh()  ]</em></a><br>
+GDN-)<a href="#OOoGDN33a"><em>[General]</em>誤差関数/相補誤差関数<em>[ math.erf() / math.erfc() ]</em></a><br>
+GDN-)<a href="#OOoGDN34a"><em>[General]</em>Gamma関数<em>[  ]</em></a><br>
+GDN-)<a href="#OOoGDN"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+<p class="s3">[ String ]</p class="s3">
+<ul>
+GDS-)<a href="#OOoGDS0a"><em>[General]</em>Source CodeのEncodeingを定義</a><br>
+GDS-)<a href="#OOoGDS1a"><em>[General]</em>記号(')</a><br>
+GDS-)<a href="#OOoGDS2"><em>[General]</em>改行</a><br>
+GDS-)<a href="#OOoGDS02b"><em>[General]</em>Tab( タブ )</a><br>
+GDS-)<a href="#OOoGDS3"><em>[General]</em>連結、反復</a><br>
+GDS-)<a href="#OOoGDS4"><em>[General]</em>スライス表記</a><br>
+GDS-)<a href="#OOoGDS5"><em>[General]</em>文字長さ(space含む)</a><br>
+GDS-)<a href="#OOoGDS6a"><em>[General]</em>文字列に変換1<em>[ str ]</em></a><br>
+GDS-)<a href="#OOoGDS6b"><em>[General]</em>文字列に変換2[ 2.7系 ]<em>[ repr ]</em></a><br>
+GDS-)<a href="#OOoGDS6b2"><em>[General]</em>文字列に変換2[ 3.3系 ]<em>[ repr ]</em></a><br>
+GDS-)<a href="#OOoGDS6c"><em>[General]</em>長いDataを省略して表示[ 2.7系 ]<em>[ import repr / .repr() ]</em></a><br>
+GDS-)<a href="#OOoGDS6c2"><em>[General]</em>長いDataを省略して表示[ 3.3系 ]<em>[ import reprlib / .repr() ]</em></a><br>
+GDS-)<a href="#OOoGDS7a"><em>[General]</em>文字列の検索1<em>[ .find / .rfind() ]</em></a><br>
+GDS-)<a href="#OOoGDS7b"><em>[General]</em>文字列の検索2<em>[ .index / .rindex ]</em></a><br>
+GDS-)<a href="#OOoGDS7c"><em>[General]</em>文字列の先頭/末尾文字を調べる<em>[ .startswith() / .endswith() ]</em></a><br>
+GDS-)<a href="#OOoGDS7d"><em>[General]</em>文字列中に任意の文字が含まれているか<em>[ in ]</em></a><br>
+GDS-)<a href="#OOoGDS7e"><em>[General]</em>文字列中の任意の文字数<em>[ .count ]</em></a><br>
+GDS-)<a href="#OOoGDS8a"><em>[General]</em>大文字か小文字かCheck<em>[ islower() / isupper() ]</em></a><br>
+GDS-)<a href="#OOoGDS8b"><em>[General]</em>大文字化、小文字化<em>[ upper() / lower() / .swapcase() / casefold() ]</em></a><br>
+GDS-)<a href="#OOoGDS8c"><em>[General]</em>先頭文字のみ大文字(1文字)<em>[ capitalize() ]</em></a><br>
+GDS-)<a href="#OOoGDS8d"><em>[General]</em>先頭文字のみ大文字(複数文字)[Title文字化]<em>[ title() / istitle() ]</em></a><br>
+GDS-)<a href="#OOoGDS9a"><em>[General]</em>文字列を1文字毎にする(英数字)</a><br>
+GDS-)<a href="#OOoGDS9b"><em>[General]</em>文字列を1文字毎にする(日本語)</a><br>
+GDS-)<a href="#OOoGDS13a"><em>[General]</em>文字列の分割<em>[ .split('') / .rsplit() ]</em></a><br>
+GDS-)<a href="#OOoGDS13b"><em>[General]</em>文字列を改行部分で分割<em>[ .splitlines() ]</em></a><br>
+GDS-)<a href="#OOoGDS13c"><em>[General]</em>任意の文字で分割(Return : tuple型)<em>[ .partition / rpartition ]</em></a><br>
+GDS-)<a href="#OOoGDS11a"><em>[General]</em>文字の前後の半角Spaceを取り除く[ 2.7系 ]<em>[ .strip() ]</em></a><br>
+GDS-)<a href="#OOoGDS11a2"><em>[General]</em>文字の前後の半角Spaceを取り除く[ 3.3系 ]<em>[ .strip() ]</em></a><br>
+GDS-)<a href="#OOoGDS11b"><em>[General]</em>文字の先頭/末尾のSpaceを取り除く<em>[ .lstrip / .rstrip ]</em></a><br>
+GDS-)<a href="#OOoGDS12a"><em>[General]</em>文字の置換<em>[ .replace(,) ]</em></a><br>
+GDS-)<a href="#OOoGDS12b"><em>[General]</em>複数文字の置換<em>[ .translate(str.maketrans(,)) ]</em></a><br>
+GDS-)<a href="#OOoGDS14a"><em>[General]</em>文字の左に半角空白を追加する<em>[ rjust() ]</em></a><br>
+GDS-)<a href="#OOoGDS14b"><em>[General]</em>文字の右に半角空白を追加する<em>[ ljust() ]</em></a><br>
+GDS-)<a href="#OOoGDS14c"><em>[General]</em>文字の左右に半角空白を追加する<em>[ center() ]</em></a><br>
+GDS-)<a href="#OOoGDS15a"><em>[General]</em>文字の左に半角英数字/記号を追加する<em>[ rjust(,'') ]</em></a><br>
+GDS-)<a href="#OOoGDS15b"><em>[General]</em>文字の右に半角英数字/記号を追加する<em>[ ljust(,'') ]</em></a><br>
+GDS-)<a href="#OOoGDS15c"><em>[General]</em>文字の左右に半角英数字/記号を追加する<em>[ center(,'') ]</em></a><br>
+GDS-)<a href="#OOoGDS16a"><em>[General]</em>Binary文字列<em>[ bin ]</em></a><br>
+GDS-)<a href="#OOoGDS17a"><em>[General]</em>Unicode番号を文字列へ変換<em>[ chr ]</em></a><br>
+GDS-)<a href="#OOoGDS17b"><em>[General]</em>unicode番号を文字列へ変換[ 2.7系 ]<em>[ unichr ]</em></a><br>
+GDS-)<a href="#OOoGDS10a"><em>[General]</em>文字をUnicode番号へ変換<em>[ ord() ]</em></a><br>
+GDS-)<a href="#OOoGDS18a"><em>[General]</em>文字列をASCII Codeへ変換[ 2.7系 ]<em>[ ord ]</em></a><br>
+GDS-)<a href="#OOoGDS19a"><em>[General]</em>文字列の比較演算<em>[ cmp ]</em></a><br>
+GDS-)<a href="#OOoGDS19b"><em>[General]</em>複数の文字列の比較演算<em>[  ]</em></a><br>
+GDS-)<a href="#OOoGDS20a"><em>[General]</em>文字列表記の計算<em>[ eval ]</em></a><br>
+GDS-)<a href="#OOoGDS21a"><em>[General]</em>join methodでList / 文字列を結合する1<em>[ .join() ]</em></a><br>
+GDS-)<a href="#OOoGDS21b"><em>[General]</em>join methodでList / 文字列を結合する2<em>[ .join(str(x*x) for x in range(10)) ]</em></a><br>
+GDS-)<a href="#OOoGDS22a"><em>[General]</em>文字列からの文字抽出( Left / Mid / Right )<em>[ oStr[ : ] ]</em></a><br>
+GDS-)<a href="#OOoGDS23a"><em>[General]</em>Space＆記号が含まれていないかCheck<em>[ .isalnum ]</em></a><br>
+GDS-)<a href="#OOoGDS24a"><em>[General]</em>Space＆記号＆数字が含まれていないかCheck<em>[ .isalpha ]</em></a><br>
+GDS-)<a href="#OOoGDS25a"><em>[General]</em>識別子又はKeywordかどうかCheck<em>[ .isidentifier ]</em></a><br>
+GDS-)<a href="#OOoGDS26a"><em>[General]</em>印字可能文字かどうかCheck<em>[ .isprintable ]</em></a><br>
+GDS-)<a href="#OOoGDS27a"><em>[General]</em>空白文字のみかどうかCheck<em>[ .isspace ]</em></a><br>
+GDS-)<a href="#OOoGDS"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+
+
+<br><br><br>
+<h1><center>###【 Following <a href="Python_Macro_General_No3.html">Python / General No.3</a> 】###</center></h1>
+
+
+
+<br><br><br><br><br><br><br><br><br><br>
+<h3><center>******************************[ Macro Code ]******************************</center></h3>
+<br>
+
+<h3>【　General No.2　】<h3>
+<p class="s1">Data</p class="s1">
+<a name="OOoGDa01a"><h6>GDa-)<em>[General]</em>変数の型をCheck・判別</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/01DataType01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oTuple = ('tuple1','tuple2')
+		oList = ['list1','list2']
+		oDict = {'1':'dict1','2':'dist2'}
+		oString = 'Tape'
+		oCheckType = []
+		oCheckType.append(oTuple)
+		oCheckType.append(oList)
+		oCheckType.append(oDict)
+		oCheckType.append(oString)
+		oDisp = u'[ 変数の型 ]\n\t'
+		for i in oCheckType:
+			if isinstance(i,tuple):
+				for j in i:
+					oDisp = oDisp + str(j) + u' ⇒ tuple \n\t'
+			elif isinstance(i,list):
+				for j in i:
+					oDisp = oDisp + str(j) + u' ⇒ list \n\t'
+			elif isinstance(i,dict):
+				for j in i:
+					oDisp = oDisp + str(j) + u' ⇒ dict \n\t'
+			else:
+				oDisp = oDisp + str(i) + u' ⇒ String \n\t'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'変数の型をCheck・判別')
+</code></pre><br>
+
+
+<a name="OOoGDa01b"><h6>GDa-)<em>[General]</em>文字列のCheck・判別[ 2.7系 ]</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01String_isinstance01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oStr = 'Hello world!!'
+		oUCd = unicode('こんにちは!!','utf-8')
+		oIsInce1 = isinstance(oStr,basestring)
+		oIsInce2 = isinstance(oStr,(str,unicode))
+		oIsInce3 = isinstance(oUCd,basestring)
+		oDisp = unicode('[ String / unicode型のCheck ]\n\n','utf-8')\
+		+ 'isinstance(' + str(oStr) + ',basestring) = ' + str(oIsInce1) + '\n'\
+		+ 'isinstance(' + str(oStr) + ',(str,unicode)) = ' + str(oIsInce2) + '\n'\
+		+ 'isinstance(' + oUCd + ',basestring) = ' + str(oIsInce3)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDa01b2"><h6>GDa-)<em>[General]</em>文字列のCheck・判別[ 3.3系 ]</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01String_isinstance01_3_3.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oStr = u'Hello world!!'
+		oUCd = u'こんにちは!!'
+		oIsInce1 = isinstance(oStr,str)
+		# oIsInce2 = isinstance(oStr,(str,unicode))		# 3.3 : impossible
+		oIsInce3 = isinstance(oUCd,str)
+		oDisp = u'[ String型のCheck[ 3.3系 ] ]\n\n' + u'isinstance(' + oStr + u',str) = ' + str(oIsInce1) + '\n'\
+		+ u'isinstance(' + oUCd + u',str) = ' + str(oIsInce3)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'文字列のCheck・判別')
+</code></pre><br>
+
+
+<a name="OOoGDa01c"><h6>GDa-)<em>[General]</em>File ObjectのCheck・判別[ 2.7系 ]</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/01File_isinstance01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oTextFile = 'c:\\temp\\oTextMacro.txt'
+		# Readonly
+		with open(oTextFile,'rb') as oFileObj:
+			oType = isinstance(oFileObj,file)
+		oFileObj.closed
+		oDisp = unicode('[ File Object Check ]\n','utf-8')\
+		+ 'isinstance(oFileObj,file) = ' + str(oType)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDa01c2"><h6>GDa-)<em>[General]</em>File ObjectのCheck・判別[ 3.3系 ]</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01File_isinstance01_3_3.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+from io import IOBase
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oTextFile = u'c:\\temp\\oTextMacro.txt'
+		# Readonly
+		with open(oTextFile,'rb') as oFileObj:
+			oType = isinstance(oFileObj,IOBase)
+		oFileObj.closed
+		oDisp = u'[ File Object Check ]\n\t' + u'isinstance(oFileObj,IOBase)\n\t = ' + str(oType)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'File ObjectのCheck・判別')
+</code></pre><br>
+
+
+<a name="OOoGDa02a"><h6>GDa-)<em>[General]</em>float型に関する情報</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Data_float_info01.png" align="right" hspace="4" vspace="4" width="45%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oFloat = sys.float_info
+		oDisp = u'[ float型に関する情報 ]\n\n' + str(oFloat)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'float型に関する情報')
+#
+# max			: floatが表わせる最大の値
+# max_exp		: floatがradix**(e-1)を表現可能な最大整数e
+# max_10_exp	: floatが10**eを表現可能な最大整数e
+# min			: floatが表現可能な最少の正の値
+# min_exp		: radix**(e-1)が正規化floatであるような最少の整数e
+# min_10_exp	: 10**eが正規化floatであるような最少の整数e
+# dig			: digits
+# mant_dig		: mantissa digits
+# epsilon		: 1とその次の表現可能なfloat値の差
+# radix			: radix of exponent
+# rounds		: addition rounds
+</code></pre><br>
+
+
+<a name="OOoGDa03a"><h6>GDa-)<em>[General]</em>int型の最大値の定数[ 2.7系 ]</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/03maxint01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oSys = sys.maxint
+		oDisp = unicode('[ int型の最大値の定数 ]\n => ','utf-8') + str(oSys)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+
+<a name="OOoGDa04a"><h6>GDa-)<em>[General]</em>int型の最大値の定数[ 3.3系 ]</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/04maxsize01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oSys = sys.maxsize
+		oDisp = u'[ int型の最大値の定数 ]\n ⇒ ' + str(oSys) + u' ( 3.3系 )'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'int型の最大値の定数')
+</code></pre><br>
+
+
+<a name="OOoGDa05a"><h6>GDa-)<em>[General]</em>Dataの圧縮/解凍[ 2.7系 ]</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/05zlib_compress_decompress01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import zlib,binascii
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+	return msgbox.execute()
+#
+def oTest():
+	try:
+		oOrgText = 'This is the original data.'
+		oComp = zlib.compress(oOrgText)
+		oCompHex = binascii.hexlify(oComp)
+		oDeComp = zlib.decompress(oComp)
+		oDisp = u'[ Dataの圧縮/解凍 ]\n'\
+		+ '( Original Data )\n' + str(oOrgText) + '\n\n'\
+		+ '( Compress )\n' + str(oCompHex) + '\n\n'\
+		+ '( Decompress )\n' + str(oDeComp)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGDa05b"><h6>GDa-)<em>[General]</em>Dataの圧縮/解凍[ 3.3系 ]</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/05bzlib_com_decomp3_3_01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import zlib,binascii
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oOrgText = b'This is the original data.'	# 3.3 : Byte型 / String型は不可 
+		oComp = zlib.compress(oOrgText)
+		oCompHex = binascii.hexlify(oComp)
+		oDeComp = zlib.decompress(oComp)
+		oDisp = u'[ Dataの圧縮/解凍(3.3系) ]\n' + u'( Original Data )\n' + str(oOrgText) + '\n\t ↓ \t\n'\
+		+ '( Compress )\n' + str(oCompHex) + '\n\t ↓ \t\n' + '( Decompress )\n' + str(oDeComp)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'Dataの圧縮/解凍')
+</code></pre><br>
+
+
+<a name="OOoGDa"><h6>GDa-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ Number ]</p class="s3">
+<a name="OOoGDN1"><h6>GMN-)<em>[General]</em>足し算</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+def oTest():
+    # 整数の除算は floor (実数の解を越えない最大の整数) を返す:
+    try:
+        num1 = 7
+        num2 = 3
+        num = num1 + num2
+        oDisp = num
+        omsgbox(oDisp)
+                    
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGDN2"><h6>GMN-)<em>[General]</em>引き算</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+#
+def oTest():
+    # 整数の除算は floor (実数の解を越えない最大の整数) を返す:
+    try:
+        num1 = 7
+        num2 = 3
+        num = num1 - num2
+        oDisp = num
+        omsgbox(oDisp)                   
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGDN3"><h6>GMN-)<em>[General]</em>掛け算</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+def oTest():
+    # 整数の除算は floor (実数の解を越えない最大の整数) を返す:
+    try:
+        num1 = 7
+        num2 = 3
+        num = (num1+2) * (num2+1)
+        oDisp = num
+        omsgbox(oDisp)
+                    
+    except:
+        pass
+</code></pre><br>
+
+<a name="OOoGDN4a"><h6>GMN-)<em>[General]</em>割り算(1)[整数/整数](ver2.7)</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+#
+def oTest():
+    # 整数の除算は floor (実数の解を越えない最大の整数) を返す(ver2.7) / ver3.3では 整数/整数の除算でも小数部を含めて返す:
+    try:
+        num1 = 7
+        num2 = 3
+        num = (num1+2) / (num2+1)
+        oDisp = num
+        omsgbox(oDisp)                
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGDN4b"><h6>GMN-)<em>[General]</em>割り算(2)[実数/実数]</h6></a><pre><code>
+# python Marco
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    
+    try:
+        num1 = 7.5
+        num2 = 3.1
+        num = (num1+2) / (num2+1)
+        oDisp = num
+        omsgbox(oDisp)
+                    
+    except:
+        pass
+</code></pre><br>
+
+
+
+<a name="OOoGDN4c"><h6>GMN-)<em>[General]</em>整数の余り</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+def oTest():
+    try:
+        num1 = 7
+        num2 = 3
+        num = (num1+2) % (num2+1)
+        oDisp = num
+        omsgbox(oDisp)         
+    except:
+        pass
+#
+# [ Note ]
+# 整数の除算は floor (実数の解を越えない最大の整数) を返すので、厳密解で無い場合ある。
+# 従い 10.3 % 1.2 ≠ math.fmod(10.3,1.2) である。
+    
+</code></pre><br>
+
+
+<a name="OOoGDN4dV2"><h6>GMN-)<em>[General]</em>整数の割り算(ver2.7)</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01Number/05DivisionInt01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oInt1 = 1		# 整数型
+		oInt2 = 3
+		oReal1 = 1.0	# 実数型
+		oReal2 = 3.0
+		oDiv1 = oInt1 / oInt2
+		oDiv2 = float(oInt1/oInt2)
+		oDiv3 = float(oInt1) / float(oInt2)
+		oDiv4 = oReal1 / oReal2
+		oDiv5 = oReal1 / oInt2
+		oDisp = unicode('[ 整数( int / long )型の除算 ]','utf-8') + '\n\
+		 ' + str(oInt1) + ' / ' + str(oInt2) + ' = ' + str(oDiv1) + '\n\
+		 ' + 'float(' + str(oInt1) + ' / ' + str(oInt2) + ') = ' + str(oDiv2) + '\n\
+		 ' + 'float(' + str(oInt1) + ')/float(' + str(oInt2) + ') = ' + str(oDiv3) + '\n\
+		 ' + str(oReal1) + ' / ' + str(oReal2) + ' = ' + str(oDiv4) + '\n\
+		 ' + str(oReal1) + ' / ' + str(oInt2) + ' = ' + str(oDiv5)
+		 
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+#
+# [ Note ]
+# ver2.7でも　from __future__ import division とするver3.3と同様に「整数同士の割り算でも割りきれない場合は実数にする」というmodeになるらしい。
+</code></pre><br>
+
+
+<a name="OOoGDN4dV3"><h6>GMN-)<em>[General]</em>整数の割り算(ver3.3)</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01Number/05DivisionIntV301.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def Test():
+	try:
+		# Ver3.3 の 整数/整数は、小数までReturnされる
+		oInt1 = 1		# 整数型
+		oInt2 = 3
+		oReal1 = 1.0	# 実数型
+		oReal2 = 3.0
+		oDiv1 = oInt1 / oInt2		# int(oInt1) / int(oInt2)でも結果は同じ
+		oDiv2 = float(oInt1/oInt2)
+		oDiv3 = float(oInt1) / float(oInt2)
+		oDiv4 = oReal1 / oReal2
+		oDiv5 = oReal1 / oInt2
+		oDisp = u'[ 整数( int / long )型の除算(ver3.3) ]\n'\
+		+ str(oInt1) + ' / ' + str(oInt2) + ' = ' + str(oDiv1) + '\n'\
+		+ 'float(' + str(oInt1) + ' / ' + str(oInt2) + ') = ' + str(oDiv2) + '\n'\
+		+ 'float(' + str(oInt1) + ')/float(' + str(oInt2) + ') = ' + str(oDiv3) + '\n'\
+		+ str(oReal1) + ' / ' + str(oReal2) + ' = ' + str(oDiv4) + '\n'\
+		+ str(oReal1) + ' / ' + str(oInt2) + ' = ' + str(oDiv5)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDN4e"><h6>GMN-)<em>[General]</em>整数の割り算と余り</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01Number/06Divmod01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oInt1 = 5		# 整数型
+		oInt2 = 3
+		oReal1 = 5.0	# 実数型
+		oReal2 = 3.0
+		oDiv1 = divmod(oInt1,oInt2)		# ReturnはTuple
+		oDiv2 = divmod(oReal1,oReal2)
+		oDiv3 = divmod(oReal1,oInt2)
+		oDisp = u'[ 除算の商と余り ]\n\t divmod(' + str(oInt1) + ',' + str(oInt2) + ') = ' + str(oDiv1) + '\n\t'\
+		+ ' divmod(' + str(oReal1) + ',' + str(oReal2) + ') = ' + str(oDiv2) + '\n\t'\
+		+ ' divmod(' + str(oReal1) + ',' + str(oInt2) + ') = ' + str(oDiv3)	 
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'商と余り')
+</code></pre><br>
+
+
+<a name="OOoGDN4f"><h6>GMN-)<em>[General]</em>浮動小数点の余り</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/01Number/10fmod01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oReal1 = -10.0
+		oReal2 = 3.5
+		oReal3 = 10.0
+		oReal4 = -3.5
+		oDiv1 = math.fmod(oReal1,oReal2)
+		oDiv2 = oReal1 % oReal2
+		oDiv3 = math.fmod(oReal3,oReal4)
+		oDiv4 = oReal3 % oReal4
+		oDisp = u'[ 浮動小数点の余り ]\n\t math.fmod( ' + str(oReal1) + ', ' + str(oReal2) + ') = ' + str(oDiv1) + '\n\t '\
+		+ str(oReal1) + ' % ' + str(oReal2) + ' = ' + str(oDiv2) + '\n\t '\
+		+ 'math.fmod( ' + str(oReal3) + ', ' + str(oReal4) + ') = ' + str(oDiv3) + '\n\t '\
+		+ str(oReal3) + ' % ' + str(oReal4) + ' = ' + str(oDiv4)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'余り')
+#
+# [ 浮動小数点の割り算の注意 ]
+# 「x % y」のReturnの正負符号(+-)は必ず分母(ｙ)の符号と同じになる。
+# 浮動小数点を含む「x % y」では厳密解が得られない時がある。
+# 余りの計算には　浮動小数点 => math.fmod(x,y) / 整数 => x % yを利用する方が良い。
+</code></pre><br>
+
+
+<a name="OOoGDN4g"><h6>GMN-)<em>[General]</em>精度の良い計算</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01Number/17decimal01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+from decimal import *
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oInt1 = 8765
+		oInt2 = 4321
+		oPI = math.pi
+		oDcml1 = Decimal(oInt1) / Decimal(oInt2)
+		oDcml2 = Decimal(str(oPI)) ** Decimal('12.345')		# float型は文字列型に変換する
+		oDisp = u'[ 精度の良い計算 ]\n\t'\
+		+ ' Decimal(' + str(oInt1) + ') / Decimal(' + str(oInt2) + ')\n\t = ' + str(oDcml1) + '\n\n\t'\
+		+ ' oPI = ' + str(oPI) + '\n\t Decimal(str(oPI)) ** Decimal(\'12.345\')\n\t = ' + str(oDcml2)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'decimal')
+#
+# Decimal(x)の引数xは整数か文字列である事が必須。
+# float型をdecimal型に変換するには一度、文字列にする必要がある。
+</code></pre><br>
+
+
+
+<a name="OOoGDN05a"><h6>GMN-)<em>[General]</em>実数(浮動小数点)</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01Number/05aFloat01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		num1 = 7.5
+		num2 = 3.1
+		num = (num1+2) / (num2+1)
+		oDisp = '(' + str(num1) + '+2)/(' + str(num2) + '+1)\n = ' + str(float(num))
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'float')
+#
+# [ 浮動小数点型(float)についての注意 ]
+# 通常、Pythonの浮動小数点型は53bit以上の精度を持たないので、結果的に
+# 「 abs(x) >= 2 ** 52 」であるような浮動小数点「x」は小数点を持たなくなる。
+# Platformにおける「C double型」と同じ
+</code></pre><br>
+
+
+<a name="OOoGDN06a"><h6>GMN-)<em>[General]</em>整数型</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01Number/06aInt01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		num1 = 7.5
+		num2 = 3.1
+		num = (num1+2) / (num2+1)
+		oDisp = '(' + str(num1) + '+2)/(' + str(num2) + '+1)\n = ' + str(int(num))
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'int')
+</code></pre><br>
+
+
+<a name="OOoGDN6b"><h6>GMN-)<em>[General]</em>指数</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01Number/12exp01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oNum = 2.5
+		oExp = math.exp(oNum)
+		oExp_1 = math.exp(oNum)-1
+		oExpm1 = math.expm1(oNum)	# 厳密な math.exp(oNum)-1 をReturn
+		oDisp = u'[ 指数 ]\n\t exp(' + str(oNum) + ') = ' + str(oExp) + '\n\t exp(' + str(oNum) + ') - 1 = '\
+		+ str(oExp_1) + '\n\t ' + 'expm1(' + str(oNum) + ') = ' + str(oExpm1)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'exp/expm1')
+</code></pre><br>
+
+
+<a name="OOoGDN6c"><h6>GMN-)<em>[General]</em>対数</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/01Number/13math_log01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oNum = 2.5
+		oX = 16		# Logの基数⇒ int 型
+		oLogX = math.log(oNum,oX)
+		oLogE = math.log(oNum)
+		oLogE2 = math.log1p(oNum)	# ver3.2で追加
+		oLog10 = math.log10(oNum)
+		oLog2 = math.log2(oNum)		# ver3.3で追加
+		oDisp = u'[ 対数 ]\n\t 基数16の対数\n => Log16(' + str(oNum) + ') = ' + str(oLogX) + '\n\n\t'\
+		+ u' 自然対数\n => LogE(' + str(oNum) + ') = ' + str(oLogE) + '\n\n\t'\
+		+ u' 1+x の自然対数\n => LogE(' + str(oNum) + '+1) = ' + str(oLogE2) + '\n\n\t'\
+		+ u' 基数10の対数\n => Log10(' + str(oNum) + ') = ' + str(oLog10) + '\n\n\t'\
+		+ u' 基数2の対数\n => Log2(' + str(oNum) + ') = ' + str(oLog2)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'対数')
+</code></pre><br>
+
+
+<a name="OOoGDN6d"><h6>GMN-)<em>[General]</em>平方根</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/01Number/14math_sqrt01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oNum = 2.5
+		oSqrt1 = math.sqrt(oNum)
+		oSqrt2 = oNum ** (1.0/2.0)		# ()内は実数の事。整数だと「0」になってしまう。
+		oSqrt3 = pow(oNum,1.0/2.0)
+		oDisp = u'[ 平方根 ]' + '\n\t math.sqrt(' + str(oNum) + ') = ' + str(oSqrt1) + '\n\t　'\
+		+ str(oNum) + ' ** (1.0/2.0) = ' + str(oSqrt2) + '\n\t　' + 'pow(' + str(oNum) + ',1.0/2.0) = ' + str(oSqrt3)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'平方根')
+</code></pre><br>
+
+
+
+<a name="OOoGDN07a"><h6>GMN-)<em>[General]</em>複素数</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01Number/07aReal_Imag01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		num1 = 7.5+3j
+		numR = num1.real
+		numJ = num1.imag
+		oDisp = str(num1) + '\n\t 実数部 = ' + str(numR) + '\n\t 虚数部 = ' + str(numJ)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'複素数')
+</code></pre><br>
+
+
+<a name="OOoGDN08a"><h6>GMN-)<em>[General]</em>絶対値(1)</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/01Number/04abs01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oNum1 = abs(12.34)
+		oNum2 = abs(-12.34)
+		oNum3 = abs(0.0)
+		oDisp = u'[ Absolute ]' + '\n\t' + str('abs(12.34) = ') + str(oNum1) + '\n\t'\
+		+ str('abs(-12.34) = ') + str(oNum2) + '\n\t' + str('abs(0.0) = ') + str(oNum3)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'絶対値')
+</code></pre><br>
+
+
+<a name="OOoGDN08b"><h6>GMN-)<em>[General]</em>絶対値(2)</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01Number/08bmath_fabs01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oNum1 = math.fabs(12.34)
+		oNum2 = math.fabs(-12.34)
+		oNum3 = math.fabs(0.0)
+		oDisp = u'[ math.fabs ]' + '\n\t' + str('math.fabs(12.34) = ') + str(oNum1) + '\n\t'\
+		+ str('math.fabs(-12.34) = ') + str(oNum2) + '\n\t' + str('math.fabs(0.0) = ') + str(oNum3)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'絶対値')
+</code></pre><br>
+
+
+<a name="OOoGDN9a"><h6>GMN-)<em>[General]</em>乱数</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/01Number/01random01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import random
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		random.seed()				# Randomの初期化
+		oData0 = random.random()		#0.0～1.0までのfloat値
+		oData1 = random.randrange(1,96,5)	#任意の値間且つ任意間隔の値(整数)
+		oData2 = random.uniform(1,100)		#任意の値間のfloat値
+		oData3 = random.randint(1,100)		#任意の値間のint値
+		#任意の文字列から一つの要素を取得
+		oStr = '123abcdK5?-+'				
+		oData4 = random.choice(oStr)
+		#リストの順番をShuffule
+		oList = [1,'two','three',4,'five','six']
+		oData51 = random.choice(oList)
+		oData52 = random.sample(oList,2)
+		oListBase = str(oList)
+		random.shuffle(oList)
+		oListShfle = str(oList)
+		#
+		oDisp = u'[ 乱数で取得(毎回値が変わる) ]\n\t 0) 0.0～1.0までのfloat値 ⇒ ' + str(oData0) + '\n\n\t'\
+		+ u' 1) 任意の値間且つ任意間隔のint値 ⇒ ' + str(oData1) + '\n\n\t'\
+		+ u' 2) 任意の値間のfloat値 ⇒ ' + str(oData2) + '\n\n\t'\
+		+ u' 3) 任意の値間のint値 ⇒ ' + str(oData3) + '\n\n\t'\
+		+ u' 4) 任意の文字列から一つの要素を取得\n\t' + oStr + u' ⇒ ' + str(oData4) + '\n\n\t'\
+		+ u' 5) Listを用いた乱数\n\t -- 元のList --\n\t\t' + oListBase + '\n\n\t\t'\
+		+ u' 5-1) リストの順番をShuffule\n\t\t\t ⇒ ' + str(oListShfle) + '\n\n\t\t'\
+		+ u' 5-2) リスト中からRandam選択\n\t\t\t ⇒ ' + str(oData51) + '\n\n\t\t'\
+		+ u' 5-3) リスト中から任意の個数をRandom選択\n\t\t\t ⇒ ' + str(oData52)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'乱数')
+</code></pre><br>
+
+
+<a name="OOoGDN10a"><h6>GMN-)<em>[General]</em>四捨五入</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01Number/02round01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oNum = 12345.6789
+		oRd0 = round(oNum)
+		oRd1 = round(oNum,2)
+		oRd2 = round(oNum,-1)
+		oDisp = u'[ 四捨五入 ]\n\t' + u'元数 ⇒ ' + str(oNum) + '\n\t' + u'引数無し ⇒ ' + str(oRd0) + '\n\t'\
+		+ u'小数第3位を四社五入 ⇒ ' + str(oRd1) + '\n\t' + u'1桁目を四捨五入 ⇒ ' + str(oRd2)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'Round')
+</code></pre><br>
+
+
+<a name="OOoGDN10e"><h6>GMN-)<em>[General]</em>Decimal型の四捨五入</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01Number/18decimal_quantize01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+from decimal import *
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oPI = math.pi
+		oRnd = Decimal(str(oPI)).quantize(Decimal(10)**-3)		# .quantize('0.01')は不可
+		oDisp = u'[ Decimal型の四捨五入 ]\n\t' + u'oPI = ' + str(oPI) + '\n\n\t'\
+		+ 'Decimal(str(oPI)).quantaize(Decimal(10)**-3)\n\t = ' + str(oRnd)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'Round')
+#
+# Decimal型はfloat型より精度が良い
+</code></pre><br>
+
+
+<a name="OOoGDN10b"><h6>GMN-)<em>[General]</em>小数点第1位の切り捨て / 整数表示</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01Number/02math_trunc01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oReal1 = 100.0
+		oReal2 = 3.0
+		oTrunc = math.trunc(oReal1/oReal2)
+		oDisp = u'[ 整数に切り捨て ]\n\t' + str(oReal1) + ' / ' + str(oReal2) + ' = ' + str(oTrunc)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'Rounddown')
+</code></pre><br>
+
+
+
+<a name="OOoGDN10c"><h6>GMN-)<em>[General]</em>小数点第1位の切り捨て / 浮動小数点表示(2.7系),整数表示(3.3系)</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01Number/02math_floor01.png" align="right" hspace="4" vspace="4" width="15%"><img src="Python_pic/02general/02Data/01Number/02math_floor01V3_3.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oReal1 = 100.0
+		oReal2 = 3.0
+		oFloor = math.floor(oReal1/oReal2)
+		oDisp = u'[ 切り捨て / 整数表示(3.3系) ]\n\t' + str(oReal1) + ' / ' + str(oReal2) + ' = ' + str(oFloor)
+		# 2.7系では浮動小数点表示
+		#oDisp = unicode('[ 切り捨て / 浮動小数点 ]','utf-8') + '\n\
+		# ' + str(oReal1) + ' / ' + str(oReal2) + ' = ' + str(oFloor)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'Rounddown')
+</code></pre><br>
+
+
+
+<a name="OOoGDN10d"><h6>GMN-)<em>[General]</em>小数点第1位の切り上げ / 浮動小数点表示(2.7系),整数表示(3.3系)</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/01Number/02math_ceil01.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="Python_pic/02general/02Data/01Number/02math_ceil01V3_3.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oReal1 = 100.0
+		oReal2 = 3.0
+		oFloor = math.ceil(oReal1/oReal2)
+		oDisp = u'[ 切り上げ/整数表示(3.3系) ]\n\t' + str(oReal1) + ' / ' + str(oReal2) + ' = ' + str(oFloor)
+		# 2.7系では浮動小数点表示
+		#oDisp = unicode('[ 切り上げ / 浮動小数点 ]','utf-8') + '\n\
+		# ' + str(oReal1) + ' / ' + str(oReal2) + ' = ' + str(oFloor)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'Roundup')
+</code></pre><br>
+
+
+
+<a name="OOoGDN11a"><h6>GMN-)<em>[General]</em>Max / Min</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/01Number/03max_min01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = [0,1,2,3,-2,-1]
+		oMax = max(oList)
+		oMin = min(oList)
+		oDisp = u'[ max / min ]\n\t 元List ⇒ ' + str(oList) + '\n\t Max ⇒ ' + str(oMax) + '\n\t Min ⇒ ' + str(oMin)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'最大値/最少値')
+</code></pre><br>
+
+
+
+<a name="OOoGDN12a"><h6>GMN-)<em>[General]</em>10進数(int型) ⇒ 16進数</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/01Number/07hex01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oInt1 = 15
+		oInt2 = 255
+		oInt3 = 2028
+		oHex1 = hex(oInt1)
+		oHex2 = hex(oInt2)
+		oHex3 = hex(oInt3)
+		oDisp = u'[ 16進数に変換 ]\n\t' + str(oInt1) + ' ⇒ ' + str(oHex1) + '\n\t'\
+		+ str(oInt2) + ' ⇒ ' + str(oHex2) + '\n\t' + str(oInt3) + ' ⇒ ' + str(oHex3)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'16進数')
+</code></pre><br>
+
+
+<a name="OOoGDN12b"><h6>GMN-)<em>[General]</em>10進数(float型) ⇒ 16進数 ⇒ 10進数(float型)</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/01Number/07floathex_fromhex01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oNum = 15.5
+		oHexF = float.hex(oNum)
+		oFromHex = float.fromhex(oHexF)
+		oDisp = u'[ 10進数(float型) ⇒ 16進数 ⇒ 10進数(float型) ]\n\n' + str(oNum) + ' ⇒ ' + str(oHexF) + ' ⇒ ' + str(oFromHex)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'16進数')
+#
+# 16進数文字列表現は以下の様になります。
+# [符号]['0x'整数]['.'小数部]['p'指数部]
+# 符号はOptionで,+-のいずれか。
+# 整数部と小数部は16進数の文字列で、整数部/小数部の何れかが必須(当たり前の事ですが･･･)
+# 指数部はOptionで符号がつけられる10進数です。
+</code></pre><br>
+
+
+<a name="OOoGDN13a"><h6>GMN-)<em>[General]</em>8進数</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/01Number/08oct01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oInt1 = 15
+		oInt2 = 255
+		oInt3 = 2028
+		oOct1 = oct(oInt1)
+		oOct2 = oct(oInt2)
+		oOct3 = oct(oInt3)
+		oDisp = u'[ 8進数に変換 ]\n\t' + str(oInt1) + ' ⇒ ' + str(oOct1) + '\n\t' + str(oInt2) + ' ⇒ ' + str(oOct2)\
+		+ '\n\t' + str(oInt3) + ' ⇒ ' + str(oOct3)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'8進数')
+</code></pre><br>
+
+
+
+<a name="OOoGDN14a"><h6>GMN-)<em>[General]</em>べき数</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/01Number/09power_modulo01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oInt1 = 10
+		oInt2 = 2
+		oInt3 = 12
+		oReal1 = -10.0
+		oReal2 = -2.0
+		oPow11 = pow(oInt1,oInt2)
+		oPow12 = oInt1 ** oInt2
+		oPow21 = pow(oReal1,oReal2)
+		oPow22 = oReal1 ** oReal2
+		oPow31 = pow(oInt1,oInt2,oInt3)
+		oPow32 = (oInt1 ** oInt2) % oInt3
+		oMPow1 = math.pow(oReal1, oReal2)
+		oDisp = u'[ べき乗 ]\n\t 1) pow(' + str(oInt1) + ',' + str(oInt2) + ') = ' + str(oPow11) + '\n\t'\
+		+ ' 2) ' + str(oInt1) + ' ** ' + str(oInt2) + ' = ' + str(oPow12) + '\n\t'\
+		+ ' 3) pow(' + str(oReal1) + ',' + str(oReal2) + ') = ' + str(oPow21) + '\n\t'\
+		+ ' 4) ' + str(oReal1) + ' ** ' + str(oReal2) + ' = ' + str(oPow22) + '\n\t'\
+		+ ' 5) pow(' + str(oInt1) + ',' + str(oInt2) + ',' + str(oInt3) + ') = ' + str(oPow31) + '\n\t'\
+		+ ' 6) ( ' + str(oInt1) + ' ** ' + str(oInt2) + ' ) % ' + str(oInt3) + ' = ' + str(oPow32) + '\n\n\t'\
+		+ ' 7) math.pow(' + str(oReal1) + ',' + str(oReal2) + ' = ' + str(oMPow1)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'べき乗')
+#
+# [ Note ]
+# 第3引数ある場合はoInt1～3は整数型。また第2引数(oInt2)の「+/-」は必ず「+」/ pow(oInt1,oInt2,oInt3) = (pow(oInt1,oInt2))%oInt3 だが、高速処理が可能。
+# Builtinの ** 演算子と違って、 math.pow() は両方の引数を float 型に変換します。 正確な整数の冪乗を計算するには ** もしくはBuiltinの pow() 関数を使うべき。
+</code></pre><br>
+
+
+<a name="OOoGDN15a"><h6>GMN-)<em>[General]</em>浮動小数点を小数点部と整数部に分ける</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/01Number/11modf01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oReal1 = 1234.5678
+		oReal2 = -1234.567
+		oModF1 = math.modf(oReal1)
+		oModF2 = math.modf(oReal2)		# 小数点部も「-」符号が付く
+		oDisp = u'[ 浮動小数点を整数部と小数点部に分ける ]\n  1) math.modf(' + str(oReal1) + ')\n\t = ' + str(oModF1)\
+		+ '\n  2) math.modf(' + str(oReal2) + ')\n\t = ' + str(oModF2)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'math.modf')
+</code></pre><br>
+
+
+<a name="OOoGDN16a"><h6>GMN-)<em>[General]</em>円周率 π</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/01Number/15math_pi01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oPI = math.pi
+		oDisp = u'[ 円周率 ]\n\t math.pi = ' + str(oPI)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'π')
+</code></pre><br>
+
+
+<a name="OOoGDN17a"><h6>GMN-)<em>[General]</em>自然対数基数 e</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/01Number/16math_e01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oE = math.e
+		oDisp = u'[ 自然対数基数 e ]\n\t math.e = ' + str(oE)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'e')
+</code></pre><br>
+
+
+<a name="OOoGDN18a"><h6>GMN-)<em>[General]</em>精度の違う表記を統一</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/01Number/19decimal_normalize01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+from decimal import *
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oNum1 = 2000
+		oNum2 = 2000.00000000
+		oNum3 = '2E3'
+		oNum4 = '.02E+5'
+		oDcml1 = Decimal(oNum1)
+		oDcml2 = Decimal(str(oNum2))
+		oDcml3 = Decimal(oNum3)
+		oDcml4 = Decimal(oNum4)
+		oList = [oDcml1,oDcml2,oDcml3,oDcml4]
+		oDisp = u'[ 精度の違う表記を統一 ]\n [  元の値  ]\n\t ⇒ '\
+		+ str(oNum1) + ' : ' + str(oNum2) + ' : ' + str(oNum3) + ' : ' + str(oNum4) + ' :' + '\n [ 統一表記 ]\n\t ⇒ '
+		for n in oList:
+			oDisp = oDisp + str(n.normalize()) + ' : '
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'統一表記')
+</code></pre><br>
+
+
+<a name="OOoGDN19a"><h6>GMN-)<em>[General]</em>比較演算[ 2.7系 ]</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/01Number/20cmp_func01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oNum1 = 10.0
+		oNum2 = 5.0
+		oCmp1 = cmp(oNum1,oNum2)	# 比較演算は型が同じ事。実数型と整数型で比較するとError
+		oCmp2 = cmp(oNum1,oNum1)
+		oCmp3 = cmp(oNum2,oNum1)
+		oDisp = unicode('[ cmp関数 / 比較演算 ]','utf-8') + '\n\
+		 ' + 'cmp(' + str(oNum1) + ',' + str(oNum2) + ') = ' + str(oCmp1) + '\n\
+		 ' + 'cmp(' + str(oNum1) + ',' + str(oNum1) + ') = ' + str(oCmp2) + '\n\
+		 ' + 'cmp(' + str(oNum2) + ',' + str(oNum1) + ') = ' + str(oCmp3)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGDN19b"><h6>GMN-)<em>[General]</em>複数の比較演算</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/01Number/20cmp_multi01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oNum1 = 10.0
+		oNum2 = 3.0
+		oNum3 = 5.0
+		oDisp = u'[ 複数の比較演算 ]\n'
+		if oNum1 < oNum2 <= oNum3:
+			oDisp = oDisp + str(oNum1) + ' < ' + str(oNum2) + ' <= ' + str(oNum3)
+		elif oNum1 < oNum3 <= oNum2:
+			oDisp = oDisp + str(oNum1) + ' < ' + str(oNum3) + ' <= ' + str(oNum2)
+		elif oNum2 < oNum3 <= oNum1:
+			oDisp = oDisp + str(oNum2) + ' < ' + str(oNum3) + ' <= ' + str(oNum1)
+		elif oNum2 < oNum1 <= oNum3:
+			oDisp = oDisp + str(oNum2) + ' < ' + str(oNum1) + ' <= ' + str(oNum3)
+		elif oNum3 < oNum1 <= oNum2:
+			oDisp = oDisp + str(oNum3) + ' < ' + str(oNum1) + ' <= ' + str(oNum2)
+		elif oNum3 < oNum2 <= oNum1:
+			oDisp = oDisp + str(oNum3) + ' < ' + str(oNum2) + ' <= ' + str(oNum1)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'比較演算')
+</code></pre><br>
+
+
+<a name="OOoGDN20a"><h6>GMN-)<em>[General]</em>合計取得</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/01Number/20sum01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oIter = iter(range(1,11))
+		oList = range(1,11)
+		oStart = 7
+		oSum1 = sum(oIter)
+		oSum2 = sum(oIter,oStart)	# = 0 + oStart
+		oSum3 = sum(oList,oStart)	# = sum(oIter) + oStart
+		oFSum1 = math.fsum(oIter)
+		oFSum2 = math.fsum(oList)
+		oDisp = u'[ sum / math.fsum ]\n sum(iter(range(1,11))) = ' + str(oSum1) + '\n sum(iter(range(1,11)),7) = '\
+		+ str(oSum2) + '\n sum(range(1,11),7) = ' + str(oSum3) + '\n math.fsum(iter(range(1,11))) = ' + str(oFSum1)\
+		+ '\n math.fsum(range(1,11)) = ' + str(oFSum2)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'合計')
+#
+# [ Note ]
+# 1) Referenceにはsum(iterable[,start])とあるが[,start]はsum(iterable) + startである。
+# 2) math.fsum は sumより厳密な和を返す。(和の桁落ちを防ぐ)
+</code></pre><br>
+
+
+<a name="OOoGDN21a"><h6>GMN-)<em>[General]</em>int型に変換可能かcheck</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/01Number/21isdigit01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oStr1 = '123'
+		oStr2 = '123a'
+		oStr3 = '123.45'
+		oStr4 = '+123'
+		oStr5 = '-123'
+		oIsNum1 = oStr1.isdigit()
+		oIsNum2 = oStr2.isdigit()
+		oIsNum3 = oStr3.isdigit()
+		oIsNum4 = oStr4.isdigit()
+		oIsNum5 = oStr5.isdigit()
+		oDisp = u'[ int型に変換可能かcheck ]\n\t'\
+		+ '1) ' + str(oStr1) + ' : oStr1.isgit() = ' + str(oIsNum1) + '\n\t'\
+		+ '2) ' + str(oStr2) + ' : oStr2.isgit() = ' + str(oIsNum2) + '\n\t'\
+		+ '3) ' + str(oStr3) + ' : oStr3.isgit() = ' + str(oIsNum3) + '\n\t'\
+		+ '4) ' + str(oStr4) + ' : oStr4.isgit() = ' + str(oIsNum4) + '\n\t'\
+		+ '5) ' + str(oStr5) + ' : oStr5.isgit() = ' + str(oIsNum5)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'Int型への変換')
+#
+# [ Note ]
+# 1) int()では整数以外の文字列を与えるとErrorになる。
+# 2) isdisit()は小数点や+/-が含まれていてもFalseがreturnになる。
+</code></pre><br>
+
+
+
+<a name="OOoGDN21b"><h6>GMN-)<em>[General]</em>数値型( int / float / +,-付 )に変更可能かcheck</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/01Number/21translate_to_number01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oNumeric(num_str):
+	"""文字列を数値への変更"""
+	try:
+		if num_str == 0:
+			return 0
+		else:
+			oVal = float(num_str)
+			if oVal == int(oVal):
+				return int(oVal)
+	except ValueError:
+		return None
+def oTest():
+	try:
+		oStr1 = '123'
+		oStr2 = '123a'
+		oStr3 = '123.45'
+		oStr4 = '+123'
+		oStr5 = '-123'
+		oIsNum1 = oNumeric(oStr1)
+		oIsNum2 = oNumeric(oStr2)
+		oIsNum3 = oNumeric(oStr3)
+		oIsNum4 = oNumeric(oStr4)
+		oIsNum5 = oNumeric(oStr5)
+		oDisp = u'[ 数値型に変換可能かcheck ]\n'\
+		+ "1) oNumeric('" + str(oStr1) + "') = " + str(oIsNum1) + '\n'\
+		+ "2) oNumeric('" + str(oStr2) + "') = " + str(oIsNum2) + '\n'\
+		+ "3) oNumeric('" + str(oStr3) + "') = " + str(oIsNum3) + '\n'\
+		+ "4) oNumeric('" + str(oStr4) + "') = " + str(oIsNum4) + '\n'\
+		+ "5) oNumeric('" + str(oStr5) + "') = " + str(oIsNum5)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'数値型への変換')
+#
+# exceptを利用して変換する。数値以外の値含まれているとfloat()でValueErrorが生じる事を利用している。
+</code></pre><br>
+
+
+<a name="OOoGDN22a"><h6>GMN-)<em>[General]</em>x に y の符号を付ける</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01Number/22aCopysign01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oReal1 = 50.0
+		oReal2 = -1.0
+		oRtn = math.copysign(oReal1,oReal2)	# Returnは Integer
+		oDisp = u'[ copysign ]\n\t' + 'math.copysign(' + str(oReal1) + ',' + str(oReal2) + ')\n\t = ' + str(oRtn)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'x に y の符号を付ける')
+#
+# [ Note ]
+# On a platform that supports signed zeros, copysign(1.0, -0.0) returns -1.0.
+</code></pre><br>
+
+
+<a name="OOoGDN23a"><h6>GMN-)<em>[General]</em>階乗</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01Number/23aFactorial01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oInt = 5		# Integerで無ければError。 0 も不可。
+		oRtn1 = math.factorial(oInt)
+		oRtn2 = 1
+		for i in [1,2,3,4,5]:
+			oRtn2 = oRtn2 * i
+		oDisp = u'[ 階乗 ]\n\t' + 'math.factorial(' + str(oInt) + ') = ' + str(oRtn1) + '\n\t' + u'1*2*3*4*5 = ' + str(oRtn2)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'factorial')
+</code></pre><br>
+
+
+<a name="OOoGDN24a"><h6>GMN-)<em>[General]</em>仮数と指数のPair(x,y)</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01Number/24aFrexp01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oFlt = 5.0		# Float型
+		oRtn1 = math.frexp(oFlt)
+		oDisp = u'[ 仮数と指数のPair ]\n\t' + 'math.frexp(' + str(oFlt) + ')\n\t = (x, y) = ' + str(oRtn1) + '\n\n\t ' + str(oFlt) + ' = x**2y'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'math.frexp')
+</code></pre><br>
+
+
+<a name="OOoGDN24b"><h6>GMN-)<em>[General]</em>x * (2**y)</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01Number/24bXx2xxY01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oReal1 = 10.0
+		oInt1 = 2
+		oRtn1 = math.ldexp(oReal1,oInt1)	# ver3.2で追加
+		oRtn11 = oReal1 * (2**oInt1)
+		oRtn2 = math.ldexp(oInt1,oInt1)
+		oRtn22 = oInt1 * (2**oInt1)
+		oDisp = u'[ x * (2**y)　]\n\t math.ldexp(' + str(oReal1) + ', ' + str(oInt1) + ') = ' + str(oRtn1) + ' : '\
+		+ str(oReal1) + ' * (2**' + str(oInt1) + ') = ' + str(oRtn11) + '\n\t '\
+		+ 'math.isfinite(' + str(oInt1) + ', ' + str(oInt1) + ') = ' + str(oRtn2) + ' : ' + str(oInt1) + ' * (2**' + str(oInt1) + ') = ' + str(oRtn22)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'x * (2**y)')
+#
+# [ Note ]
+# math.ldexp(x, y) / y は Integer型
+</code></pre><br>
+
+
+<a name="OOoGDN25a"><h6>GMN-)<em>[General]</em>無限大かどうかCheck</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01Number/25aIsinf01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oFlt1 = 5.0
+		oFlt2 = -1.0
+		oRtn1 = math.isinf(float('Infinity'))	# 無限大は float('inf') でもOK / 'Infinity'のみは不可 : ver3.2で追加
+		oRtn2 = math.isinf(oFlt1/oFlt2)
+		oDisp = u'[ 無限大 ]\n\t math.isinf(float(\'Infinity\')) = ' + str(oRtn1) + '\n\t '\
+		+ 'math.isinf(' + str(oFlt1) + ' / ' + str(oFlt2) + ') = ' + str(oRtn2)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'Infinity')
+</code></pre><br>
+
+
+<a name="OOoGDN26a"><h6>GMN-)<em>[General]</em>NaN( Not a number )Check</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01Number/26aIsnan01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oRtn1 = math.isnan(float('Infinity'))	# ver3.2で追加
+		oRtn2 = math.isnan(5)
+		oRtn3 = math.isnan(float('nan'))
+		oDisp = u'[ Not a Number ]\n\t math.isnan(float(\'Infinity\')) = ' + str(oRtn1) + '\n\t ' + 'math.isnan(5) = ' + str(oRtn2) + '\n\t '\
+		+ 'math.isnan(float(\'nan\')) = ' + str(oRtn3)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'NaN')
+</code></pre><br>
+
+
+<a name="OOoGDN27a"><h6>GMN-)<em>[General]</em>無限大 or NaNかどうかCheck</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01Number/27aIsfinite01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oRtn1 = math.isfinite(float('Infinity'))	# ver3.2で追加
+		oRtn2 = math.isfinite(math.pi)
+		oRtn3 = math.isfinite(float('nan'))
+		oDisp = u'[ 無限大 and NaN 以外]\n\t math.isfinite(float(\'Infinity\')) = ' + str(oRtn1) + '\n\t ' + 'math.isfinite(math.pi) = ' + str(oRtn2) + '\n\t '\
+		+ 'math.isfinite(float(\'nan\')) = ' + str(oRtn3)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'無限大 or NaN')
+#
+# [ Note ]
+# math.isfinite('LibreOffice') はError
+</code></pre><br>
+
+
+<a name="OOoGDN30a"><h6>GMN-)<em>[General]</em>角度変換</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01Number/30aDecRad01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oDec1 = 60		# 30 degree
+		oRad = math.radians(oDec1)
+		oDec2 =  math.degrees(oRad)
+		oDisp = u'[ Degree ⇔ Radian ]\n\t' + str(oDec1) + u'°\n ⇒ ' + str(oRad) + u' [rad]\n ⇒ ' + str(oDec2) + u'°'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'角度変換')
+</code></pre><br>
+
+
+<a name="OOoGDN31a"><h6>GMN-)<em>[General]</em>三角関数</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01Number/31aTrigomo01.png" align="right" hspace="4" vspace="4" width="35%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oDec1 = 30		# 30 degree
+		oRad = math.radians(oDec1)
+		oSin = math.sin(oRad)
+		oCos = math.cos(oRad)
+		oTan = math.tan(oRad)
+		oASin = math.degrees(math.asin(oSin))
+		oACos = math.degrees(math.acos(oCos))
+		oATan = math.degrees(math.atan(oTan))
+		oATan2 = math.atan2(-1, -1)
+		oHypot = math.hypot(-1, -1)
+		oDisp = u'[ 三角関数 ]\n\t 1) Sin(' + str(oDec1) + ') = ' + str(oSin) + '\n\t'\
+		+ ' 2) Cos(' + str(oDec1) + ') = ' + str(oCos) + '\n\t' + ' 3) Tan(' + str(oDec1) + ') = ' + str(oTan) + '\n\t'\
+		+ ' 4) ASin(' + str(oSin) + ') = ' + str(oASin) + u'°\n\t' + ' 5) ACos(' + str(oCos) + ') = ' + str(oACos) + u'°\n\t'\
+		+ ' 6) ATan(' + str(oTan) + ') = ' + str(oATan) + u'°\n\t' + ' 7) oATan2(-1,-1) = ' + str(oATan2) + '\n\t'\
+		+ u' 8) 原点から点(-1, -1) のベクトルの長さ = ' + str(oHypot)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'Trigonometric function')
+</code></pre><br>
+
+
+<a name="OOoGDN32a"><h6>GMN-)<em>[General]</em>双曲線関数</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01Number/32aHyperbolic01.png" align="right" hspace="4" vspace="4" width="35%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oX = 10.0
+		oE = math.e
+		oSinH = math.sinh(oX)
+		oCosH = math.cosh(oX)
+		oTanH = math.tanh(oX)
+		oASinH = math.asinh(oSinH)
+		oACosH = math.acosh(oCosH)
+		oATanH = math.atanh(oTanH)
+		oSinH2 = (oE**oX - oE**(-1*oX))/2
+		oCosH2 = (oE**oX + oE**(-1*oX))/2
+		oDisp = u'[ 双曲線関数 ]\n\t 1) sinh(' + str(oX) + ') = ' + str(oSinH) + '\n\t'\
+		+ ' 2) cosh(' + str(oX) + ') = ' + str(oCosH) + '\n\t' + ' 3) tanh(' + str(oX) + ') = ' + str(oTanH) + '\n\t'\
+		+ ' 4) Asinh(' + str(oSinH) + ') = ' + str(oASinH) + u'°\n\t' + ' 5) Acosh(' + str(oCosH) + ') = ' + str(oACosH) + u'°\n\t'\
+		+ ' 6) ATan(' + str(oTanH) + ') = ' + str(oATanH) + u'°\n\t' + ' 7) (e**' + str(oX) + ' - e**' + str(oX) + ')/2 = ' + str(oSinH2) + '\n\t'\
+		+ u' 8) (e**' + str(oX) + ' + e**' + str(oX) + ')/2 = ' + str(oCosH2)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'Hyperbolic function')
+</code></pre><br>
+
+
+<a name="OOoGDN33a"><h6>GMN-)<em>[General]</em>誤差関数/相補誤差関数</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01Number/33aErrorFunc01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oX = 10.0
+		oErf = math.erf(oX)		# .erf / .erfc 共にver3.2で追加
+		oErfC1 = math.erfc(oX)
+		oErfC2 = 1.0 - math.erf(oX)
+		oDisp = u'[ 誤差関数/相補誤差関数 ]\n\t 1) 誤差関数\n\t math.erf(' + str(oX) + ') = ' + str(oErf) + '\n\n'\
+		+ u' 2) 相補誤差関数\n\t math.erfc(' + str(oX) + ') = ' + str(oErfC1) + '\n\t 1.0 - math.erf(' + str(oX) + ') = ' + str(oErfC2)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'Error function')
+#
+# [ Note ]
+# 正規分布( Normal distribution )は以下で定義できる。
+# def phi(x):
+#    'Cumulative distribution function for the standard normal distribution'
+#    return (1.0 + erf(x / sqrt(2.0))) / 2.0
+</code></pre><br>
+
+
+<a name="OOoGDN34a"><h6>GMN-)<em>[General]</em>Gamma関数</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/01Number/34aGammaFunc01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import math
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oX = 10.0
+		oGma = math.gamma(oX)		# 共にver3.2で追加
+		oLGma = math.lgamma(oX)
+		oDisp = u'[ Gamma関数 ]\n\t 1) Gamma関数\n\t math.gamma(' + str(oX) + ') = ' + str(oGma) + '\n\n\t'\
+		+ u' 2) x のGamma関数の絶対値の自然対数\n\t math.lgamma(' + str(oX) + ') = ' + str(oLGma)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'Gamma function')
+</code></pre><br>
+
+
+<br clear="right">
+<p class="s3">[ String ]</p class="s3">
+<a name="OOoGDS0a"><h6>GDS-)<em>[General]</em>Source CodeのEncodeingを定義</h6></a><pre><code>
+Source CodeのEncodeingを定義するには、Source Codeの<em1>一行目か二行目</em1>に。
+
+ # coding: エンコーディング名
+or
+ # coding=エンコーディング名
+ 
+[ 例 ]
+ # -*- encoding: utf-8 -*-
+
+ # -*- encoding: cp932 -*-
+</code></pre><br>
+
+<a name="OOoGDS1a"><h6>GDS-)<em>[General]</em>記号（')1</h6></a><pre><code>
+#文字列はシングルまたはダブルのクォートで囲みます。
+#使用例としては通常はシングルクォートを用い、シングルクォートが含まれる文字列を書く際にはダブルクォートを使う。
+# python Marco
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    
+    try:
+        str = 'don\'t'
+        oDisp = str
+        omsgbox(oDisp)
+        
+        str = "doesn't"
+        oDisp = str
+        omsgbox(oDisp)           
+    except:
+        pass
+</code></pre><br>
+
+<a name="OOoGDS2"><h6>GDS-)<em>[General]</em>改行</h6></a><pre><code>
+#文字列はシングルまたはダブルのクォートで囲みます
+#使用例としては通常はシングルクォートを用い、シングルクォートが含まれる文字列を書く際にはダブルクォートを使う。
+# python Marco
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    
+    try:
+        str = "Today is Sunday.\n\
+            It is fine."
+        oDisp = str
+        omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGDS02b"><h6>GDS-)<em>[General]</em>Tab( タブ )</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/01Tab01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oStr = 'abc\tdefg'
+		oDisp = u'[ Tab(タブ) ]\n \'abc\\tdefg\' は\n' + oStr + u'\n と表示されます。'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'Tab')
+</code></pre><br>
+
+
+
+<a name="OOoGDS3"><h6>GDS-)<em>[General]</em>連結、反復</h6></a><pre><code>
+#文字列はシングルまたはダブルのクォートで囲みます
+#使用例としては通常はシングルクォートを用い、シングルクォートが含まれる文字列を書く際にはダブルクォートを使う。
+#
+#!
+#coding: utf-8
+# python Marco
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():    
+    try:
+        word = 'Help' + ' me! '
+        oDisp = '<' + word*5 + '>'
+        omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+<a name="OOoGDS4"><h6>GDS-)<em>[General]</em>スライス表記</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    
+    try:
+        word = 'Help' + ' me! '
+        oDisp = word[1]         # 2番目の文字
+        omsgbox(oDisp)
+        
+        oDisp = word[2:4]       #　3番目から4番目の文字
+        omsgbox(oDisp)
+        
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGDS5"><h6>GDS-)<em>[General]</em>文字長さ</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    
+    try:
+        word = 'Help' + ' me! '
+        oDisp = len(word)
+        omsgbox(oDisp)
+        
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGDS6a"><h6>GDS-)<em>[General]</em>文字列に変換1</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/02str01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    
+    try:
+        word = 'Number => '
+        oNumber = 1234
+        oDisp = word + str(oNumber)
+        omsgbox(oDisp)    
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGDS6b"><h6>GDS-)<em>[General]</em>文字列に変換2[ 2.7系 ]</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/02repr01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oNum = 0.1
+		#
+		oDisp = unicode('[ repr関数とstr関数の違い ]\n\n','utf-8')
+		oDisp = oDisp + 'str(' + str(oNum) + ') = ' + str(oNum) + '\n'
+		oDisp = oDisp + 'repr(' + str(oNum) + ') = ' + repr(oNum)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+#
+# repr()はInterpriterで読める表現にする。表現出来ない場合はSyntaxErrorが搬出する。
+# 特別なObject(文字列等)で無ければstr()と同じになる。
+</code></pre><br>
+
+
+<a name="OOoGDS6b2"><h6>GDS-)<em>[General]</em>文字列に変換2[ 3.3系 ]</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/02repr3_3_01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oNum = 0.1
+		oDisp = u'[ repr関数とstr関数の違い ]\n\n str(' + str(oNum) + ') = ' + str(oNum) + '\n repr(' + str(oNum) + ') = ' + repr(oNum)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'repr関数')
+# [ Python3.3 Documentより ]
+# オブジェクトの印字可能な表現を含む文字列を返します。この関数は多くの型について、 eval() に渡されたときと同じ値を持つようなオブジェクトを表す文字列を生成しようとします。そうでない場合は、山括弧に囲まれたオブジェクトの型の名前と追加の情報 (大抵の場合はオブジェクトの名前とアドレスを含みます) を返します。クラスは、 __repr__() メソッドを定義することで、この関数によりそのクラスのインスタンスが返すものを制御することができます。
+</code></pre><br>
+
+
+<a name="OOoGDS6c"><h6>GDS-)<em>[General]</em>長いDataを省略して表示[ 2.7系 ]</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/02repr_repr01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import repr
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+	return msgbox.execute()
+#
+def oTest():
+	try:
+		oRepr1 = repr.repr(set('supercalifraglisticexpilalidoccious'))
+		oRepr2 = repr.repr([1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0])
+		oDisp = u'[ repr表示 ]\n' + str(oRepr1) + '\n' + str(oRepr2)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGDS6c2"><h6>GDS-)<em>[General]</em>長いDataを省略して表示[ 3.3系 ]</h6></a><pre><code>
+<img src="Python_pic/02general/02String/02reprlib_repr01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import reprlib
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oRepr1 = reprlib.repr(set('supercalifraglisticexpilalidoccious'))
+		oRepr2 = reprlib.repr([1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0])
+		oDisp = u'[ 省略表示 ]\n' + str(oRepr1) + '\n' + str(oRepr2)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'reprlib　module')
+</code></pre><br>
+
+
+<a name="OOoGDS7a"><h6>GDS-)<em>[General]</em>文字列の検索1</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/01find01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oStr = u'こんにちは(Hello)!!本日は晴天なり(Today is file.)'
+		fword_1 = u'は'
+		oInStr_1 = oStr.find(fword_1)
+		oInStr_2 = oStr.find(fword_1,oInStr_1+1)
+		oInStr_3 = oStr.find(fword_1,oInStr_2+1)
+		oDisp = u'[ 検索対象の文字列 ]\n' + oStr + '\n\n'\
+		+ '1) ' + u'検索文字　： ' + fword_1 + u' ⇒ 左から ' + str(oInStr_1) + u' 番目\n'\
+		+ '2) ' + u'検索文字(2回目)　： ' + fword_1 + u' ⇒ 左から ' + str(oInStr_2) + u' 番目\n'\
+		+ '3) ' + u'検索文字(3回目)　： ' + fword_1 + u' ⇒ 左から ' + str(oInStr_3) + u' 番目'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'検索文字の位置')
+#
+# find(sub[, start[, end]])
+# 文字列中の領域 [start, end] に 文字(sub) が含まれる場合、 その最小のIndex(文字位置)を返します。
+# 文字が見つからなかった場合 -1 を返します。
+</code></pre><br>
+
+
+<a name="OOoGDS7b"><h6>GDS-)<em>[General]</em>文字列の検索2</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/01index_string.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oInStr(dStart,dStr,dSch):
+	"""index関数"""
+	try:
+		oIdx = dStr.index(dSch,dStart)
+		return oIdx
+	except ValueError:
+		return 0
+def oTest():
+	try:
+		oStr = u'こんにちは(Hello)!!本日は晴天なり(Today is file.)'
+		fword_1 = u'は'
+		oInStr_1 = oInStr(1,oStr,fword_1)
+		oInStr_2 = oInStr(oInStr_1+1,oStr,fword_1)
+		oInStr_3 = oInStr(oInStr_2+1,oStr,fword_1)
+		oDisp = u'[ 検索対象の文字列 / index ]\n' + oStr + '\n\n'\
+		+ '1) ' + u'検索文字　： ' + fword_1 + u' ⇒ 左から ' + str(oInStr_1) + u' 番目\n'\
+		+ '2) ' + u'検索文字(2回目)　： ' + fword_1 + u' ⇒ 左から ' + str(oInStr_2) + u' 番目\n'\
+		+ '3) ' + u'検索文字(3回目)　： ' + fword_1 + u' ⇒ 左から ' + str(oInStr_3) + u' 番目'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'検索文字の位置')
+#
+# index(sub[, start[, end]])
+# find() と同様ですが、sub が見つからなかった場合 ValueError を送出します。
+</code></pre><br>
+
+
+<a name="OOoGDS7c"><h6>GDS-)<em>[General]</em>文字列の先頭/末尾文字を調べる</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/01startswith01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oChkWord = 'Summer has come!!'
+		# 大文字と小文字は区別される。
+		oCW = 'su'
+		oResult = oChkWord.startswith(oCW)
+		oPreDisp = oChkWord + u' の先頭文字は\n' + oCW + u' ⇒ '
+		# true: 1 / false: 0
+		if oResult == 1:
+			oDisp= oPreDisp + u' です'
+		else:
+			oDisp= oPreDisp + u' ではありません'
+		oEw = 'come!!'
+		oResult = oChkWord.endswith(oEw)
+		oSufDisp = oDisp + u'\n\n末尾文字は\n' + oEw + u' ⇒ '
+		# true: 1 / false: 0
+		if oResult == 1:
+			oDisp= oSufDisp + u' です'
+		else:
+			oDisp= oSufDisp + u' ではありません'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'先頭/末尾 文字Check')
+</code></pre><br>
+
+
+<a name="OOoGDS7d"><h6>GDS-)<em>[General]</em>文字列中に任意の文字が含まれているか</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/01in01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oChkWord = u'夏が来た!!'
+		# 大文字と小文字は区別される。
+		oCW = u'来'
+		oResult = oCW in oChkWord
+		oPreDisp = oChkWord + u' に\n\t' + oCW
+		# true: 1 / false: 0
+		if oResult == 1:
+			oDisp= oPreDisp + u' は含まれる'
+		else:
+			oDisp= oPreDisp + u' は含まれない'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'文字Check')
+</code></pre><br>
+
+
+<a name="OOoGDS7e"><h6>GDS-)<em>[General]</em>文字列中の任意の文字数</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/07eCount01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oStr = u'こんにちは(Hello)!!本日は晴天なり(Today is file.)'
+		fword_1 = u'は'
+		oCnt = oStr.count(fword_1,3,21)	# ３文字目～21文字の間に 'は' の数
+		oDisp = u'[ 検索対象の文字数 ]\n' + oStr + '\n\n\t' + u'の3～21文字間に 「 ' + fword_1 + ' 」の数は、' + str(oCnt) + '　回'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'検索文字の数')
+</code></pre><br>
+
+
+<a name="OOoGDS8a"><h6>GDS-)<em>[General]</em>大文字か小文字かCheck</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/03isUpper_isLower01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oWord1 = 'LIBREOFFICE'
+		oWord2 = 'libreoffice'
+		oWord3 = 'LibreOffice'
+		oUpper1 = str(oWord1.islower())
+		oUpper2 = str(oWord1.isupper())
+		oLower1 = str(oWord2.islower())
+		oLower2 = str(oWord2.isupper())
+		oCmpxL1 = str(oWord3.islower())
+		oCmpxU2 = str(oWord3.isupper())
+		oDisp = '[ ' + oWord1 + u' ] \n\t Upper Character ⇒ ' + oUpper1 + u'\n\t Upper Character ⇒ ' + oUpper2\
+		+ '\n\n[ ' + oWord2 + u' ]\n\t Lower Character ⇒ ' + oLower1 + u'\n\t Lower Character ⇒ ' + oLower2\
+		+ '\n\n[ ' + oWord3 + u' ]\n\t Lower Character ⇒ ' + oCmpxL1 + u'\n\t Upper Character ⇒ ' + oCmpxU2
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'大文字/小文字Check')
+</code></pre><br>
+
+
+<a name="OOoGDS8b"><h6>GDS-)<em>[General]</em>大文字化、小文字化</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/04Upper_Lower01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oWord1 = 'LibreOffice'
+		oLower = oWord1.lower()
+		oUpper = oWord1.upper()
+		oSwap = oWord1.swapcase()
+		oCasefold = oWord1.casefold()	# ver.3.3 で追加
+		oDisp = oWord1 + u'\n\t ⇒ ' + oLower + ' ( .lower() )\n\n' + oWord1 + u'\n\t ⇒ ' + oUpper + '( .upper() )\n\n'\
+		+ oWord1 + u'\n\t ⇒ ' + oSwap + u'( .swapcase() )\n\n' + oWord1 + u'\n\t ⇒ ' + oCasefold + u'( .casefold() )'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'大文字化/小文字化')
+</code></pre><br>
+
+
+<a name="OOoGDS8c"><h6>GDS-)<em>[General]</em>先頭文字のみ大文字(1文字)</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/05Capitalize01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oWord1 = 'libreoffice'
+		oCap = oWord1.capitalize()
+		oDisp = '[ ' + oWord1 + ' ] \n\
+		 => ' + oCap
+		omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGDS8d"><h6>GDS-)<em>[General]</em>先頭文字のみ大文字(複数文字)[Title文字化]</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/06Title01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oWord1 = 'liBreOffice apache openOFFiCe'
+		oCap = oWord1.title()
+		oChkTitle1 = oWord1.istitle()
+		oChkTitle2 = oCap.istitle()
+		oDisp = u'[ Title文字化 ]\n' + oWord1 + u'\n ⇒ title文字 : ' + str(oChkTitle1) + u'\n\t ↓ \n'\
+		+ oCap + u'\n ⇒ title文字 : ' + str(oChkTitle2)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'Title文字')
+</code></pre><br>
+
+
+<a name="OOoGDS9a"><h6>GDS-)<em>[General]</em>文字列を1文字毎にする(英数字)</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/07EachWord01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+# Coding: utf-8
+# python Marco
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+def oTest():
+    try:
+		oword = 'Summer has come / 2011'	# forで使う場合、変数名の大文字はNG
+		oDisp = ''
+		for iw in oword:
+			oDisp = oDisp + iw + ' , '
+			
+		omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGDS9b"><h6>GDS-)<em>[General]</em>文字列を1文字毎にする(日本語)</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/07EachWord02.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		ouniword = u'夏が来た / 2011'
+		oDisp = ''
+		for iw in ouniword:					# forで使う場合、大文字はNG
+			oDisp = oDisp + iw + ' , '
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'1文字毎に分割')
+</code></pre><br>
+
+
+<a name="OOoGDS13a"><h6>GDS-)<em>[General]</em>文字列の分割</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/11split01.png" align="right" hspace="4" vspace="4" width="35%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oBfrWord = '＜ ＜  Summer has Come!!   ＞ ＞\n夏が 来た!!'
+		oLftSplit = str(oBfrWord.split(' ',9))		# From left 9+1分割
+		oRgtSplit = str(oBfrWord.rsplit(' ',3))		# From right　3+1分割	
+		oDisp= oBfrWord + u'\n ⇒ .split()\n' + oLftSplit + u'\n ⇒ .rsplit()\n' + oRgtSplit 
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'文字列の分割')
+#
+# [ 注意 ]
+# split([sep [,maxsplit]])
+# sep を単語の境界として文字列を単語に分割し、分割された単語 からなるListを返します。
+# (したがって返されるリストはmaxsplit+1 の要素を持ちます） maxsplit が与えられていない場合、
+# 無制限に分割が行なわれます （全ての可能な分割が行なわれる）。
+
+</code></pre><br>
+
+
+<a name="OOoGDS13b"><h6>GDS-)<em>[General]</em>文字列を改行部分で分割</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/11splitlines01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oStr1 = u'Hello!!\nToday is fine.'
+		oStr2 = 'こんにちは!!\n本日は晴天なり'
+		oSplitLines1 = oStr1.splitlines()
+		oSplitLines2 = oStr2.splitlines()
+		oDisp = u'[ 半角英数字のみ ]\n' + oStr1 + '\n ⇒ ' + str(oSplitLines1) + '\n\n[ 全角文字 ]\n' + oStr2 + '\n ⇒ ' + str(oSplitLines2)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'改行部分で分割')
+</code></pre><br>
+
+
+<a name="OOoGDS13c"><h6>GDS-)<em>[General]</em>任意の文字で分割(Return : tuple型)</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/13cPartition01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oWord = u'Summer has come / 夏が来た'
+		oPatrt1 = oWord.partition(' ')		# From left
+		oPatrt2 = oWord.rpartition(' ')		# From right
+		oPatrt11 = oWord.partition(',')		# Separate文字が無い場合は全文が、1つ目のtuple値
+		oPatrt22 = oWord.rpartition(',')	# Separate文字が無い場合は全文が、3つ目のtuple値
+		oDisp = u'[ 文字列の分割 ]\n oWord : ' + oWord + u'\n\n oWord.partition(\' \') ⇒ ' + str(oPatrt1)\
+		+ u'\n\n oWord.rpartition(\' \') ⇒ ' + str(oPatrt2) + u'\n\n oWord.partition(\',\') ⇒ ' + str(oPatrt11)\
+		+ u'\n\n oWord.rpartition(\',\') ⇒ ' + str(oPatrt22)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'文字列の分割')
+</code></pre><br>
+
+
+<a name="OOoGDS11a"><h6>GDS-)<em>[General]</em>文字の前後の半角Spaceを取り除く[ 2.7系 ]</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/09strip01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oWord1 = 'word1:'
+		oBfrWord = '    Summer has Come    '
+		oWord2 = '!!'
+		oBefore = oWord1 + unicode(oBfrWord,'utf-8') + oWord2
+		oAftWord = oBfrWord.strip()		# 全角Spaceは実行は出来るが処理が止まる。
+		oAfter = oWord1 + oAftWord + oWord2
+		oDisp= oBefore + '\n\
+		 => \n\
+		 ' + oAfter
+		omsgbox(oDisp)
+		
+	except:
+		pass
+</code></pre><br>
+
+
+<a name="OOoGDS11a2"><h6>GDS-)<em>[General]</em>文字の前後の半角Spaceを取り除く[ 3.3系 ]</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/09strip3_3_01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oWord = u'   \t\n     Summer　has come　　　!!   \n\t\t\t\t夏が来た/平成23年　　　　　\n\t　'
+		oAftWord = oWord.strip()
+		oDisp = oWord + '\n\t ↓\n' + oAftWord
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'文字列の前後のSpace削除')
+</code></pre><br>
+
+
+<a name="OOoGDS11b"><h6>GDS-)<em>[General]</em>文字の先頭/末尾のSpaceを取り除く</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/09_lstrip01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oWord1 = u'word1:'
+		oBfrWord = u'　　 Summer has Come　　　 '
+		oWord2 = u'!!'
+		oBefore = oWord1 + oBfrWord + oWord2
+		oLStrip = oBfrWord.lstrip()
+		oRStrip = oBfrWord.rstrip()
+		oLAfter = oWord1 + oLStrip + oWord2
+		oRAfter = oWord1 + oRStrip + oWord2
+		oDisp= u'[ 元の文字 ]\n' +oBefore + u'\n\n[ 先頭Space削除 ]\n' + oLAfter + u'\n\n[ 末尾Space削除 ]\n' + oRAfter
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'Spaceの削除')
+</code></pre><br>
+
+
+
+<a name="OOoGDS12a"><h6>GDS-)<em>[General]</em>文字の置換</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/10replace01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oWord1 = u'word1: '
+		oBfrWord = u'Summer has Come'
+		oWord2 = u'!!'
+		oBefore = oWord1 + oBfrWord + oWord2
+		oAftWord = oBfrWord.replace('Summer','Winter')
+		oAfter = oWord1 + oAftWord + oWord2
+		oDisp= oBefore + '\n ⇒ \n' + oAfter
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'文字の置換')
+</code></pre><br>
+
+
+<a name="OOoGDS12b"><h6>GDS-)<em>[General]</em>複数文字の置換</h6></a><pre><code>
+<img src="Python_pic/02general/02String/12bTranslate01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oWord1 = u'word: '
+		oBfrWord1 = u'Summer has Come\n\t 夏が来た!!'
+		oBefore1 = oWord1 + oBfrWord1
+		oAftWord1 = oBfrWord1.translate(str.maketrans('Summer夏','Winter冬'))
+		oAfter1 = oWord1 + oAftWord1
+		oDisp= oBefore1 + u'\n ⇒ \n' + oAfter1
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'文字の置換')
+</code></pre><br>
+
+
+<a name="OOoGDS14a"><h6>GDS-)<em>[General]</em>文字の左に半角空白を追加する</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/12rjust01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oWord1 = 'Word :'
+		oWord2 = '!!'
+		oBfrWord = 'Python'
+		oBefore = oWord1 + oBfrWord + oWord2
+		# 'Python Macro'等の様に複数Wordに対しては不可 / 元の文字数より少ない数を指定しても不可
+		oAftWord = oBfrWord.rjust(10)
+		oAfter = oWord1 + oAftWord + oWord2
+		oDisp= oBefore + '\n\
+		 => \n\
+		 ' + oAfter
+		omsgbox(oDisp)
+		
+	except:
+		pass
+</code></pre><br>
+
+
+<a name="OOoGDS14b"><h6>GDS-)<em>[General]</em>文字の右に半角空白を追加する</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/12ljust01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oWord1 = 'Word :'
+		oWord2 = '!!'
+		oBfrWord = 'Python'
+		oBefore = oWord1 + oBfrWord + oWord2
+		# 'Python Macro'等の様に複数Wordに対しては不可 / 元の文字数より少ない数を指定しても不可
+		oAftWord = oBfrWord.ljust(20)
+		oAfter = oWord1 + oAftWord + oWord2
+		oDisp= oBefore + '\n\
+		 => \n\
+		 ' + oAfter
+		omsgbox(oDisp)
+		
+	except:
+		pass
+</code></pre><br>
+
+
+<a name="OOoGDS14c"><h6>GDS-)<em>[General]</em>文字の左右に半角空白を追加する</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/12center01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oWord1 = 'Word :'
+		oWord2 = '!!'
+		oBfrWord = 'Python'
+		oBefore = oWord1 + oBfrWord + oWord2
+		# 'Python Macro'等の様に複数Wordに対しては不可 / 元の文字数より少ない数を指定しても不可
+		oAftWord = oBfrWord.center(25)
+		oAfter = oWord1 + oAftWord + oWord2
+		oDisp= oBefore + '\n\
+		 => \n\
+		 ' + oAfter
+		omsgbox(oDisp)
+		
+	except:
+		pass
+</code></pre><br>
+
+
+<a name="OOoGDS15a"><h6>GDS-)<em>[General]</em>文字の左に半角英数字/記号を追加する</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/12rjust02.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oWord1 = 'Word :'
+		oWord2 = '!!'
+		oBfrWord = 'Python'
+		oBefore = oWord1 + oBfrWord + oWord2
+		# 'Python Macro'等の様に複数Wordに対しては不可 / 元の文字数より少ない数を指定しても不可
+		# 追加する文字は半角英数字/記号の1文字のみ'0-a'等は不可
+		oAftWord = oBfrWord.rjust(20,'-')
+		oAfter = oWord1 + oAftWord + oWord2
+		oDisp= oBefore + '\n\
+		 => \n\
+		 ' + oAfter
+		omsgbox(oDisp)
+		
+	except:
+		pass
+</code></pre><br>
+
+
+<a name="OOoGDS15b"><h6>GDS-)<em>[General]</em>文字の右に半角英数字/記号を追加する</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/12ljust02.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oWord1 = 'Word :'
+		oWord2 = '!!'
+		oBfrWord = 'Python'
+		oBefore = oWord1 + oBfrWord + oWord2
+		# 'Python Macro'等の様に複数Wordに対しては不可 / 元の文字数より少ない数を指定しても不可
+		# 追加する文字は半角英数字/記号の1文字のみ'0-a'等は不可
+		oAftWord = oBfrWord.ljust(20,'0')
+		oAfter = oWord1 + oAftWord + oWord2
+		oDisp= oBefore + '\n\
+		 => \n\
+		 ' + oAfter
+		omsgbox(oDisp)
+		
+	except:
+		pass
+</code></pre><br>
+
+
+<a name="OOoGDS15c"><h6>GDS-)<em>[General]</em>文字の左右に半角英数字/記号を追加する</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/12center02.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oWord1 = 'Word :'
+		oWord2 = '!!'
+		oBfrWord = 'Python'
+		oBefore = oWord1 + oBfrWord + oWord2
+		# 'Python Macro'等の様に複数Wordに対しては不可 / 元の文字数より少ない数を指定しても不可
+		# 追加する文字は半角英数字/記号の1文字のみ'0-a'等は不可
+		oAftWord = oBfrWord.center(20,'z')
+		oAfter = oWord1 + oAftWord + oWord2
+		oDisp= oBefore + '\n\
+		 => \n\
+		 ' + oAfter
+		omsgbox(oDisp)
+		
+	except:
+		pass
+</code></pre><br>
+
+
+<a name="OOoGDS16a"><h6>GDS-)<em>[General]</em>Binary文字列</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/13binary01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oNum1 = 33
+		oNum2 = 65
+		oNum3 = 97
+		oBiny1 = bin(oNum1)		# 整数型の事
+		oBiny2 = bin(oNum2)
+		oBiny3 = bin(oNum3)
+		oDisp = unicode('[ Binary文字列 ]','utf-8') + '\n\
+		 ' + str(oNum1) + ' => ' + unicode(oBiny1,'utf-8') + '\n\
+		 ' + str(oNum2) + ' => ' + unicode(oBiny2,'utf-8') + '\n\
+		 ' + str(oNum3) + ' => ' + unicode(oBiny3,'utf-8')
+		
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+
+<a name="OOoGDS17a"><h6>GDS-)<em>[General]</em>Unicode番号を文字列へ変換</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/14ASCII_chr01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oNum1 = 33
+		oNum2 = 65
+		oNum3 = 97
+		oChar1 = chr(oNum1)		# 整数型の事
+		oChar2 = chr(oNum2)
+		oChar3 = chr(oNum3)
+		oDisp = u'[ unicode番号 ⇒ 文字列 ]\n\t' + str(oNum1) + ' ⇒ ' + oChar1 + '\n\t' + str(oNum2) + ' ⇒ ' + oChar2\
+		+ '\n\t' + str(oNum3) + ' ⇒ ' + oChar3
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'Unicode番号⇒文字列')
+</code></pre><br>
+
+
+<a name="OOoGDS17b"><h6>GDS-)<em>[General]</em>unicode番号を文字列へ変換[ 2.7系 ]</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/14unichr01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oNum1 = 33
+		oNum2 = 65
+		oNum3 = 97
+		oChr1 = unichr(oNum1)
+		oChr2 = unichr(oNum2)
+		oChr3 = unichr(oNum3)
+		oDisp = unicode('[ unicode文字列 =＞ unicode code ]','utf-8') + '\n\
+		 ' + str(oNum1) + unicode(' =＞ ','utf-8') + str(oChr1) + '\n\
+		 ' + str(oNum2) + unicode(' =＞ ','utf-8') + str(oChr2) + '\n\
+		 ' + str(oNum3) + unicode(' =＞ ','utf-8') + str(oChr3)
+		
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGDS10a"><h6>GDS-)<em>[General]</em>文字をUnicode番号へ変換</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/08EachWord_Byte01.png" align="right" hspace="4" vspace="4" width="45%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oWord1 = u'Summer has come / 2011'
+		oWord2 = u'夏が来た / 平成23年'
+		oDisp = u'[ Unicode Code Pointを表す整数へ変換 ]\n' + oWord1 + '\n ⇒ '
+		for iw in oWord1:
+			oDisp = oDisp + iw + ' = ' + str(ord(iw)) + '\t'
+		oDisp = oDisp + '\n\n' + oWord2 + '\n ⇒ '
+		for iw in oWord2:
+			oDisp = oDisp + iw + ' = ' + str(ord(iw)) + '\t'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'Unicode Code Point')
+</code></pre><br>
+
+
+<a name="OOoGDS18a"><h6>GDS-)<em>[General]</em>文字列をASCII Codeへ変換[ 2.7系 ]</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/15ASCII_ord01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oChar1 = '!'
+		oChar2 = 'A'
+		oChar3 = 'a'
+		oAsc1 = ord(oChar1)
+		oAsc2 = ord(oChar2)
+		oAsc3 = ord(oChar3)
+		oDisp = unicode('[ 文字列 => ASCII Code ]','utf-8') + '\n\
+		 ' + str(oChar1) + ' => ' + str(oAsc1) + '\n\
+		 ' + str(oChar2) + ' => ' + str(oAsc2) + '\n\
+		 ' + str(oChar3) + ' => ' + str(oAsc3)
+		
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGDS19a"><h6>GDS-)<em>[General]</em>文字列の比較演算</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/16comp_str01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oStr1 = 'OpenOffice.org'
+		oStr2 = 'LibreOffice'
+		oCmp1 = cmp(oStr1,oStr2)	# 比較演算は型が同じ事。実数型と整数型で比較するとError
+		oCmp2 = cmp(oStr1,oStr1)
+		oCmp3 = cmp(oStr2,oStr1)
+		oDisp = unicode('[ cmp関数 / 文字列の比較演算 ]','utf-8') + '\n\
+		 ' + 'cmp(\'' + oStr1 + '\',\'' + oStr2 + '\') = ' + str(oCmp1) + '\n\
+		 ' + 'cmp(\'' + oStr1 + '\',\'' + oStr1 + '\') = ' + str(oCmp2) + '\n\
+		 ' + 'cmp(\'' + oStr2 + '\',\'' + oStr1 + '\') = ' + str(oCmp3)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGDS19b"><h6>GDS-)<em>[General]</em>複数の文字列の比較演算</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/16comp_str_multi02.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oStr1 = 'OpenOffice.org'
+		oStr2 = 'LibreOffice'
+		oStr3 = 'OOo / LO'
+		oDisp = unicode('[ 複数の文字列の比較演算 ]','utf-8') + '\n'
+		if oStr1 < oStr2 <= oStr3:
+			oDisp = oDisp + '\'' + oStr1 + '\'' + ' < ' + '\'' + oStr2 + '\'' + ' <= ' + '\'' + oStr3 + '\''
+		elif oStr1 < oStr3 <= oStr2:
+			oDisp = oDisp + '\'' + oStr1 + '\'' + ' < ' + '\'' + oStr3 + '\'' + ' <= ' + '\'' + oStr2 + '\''
+		elif oStr2 < oStr3 <= oStr1:
+			oDisp = oDisp + '\'' + oStr2 + '\'' + ' < ' + '\'' + oStr3 + '\'' + ' <= ' + '\'' + oStr1 + '\''
+		elif oStr2 < oStr1 <= oStr3:
+			oDisp = oDisp + '\'' + oStr2 + '\'' + ' < ' + '\'' + oStr1 + '\'' + ' <= ' + '\'' + oStr3 + '\''
+		elif oStr3 < oStr1 <= oStr2:
+			oDisp = oDisp + '\'' + oStr3 + '\'' + ' < ' + '\'' + oStr1 + '\'' + ' <= ' + '\'' + oStr2 + '\''
+		elif oStr3 < oStr2 <= oStr1:
+			oDisp = oDisp + '\'' + oStr3 + '\'' + ' < ' + '\'' + oStr2 + '\'' + ' <= ' + '\'' + oStr1 + '\''
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGDS20a"><h6>GDS-)<em>[General]</em>文字列表記の計算</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/17eval01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+#
+def oTest():
+	try:
+		oStr = '(1+2) * 4 /2 + 1'
+		oEval = eval(oStr)
+		oDisp = 'eval("' + str(oStr) + '") = ' + str(oEval)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDS21a"><h6>GDS-)<em>[General]</em>join methodでList / 文字列を結合する1</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/18join01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = ['1','temp','python','macro']
+		oStr = 'acbdefg'
+		oDelimiter = '/'
+		oJoinStr1 = oDelimiter.join(oList)
+		oJoinStr2 = oDelimiter.join(oStr)
+		oDisp = '1) ' + oJoinStr1 + '\n' + '2) ' + oJoinStr2
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# [ 注意 ]
+# 1) Pythonのjoin() methodはListでは無く、文字列のmethodとして用意されている。
+</code></pre><br>
+
+
+<a name="OOoGDS21b"><h6>GDS-)<em>[General]</em>join methodでList / 文字列を結合する2</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/18join02.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oDelimiter = '/'
+		oJoinStr1 = oDelimiter.join(str(x * x) for x in range(10))
+		oDisp = oJoinStr1
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDS22a"><h6>GDS-)<em>[General]</em>文字列からの文字抽出( Left / Mid / Right )</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/19Left_Mid_Right01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oStr = u'こんにちは(Hello)!!本日は晴天なり(Today is file.)'
+		oLenStr = int(len(oStr))
+		oRStart = int(oLenStr - 3)
+		oLeft = oStr[0:3]			# [Start:End] / Start: 0～、End: 1～
+		oMid = oStr[3:10]
+		oRight = oStr[oRStart:oLenStr]
+		oDisp = u'[ 文字列の一部を抽出 ]\n'\
+		+ '1) ' + u'Left抽出　： ' + oLeft + '\n'\
+		+ '2) ' + u'Mid抽出  : ' + oMid + '\n'\
+		+ '3) ' + u'Right抽出 : ' + oRight
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDS23a"><h6>GDS-)<em>[General]</em>Space＆記号が含まれていないか</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/23aIsalnum01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oWord1 = u'平成２６年'
+		oWord2 = u'Ｈ２６年'
+		oWord3 = u'H26 ?'
+		oIsAlm1 = oWord1.isalnum()
+		oIsAlm2 = oWord2.isalnum()
+		oIsAlm3 = oWord3.isalnum()
+		oDisp= u'[ Ｓｐａｃｅ＆記号が含まれていないか? ]\n\t' + oWord1 + u' : ' + str(oIsAlm1) + '\n\t'\
+		+ oWord2 + u' : ' + str(oIsAlm2) + '\n\t' + oWord3 + u' : ' + str(oIsAlm3)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'Ｓｐａｃｅ＆記号')
+</code></pre><br>
+
+
+<a name="OOoGDS24a"><h6>GDS-)<em>[General]</em>Space＆記号＆数字が含まれていないかCheck</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/24aIsalpha01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oWord1 = u'平成二十六年'
+		oWord2 = u'Ｈ２６'
+		oWord3 = u'冬季オリンピックYear!'
+		oIsAlp1 = oWord1.isalpha()
+		oIsAlp2 = oWord2.isalpha()
+		oIsAlp3 = oWord3.isalpha()
+		oDisp= u'[ Ｓｐａｃｅ＆記号＆数字が含まれていないか? ]\n\t' + oWord1 + u' : ' + str(oIsAlp1) + '\n\t'\
+		+ oWord2 + u' : ' + str(oIsAlp2) + '\n\t' + oWord3 + u' : ' + str(oIsAlp3)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'Ｓｐａｃｅ＆記号＆数字')
+</code></pre><br>
+
+
+<a name="OOoGDS25a"><h6>GDS-)<em>[General]</em>識別子又はKeywordかどうかCheck</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/25aIsidentifier01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oWord1 = u'A'
+		oWord2 = u'&'
+		oWord3 = u'if'
+		oIsIfr1 = oWord1.isidentifier()
+		oIsIfr2 = oWord2.isidentifier()
+		oIsIfr3 = oWord3.isidentifier()
+		oDisp= u'[ 識別子又はKeywordかどうか? ]\n\t' + oWord1 + u' : ' + str(oIsIfr1) + '\n\t'\
+		+ oWord2 + u' : ' + str(oIsIfr2) + '\n\t' + oWord3 + u' : ' + str(oIsIfr3)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'識別子又はKeyword')
+#
+# [ Note ]
+# 識別子 (identifier) : A～Z,　a～z, _, 先頭の文字を除く数字 0～9
+# Keyword :
+# False      class      finally    is         return
+# None       continue   for        lambda     try
+# True       def        from       nonlocal   while
+# and        del        global     not        with
+# as         elif       if         or         yield
+# assert     else       import     pass
+# break      except     in         raise
+</code></pre><br>
+
+
+<a name="OOoGDS26a"><h6>GDS-)<em>[General]</em>印字可能文字かどうかCheck</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/26aIsprintable01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oWord1 = u'LibreOffice/日本語版'
+		oWord2 = u'∑'
+		oWord3 = u'\n'
+		oIsPrt1 = oWord1.isprintable()
+		oIsPrt2 = oWord2.isprintable()
+		oIsPrt3 = oWord3.isprintable()
+		oDisp= u'[ 印字可能文字かどうか? ]\n\t' + oWord1 + u' : ' + str(oIsPrt1) + '\n\t'\
+		+ oWord2 + u' : ' + str(oIsPrt2) + '\n\t' + oWord3 + u' : ' + str(oIsPrt3)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'isprintable')
+</code></pre><br>
+
+
+<a name="OOoGDS27a"><h6>GDS-)<em>[General]</em>空白文字のみかどうかCheck</h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/27aIsspace01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oWord1 = '  '
+		oWord2 = u' \n\t '
+		oWord3 = u'  \n Check'
+		oIsSpc1 = oWord1.isspace()
+		oIsSpc2 = oWord2.isspace()
+		oIsSpc3 = oWord3.isspace()
+		oDisp= u'[ 空白のみかどうか? ]\n\t' + oWord1 + u' : ' + str(oIsSpc1) + '\n\t'\
+		+ oWord2 + u' : ' + str(oIsSpc2) + '\n\t' + oWord3 + u' : ' + str(oIsSpc3)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'isspace')
+</code></pre><br>
+
+
+<a name="OOoGDS"><h6>GDS-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general/02String/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br clear="right">
+<center><h6><a href="#TopOfPage">Top of Page</a></h6></center><BR>
+
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/Python_Macro_General_No2.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:33:54 GMT -->
+</html>

@@ -1,0 +1,2790 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/OOoBasic_General6.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:17:23 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<SCRIPT language="JavaScript">
+		<!--
+			renew = new Date(document.lastModified);
+			y=renew.getYear();
+			m=renew.getMonth() + 1;
+			d=renew.getDate();
+			if(y<1900) {y=y+1900;}
+				oDate="更新日："+y+"/"+m+"/"+d;
+			document.write(oDate);
+		//-->
+	</SCRIPT>
+	
+	<title>Macroの杜(OpenOffice.org/LibreOffice Basic編)/ General No.6</title>
+</head>
+<link rel="stylesheet"
+type="text/css" href="css_macro_Basic.css">
+
+<body>
+<a name="TopOfPage"><left><p><A HREF="index-2.html">Home of site</a></p></left></a><br>
+<h1>Macroの杜<br>
+(OpenOffice.org/LibreOffice Basic編)</h1>
+		
+<h2>General No.6</h2>
+
+<center><h1>###【 Continued from <a href="OOoBasic_General5.html">General No.5</a> 】###</h1></center>
+<br>
+
+<h3><Center>**********************【 Index 】**********************</center></h3>
+
+<p class="s1">UNO(Universal Network Objects)</p class="s1">
+<ul>
+GU-1)<a href="#OOoGU1"><em>[General]</em>Typeの定義</a><br>
+GU-)<a href="#OOoGU02a"><em>[General]</em>Create UNO structure</a><br>
+GU-)<a href="#OOoGU02b"><em>[General]</em>UNO Interfaceの確認<em>[ HasUnoInterfaces() ]</em></a><br>
+GU-)<a href="#OOoGU03a"><em>[General]</em>file Access及びType取得</a><br>
+GU-4)<a href="#OOoGU4"><em>[General]</em>UNO Service数の取得</a><br>
+GU-4)<a href="#OOoGU4a"><em>[General]</em>sheetに関するUNO Service</a><br>
+GU-4)<a href="#OOoGU4b"><em>[General]</em>beansに関するUNO Service</a><br>
+GU-4)<a href="#OOoGU4c"><em>[General]</em>ucbに関するUNO Service</a><br>
+GU-4)<a href="#OOoGU4d"><em>[General]</em>configurationに関するUNO Service</a><br>
+GU-4)<a href="#OOoGU4a2"><em>[General]</em>textに関するUNO Service</a><br>
+GU-4)<a href="#OOoGU4a3"><em>[General]</em>drawingに関するUNO Service</a><br>
+GU-4)<a href="#OOoGU4a4"><em>[General]</em>presentationに関するUNO Service</a><br>
+GU-4)<a href="#OOoGU4a5"><em>[General]</em>formulaに関するUNO Service</a><br>
+GU-)<a href="#OOoGU5"><em>[General]</em>linguisticに関するUNO Service</a><br>
+GU-)<a href="#OOoGU6a"><em>[General]</em>comp.Writerに関するUNO Service</a><br>
+GU-)<a href="#OOoGU6b"><em>[General]</em>comp.documentに関するUNO Service</a><br>
+GU-)<a href="#OOoGU6c"><em>[General]</em>comp.Calcに関するUNO Service</a><br>
+GU-)<a href="#OOoGU6d"><em>[General]</em>comp.Chartに関するUNO Service</a><br>
+GU-)<a href="#OOoGU6e"><em>[General]</em>comp.Drawに関するUNO Service</a><br>
+GU-)<a href="#OOoGU6f"><em>[General]</em>comp.Impressに関するUNO Service</a><br>
+GU-)<a href="#OOoGU6g"><em>[General]</em>comp.sdに関するUNO Service</a><br>
+GU-)<a href="#OOoGU6h"><em>[General]</em>comp.Mathに関するUNO Service</a><br>
+GU-)<a href="#OOoGU6i"><em>[General]</em>comp.ooxに関するUNO Service</a><br>
+GU-)<a href="#OOoGU6j"><em>[General]</em>comp.embedに関するUNO Service</a><br>
+GU-)<a href="#OOoGU6k"><em>[General]</em>comp.deploymentに関するUNO Service</a><br>
+GU-)<a href="#OOoGU7"><em>[General]</em>langに関するUNO Service</a><br>
+GU-)<a href="#OOoGU8"><em>[General]</em>i18nに関するUNO Service</a><br>
+GU-)<a href="#OOoGU9a"><em>[General]</em>awt.Unoに関するUNO Service</a><br>
+GU-)<a href="#OOoGU9b"><em>[General]</em>awt.Dialogに関するUNO Service</a><br>
+GU-)<a href="#OOoGU9c"><em>[General]</em>awt.Displayに関するUNO Service</a><br>
+GU-)<a href="#OOoGU9d"><em>[General]</em>awt.gridに関するUNO Service</a><br>
+GU-)<a href="#OOoGU9e"><em>[General]</em>awt.Imageに関するUNO Service</a><br>
+GU-)<a href="#OOoGU9f"><em>[General]</em>awt.Layoutに関するUNO Service</a><br>
+GU-)<a href="#OOoGU9g"><em>[General]</em>awt.Pointerに関するUNO Service</a><br>
+GU-)<a href="#OOoGU9h"><em>[General]</em>awt.Printerに関するUNO Service</a><br>
+GU-)<a href="#OOoGU9i"><em>[General]</em>awt.Propertyに関するUNO Service</a><br>
+GU-)<a href="#OOoGU9j"><em>[General]</em>awt.Tabに関するUNO Service</a><br>
+GU-)<a href="#OOoGU9k"><em>[General]</em>awt.Toolkitに関するUNO Service</a><br>
+GU-)<a href="#OOoGU9l"><em>[General]</em>awt.treeに関するUNO Service</a><br>
+GU-)<a href="#OOoGU9m"><em>[General]</em>awt.XProgressに関するUNO Service</a><br>
+GU-)<a href="#OOoGU9n"><em>[General]</em>awt.Menuに関するUNO Service</a><br>
+GU-)<a href="#OOoGU10"><em>[General]</em>uiに関するUNO Service</a><br>
+GU-)<a href="#OOoGU11"><em>[General]</em>frameに関するUNO Service</a><br>
+GU-)<a href="#OOoGU12"><em>[General]</em>accessibilityに関するUNO Service</a><br>
+GU-)<a href="#OOoGU13"><em>[General]</em>animationsに関するUNO Service</a><br>
+GU-)<a href="#OOoGU14"><em>[General]</em>bridgeに関するUNO Service</a><br>
+GU-)<a href="#OOoGU15"><em>[General]</em>chart2に関するUNO Service</a><br>
+GU-)<a href="#OOoGU17"><em>[General]</em>configに関するUNO Service</a><br>
+GU-)<a href="#OOoGU18"><em>[General]</em>configurationに関するUNO Service</a><br>
+GU-)<a href="#OOoGU19"><em>[General]</em>connectionに関するUNO Service</a><br>
+GU-)<a href="#OOoGU20"><em>[General]</em>datatransferに関するUNO Service</a><br>
+GU-)<a href="#OOoGU21"><em>[General]</em>deployに関するUNO Service</a><br>
+GU-)<a href="#OOoGU22a"><em>[General]</em>form.bindingに関するUNO Service</a><br>
+GU-)<a href="#OOoGU22b"><em>[General]</em>form.componentに関するUNO Service</a><br>
+GU-)<a href="#OOoGU22c"><em>[General]</em>form.controlに関するUNO Service</a><br>
+GU-)<a href="#OOoGU22d"><em>[General]</em>form.Formに関するUNO Service</a><br>
+GU-)<a href="#OOoGU22e"><em>[General]</em>form.inspectionに関するUNO Service</a><br>
+GU-)<a href="#OOoGU22f"><em>[General]</em>form.Masterに関するUNO Service</a><br>
+GU-)<a href="#OOoGU22g"><em>[General]</em>form.Propertyに関するUNO Service</a><br>
+GU-)<a href="#OOoGU22h"><em>[General]</em>form.runtimeに関するUNO Service</a><br>
+GU-)<a href="#OOoGU22i"><em>[General]</em>form.uiに関するUNO Service</a><br>
+GU-)<a href="#OOoGU23"><em>[General]</em>galleryに関するUNO Service</a><br>
+GU-)<a href="#OOoGU24"><em>[General]</em>graphicに関するUNO Service</a><br>
+GU-)<a href="#OOoGU24b"><em>[General]</em>Handlerに関するUNO Service</a><br>
+GU-)<a href="#OOoGU25"><em>[General]</em>helpに関するUNO Service</a><br>
+GU-)<a href="#OOoGU26"><em>[General]</em>inspectionに関するUNO Service</a><br>
+GU-)<a href="#OOoGU27"><em>[General]</em>ioに関するUNO Service</a><br>
+GU-)<a href="#OOoGU28"><em>[General]</em>javaに関するUNO Service</a><br>
+GU-)<a href="#OOoGU29"><em>[General]</em>loaderに関するUNO Service</a><br>
+GU-)<a href="#OOoGU30"><em>[General]</em>loggingに関するUNO Service</a><br>
+GU-)<a href="#OOoGU31"><em>[General]</em>migrationに関するUNO Service</a><br>
+GU-)<a href="#OOoGU32"><em>[General]</em>mozillaに関するUNO Service</a><br>
+GU-)<a href="#OOoGU33"><em>[General]</em>officeに関するUNO Service</a><br>
+GU-)<a href="#OOoGU34"><em>[General]</em>oooimprovementに関するUNO Service</a><br>
+GU-)<a href="#OOoGU35"><em>[General]</em>packagesに関するUNO Service</a><br>
+GU-)<a href="#OOoGU36"><em>[General]</em>pluginに関するUNO Service</a><br>
+GU-)<a href="#OOoGU37"><em>[General]</em>rdfに関するUNO Service</a><br>
+GU-)<a href="#OOoGU38"><em>[General]</em>reflectに関するUNO Service</a><br>
+GU-)<a href="#OOoGU39"><em>[General]</em>registryに関するUNO Service</a><br>
+GU-)<a href="#OOoGU40"><em>[General]</em>renderingに関するUNO Service</a><br>
+GU-)<a href="#OOoGU41"><em>[General]</em>reportに関するUNO Service</a><br>
+GU-)<a href="#OOoGU42"><em>[General]</em>resourceに関するUNO Service</a><br>
+GU-)<a href="#OOoGU43"><em>[General]</em>scannerに関するUNO Service</a><br>
+GU-)<a href="#OOoGU44"><em>[General]</em>scriptに関するUNO Service</a><br>
+GU-)<a href="#OOoGU45"><em>[General]</em>sdbに関するUNO Service</a><br>
+GU-)<a href="#OOoGU46"><em>[General]</em>sdbcに関するUNO Service</a><br>
+GU-)<a href="#OOoGU47"><em>[General]</em>securityに関するUNO Service</a><br>
+GU-)<a href="#OOoGU48"><em>[General]</em>setupに関するUNO Service</a><br>
+GU-)<a href="#OOoGU49"><em>[General]</em>styleに関するUNO Service</a><br>
+GU-)<a href="#OOoGU51"><em>[General]</em>taskに関するUNO Service</a><br>
+GU-)<a href="#OOoGU51a"><em>[General]</em>uiに関するUNO Service</a><br>
+GU-)<a href="#OOoGU52"><em>[General]</em>uriに関するUNO Service</a><br>
+GU-)<a href="#OOoGU53"><em>[General]</em>utilに関するUNO Service</a><br>
+GU-)<a href="#OOoGU54"><em>[General]</em>uuiに関するUNO Service</a><br>
+GU-)<a href="#OOoGU55"><em>[General]</em>wizardsに関するUNO Service</a><br>
+GU-)<a href="#OOoGU56"><em>[General]</em>xformsに関するUNO Service</a><br>
+GU-)<a href="#OOoGU57"><em>[General]</em>xmlに関するUNO Service</a><br>
+GU-)<a href="#OOoGU58"><em>[General]</em>UNO Service一覧1</a><br>
+GU-)<a href="#OOoGU58b"><em>[General]</em>UNO Service一覧2</a><br>
+GU-)<a href="#OOoGU60"><em>[General]</em>Current FileのUNO Property(属性)取得</a><br>
+GU-)<a href="#OOoGU61"><em>[General]</em>Current FileのUNO情報取得及びActive Objectの確認</a><br>
+GU-)<a href="#OOoGU62"><em>[General]</em>Current Fileで使用可能なFunction､Method、Interfaceの取得</a><br>
+GU-)<a href="#OOoGU63"><em>[General]</em>Current fileにて使用可能なStyle及びStyle番号取得</a><br>
+GU-)<a href="#OOoGU64"><em>[General]</em>現在OpenしているOOo file(Component)を全て取得(OOo以外は無視)</a><br>
+GU-)<a href="#OOoGU65"><em>[General]</em>Current Documentにて有効なDialog名、数及びBasic Module名、数の取得</a><br>
+GU-)<a href="#OOoGU66"><em>[General]</em>UNO変数の作成</a><br>
+GU-)<a href="#OOoGU67"><em>[General]</em>Current fileが目的のObjectと同じか調べる<em>[ FindObject / Gimmicks library ]</em></a><br>
+</ul>
+<br>
+
+<p class="s1">Tips</p class="s1">
+<ul>
+GTip-)<a href="#OOoGTip1"><em>[General]</em>com.sun.star.PropertyValue</a><br>
+</ul>
+<br>
+
+<p class="s1">Other</p class="s1">
+<ul>
+GO-)<a href="#OOoGo01a"><em>[General]</em>「About LibreOffice」Logo表示<em>[ .uno:About ]</em></a><br>
+GO-)<a href="#OOoGO6"><em>[General]</em>各種宣言</a><br>
+GO-)<a href="#OOoGO12"><em>[General]</em>File Routines</a><br>
+GO-)<a href="#OOoGO14"><em>[General]</em>Display解像度<em>[LCD(Liquid Crystal Display)の場合]</em></a><br>
+GO-)<a href="#OOoGO16"><em>[General]</em>IIF(内部IF)の使用法</a><br>
+GO-)<a href="#OOoGO17"><em>[General]</em>DLL fileの宣言</a><br>
+GO-)<a href="#OOoGO21"><em>[General]</em>マウスのボタン判定<em class="s1">【AddinBox/VBAユーザーの為のOpenOffice.org 備忘録より抜粋】</em class="s1"></a><br>
+</ul>
+<br>
+
+
+<br><br><br><br><br><br><br><br><br><br>
+<h3><Center>**********************【 Macro Code 】**********************</center></h3>
+
+<p class="s1">Text</p class="s1">
+<p class="s3">[ Text ]</p class="s3">
+<a name="OOoGF15"><h6>GTxt-)<em>[General]</em>DummyのText　fileを作成</h6></a><pre><code>
+Sub Main
+	name_html="C:/OOo_test/test2/test_html"		 
+	dim args2(1) as new com.sun.star.beans.PropertyValue
+	dim Dummy()
+		args1(2).Name="FilterOption"
+			oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_blank", 0, Dummy())
+			document   = ThisComponent.CurrentController.Frame
+		dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+			args2(0).Name="FileName"
+			args2(0).Value="file:///" & name_html
+			args2(1).Name="Filteroption"
+			args2(1).Value="text"
+		dispatcher.executeDispatch(document, ".uno:SaveAs", "", 0, args2())
+	oDoc.Close(false)
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGF16"><h6>GTxt-)<em>[General]</em>Text　fileの読み込み</h6></a><pre><code>
+Sub Main
+	Dim FileNo As Integer
+	Dim CurrentLine As String
+	Dim outdata as String
+	Dim TxtFile,oTxtF As String
+		TxtFile="c:\OOo_test\test.txt"
+		oTxtF=ConvertToUrl(TxtFile)
+		fileNo=Freefile
+		Open oTxtF For Input As FileNo
+			Do While not eof(FileNo)
+				' Read line 
+				Line Input #FileNo, CurrentLine   
+				If CurrentLine <>"" then
+					outdata = outdata & CurrentLine & Chr(13)
+				end if
+			Loop
+		Close #fileNo
+	Msgbox(outdata)
+End Sub
+</code></pre><br>
+<br>
+
+
+<a name="OOoGF17"><h6>GTxt-)<em>[General]</em>HTML fileをTextfileに変換</h6></a><pre><code>
+Global sPath As String
+Global sDoc As Object
+Sub Main
+'現在のfile名の絶対Path
+		sDoc = ThisComponent
+		sUrl = sDoc.getLocation()
+		sPath = ConvertFromURL(sUrl) ':msgbox(spath)
+	'現ファイル名を取得
+		GlobalScope.BasicLibraries.LoadLibrary("Tools")
+		nUrl = ThisComponent.getURL
+		nFile=FileNameOutOfPath(nUrl) ':msgbox(nFile)
+		
+		oNum=Len(spath)-Len(nFile)
+	'現在のフォルダまでのPath
+		osPath=Left(sPath,oNum) ': msgbox osPath		
+	'
+		Cfolder="C:\OOo_test"
+		ofname="8test_html.html"
+		fText=Left(ofname,InStr(1,ofname,".")-1)
+
+	'batコマンド実行
+		bat_file=osPath & "Type1.bat" &" "& Cfolder & " " & ofname & " " & fText & ".txt" & " " & osPath
+	msgbox bat_file
+	Shell(bat_file)
+	'TextファイルOpen
+		Dim args1(1) as new com.sun.star.beans.PropertyValue
+		Textfile=ConvertToUrl(Cfolder & "\" & fText & ".txt")
+		wait 1000
+		args1(0).Name="Hidden"
+ 		args1(0).value=false
+ 		args1(1).Name="Readonly"
+ 		args1(1).Value=false
+ 	 	oDoc = StarDesktop.loadComponentFromURL(Textfile, "_blank", 0, args1())
+ 		oDoc.close(false)
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGTxt4"><h6>GTxt-)<em>[General]</em>Text Fileへ出力</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/01Text/01OutPutToTextFile01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oTextFileMacro
+	Dim oPath as String
+	Dim oFileName as String
+	Dim oFileNumber as Integer
+	Dim oFullFileName as String
+	Dim oPntData as String
+	Dim oJp() as String
+	Dim oEn() as String
+		oJp = Array("日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日")
+		oEn = Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
+		'
+		oPath = "c:\temp\"
+		oFileName = "oTextMacro.txt"
+		'
+		oPntData = "----- [ Text Fileへの出力 ] -----" & Chr$(10) & Chr$(10)
+		for i = 0 to UBound(oEn)
+			oPntData = oPntData & i & ") " & oEn(i) & Chr$(9) & oJp(i) & Chr$(10)
+		next i
+	' Text Fileへの出力
+		oFileNumber = FreeFile()
+		oFullFileName = oPath & oFileName
+		
+		Open oFullFileName for Append as oFileNumber
+			print #oFileNumber, oPntData		' Data Into File 
+		Close #oFileNumber
+		'
+		msgbox "Success"
+End Sub
+'
+' << File Open時のMode >>
+&emsp;'[ For Append ]
+&emsp;&emsp;'Text Fileの書き出し位置	: End
+&emsp;&emsp;'同名Fileがある時		: Open
+&emsp;&emsp;'指定Fileが無い時		: Create
+&emsp;&emsp;'Data Read 可否			: Yes 
+&emsp;&emsp;'Data Write 可否		: Yes
+&emsp;&emsp;'Comment				: Sequential Access
+&emsp;&emsp;'Mode CheckのReturn		: 8
+'
+&emsp;'[ For Imput ]
+&emsp;&emsp;'Text Fileの書き出し位置	: Start
+&emsp;&emsp;'同名Fileがある時		: Open
+&emsp;&emsp;'指定Fileが無い時		: Error
+&emsp;&emsp;'Data Read 可否			: Yes 
+&emsp;&emsp;'Data Write 可否		: No
+&emsp;&emsp;'Comment				: Sequential Access
+&emsp;&emsp;'Mode CheckのReturn		: 1
+'
+&emsp;'[ For Output ]
+&emsp;&emsp;'Text Fileの書き出し位置	: Start
+&emsp;&emsp;'同名Fileがある時		: Delete
+&emsp;&emsp;'指定Fileが無い時		: Create
+&emsp;&emsp;'Data Read 可否			: Yes 
+&emsp;&emsp;'Data Write 可否		: Yes
+&emsp;&emsp;'Comment				: Sequential Access
+&emsp;&emsp;'Mode CheckのReturn		: 2
+'
+&emsp;'[ For Binart ]
+&emsp;&emsp;'Text Fileの書き出し位置	: Start
+&emsp;&emsp;'同名Fileがある時		: Delet
+&emsp;&emsp;'指定Fileが無い時		: Create
+&emsp;&emsp;'Data Read 可否			: Yes 
+&emsp;&emsp;'Data Write 可否		: Yes
+&emsp;&emsp;'Comment				: Random Access
+&emsp;&emsp;'Mode CheckのReturn		: 16
+&emsp;'[ For random ]
+&emsp;&emsp;'Text Fileの書き出し位置	: Start
+&emsp;&emsp;'同名Fileがある時		: Delete
+&emsp;&emsp;'指定Fileが無い時		: Create
+&emsp;&emsp;'Data Read 可否			: Yes 
+&emsp;&emsp;'Data Write 可否		: Yes
+&emsp;&emsp;'Comment				: Random Access
+&emsp;&emsp;'Mode CheckのReturn		: 4
+</code></pre><br>
+
+
+
+
+<p class="s3">[ Read / Write ]</p class="s3">
+<a name="OOoGRW01a"><h6>GRW-)<em>[General]</em>OpenFileRead</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/01general2/01Read_Write/oOpenFileRead_Text.png" align="right" hspace="4" vspace="4"><IMG SRC="OOoBasic_pic/01general2/01Read_Write/oOpenFileRead.png" align="right" hspace="4" vspace="4">
+Sub oOpenFileReadSFA
+	Dim oSimpleFileAccess as Object
+	Dim oFile as String
+	Dim oOpenFileRead as Object
+	Dim oOFRTypes(100) as Long
+	Dim oOFRID(100) as Long
+	Dim oOFRPos as Long
+	Dim oOFRLen as Long
+		oSimpleFileAccess = createUnoService("com.sun.star.ucb.SimpleFileAccess")
+		oFile = "C:\temp\oTextMacro.txt"
+		If oSimpleFileAccess.Exists(oFile) then
+			oOpenFileRead = oSimpleFileAccess.openFileRead(oFile)
+			'oA = oOpenFileRead.dbg_methods	: msgbox(oA)	: 'Exit Sub
+			'oB = oOpenFileRead.dbg_properties	: msgbox(oB)	: 'Exit Sub
+			'
+			oOFRTypes = oOpenFileRead.Types
+			oOFRID = oOpenFileRead.ImplementationID
+			oOFRPos = oOpenFileRead.Position
+			oOFRLen = oOpenFileRead.Length
+			'
+			oDisp = "File Name :   " &	oFile & Chr$(10)
+			oDisp = oDisp & "<< OpenFileRead >>" & Chr$(10)  
+			oDisp = oDisp & "[ Types数 ] = " & UBound(oOFRTypes) & Chr$(10)
+			oDisp = oDisp & "[ ImplementationID数 ] = " & UBound(oOFRID) & Chr$(10)
+			oDisp = oDisp & "[ Position ] = " & oOFRPos & Chr$(10)
+			oDisp = oDisp & "[ Length ] = " & oOFRLen & " bytes"
+			MsgBox( oDisp, 0, "OpenFileRead")
+			'
+			oOpenFileRead.closeInput()
+		else
+			MsgBox( oFile & " は存在しません", 0, "Caution !!")
+			Exit Sub
+		End If
+End Sub
+'[ Note ]
+'「1」=1, 「,」=1, 「２」=2,「坂本龍馬」=8, 「ｱ」=1,「a」=1,「A」=1,「ａ」=2,「Ａ」=2
+'1+1*6+2+8+1+1+1+2+2+2(改行1回)　⇒ 26 bytes
+</code></pre><br>
+
+
+<a name="OOoGRW02a"><h6>GRW-)<em>[General]</em>OpenFileWrite</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/01general2/01Read_Write/oOpenFileWrite.png" align="right" hspace="4" vspace="4">
+Sub oOpenFileWriteSFA
+	Dim oSimpleFileAccess as object
+	Dim oFile as String
+	Dim oOpenFileWrite as Object
+	Dim oOFWTypes(100) as Long
+	Dim oOFWID(100) as Long
+	Dim oOFWPos as Long
+	Dim oOFWLen as Long
+		oSimpleFileAccess = createUnoService("com.sun.star.ucb.SimpleFileAccess")
+		oFile = "C:\temp\test.csv"
+		If oSimpleFileAccess.Exists(oFile) then
+			oOpenFileWrite = oSimpleFileAccess.openFileWrite(oFile)
+			'oA = oOpenFileRead.dbg_methods	: msgbox(oA)	: 'Exit Sub
+			'oB = oOpenFileWrite.dbg_properties	: msgbox(oB)	: 'Exit Sub
+			oOFWTypes = oOpenFileWrite.Types
+			oOFWID = oOpenFileWrite.ImplementationID
+			oOFWPos = oOpenFileWrite.Position
+			oOFWLen = oOpenFileWrite.Length
+			oDisp = "File Name :   " &	oFile & Chr$(10)
+			oDisp = oDisp & "<< OpenFile Write >>" & Chr$(10)  
+			oDisp = oDisp & "[ Types数 ] = " & UBound(oOFWTypes) & Chr$(10)
+			oDisp = oDisp & "[ ImplementationID数 ] = " & UBound(oOFWID) & Chr$(10)
+			oDisp = oDisp & "[ Position ] = " & oOFWPos & Chr$(10)
+			oDisp = oDisp & "[ Length ] = " & oOFWLen & " bytes"
+			MsgBox( oDisp, 0, "OpenFileWrite")
+			'
+			oOpenFileWrite.closeOutput()
+			' oOpenFileWrite.closeInput()		' closeInput()でも動作する
+		else
+			MsgBox( oFile & " は存在しません", 0, "Caution !!")
+			Exit Sub
+		End If
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGRW03a"><h6>GRW-)<em>[General]</em>OpenFileReadWrite</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/01general2/01Read_Write/oOpenFileReadWrite.png" align="right" hspace="4" vspace="4">
+Sub oOpenFileReadWriteSFA
+	Dim oSimpleFileAccess as Object
+	Dim oFile as String
+	Dim oOpenFileReadWrite as Object
+	Dim oOFRWTypes(100) as Long
+	Dim oOFRWID(100) as Long
+	Dim oOFRWPos as Long
+	Dim oOFRWLen as Long
+		oSimpleFileAccess = createUnoService("com.sun.star.ucb.SimpleFileAccess")
+		oFile = "C:\temp\test.csv"
+		If oSimpleFileAccess.Exists(oFile) then
+			oOpenFileReadWrite = oSimpleFileAccess.openFileReadWrite(oFile)
+			oOFRWTypes = oOpenFileReadWrite.Types
+			oOFRWID = oOpenFileReadWrite.ImplementationID
+			oOFRWPos = oOpenFileReadWrite.Position
+			oOFRWLen = oOpenFileReadWrite.Length
+			oDisp = "File Name :   " &	oFile & Chr$(10)
+			oDisp = oDisp & "<< OpenFileReadWrite >>" & Chr$(10)  
+			oDisp = oDisp & "[ Types数 ] = " & UBound(oOFRWTypes) & Chr$(10)
+			oDisp = oDisp & "[ ImplementationID数 ] = " & UBound(oOFRWID) & Chr$(10)
+			oDisp = oDisp & "[ Position ] = " & oOFRWPos & Chr$(10)
+			oDisp = oDisp & "[ Length ] = " & oOFRWLen & " bytes"
+			MsgBox( oDisp, 0, "OpenFileReadWrite")
+			'
+			oOpenFileReadWrite.closeInput()
+			' oOpenFileReadWrite.closeoutput()		' closeoutput()でも動作する。
+		else
+			MsgBox( oFile & " は存在しません", 0, "Caution !!")
+			Exit Sub
+		End If
+End Sub
+</code></pre><br>
+
+
+<p class="s1">XML</p class="s1">
+<a name="OOoGXML"><h6>GXML-)<em>[General]</em>XML Fileの構文解析</h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/02XML/01aAnalysisXML02.png" align="right" hspace="4" vspace="4" width="35%"><img src="OOoBasic_pic/01general2/02XML/01aAnalysisXML01.png" align="right" hspace="4" vspace="4" width="12%">
+Sub NetDom()
+	Dim oDocBuilder as Object
+	Dim oDom as Object
+	Dim oFile as String, oURL as String
+	Dim oDmElmt as Object
+	Dim oTopItem as String
+	Dim oChdNode1 as Object, oChdNode2 as Object
+	Dim oNodeItem1 as Object, oNodeItem2 as Object
+		oFile = "c:\temp\PythonMacroTest.xml"
+		oURL = ConvertToUrl( oFile )
+		oDocBuilder = createUnoService("com.sun.star.xml.dom.DocumentBuilder")
+		oDom = oDocBuilder.parseURI(oURL)
+		oDom.normalize()
+		'
+		oDmElmt = oDom.getDocumentElement()
+		oTopItem = oDmElmt.TagName
+		oDisp = oTopItem & Chr$(10)
+		'
+		oChdNode1 = oDmElmt.getChildNodes()
+		for i = 0 to oChdNode1.getLength() -1
+			oNodeItem1 = oChdNode1.item(i)		' item : method / not property
+			if oNodeItem1.HasChildNodes() = true then
+				oDisp = oDisp & Chr$(9) & oNodeItem1.LocalName & Chr$(10)
+				oChdNode2 = oNodeItem1.getChildNodes()
+				for k = 0 to oChdNode2.getLength() -1
+					oNodeItem2 = oChdNode2.item(k)
+					if oNodeItem2.HasChildNodes() = true then
+						oDisp = oDisp & Chr$(9) & Chr$(9) & oNodeItem2.LocalName & Chr$(10)
+					end if
+				next k
+			end if
+		next i
+		msgbox oDisp,0,"Node Name of XML"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGXML"><h6>GXML-)<em>[General]</em></h6></a><pre><code>
+<img src="OOoBasic_pic/01general2/02XML/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">Library / Module</p class="s1">
+<a name="OOoGLyMd01a"><h6>GLyMd-)<em>[General]</em>Module Source取得</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/16Library_Module/01Module_Source01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub Library()
+	Dim oLibry as Object
+	Dim oSrc as String
+		oLibry = GlobalScope.basicLibraries.getByName("Standard")
+		oSrc = oLibry.getByName("Module1")
+	msgbox oSrc,0,"Module Source"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGLyMd02a"><h6>GLyMd-)<em>[General]</em>Library List取得</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/16Library_Module/02LibraryList01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub Library()
+	Dim oLibry as Object
+	Dim oDisp as String
+		oLibry = GlobalScope.basicLibraries.getElementNames()
+		oDisp = "[ Library List ]" & Chr(10)
+		for i = 0 to UBound(oLibry)
+			oDisp = oDisp & oLibry(i) & Chr(10)
+		next i
+	msgbox oDisp,0,"Library List"
+End Sub
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<a name="OOoGLyMd02b"><h6>GLyMd-)<em>[General]</em>Module List取得</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/16Library_Module/02ModuleList01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub LibraryModule()
+	Dim oBLibrys as Object
+	Dim oLibry as Object
+	Dim oLibName as String
+	Dim oMdle() as String
+		oBLibrys = GlobalScope.basicLibraries
+		oLibName = "Gimmicks"
+		'
+		oDisp = "[ Module List ]" & Chr$(10)
+		if oBLibrys.hasByName(oLibName) then
+			oMdle = oBLibrys.getByName(oLibName).getElementNames()
+			for i = 0 to UBound(oMdle)
+				oDisp = oDisp & oMdle(i) & Chr$(10)
+			next i
+		else
+			oDisp = oDisp & " Library  : " & oLibName & " does not exist."
+		end if
+	msgbox oDisp,0,"Module List"
+End Sub
+</code></pre><br>
+
+
+
+<a name="OOoGLyMd03a"><h6>GLyMd-)<em>[General]</em>任意のLibrary / Moduleの有無Check</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/16Library_Module/03LibraryModule_hasByName01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub Library()
+	Dim oLibry as Object
+	Dim oLibName as String
+	Dim oMdleName as String
+		oLibry = GlobalScope.basicLibraries
+		oLibName = "Gimmicks"
+		oMdleName = "AutoText"
+		'
+		oDisp = "[ Library and Moduleの有無Check ]" & Chr$(10)
+		if oLibry.hasByName(oLibName) then
+			if oLibry.getByName(oLibName).hasByName(oMdleName) then
+				oDisp = oDisp & Chr$(9) & oMdleName & " of " & oLibName & " exists."
+			else
+				oDisp = oDisp & Chr$(9) & oMdleName & " of " & oLibName & " does not exist."
+			end if
+		else
+			oDisp = oDisp & " Library  : " & oLibName & " does not exist."
+		end if
+	msgbox oDisp,0,"Library / Modueの有無"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGLyMd"><h6>GLyMd-)<em>[General]</em></h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/16Library_Module/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">･UNO(Universal Network Objects)</p class="s1">
+<a name="OOoGU1"><h6>GU-1)<em>[General]</em>Typeの定義</h6></a><pre><code>
+Type PersonType
+	FirstName As String
+	LastName As String
+End Type
+Sub oPerson
+	Dim oP As PersonType
+		oP.FirstName = "坂本"
+		oP.LastName = "竜馬"
+		oMe = createObject("PersonType")
+		oMe.FirstName = "OpenOffice.org"
+		oMe.LastName = "Macro"
+	msgbox(oP.FirstName & oP.LastName  & chr$(10) & oMe.FirstName & " " & oMe.LastName)
+End Sub</code></pre><br>
+
+
+<a name="OOoGU02a"><h6>GU-)<em>[General]</em>Create UNO structure</h6></a><pre><code>
+Type PersonType
+	FirstName As String
+	LastName As String
+End Type
+Sub oCObj
+	Dim oP(0) As new com.sun.star.beans.PropertyValue
+	Dim oProp(0)
+		oPS = createObject("com.sun.star.beans.PropertyValue")
+		oProp(0) = createObject("com.sun.star.beans.PropertyValue")
+		oProp(0).Name = "FirstName"
+		oProp(0).Value = "織田"
+		oP(0).Name = "LastName"
+		oP(0).Value = "信長"
+		oPS.Name = "FirstName"
+		oPS.Value = "野茂"
+		oTy1 = TypeName(oProp)
+		oTy2 = TypeName(oP)
+		oTy3 = TypeName(oPS)
+	oUSt1 = IsUnoStruct(oProp)
+	oUSt2 = IsUnoStruct(oP)
+	oUSt3 = IsUnoStruct(oPS)
+	msgbox(oProp(0).Value  & "Type oProp(0) : " & oTy1 & "Is UNO ? : " & oUSt1 & Chr$(10) & oP(0).Name  & "Type oP(0) : " & _
+	 oTy2 & "Is UNO ? : " & oUSt2 & Chr$(10) & oPS.Value  & "Type oPS : " & oTy3 & "Is UNO ? : " & oUSt3 )
+	Dim oPU(0) As Object
+	On Error GoTo eM
+		oPU(0).Name = "LastName"
+		oPU(0).Value = "英雄"
+		oTy4 = TypeName(oPU)
+		oUSt4 = IsUnoStruct(oPU)
+	eM:
+		Print Error
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGU02b"><h6>GU-)<em>[General]</em>UNO Interfaceの確認</h6></a><pre><code>
+Sub GnUnoInterface()
+	Dim oDoc as Object, oSheet as Object
+	Dim oChk as Boolean
+		oDoc = ThisComponent
+		oSheet = oDoc.getSheets().getByName("sheet1")
+		oChk = HasUnoInterfaces( oSheet, "com.sun.star.sheet.XSpreadsheet" )
+		msgbox oChk,0,"Interface"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGU03a"><h6>GU-)<em>[General]</em>file Access及びType取得</h6></a><pre><code>
+Sub oFileAccess_Type
+	Dim oFA
+	Dim oName, oURL, oText As String
+	Dim oManager
+		oName ="C:\Temp\Witer_Macro.odt"
+		oURL = ConvertToUrl(oName)
+		oManager = GetProcessServiceManager()
+		oFA = oManager.CreateInstance("com.sun.star.ucb.SimpleFileAccess")
+		oFTy = oFA.getContentType(oURL)
+	Print oFTy
+End Sub</code></pre><br>
+
+
+<a name="OOoGU4"><h6>GU-4)<em>[General]</em>UNO Service数の取得</h6></a><pre><code>
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		sNum = UBound(uService)
+	MsgBox("SupportされているUNO module Service数は　" & Chr$(10) & sNum & "です。")
+End Sub</code></pre><br>
+
+<a name="OOoGU4a"><h6>GU-)<em>[General]</em>sheetに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/01sheet01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,5) 	':	print otmp
+			If otmp = "sheet" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGU4b"><h6>GU-)<em>[General]</em>beansに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/02beans01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,5) 	':	print otmp
+			If otmp = "beans" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGU4c"><h6>GU-)<em>[General]</em>ucbに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/03ucb01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,3) 	':	print otmp
+			If otmp = "ucb" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGU4d"><h6>GU-)<em>[General]</em>configurationに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/04configuration01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,13) 	':	print otmp
+			If otmp = "configuration" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGU4a2"><h6>GU-)<em>[General]</em>textに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/05text01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,4) 	':	print otmp
+			If otmp = "text" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU4a3"><h6>GU-)<em>[General]</em>drawingに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/07drawing01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,7) 	':	print otmp
+			If otmp = "drawing" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU4a4"><h6>GU-)<em>[General]</em>presentationに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/08presentation01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,12) 	':	print otmp
+			If otmp = "presentation" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU4a5"><h6>GU-)<em>[General]</em>formulaに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/09formula01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,7) 	':	print otmp
+			If otmp = "formula" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGU5"><h6>GU-)<em>[General]</em>linguisticに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/06linguistic01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,10) 	':	print otmp
+			If otmp = "linguistic" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGU6a"><h6>GU-)<em>[General]</em>comp.Writerに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/10comp.Writer01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,11) 	':	print otmp
+			If otmp = "comp.Writer" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGU6b"><h6>GU-)<em>[General]</em>comp.documentに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/11comp.document01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,13) 	':	print otmp
+			If otmp = "comp.document" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGU6c"><h6>GU-)<em>[General]</em>comp.Calcに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/12comp.Calc.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,9) 	':	print otmp
+			If otmp = "comp.Calc" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGU6d"><h6>GU-)<em>[General]</em>comp.Chartに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/13comp.Chart01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,10) 	':	print otmp
+			If otmp = "comp.Chart" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU6e"><h6>GU-)<em>[General]</em>comp.Drawに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/14comp.Draw01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,9) 	':	print otmp
+			If otmp = "comp.Draw" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU6f"><h6>GU-)<em>[General]</em>comp.Impressに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/15comp.Impress01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,12) 	':	print otmp
+			If otmp = "comp.Impress" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU6g"><h6>GU-)<em>[General]</em>comp.sdに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/151comp.sd01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,7) 	':	print otmp
+			If otmp = "comp.sd" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU6h"><h6>GU-)<em>[General]</em>comp.Mathに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/16comp.Math01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,9) 	':	print otmp
+			If otmp = "comp.Math" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU6i"><h6>GU-)<em>[General]</em>comp.ooxに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/17comp.oox01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,8) 	':	print otmp
+			If otmp = "comp.oox" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU6j"><h6>GU-)<em>[General]</em>comp.embedに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/18comp.embed01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,10) 	':	print otmp
+			If otmp = "comp.embed" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU6k"><h6>GU-)<em>[General]</em>comp.deploymentに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/19comp.deployment01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,15) 	':	print otmp
+			If otmp = "comp.deployment" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU7"><h6>GU-)<em>[General]</em>langに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/20lang01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,4) 	':	print otmp
+			If otmp = "lang" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU8"><h6>GU-)<em>[General]</em>i18nに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/21i18b01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,4) 	':	print otmp
+			If otmp = "i18n" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU9a"><h6>GU-)<em>[General]</em>awt.Unoに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/22awt_Uno01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,7) 	':	print otmp
+			If otmp = "awt.Uno" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU9b"><h6>GU-)<em>[General]</em>awt.Dialogに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/22_2awt.Dialog01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,10) 	':	print otmp
+			If otmp = "awt.Dialog" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU9c"><h6>GU-)<em>[General]</em>awt.Displayに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/22awt.Display02.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,11) 	':	print otmp
+			If otmp = "awt.Display" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU9d"><h6>GU-)<em>[General]</em>awt.gridに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/22_3awt.grid01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,8) 	':	print otmp
+			If otmp = "awt.grid" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU9e"><h6>GU-)<em>[General]</em>awt.Imageに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/22_4awt.Image01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,9) 	':	print otmp
+			If otmp = "awt.Image" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU9f"><h6>GU-)<em>[General]</em>awt.Layoutに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/22_5awt.Layout01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,10) 	':	print otmp
+			If otmp = "awt.Layout" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU9g"><h6>GU-)<em>[General]</em>awt.Pointerに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/22_6awt.Pointer01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,11) 	':	print otmp
+			If otmp = "awt.Pointer" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU9h"><h6>GU-)<em>[General]</em>awt.Printerに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/22_7awt.Printer01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)
+			otmp = mid(uService(i),14,11) 	':	print otmp
+			If otmp = "awt.Printer" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU9i"><h6>GU-)<em>[General]</em>awt.Propertyに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/22_8awt.Property01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)			
+		otmp = mid(uService(i),14,12) 	':	print otmp
+			If otmp = "awt.Property" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU9j"><h6>GU-)<em>[General]</em>awt.Tabに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/22_9awt.Tab01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)			
+		otmp = mid(uService(i),14,7) 	':	print otmp
+			If otmp = "awt.Tab" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU9k"><h6>GU-)<em>[General]</em>awt.Toolkitに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/22_aawt.Toolkit01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)			
+		otmp = mid(uService(i),14,11) 	':	print otmp
+			If otmp = "awt.Toolkit" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU9l"><h6>GU-)<em>[General]</em>awt.treeに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/22_bawt.tree01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)			
+		otmp = mid(uService(i),14,8) 	':	print otmp
+			If otmp = "awt.tree" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU9m"><h6>GU-)<em>[General]</em>awt.XProgressに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/22_cawt.XProgress.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)			
+		otmp = mid(uService(i),14,13) 	':	print otmp
+			If otmp = "awt.XProgress" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU9n"><h6>GU-)<em>[General]</em>awt.Menuに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/22_dawt.Menu01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)			
+		otmp = mid(uService(i),14,8) 	':	print otmp
+			If otmp = "awt.Menu" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU10"><h6>GU-)<em>[General]</em>uiに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/23ui01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)			
+		otmp = mid(uService(i),14,2) 	':	print otmp
+			If otmp = "ui" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGU11"><h6>GU-)<em>[General]</em>frameに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/24frame01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i = 0 to UBound(uService)			
+		otmp = mid(uService(i),14,5) 	':	print otmp
+			If otmp = "frame" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU12"><h6>GU-)<em>[General]</em>accessibilityに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/25accessibility01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,13) 	':	print otmp
+			If otmp = "accessibility" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU13"><h6>GU-)<em>[General]</em>animationsに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/26animations01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,10) 	':	print otmp
+			If otmp = "animations" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU14"><h6>GU-)<em>[General]</em>bridgeに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/27bridge01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,6) 	':	print otmp
+			If otmp = "bridge" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU15"><h6>GU-)<em>[General]</em>chart2に関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/28chart201.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,6) 	':	print otmp
+			If otmp = "chart2" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGU17"><h6>GU-)<em>[General]</em>configに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/29config01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,7) 	':	print otmp
+			If otmp = "config." then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU18"><h6>GU-)<em>[General]</em>configurationに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/30configuration01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,13) 	':	print otmp
+			If otmp = "configuration" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU19"><h6>GU-)<em>[General]</em>connectionに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/31connection01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,10) 	':	print otmp
+			If otmp = "connection" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU20"><h6>GU-)<em>[General]</em>datatransferに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/32datatransfer01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,12) 	':	print otmp
+			If otmp = "datatransfer" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU21"><h6>GU-)<em>[General]</em>deployに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/33deploy01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,6) 	':	print otmp
+			If otmp = "deploy" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU22a"><h6>GU-)<em>[General]</em>form.bindingに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/34_01form.binding.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,12) 	':	print otmp
+			If otmp = "form.binding" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU22b"><h6>GU-)<em>[General]</em>form.componentに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/34_02form.component.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,14) 	':	print otmp
+			If otmp = "form.component" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU22c"><h6>GU-)<em>[General]</em>form.controlに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/34_03form.control.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,12) 	':	print otmp
+			If otmp = "form.control" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU22d"><h6>GU-)<em>[General]</em>form.Formに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/34_04form.Form.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,9) 	':	print otmp
+			If otmp = "form.Form" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU22e"><h6>GU-)<em>[General]</em>form.inspectionに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/34_05form.inspection.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,15) 	':	print otmp
+			If otmp = "form.inspection" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU22f"><h6>GU-)<em>[General]</em>form.Masterに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/34_06form.Master.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,11) 	':	print otmp
+			If otmp = "form.Master" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU22g"><h6>GU-)<em>[General]</em>form.Propertyに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/34_07form.Property.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,13) 	':	print otmp
+			If otmp = "form.Property" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU22h"><h6>GU-)<em>[General]</em>form.runtimeに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/34_08form.runtime.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,12) 	':	print otmp
+			If otmp = "form.runtime" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU22i"><h6>GU-)<em>[General]</em>form.uiに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/34_09form.ui.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,7) 	':	print otmp
+			If otmp = "form.ui" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGU23"><h6>GU-)<em>[General]</em>galleryに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/35gallery.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,7) 	':	print otmp
+			If otmp = "gallery" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU24"><h6>GU-)<em>[General]</em>graphicに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/36graphic.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,7) 	':	print otmp
+			If otmp = "graphic" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGU24b"><h6>GU-)<em>[General]</em>Handlerに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/100aUnoHandler01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub UnoHandler()
+	Dim oPreSrvMng as Object
+	Dim oUnoAvailSrv() as String
+	Dim oDisp as String
+		oPreSrvMng = GetProcessServiceManager()
+		oUnoAvailSrv = oPreSrvMng.AvailableServiceNames
+		oDisp = "[ UNO Service / Handler ]"
+		for i = 0 to UBound(oUnoAvailSrv)
+			if InStr(1, oUnoAvailSrv(i), "Handler") then
+				oDisp = oDisp & Chr$(10) & oUnoAvailSrv(i)
+			end if
+		next i
+		msgbox(oDisp, 0,"UNO Service")
+End Sub
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<a name="OOoGU25"><h6>GU-)<em>[General]</em>helpに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/37help.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,4) 	':	print otmp
+			If otmp = "help" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU26"><h6>GU-)<em>[General]</em>inspectionに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/38inspection.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,10) 	':	print otmp
+			If otmp = "inspection" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU27"><h6>GU-)<em>[General]</em>ioに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/39io.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,2) 	':	print otmp
+			If otmp = "io" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU28"><h6>GU-)<em>[General]</em>javaに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/40java.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,4) 	':	print otmp
+			If otmp = "java" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU29"><h6>GU-)<em>[General]</em>loaderに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/41loader.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,6) 	':	print otmp
+			If otmp = "loader" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU30"><h6>GU-)<em>[General]</em>loggingに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/42logging.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,7) 	':	print otmp
+			If otmp = "logging" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU31"><h6>GU-)<em>[General]</em>migrationに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/43migration.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,9) 	':	print otmp
+			If otmp = "migration" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU32"><h6>GU-)<em>[General]</em>mozillaに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/44mozilla.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,7) 	':	print otmp
+			If otmp = "mozilla" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU33"><h6>GU-)<em>[General]</em>officeに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/45office.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,6) 	':	print otmp
+			If otmp = "office" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU34"><h6>GU-)<em>[General]</em>oooimprovementに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/46oooimprovement.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,14) 	':	print otmp
+			If otmp = "oooimprovement" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU35"><h6>GU-)<em>[General]</em>packagesに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/47packages.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,8) 	':	print otmp
+			If otmp = "packages" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU36"><h6>GU-)<em>[General]</em>pluginに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/48plugin.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,6) 	':	print otmp
+			If otmp = "plugin" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU37"><h6>GU-)<em>[General]</em>rdfに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/49rdf.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,3) 	':	print otmp
+			If otmp = "rdf" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU38"><h6>GU-)<em>[General]</em>reflectに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/50reflect.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,7) 	':	print otmp
+			If otmp = "reflect" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU39"><h6>GU-)<em>[General]</em>registryに関するUNO Service</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/51registry.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,8) 	':	print otmp
+			If otmp = "registry" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU40"><h6>GU-)<em>[General]</em>rendering</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/52rendering.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,9) 	':	print otmp
+			If otmp = "rendering" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU41"><h6>GU-)<em>[General]</em>report</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/53report.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,6) 	':	print otmp
+			If otmp = "report" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU42"><h6>GU-)<em>[General]</em>resource</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/54resource.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,8) 	':	print otmp
+			If otmp = "resource" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU43"><h6>GU-)<em>[General]</em>scanner</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/55scanner.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,7) 	':	print otmp
+			If otmp = "scanner" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU44"><h6>GU-)<em>[General]</em>script</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/56script.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,6) 	':	print otmp
+			If otmp = "script" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU45"><h6>GU-)<em>[General]</em>sdb</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/57sdb.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,3) 	':	print otmp
+			If otmp = "sdb" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU46"><h6>GU-)<em>[General]</em>sdbc</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/58sdbc.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,4) 	':	print otmp
+			If otmp = "sdbc" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU47"><h6>GU-)<em>[General]</em>security</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/59security.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,8) 	':	print otmp
+			If otmp = "security" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU48"><h6>GU-)<em>[General]</em>setup</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/60setup.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,5) 	':	print otmp
+			If otmp = "setup" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU49"><h6>GU-)<em>[General]</em>style</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/61style.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,5) 	':	print otmp
+			If otmp = "style" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU51"><h6>GU-)<em>[General]</em>task</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/62task.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,4) 	':	print otmp
+			If otmp = "task" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU51a"><h6>GU-)<em>[General]</em>ui</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/62_01ui.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,2) 	':	print otmp
+			If otmp = "ui" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU52"><h6>GU-)<em>[General]</em>uri</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/63uri.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,3) 	':	print otmp
+			If otmp = "uri" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU53"><h6>GU-)<em>[General]</em>uti</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/64util.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,4) 	':	print otmp
+			If otmp = "util" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU54"><h6>GU-)<em>[General]</em>uui</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/65uui.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,3) 	':	print otmp
+			If otmp = "uui" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU55"><h6>GU-)<em>[General]</em>wizards</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/66wizards.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,7) 	':	print otmp
+			If otmp = "wizards" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU56"><h6>GU-)<em>[General]</em>xforms</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/67xforms.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,6) 	':	print otmp
+			If otmp = "xforms" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+<a name="OOoGU57"><h6>GU-)<em>[General]</em>xml</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/UNO/68xml.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		for i =0 to UBound(uService)			
+		otmp = mid(uService(i),14,3) 	':	print otmp
+			If otmp = "xml" then
+				oDisp = oDisp & uService(i) & Chr$(10)
+			End If
+		next i
+		msgbox(oDisp,0,"Uno Service")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGU58"><h6>GU-)<em>[General]</em>UNO Service一覧1</h6></a><pre><code>
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+	Dim oUno(1500)
+	Dim oDummy()
+	Dim oArray(0) As new com.sun.star.beans.PropertyValue 
+		On Error Goto oBad
+		oManager = GetProcessServiceManager()
+		uService = oManager.GetAvailableServiceNames()
+		sNum = UBound(uService)
+		for i = 0 to sNum
+			oUno(i) = uService(i)
+		next i
+		oFile = "c:\temp\oUno.ods"
+		oURL = convertToUrl(oFile)
+		oDoc=StarDesktop.loadComponentFromUrl(oURL, "_blank", 0, oDummy())
+		for i = 0 to sNum
+			oDoc.Sheets(0).getCellByPosition(0,i).String= oUno(i)
+		next i
+			oArray(0).Name = "Overwrite"
+			oArray(0).Value = true
+		oDoc.StoreAsURL(oURL,oArray())
+		oDoc.dispose
+	MsgBox("Finish" ,0,"Uno service 一覧")
+	Exit Sub
+	oBad: 
+		mErr = Error
+		eline = Erl
+		msgbox("Line : " & eline & Chr$(10) & mErr & Chr$(10) &" : i = " & i, 0,"Error Message" )
+		oDoc.dispose
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGU58b"><h6>GU-)<em>[General]</em>UNO Service一覧2</h6></a><pre><code>
+Sub oHowmanyServiceSupported
+	Dim oManager
+	Dim uService
+	Dim oUno(1500)
+	Dim oDummy()
+	Dim oArray(0) As new com.sun.star.beans.PropertyValue
+		On Error Goto oBad
+		sName = "c:\temp\oAuthor.ods"
+		sURL = ConvertToUrl(sName)
+		oDoc = StarDesktop.loadComponentFromURL(sURL, "_blank", 0, oDummy)
+		Wait(10)
+		'uSurvice = oDoc.GetAvailableServiceNames()
+		uService=oDoc.getAvailableServiceNames()
+		msgbox(uService(0))
+		'sNum = UBound(uService)
+		sNum=UBound(uService)
+		for i = 0 to sNum
+			oUno(i) = uService(i)
+		next i
+		oFile = "c:\temp\oUno.ods"
+		oURL = convertToUrl(oFile)
+		oDoc1=StarDesktop.loadComponentFromUrl(oURL, "_blank", 0, oDummy())
+		for i = 0 to sNum
+			oDoc.Sheets(0).getCellByPosition(1,i).String= oUno(i)
+		next i
+			oArray(0).Name = "Overwrite"
+			oArray(0).Value = true
+		oDoc1.StoreAsURL(oURL,oArray())
+		oDoc1.dispose
+		oDoc.dispose
+	MsgBox("Finish" ,0,"Uno service 一覧")
+	Exit Sub
+	oBad: 
+		mErr = Error
+		eline = Erl
+		msgbox("Line : " & eline & Chr$(10) & mErr & Chr$(10) &" : i = " & i, 0,"Error Message" )
+		oDoc.dispose
+		oDoc1.dispose
+End Sub
+</code></pre><br>
+
+<a name="OOoGU60"><h6>GU-)<em>[General]</em>Active FileのUNO Property(属性)取得</h6></a>
+<pre><code>
+Sub oInspect_TextTable
+	Dim oDoc
+	Dim oIspt
+	dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_blank", 0, Dummy())
+		oInspt = oDoc.getTextTables()
+			Print IsObject(oInspt)
+			Print IsNull(oInspt)
+			Print IsEmpty(oInspt)
+			Print IsArray(oInspt)
+			Print IsUnoStruct(oInspt)
+			Print TypeName(oInspt)
+		MsgBox oInspt.dbg_methods
+		oDoc.dispose
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGU61"><h6>GU-)<em>[General]</em>Active FileのUNO情報取得及びActive Objectの確認</h6></a>
+<pre><code>
+Sub oXServiceInfo
+	Dim oDoc
+	Dim oUnoType As New com.sun.star.beans.PropertyValue
+	dim Dummy()
+		On Error Goto oErr
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_blank", 0, Dummy())
+		vObj = ThisComponent
+			'Check UNO Structure?
+			Print "Is oUnoType UNO Structure? : " + IsUnoStruct(oUnoType)
+			Print "Is ThisComponent UNO Structure? : " + IsUnoStruct(ThisComponent)
+			'Check UNO Interface?
+			Print "Is oUnoType UNO Interfaces? : " + HasUnoInterfaces(oUnoType, "com.sun.star.uno.XInterface")		
+			Print "Is ThisComponent  UNO Interfaces? : " + HasUnoInterfaces(ThisComponent, "com.sun.star.uno.XInterface")
+			'Check Active Object?
+			Print "Is oUnoType Active Object? : " + EqualUnoObjects(vObj, oUnoType)		
+			Print "Is ThisComponent Active Object? : " + EqualUnoObjects(vObj, ThisComponent)		
+			'XService Info
+			Print "getImplementaionName of THisComponent : " + oDoc.getImplementationName()
+			oDocType =  oDoc.SupportsService("com.sun.star.sheet.SpreadsheetDocument") 
+			msgbox(oDocType)
+			If  oDoc.SupportsService("com.sun.star.sheet.SpreadsheetDocument") then
+				oDocType = "Calc"
+			ElseIf  oDoc.SupportsService("com.sun.star.drawing.DrawingDocument") then
+					oDocType = "Draw"
+			ElseIf  oDoc.SupportsService("com.sun.star.presentation.PresentationDocument") then
+						oDocType = "Impress"
+			ElseIf  oDoc.SupportsService("com.sun.star.formula.FormulaProperties") then
+							oDocType = "Math"
+			ElseIf  oDoc.SupportsService("com.sun.star.text.TextDocument") then
+								oDocType = "Writer"
+			End If
+		Print oDocType
+		oDoc.dispose
+		oErr:
+			If Err <> 0 then 
+				oDocType="Unknown Type Document"
+			End If
+			On Error Goto 0		'Turn off error handling after checking for a error
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGU62"><h6>GU-)<em>[General]</em>Active Fileで使用可能なFunction､Method、Interfaceの取得</h6></a>
+<pre><code>
+Sub odbg
+	Dim oDoc
+	Dim oIspt
+	dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_blank", 0, Dummy())
+		oInspt = oDoc.getTextTables()
+		MsgBox oInspt.dbg_properties
+		MsgBox oInspt.dbg_methods
+		MsgBox oInspt.dbg_supportedInterfaces
+	oDoc.dispose
+End Sub
+</code></pre><br>
+
+<a name="OOoGU63"><h6>GU-)<em>[General]</em>Active fileにて使用可能なStyle及びStyle番号取得</h6></a>
+<pre><code>
+Sub oAvailableStyle
+	Dim oDoc
+	Dim oSFamily As Variant
+	Dim oSNames As Variant
+		oDoc =ThisComponent
+		oSFamily = oDoc.StyleFamilies
+		oFNames = oSFamily.getElementNames()
+		for n = LBound(oFNames) to UBound(oFNames)
+			s=""
+			aStyles = oSFamily.getByName(oFNames(n))
+			aSN= aStyles.getElementNames()
+			for i = LBound(aSN) to UBound(aSN)
+				s = S & i & " : " & aSN(i) & Chr$(13)
+				If ((i + 1) mod 35 = 0) then
+					Msgbox(s, 0, oFNames(n))
+					s=""
+				End If
+			next i
+			If Len(s) > 0 then
+				Msgbox(s, 0, oFNames(n))
+			End If
+		next n
+End Sub
+
+	[ Writer ]
+		・Charactor
+		・Paragraph
+		・Page
+		・Numbering
+		・Frame
+	[ Calc ]
+		・Cell
+		・Page
+	[ Draw ]
+		・Graphics
+		・Cell
+		・Table
+		・Standard		
+	[ Impress ]
+		・Graphics
+		・Cell
+		・Table
+		・Standard
+</code></pre><br>
+
+
+<a name="OOoGU64"><h6>GU-)<em>[General]</em>現在OpenしているOOo file(Component)を全て取得(OOo以外は無視)</h6></a>
+<pre><code>
+Sub oCurrentDoc
+	On Error Resume Next	'OOo以外のfileは無視する。
+	Dim oComp As Object
+	Dim oDocume As Object
+	Dim oDoc As Object
+	Dim oInfo As String
+	GlobalScope.BasicLibraries.LoadLibrary("Tools")
+		oComp = StarDesktop.getComponents()			'com.sun.star.container.XEnumerationAccess
+		If NOT oComp.hasElements() then
+			Print "There are no components"
+			Exit Sub
+		End If
+		oEnumerate = oComp.createEnumeration()	'com.sun.star.container.XEnumeration
+		Do  while oEnumerate.hasMoreElements()
+			aDoc = oEnumerate.nextElement()
+			oInfo = oInfo & getDocumentType(aDoc) & "    "
+			oInfo = oInfo & FileNameOutOfPath(aDoc.getURL())
+			oInfo = oInfo & Chr$(10)
+		Loop
+		MsgBox(oInfo, 0, "Current Open Components")	
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGU65"><h6>GU-)<em>[General]</em>Current Documentにて有効なDialog名、数及びBasic Module名、数の取得</h6></a>
+<pre><code>
+Sub oDocLib
+	Dim oLibs
+	Dim bLibs
+	Dim oDia
+	Dim oMod
+	Dim oNumDia
+	Dim oNumMod
+	Dim oDs
+	Dim oMs
+		oLibs = DialogLibraries.getElementNames()
+		oDs = "*** Dialog Libraries ***" & Chr$(10)
+		For i = LBound(oLibs) to UBound(oLibs)
+			oDia = DialogLibraries.getByName(oLibs(i))
+			oNumDia = UBound(oDia.getElementNames())+1
+			oDs = oDs & "Libs [" & oLibs(i) & "]  has  " & oNumDia & " dialogs"		
+		next i
+		bLibs = BasicLibraries.getElementNames()
+		oMs = "*** Basic Libraries ***" & Chr$(10)
+		For i =  i = LBound(bLibs) to UBound(bLibs)
+			oMod = BasicLibraries.getByName(bLibs(i))
+			oNumMod = UBound(oMod.getElementNames())+1
+			oMs = oMs & "Libs [" & oLibs(i) & "]  has  " & oNumMod & " modules"	
+		next i
+	Msgbox(oDs & Chr$(10) & oMs, 0, "Dialog and Basic libraries in the current document")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGU66"><h6>GU-)<em>[General]</em>UNO変数の作成</h6></a>
+<pre><code>
+Sub oUnoValue
+	Dim oUv1,oUv2,oUv3
+		oUv1 = CreateUnoValue("unsigned long", 10)
+		oUv2 = CreateUnoValue("string", "Hello. This is UNO Value")
+		oUv3 = CreateUnoValue("byte", 10)		'10 ⇒　0 to 255
+		oUv4 = CreateUnoValue("[]byte", Array(3,2,1))
+		Print IsEmpty(oUv1) & IsEmpty(oUv2) & IsEmpty(oUv3) & IsEmpty(oUv4)
+		Print IsNull(oUv1) & IsNull(oUv2) & IsNull(oUv3) & IsNull(oUv4)
+		Print IsMissing(oUv1) & IsMissing(oUv2) & IsMissing(oUv3) & IsMissing(oUv4)
+		Print TypeName(oUv1) + TypeName(oUv2) + TypeName(oUv3) + TypeName(oUv4)
+		Print IsUnoStruct(oUv1) & IsUnoStruct(oUv2) & IsUnoStruct(oUv3) & IsUnoStruct(oUv4)
+		Print IsUnoStruct(oUv1) + IsUnoStruct(oUv2) + IsUnoStruct(oUv3) + IsUnoStruct(oUv4)
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGU67"><h6>GU-)<em>[General]</em>Current fileが目的のObjectと同じか調べる</h6></a>
+<pre><code>
+Sub oFindObj
+	Dim oDoc
+	Dim oTest
+		oTest = FindObject("ThisComponent")
+		If oTest IS oDoc then
+			Msgbox("oDocはCurrent Objectです。")
+		else
+			Msgbox("oDocはCurrent Objectではありません。")
+		End If
+	Rem Load the Gimmicks library
+	GlobalScope.BasicLibraries.LoadLibrary("Gimmicks")
+		oDoc = FindObject("Gimmicks")
+		oTest = FindPropertyObject(oDoc, "Userfields")
+End Sub
+</code></pre><br>
+
+
+<br clear="right">
+<p class="s1">Tips</p class="s1">
+<a name="OOoGTip1"><h6>GTip-1)<em>[General]</em>com.sun.star.PropertyValue</h6></a><pre><code>
+ProprtyValeのName及びValueの形式はCodeを見る必要がある。
+OnlinでOpenOffice.orgのCode内を検索する為のTool「 {OpenGrok 」 にて調べる。
+URL : <a href="http://svn.services.openoffice.org/opengrok/">{OpenGrok</a><br>
+
+Uno Commandとそれについての情報Uno関係は「 sdi 」 に記載されています。
+
+[ Sample1 ]
+Application : Writer
+調査対象　：　Uno:SendOutlineToStarImpress の場合
+	1)Full Search欄に「SendOutlineToStarImpress」を入力、「search」click
+	2)今回はWriterなので、検索結果から「 swriter.sdi 」を選択
+	3)File中のCodeから「 SendOutlineToStarImpress 」を検索
+	4)結果から、「()」が空白なので、「com.sun.star.PropertyValue」にて
+	指定できる項目は無い事が分かる。
+</code></pre><br>
+<div>
+<img SRC="OOoBasic_pic/01general3/Tips/01OpenGrok04.png" align="right" hspace="4" vspace="4" width="20%">
+<img SRC="OOoBasic_pic/01general3/Tips/01OpenGrok03.png" align="right" hspace="4" vspace="4" width="20%">
+<img SRC="OOoBasic_pic/01general3/Tips/01OpenGrok02.png" align="right" hspace="4" vspace="4" width="20%">
+<img SRC="OOoBasic_pic/01general3/Tips/01OpenGrok01.png" align="right" hspace="4" vspace="4" width="20%">
+<br clear="right">
+</div>
+<pre><code>
+Application : Writer
+調査対象　：　Uno:GoUp の場合
+	上記1)～3)は同じ。
+	しかし、()内が以下の様に記されている。
+		
+	(Sfx &emsp;<em class="s1">Int16</em class="s1">&emsp;Item&emsp; <em class="s2">Count</em class="s2">&emsp; FN_PARAM_MOVE_COUNT,Sfx&emsp;<em class="s1">Bool</em class="s1">&emsp;Item &emsp;<em class="s2">Select</em class="s2">&emsp; FN_PARAM_MOVE_SELECTION)
+	
+	Arg値
+	Name&emsp;&emsp;：&emsp;Count&emsp;/&emsp;Valueの型&emsp;:&emsp;Int16
+	Name&emsp;&emsp;：&emsp;Select&emsp;/&emsp;Valueの型&emsp;：&emsp; Boolean
+	である事が分かる。
+	
+その他「browsable and searchable source tree 」から探す事もできる。
+</pre></code><br>
+<div>
+<img SRC="OOoBasic_pic/01general3/Tips/01OpenGrok05.png" align="right" hspace="4" vspace="4" width="20%">
+<img SRC="OOoBasic_pic/01general3/Tips/01OpenGrok06.png" align="right" hspace="4" vspace="4" width="15%">
+<img SRC="OOoBasic_pic/01general3/Tips/01OpenGrok07.png" align="right" hspace="4" vspace="4" width="20%">
+<img SRC="OOoBasic_pic/01general3/Tips/01OpenGrok08.png" align="right" hspace="4" vspace="4" width="20%">
+<img SRC="OOoBasic_pic/01general3/Tips/01OpenGrok09.png" align="right" hspace="4" vspace="4" width="20%">
+<br clear="right">
+</div>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">Other</p class="s1">
+<a name="OOoGo01a"><h6>GO-)<em>[General]</em>「About LibreOffice」Logo表示</h6></a><pre><code>
+<img src="OOoBasic_pic/01general3/20Other/01aUnoAbout01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub GnOther()
+	Dim oDoc as Object, oCtrl as Object, oFrame as Object
+    Dim oDispatcher as Object
+    Dim oProp(0) as new com.sun.star.beans.PropertyValue
+    	oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.Frame
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+    	oDispatcher.executeDispatch(oFrame, ".uno:About", "", 0, oProp())
+    	'
+    msgbox "Success"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGO6"><h6>GO-)<em>[General]</em>各種宣言</h6></a><pre><code>
+Option Compatible
+Global
+Private
+</code></pre>
+<br>
+
+<a name="OOoGO12"><h6>GO-)<em>[General]</em>File Routines</h6></a><pre><code>
+Sub oFile_Routines	
+	oFree=FreeFile()
+	'oMkDir = MkDir("c:\temp\OOoMacro") 	'Windows
+	'oMkDir = MkDir("/home/OOoMacro") 	'Linux
+	'oRmDir = RmDir("c:\temp\OOoMacro")	'Windows
+	'oRmDir = RmDir("/home/OOoMacro") 	'Linux
+	'Kill("C:\Temp\Maco_test.txt")
+	'FileCopy("C:\Temp\OOo_test.txt", "C:\Temp\Macro_test.txt")	'File Copy
+	'FileCopy("C:\temp","C:\Test")	'Directory Copy
+	'Name "C:\temp\OOo_test.txt" As "C:\Temp\Macro_test.txt"		'Rename a file
+	'Name "C:\temp" As "C:\temp_test"	'Rename a directory
+	'Name "C:\temp\OOo_test.txt" As "C:\OOo_test.txt"			'Move the file
+	'Name "C:\temp" As "C:\OOo_temp"	'Move the directory
+	'EOF
+	'Get #1
+	'Put #1
+	'Input #
+	'Line Input #
+	'Loc()
+	'LOF()
+	'Reset
+	'Seek #
+	'Write #
+	'FileAttr()
+	'[ File Attributes ]
+	'1		:	Read-Only 
+	'2		:	Hidden
+	'4		:	System
+	'8		:	Volume
+	'16	:	Directory
+	'32	:	Archive bit(file changed since last backed up)
+End Sub
+</code></pre><br>
+
+<a name="OOoGO14"><h6>GO-)<em>[General]</em>Display解像度</h6></a><pre><code>
+Sub oResolutionDisplay
+	Dim oDisplayAccess
+	Dim oDisplay
+	Dim oScreen
+		oDisplayAccess = CreateUnoService("com.sun.star.awt.DisplayAccess")
+		oDisplay = oDisplayAccess.getByIndex(0)
+		oScreen = oDisplay.ScreenArea
+			oDx = oScreen.Width
+			oDy = oScreen.Height
+			msgbox( "Width :" & oDx & "pixcel" & Chr$(10) & "Height :" & oDy & "pixcel", , "画面解像度") 
+End Sub
+</code></pre><br>
+
+<a name="OOoGO16"><h6>GO-16)<em>[General]</em>IIFの使用法</h6></a><pre><code>
+Sub oIIF
+Dim oAge As Variant
+	oA_age=20
+	oB_age=18
+	oComp_age = IIF(oA_age >= oB_age, "A is older than B", "B is older than A")
+	msgbox oComp_age
+	Wait(3000)	'milliseconds
+	msgbox("3秒待ったでしょ？")
+End Sub</code></pre><br>
+
+
+<a name="OOoGO17"><h6>GO-17)<em>[General]</em>DLL fileの宣言</h6></a><pre><code>
+Declare Sub MyMessageBeep Lib "user32.dll" Alias "MessageBeep" ( Long )
+Declare Function CharUpper Lib "user32.dll" Alias "CharUpperA" ( ByVal lpsz As String) As String
+Sub oDeclare
+Dim nBeepLen As Long
+	strIn = "i Have Upper and Lower"
+	strOut = CharUpper(strIn)
+	Msgbox(strIn & "から" & strOut &"に変換しました。")
+	nBeepLen =5000
+	MymessageBeep(nBeepLen)
+	FreeLibrary("user32.dll")
+	MsgBox("音が鳴ったでしょ?")
+End Sub
+</code></pre><br>
+
+
+
+<a name="OOoGO21"><h6>GO-)マウスのボタン判定（左/右 & Shift/Ctrl/Alt)<br>
+<em class="s1">【AddinBox/VBAユーザーの為のOpenOffice.org 備忘録より抜粋】</em class="s1"><br>
+<em class="s2">引用元URL：<a href="http://blog.livedoor.jp/addinbox/archives/51271806.html">http://blog.livedoor.jp/addinbox/archives/51271806.html</a></em class="s2"></h6></a>
+<pre><code>
+Sub MouseListener_mouseReleased( oEvent As com.sun.star.awt.MouseEvent )
+Dim blnShift As Boolean
+Dim blnCtrl As Boolean
+Dim blnAlt As Boolean
+Dim strMsg As String
+
+  With oEvent
+    Select Case .Buttons
+      Case com.sun.star.awt.MouseButton.LEFT
+        strMsg = "Left Button" & chr(13)
+      Case com.sun.star.awt.MouseButton.RIGHT
+        strMsg = "Right Button" & chr(13)
+    End Select
+
+    blnShift = ((.Modifiers And com.sun.star.awt.KeyModifier.SHIFT)= com.sun.star.awt.KeyModifier.SHIFT)
+    blnCtrl = ((.Modifiers And com.sun.star.awt.KeyModifier.MOD1)= com.sun.star.awt.KeyModifier.MOD1)
+    blnAlt  = ((.Modifiers And com.sun.star.awt.KeyModifier.MOD2)= com.sun.star.awt.KeyModifier.MOD2)
+
+    strMsg = strMsg & "Shift(" & CStr(blnShift) & ")" & chr(13) & _
+                      "Ctrl(" & CStr(blnCtrl) & ")" & chr(13) & _
+                      "Alt (" & CStr(blnAlt) & ")"
+    MsgBox strMsg
+  End With 
+End Sub
+'～～～～～～～～～～～～～～～～～～～～～～
+'blnShift = ((.Modifiers And com.sun.star.awt.KeyModifier.SHIFT)= com.sun.star.awt.KeyModifier.SHIFT)
+'                    ↓下記でもＯＫです
+'blnShift = CBool(.Modifiers And com.sun.star.awt.KeyModifier.SHIFT)
+
+'[ .Buttons ] [ .Modifires ] は以下のイベントリスナーのどれも共通です。
+'== Dialog Control ==
+'com.sun.star.awt.XMouseListener
+'com.sun.star.awt.XMouseMotionListener
+'== Sheet ==
+'com.sun.star.awt.XMouseClickHandler
+'com.sun.star.awt.XEnhancedMouseClickHandler
+'== Key Board ==
+'com.sun.star.awt.XKeyListener
+'(注意点)
+  'XEnhancedMouseClickHandler には、Modifiers の値が常にゼロで返るというバグのあることが判りました。
+  つまり、XEnhancedMouseClickHandlerでは Shift/Ctrl/Alt の識別が不可能です。 ( Issue 91439 )
+  '
+  'XMouseClickHandler では、oEvent.Source からクリックしたオブジェクトを取得する事ができません
+  （Source インターフェースはありますが、オブジェクトが設定されません）。
+  したがって、クリックセルを取得するには Selectionを利用するしか方法がありませんが、pressed 時点では
+  未だクリックセルにSelection が移動していません（クリック前の選択セルのまま）。
+   releasedで処理するようにしなければなりません。
+   尚、[左+Alt] [右+Shift/Ctrl/Alt]ではセルが選択されませんので『 Selection でクリックセルを取得』という
+   方法が取れません。
+  '
+  'XEnhancedMouseClickHandler では oEvent.Target でクリックしたセルが取得できます
+  （ pressed/released 共にクリック前の選択セルではなくクリックしたセルが取得できます）。
+</code></pre><br>
+
+
+
+<br clear="right">
+<center><h6><a href="#TopOfPage">Top of Page</a></h6></center><BR>
+
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/OOoBasic_General6.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:18:24 GMT -->
+</html>

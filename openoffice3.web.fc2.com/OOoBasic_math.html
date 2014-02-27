@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/OOoBasic_math.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:32:24 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<SCRIPT language="JavaScript">
+		<!--
+			renew = new Date(document.lastModified);
+			y=renew.getYear();
+			m=renew.getMonth() + 1;
+			d=renew.getDate();
+			if(y<1900) {y=y+1900;}
+				oDate="更新日："+y+"/"+m+"/"+d;
+			document.write(oDate);
+		//-->
+	</SCRIPT>
+	
+	<title>Macroの杜(OpenOffice.org/LibreOffice Basic編)/ Math</title>
+</head>
+<link rel="stylesheet"
+type="text/css" href="css_macro_Basic.css">
+
+<body>
+<a name="TopOfPage"><left><p><A HREF="index-2.html">Home of site</a></p></left></a><br>
+<h1>Macroの杜<br>
+(OpenOffice.org/LibreOffice Basic編)</h1>
+		
+<h2>Math( 数式作成 )</h2>
+<br>
+
+<h3><Center>**********************【 Index 】**********************</center></h3>
+
+<p class="s1">File</p class="s1">
+<ul>
+MF-1)<a href="#OOoMF1"><em>[Math]</em>新規Math fileの開閉(保存確認無し)</a><br>
+MF-)<a href="#OOoMFA"><em>[Math]</em>新規Math fileの開閉(保存確認有り)</a><br>
+</ul>
+<br>
+
+<p class="s1">Document Property</p class="s1">
+<ul>
+MDPp-)<a href="#OOoMDPp1"><em>[Math]</em>Formula</a><BR>
+MDPp-)<a href="#OOoMDPp2"><em>[Math]</em>PrinterName</a><BR>
+</ul>
+<br>
+
+<p class="s1">Font</p class="s1">
+<ul>
+MDF-)<a href="#OOoMDF1"><em>[Math]</em>CustomFontName<em>[ CustomFontNameFixed / CustomFontNameSans / CustomFontNameSerif  ]</em></a><BR>
+MDF-)<a href="#OOoMDF2"><em>[Math]</em>FontNameFunctions</a><BR>
+MDF-)<a href="#OOoMDF3"><em>[Math]</em>FontNameNumbers</a><BR>
+MDF-)<a href="#OOoMDF4"><em>[Math]</em>FontNameVariables</a><BR>
+</ul>
+<br>
+
+<br><br><br><br><br><br><br><br><br><br>
+<h3><Center>**********************【 Macro Code 】**********************</center></h3>
+
+<p class="s1">File</p class="s1">
+<a name="OOoMF1"><h6>MF-1)<em>[Math]</em>新規Math fileの開閉(保存確認無し)</h6></a><pre><code>
+Sub oImpressOpen
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/smath", "_blank", 0, Dummy())
+		oAns = Msgbox("ファイルを閉じますか?",4, "File Close確認")
+		if oAns = 6 then
+			oDoc.dispose
+		End if
+End Sub
+</code></pre>
+<br>
+
+<a name="OOoMFA"><h6>MF-)<em>[Math]</em>新規Math fileの開閉(保存確認有り)</h6></a><pre><code>
+Sub oMathOpen_Save
+	Dim Dummy() 
+		oDoc = StarDesktop.loadComponentFromURL( "private:factory/smath", "_blank", 0, Dummy())
+ 		oAns = Msgbox("fileを保存しますか?",4, "File Save確認")
+ 		 if oAns = 6 then
+ 		 	oInp = InputBox("Full pathでFile nameを入力して下さい(例 ： C:\temp\test.odf)","保存File nameの入力")
+ 		 	If NOT IsNull(oInp) then
+ 		 		oMName = ConvertToUrl(oInp) 
+ 		 		oDoc.storeAsURL(oMName, Dummy())
+ 		 	End If
+		End If
+		oAnsC = MsgBox("Fileを閉じますか?",4,"Fileの終了確認")	
+ 		 If oAnsC = 6 then
+ 		 		oDoc.dispose
+ 		 End If
+End Sub
+</code></pre>
+<br>
+
+
+<p class="s1">Document Property</p class="s1">
+<a name="OOoMDPp1"><h6>MDPp-)<em>[Math]</em>Formula</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/09Formula.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oPropInfo
+	Dim oDoc
+	Dim oDummy()
+		On Error Goto oBad 
+			oDoc = StarDesktop.loadComponentFromURL("private:factory/smath", "_blank", 0, oDummy())
+				oprop = oDoc.Formula
+			msgbox(oprop,0,"[ Formula ]")
+			oDoc.dispose
+			Exit Sub
+	oBad: 
+			mErr = Error
+			eline = Erl
+			msgbox("Line : " & eline & Chr$(10) & mErr & Chr$(10) &" : i = " & i, 0,"Error Message" )
+			oDoc.dispose
+End SUb
+</code></pre>
+<br>
+
+<a name="OOoMDPp2"><h6>MDPp-)<em>[Math]</em>PrinterName</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/10PrinterName.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oPropInfo
+	Dim oDoc
+	Dim oDummy()
+		On Error Goto oBad 
+			oDoc = StarDesktop.loadComponentFromURL("private:factory/smath", "_blank", 0, oDummy())
+				oprop = oDoc.PrinterName
+			msgbox(oprop,0,"[ PrinterName ]")
+			oDoc.dispose
+			Exit Sub
+	oBad: 
+			mErr = Error
+			eline = Erl
+			msgbox("Line : " & eline & Chr$(10) & mErr & Chr$(10) &" : i = " & i, 0,"Error Message" )
+			oDoc.dispose
+End SUb
+</code></pre>
+<br>
+
+
+<p class="s1">Font</p class="s1">
+<a name="OOoMDF1"><h6>MDF-)<em>[Math]</em>CustomFontName</h6></a><pre><code>
+<img SRC="OOoBasic_pic/07math/01CustomFontName.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oPropInfo
+	Dim oDoc
+	Dim oDummy()
+		On Error Goto oBad 
+			oDoc = StarDesktop.loadComponentFromURL("private:factory/smath", "_blank", 0, oDummy())
+				oprop1 = oDoc.CustomFontNameFixed
+				oprop2 = oDoc.CustomFontNameSans
+				oprop3 = oDoc.CustomFontNameSerif 
+			msgbox(" CustomFontNameFixed  => " & oprop1 & Chr$(10) & _
+						" CustomFontNameSans => " & oprop2 & Chr$(10) & _
+						" CustomFontNameSerif  => " & oprop3 ,0,"[ CustomFontName ]")
+			oDoc.dispose
+			Exit Sub
+	oBad: 
+			mErr = Error
+			eline = Erl
+			msgbox("Line : " & eline & Chr$(10) & mErr & Chr$(10) &" : i = " & i, 0,"Error Message" )
+			oDoc.dispose
+End SUb
+</code></pre><br>
+
+<a name="OOoMDF2"><h6>MDF-)<em>[Math]</em>FontNameFunctions</h6></a><pre><code>
+<img SRC="OOoBasic_pic/07math/02FontNameFunctions.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oPropInfo
+	Dim oDoc
+	Dim oDummy()
+		On Error Goto oBad 
+			oDoc = StarDesktop.loadComponentFromURL("private:factory/smath", "_blank", 0, oDummy())
+				oprop = oDoc.FontNameFunctions
+			msgbox(oprop,0,"[ FontNameFunctions ]")
+			oDoc.dispose
+			Exit Sub
+	oBad: 
+			mErr = Error
+			eline = Erl
+			msgbox("Line : " & eline & Chr$(10) & mErr & Chr$(10) &" : i = " & i, 0,"Error Message" )
+			oDoc.dispose
+End SUb
+</code></pre><br>
+
+<a name="OOoMDF3"><h6>MDF-)<em>[Math]</em>FontNameNumbers</h6></a><pre><code>
+<img SRC="OOoBasic_pic/07math/03FontNameNumbers.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oPropInfo
+	Dim oDoc
+	Dim oDummy()
+		On Error Goto oBad 
+			oDoc = StarDesktop.loadComponentFromURL("private:factory/smath", "_blank", 0, oDummy())
+				oprop = oDoc.FontNameNumbers
+			msgbox(oprop,0,"[ FontNameNumbers ]")
+			oDoc.dispose
+			Exit Sub
+	oBad: 
+			mErr = Error
+			eline = Erl
+			msgbox("Line : " & eline & Chr$(10) & mErr & Chr$(10) &" : i = " & i, 0,"Error Message" )
+			oDoc.dispose
+End SUb
+</code></pre><br>
+
+<a name="OOoMDF4"><h6>MDF-)<em>[Math]</em>FontNameVariables</h6></a><pre><code>
+<img SRC="OOoBasic_pic/07math/04FontNameVariables.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oPropInfo
+	Dim oDoc
+	Dim oDummy()
+		On Error Goto oBad 
+			oDoc = StarDesktop.loadComponentFromURL("private:factory/smath", "_blank", 0, oDummy())
+				oprop = oDoc.FontNameVariables
+			msgbox(oprop,0,"[ FontNameVariables ]")
+			oDoc.dispose
+			Exit Sub
+	oBad: 
+			mErr = Error
+			eline = Erl
+			msgbox("Line : " & eline & Chr$(10) & mErr & Chr$(10) &" : i = " & i, 0,"Error Message" )
+			oDoc.dispose
+End SUb
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<center><h6><a href="#TopOfPage">Top of Page</a></h6></center><BR>
+
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/OOoBasic_math.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:32:29 GMT -->
+</html>

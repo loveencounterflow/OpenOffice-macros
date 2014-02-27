@@ -1,0 +1,518 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/Python_Macro_IDE.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:32:29 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Macroの杜(Python編 / IDE)</title>
+</head>
+<link rel="stylesheet" type="text/css" href="css_macroPython_IDE.css">
+<body>
+<left><p><A HREF="index-2.html">Home of site</a></p></left><br>
+<a name="TopOfPage"><h1>Macroの杜(Python編)<br>
+[ Python for OpenOffice.org and LibreOffice ]</h1></a>
+
+<h2>【 IDE 】</h2>
+
+<h3><Center>************【 Eclipse on WindowsXP 】************</center></h3>
+
+
+<p class="s1">Macro格納場所</p class="s1">
+<ul>
+Pre-1)<a href="#OOoPre01"><em>[General]</em>Macro格納場所</a><br>
+</ul>
+
+<p class="s1">IDE環境構築</p class="s1">
+<ul>
+<em1>参考URL　： <a href="http://hermione.s41.xrea.com/pukiwiki/pukiwiki.php?OOoPython/IDE">http://hermione.s41.xrea.com/pukiwiki/pukiwiki.php?OOoPython/IDE </a></em1><br>
+IDE-1)<a href="#OOoIDE01"><em>[General]</em>Window Path追加<em>[ step 1 ]</em></a><br>
+IDE-2)<a href="#OOoIDE02"><em>[General]</em>Eclipse DownLoad and Install<em>[ step 2 ]</em></a><br>
+IDE-3)<a href="#OOoIDE03"><em>[General]</em>環境変数を調べる<em>[ step 3 ]</em></a><br>
+IDE-4)<a href="#OOoIDE04"><em>[General]</em>eclipseにpydevを追加<em>[ step 4 ]</em></a><br>
+IDE-5)<a href="#OOoIDE05"><em>[General]</em>Interpreter  設定<em>[ step 5 ]</em></a><br>
+IDE-6)<a href="#OOoIDE06"><em>[General]</em>JAVA => PyDevへ切り替<em>[ step 6 ]</em></a><br>
+IDE-7)<a href="#OOoIDE07"><em>[General]</em>Pydev Project作成<em>[ step 7 ]</em></a><br>
+IDE-8)<a href="#OOoIDE08"><em>[General]</em>ProjectのExternal Libraries設定<em>[ step 8 ]</em></a><br>
+IDE-9)<a href="#OOoIDE09"><em>[General]</em>unopy.py　File作成<em>[ step 9 ]</em></a><br>
+</ul>
+
+<p>
+上記stepにてEclipesにてPython開発環境は整う。しかし、Macroの実行はOOoの「ツール」=>「マクロの管理」=>「Python」からしか実行出来ない。<br>
+次にEclipseからOOoの各Applicationを起動させる方法を記す。
+</p>
+<br>
+
+<p class="s1">Boot環境構築</p class="s1">
+<ul>
+Boot-1)<a href="#OOoBoot01"><em>[General]</em>Bat file作成<em>[ step 1 ]</em></a><br>
+Boot-2)<a href="#OOoBoot02"><em>[Genera2]</em>eclipseからCalc起動<em>[ step 2 ]</em></a><br>
+</ul>
+
+
+<p>
+次に下記工程をAutomation化させる方法を記す。<br>
+「eclipseにてMacro記述」=>「eclipseからOOo Aplication起動」=>「Macro実行」<br>
+</p>
+<br>
+
+<p class="s1">Automation化</p class="s1">
+<ul>
+Auto-1)<a href="#OOoAuto01"><em>[General]</em>unopy.py変更(追加)<em>[  ]</em></a><br>
+Auto-2a)<a href="#OOoAuto02a"><em>[General]</em>AutomationによるPython Macro実行(1)<em>[ Writer ]</em></a><br>
+Auto-2b)<a href="#OOoAuto02b"><em>[General]</em>AutomationによるPython Macro実行(2)<em>[ Calc ]</em></a><br>
+</ul>
+
+
+<p>
+eclipseからOOo Macroを正確に実行するにはPlugInの作成等の特殊工程が必要である。しかしながら、<br>
+&emsp;Step1&emsp;：&emsp;Automationにて「 Python文法Check / Debug 」&「 Macroの実行 」にてMacroの概略を作成。<br>
+&emsp;Step2&emsp;：&emsp;OOoからPython Macroを実行して、Debug　Checkを行う。<br>
+この方法がPython Macro作成手順の1例になると思います。<br>
+</p>
+<br><br><br>
+
+
+
+<p class="s1">Other Site</p class="s1">
+<ul>
+IDEOtr-)<a href="http://hibagon.sakura.ne.jp/kagakuwiki/index.php?Libreoffice4%A4%CEPython3%A5%DE%A5%AF%A5%ED%A5%C6%A5%B9%A5%C8"><em>[General]</em>Eclipse on Windows 7 / 科学サークルwiki(放送大学 科学サークル)</a><br>
+IDEOtr-)<a href="http://openoffice.sblo.jp/tag/python"><em>[General]</em>PyCharm on Ubuntu / LibreOfficeで行こう！</a><br>
+IDEOtr-)<a href="http://p--q.blogspot.jp/2014/01/libreoffice2pythonpycharm.html"><em>[General]</em>PyCharm on Windows / Dishes-Dishes/Python学習</a><br>
+</ul>
+<br>
+
+
+<br><br><br><br><br>
+<h1><center>###【 Following <a href="Python_Macro_General_No1.html">General No.1</a> 】###</center></h1>
+
+
+<h3><Center>************【 Eclipse on WindowsXP 】************</center></h3>
+<br>
+
+
+<p class="s1">Macro格納場所</p class="s1">
+<a name="OOoPre01"><h6>Pre-1)<em>[General]</em>macro格納場所</h6></a>
+<p class="s2">
+Pythonのマクロは下記Folderに格納します。
+	[　マイマクロ　]
+		<< WindowsXP / OpenOffice.org >>
+			C:\Documents and Settings\user名\Application Data\OpenOffice.org\3\user\Scripts\python\
+		<< Windows7 / LibreOffice >>
+			C:\Users\User名\AppData\Roaming\LibreOffice\<em1>4</em1>\user\Scripts\python\	← verion4.0系
+		<< Ubuntu12.04LTS / LibreOffice >>
+			/home/[ UserName ]/<em1>.config</em1>/3/user/Scripts/python/	← 10.04LTS : /.libreoffice/3/･･･
+		<< CentOS5.6 >>
+			/home/[ UserName ]/.libreoffice/3/user/Scripts/
+	[　OpenOffice.org( LibreOffice )のマクロ　]
+		<< WindowsXP / OpenOffice.org >>
+			C:\Program Files\OpenOffice.org 3\Basis\share\Scripts\python\pythonSamples\
+		<< Windows7 / LibreOffice >>
+			C:\Program Files\LibreOffice 3\Basis\share\Scripts\python\
+		<< Ubuntu10.04LTS / LibreOffice >>
+			/usr/lib/libreoffice/basis-link/share/Script/python/
+		<< CentOS5.6 >>
+</p class="s2">
+<br>
+
+
+<p class="s1">IDE環境作成</p class="s1">
+<a name="OOoIDE01"><h6>IDE-1)<em>[General]</em>Window Path追加</h6></a>
+<p class="s2">
+1)Openoffice.org付属の「python.exe」と「uno.py」があるFolderを調べる。
+	[ 通常Installならば下記にある ]
+		python.exe	:	C:\Program Files\OpenOffice.org 3\Basis\program\python-core-2.6.1\bin	
+		uno.py		:	C:\Program Files\OpenOffice.org 3\Basis\program
+
+2)WindowsのPathに追加		
+	「スタート」=>「コントロールパネル」=>「システム」=>「詳細設定」=>「環境変数」
+		PATH　：　C:\Program Files\OpenOffice.org 3\Basis\program\python-core-2.6.1\bin;C:\Program Files\OpenOffice.org 3\Basis\program　
+</p class="s2">
+<br>
+
+<a name="OOoIDE02"><h6>IDE-2)<em>[General]</em>Eclipse DownLoad and Install</h6></a>
+<div class="gozou00">
+<img SRC="Python_pic/01IDE/01Download02.png" align="right" hspace="4" vspace="4" width="25%"><img SRC="Python_pic/01IDE/01Download01.png" align="right" hspace="4" vspace="4" width="25%">
+<p class="s2">
+1)下記Siteより「Eclipse Classic 3.6.0」をDownload
+	URL : <a href="http://www.eclipse.org/downloads/">http://www.eclipse.org/downloads/</a>
+		file name : eclipse-SDK-3.6-win32.zip
+		
+2)Unzip
+</p class="s2">
+<Br clear="right">
+</div>
+
+
+<a name="OOoIDE03"><h6>IDE-3)<em>[General]</em>環境変数を調べる</h6></a>
+<div class="gozou00">
+<img SRC="Python_pic/01IDE/02kankyouhensu01.png" align="right" hspace="4" vspace="4" width="20%">
+<p class="s2">
+コマンドプロンプトにて以下のコマンドを実施
+	c:\python
+	>> import os
+	>> os.environ['URE_BOOTSTRAP']
+	>> os.environ['PATH']
+	>> os.environ['UNO_PATH']
+	>>  <= CTL + Z + Retun(Python終了)
+	c:\
+</p class="s2">
+<Br clear="right">
+</div>
+
+<a name="OOoIDE04"><h6>IDE-4)<em>[General]</em>eclipseにpydevを追加</h6></a>
+<p class="s2">
+1)eclipse起動
+	workspace　:　C:\Documents and Settings\user名\Application Data\OpenOffice.org\3\user\Scripts\python
+
+2)PyDev Install
+	help => Install new Softeawe
+		work with欄
+			URL　：　http://update-production-pydev.s3.amazonaws.com/pydev/updates/site.xml
+			name　：　Pydev
+		「Select All」=>「Next」=>「I accept ・・・・」にCheck「Finish」=>「restart」
+</p class="s2">
+<br>
+
+<a name="OOoIDE05"><h6>IDE-5)<em>[General]</em>Interpreter & 外部環境</h6></a>
+<p class="s2">
+Interpreter & 外部環境 設定
+	Window => Preferences => Pydev => Interpreter => Python
+		Python Interpreter　：　C:\Documents and Settings\user名\Application Data\OpenOffice.org\3\user\Scripts\python
+		
+		Environment TAB
+			PATH　=>　C:\Program Files\OpenOffice.org 3\URE\bin;C:\Program Files\OpenOffice.org 3\Basis\program
+			UNO_PATH　=>　C:\Program Files\OpenOffice.org 3\Basis\program
+			URE_BOOTSTRAP　=>　vnd.sun.star.pathname:C:\Program Files\OpenOffice.org 3/program/fundamental.ini
+</p class="s2">
+<br>
+
+<a name="OOoIDE06"><h6>IDE-6)<em>[General]</em>JAVA => PyDevへ切り替</h6></a>
+<div class="gozou00">
+<img SRC="Python_pic/01IDE/03kirikae01.png" align="right" hspace="4" vspace="4" width="20%">
+<p class="s2">
+右上の「JAVA」の左横にある□をClickしてPydevに切り替える。
+</p class="s2">
+<Br clear="right">
+</div>
+
+
+<a name="OOoIDE07"><h6>IDE-7)<em>[General]</em>Pydev Project作成</h6></a>
+<div class="gozou00">
+<img SRC="Python_pic/01IDE/04Folder.png" align="right" hspace="4" vspace="4" width="20%">
+<p class="s2">
+1)Pydev Project作成
+	file => new => PyDev Project
+		Project Name : OOoPython
+
+2)Python Folder作成
+	OOoPython - src 下にpython foldef作成
+
+3)pythonpath Folder作成
+	paython下にpythonpath folder作成
+</p class="s2">
+<Br clear="right">
+</div>
+
+<a name="OOoIDE08"><h6>IDE-8)<em>[General]</em>ProjectのExternal Libraries設定</h6></a>
+<p class="s2">
+以下のFolderを調べておく
+	uno.py			:	C:\Program Files\OpenOffice.org 3\Basis\program
+	unohelper.py	:	C:\Program Files\OpenOffice.org 3\Basis\program
+</p class="s2">
+
+<div class="gozou00">
+<img SRC="Python_pic/01IDE/05Project01.png" align="right" hspace="4" vspace="4" width="20%">
+<p class="s2">
+OOoPythonを右Click
+	properties => PyDev-PYTHONPATH => External Libraries
+にuno.py onohelper.pyのPAthを追加
+</p class="s2">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<img SRC="Python_pic/01IDE/05Project02.png" align="right" hspace="4" vspace="4" width="20%">
+<p class="s2">
+Projectの Properties - PyDev - PYTHONPATH の Source Folders に src 以下が含まれていることを確認
+</p class="s2">
+<Br clear="right">
+</div>
+
+
+<a name="OOoIDE09"><h6>IDE-9)<em>[General]</em>unopy.py　File作成</h6></a>
+<div class="gozou00"><pre><code>
+<img SRC="Python_pic/01IDE/06unopy_py01.png" align="right" hspace="4" vspace="4" width="20%">
+OOoPython - src下にunopy.py fileを作成
+#
+#!     # unopy.py
+# -*- coding: utf_8 -*-
+ 
+import uno
+import unohelper
+ 
+from com.sun.star.script.provider import XScriptContext
+ 
+class ScriptContext(unohelper.Base, XScriptContext):
+    def __init__(self, ctx):
+        self.ctx = ctx
+    
+    def getComponentContext(self):
+        return self.ctx
+    
+    def getDesktop(self):
+        return self.ctx.getServiceManager().createInstanceWithContext("com.sun.star.frame.Desktop", self.ctx)
+                
+    def getDocument(self):
+        return self.getDesktop().getCurrentComponent()
+ 
+def connect():
+    ctx = None
+    try:
+        localctx = uno.getComponentContext()
+        resolver = localctx.getServiceManager().createInstanceWithContext(
+            "com.sun.star.bridge.UnoUrlResolver", localctx)
+        ctx = resolver.resolve(
+            "uno:socket,host=localhost,port=2002;urp;StarOffice.ComponentContext")
+        if ctx:
+            return ScriptContext(ctx)
+    except:
+        pass
+    return None
+</code></pre>
+<Br clear="all">
+</div>
+
+<p class="s1">Boot環境構築</p class="s1">
+<a name="OOoBoot01"><h6>Boot-1)<em>[General]</em>Bat file作成</h6></a>
+<p class="s2">
+notePadにてOOoListen.batを作成
+
+cd \
+"C:\Program Files\OpenOffice.org 3\program\soffice.exe" "-accept=socket,host=localhost,port=2002;urp;StarOffice.ServiceManager" 
+</p class="s2">
+<br>
+
+<a name="OOoBoot02"><h6>Boot-2)<em>[General]</em>eclipseからCalc起動</h6></a>
+<pre><code>
+# 下記CodeをPython以下に作成
+#
+#
+import uno
+
+localContext = uno.getComponentContext()
+resolver = localContext.ServiceManager.createInstanceWithContext("com.sun.star.bridge.UnoUrlResolver", localContext )
+ctx = resolver.resolve( "uno:socket,host=localhost,port=2002;urp;StarOffice.ComponentContext" )
+
+smgr = ctx.ServiceManager
+desktop = smgr.createInstanceWithContext( "com.sun.star.frame.Desktop",ctx)
+NewDoc = desktop.loadComponentFromURL( "private:factory/scalc","_blank", 0, () )
+#
+#
+1)OOoListen.batにてOOoをListen Modeで起動<br>
+2)test.py実行<br>
+Calcが起動すればOK<br>
+</code></pre>
+<br>
+
+<p class="s1">Automation化</p class="s1">
+<a name="OOoAutot01"><h6>Auto-1)<em>[General]</em>unopy.py変更(追加)</h6></a><br>
+<pre><code>
+#!     # unopy.py
+# -*- coding: utf_8 -*-
+ 
+import uno
+import unohelper
+ 
+from com.sun.star.script.provider import XScriptContext
+ 
+class ScriptContext(unohelper.Base, XScriptContext):
+    def __init__(self, ctx):
+        self.ctx = ctx
+    def getComponentContext(self):
+        return self.ctx
+    def getDesktop(self):
+        return self.ctx.getServiceManager().createInstanceWithContext(
+                "com.sun.star.frame.Desktop", self.ctx)
+    def getDocument(self):
+        return self.getDesktop().getCurrentComponent()
+ 
+def connect():
+    ctx = None
+    try:
+        localctx = uno.getComponentContext()
+        resolver = localctx.getServiceManager().createInstanceWithContext(
+            "com.sun.star.bridge.UnoUrlResolver", localctx)
+        ctx = resolver.resolve(
+            "uno:socket,host=localhost,port=2002;urp;StarOffice.ComponentContext")
+        if ctx:
+            return ScriptContext(ctx)
+    except:
+        pass
+    return None
+    
+def run_script(ctx, mod_name, func_name, location="user"):
+    script_url = "vnd.sun.star.script:%s$%s?language=Python&location=%s" % (mod_name, func_name, location)
+    msp = ctx.getValueByName("/singletons/com.sun.star.script.provider.theMasterScriptProviderFactory")
+    sp = msp.createScriptProvider("")
+    script = sp.getScript(script_url)
+    return script.invoke((), (), ())
+</code></pre>
+
+
+<a name="OOoAutot02a"><h6>Auto-2a)<em>[General]</em>AutomationによるPython Macro実行(1)</h6></a>
+<div class="gozou00">
+<img SRC="Python_pic/01IDE/07automation01.png" align="right" hspace="4" vspace="4" width="20%">
+<pre><code>
+以下のPython Macroの場合
+#
+#! # OriginalTest2.py
+# -*- coding: utf_8 -*-
+
+def hello(arg=''):
+    doc = XSCRIPTCONTEXT.getDocument()
+    doc.getText().setString("Hello!" if not arg else arg)
+
+	hello("Hello! (from automation)")
+
+をeclipseからAutomationにて実行する場合は以下の様になる。
+しかも、下記CodeはOOoから実行した場合は「if __name__ == '__main__':」の結果が「false」なので、
+上記Codeと同じになる。
+#
+#! # test2.py
+# -*- coding: utf_8 -*-
+
+def hello(arg=''):
+    doc = XSCRIPTCONTEXT.getDocument()
+    doc.getText().setString("Hello!" if not arg else arg)
+
+
+if __name__ == '__main__':
+    import uno 
+    localContext = uno.getComponentContext()
+    resolver = localContext.ServiceManager.createInstanceWithContext("com.sun.star.bridge.UnoUrlResolver", localContext )
+    ctx = resolver.resolve( "uno:socket,host=localhost,port=2002;urp;StarOffice.ComponentContext" )
+    smgr = ctx.ServiceManager
+    desktop = smgr.createInstanceWithContext( "com.sun.star.frame.Desktop",ctx)
+    doc = desktop.loadComponentFromURL( "private:factory/swriter","_blank", 0, () )
+   
+    import unopy
+    XSCRIPTCONTEXT = unopy.ScriptContext(ctx)
+   
+    if 1: 
+        hello("Hello! (from automation)")
+    else:
+        unopy.run_script(ctx, "test2.py", "hello", "user名")
+</code></pre>
+<Br clear="right">
+</div>
+
+<a name="OOoAutot02b"><h6>Auto-2b)<em>[General]</em>AutomationによるPython Macro実行(2)</h6></a><br>
+<div class="gozou00">
+<img SRC="Python_pic/01IDE/07automation02.png" align="right" hspace="4" vspace="4" width="20%">
+<pre><code>
+####### OOoから実行するMacro Code #########
+#
+#
+from com.sun.star.awt import Rectangle~
+ 
+
+def show_message(desktop, message):
+    """shows message."""
+    frame = desktop.getCurrentFrame()
+    window = frame.getContainerWindow()
+    toolkit = window.getToolkit()
+    msgbox = toolkit.createMessageBox(
+        window, Rectangle(), 'messbox', 1, '', message)
+    return msgbox.execute()
+
+
+def get_active_cell():
+    doc = XSCRIPTCONTEXT.getDocument()
+    selected = doc.getCurrentSelection()
+    try:
+        if selected.supportsService('com.sun.star.sheet.SheetCellRange'):
+            addr = selected.getRangeAddress()
+            
+            txt = 'Column: %s\nRow: %s' % (addr.EndColumn, addr.EndRow)
+            show_message(XSCRIPTCONTEXT.getDesktop(), txt)
+    except:
+        pass
+#
+#
+####### ecipseからAutomationにて実行するCode #######
+#
+#
+import uno
+from com.sun.star.awt import Rectangle
+
+def show_message(desktop, message):
+   """shows message."""
+   frame = desktop.getCurrentFrame()
+   window = frame.getContainerWindow()
+   toolkit = window.getToolkit()
+   msgbox = toolkit.createMessageBox(
+       window, Rectangle(), 'messbox', 1, '', message)
+   return msgbox.execute()
+
+
+def get_active_cell():
+   doc = XSCRIPTCONTEXT.getDocument()
+   selected = doc.getCurrentSelection()
+   try:
+       if selected.supportsService('com.sun.star.sheet.SheetCellRange'):
+           addr = selected.getRangeAddress()
+           
+           txt = 'Column: %s\nRow: %s' % (addr.EndColumn, addr.EndRow)
+           show_message(XSCRIPTCONTEXT.getDesktop(), txt)
+   except:
+       pass
+   
+if __name__ == '__main__':
+#    import uno 
+   localContext = uno.getComponentContext()
+   resolver = localContext.ServiceManager.createInstanceWithContext("com.sun.star.bridge.UnoUrlResolver", localContext )
+   ctx = resolver.resolve( "uno:socket,host=localhost,port=2002;urp;StarOffice.ComponentContext" )
+   smgr = ctx.ServiceManager
+   desktop = smgr.createInstanceWithContext( "com.sun.star.frame.Desktop",ctx)
+   doc = desktop.loadComponentFromURL( "private:factory/scalc","_blank", 0, () )
+  
+   import unopy
+   XSCRIPTCONTEXT = unopy.ScriptContext(ctx)
+  
+   if 1: 
+       get_active_cell()
+   else:
+       unopy.run_script(ctx, "test3.py","" , "user名")
+</code></pre>
+<Br clear="right">
+</div>
+
+
+
+
+
+
+<br>
+<center><h6><a href="#TopOfPage">Top of Page</a></h6></center><BR>
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/Python_Macro_IDE.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:32:45 GMT -->
+</html>
+

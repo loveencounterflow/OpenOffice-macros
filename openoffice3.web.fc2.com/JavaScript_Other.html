@@ -1,0 +1,2636 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/JavaScript_Other.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:37:42 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<title>Macroの杜(JavaScript編 / Base,Writer,Draw,Impress)</title>
+</head>
+<link rel="stylesheet"
+type="text/css" href="css_macroJavaScript_Gneneral.css">
+<body>
+<left><p><A HREF="index-2.html">Home of site</a></p></left><br>
+<a name="TopOfPage"><h1>Macroの杜(JavaScript編)</h1></a>
+
+<h2>【 Base / Writer / Draw / Impress 】</h2>
+
+<h3><Center>**********************【 Index 】**********************</center></h3>
+
+<h3>【　Base(Database)　】</h3>
+
+<p class="s1">file関係</p class="s1">
+<ul>
+BF-1)<a href="#OOoBF1"><em>[Base]</em>新規にBase fileを開く</a><br>
+BF-1)<a href="#OOoBF1b"><em>[Base]</em>任意のBase fileを開く</a><br>
+BF-)<a href="#OOoBF2"><em>[Base]</em>HSQLDBの設定</a><br>
+BF-)<a href="#OOoBF3"><em>[Base]</em>新規Base(HSQLDB) Fileの上書き保存(2回連続した実行は不可)</a><br>
+BF-)<a href="#OOoBF3b"><em>[Base]</em>指定Base(HSQLDB) Fileの上書き保存</a><br>
+BF-)<a href="#OOoBF4a"><em>[Base]</em>指定Base(HSQLDB) Fileの上書き保存後にFile終了</a><br>
+</ul>
+<br>
+
+<p class="s1">DataSource</p class="s1">
+<ul>
+BDS-)<a href="#OOoBDS00"><em>[Base]</em>DataSourceとのConnect</a><br>
+BDS-)<a href="#OOoBDS01"><em>[Base]</em>別FileのDataSourceとのConnect</a><br>
+</ul>
+
+<p class="s1">Table</p class="s1">
+<ul>
+BT-)<a href="#OOoBT01"><em>[Base]</em>同名TABLEの存在有無</a><br>
+BT-)<a href="#OOoBT01b"><em>[Base]</em>同名TABLEの存在有無(function利用)</a><br>
+BT-)<a href="#OOoBT01c"><em>[Base]</em>同名TABLEの存在有無(上書き保存)</a><br>
+</ul>
+
+
+<p class="s1">SQL(HSQLDB)</p class="s1">
+<ul>
+BHSQL-)<a href="#OOoBHSQL02"><em>[Base]</em>新規Tableの作成(Fileは開かない)</a><br>
+BHSQL-)<a href="#OOoBHSQL01"><em>[Base]</em>別Base File(HSQLDB)に新規Tableの作成(Fileは開かない)</a><br>
+BHSQL-)<a href="#OOoBHSQL01b"><em>[Base]</em>Tableの有無確認後、Tableを作成(Fileは開かない)<em>[  ]</em></a><br>
+BHSQL-)<a href="#OOoBHSQL03a"><em>[Base]</em>Tableの有無確認後、Tableを作成して上書き保存/終了<em>[  ]</em></a><br>
+BHSQL-)<a href="#OOoBHSQL"><em>[Base]</em><em>[  ]</em></a><br>
+</ul>
+
+
+<h3>【　Writer(文書作成)　】</h3>
+<p class="s1">file操作</p class="s1">
+<ul>
+WF-1)<a href="#OOoWF1"><em>[Writer]</em>新規にWriter fileを開く</a><br>
+</ul>
+<p class="s1">文書入力</p class="s1">
+<ul>
+WD-1)<a href="#OOoWD1"><em>[Writer]</em>最もポピュラーなマクロ（Hello World in JavaScript)</a><br>
+</ul>
+
+<p class="s1">Style</p class="s1">
+<ul>
+[ Color ]<br>
+WSC-1)<a href="#OOoWSC01a"><em>[Writer]</em>文字色設定<em>[ (Packages.com.sun.star.text.XTextRange / java.awt.Color / .getRGB() / new java.lang.Integer() ]</em></a><br>
+WSC-1)<a href="#OOoWSC02a"><em>[Writer]</em>単語毎に文字色を設定<em>[ (Packages.com.sun.star.text.XWordCursor / Packages.com.sun.star.frame.XModel / .createTextCursor() / .gotoStart ]</em></a><br>
+</ul>
+<br>
+
+<h3>【　Draw(描画)　】</h3>
+<p class="s1">file操作</p class="s1">
+<ul>
+DF-1)<a href="#OOoDF1"><em>[Draw]</em>新規にDraw fileを開く</a><br>
+</ul>
+
+<p class="s1">Page操作</p class="s1">
+<ul>
+DS-1)<a href="#OOoDS1"><em>[Draw]</em>Page1へのAccess</a><br>
+DS-2)<a href="#OOoDS2"><em>[Draw]</em>Pageの追加</a><br>
+DS-3)<a href="#OOoDS3"><em>[Draw]</em>Pageの削除</a><br>
+DS-4)<a href="#OOoDS4"><em>[Draw]</em>Pageに名前を付ける。Page名の取得</a><br>
+DS-5)<a href="#OOoDS5"><em>[Draw]</em>Pageの枚数を数える</a><br>
+</ul>
+
+<p class="s1">図形</p class="s1">
+<ul>
+DD-1)<a href="#OOoDD1"><em>[Draw]</em>各種要素の作成</a><br>
+<ul class="s2">
+･Rectangle<br>
+･Caption(引出線付き□)<br>
+･Ellipse<br>
+･Line<br>
+</ul class="s2">
+
+DD-1)<a href="#OOoDDa"><em>[Draw]</em>要素にText追加</a><br>
+
+</ul>
+
+<p class="s1">Style</p class="s1">
+<ul>
+[ Color ]<br>
+DSCo-1)<a href="#OOoDSCo1"><em>[Draw]</em>要素の背景,外形色設定</a><br>
+DSCo-2)<a href="#OOoDSCo2"><em>[Draw]</em>要素の文字色変更</a><br>
+DSCo-)<a href="#OOoDSCo3"><em>[Draw]</em>(未完成)要素にHatchに変更</a><br>
+[ Font ]<br>
+DSF-1)<a href="#OOoDSF"><em>[Draw]</em>文字(英数字)Font Style設定(未完成)</a><br>
+[ Page ]<br>
+DSP-1)<a href="#OOoDSP"><em>[Draw]</em>上下左右の余白設定(未完成)</a><br>
+</ul>
+
+<p class="s1">Connector</p class="s1">
+<ul>
+DC-1)<a href="#OOoDC1"><em>[Draw]</em>Conector追加</a><br>
+DC-2)<a href="#OOoDC2"><em>[Draw]</em>Conector追加(その2)</a><br>
+</ul>
+
+<p class="s1">その他</p class="s1">
+<ul>
+DO-1)<a href="#OOoDOa"><em>[Draw]</em>階層設定</a><br>
+</ul>
+<br>
+
+<h3>【　Impress(Presentation)　】</h3>
+<p class="s1">file操作</p class="s1">
+<ul>
+IF-1)<a href="#OOoI1"><em>[Impress]</em>新規にImpress fileを開く</a><br>
+</ul>
+
+<p class="s1">Page操作</p class="s1">
+<ul>
+IP-1)<a href="#OOoIp class="s1""><em>[Impress]</em>Page1へのAccess</a><br>
+IP-2)<a href="#OOoIP2"><em>[Impress]</em>Pageの追加</a><br>
+IP-3)<a href="#OOoIP3"><em>[Impress]</em>Pageの削除</a><br>
+IP-4)<a href="#OOoIP4"><em>[Impress]</em>Pageに名前を付ける。Page名の取得</a><br>
+IP-5)<a href="#OOoIP5"><em>[Impress]</em>DocumentのPage枚数の取得</a><br>
+IP-6)<a href="#OOoIP6"><em>[Impress]</em>Page情報の取得</a><br>
+</ul>
+
+<p class="s1">図形</p class="s1">
+<ul>
+ID-1)<a href="#OOoID1"><em>[Impress]</em>各種要素の作成</a><br>
+<ul class="s2">
+･Rectangle<br>
+･Caption(引出線付き□)<br>
+･Ellipse<br>
+･Line<br>
+</ul class="s2">
+ID-1)<a href="#OOoIDa"><em>[Impress]</em>要素にText追加</a><br>
+ID-2)<a href="#OOoIDa1"><em>[Impress]</em>要素にText追加(その2)</a><br>
+ID-3)<a href="#OOoIDa2"><em>[Impress]</em>要素にText追加(その3)</a><br>
+ID-4)<a href="#OOoIDb"><em>[Impress]</em>要素を移動</a><br>
+ID-5)<a href="#OOoIDc"><em>[Impress]</em>要素の選択</a><br>
+ID-6)<a href="#OOoIDd"><em>[Impress]</em>要素に名前を付ける。要素名の取得</a><br>
+ID-7)<a href="#OOoIDe"><em>[Impress]</em>要素の削除</a><br>
+</ul>
+<p class="s1">Style</p class="s1">
+<ul>
+[ Color ]<br>
+ISC-1)<a href="#OOoISC1"><em>[Impress]</em>要素の背景,外形色設定</a><br>
+ISC-2)<a href="#OOoISCb"><em>[Impress]</em>要素の文字色変更</a><br>
+ISC-3)<a href="#OOoISCb1"><em>[Impress]</em>要素の文字色変更(その2)</a><br>
+</ul>
+
+<p class="s1">Connector</p class="s1">
+<ul>
+IC-1)<a href="#OOoIC1"><em>[Impress]</em>Conector追加</a><br>
+</ul>
+
+<p class="s1">画面切り替え(SlideShow)</p class="s1">
+<ul>
+ISS-1)<a href="#OOoISS1"><em>[Impress]</em>Screenの表示方法設定(左側から登場)</a><br>
+ISS-2)<a href="#OOoISS2"><em>[Impress]</em>切り替え速度の変更</a><br>
+ISS-3)<a href="#OOoISS3"><em>[Impress]</em>Slideを進める(By Mouse Click)</a><br>
+ISS-4)<a href="#OOoISS4"><em>[Impress]</em>Slideを進める(次の動作(5秒間表示)のあと自動的に)</a><br>
+ISS-5)<a href="#OOoISS5"><em>[Impress]</em>全てのSlideに適用</a><br>
+</ul>
+<p class="s1">Annimation(SlideShow)</p class="s1">
+<ul>
+IA-1)<a href="#OOoIA1"><em>[Impress]</em>要素の表示方法(上部から表示)</a><br>
+[ Bookmark ]<br>
+IAB-1)<a href="#OOoIAB1"><em>[Impress]</em>要素にBookmarkを設定("page three"に移動)</a><br>
+</ul>
+<br><br>
+
+
+<center><h3>**********[ Macro Code ]**********</h3></center>
+
+<center><h2>【-----　Other -----　】</h2></center>
+
+
+<h3>【　Base(Database)　】</h3>
+<a name="OOoBF1"><h6>BF-1)<em>[Base]</em>新規にBase fileを開く</h6></a><pre><code>
+//Open new Base file
+importClass(Packages.com.sun.star.beans.PropertyValue);
+importClass(Packages.com.sun.star.comp.helper.Bootstrap);
+importClass(Packages.com.sun.star.comp.helper.BootstrapException);
+importClass(Packages.com.sun.star.frame.XComponentLoader);
+importClass(Packages.com.sun.star.lang.XMultiComponentFactory);
+importClass(Packages.com.sun.star.uno.Exception);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.uno.XComponentContext);
+
+	xContext = XSCRIPTCONTEXT.getComponentContext();
+//	xContext = Bootstrap.bootstrap();　　　　　　　　　　//<= OOo3.1.1以前は動作した。
+	xMultiComponentFactory = xContext.getServiceManager();
+	xtest = xMultiComponentFactory.createInstanceWithContext("com.sun.star.frame.Desktop", xContext);
+	xcomponentloader = UnoRuntime.queryInterface(XComponentLoader,xtest);
+
+	loadURL = "private:factory/sdatabase";
+	propertyvalue = new Array();
+	xcomponentloader.loadComponentFromURL(loadURL, "_blank", 0, propertyvalue);
+</code></pre><br>
+
+
+<a name="OOoBF1b"><h6>BF-)<em>[Base]</em>任意のBase fileを開く</h6></a><pre><code>
+//Open Base file
+importClass(Packages.com.sun.star.beans.PropertyValue);
+importClass(Packages.com.sun.star.comp.helper.Bootstrap);
+importClass(Packages.com.sun.star.comp.helper.BootstrapException);
+importClass(Packages.com.sun.star.frame.XComponentLoader);
+importClass(Packages.com.sun.star.lang.XMultiComponentFactory);
+importClass(Packages.com.sun.star.uno.Exception);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.uno.XComponentContext);
+//
+	xContext = XSCRIPTCONTEXT.getComponentContext();
+//	xContext = Bootstrap.bootstrap();　　　　　　　　　　//<= OOo3.1.1以前は動作した。
+	xMultiComponentFactory = xContext.getServiceManager();
+	xtest = xMultiComponentFactory.createInstanceWithContext("com.sun.star.frame.Desktop", xContext);
+	xcomponentloader = UnoRuntime.queryInterface(XComponentLoader,xtest);
+//
+	loadURL = "file:///C:/temp/oBaseMacro2.odb";
+//	loadURL = oURL.toString();						// <= String化しなくともOK
+	propertyvalue = new Array();
+	xcomponentloader.loadComponentFromURL(loadURL, "_blank", 0, propertyvalue);
+//
+importClass(Packages.javax.swing.JOptionPane);
+JOptionPane.showMessageDialog(null, "Success");
+</code></pre><br>
+
+
+<a name="OOoBF2"><h6>BF-)<em>[Base]</em>HSQLDBの設定</h6></a><pre><code>
+// Base in JavaScript
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.com.sun.star.beans.PropertyValue);
+importClass(Packages.com.sun.star.comp.helper.Bootstrap);
+importClass(Packages.com.sun.star.comp.helper.BootstrapException);
+importClass(Packages.com.sun.star.frame.XComponentLoader);
+importClass(Packages.com.sun.star.lang.XMultiComponentFactory);
+importClass(Packages.com.sun.star.uno.Exception);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.uno.XComponentContext);
+//
+importClass(Packages.com.sun.star.beans.UnknownPropertyException);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(Packages.com.sun.star.lang.WrappedTargetException);
+importClass(Packages.com.sun.star.sdb.XOfficeDatabaseDocument);
+importClass(Packages.com.sun.star.sdbc.XDataSource);
+//
+try{
+	xContext = XSCRIPTCONTEXT.getComponentContext();
+//	xContext = Bootstrap.bootstrap();　　　　　　　　　　//<= OOo3.1.1以前は動作した。
+	xMultiComponentFactory = xContext.getServiceManager();
+	xtest = xMultiComponentFactory.createInstanceWithContext("com.sun.star.frame.Desktop", xContext);
+	xcomponentloader = UnoRuntime.queryInterface(XComponentLoader,xtest);
+
+	loadURL = "private:factory/sdatabase";
+	propertyvalue = new Array();
+	oDoc = xcomponentloader.loadComponentFromURL(loadURL, "_blank", 0, propertyvalue);
+//
+	xOfficeDatabaseDocument = UnoRuntime.queryInterface(XOfficeDatabaseDocument, oDoc);
+	xDataSource = xOfficeDatabaseDocument.getDataSource();
+	xPropertySet = UnoRuntime.queryInterface(XPropertySet, xDataSource);
+	xPropertySet.setPropertyValue("URL", "sdbc:embedded:hsqldb");
+//
+	JOptionPane.showMessageDialog(null, "Success");
+}catch (e){
+	if (e instanceof WrappedTargetException) {
+// getPropertyValue
+	} else if (e instanceof UnknownPropertyException)
+	 {
+// getPropertyValue
+	} else {
+	}
+	}
+</code></pre><br>
+
+
+<a name="OOoBF3"><h6>BF-)<em>[Base]</em>新規Base(HSQLDB) Fileの上書き保存</h6></a><pre><code>
+// 本Codeは2回続けて実行は不可
+// Base in JavaScript
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.com.sun.star.beans.PropertyValue);
+importClass(Packages.com.sun.star.comp.helper.Bootstrap);
+importClass(Packages.com.sun.star.comp.helper.BootstrapException);
+importClass(Packages.com.sun.star.frame.XComponentLoader);
+importClass(Packages.com.sun.star.lang.XMultiComponentFactory);
+importClass(Packages.com.sun.star.uno.Exception);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.uno.XComponentContext);
+//
+importClass(Packages.com.sun.star.beans.UnknownPropertyException);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(Packages.com.sun.star.lang.WrappedTargetException);
+importClass(Packages.com.sun.star.sdb.XOfficeDatabaseDocument);
+importClass(Packages.com.sun.star.sdbc.XDataSource);
+//
+importClass(Packages.com.sun.star.frame.XStorable);
+importClass(Packages.com.sun.star.io.IOException);
+//
+try{
+	xContext = XSCRIPTCONTEXT.getComponentContext();
+//	xContext = Bootstrap.bootstrap();　　　　　　　　　　//<= OOo3.1.1以前は動作した。
+	xMultiComponentFactory = xContext.getServiceManager();
+	xtest = xMultiComponentFactory.createInstanceWithContext("com.sun.star.frame.Desktop", xContext);
+	xcomponentloader = UnoRuntime.queryInterface(XComponentLoader,xtest);
+//
+	loadURL = "private:factory/sdatabase";
+	propertyvalue = new Array();
+	oDoc = xcomponentloader.loadComponentFromURL(loadURL, "_blank", 0, propertyvalue);
+//
+	xOfficeDatabaseDocument = UnoRuntime.queryInterface(XOfficeDatabaseDocument, oDoc);
+	xDataSource = xOfficeDatabaseDocument.getDataSource();
+	xPropertySet = UnoRuntime.queryInterface(XPropertySet, xDataSource);
+	xPropertySet.setPropertyValue("URL", "sdbc:embedded:hsqldb");
+//
+	oStoreURL = "file:///C:/temp/oBaseMacro3.odb";
+	xStorable = UnoRuntime.queryInterface(XStorable,oDoc);
+	storeProps = new PropertyValue();
+	storeProps.Name = "Overwrite";
+	storeProps.Value = true;
+	xStorable.storeAsURL(oStoreURL,[storeProps]);
+//
+	JOptionPane.showMessageDialog(null, "Success");
+}catch (e){
+	if (e instanceof WrappedTargetException) {
+	} else if (e instanceof UnknownPropertyException)
+	 {
+	} else {
+	}
+	}
+</code></pre><br>
+
+
+<a name="OOoBF3b"><h6>BF-)<em>[Base]</em>指定Base(HSQLDB) Fileの上書き保存</h6></a><pre><code>
+// Base in JavaScript
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.com.sun.star.beans.PropertyValue);
+importClass(Packages.com.sun.star.comp.helper.Bootstrap);
+importClass(Packages.com.sun.star.comp.helper.BootstrapException);
+importClass(Packages.com.sun.star.frame.XComponentLoader);
+importClass(Packages.com.sun.star.lang.XMultiComponentFactory);
+importClass(Packages.com.sun.star.uno.Exception);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.uno.XComponentContext);
+//
+importClass(Packages.com.sun.star.beans.UnknownPropertyException);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(Packages.com.sun.star.lang.WrappedTargetException);
+importClass(Packages.com.sun.star.sdb.XOfficeDatabaseDocument);
+importClass(Packages.com.sun.star.sdbc.XDataSource);
+//
+importClass(Packages.com.sun.star.frame.XStorable);
+importClass(Packages.com.sun.star.io.IOException);
+//
+try{
+	xContext = XSCRIPTCONTEXT.getComponentContext();
+//	xContext = Bootstrap.bootstrap();　　　　　　　　　　//<= OOo3.1.1以前は動作した。
+	xMultiComponentFactory = xContext.getServiceManager();
+	xtest = xMultiComponentFactory.createInstanceWithContext("com.sun.star.frame.Desktop", xContext);
+	xcomponentloader = UnoRuntime.queryInterface(XComponentLoader,xtest);
+//
+	oStoreURL = "file:///C:/temp/oBaseMacro3.odb";
+	propertyvalue = new Array();
+	oDoc = xcomponentloader.loadComponentFromURL(oStoreURL, "_blank", 0, propertyvalue);
+//
+	xOfficeDatabaseDocument = UnoRuntime.queryInterface(XOfficeDatabaseDocument, oDoc);
+	xDataSource = xOfficeDatabaseDocument.getDataSource();
+	xPropertySet = UnoRuntime.queryInterface(XPropertySet, xDataSource);
+	xPropertySet.setPropertyValue("URL", "sdbc:embedded:hsqldb");
+//
+	xStorable = UnoRuntime.queryInterface(XStorable,oDoc);
+	storeProps = new PropertyValue();
+	storeProps.Name = "Overwrite";
+	storeProps.Value = true;
+	xStorable.storeAsURL(oStoreURL,[storeProps]);
+//
+	JOptionPane.showMessageDialog(null, "Success");
+}catch (e){
+	if (e instanceof WrappedTargetException) {
+	} else if (e instanceof UnknownPropertyException)
+	 {
+	} else {
+	}
+	}
+</code></pre><br>
+
+
+<a name="OOoBF4a"><h6>BF-)<em>[Base]</em>指定Base(HSQLDB) Fileの上書き保存後にFile終了</h6></a><pre><code>
+// Base in JavaScript
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.com.sun.star.beans.PropertyValue);
+importClass(Packages.com.sun.star.comp.helper.Bootstrap);
+importClass(Packages.com.sun.star.comp.helper.BootstrapException);
+importClass(Packages.com.sun.star.frame.XComponentLoader);
+importClass(Packages.com.sun.star.lang.XMultiComponentFactory);
+importClass(Packages.com.sun.star.uno.Exception);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.uno.XComponentContext);
+//
+importClass(Packages.com.sun.star.beans.UnknownPropertyException);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(Packages.com.sun.star.lang.WrappedTargetException);
+importClass(Packages.com.sun.star.sdb.XOfficeDatabaseDocument);
+importClass(Packages.com.sun.star.sdbc.XDataSource);
+//
+importClass(Packages.com.sun.star.frame.XStorable);
+importClass(Packages.com.sun.star.io.IOException);
+//
+importClass(Packages.com.sun.star.lang.XComponent);
+//importClass(Packages.com.sun.star.sdbc.XCloseable);
+importClass(Packages.com.sun.star.uno.RuntimeException);
+//
+try{
+	xContext = XSCRIPTCONTEXT.getComponentContext();
+//	xContext = Bootstrap.bootstrap();　　　　　　　　　　//<= OOo3.1.1以前は動作した。
+	xMultiComponentFactory = xContext.getServiceManager();
+	xtest = xMultiComponentFactory.createInstanceWithContext("com.sun.star.frame.Desktop", xContext);
+	xcomponentloader = UnoRuntime.queryInterface(XComponentLoader,xtest);
+//
+	oStoreURL = "file:///C:/temp/oBaseMacro3.odb";
+	propertyvalue = new Array();
+	oDoc = xcomponentloader.loadComponentFromURL(oStoreURL, "_blank", 0, propertyvalue);
+//
+	xOfficeDatabaseDocument = UnoRuntime.queryInterface(XOfficeDatabaseDocument, oDoc);
+	xDataSource = xOfficeDatabaseDocument.getDataSource();
+	xPropertySet = UnoRuntime.queryInterface(XPropertySet, xDataSource);
+	xPropertySet.setPropertyValue("URL", "sdbc:embedded:hsqldb");
+//
+	xStorable = UnoRuntime.queryInterface(XStorable,oDoc);
+	storeProps = new PropertyValue();
+	storeProps.Name = "Overwrite";
+	storeProps.Value = true;
+	xStorable.storeAsURL(oStoreURL,[storeProps]);
+//
+//	xCloseCon = UnoRuntime.queryInterface(XCloseable,oDoc);		// <= closeを入れると不可
+//	xCloseCon.close();										// <= closeを入れると不可
+	xDispose = UnoRuntime.queryInterface(XComponent,oDoc);
+	xDispose.dispose();
+//
+	JOptionPane.showMessageDialog(null, "Success");
+}catch (e){
+	if (e instanceof WrappedTargetException) {
+	} else if (e instanceof UnknownPropertyException)
+	 {
+	} else {
+	}
+	}
+</code></pre><br>
+
+
+
+
+<p class="s1">DataSource</p class="s1">
+<a name="OOoBDS00"><h6>BDS-)<em>[Base]</em>DataSourceとのConnect</h6></a><pre><code>
+// Base in JavaScript
+importClass(Packages.javax.swing.JOptionPane);
+//
+importClass(Packages.com.sun.star.lang.XMultiComponentFactory);
+importClass(Packages.com.sun.star.uno.Exception);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.uno.XComponentContext);
+//
+importClass(Packages.com.sun.star.sdb.XOfficeDatabaseDocument);
+importClass(Packages.com.sun.star.sdbc.XDataSource);
+//
+importClass(Packages.com.sun.star.container.NoSuchElementException);
+importClass(Packages.com.sun.star.container.XNameAccess);
+importClass(Packages.com.sun.star.uno.XInterface);
+importClass(Packages.com.sun.star.sdbc.XConnection);
+//
+importClass(Packages.com.sun.star.lang.XComponent);
+importClass(Packages.com.sun.star.sdbc.XCloseable);
+importClass(Packages.com.sun.star.uno.RuntimeException);
+//
+//importClass(Packages.com.sun.star.sdbc.SQLException);
+//importClass(Packages.com.sun.star.sdbc.XStatement);
+//
+try{
+	xContext = XSCRIPTCONTEXT.getComponentContext();
+	xMultiComponentFactory = xContext.getServiceManager();
+//
+	oBaseURL = "file:///C:/temp/oBaseMacroTest.odb";		// <= Current Base Fileは不可
+//
+	xBaseContext = xMultiComponentFactory.createInstanceWithContext("com.sun.star.sdb.DatabaseContext", xContext);
+	xBaseAccess = UnoRuntime.queryInterface(XNameAccess, xBaseContext);
+	xBaseInface = UnoRuntime.queryInterface(XInterface, xBaseAccess.getByName(oBaseURL));
+	xDataSource = UnoRuntime.queryInterface(XDataSource, xBaseInface);
+	xCon = xDataSource.getConnection("", "");
+//
+	xCloseCon = UnoRuntime.queryInterface(XCloseable, xCon);
+	xCloseCon.close();
+	xDispose = UnoRuntime.queryInterface(XComponent, xCon);
+	xDispose.dispose();
+//
+	JOptionPane.showMessageDialog(null, "Success");
+}catch (e){
+	if (e instanceof RuntimeException) {
+// dispose
+	} else {
+	}
+	}
+</code></pre><br>
+
+
+<a name="OOoBDS01"><h6>BDS-)<em>[Base]</em>別FileのDataSourceとのConnect</h6></a><pre><code>
+// Base in JavaScript
+importClass(Packages.javax.swing.JOptionPane);
+//
+importClass(Packages.com.sun.star.lang.XMultiComponentFactory);
+importClass(Packages.com.sun.star.uno.Exception);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.uno.XComponentContext);
+//
+importClass(Packages.com.sun.star.sdb.XOfficeDatabaseDocument);
+importClass(Packages.com.sun.star.sdbc.XDataSource);
+//
+importClass(Packages.com.sun.star.container.NoSuchElementException);
+importClass(Packages.com.sun.star.container.XNameAccess);
+importClass(Packages.com.sun.star.uno.XInterface);
+importClass(Packages.com.sun.star.sdbc.XConnection);
+//
+importClass(Packages.com.sun.star.lang.XComponent);
+importClass(Packages.com.sun.star.sdbc.XCloseable);
+importClass(Packages.com.sun.star.uno.RuntimeException);
+//
+//importClass(Packages.com.sun.star.sdbc.SQLException);
+//importClass(Packages.com.sun.star.sdbc.XStatement);
+//
+try{
+	xContext = XSCRIPTCONTEXT.getComponentContext();
+	xMultiComponentFactory = xContext.getServiceManager();
+//
+//	oBaseURL = "file:///C:/temp/oBaseMacroTest.odb";	// <= Current Base Fileは不可
+	oBaseURL = "file:///C:/temp/oBaseMacro3.odb";		// <= Other Base File
+//
+	xBaseContext = xMultiComponentFactory.createInstanceWithContext("com.sun.star.sdb.DatabaseContext", xContext);
+	xBaseAccess = UnoRuntime.queryInterface(XNameAccess, xBaseContext);
+	xBaseInface = UnoRuntime.queryInterface(XInterface, xBaseAccess.getByName(oBaseURL));
+	xDataSource = UnoRuntime.queryInterface(XDataSource, xBaseInface);
+	xCon = xDataSource.getConnection("", "");
+//
+	xCloseCon = UnoRuntime.queryInterface(XCloseable, xCon);
+	xCloseCon.close();
+	xDispose = UnoRuntime.queryInterface(XComponent, xCon);
+	xDispose.dispose();
+//
+	JOptionPane.showMessageDialog(null, "Success");
+}catch (e){
+	if (e instanceof RuntimeException) {
+// dispose
+	} else {
+	}
+	}
+</code></pre><br>
+
+
+<p class="s1">Table</p class="s1">
+<a name="OOoBT01"><h6>BT-)<em>[Base]</em>同名TABLEの存在有無</h6></a><pre><code>
+<img SRC="JavaScript_Pic/03Base/02Table/01TableExist01.png" align="right" hspace="4" vspace="4" width="25%">
+// Base in JavaScript
+importClass(Packages.javax.swing.JOptionPane);
+//
+importClass(Packages.com.sun.star.lang.XMultiComponentFactory);
+importClass(Packages.com.sun.star.uno.Exception);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.uno.XComponentContext);
+//
+importClass(Packages.com.sun.star.sdb.XOfficeDatabaseDocument);
+importClass(Packages.com.sun.star.sdbc.XDataSource);
+//
+importClass(Packages.com.sun.star.container.NoSuchElementException);
+importClass(Packages.com.sun.star.container.XNameAccess);
+importClass(Packages.com.sun.star.uno.XInterface);
+importClass(Packages.com.sun.star.sdbc.XConnection);
+//
+importClass(Packages.com.sun.star.lang.XComponent);
+importClass(Packages.com.sun.star.sdbc.XCloseable);
+importClass(Packages.com.sun.star.uno.RuntimeException);
+//
+importClass(Packages.com.sun.star.sdbcx.XTablesSupplier);
+//
+try{
+	xContext = XSCRIPTCONTEXT.getComponentContext();
+	xMultiComponentFactory = xContext.getServiceManager();
+//
+	oBaseURL = "file:///C:/temp/oBaseMacroTest.odb";	// <= Current Base Fileは不可
+//DataSourceと接続
+	xBaseContext = xMultiComponentFactory.createInstanceWithContext("com.sun.star.sdb.DatabaseContext", xContext);
+	xBaseAccess = UnoRuntime.queryInterface(XNameAccess, xBaseContext);
+	xBaseInface = UnoRuntime.queryInterface(XInterface, xBaseAccess.getByName(oBaseURL));
+	xDataSource = UnoRuntime.queryInterface(XDataSource, xBaseInface);
+	xCon = xDataSource.getConnection("", "");
+//同名のTbaleが既にあるか?
+	xTableName = "TEST"
+	xTablesInface = UnoRuntime.queryInterface(XTablesSupplier, xCon);
+	xBaseTables = xTablesInface.getTables();
+	xTableExist = xBaseTables.hasByName(xTableName);
+	xDisp = xTableName + " Tableの存在有無Check結果 => " + xTableExist
+	JOptionPane.showMessageDialog(null, xDisp);
+//DataSourceとの切断
+	xCloseCon = UnoRuntime.queryInterface(XCloseable, xCon);
+	xCloseCon.close();
+	xDispose = UnoRuntime.queryInterface(XComponent, xCon);
+	xDispose.dispose();
+//
+	JOptionPane.showMessageDialog(null, "Success");
+}catch (e){
+	if (e instanceof RuntimeException) {
+// dispose
+	} else {
+	}
+	}
+</code></pre><br>
+
+
+<a name="OOoBT01b"><h6>BT-)<em>[Base]</em>同名TABLEの存在有無(function利用)</h6></a><pre><code>
+<img SRC="JavaScript_Pic/03Base/02Table/01TableExist02.png" align="right" hspace="4" vspace="4" width="25%">
+// Base in JavaScript
+importClass(Packages.javax.swing.JOptionPane);
+//
+importClass(Packages.com.sun.star.lang.XMultiComponentFactory);
+importClass(Packages.com.sun.star.uno.Exception);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.uno.XComponentContext);
+//
+importClass(Packages.com.sun.star.sdb.XOfficeDatabaseDocument);
+importClass(Packages.com.sun.star.sdbc.XDataSource);
+//
+importClass(Packages.com.sun.star.container.NoSuchElementException);
+importClass(Packages.com.sun.star.container.XNameAccess);
+importClass(Packages.com.sun.star.uno.XInterface);
+importClass(Packages.com.sun.star.sdbc.XConnection);
+//
+importClass(Packages.com.sun.star.lang.XComponent);
+importClass(Packages.com.sun.star.sdbc.XCloseable);
+importClass(Packages.com.sun.star.uno.RuntimeException);
+//
+importClass(Packages.com.sun.star.sdbcx.XTablesSupplier);
+//
+function oExistTb(oCon,TbName){	
+	xTablesInface = UnoRuntime.queryInterface(XTablesSupplier, xCon);
+	xBaseTables = xTablesInface.getTables();
+	xTableExist = xBaseTables.hasByName(TbName);
+	return xTableExist
+	};
+//
+try{
+	xContext = XSCRIPTCONTEXT.getComponentContext();
+	xMultiComponentFactory = xContext.getServiceManager();
+//
+	oBaseURL = "file:///C:/temp/oBaseMacro3.odb";	// <= Current Base Fileは不可
+//DataSourceと接続
+	xBaseContext = xMultiComponentFactory.createInstanceWithContext("com.sun.star.sdb.DatabaseContext", xContext);
+	xBaseAccess = UnoRuntime.queryInterface(XNameAccess, xBaseContext);
+	xBaseInface = UnoRuntime.queryInterface(XInterface, xBaseAccess.getByName(oBaseURL));
+	xDataSource = UnoRuntime.queryInterface(XDataSource, xBaseInface);
+	xCon = xDataSource.getConnection("", "");
+//同名のTbaleが既にあるか?
+	xTableName = "TEST"
+	xTableExist = oExistTb(xCon,xTableName);
+	xDisp = xTableName + " Tableの存在有無Check結果 => " + xTableExist;
+	JOptionPane.showMessageDialog(null, xDisp);
+//DataSourceとの切断
+	xCloseCon = UnoRuntime.queryInterface(XCloseable, xCon);
+	xCloseCon.close();
+	xDispose = UnoRuntime.queryInterface(XComponent, xCon);
+	xDispose.dispose();
+//
+	JOptionPane.showMessageDialog(null, "Success");
+}catch (e){
+	if (e instanceof RuntimeException) {
+// dispose
+	} else {
+	}
+	}
+</code></pre><br>
+
+
+<a name="OOoBT01c"><h6>BT-)<em>[Base]</em>同名TABLEの存在有無(上書き保存)</h6></a><pre><code>
+<img SRC="JavaScript_Pic/03Base/02Table/01TableExist03.png" align="right" hspace="4" vspace="4" width="25%">
+// Base in JavaScript
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.com.sun.star.beans.PropertyValue);
+importClass(Packages.com.sun.star.comp.helper.Bootstrap);
+importClass(Packages.com.sun.star.comp.helper.BootstrapException);
+importClass(Packages.com.sun.star.frame.XComponentLoader);
+importClass(Packages.com.sun.star.lang.XMultiComponentFactory);
+importClass(Packages.com.sun.star.uno.Exception);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.uno.XComponentContext);
+//
+importClass(Packages.com.sun.star.beans.UnknownPropertyException);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(Packages.com.sun.star.lang.WrappedTargetException);
+importClass(Packages.com.sun.star.sdb.XOfficeDatabaseDocument);
+importClass(Packages.com.sun.star.sdbc.XDataSource);
+//
+importClass(Packages.com.sun.star.frame.XStorable);
+importClass(Packages.com.sun.star.io.IOException);
+//
+importClass(Packages.com.sun.star.lang.XComponent);
+//importClass(Packages.com.sun.star.sdbc.XCloseable);
+importClass(Packages.com.sun.star.uno.RuntimeException);
+//
+importClass(Packages.com.sun.star.container.NoSuchElementException);
+importClass(Packages.com.sun.star.container.XNameAccess);
+importClass(Packages.com.sun.star.uno.XInterface);
+importClass(Packages.com.sun.star.sdbc.XConnection);
+//
+importClass(Packages.com.sun.star.sdbcx.XTablesSupplier);
+//
+function oExistTb(oCon,TbName){	
+	xTablesInface = UnoRuntime.queryInterface(XTablesSupplier, xCon);
+	xBaseTables = xTablesInface.getTables();
+	xTableExist = xBaseTables.hasByName(TbName);
+	return xTableExist
+	};
+//
+try{
+	xContext = XSCRIPTCONTEXT.getComponentContext();
+//	xContext = Bootstrap.bootstrap();　　　　　　　　　　//<= OOo3.1.1以前は動作した。
+	xMultiComponentFactory = xContext.getServiceManager();
+	xtest = xMultiComponentFactory.createInstanceWithContext("com.sun.star.frame.Desktop", xContext);
+	xcomponentloader = UnoRuntime.queryInterface(XComponentLoader,xtest);
+//
+	oBaseURL = "file:///C:/temp/oBaseMacro3.odb";
+	propertyvalue = new Array();
+	oDoc = xcomponentloader.loadComponentFromURL(oBaseURL, "_blank", 0, propertyvalue);
+//Datasorceとの接続
+	xBaseContext = xMultiComponentFactory.createInstanceWithContext("com.sun.star.sdb.DatabaseContext", xContext);
+	xBaseAccess = UnoRuntime.queryInterface(XNameAccess, xBaseContext);
+	xBaseInface = UnoRuntime.queryInterface(XInterface, xBaseAccess.getByName(oBaseURL));
+	xDataSource = UnoRuntime.queryInterface(XDataSource, xBaseInface);
+	xCon = xDataSource.getConnection("", "");
+//同名のTbaleが既にあるか?
+	xTableName = "TEST"
+	xTableExist = oExistTb(xCon,xTableName);
+	xDisp = xTableName + " Tableの存在有無Check結果 => " + xTableExist;
+	JOptionPane.showMessageDialog(null, xDisp);
+//HSQLの設定
+	xOfficeDatabaseDocument = UnoRuntime.queryInterface(XOfficeDatabaseDocument, oDoc);
+	xDataSource = xOfficeDatabaseDocument.getDataSource();
+	xPropertySet = UnoRuntime.queryInterface(XPropertySet, xDataSource);
+	xPropertySet.setPropertyValue("URL", "sdbc:embedded:hsqldb");
+//保存
+	xStorable = UnoRuntime.queryInterface(XStorable,oDoc);
+	storeProps = new PropertyValue();
+	storeProps.Name = "Overwrite";
+	storeProps.Value = true;
+	xStorable.storeAsURL(oBaseURL,[storeProps]);
+//DataSourceとの切断
+	xCloseCon = UnoRuntime.queryInterface(XCloseable, xCon);
+	xCloseCon.close();
+	xDispose = UnoRuntime.queryInterface(XComponent, xCon);
+	xDispose.dispose();
+//Fileの終了
+	xDispose = UnoRuntime.queryInterface(XComponent,oDoc);
+	xDispose.dispose();
+//
+	JOptionPane.showMessageDialog(null, "Success");
+}catch (e){
+	if (e instanceof WrappedTargetException) {
+		xDispose = UnoRuntime.queryInterface(XComponent,oDoc);
+		xDispose.dispose();
+	} else if (e instanceof UnknownPropertyException){
+		xDispose = UnoRuntime.queryInterface(XComponent,oDoc);
+		xDispose.dispose();
+	} else {
+	}
+	}
+</code></pre><br>
+
+
+
+<a name="OOoBT"><h6>BT-)<em>[Base]</em></h6></a><pre><code>
+<img SRC="JavaScript_Pic/03Base/02Table/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">SQL(HSQLDB)</p class="s1">
+<a name="OOoBHSQL02"><h6>BHSQL-)<em>[Base]</em>新規Tableの作成</h6></a><pre><code>
+<img SRC="JavaScript_Pic/03Base/01HSQL/01CreateTable02.png" align="right" hspace="4" vspace="4" width="25%"><img SRC="JavaScript_Pic/03Base/01HSQL/01CreateTable01.png" align="right" hspace="4" vspace="4" width="25%">
+// Base in JavaScript
+importClass(Packages.javax.swing.JOptionPane);
+//
+importClass(Packages.com.sun.star.lang.XMultiComponentFactory);
+importClass(Packages.com.sun.star.uno.Exception);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.uno.XComponentContext);
+//
+importClass(Packages.com.sun.star.sdb.XOfficeDatabaseDocument);
+importClass(Packages.com.sun.star.sdbc.XDataSource);
+//
+importClass(Packages.com.sun.star.container.NoSuchElementException);
+importClass(Packages.com.sun.star.container.XNameAccess);
+importClass(Packages.com.sun.star.uno.XInterface);
+importClass(Packages.com.sun.star.sdbc.XConnection);
+//
+importClass(Packages.com.sun.star.lang.XComponent);
+importClass(Packages.com.sun.star.sdbc.XCloseable);
+importClass(Packages.com.sun.star.uno.RuntimeException);
+//
+importClass(Packages.com.sun.star.sdbc.SQLException);
+importClass(Packages.com.sun.star.sdbc.XStatement);
+//
+try{
+	xContext = XSCRIPTCONTEXT.getComponentContext();
+	xMultiComponentFactory = xContext.getServiceManager();
+//
+	oBaseURL = "file:///C:/temp/oBaseMacroTest.odb";			// <= Current Base Fileは不可
+//
+	xBaseContext = xMultiComponentFactory.createInstanceWithContext("com.sun.star.sdb.DatabaseContext", xContext);
+	xBaseAccess = UnoRuntime.queryInterface(XNameAccess, xBaseContext);
+	xBaseInface = UnoRuntime.queryInterface(XInterface, xBaseAccess.getByName(oBaseURL));
+	xDataSource = UnoRuntime.queryInterface(XDataSource, xBaseInface);
+	xCon = xDataSource.getConnection("", "");
+//
+	xConInface = UnoRuntime.queryInterface(XConnection, xCon);
+	xStatement = xConInface.createStatement();
+	oSQL = "CREATE TABLE TEST(ID INTEGER IDENTITY,Anrede varchar(5),Titel varchar(10),Name varchar(30), PRIMARY KEY (ID))"
+	xStatement.execute(oSQL)
+//
+	xCloseCon = UnoRuntime.queryInterface(XCloseable, xCon);
+	xCloseCon.close();
+	xDispose = UnoRuntime.queryInterface(XComponent, xCon);
+	xDispose.dispose();
+//
+	JOptionPane.showMessageDialog(null, "Success");
+}catch (e){
+	if (e instanceof RuntimeException) {
+// dispose
+	} else if (e instanceof SQLException) {
+// createStatement, execute, close
+	} else {
+	}
+	}
+</code></pre><br>
+
+
+<a name="OOoBHSQL01"><h6>BHSQL-)<em>[Base]</em>別Base File(HSQLDB)に新規Tableの作成</h6></a><pre><code>
+<img SRC="JavaScript_Pic/03Base/01HSQL/01OtherFileCreateTable02.png" align="right" hspace="4" vspace="4" width="25%"><img SRC="JavaScript_Pic/03Base/01HSQL/01OtherFileCreateTable01.png" align="right" hspace="4" vspace="4" width="25%">
+// Base in JavaScript
+importClass(Packages.javax.swing.JOptionPane);
+//
+importClass(Packages.com.sun.star.lang.XMultiComponentFactory);
+importClass(Packages.com.sun.star.uno.Exception);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.uno.XComponentContext);
+//
+importClass(Packages.com.sun.star.sdb.XOfficeDatabaseDocument);
+importClass(Packages.com.sun.star.sdbc.XDataSource);
+//
+importClass(Packages.com.sun.star.container.NoSuchElementException);
+importClass(Packages.com.sun.star.container.XNameAccess);
+importClass(Packages.com.sun.star.uno.XInterface);
+importClass(Packages.com.sun.star.sdbc.XConnection);
+//
+importClass(Packages.com.sun.star.lang.XComponent);
+importClass(Packages.com.sun.star.sdbc.XCloseable);
+importClass(Packages.com.sun.star.uno.RuntimeException);
+//
+importClass(Packages.com.sun.star.sdbc.SQLException);
+importClass(Packages.com.sun.star.sdbc.XStatement);
+//
+try{
+	xContext = XSCRIPTCONTEXT.getComponentContext();
+	xMultiComponentFactory = xContext.getServiceManager();
+//
+	oBaseURL = "file:///C:/temp/oBaseMacro3.odb";			// <= Other Base File
+//	oBaseURL = "file:///C:/temp/oBaseMacroTest.odb";		// <= Current Base File
+	xBaseContext = xMultiComponentFactory.createInstanceWithContext("com.sun.star.sdb.DatabaseContext", xContext);
+	xBaseAccess = UnoRuntime.queryInterface(XNameAccess, xBaseContext);
+	xBaseInface = UnoRuntime.queryInterface(XInterface, xBaseAccess.getByName(oBaseURL));
+	xDataSource = UnoRuntime.queryInterface(XDataSource, xBaseInface);
+	xCon = xDataSource.getConnection("", "");
+//
+	xConInface = UnoRuntime.queryInterface(XConnection, xCon);
+	xStatement = xConInface.createStatement();
+	oSQL = "CREATE TABLE TEST(ID INTEGER IDENTITY,Anrede varchar(5),Titel varchar(10),Name varchar(30), PRIMARY KEY (ID))"
+	xStatement.execute(oSQL)
+//
+	xCloseCon = UnoRuntime.queryInterface(XCloseable, xCon);
+	xCloseCon.close();
+	xDispose = UnoRuntime.queryInterface(XComponent, xCon);
+	xDispose.dispose();
+//
+	JOptionPane.showMessageDialog(null, "Success");
+}catch (e){
+	if (e instanceof RuntimeException) {
+// dispose
+	} else if (e instanceof SQLException) {
+// createStatement, execute, close
+	} else {
+	}
+	}
+</code></pre><br>
+
+
+<a name="OOoBHSQL01b"><h6>BHSQL-)<em>[Base]</em>Tableの有無確認後、Tableを作成</h6></a><pre><code>
+<img SRC="JavaScript_Pic/03Base/01HSQL/index.html" align="right" hspace="4" vspace="4" width="25%">
+// Base in JavaScript
+importClass(Packages.javax.swing.JOptionPane);
+//
+importClass(Packages.com.sun.star.lang.XMultiComponentFactory);
+importClass(Packages.com.sun.star.uno.Exception);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.uno.XComponentContext);
+//
+importClass(Packages.com.sun.star.sdb.XOfficeDatabaseDocument);
+importClass(Packages.com.sun.star.sdbc.XDataSource);
+//
+importClass(Packages.com.sun.star.container.NoSuchElementException);
+importClass(Packages.com.sun.star.container.XNameAccess);
+importClass(Packages.com.sun.star.uno.XInterface);
+importClass(Packages.com.sun.star.sdbc.XConnection);
+//
+importClass(Packages.com.sun.star.lang.XComponent);
+importClass(Packages.com.sun.star.sdbc.XCloseable);
+importClass(Packages.com.sun.star.uno.RuntimeException);
+//
+importClass(Packages.com.sun.star.sdbc.SQLException);
+importClass(Packages.com.sun.star.sdbc.XStatement);
+//
+try{
+	xContext = XSCRIPTCONTEXT.getComponentContext();
+	xMultiComponentFactory = xContext.getServiceManager();
+//
+	oBaseURL = "file:///C:/temp/oBaseMacro3.odb";			// <= Other Base File
+//	oBaseURL = "file:///C:/temp/oBaseMacroTest.odb";		// <= Current Base File
+	xBaseContext = xMultiComponentFactory.createInstanceWithContext("com.sun.star.sdb.DatabaseContext", xContext);
+	xBaseAccess = UnoRuntime.queryInterface(XNameAccess, xBaseContext);
+	xBaseInface = UnoRuntime.queryInterface(XInterface, xBaseAccess.getByName(oBaseURL));
+	xDataSource = UnoRuntime.queryInterface(XDataSource, xBaseInface);
+	xCon = xDataSource.getConnection("", "");
+//
+	xConInface = UnoRuntime.queryInterface(XConnection, xCon);
+	xStatement = xConInface.createStatement();
+	xTableName = "TEST"
+// 同名Tableがあれば削除
+	oSQL1 = "DROP TABLE " + xTableName + " IF EXISTS;"
+	xStatement.execute(oSQL1)
+// Table作成
+	oSQL2 = "CREATE TABLE " + xTableName + "(ID INTEGER IDENTITY,Anrede varchar(5),Titel varchar(10),Name varchar(30), PRIMARY KEY (ID))"
+	xStatement.execute(oSQL2)
+//
+	xCloseCon = UnoRuntime.queryInterface(XCloseable, xCon);
+	xCloseCon.close();
+	xDispose = UnoRuntime.queryInterface(XComponent, xCon);
+	xDispose.dispose();
+//
+	JOptionPane.showMessageDialog(null, "Success");
+}catch (e){
+	if (e instanceof RuntimeException) {
+// dispose
+	} else if (e instanceof SQLException) {
+// createStatement, execute, close
+	} else {
+	}
+	}
+</code></pre><br>
+
+
+<a name="OOoBHSQL03a"><h6>BHSQL-)<em>[Base]</em>Tableの有無確認後、Tableを作成して上書き保存/終了</h6></a><pre><code>
+<img SRC="JavaScript_Pic/03Base/01HSQL/02CreateTable_NoExist01.png" align="right" hspace="4" vspace="4" width="25%">
+// Base in JavaScript
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.com.sun.star.beans.PropertyValue);
+importClass(Packages.com.sun.star.comp.helper.Bootstrap);
+importClass(Packages.com.sun.star.comp.helper.BootstrapException);
+importClass(Packages.com.sun.star.frame.XComponentLoader);
+importClass(Packages.com.sun.star.lang.XMultiComponentFactory);
+importClass(Packages.com.sun.star.uno.Exception);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.uno.XComponentContext);
+//
+importClass(Packages.com.sun.star.beans.UnknownPropertyException);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(Packages.com.sun.star.lang.WrappedTargetException);
+importClass(Packages.com.sun.star.sdb.XOfficeDatabaseDocument);
+importClass(Packages.com.sun.star.sdbc.XDataSource);
+//
+importClass(Packages.com.sun.star.frame.XStorable);
+importClass(Packages.com.sun.star.io.IOException);
+//
+importClass(Packages.com.sun.star.lang.XComponent);
+//importClass(Packages.com.sun.star.sdbc.XCloseable);
+importClass(Packages.com.sun.star.uno.RuntimeException);
+//
+importClass(Packages.com.sun.star.container.NoSuchElementException);
+importClass(Packages.com.sun.star.container.XNameAccess);
+importClass(Packages.com.sun.star.uno.XInterface);
+importClass(Packages.com.sun.star.sdbc.XConnection);
+//
+importClass(Packages.com.sun.star.sdbcx.XTablesSupplier);
+//
+function oExistTb(oCon,TbName){	
+	xTablesInface = UnoRuntime.queryInterface(XTablesSupplier, xCon);
+	xBaseTables = xTablesInface.getTables();
+	xTableExist = xBaseTables.hasByName(TbName);
+	return xTableExist
+	};
+//
+try{
+	xContext = XSCRIPTCONTEXT.getComponentContext();
+//	xContext = Bootstrap.bootstrap();　　　　　　　　　　//<= OOo3.1.1以前は動作した。
+	xMultiComponentFactory = xContext.getServiceManager();
+	xtest = xMultiComponentFactory.createInstanceWithContext("com.sun.star.frame.Desktop", xContext);
+	xcomponentloader = UnoRuntime.queryInterface(XComponentLoader,xtest);
+//
+	oBaseURL = "file:///C:/temp/oBaseMacro3.odb";
+	propertyvalue = new Array();
+	oDoc = xcomponentloader.loadComponentFromURL(oBaseURL, "_default", 0, propertyvalue);
+//Datasorceとの接続
+	xBaseContext = xMultiComponentFactory.createInstanceWithContext("com.sun.star.sdb.DatabaseContext", xContext);
+	xBaseAccess = UnoRuntime.queryInterface(XNameAccess, xBaseContext);
+	xBaseInface = UnoRuntime.queryInterface(XInterface, xBaseAccess.getByName(oBaseURL));
+	xDataSource = UnoRuntime.queryInterface(XDataSource, xBaseInface);
+	xCon = xDataSource.getConnection("", "");
+//同名のTbaleが既にあるか?
+	xTableName = "TEST"
+	xTableExist = oExistTb(xCon,xTableName);
+	if(xTableExist != true){
+		xConInface = UnoRuntime.queryInterface(XConnection, xCon);
+		xStatement = xConInface.createStatement();
+		oSQL = "CREATE TABLE " + xTableName + "(ID INTEGER IDENTITY,Anrede varchar(5),Titel varchar(10),Name varchar(30), PRIMARY KEY (ID))"
+		xStatement.execute(oSQL)
+		}
+	else{
+		JOptionPane.showMessageDialog(null, "同名Tableが存在します。");
+	}
+//HSQLの設定	// <= Crashする時がある
+	xOfficeDatabaseDocument = UnoRuntime.queryInterface(XOfficeDatabaseDocument, oDoc);
+	xDataSource = xOfficeDatabaseDocument.getDataSource();
+	xPropertySet = UnoRuntime.queryInterface(XPropertySet, xDataSource);
+	xPropertySet.setPropertyValue("URL", "sdbc:embedded:hsqldb");
+//保存			// <= Crashする時がある
+	xStorable = UnoRuntime.queryInterface(XStorable,oDoc);
+	storeProps = new PropertyValue();
+	storeProps.Name = "Overwrite";
+	storeProps.Value = true;
+	xStorable.storeAsURL(oBaseURL,[storeProps]);
+//DataSourceとの切断
+	xCloseCon = UnoRuntime.queryInterface(XCloseable, xCon);
+	xCloseCon.close();
+	xDispose = UnoRuntime.queryInterface(XComponent, xCon);
+	xDispose.dispose();
+//Fileの終了
+	xDispose = UnoRuntime.queryInterface(XComponent,oDoc);
+	xDispose.dispose();
+//
+	JOptionPane.showMessageDialog(null, "Success");
+}catch (e){
+	if (e instanceof WrappedTargetException) {
+		//
+	} else if (e instanceof UnknownPropertyException){
+		//
+	} else {
+	}
+	}
+</code></pre><br>
+
+
+<a name="OOoBHSQL03b"><h6>BHSQL-)<em>[Base]</em></h6></a><pre><code>
+<img SRC="JavaScript_Pic/03Base/01HSQL/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+<a name="OOoBHSQL"><h6>BHSQL-)<em>[Base]</em></h6></a><pre><code>
+<img SRC="JavaScript_Pic/03Base/01HSQL/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<h3>【　Writer(文書作成)　】</h3>
+<p class="s1">file操作</p class="s1">
+<a name="OOoWF1"><h6>WF-1)<em>[Writer]</em>新規にWriter fileを開く</h6></a><pre><code>
+//Open new Writer file
+importClass(Packages.com.sun.star.beans.PropertyValue);
+importClass(Packages.com.sun.star.comp.helper.Bootstrap);
+importClass(Packages.com.sun.star.comp.helper.BootstrapException);
+importClass(Packages.com.sun.star.frame.XComponentLoader);
+importClass(Packages.com.sun.star.lang.XMultiComponentFactory);
+importClass(Packages.com.sun.star.uno.Exception);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.uno.XComponentContext);
+
+	xContext = XSCRIPTCONTEXT.getComponentContext();
+//	xContext = Bootstrap.bootstrap();　　　　　　　　　　//<= OOo3.1.1以前は動作した。
+	xMultiComponentFactory = xContext.getServiceManager();
+	xtest = xMultiComponentFactory.createInstanceWithContext("com.sun.star.frame.Desktop", xContext);
+	xcomponentloader = UnoRuntime.queryInterface(XComponentLoader,xtest);
+
+	loadURL = "private:factory/swriter";
+	propertyvalue = new Array();
+	xcomponentloader.loadComponentFromURL(loadURL, "_blank", 0, propertyvalue);
+</code></pre><br>
+
+<p class="s1">文書入力</p class="s1">
+<a name="OOoWD1"><h6>WD-1)<em>[Writer]</em>最もポピュラーなマクロ（Hello World in JavaScript)</h6></a><pre><code>
+// Hello World in JavaScript
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.text.XTextDocument);
+importClass(Packages.com.sun.star.text.XTextRange);
+
+// DocumentへのAccessを可能にする
+	oDoc = XSCRIPTCONTEXT.getDocument();
+	xTextDoc = UnoRuntime.queryInterface(XTextDocument,oDoc);
+	xText = xTextDoc.getText();
+	//選択範囲があればその範囲を取得
+	xTextRange = xText.getEnd();
+	xTextRange.setString( "Hello World in JavaScript" );
+</code></pre><br>
+
+<p class="s1">Style</p class="s1">
+<a name="OOoWSC01a"><h6>WSC-1)<em>[Writer]</em>文字色設定</h6></a><pre><code>
+<img SRC="JavaScript_Pic/04Writer/03Style/01Color/01CharactorColor01b.png" align="right" hspace="4" vspace="4" width="20%"><img SRC="JavaScript_Pic/04Writer/03Style/01Color/01CharactorColor01a.png" align="right" hspace="4" vspace="4" width="20%">
+// [ Writer Style ] Color of Chractors 
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.text.XTextDocument);
+importClass(Packages.com.sun.star.text.XTextRange);
+//
+importClass(Packages.com.sun.star.container.XIndexAccess);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+//
+importClass(java.awt.Color);
+//
+oDoc = XSCRIPTCONTEXT.getDocument();
+xTextDoc = UnoRuntime.queryInterface(XTextDocument,oDoc);
+xText = xTextDoc.getText();
+// Goto Start Position.
+xTextRange = xText.getStart();
+// Color [ Red ]
+oColor = Color(1,0,0);            // Red
+oRGB  = oColor.getRGB();
+oChrProperties1 =UnoRuntime.queryInterface(XPropertySet, xTextRange);			
+oChrProperties1.setPropertyValue("CharColor", new java.lang.Integer(oRGB))
+// Insert String
+xTextRange.setString( "Color is red. " );
+// goto End Position
+xTextRange = xText.getEnd();
+// Color [ Blue ]
+oColor = Color(0,0,1);            // Blue
+oRGB  = oColor.getRGB();
+oChrProperties1 =UnoRuntime.queryInterface(XPropertySet, xTextRange);			
+oChrProperties1.setPropertyValue("CharColor", new java.lang.Integer(oRGB))
+// Insert String
+xTextRange.setString( " Color is Blue." );
+// Msgbox
+importClass(Packages.javax.swing.JOptionPane);
+JOptionPane.showMessageDialog(null, "Success");
+
+</code></pre><br>
+
+
+<a name="OOoWSC02a"><h6>WSC-)<em>[Writer]</em>文字色の変更2</h6></a><pre><code>
+<img SRC="JavaScript_Pic/04Writer/03Style/01Color/02CharactorColor02b.png" align="right" hspace="4" vspace="4" width="20%"><img SRC="JavaScript_Pic/04Writer/03Style/01Color/02CharactorColor02a.png" align="right" hspace="4" vspace="4" width="20%">
+// [ Writer Style ] Color of Chractors2
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.text.XTextDocument);
+importClass(Packages.com.sun.star.text.XText);
+importClass(Packages.com.sun.star.text.XTextCursor);
+importClass(Packages.com.sun.star.text.XWordCursor);
+importClass(Packages.com.sun.star.frame.XModel);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(java.awt.Color);
+//
+WordColor = new Array();
+WordColor[0] = Color(1,0,0);            //red
+WordColor[1] = Color(1,165/255,0);         //orange
+WordColor[2] = Color(1,1,0);            //yellow
+WordColor[3] = Color(0,1,0);            //green
+WordColor[4] = Color(0,0,1);            //blue
+WordColor[5] = Color(75/255,0,130/255);         //indigo
+WordColor[6] = Color(223/255,130/255,238/255);      //violet
+n = WordColor.length;
+//
+oDoc = UnoRuntime.queryInterface(XModel,XSCRIPTCONTEXT.getInvocationContext());
+if ( !oDoc )
+   oDoc = XSCRIPTCONTEXT.getDocument();
+//
+xTextDoc = UnoRuntime.queryInterface(XTextDocument,oDoc);
+xText = xTextDoc.getText();
+nCursor = xText.createTextCursor();
+wCursor = UnoRuntime.queryInterface(XWordCursor, nCursor);
+//
+nCursor.gotoStart(false);
+//
+MoreText = true;
+c = 0;
+while(MoreText)
+{
+   wCursor.gotoEndOfWord(true);
+   colorer = UnoRuntime.queryInterface(XPropertySet, nCursor);
+   w = WordColor[c].getRGB();
+   colorer.setPropertyValue("CharColor",new java.lang.Integer(w));
+   c = (c + 1) % n;
+   MoreText = wCursor.gotoNextWord(false);
+}
+</code></pre><br>
+
+
+<a name="OOoWSC"><h6>WSC-)<em>[Writer]</em></h6></a><pre><code>
+<img SRC="JavaScript_Pic/04Writer/03Style/01Color/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<h3>【　Draw(描画)　】</h3>
+<p class="s1">file操作</p class="s1">
+<a name="OOoDF1"><h6>DF-1)<em>[Draw]</em>新規にDraw fileを開く</h6></a><pre><code>
+//Open new Draw file
+importClass(Packages.com.sun.star.beans.PropertyValue);
+importClass(Packages.com.sun.star.comp.helper.Bootstrap);
+importClass(Packages.com.sun.star.comp.helper.BootstrapException);
+importClass(Packages.com.sun.star.frame.XComponentLoader);
+importClass(Packages.com.sun.star.lang.XMultiComponentFactory);
+importClass(Packages.com.sun.star.uno.Exception);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.uno.XComponentContext);
+
+	xContext = XSCRIPTCONTEXT.getComponentContext();
+//	xContext = Bootstrap.bootstrap();　　　　　　　　　　//<= OOo3.1.1以前は動作した。
+	xMultiComponentFactory = xContext.getServiceManager();
+	xtest = xMultiComponentFactory.createInstanceWithContext("com.sun.star.frame.Desktop", xContext);
+	xcomponentloader = UnoRuntime.queryInterface(XComponentLoader,xtest);
+
+	loadURL = "private:factory/sdraw";
+	propertyvalue = new Array();
+	xcomponentloader.loadComponentFromURL(loadURL, "_blank", 0, propertyvalue);
+</code></pre><br>
+
+<p class="s1">Page操作</p class="s1">
+<a name="OOoDS1"><h6>DS-1)<em>[Draw]</em>Page1へのAccess</h6></a><pre><code>
+//Access the Page
+importPackage(java.lang);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+
+	//Draw Document Page1へのAccess
+		loadProps = new Array();
+		xDrawComponent = XSCRIPTCONTEXT.getDocument();
+		xDrawPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xDrawComponent);
+		xDrawPages = xDrawPagesSupplier.getDrawPages();
+		drawPage = xDrawPages.getByIndex(0);
+		xDrawPage =UnoRuntime.queryInterface(XDrawPage, drawPage);
+</code></pre><br>
+
+<a name="OOoDS2"><h6>DS-2)<em>[Draw]</em>Pageの追加</h6></a><pre><code>
+//Insert Page
+importPackage(java.lang);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+
+//Draw Document
+	loadProps = new Array();
+	xDrawComponent = XSCRIPTCONTEXT.getDocument();
+	xDrawPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xDrawComponent);
+	xDrawPages = xDrawPagesSupplier.getDrawPages();
+//Insert Page
+	for(i=0; i<3; i++)
+		{
+		xDrawPages.insertNewByIndex(0);
+		}
+</code></pre><br>
+
+<a name="OOoDS3"><h6>DS-3)<em>[Draw]</em>Pageの削除</h6></a><pre><code>
+//Remove Page
+importPackage(java.lang);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+
+//Draw Document
+	loadProps = new Array();
+	xDrawComponent = XSCRIPTCONTEXT.getDocument();
+	xDrawPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xDrawComponent);
+	xDrawPages = xDrawPagesSupplier.getDrawPages();
+//Insert Page
+	xDrawPages.insertNewByIndex(0);
+//Remove Page
+	xRemPage =UnoRuntime.queryInterface(XDrawPage, xDrawPages.getByIndex(0));
+	xDrawPages.remove(xRemPage)
+</code></pre><br>
+
+<a name="OOoDS4"><h6>DS-4)<em>[Draw]</em>Pageに名前を付ける。Page名の取得</h6></a><pre><code>
+/Named Slide
+importPackage(java.lang);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.container.XNamed);
+
+//Draw Document
+	loadProps = new Array();
+	xDrawComponent = XSCRIPTCONTEXT.getDocument();
+	xDrawPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xDrawComponent);
+	xDrawPages = xDrawPagesSupplier.getDrawPages();
+//Insert Slide
+	xDrawPages.insertNewByIndex(0);
+//Set Name
+	xPage =UnoRuntime.queryInterface(XDrawPage,xDrawPages.getByIndex(0));
+	xPageName =UnoRuntime.queryInterface(XNamed, xPage);
+	xPageName.setName("page one");
+//Get Page Name
+	oPageName = xPageName.getName()
+	
+//Confirm Page Name
+	importClass(Packages.javax.swing.JOptionPane);
+	JOptionPane.showMessageDialog(null, oPageName);
+</code></pre><br>
+
+
+<a name="OOoDS5"><h6>DS-5)<em>[Draw]</em>Pageの枚数を数える</h6></a><pre><code>
+//Count Slide
+importPackage(java.lang);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+
+//Draw Document
+	loadProps = new Array();
+	xDrawComponent = XSCRIPTCONTEXT.getDocument();
+	xDrawPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xDrawComponent);
+	xDrawPages = xDrawPagesSupplier.getDrawPages();
+//Slide数Count
+	var oCount=xDrawPages.getCount()
+	JOptionPane.showMessageDialog(null, oCount + "枚");
+</code></pre><br>
+
+
+<p class="s1">図形作図</p class="s1">
+<a name="OOoDSC1"><h6>DSC-1)<em>[Draw]</em>各種要素の作成</h6></a><pre><code>
+//Create Shapes
+importPackage(java.lang);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.drawing.XShape);
+importClass(Packages.com.sun.star.awt.Point);
+importClass(Packages.com.sun.star.awt.Size);
+importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+
+	loadProps = new Array();
+	xDrawComponent = XSCRIPTCONTEXT.getDocument();
+	xDrawPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xDrawComponent);
+	xDrawPages = xDrawPagesSupplier.getDrawPages();
+	drawPage = xDrawPages.getByIndex(0);
+	xDrawPage =UnoRuntime.queryInterface(XDrawPage, drawPage);
+
+	// Get document factory
+		xDocumentFactory =UnoRuntime.queryInterface(XMultiServiceFactory, xDrawComponent);
+		//Rectangle
+			R_shape =xDocumentFactory.createInstance("com.sun.star.drawing.RectangleShape");
+			RxShape =UnoRuntime.queryInterface(XShape, R_shape);
+			RxShape.setPosition(new Point(5000, 2000));
+			RxShape.setSize(new Size(3000, 3000));
+		xDrawPage.add(RxShape);
+
+		//Caption
+			Cp_shape =xDocumentFactory.createInstance("com.sun.star.drawing.CaptionShape");
+			CpxShape =UnoRuntime.queryInterface(XShape, Cp_shape);
+			CpxShape.setPosition(new Point(5000, 6000));
+			CpxShape.setSize(new Size(3000, 3000));
+		xDrawPage.add(CpxShape);
+		
+		//EllipseShape
+			Ep_shape =xDocumentFactory.createInstance("com.sun.star.drawing.EllipseShape");
+			EpxShape =UnoRuntime.queryInterface(XShape, Ep_shape);
+			EpxShape.setPosition(new Point(2000, 15500));
+			EpxShape.setSize(new Size(2000, 2000));
+		xDrawPage.add(EpxShape);
+		
+		//Line
+			Li_shape =xDocumentFactory.createInstance("com.sun.star.drawing.LineShape");
+			LixShape =UnoRuntime.queryInterface(XShape, Li_shape);
+			LixShape.setPosition(new Point(10000, 4000));
+			LixShape.setSize(new Size(2000, 2000));
+		xDrawPage.add(LixShape);		
+</code></pre><br>
+
+
+<a name="OOoDDa"><h6>DD-)<em>[Draw]</em>要素にText追加</h6></a><pre><code>
+//Add Text into Shapes
+importPackage(java.lang);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.drawing.XShape);
+importClass(Packages.com.sun.star.awt.Point);
+importClass(Packages.com.sun.star.awt.Size);
+importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+importClass(Packages.com.sun.star.text.XText);
+
+	xDrawComponent = XSCRIPTCONTEXT.getDocument();
+	xDrawPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xDrawComponent);
+	xDrawPages = xDrawPagesSupplier.getDrawPages();
+	drawPage = xDrawPages.getByIndex(0);
+	xDrawPage =UnoRuntime.queryInterface(XDrawPage, drawPage);
+
+	xDocumentFactory =UnoRuntime.queryInterface(XMultiServiceFactory, xDrawComponent);
+	//Rectangle
+		R_shape =xDocumentFactory.createInstance("com.sun.star.drawing.RectangleShape");
+		RxShape =UnoRuntime.queryInterface(XShape, R_shape);
+		RxShape.setPosition(new Point(5000, 2000));
+		RxShape.setSize(new Size(5000, 3000));
+	xDrawPage.add(RxShape);
+
+	//Add Text
+		oText_Chr = new Array();
+		oText_Chr[0] = "Macro in JavaScript";
+		oText =UnoRuntime.queryInterface(XText, RxShape);
+		oText.setString(oText_Chr[0]);
+</code></pre><br>
+
+
+
+
+<p class="s1">Style</p class="s1">
+<p class="s3">[ Color ]</p class="s3">
+<a name="OOoDSC1"><h6>DSC-1)<em>[Draw]</em>要素の背景,外形色設定</h6></a><pre><code>
+//Background and Line Color for Element.
+importPackage(java.lang);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.drawing.XShape);
+importClass(Packages.com.sun.star.awt.Point);
+importClass(Packages.com.sun.star.awt.Size);
+importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+
+	loadProps = new Array();
+	xDrawComponent = XSCRIPTCONTEXT.getDocument();
+	xDrawPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xDrawComponent);
+	xDrawPages = xDrawPagesSupplier.getDrawPages();
+	drawPage = xDrawPages.getByIndex(0);
+	xDrawPage =UnoRuntime.queryInterface(XDrawPage, drawPage);
+
+	xDocumentFactory =UnoRuntime.queryInterface(XMultiServiceFactory, xDrawComponent);
+	shape =xDocumentFactory.createInstance("com.sun.star.drawing.RectangleShape");
+	xShape =UnoRuntime.queryInterface(XShape, shape);
+	xShape.setPosition(new Point(3000, 3000));
+	xShape.setSize(new Size(10000, 10000));
+	//Color
+		oChrProperties1 =UnoRuntime.queryInterface(XPropertySet, xShape);
+		//Background
+		oChrProperties1.setPropertyValue("FillColor", new java.lang.Integer(16309472));
+		//Line
+		oChrProperties1.setPropertyValue("LineColor", new java.lang.Integer(255000000));
+	
+	xDrawPage.add(xShape);
+</code></pre><br>
+
+
+<a name="OOoDSCb"><h6>DSC-)<em>[Draw]</em>要素の文字色変更</h6></a><pre><code>
+//Change Text Color for Element.
+importPackage(java.lang);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.drawing.XShape);
+importClass(Packages.com.sun.star.awt.Point);
+importClass(Packages.com.sun.star.awt.Size);
+importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+importClass(Packages.com.sun.star.text.XText);
+
+	loadProps = new Array();
+	xDrawComponent = XSCRIPTCONTEXT.getDocument();
+	xDrawPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xDrawComponent);
+	xDrawPages = xDrawPagesSupplier.getDrawPages();
+	drawPage = xDrawPages.getByIndex(0);
+	xDrawPage =UnoRuntime.queryInterface(XDrawPage, drawPage);
+
+	xDocumentFactory =UnoRuntime.queryInterface(XMultiServiceFactory, xDrawComponent);
+	shape =xDocumentFactory.createInstance("com.sun.star.drawing.RectangleShape");
+	xShape =UnoRuntime.queryInterface(XShape, shape);
+	xShape.setPosition(new Point(3000, 3000));
+	xShape.setSize(new Size(10000, 10000));
+	//Color
+		oChrProperties1 =UnoRuntime.queryInterface(XPropertySet, xShape);
+		//Background
+		oChrProperties1.setPropertyValue("FillColor", new java.lang.Integer(16309472));
+		//Line
+		oChrProperties1.setPropertyValue("LineColor", new java.lang.Integer(255000000));
+	xDrawPage.add(xShape);
+	//Add Text
+		oText_Chr = new Array();
+		oText_Chr[0] = "Macro in JavaScript";
+		oText =UnoRuntime.queryInterface(XText, xShape);
+		oText.setString(oText_Chr[0]);
+	//Change Text Color
+		oChrProperties1.setPropertyValue("CharColor", new java.lang.Integer(255000000));	//To be after setting text.
+
+[ Note ] : If you insert color change code before setting text, it dose not change color
+</code></pre><br>
+
+<a name="OOoDSCo3"><h6>DSC-1)<em>[Draw]</em>要素にHatch変更</h6></a><pre><code>
+//Hatching
+importPackage(java.lang);
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.drawing.XShape);
+importClass(Packages.com.sun.star.awt.Point);
+importClass(Packages.com.sun.star.awt.Size);
+importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(Packages.com.sun.star.drawing.FillProperties);
+
+try{
+	xDrawComponent = XSCRIPTCONTEXT.getDocument();
+	xDrawPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xDrawComponent);
+	xDrawPages = xDrawPagesSupplier.getDrawPages();
+	drawPage = xDrawPages.getByIndex(0);
+	xDrawPage =UnoRuntime.queryInterface(XDrawPage, drawPage);
+
+	// Get document factory
+		xDocumentFactory =UnoRuntime.queryInterface(XMultiServiceFactory, xDrawComponent);
+		//Rectangle
+			R_shape =xDocumentFactory.createInstance("com.sun.star.drawing.RectangleShape");
+			RxShape =UnoRuntime.queryInterface(XShape, R_shape);
+			RxShape.setPosition(new Point(5000, 2000));
+			RxShape.setSize(new Size(3000, 3000));
+	//Color of Hatch
+		xShapeProp =UnoRuntime.queryInterface(XMultiServiceFactory, R_shape);
+		oHatchProp =UnoRuntime.queryInterface(FillProperties, xShapeProp);
+			oHatchProp.setPropertyValue("FillStyle", "HATCH");
+			
+			
+			oHatchProp.setPropertyValue("HatchStyle","SINGLE");
+			oHatchProp.setPropertyValue("Color", new java.lang.Integer(2554848));
+			oHatchProp.setPropertyValue("Distance", new java.lang.Integer(1000));	// unit : 1/100mm
+			oHatchProp.setPropertyValue("Angle", new java.lang.Integer(450));		// unit : 1/10 degree
+
+		xDrawPage.add(RxShape);
+		JOptionPane.showMessageDialog(null, "Success");
+}catch(e){
+	//Error処理
+	errorname = e.name;
+	errormsg = e.message;
+	eDisp= errorname + "\n" + errormsg;
+	JOptionPane.showMessageDialog(null, eDisp);
+}
+
+</code></pre><br>
+
+
+<p class="s1">Connector</p class="s1">
+<a name="OOoDC1"><h6>DC-1)<em>[Draw]</em>Conector追加</h6></a><pre><code>
+//Add Connectors
+importPackage(java.lang);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.drawing.XShape);
+importClass(Packages.com.sun.star.awt.Point);
+importClass(Packages.com.sun.star.awt.Size);
+importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+
+	loadProps = new Array();
+	xDrawComponent = XSCRIPTCONTEXT.getDocument();
+	xDrawPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xDrawComponent);
+	xDrawPages = xDrawPagesSupplier.getDrawPages();
+	drawPage = xDrawPages.getByIndex(0);
+	xDrawPage =UnoRuntime.queryInterface(XDrawPage, drawPage);
+	// Get document factory
+		xDocumentFactory =UnoRuntime.queryInterface(XMultiServiceFactory, xDrawComponent);
+		//Rectangle1
+			R1_shape =xDocumentFactory.createInstance("com.sun.star.drawing.RectangleShape");
+			R1xShape =UnoRuntime.queryInterface(XShape, R1_shape);
+			R1xShape.setPosition(new Point(2000, 2000));
+			R1xShape.setSize(new Size(3000, 3000));
+		xDrawPage.add(R1xShape);
+		//Rectangle2
+			R2_shape =xDocumentFactory.createInstance("com.sun.star.drawing.RectangleShape");
+			R2xShape =UnoRuntime.queryInterface(XShape, R2_shape);
+			R2xShape.setPosition(new Point(12000, 5000));
+			R2xShape.setSize(new Size(3000, 3000));
+		xDrawPage.add(R2xShape);
+	// Connector
+		connector = xDocumentFactory.createInstance("com.sun.star.drawing.ConnectorShape");
+		xConnector =UnoRuntime.queryInterface(XShape, connector);
+		xDrawPage.add(xConnector);
+		//Point from start to end
+			xConnectorProps =UnoRuntime.queryInterface(XPropertySet, connector);
+			xConnectorProps.setPropertyValue("StartShape", R1xShape);
+			xConnectorProps.setPropertyValue("EndShape", R2xShape);
+		//Glue point positions: 0=top 1=right 2=bottom 3=left
+			xConnectorProps.setPropertyValue("StartGluePointIndex", new java.lang.Integer(1));
+			xConnectorProps.setPropertyValue("EndGluePointIndex", new java.lang.Integer(3));
+</code></pre><br>
+
+<a name="OOoDC2"><h6>DC-2)<em>[Draw]</em>Conector追加(その2)</h6></a><pre><code>
+<img SRC="http://error.fc2.com/web/404.html" align="right" hspace="4" vspace="4" width="30%">
+//Add Connectors(2)
+importPackage(java.lang);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.drawing.XShape);
+importClass(Packages.com.sun.star.awt.Point);
+importClass(Packages.com.sun.star.awt.Size);
+importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+
+	loadProps = new Array();
+	xDrawComponent = XSCRIPTCONTEXT.getDocument();
+	xDrawPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xDrawComponent);
+	xDrawPages = xDrawPagesSupplier.getDrawPages();
+	drawPage = xDrawPages.getByIndex(0);
+	xDrawPage =UnoRuntime.queryInterface(XDrawPage, drawPage);
+	
+	//kaisou set
+		orgUnits = new Array(2);//階層数
+		orgUnits[0] = new Array("Level 0"); 			// level 0
+		orgUnits[1] = new Array("Level 1L", "Level 1R"); 	// level 1
+		levelCount = new Array(1, 3);				//階層数(Array(level0,level1))	
+	//Initial set
+		xStartShape = null;
+	//
+	xDocumentFactory =UnoRuntime.queryInterface(XMultiServiceFactory, xDrawComponent);
+	//
+	// Creating and adding RectangleShapes
+		for(level=0; level <= 1; level++)
+			{
+			for(i = levelCount[level] - 1; i > -1; i--)
+				{	
+				shape =xDocumentFactory.createInstance("com.sun.star.drawing.RectangleShape");
+				xShape =UnoRuntime.queryInterface(XShape, shape);
+				xShape.setPosition(new Point(3000+(i*4000), 3000+level*6000));
+				xShape.setSize(new Size(3000, 2000));
+				//Element Draw
+					xDrawPage.add(xShape);
+					// Memorize the root shape, for connectors
+					if(level == 0 && i == 0)
+						{
+						xStartShape = xShape;
+						}
+					//Connectors			
+					// Add connectors for level 1
+					if(level == 1)
+						{
+						connector = xDocumentFactory.createInstance("com.sun.star.drawing.ConnectorShape");
+						xConnector =UnoRuntime.queryInterface(XShape, connector);
+						xDrawPage.add(xConnector);
+						//Point from start to end
+							xConnectorProps =UnoRuntime.queryInterface(XPropertySet, connector);
+							xConnectorProps.setPropertyValue("StartShape", xStartShape);
+							xConnectorProps.setPropertyValue("EndShape", xShape);
+						//Glue point positions: 0=top 1=right 2=bottom 3=left
+							xConnectorProps.setPropertyValue("StartGluePointIndex", new java.lang.Integer(2));
+							xConnectorProps.setPropertyValue("EndGluePointIndex", new java.lang.Integer(0));
+						}
+				}
+			}
+</code></pre><br>
+
+<p class="s1">その他</p class="s1">
+<a name="OOoDOa"><h6>DO-)<em>[Draw]</em>階層設定</h6></a><pre><code>
+//Create Level Element.
+importPackage(java.lang);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.drawing.XShape);
+importClass(Packages.com.sun.star.awt.Point);
+importClass(Packages.com.sun.star.awt.Size);
+importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+
+	xDrawComponent = XSCRIPTCONTEXT.getDocument();
+	xDrawPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xDrawComponent);
+	xDrawPages = xDrawPagesSupplier.getDrawPages();
+	drawPage = xDrawPages.getByIndex(0);
+	xDrawPage =UnoRuntime.queryInterface(XDrawPage, drawPage);
+	
+	//kaisou set
+		orgUnits = new Array(2);//階層数
+		orgUnits[0] = new Array("Level 0"); 			// level 0
+		orgUnits[1] = new Array("Level 1L", "Level 1R"); 	// level 1
+		levelCount = new Array(1, 2);				//階層数(Array(level0,level1))	
+	
+	//
+	xDocumentFactory =UnoRuntime.queryInterface(XMultiServiceFactory, xDrawComponent);
+	//
+	// Creating and adding RectangleShapes
+		for(level=0; level <= 1; level++)
+			{
+			for(i = levelCount[level] - 1; i > -1; i--)
+				{	
+				shape =xDocumentFactory.createInstance("com.sun.star.drawing.RectangleShape");
+				xShape =UnoRuntime.queryInterface(XShape, shape);
+				xShape.setPosition(new Point(3000+(i*4000), 3000+level*6000));
+				xShape.setSize(new Size(3000, 2000));
+				//Element Draw
+					xDrawPage.add(xShape);
+				}
+			}
+</code></pre><br>
+
+
+<h3>【　Impress(Presentation)　】</h3>
+<p class="s1">file操作</p class="s1">
+<a name="OOoIF1"><h6>IF-1)<em>[Impress]</em>新規にImpress fileを開く</h6></a><pre><code>
+//Open new Impress file
+importClass(Packages.com.sun.star.beans.PropertyValue);
+importClass(Packages.com.sun.star.comp.helper.Bootstrap);
+importClass(Packages.com.sun.star.comp.helper.BootstrapException);
+importClass(Packages.com.sun.star.frame.XComponentLoader);
+importClass(Packages.com.sun.star.lang.XMultiComponentFactory);
+importClass(Packages.com.sun.star.uno.Exception);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.uno.XComponentContext);
+
+	xContext = XSCRIPTCONTEXT.getComponentContext();
+//	xContext = Bootstrap.bootstrap();　　　　　　　　　　//<= OOo3.1.1以前は動作した。
+	xMultiComponentFactory = xContext.getServiceManager();
+	xtest = xMultiComponentFactory.createInstanceWithContext("com.sun.star.frame.Desktop", xContext);
+	xcomponentloader = UnoRuntime.queryInterface(XComponentLoader,xtest);
+
+	loadURL = "private:factory/simpress";
+	propertyvalue = new Array();
+	xcomponentloader.loadComponentFromURL(loadURL, "_blank", 0, propertyvalue);
+</code></pre><br>
+
+<p class="s1">Page操作</p class="s1">
+<a name="OOoIp class="s1""><h6>IP-1)<em>[Impress]</em>Page1へのAccess</h6></a><pre><code>
+//Access the Page
+importPackage(java.lang);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+
+	//Impress Document Page1へのAccess
+		loadProps = new Array();
+		xImpComponent = XSCRIPTCONTEXT.getDocument();
+		xImpPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xImpComponent);
+		xImpPages = xImpPagesSupplier.getDrawPages();
+		oImpPage = xImpPages.getByIndex(0);
+		xImpressPage =UnoRuntime.queryInterface(XDrawPage, oImpPage);
+</code></pre><br>
+
+<a name="OOoIP2"><h6>IP-2)<em>[Impress]</em>Pageの追加</h6></a><pre><code>
+//Add the Pages
+importPackage(java.lang);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+
+	//Impress DocumentへのAccess
+		loadProps = new Array();
+		xImpComponent = XSCRIPTCONTEXT.getDocument();
+		xImpPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xImpComponent);
+		xImpPages = xImpPagesSupplier.getDrawPages();
+	//Insert Page
+	for(i=0; i<3; i++)
+		{
+		xImpPages.insertNewByIndex(0);
+		}
+</code></pre><br>
+
+<a name="OOoIP3"><h6>IP-3)<em>[Impress]</em>Pageの削除</h6></a><pre><code>
+//Remove the Page
+importPackage(java.lang);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);		// Thisline is important.
+importClass(Packages.javax.swing.JOptionPane);
+
+	//Impress Document Page1へのAccess
+		loadProps = new Array();
+		xImpComponent = XSCRIPTCONTEXT.getDocument();
+		xImpPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xImpComponent);
+		xImpPages = xImpPagesSupplier.getDrawPages();
+	//Count Pages
+		var oCountPage = xImpPages.getCount()
+	//Remove Page
+		if( oCountPage <= 1 )
+			{
+			JOptionPane.showMessageDialog("Message", "Master Pageは削除できません。(2page以上のFileを選択)");
+		}else{
+			xRemPage =UnoRuntime.queryInterface(XDrawPage, xImpPages.getByIndex(0));
+			xImpPages.remove(xRemPage);
+			}
+</code></pre><br>
+
+<a name="OOoIP4"><h6>IP-4)<em>[Impress]</em>Pageに名前を付ける。Page名の取得</h6></a><pre><code>
+//Named the Page
+importPackage(java.lang);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);		// Thisline is important.
+importClass(Packages.com.sun.star.container.XNamed);
+importClass(Packages.javax.swing.JOptionPane);
+
+	//Impress Document
+		loadProps = new Array();
+		xImpComponent = XSCRIPTCONTEXT.getDocument();
+		xImpPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xImpComponent);
+		xImpPages = xImpPagesSupplier.getDrawPages();
+	//Set Name for page 1
+		xPage =UnoRuntime.queryInterface(XDrawPage,xImpPages.getByIndex(0));
+		xPageName =UnoRuntime.queryInterface(XNamed, xPage);
+		xPageName.setName("page one");
+	//Get Page Name
+		oPageName = xPageName.getName()
+	
+	//Confirm Page Name
+		JOptionPane.showMessageDialog(null, oPageName);
+</code></pre><br>
+
+<a name="OOoIP5"><h6>IP-5)<em>[Impress]</em>Pageの枚数を数える</h6></a><pre><code>
+//Count the Pages
+importPackage(java.lang);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.javax.swing.JOptionPane);
+
+	//Impress Document Page1へのAccess
+		loadProps = new Array();
+		xImpComponent = XSCRIPTCONTEXT.getDocument();
+		xImpPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xImpComponent);
+		xImpPages = xImpPagesSupplier.getDrawPages();
+	//Count Pages
+		var oCountPage = xImpPages.getCount()
+	
+	//Confirm count
+		JOptionPane.showMessageDialog(null, oCountPage + "枚");
+	
+</code></pre><br>
+
+<a name="OOoIP6"><h6>IP-6)<em>[Impress]</em>Page情報の取得</h6></a><pre><code>
+//The way to show the Screen.
+importPackage(java.lang);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.lang.XServiceInfo);
+importClass(Packages.javax.swing.JOptionPane);
+
+	//Impress Document Page1へのAccess
+		loadProps = new Array();
+		xImpComponent = XSCRIPTCONTEXT.getDocument();
+		xImpPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xImpComponent);
+		xImpPages = xImpPagesSupplier.getDrawPages();
+		oImpPage = xImpPages.getByIndex(0);
+		xImpressPage =UnoRuntime.queryInterface(XDrawPage, oImpPage);
+	// page1のPage情報取得
+		xPageInfo =UnoRuntime.queryInterface( XServiceInfo, xImpressPage );
+		oPInfo = xPageInfo.getText();
+		JOptionPane.showMessageDialog(null, xPageInfo);
+</code></pre><br>
+
+<a name="OOoIP"><h6>IP-)<em>[Impress]</em></h6></a><pre><code>
+
+</code></pre><br>
+
+
+
+
+<p class="s1">図形</p class="s1">
+<a name="OOoID1"><h6>ID-1)<em>[Impress]</em>各種要素の作成</h6></a><pre><code>
+//Create Shapes
+importPackage(java.lang);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.drawing.XShape);
+importClass(Packages.com.sun.star.awt.Point);
+importClass(Packages.com.sun.star.awt.Size);
+importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+
+	//Impress Document Page1へのAccess
+		loadProps = new Array();
+		xImpComponent = XSCRIPTCONTEXT.getDocument();
+		xImpPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xImpComponent);
+		xImpPages = xImpPagesSupplier.getDrawPages();
+		oImpPage = xImpPages.getByIndex(0);
+		xImpressPage =UnoRuntime.queryInterface(XDrawPage, oImpPage);
+	// Get document factory
+		xDocumentFactory =UnoRuntime.queryInterface(XMultiServiceFactory, xImpComponent);
+	//Rectangle
+		R_shape =xDocumentFactory.createInstance("com.sun.star.drawing.RectangleShape");
+		RxShape =UnoRuntime.queryInterface(XShape, R_shape);
+		RxShape.setPosition(new Point(5000, 2000));
+		RxShape.setSize(new Size(3000, 3000));
+		xImpressPage.add(RxShape);
+	//Caption
+		Cp_shape =xDocumentFactory.createInstance("com.sun.star.drawing.CaptionShape");
+		CpxShape =UnoRuntime.queryInterface(XShape, Cp_shape);
+		CpxShape.setPosition(new Point(5000, 6000));
+		CpxShape.setSize(new Size(3000, 3000));
+		xImpressPage.add(CpxShape);
+	//EllipseShape
+		Ep_shape =xDocumentFactory.createInstance("com.sun.star.drawing.EllipseShape");
+		EpxShape =UnoRuntime.queryInterface(XShape, Ep_shape);
+		EpxShape.setPosition(new Point(2000, 15500));
+		EpxShape.setSize(new Size(2000, 2000));
+		xImpressPage.add(EpxShape);
+	//Line
+		Li_shape =xDocumentFactory.createInstance("com.sun.star.drawing.LineShape");
+		LixShape =UnoRuntime.queryInterface(XShape, Li_shape);
+		LixShape.setPosition(new Point(10000, 4000));
+		LixShape.setSize(new Size(2000, 2000));
+		xImpressPage.add(LixShape);
+</code></pre><br>
+
+<a name="OOoIDa"><h6>ID-)<em>[Impress]</em>要素にText追加</h6></a><pre><code>
+//Add Text into Shapes
+importPackage(java.lang);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.drawing.XShape);
+importClass(Packages.com.sun.star.awt.Point);
+importClass(Packages.com.sun.star.awt.Size);
+importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+importClass(Packages.com.sun.star.text.XText);
+
+	//Impress Document Page1へのAccess
+		loadProps = new Array();
+		xImpComponent = XSCRIPTCONTEXT.getDocument();
+		xImpPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xImpComponent);
+		xImpPages = xImpPagesSupplier.getDrawPages();
+		oImpPage = xImpPages.getByIndex(0);
+		xImpressPage =UnoRuntime.queryInterface(XDrawPage, oImpPage);
+	// Get document factory
+		xDocumentFactory =UnoRuntime.queryInterface(XMultiServiceFactory, xImpComponent);
+	//Rectangle
+		R_shape =xDocumentFactory.createInstance("com.sun.star.drawing.RectangleShape");
+		RxShape =UnoRuntime.queryInterface(XShape, R_shape);
+		RxShape.setPosition(new Point(5000, 2000));
+		RxShape.setSize(new Size(6000, 3000));
+		xImpressPage.add(RxShape);
+	//Add Text
+		oText_Chr = new Array();
+		oText_Chr[0] = "Macro in JavaScript";
+		oText =UnoRuntime.queryInterface(XText, RxShape);
+		oText.setString(oText_Chr[0]);
+</code></pre><br>
+
+<a name="OOoIDa1"><h6>ID-)<em>[Impress]</em>要素にText追加(その2)</h6></a><pre><code>
+//Add Text into Shapes(No.2)
+importPackage(java.lang);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.drawing.XShape);
+importClass(Packages.com.sun.star.awt.Point);
+importClass(Packages.com.sun.star.awt.Size);
+importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+importClass(Packages.com.sun.star.presentation.AnimationEffect);
+importClass(Packages.com.sun.star.text.XText);
+importClass(Packages.com.sun.star.text.XTextRange);
+
+	//Impress Document Page1へのAccess
+		xImpComponent = XSCRIPTCONTEXT.getDocument();
+		xImpPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xImpComponent);
+		xImpPages = xImpPagesSupplier.getDrawPages();
+		oImpPage = xImpPages.getByIndex(0);
+		xImpressPage =UnoRuntime.queryInterface(XDrawPage, oImpPage);
+	// Get document factory
+		xDocumentFactory =UnoRuntime.queryInterface(XMultiServiceFactory, xImpComponent);
+	//Rectangle
+		R_shape =xDocumentFactory.createInstance("com.sun.star.drawing.RectangleShape");
+		RxShape =UnoRuntime.queryInterface(XShape, R_shape);
+		RxShape.setPosition(new Point(5000, 2000));
+		RxShape.setSize(new Size(8000, 3000));
+		xImpressPage.add(RxShape);
+	//Add Text
+		xText =UnoRuntime.queryInterface(XText, RxShape);
+		xTextCursor = xText.createTextCursor();
+		xTextRange =UnoRuntime.queryInterface(XTextRange, xTextCursor);
+		xTextRange.setString("Macro in JavaScript");
+</code></pre><br>
+
+<a name="OOoIDa2"><h6>ID-)<em>[Impress]</em>要素にText追加(その3)</h6></a><pre><code>
+//Add Text into Shapes(No.3)
+importPackage(java.lang);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.drawing.XShape);
+importClass(Packages.com.sun.star.awt.Point);
+importClass(Packages.com.sun.star.awt.Size);
+importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+importClass(Packages.com.sun.star.text.XText);
+importClass(Packages.com.sun.star.text.ControlCharacter);
+
+	//Impress Document Page1へのAccess
+		xImpComponent = XSCRIPTCONTEXT.getDocument();
+		xImpPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xImpComponent);
+		xImpPages = xImpPagesSupplier.getDrawPages();
+		oImpPage = xImpPages.getByIndex(0);
+		xImpressPage =UnoRuntime.queryInterface(XDrawPage, oImpPage);
+	// Get document factory
+		xDocumentFactory =UnoRuntime.queryInterface(XMultiServiceFactory, xImpComponent);
+	//Rectangle
+		R_shape =xDocumentFactory.createInstance("com.sun.star.drawing.RectangleShape");
+		RxShape =UnoRuntime.queryInterface(XShape, R_shape);
+		RxShape.setPosition(new Point(5000, 2000));
+		RxShape.setSize(new Size(8000, 3000));
+		xImpressPage.add(RxShape);
+	//Add Text(No.3)
+		xText =UnoRuntime.queryInterface(XText, RxShape);
+		xTextCursor = xText.createTextCursor();
+		xText.insertControlCharacter(xTextCursor,ControlCharacter.PARAGRAPH_BREAK,false );	
+		xTextCursor.gotoEnd(false);
+		xText.setString("Macro in JavaScript");
+</code></pre><br>
+
+<a name="OOoIDb"><h6>ID-)<em>[Impress]</em>要素を移動</h6></a><pre><code>
+//Move the Element.
+importPackage(java.lang);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.drawing.XShape);
+importClass(Packages.com.sun.star.awt.Point);
+importClass(Packages.com.sun.star.awt.Size);
+importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+importClass(Packages.javax.swing.JOptionPane);
+
+	//Impress Document Page1へのAccess
+		xImpComponent = XSCRIPTCONTEXT.getDocument();
+		xImpPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xImpComponent);
+		xImpPages = xImpPagesSupplier.getDrawPages();
+		oImpPage = xImpPages.getByIndex(0);
+		xImpressPage =UnoRuntime.queryInterface(XDrawPage, oImpPage);
+	// Get document factory
+		xDocumentFactory =UnoRuntime.queryInterface(XMultiServiceFactory, xImpComponent);
+	//Rectangle
+		R_shape =xDocumentFactory.createInstance("com.sun.star.drawing.RectangleShape");
+	//Point1		
+		R1xShape =UnoRuntime.queryInterface(XShape, R_shape);
+		R1xShape.setPosition(new Point(5000, 2000));
+		R1xShape.setSize(new Size(6000, 3000));
+		xImpressPage.add(R1xShape);
+	//Confirm
+		JOptionPane.showMessageDialog(null, "移動します。");	
+	//Point2
+		R2xShape =UnoRuntime.queryInterface(XShape, R1xShape);
+		R2xShape.setPosition(new Point(15000, 5000));
+		xImpressPage.add(R2xShape);
+</code></pre><br>
+
+<a name="OOoIDc"><h6>ID-)<em>[Impress]</em>要素の選択</h6></a><pre><code>
+//Select the Element.
+importPackage(java.lang);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.drawing.XShape);
+importClass(Packages.com.sun.star.awt.Point);
+importClass(Packages.com.sun.star.awt.Size);
+importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+
+	//Impress Document Page1へのAccess
+		xImpComponent = XSCRIPTCONTEXT.getDocument();
+		xImpPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xImpComponent);
+		xImpPages = xImpPagesSupplier.getDrawPages();
+		oImpPage = xImpPages.getByIndex(0);
+		xImpressPage =UnoRuntime.queryInterface(XDrawPage, oImpPage);
+	// Get document factory
+		xDocumentFactory =UnoRuntime.queryInterface(XMultiServiceFactory, xImpComponent);
+	//Rectangle
+		R_shape =xDocumentFactory.createInstance("com.sun.star.drawing.RectangleShape");
+	//Point1		
+		R1xShape =UnoRuntime.queryInterface(XShape, R_shape);
+		R1xShape.setPosition(new Point(5000, 2000));
+		R1xShape.setSize(new Size(6000, 3000));
+		xImpressPage.add(R1xShape);
+	//Select Element
+		oSelShape =UnoRuntime.queryInterface(XShape, R1xShape);
+</code></pre><br>
+
+<a name="OOoIDd"><h6>ID-)<em>[Impress]</em>要素に名前を付ける。要素名の取得</h6></a><pre><code>
+//Set Shape's Name ang Get Shape's Name.
+importPackage(java.lang);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.drawing.XShape);
+importClass(Packages.com.sun.star.awt.Point);
+importClass(Packages.com.sun.star.awt.Size);
+importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+importClass(Packages.com.sun.star.container.XNamed);
+importClass(Packages.javax.swing.JOptionPane);
+
+	//Impress Document Page1へのAccess
+		xImpComponent = XSCRIPTCONTEXT.getDocument();
+		xImpPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xImpComponent);
+		xImpPages = xImpPagesSupplier.getDrawPages();
+		oImpPage = xImpPages.getByIndex(0);
+		xImpressPage =UnoRuntime.queryInterface(XDrawPage, oImpPage);
+	// Get document factory
+		xDocumentFactory =UnoRuntime.queryInterface(XMultiServiceFactory, xImpComponent);
+	//Rectangle
+		R_shape =xDocumentFactory.createInstance("com.sun.star.drawing.RectangleShape");		
+		RxShape =UnoRuntime.queryInterface(XShape, R_shape);
+		RxShape.setPosition(new Point(5000, 2000));
+		RxShape.setSize(new Size(6000, 3000));
+	//set Name
+		xShapeName =UnoRuntime.queryInterface(XNamed, RxShape);
+		xShapeName.setName("Macro1");
+	//Drawing
+		xImpressPage.add(RxShape);
+	//Get Name
+		oSelShape =UnoRuntime.queryInterface(XShape, RxShape);
+		oSelName =UnoRuntime.queryInterface(XNamed, oSelShape);
+		oShapeName = oSelName.getName()
+	//Confirm Name
+		JOptionPane.showMessageDialog(null, oShapeName);
+</code></pre><br>
+
+<a name="OOoIDde"><h6>ID-)<em>[Impress]</em>要素の削除</h6></a><pre><code>
+//Remove the Shape
+importPackage(java.lang);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.drawing.XShape);
+importClass(Packages.com.sun.star.awt.Point);
+importClass(Packages.com.sun.star.awt.Size);
+importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+importClass(Packages.com.sun.star.container.XNamed);
+importClass(Packages.javax.swing.JOptionPane);
+
+	//Impress Document Page1へのAccess
+		xImpComponent = XSCRIPTCONTEXT.getDocument();
+		xImpPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xImpComponent);
+		xImpPages = xImpPagesSupplier.getDrawPages();
+		oImpPage = xImpPages.getByIndex(0);
+		xImpressPage =UnoRuntime.queryInterface(XDrawPage, oImpPage);
+	// Get document factory
+		xDocumentFactory =UnoRuntime.queryInterface(XMultiServiceFactory, xImpComponent);
+	//Rectangle
+		R_shape =xDocumentFactory.createInstance("com.sun.star.drawing.RectangleShape");		
+		RxShape =UnoRuntime.queryInterface(XShape, R_shape);
+		RxShape.setPosition(new Point(5000, 2000));
+		RxShape.setSize(new Size(6000, 3000));
+	//set Name
+		xShapeName =UnoRuntime.queryInterface(XNamed, RxShape);
+		xShapeName.setName("Macro1");
+	//Drawing
+		xImpressPage.add(RxShape);
+	//Confirm
+		JOptionPane.showMessageDialog(null, "Shape名" + xShapeName.getName() + "を削除します");
+	//Remove
+		oSelShape =UnoRuntime.queryInterface(XShape, RxShape);
+		xImpressPage.remove(oSelShape);
+</code></pre><br>
+
+		
+<a name="OOoIDdf"><h6>ID-)<em>[Impress]</em></h6></a><pre><code>
+
+</code></pre><br>
+
+
+
+
+<p class="s1">Style</p class="s1">
+<p class="s3">[ Color ]</p class="s3">
+<a name="OOoISC1"><h6>ID-1)<em>[Impress]</em>要素の背景,外形色設定</h6></a><pre><code>
+//Background and Line Color for Shape
+importPackage(java.lang);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.drawing.XShape);
+importClass(Packages.com.sun.star.awt.Point);
+importClass(Packages.com.sun.star.awt.Size);
+importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+
+
+	//Impress Document Page1へのAccess
+		xImpComponent = XSCRIPTCONTEXT.getDocument();
+		xImpPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xImpComponent);
+		xImpPages = xImpPagesSupplier.getDrawPages();
+		oImpPage = xImpPages.getByIndex(0);
+		xImpressPage =UnoRuntime.queryInterface(XDrawPage, oImpPage);
+	// Get document factory
+		xDocumentFactory =UnoRuntime.queryInterface(XMultiServiceFactory, xImpComponent);
+	//Rectangle
+		R_shape =xDocumentFactory.createInstance("com.sun.star.drawing.RectangleShape");
+		RxShape =UnoRuntime.queryInterface(XShape, R_shape);
+		RxShape.setPosition(new Point(5000, 2000));
+		RxShape.setSize(new Size(6000, 3000));
+		//Color
+		oChrProperties1 =UnoRuntime.queryInterface(XPropertySet, RxShape);		//This line is important.
+		//Background
+		oChrProperties1.setPropertyValue("FillColor", new java.lang.Integer(16309472));
+		//Line
+		oChrProperties1.setPropertyValue("LineColor", new java.lang.Integer(255000000));	
+	xImpressPage.add(RxShape);
+</code></pre><br>
+
+<a name="OOoISCb"><h6>ID-)<em>[Impress]</em>要素の文字色変更</h6></a><pre><code>
+//Change Text Color for Element
+importPackage(java.lang);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.drawing.XShape);
+importClass(Packages.com.sun.star.awt.Point);
+importClass(Packages.com.sun.star.awt.Size);
+importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+importClass(Packages.com.sun.star.text.XText);
+
+	//Impress Document Page1へのAccess
+		xImpComponent = XSCRIPTCONTEXT.getDocument();
+		xImpPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xImpComponent);
+		xImpPages = xImpPagesSupplier.getDrawPages();
+		oImpPage = xImpPages.getByIndex(0);
+		xImpressPage =UnoRuntime.queryInterface(XDrawPage, oImpPage);
+	// Get document factory
+		xDocumentFactory =UnoRuntime.queryInterface(XMultiServiceFactory, xImpComponent);
+	//Rectangle
+		R_shape =xDocumentFactory.createInstance("com.sun.star.drawing.RectangleShape");
+		RxShape =UnoRuntime.queryInterface(XShape, R_shape);
+		RxShape.setPosition(new Point(5000, 2000));
+		RxShape.setSize(new Size(6000, 3000));
+		//Color
+		oChrProperties1 =UnoRuntime.queryInterface(XPropertySet, RxShape);
+		//Background
+		oChrProperties1.setPropertyValue("FillColor", new java.lang.Integer(16309472));
+		//Line
+		oChrProperties1.setPropertyValue("LineColor", new java.lang.Integer(255000000));	
+		xImpressPage.add(RxShape);
+	
+	//Add Text
+		oText_Chr = new Array();
+		oText_Chr[0] = "Macro in JavaScript";
+		oText =UnoRuntime.queryInterface(XText, RxShape);
+		oText.setString(oText_Chr[0]);
+	//Change Text Color
+		oChrProperties1.setPropertyValue("CharColor", new java.lang.Integer(255000000));	//To be after setting text.
+
+[ Note ] : If you insert color change code before setting text, it dose not change color
+</code></pre><br>
+
+<a name="OOoISCb1"><h6>ID-)<em>[Impress]</em>要素の文字色変更(その2)</h6></a><pre><code>
+//Change Text Color for SHape(No.2)
+importPackage(java.lang);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.drawing.XShape);
+importClass(Packages.com.sun.star.awt.Point);
+importClass(Packages.com.sun.star.awt.Size);
+importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+importClass(Packages.com.sun.star.text.XText);
+importClass(Packages.com.sun.star.text.XTextRange);
+
+	//Impress Document Page1へのAccess
+		xImpComponent = XSCRIPTCONTEXT.getDocument();
+		xImpPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xImpComponent);
+		xImpPages = xImpPagesSupplier.getDrawPages();
+		oImpPage = xImpPages.getByIndex(0);
+		xImpressPage =UnoRuntime.queryInterface(XDrawPage, oImpPage);
+	// Get document factory
+		xDocumentFactory =UnoRuntime.queryInterface(XMultiServiceFactory, xImpComponent);
+	//Rectangle
+		R_shape =xDocumentFactory.createInstance("com.sun.star.drawing.RectangleShape");
+		RxShape =UnoRuntime.queryInterface(XShape, R_shape);
+		RxShape.setPosition(new Point(5000, 2000));
+		RxShape.setSize(new Size(8000, 3000));
+		xImpressPage.add(RxShape);
+	//Add Text
+		xText =UnoRuntime.queryInterface(XText, RxShape);
+		xTextCursor = xText.createTextCursor();
+		xTextRange =UnoRuntime.queryInterface(XTextRange, xTextCursor);
+		xTextRange.setString("Macro in JavaScript");
+	//Change Text Color
+		xTextCursor.gotoEnd(true);
+		xChrPropSet =UnoRuntime.queryInterface(XPropertySet, xTextRange);
+		xChrPropSet.setPropertyValue("CharColor", new java.lang.Integer(0xff0000));	//文字色を赤
+</code></pre><br>
+
+<p class="s1">Connector</p class="s1">
+<a name="OOoIC1"><h6>IC-1)<em>[Impress]</em>Conector追加</h6></a><pre><code>
+//Connect the Shape
+importPackage(java.lang);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.drawing.XShape);
+importClass(Packages.com.sun.star.awt.Point);
+importClass(Packages.com.sun.star.awt.Size);
+importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+importClass(Packages.javax.swing.JOptionPane);
+
+	//Impress Document Page1へのAccess
+		xImpComponent = XSCRIPTCONTEXT.getDocument();
+		xImpPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xImpComponent);
+		xImpPages = xImpPagesSupplier.getDrawPages();
+		oImpPage = xImpPages.getByIndex(0);
+		xImpressPage =UnoRuntime.queryInterface(XDrawPage, oImpPage);
+	// Get document factory
+		xDocumentFactory =UnoRuntime.queryInterface(XMultiServiceFactory, xImpComponent);
+	//Rectangle1
+		R1_shape =xDocumentFactory.createInstance("com.sun.star.drawing.RectangleShape");		
+		R1xShape =UnoRuntime.queryInterface(XShape, R1_shape);
+		R1xShape.setPosition(new Point(5000, 2000));
+		R1xShape.setSize(new Size(3000, 3000));
+		
+	//Rectangle2
+		R2_shape =xDocumentFactory.createInstance("com.sun.star.drawing.RectangleShape");		
+		R2xShape =UnoRuntime.queryInterface(XShape, R2_shape);
+		R2xShape.setPosition(new Point(15000, 5000));
+		R2xShape.setSize(new Size(3000, 3000));
+	//	xImpressPage.add(R2xShape);
+	//Drawing
+		xImpressPage.add(R1xShape);
+		xImpressPage.add(R2xShape);
+	//Connector
+		connector = xDocumentFactory.createInstance("com.sun.star.drawing.ConnectorShape");
+		xConnector =UnoRuntime.queryInterface(XShape, connector);
+		xImpressPage.add(xConnector);
+		//Point from start to end
+			xConnectorProps =UnoRuntime.queryInterface(XPropertySet, connector);
+			xConnectorProps.setPropertyValue("StartShape", R1xShape);
+			xConnectorProps.setPropertyValue("EndShape", R2xShape);
+		//Glue point positions: 0=top 1=right 2=bottom 3=left
+			xConnectorProps.setPropertyValue("StartGluePointIndex", new java.lang.Integer(1));
+			xConnectorProps.setPropertyValue("EndGluePointIndex", new java.lang.Integer(3));
+</code></pre><br>
+
+
+<a name="OOoISS1"><h6>ISS-1)<em>[Impress]</em>Screenの表示方法設定(左側から登場)</h6></a><pre><code>
+//The way to show the Screen.
+importPackage(java.lang);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.lang.XServiceInfo);
+importClass(Packages.com.sun.star.presentation.FadeEffect);
+
+	//Impress Document Page1へのAccess
+		xImpComponent = XSCRIPTCONTEXT.getDocument();
+		xImpPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xImpComponent);
+		xImpPages = xImpPagesSupplier.getDrawPages();
+		oImpPage = xImpPages.getByIndex(0);
+		xImpressPage =UnoRuntime.queryInterface(XDrawPage, oImpPage);
+	// page1のScreen設定
+		xPropSet = UnoRuntime.queryInterface(XPropertySet, xImpressPage );
+		xPropSet.setPropertyValue("Effect", FadeEffect.FADE_FROM_LEFT );
+		
+//[ Note ]
+	･スライドイン(下へ)	: FADE_FROM_TOP
+	･スライドイン(左へ)	: FADE_FROM_RIGHT
+	･スライドイン(右へ)	: FADE_FROM_LEFT
+	･スライドイン(上へ)	: FADE_FROM_BOTTOM
+</code></pre><br>
+
+<a name="OOoISS2"><h6>ISS-2)<em>[Impress]</em>切り替え速度の変更</h6></a><pre><code>
+//The Speed to show the Screen.
+importPackage(java.lang);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.lang.XServiceInfo);
+importClass(Packages.com.sun.star.presentation.FadeEffect);
+importClass(Packages.com.sun.star.presentation.AnimationSpeed);
+
+	//Impress Document Page1へのAccess
+		xImpComponent = XSCRIPTCONTEXT.getDocument();
+		xImpPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xImpComponent);
+		xImpPages = xImpPagesSupplier.getDrawPages();
+		oImpPage = xImpPages.getByIndex(0);
+		xImpressPage =UnoRuntime.queryInterface(XDrawPage, oImpPage);
+	// page1のScreen設定
+		xPropSet = UnoRuntime.queryInterface(XPropertySet, xImpressPage );
+		xPropSet.setPropertyValue("Effect", FadeEffect.FADE_FROM_BOTTOM );
+		xPropSet.setPropertyValue("Speed", AnimationSpeed.FAST );
+		
+//[ Note ]
+	･早い			: AnimationSpeed.FAST
+	･中程度の速度	: AnimationSpeed.MEDIUM
+	･遅い			: AnimationSpeed.SLOW
+</code></pre><br>
+
+<a name="OOoISS3"><h6>ISS-3)<em>[Impress]</em>Slideを進める(By Mouse Click)</h6></a><pre><code>
+//Switch the way of Screen(By mouse click)
+importPackage(java.lang);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.lang.XServiceInfo);
+importClass(Packages.com.sun.star.presentation.FadeEffect);
+importClass(Packages.com.sun.star.presentation.AnimationSpeed);
+
+	//Impress Document Page1へのAccess
+		xImpComponent = XSCRIPTCONTEXT.getDocument();
+		xImpPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xImpComponent);
+		xImpPages = xImpPagesSupplier.getDrawPages();
+		oImpPage = xImpPages.getByIndex(0);
+		xImpressPage =UnoRuntime.queryInterface(XDrawPage, oImpPage);
+	// page1のScreen設定
+		xPropSet = UnoRuntime.queryInterface(XPropertySet, xImpressPage );
+		xPropSet.setPropertyValue("Effect", FadeEffect.FADE_FROM_BOTTOM );
+		xPropSet.setPropertyValue("Speed", AnimationSpeed.FAST );
+		xPropSet.setPropertyValue("Change", new java.lang.Integer(0));
+</code></pre><br>
+
+<a name="OOoISS4"><h6>ISS-4)<em>[Impress]</em>Slideを進める(次の動作(5秒間表示)のあと自動的に)</h6></a><pre><code>
+//Switch the way of Screen(On timer)
+importPackage(java.lang);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.lang.XServiceInfo);
+importClass(Packages.com.sun.star.presentation.FadeEffect);
+importClass(Packages.com.sun.star.presentation.AnimationSpeed);
+
+	//Impress Document Page1へのAccess
+		loadProps = new Array();
+		xImpComponent = XSCRIPTCONTEXT.getDocument();
+		xImpPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xImpComponent);
+		xImpPages = xImpPagesSupplier.getDrawPages();
+		oImpPage = xImpPages.getByIndex(0);
+		xImpressPage =UnoRuntime.queryInterface(XDrawPage, oImpPage);
+	// page1のScreen設定
+		xPropSet = UnoRuntime.queryInterface(XPropertySet, xImpressPage );
+		xPropSet.setPropertyValue("Effect", FadeEffect.FADE_FROM_BOTTOM );
+		xPropSet.setPropertyValue("Speed", AnimationSpeed.FAST );
+		xPropSet.setPropertyValue("Change", new java.lang.Integer(1));
+		xPropSet.setPropertyValue("Duration", new java.lang.Integer(5));	//unit : sec
+</code></pre><br>
+
+<a name="OOoISS5"><h6>ISS-5)<em>[Impress]</em>全てのSlideに適用</h6></a><pre><code>
+//The Speed to show the Screen.
+importPackage(java.lang);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+//importClass(Packages.com.sun.star.drawing.XShape);
+//importClass(Packages.com.sun.star.awt.Point);
+//importClass(Packages.com.sun.star.awt.Size);
+//importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+importClass(Packages.com.sun.star.lang.XServiceInfo);
+importClass(Packages.com.sun.star.presentation.FadeEffect);
+importClass(Packages.com.sun.star.presentation.AnimationSpeed);
+//importClass(Packages.javax.swing.JOptionPane);
+
+	//Impress Document Page1へのAccess
+		oImpPage = new Array();
+		xImpComponent = XSCRIPTCONTEXT.getDocument();
+		xImpPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xImpComponent);
+		xImpPages = xImpPagesSupplier.getDrawPages();
+	//Slide数Count
+		var oCount=xImpPages.getCount()
+	// pageのScreen設定
+		for(i=0 ; i<=oCount-1 ; i++)
+			{
+			oImpPage[i] = xImpPages.getByIndex(i);
+			xImpressPage =UnoRuntime.queryInterface(XDrawPage, oImpPage[i]);		
+			setSlideTransition(xImpressPage, FadeEffect.FADE_FROM_RIGHT, AnimationSpeed.SLOW, 1, 2 );
+			}
+//
+// [ Function1 : setSlideTransition ]
+	function setSlideTransition(xPage, eEffect, eSpeed, nChange, nDuration)
+		{
+		xPropSet = UnoRuntime.queryInterface(XPropertySet, xPage );
+		xPropSet.setPropertyValue("Effect", eEffect );
+		xPropSet.setPropertyValue("Speed", eSpeed );
+		xPropSet.setPropertyValue("Change", new java.lang.Integer(nChange));
+		xPropSet.setPropertyValue("Duration", new java.lang.Integer(nDuration));
+		}
+</code></pre><br>
+
+<a name="OOoISS"><h6>ISS-)<em>[Impress]</em></h6></a><pre><code>
+
+</code></pre><br>
+
+
+<p class="s1">Annimation</p class="s1">
+<a name="OOoIA1"><h6>IA-1)<em>[Impress]</em>要素の表示方法(上部から表示)</h6></a><pre><code>
+//Animation Shapes
+importPackage(java.lang);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.drawing.XShape);
+importClass(Packages.com.sun.star.awt.Point);
+importClass(Packages.com.sun.star.awt.Size);
+importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+importClass(Packages.com.sun.star.presentation.AnimationEffect);
+
+	//Impress Document Page1へのAccess
+		xImpComponent = XSCRIPTCONTEXT.getDocument();
+		xImpPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xImpComponent);
+		xImpPages = xImpPagesSupplier.getDrawPages();
+		oImpPage = xImpPages.getByIndex(0);
+		xImpressPage =UnoRuntime.queryInterface(XDrawPage, oImpPage);
+	// Get document factory
+		xDocumentFactory =UnoRuntime.queryInterface(XMultiServiceFactory, xImpComponent);
+	//Rectangle
+		R_shape =xDocumentFactory.createInstance("com.sun.star.drawing.RectangleShape");
+		RxShape =UnoRuntime.queryInterface(XShape, R_shape);
+		RxShape.setPosition(new Point(5000, 2000));
+		RxShape.setSize(new Size(3000, 3000));
+		xImpressPage.add(RxShape);
+	//Property for Shape
+		xPropSet =UnoRuntime.queryInterface(XPropertySet, RxShape);
+		xPropSet.setPropertyValue("Effect",AnimationEffect.WAVYLINE_FROM_TOP);
+		
+//[ Note ]
+		･WAVYLINE_FROM_TOP		:	上部から表示
+		･WAVYLINE_FROM_LEFT		:	上部から表示
+		･WAVYLINE_FROM_RIGHT	:	上部から表示
+		･WAVYLINE_FROM_BOTTOM	:	上部から表示
+</code></pre><br>
+
+<p class="s3">[ Bookmark ]</p class="s3">
+<a name="OOoIAB1"><h6>IAB-1)<em>[Impress]</em>要素にBookmarkを設定("page three"に移動)</h6></a><pre><code>
+//The Shape with Bookmark
+importPackage(java.lang);
+importClass(Packages.com.sun.star.beans.XPropertySet);
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.drawing.XDrawPagesSupplier);
+importClass(Packages.com.sun.star.drawing.XDrawPage);
+importClass(Packages.com.sun.star.drawing.XShape);
+importClass(Packages.com.sun.star.awt.Point);
+importClass(Packages.com.sun.star.awt.Size);
+importClass(Packages.com.sun.star.lang.XMultiServiceFactory);
+importClass(Packages.com.sun.star.container.XNamed);
+importClass(Packages.com.sun.star.presentation.ClickAction);
+
+try{
+	//Impress DocumentへのAccess
+		loadProps = new Array();
+		xImpComponent = XSCRIPTCONTEXT.getDocument();
+		xImpPagesSupplier =UnoRuntime.queryInterface(XDrawPagesSupplier, xImpComponent);
+		xImpPages = xImpPagesSupplier.getDrawPages();
+	//Insert Page
+	for(i=0; i<2; i++)
+		{
+		xImpPages.insertNewByIndex(0);
+		}
+	//Page3へのAccess
+		oImpPage = xImpPages.getByIndex(2);
+		xImpressPage =UnoRuntime.queryInterface(XDrawPage, oImpPage);
+	// Page Name設定	
+		xPageName =UnoRuntime.queryInterface(XNamed, xImpressPage);
+		xPageName.setName("page three");
+	//Page1にAccess
+		oImpPage = xImpPages.getByIndex(0);
+		xImpressPage =UnoRuntime.queryInterface(XDrawPage, oImpPage);
+	//Page1に要素追加
+		// Get document factory
+			xDocumentFactory =UnoRuntime.queryInterface(XMultiServiceFactory, xImpComponent);
+		//Rectangle
+			R_shape =xDocumentFactory.createInstance("com.sun.star.drawing.RectangleShape");
+			RxShape =UnoRuntime.queryInterface(XShape, R_shape);
+			RxShape.setPosition(new Point(5000, 2000));
+			RxShape.setSize(new Size(5000, 3000));
+		//Drawing		
+			xImpressPage.add(RxShape);
+	//要素に"page three" へのBookmark設定
+		xShapePropSet =UnoRuntime.queryInterface(XPropertySet, RxShape );
+		xShapePropSet.setPropertyValue("OnClick", ClickAction.BOOKMARK);
+		xShapePropSet.setPropertyValue("Bookmark", xPageName.getName());
+	//Confirm
+		JOptionPane.showMessageDialog(null, "success");	
+	}catch(e){	
+		//Error処理
+			errorname = e.name;
+			errormsg = e.message;
+			eDisp= errorname + "\n" + errormsg;
+			JOptionPane.showMessageDialog(null, eDisp);
+	}
+</code></pre><br>
+<br>
+<br>
+
+
+<br>
+<center><h6><a href="#TopOfPage">Top of Page</a></h6></center><BR>
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/JavaScript_Other.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:37:57 GMT -->
+</html>

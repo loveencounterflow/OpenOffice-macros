@@ -1,0 +1,1590 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/Python_Macro_Calc.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:36:40 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<title>Macroの杜(Python編 / Calc)</title>
+</head>
+<link rel="stylesheet"
+type="text/css" href="css_macroPython.css">
+<body>
+<left><p><A HREF="index-2.html">Home of site</a></p></left><br>
+<a name="TopOfPage"><h1>Macroの杜(Python編)<br>
+[ Python for LibreOffice( Apache OpenOffice ) ]</h1></a>
+
+<h2>【 Calc( 表計算 ) 】</h2>
+
+<h3><Center>**********************【 Index 】**********************</center></h3>
+
+
+<p class="s1">Cell操作</p class="s1">
+<p class="s3">[ Basic ]</p class="s3">
+<ul>
+CCB-)<a href="#OOoCCB01"><em>[Calc]</em>Cellに値を入力1(文字列)</a><br>
+CCB-)<a href="#OOoCCB02a"><em>[Calc]</em>Cellに値を入力2(数字 / 数式)</a><br>
+CCB-)<a href="#OOoCCB02b"><em>[Calc]</em>Cellに値を入力3(数字 / 数式 / 文字列)</a><br>
+CCB-)<a href="#OOoCCB03"><em>[Calc]</em>Cellから値取得</a><br>
+</ul>
+
+
+<p class="s3">[ Insert･Delete.Copy ]</p class="s3">
+<ul>
+CCI-)<a href="#OOoCCI01a"><em>[Calc]</em>Cellの追加(1)[既存データは下方向に移動]<em>[ uno.createUnoStruct / insertCells / com.sun.star.sheet.CellInsertMode.DOWN ]</em></a><br>
+CCI-)<a href="#OOoCCI01b"><em>[Calc]</em>Cellの追加(2)[既存データは右方向に移動]<em>[ com.sun.star.sheet.CellInsertMode.RIGHT ]</em></a><br>
+CCI-)<a href="#OOoCCI01c"><em>[Calc]</em>Cellの追加(3)[行全体が下方向に移動]<em>[ com.sun.star.sheet.CellInsertMode.ROWS ]</em></a><br>
+CCI-)<a href="#OOoCCI01d"><em>[Calc]</em>Cellの追加(4)[列全体が右方向に移動]<em>[ com.sun.star.sheet.CellInsertMode.COLUMNS ]</em></a><br>
+CCI-)<a href="#OOoCCI01e"><em>[Calc]</em>Cellの追加(5)[右･下･行全体･列全体が移動][<em>[ .uno:InsertCell ]</em></a><br>
+CCI-)<a href="#OOoCCI02a"><em>[Calc]</em>Cellの削除(1)[既存データは上方向に移動]<em>[ removeRange / com.sun.star.sheet.CellDeleteMode.UP ]</em></a><br>
+CCI-)<a href="#OOoCCI02b"><em>[Calc]</em>Cellの削除(2)[既存データは左方向に移動]<em>[ com.sun.star.sheet.CellDeleteMode.LEFT ]</em></a><br>
+CCI-)<a href="#OOoCCI02c"><em>[Calc]</em>Cellの削除(3)[行全体が上方向に移動]<em>[ com.sun.star.sheet.CellDeleteMode.ROWS ]</em></a><br>
+CCI-)<a href="#OOoCCI02d"><em>[Calc]</em>Cellの削除(4)[列全体が左方向に移動]<em>[ com.sun.star.sheet.CellDeleteMode.COLUMNS ]</em></a><br>
+CCI-)<a href="#OOoCCI02e"><em>[Calc]</em>Cellの削除(左･上･行全体･列全体が移動)<em>[ .uno:DeleteCell ]</em></a><br>
+CCI-)<a href="#OOoCCI03a"><em>[Calc]</em>CellのCOPY<em>[ copyRange ]</em></a><br>
+CCI-)<a href="#OOoCCI03b"><em>[Calc]</em>CellのCOPY2<em>[ getData() / setData ]</em></a><br>
+CCI-)<a href="#OOoCCI03c"><em>[Calc]</em>Cell範囲のCOPY3<em>[ getDataArray / setDataArray ]</em></a><br>
+CCI-)<a href="#OOoCCI04a"><em>[Calc]</em>形式を選択して貼り付け<em>[ .uno:InsertContents ]</em></a><br>
+</ul>
+<br>
+
+
+<p class="s3">[ Property(Cellの書式設定) ]</p class="s3">
+<p class="s4">{{ Format }}</p class="s4">
+<ul>
+CCPF-)<a href="#OOoCCPF01a"><em>[Calc]</em>Cellの表示形式Key No.取得<em>[ NumberFormats / queryKey ]</em></a><br>
+CCPF-)<a href="#OOoCCPF02a"><em>[Calc]</em>Cell数値の表示形式を設定1<em>[ NumberFormats / queryKey ]</em></a><br>
+CCPF-)<a href="#OOoCCPF02b"><em>[Calc]</em>Cell数値の表示形式を設定2<em>[ NumberFormat ]</em></a><br>
+CCPF-)<a href="#OOoCCPF02c"><em>[Calc]</em>Cell数値の表示形式を設定3<em>[ .uno:NumberFormatValue ]</em></a><br>
+CCPF-)<a href="#OOoCCPF03a"><em>[Calc]</em>Content Type of Cell<em>[ com.sun.star.CellContentType ]</em></a><br>
+CCPF-)<a href="#OOoCCPF04a"><em>[Calc]</em>User Defined Attributes<em>[ com.sun.star.table.CellProperties Service ]</em></a><br>
+CCPF-)<a href="#OOoCCPF05a"><em>[Calc]</em>固有Format Range<em>[ getCellFormatRanges() / getRangeAddress() / getRangeAddressesAsString() ]</em></a><br>
+</ul>
+<br>
+
+<p class="s4">{{ Font }}</p class="s4">
+<ul>
+CCPFt-)<a href="#OOoCCPFt02a"><em>[Calc]</em>文字関連の Property 一覧<em>[ from com.sun.star.awt.FontSlant import (NONE, ITALIC, REVERSE_ITALIC,OBLIQUE,) / .CharFontName / .CharFontNameAsian / .CharPosture / CharPostureAsian / .CharPostureAsian / .CharHeight / .CharHeightAsian / .createTextCursor() / .setPropertyValue('CharContoured',) / .setPropertyValue('CharCrossedOut,) / .setPropertyValue('CharEmphasis',) / .setPropertyValue('CharUnderlineColor',) / .setPropertyValue('CharUnderline',) / .setPropertyValue('CharRelief',) / .setPropertyValue('CharShadowed',) ]</em></a><br>
+CCPFt-)<a href="#OOoCCPFt03a"><em>[Calc]</em>Cellの背景色設定<em>[ CellBackColor ]</em></a><br>
+CCPFt-)<a href="#OOoCCPFt04a"><em>[Calc]</em>文字色 / 文字Size / 文字太さ 設定<em>[ CharColor / CharHight / CharWeight ]</em></a><br>
+CCPFt-)<a href="#OOoCCPFt"><em>[Calc]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+<p class="s3">[ Address ]</p class="s3">
+<ul>
+CCAd-)<a href="#OOoCCAd01"><em>[Calc]</em>Active CellのAddress取得</a><br>
+CCAd-)<a href="#OOoCCAd02"><em>[Calc]</em>最終行No.の取得</a><br>
+</ul>
+<br>
+
+<p class="s3">[ HyperLink ]</p class="s3">
+<ul>
+CHy-)<a href="#OOoCHy01"><em>[Calc]</em>Hyper Link</a><br>
+</ul>
+<br>
+
+<p class="s1">Sheet</p class="s1">
+<ul>
+CS-)<a href="#OOoCS01"><em>[Calc]</em>Sheet Name取得</a><br>
+CS-)<a href="#OOoCS02"><em>[Calc]</em>Sheet Name変更</a><br>
+</ul>
+<br>
+
+<p class="s1">File</p class="s1">
+<ul>
+CF-)<a href="#OOoCF01"><em>[Calc]</em>新規Calc file起動</a><br>
+CF-)<a href="#OOoCF02"><em>[Calc]</em>指定Calc file起動</a><br>
+CF-)<a href="#OOoCF03"><em>[Calc]</em>指定Calc file保存(上書き保存)</a><br>
+</ul>
+<br>
+
+
+<center><h3>**********[ Macro Code ]**********</h3></center>
+<br>
+
+<p class="s1">Cell操作</p class="s1">
+<p class="s3">[ Basic ]</p class="s3">
+<a name="OOoCCB01"><h6>CCB-)<em>[Calc]</em>Cellに値を入力1(文字列)</h6></a><pre><code>
+# -*- coding: utf-8 -*-
+
+import uno
+import unohelper
+import os.path
+
+def oMacroTest():
+    try:
+        ofile= os.path.abspath('c:\\temp\\oootest.ods')
+        oURL = unohelper.systemPathToFileUrl(ofile)
+    #
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        oDoc = desktop.loadComponentFromURL( oURL,"_blank", 0, () )
+    #
+        oSheet = oDoc.getSheets().getByIndex(0)
+        oCell = oSheet.getCellByPosition(0,0)
+    #
+        oCell.String = 'MacroTest'
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoCCB02a"><h6>CCB-)<em>[Calc]</em>Cellに値を入力2(数字 / 数式)</h6></a><pre><code>
+# -*- coding: utf-8 -*-
+
+import uno
+import unohelper
+import os.path
+
+def oMacroTest():
+    try:
+        ofile= os.path.abspath('c:\\temp\\oootest.ods')
+        oURL = unohelper.systemPathToFileUrl(ofile)
+    #
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        oDoc = desktop.loadComponentFromURL( oURL,"_blank", 0, () )
+    #
+        oSheet = oDoc.getSheets().getByIndex(0)
+    #
+        oSheet.getCellByPosition(0,0).Value = 1
+        oSheet.getCellByPosition(0,1).Value = 2
+        oSheet.getCellByPosition(0,2).Formula = "=sum(A1:A2)"
+
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoCCB02b"><h6>CCB-)<em>[Calc]</em>Cellに値を入力3(数字 / 数式 / 文字列)</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+import unohelper
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oMacroTest():
+	try:
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		oDoc = desktop.loadComponentFromURL('private:factory/scalc','_blank', 0, () )
+    #
+		oSheet = oDoc.getSheets().getByName('sheet1')
+    #
+		oSheet.getCellRangeByName('A1').Value = 1
+		oSheet.getCellRangeByName('A2').Value = 2
+		oSheet.getCellRangeByName('A3').Formula = '=sum(A1:A2)'
+		oSheet.getCellRangeByName('B1').String = 'LibreOffice'
+		oDisp = 'Success'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+
+<a name="OOoCCB03"><h6>CCB-)<em>[Calc]</em>Cellから値取得</h6></a><pre><code>
+# -*- coding: utf-8 -*-
+
+import uno
+import unohelper
+import os.path
+
+from com.sun.star.awt import Rectangle
+
+def show_message(desktop, message):
+   """shows message."""
+   frame = desktop.getCurrentFrame()
+   window = frame.getContainerWindow()
+   toolkit = window.getToolkit()
+   msgbox = toolkit.createMessageBox(
+       window, Rectangle(), 'messbox', 1, '', message)
+   return msgbox.execute()
+
+def oMacroTest():
+    try:
+        ofile= os.path.abspath('c:\\temp\\oootest.ods')
+        oURL = unohelper.systemPathToFileUrl(ofile)
+    #
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        oDoc = desktop.loadComponentFromURL( oURL,"_blank", 0, () )
+    #
+        oSheet = oDoc.getSheets().getByIndex(0)
+    #
+        oSheet.getCellByPosition(0,0).Value = 3
+        oSheet.getCellByPosition(0,1).Value = 2
+        oSheet.getCellByPosition(0,2).Formula = "=sum(A1:A2)"
+    #
+        oVal = oSheet.getCellByPosition(0,2).Value
+        oDisp = oVal
+    #
+        show_message(desktop, oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ Insert･Delete.Copy ]</p class="s3">
+<a name="OOoCCI01a"><h6>CCI-)<em>[Calc]</em>Cellの追加(1)[既存データは下方向に移動]</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oMacroTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		oSheet =oDoc.getSheets().getByName('sheet1')
+		#
+		oCellRangeAddr = uno.createUnoStruct('com.sun.star.table.CellRangeAddress')
+		oCellRangeAddr.Sheet = 0
+		oCellRangeAddr.StartColumn = 2
+		oCellRangeAddr.StartRow = 2
+		oCellRangeAddr.EndColumn = 4
+		oCellRangeAddr.EndRow = 4
+		oSheet.insertCells(oCellRangeAddr, 1)	# com.sun.star.sheet.CellInsertMode.DOWN
+		oDisp = 'Success'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoCCI01b"><h6>CCI-)<em>[Calc]</em>Cellの追加(2)[既存データは右方向に移動]</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oMacroTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		oSheet =oDoc.getSheets().getByName('sheet1')
+		#
+		oCellRangeAddr = uno.createUnoStruct('com.sun.star.table.CellRangeAddress')
+		oCellRangeAddr.Sheet = 0
+		oCellRangeAddr.StartColumn = 2
+		oCellRangeAddr.StartRow = 2
+		oCellRangeAddr.EndColumn = 4
+		oCellRangeAddr.EndRow = 4
+		oSheet.insertCells(oCellRangeAddr, 2)	# com.sun.star.sheet.CellInsertMode.RIGHT
+		oDisp = 'Success'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoCCI01c"><h6>CCI-)<em>[Calc]</em>Cellの追加(3)[行全体が下方向に移動]</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oMacroTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		oSheet =oDoc.getSheets().getByName('sheet1')
+		#
+		oCellRangeAddr = uno.createUnoStruct('com.sun.star.table.CellRangeAddress')
+		oCellRangeAddr.Sheet = 0
+		oCellRangeAddr.StartColumn = 2
+		oCellRangeAddr.StartRow = 2
+		oCellRangeAddr.EndColumn = 4
+		oCellRangeAddr.EndRow = 4
+		oSheet.insertCells(oCellRangeAddr, 3)	# com.sun.star.sheet.CellInsertMode.ROW
+		oDisp = 'Success'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoCCI01d"><h6>CCI-)<em>[Calc]</em>Cellの追加(4)[列全体が右方向に移動]</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oMacroTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		oSheet =oDoc.getSheets().getByName('sheet1')
+		#
+		oCellRangeAddr = uno.createUnoStruct('com.sun.star.table.CellRangeAddress')
+		oCellRangeAddr.Sheet = 0
+		oCellRangeAddr.StartColumn = 2
+		oCellRangeAddr.StartRow = 2
+		oCellRangeAddr.EndColumn = 4
+		oCellRangeAddr.EndRow = 4
+		oSheet.insertCells(oCellRangeAddr, 4)	# com.sun.star.sheet.CellInsertMode.COLUMNS
+		oDisp = 'Success'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoCCI01e"><h6>CCI-)<em>[Calc]</em>Cellの追加(5)[右･下･行全体･列全体が移動][</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+from com.sun.star.beans import PropertyValue
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oMacroTest():
+	try:
+		ctx = XSCRIPTCONTEXT.getComponentContext()
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		dispatchHelper = ctx.ServiceManager.createInstanceWithContext( 'com.sun.star.frame.DispatchHelper', ctx )
+		# B2へ移動
+		oProp = PropertyValue()
+		oProp.Name = 'ToPoint'
+		oProp.Value = 'C3:E5'
+		properties = (oProp,)
+		dispatchHelper.executeDispatch( frame, '.uno:GoToCell', '', 0, properties )
+		#
+		oProp.Name = 'Flags'
+		oProp.Value = 'V'
+		properties = (oProp,)
+		dispatchHelper.executeDispatch( frame, '.uno:InsertCell', '', 0, properties )
+		oDisp = 'Success'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp)
+#
+# [ Note ]
+#  V :  Cellを下に移動
+#  > :  Cellを右に移動
+#  R :  行全体を下に移動
+#  C :  列全体を右に移動
+</code></pre><br>
+
+
+<a name="OOoCCI02a"><h6>CCI-)<em>[Calc]</em>Cellの削除(1)[既存データは上方向に移動]</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oMacroTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		oSheet =oDoc.getSheets().getByName('sheet1')
+		#
+		oCellRangeAddr = uno.createUnoStruct('com.sun.star.table.CellRangeAddress')
+		oCellRangeAddr.Sheet = 0
+		oCellRangeAddr.StartColumn = 2
+		oCellRangeAddr.StartRow = 2
+		oCellRangeAddr.EndColumn = 4
+		oCellRangeAddr.EndRow = 4
+		oSheet.removeRange(oCellRangeAddr, 1)	# com.sun.star.sheet.CellDeleteMode.UP
+		oDisp = 'Success'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoCCI02b"><h6>CCI-)<em>[Calc]</em>Cellの削除(2)[既存データは左方向に移動]</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oMacroTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		oSheet =oDoc.getSheets().getByName('sheet1')
+		#
+		oCellRangeAddr = uno.createUnoStruct('com.sun.star.table.CellRangeAddress')
+		oCellRangeAddr.Sheet = 0
+		oCellRangeAddr.StartColumn = 2
+		oCellRangeAddr.StartRow = 2
+		oCellRangeAddr.EndColumn = 4
+		oCellRangeAddr.EndRow = 4
+		oSheet.removeRange(oCellRangeAddr, 2)	# com.sun.star.sheet.CellDeleteMode.LEFT
+		oDisp = 'Success'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoCCI02c"><h6>CCI-)<em>[Calc]</em>Cellの削除(3)[行全体が上方向に移動]</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oMacroTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		oSheet =oDoc.getSheets().getByName('sheet1')
+		#
+		oCellRangeAddr = uno.createUnoStruct('com.sun.star.table.CellRangeAddress')
+		oCellRangeAddr.Sheet = 0
+		oCellRangeAddr.StartColumn = 2
+		oCellRangeAddr.StartRow = 2
+		oCellRangeAddr.EndColumn = 4
+		oCellRangeAddr.EndRow = 4
+		oSheet.removeRange(oCellRangeAddr, 3)	# com.sun.star.sheet.CellDeleteMode.ROWS
+		oDisp = 'Success'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoCCI02d"><h6>CCI-)<em>[Calc]</em>Cellの削除(4)[列全体が左方向に移動]</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oMacroTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		oSheet =oDoc.getSheets().getByName('sheet1')
+		#
+		oCellRangeAddr = uno.createUnoStruct('com.sun.star.table.CellRangeAddress')
+		oCellRangeAddr.Sheet = 0
+		oCellRangeAddr.StartColumn = 2
+		oCellRangeAddr.StartRow = 2
+		oCellRangeAddr.EndColumn = 4
+		oCellRangeAddr.EndRow = 4
+		oSheet.removeRange(oCellRangeAddr, 4)	# com.sun.star.sheet.CellDeleteMode.COLUMNS
+		oDisp = 'Success'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoCCI02e"><h6>CCI-)<em>[Calc]</em>Cellの削除(左･上･行全体･列全体が移動)</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+from com.sun.star.beans import PropertyValue
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oMacroTest():
+	try:
+		ctx = XSCRIPTCONTEXT.getComponentContext()
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		dispatchHelper = ctx.ServiceManager.createInstanceWithContext( 'com.sun.star.frame.DispatchHelper', ctx )
+		# B2へ移動
+		oProp = PropertyValue()
+		oProp.Name = 'ToPoint'
+		oProp.Value = 'C3:E5'
+		properties = (oProp,)
+		dispatchHelper.executeDispatch( frame, '.uno:GoToCell', '', 0, properties )
+		#
+		oProp.Name = 'Flags'
+		oProp.Value = 'U'
+		properties = (oProp,)
+		dispatchHelper.executeDispatch( frame, '.uno:DeleteCell', '', 0, properties )
+		oDisp = 'Success'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp)
+#
+# [ Flag Value ]
+# U    : Cell を 上に移動 
+# L    : Cell を 左に移動
+# R    : 行全体を削除
+# C    : 列全体を削除
+</code></pre><br>
+
+
+<a name="OOoCCI03a"><h6>CCI-)<em>[Calc]</em>CellのCOPY</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oMacroTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		oSheet =oDoc.getSheets().getByIndex(0)
+		#
+		oRangeAddress = oSheet.getCellRangeByName('B2:D4').getRangeAddress()
+		oCellAddress = oSheet.getCellByPosition(0,10).getCellAddress()
+		oSheet.copyRange(oCellAddress, oRangeAddress)
+		oDisp = 'Success'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoCCI03b"><h6>CCI-)<em>[Calc]</em>CellのCOPY2</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oMacroTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		oSheet1 = oDoc.getSheets().getByIndex(0)
+		oSheet2 = oDoc.getSheets().getByIndex(1)
+		sCol = 0
+		eCol = 3
+		sRow = 0
+		eRow = 10
+		oCopyRange = oSheet1.getCellRangeByPosition(sCol, sRow, eCol, eRow)
+		oPasteRange = oSheet2.getCellRangeByPosition(sCol, sRow, eCol, eRow)
+		oCopyData = oCopyRange.getData()
+		oPasteRange.setData(oCopyData)
+		oDisp = 'Success'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoCCI03c"><h6>CCI-)<em>[Calc]</em>Cell範囲のCOPY3</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oMacroTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		oSheet1 = oDoc.getSheets().getByIndex(0)
+		oSheet2 = oDoc.getSheets().getByIndex(1)
+		sCol = 0
+		eCol = 3
+		sRow = 0
+		eRow = 5
+		oCopyRange = oSheet1.getCellRangeByPosition(sCol, sRow, eCol, eRow)
+		oPasteRange = oSheet2.getCellRangeByPosition(sCol+1, sRow+1, eCol+1, eRow+1)
+		oCopyData = oCopyRange.getDataArray()
+		oPasteRange.setDataArray(oCopyData)
+		oDisp = 'Success'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoCCI04a"><h6>CCI-)<em>[Calc]</em>形式を選択して貼り付け</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+from com.sun.star.beans import PropertyValue
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oMacroTest():
+	try:
+		ctx = XSCRIPTCONTEXT.getComponentContext()
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		dispatchHelper = ctx.ServiceManager.createInstanceWithContext( 'com.sun.star.frame.DispatchHelper', ctx )
+		# Move A1 cell and Copy
+		oProp = PropertyValue()
+		oProp.Name = 'ToPoint'
+		oProp.Value = 'A1'
+		properties = (oProp,)
+		dispatchHelper.executeDispatch( frame, '.uno:GoToCell', '', 0, properties )
+		properties = ()
+		dispatchHelper.executeDispatch( frame, '.uno:Copy', '', 0, properties )
+		#
+		oProp = PropertyValue()
+		oProp.Name = 'ToPoint'
+		oProp.Value = 'B2'
+		properties = (oProp,)
+		dispatchHelper.executeDispatch( frame, '.uno:GoToCell', '', 0, properties )
+		# Initialize
+		oProp = []
+		oProp1 = PropertyValue()
+		oProp1.Name = 'Flags'
+		oProp1.Value = 'SDFNT'
+		oProp2 = PropertyValue()
+		oProp2.Name = 'FormulaCommand'
+		oProp2.Value = 0
+		oProp3 = PropertyValue()
+		oProp3.Name = 'SkipEmptyCells'
+		oProp3.Value = False		# false : NG
+		oProp4 = PropertyValue()
+		oProp4.Name = 'Transpose'
+		oProp4.Value = False
+		oProp5 = PropertyValue()
+		oProp5.Name = 'AsLink'
+		oProp5.Value = False
+		oProp6 = PropertyValue()
+		oProp6.Name = 'MoveMode'
+		oProp6.Value = 4
+		oProp.append(oProp1)
+		oProp.append(oProp2)
+		oProp.append(oProp3)
+		oProp.append(oProp4)
+		oProp.append(oProp5)
+		oProp.append(oProp6)
+		properties = tuple(oProp)
+		dispatchHelper.executeDispatch( frame, '.uno:InsertContents', '', 0, properties )
+		oDisp = 'Success'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp)
+#
+# [ Flag Value ]
+# S    : String ( テキスト ) 
+# V    : Value ( 値 )
+# D    : Date ( 日付 )
+# F    : Formula ( 式 )
+# N    : Note ( コメント )
+# T    : Format ( 書式 )
+# 空白 : Object ( オブジェクト )
+# A    : 全て
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ Property(Cellの書式設定) ]</p class="s3">
+<p class="s4">{{ Format }}</p class="s4">
+<a name="OOoCCPF01a"><h6>CCPF-)<em>[Calc]</em></h6></a><pre><code>
+<img src="Python_pic/03Calc/01Cell/02Property/01Format/01aNumQueryKey01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+from com.sun.star.beans import PropertyValue
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oMacroTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		#
+		oLocale = uno.createUnoStruct("com.sun.star.lang.Locale")
+		oLocale.Language = "ja"
+		oLocale.Country = "JP"
+		oNumberFormats = oDoc.NumberFormats
+		oList1 = ['#,##0','#,##0.#0','0%','0.00%','[$￥-411]#,##0;-[$￥-411]#,##0','[$￥-411]#,##0;[RED]-[$￥-411]#,##0']
+		oList2 = ['YYYY/MM/DD',u'YYYY年MM月DD日(AAAA)','GE.M.D','HH:MM','HH:MM:SS','0.00E+00','# ??/??']
+		oDF = oList1 + oList2
+		oDisp = u'[ 表示Key No ]'
+		for n in oDF:
+			oKeyNo = oNumberFormats.queryKey( n, oLocale, False )		# false : NG
+			oDisp = oDisp + '\n' + n + ' ⇒ ' + str(oKeyNo)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoCCPF02a"><h6>CCPF-)<em>[Calc]</em>Cell数値の表示形式を設定1</h6></a><pre><code>
+<img src="Python_pic/03Calc/01Cell/02Property/01Format/02aNumberFormats01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oMacroTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		oSheet = oDoc.getSheets().getByName('sheet1')
+		oCell=oSheet.getCellRangeByName('A1')
+		#
+		oLocale = uno.createUnoStruct('com.sun.star.lang.Locale')
+		oLocale.Language = 'ja'
+		oLocale.Country = 'JP'
+		NumberFormats = oDoc.NumberFormats
+		NumberFormatString = u'#,##0.#0円'
+		NumberFormatId = NumberFormats.queryKey(NumberFormatString, oLocale, True)
+		if NumberFormatId == -1:
+			NumberFormatId = NumberFormats.addNew(NumberFormatString, oLocale)	# 書式コードを追加
+		oCell.NumberFormat = NumberFormatId
+		oDisp = 'Success'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoCCPF02b"><h6>CCPF-)<em>[Calc]</em>Cell数値の表示形式を設定2</h6></a><pre><code>
+<img src="Python_pic/03Calc/01Cell/02Property/01Format/02bNumberFormat01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oMacroTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		oSheet = oDoc.getSheets().getByName('sheet1')
+		oCell=oSheet.getCellRangeByName('A1')
+		oCell.Value = 20000			# value : NG
+		oCell.NumberFormat = 10103
+		oDisp = 'Success'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoCCPF02c"><h6>CCPF-)<em>[Calc]</em>Cell数値の表示形式を設定3</h6></a><pre><code>
+<img src="Python_pic/03Calc/01Cell/02Property/01Format/02cUnoNumberFmtVal01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+from com.sun.star.beans import PropertyValue
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oMacroTest():
+	try:
+		ctx = XSCRIPTCONTEXT.getComponentContext()
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		dispatchHelper = ctx.ServiceManager.createInstanceWithContext( 'com.sun.star.frame.DispatchHelper', ctx )
+		# B2へ移動
+		oProp = PropertyValue()
+		oProp.Name = 'ToPoint'
+		oProp.Value = 'A1'
+		properties = (oProp,)
+		dispatchHelper.executeDispatch( frame, '.uno:GoToCell', '', 0, properties )
+		#
+		oProp.Name = 'NumberFormatValue'
+		oProp.Value = 25
+		properties = (oProp,)
+		dispatchHelper.executeDispatch( frame, '.uno:NumberFormatValue', '', 0, properties )
+		oDisp = 'Success'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoCCPF03a"><h6>CCPF-)<em>[Calc]</em>Content Type of Cell</h6></a><pre><code>
+<img src="Python_pic/03Calc/01Cell/02Property/01Format/03aGetType01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oMacroTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		oSheet = oDoc.getSheets().getByName('sheet1')
+		oCell=oSheet.getCellRangeByName('A1')
+		oCell.String = 'LibreOffice'			# string : NG
+		oType = oCell.getType()
+		#
+		if oType == uno.Enum('com.sun.star.table.CellContentType', 'EMPTY'):
+			oDisp = 'Empty'
+		elif oType == uno.Enum('com.sun.star.table.CellContentType', 'VALUE'):
+			oDisp = 'Value'
+		elif oType == uno.Enum('com.sun.star.table.CellContentType', 'TEXT'):
+			oDisp = 'Text'
+		elif oType == uno.Enum('com.sun.star.table.CellContentType', 'FORMULA'):
+			oDisp = 'Formula'
+		else:
+			oDisp = 'UnKnown'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoCCPF04a"><h6>CCPF-)<em>[Calc]</em>User Defined Attributes</h6></a><pre><code>
+<img src="Python_pic/03Calc/01Cell/02Property/01Format/04aUserDefineAttr01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+from com.sun.star.beans import PropertyValue
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oMacroTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		oSheet = oDoc.getSheets().getByName('sheet1')
+		oCell=oSheet.getCellRangeByName('A1')
+		#
+		oUserAttr = uno.createUnoStruct('com.sun.star.xml.AttributeData')
+		# xray oUserAtrr
+		oUserAttr.Type ="CDATA"
+		oUserAttr.Value = "NewOOo3 macro"
+		oUserData = oCell.UserDefinedAttributes
+		#
+		if not oUserData.hasByName('home'):
+			oUserData.insertByName("home",oUserAttr)
+			oCell.UserDefinedAttributes = oUserData
+		# xray oUserData
+		oUser = oUserData.ElementNames
+		#
+		oDisp = '[ User Define Attributes ]'
+		for n in oUser:
+			oDisp = oDisp + '\n' + n
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoCCPF05a"><h6>CCPF-)<em>[Calc]</em>固有Format Range</h6></a><pre><code>
+<img src="Python_pic/03Calc/01Cell/02Property/01Format/05aCellFmtRng01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+#
+def ColumnNumberToString(nColumn):
+	oRtn = ''
+	while nColumn >= 0:
+		oAsc = 65 + (nColumn%26)
+		oReturn2= chr(oAsc)
+		oRtn = str(oReturn2) + oRtn
+		nColumn= int(nColumn / 26 - 1)
+	else:
+		return str(oRtn)
+#
+def oMacroTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		oSheet = oDoc.getSheets().getByName('sheet1')
+		oGetFormat = oSheet.getCellFormatRanges()
+		oDisp = '[ getCellFormatRanges() ]'
+		for i in range(oGetFormat.getCount()):
+			oSheetCellRange = oGetFormat.getByIndex(i)
+			oAddress = oSheetCellRange.getRangeAddress()
+			oDisp = oDisp + '\n\t\t' + str(i) + ' = Sheet' + str(oAddress.Sheet +1) + '.'
+			oDisp = oDisp + ColumnNumberToString(oAddress.StartColumn) + str(oAddress.StartRow + 1) + ':'
+			oDisp = oDisp + ColumnNumberToString(oAddress.EndColumn) + str(oAddress.EndRow + 1) + '\n'
+		#
+		oGetFormat = oSheet.getUniqueCellFormatRanges()
+		oDisp = oDisp + '\n[ getUniqueCellFormatRanges() ]'
+		for i in range(oGetFormat.getCount()):
+			oSheetUniqueRange = oGetFormat.getByIndex(i)
+			oDisp = oDisp + '\n\t\t' + str(i) + ' = ' + str(oSheetUniqueRange.getRangeAddressesAsString())
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s4">{{ Font }}</p class="s4">
+<a name="OOoCCPFt02a"><h6>CCPFt-)<em>[Calc]</em>文字関連の Property 一覧</h6></a><pre><code>
+<img SRC="Python_pic/03Calc/01Cell/02Property/02Font/02aFontSlantList01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+class cFontSlant():
+	from com.sun.star.awt.FontSlant import (NONE, ITALIC, REVERSE_ITALIC,OBLIQUE,) 
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oMacroTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		oSheet = oDoc.getSheets().getByIndex(0)
+		oCell = oSheet.getCellByPosition(0,1)
+		oCell.String = '水 素はH2'
+		oCell.CharFontName = "Arial"
+		oCell.CharFontNameAsian = "Arial"
+		oCell.CharPosture = cFontSlant.ITALIC
+		oCell.CharPostureAsian = cFontSlant.OBLIQUE
+		oCell.CharHeight=40				# 英数字サイズは40(Cell単位での設定)
+		oCell.CharHeightAsian=20		# 日本語は20(Cell単位での設定)
+		oTextCursor = oCell.createTextCursor()
+		oTextCursor.gotoStart(False)	# false : NG
+		oTextCursor.goRight(3, True)
+		oTextCursor.setPropertyValue('CharContoured', True )			#中抜き効果
+		oTextCursor.setPropertyValue('CharCrossedOut', True ) 			#取り消し線	 		
+		oTextCursor.setPropertyValue('CharEmphasis',3)					#強調文字 3は「・」の上付き、4は「、」の上付
+		oTextCursor.setPropertyValue('CharUnderlineColor', 2918503 )	#下線色 / 白抜きにしているので無意味
+		oTextCursor.setPropertyValue('CharUnderline',1)					#UnderLine
+		oTextCursor.setPropertyValue('CharRelief',1)					#浮き出し　０はNormal　1は浮き出し効果
+		oTextCursor.setPropertyValue('CharShadowed',True)				#Shadow効果
+		oTextCursor.gotoEnd(False)
+		oDisp = 'Success'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1,u'Python/Font')
+</code></pre><br>
+
+
+<a name="OOoCCPFt03a"><h6>CCPFt-)<em>[Calc]</em>Cellの背景色設定</h6></a><pre><code>
+<img SRC="Python_pic/03Calc/01Cell/02Property/02Font/01CellBackColor01.png" align="right" hspace="4" vspace="4" width="15%">
+# -*- coding: utf-8 -*-
+import uno
+import unohelper
+import os.path
+
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+		
+from com.sun.star.table import ShadowFormat
+def oMacroTest():
+    try:
+		ofile= os.path.abspath('c:/temp/MacroCalc.ods')
+		if os.path.isfile(ofile):		# If is Bad.
+			oURL = unohelper.systemPathToFileUrl(ofile)
+			#
+			desktop = XSCRIPTCONTEXT.getDesktop()
+			oDoc = desktop.loadComponentFromURL( oURL,"_blank", 0, () )
+			#
+			oSheet = oDoc.getSheets().getByIndex(0)
+			#
+			oCell = oSheet.getCellByPosition(0,0)
+			#
+			oCell.CellBackColor = 0xff0000		# 背景色=> RGBの16進数6桁で表示　0x + RGB(255,0,0)=> 0xff0000
+		else:
+			oDisp = str( ofile + ' => does not Exist!!')
+			omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoCCPFt04a"><h6>CCPFt-)<em>[Calc]</em>文字色 / 文字Size / 文字太さ 設定</h6></a><pre><code>
+<img SRC="Python_pic/03Calc/01Cell/02Property/02Font/02CharColorHeightWeight01.png" align="right" hspace="4" vspace="4" width="20%">
+# -*- coding: utf-8 -*-
+import uno
+import unohelper
+import os.path
+
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+		
+from com.sun.star.table import ShadowFormat
+def oMacroTest():
+    try:
+		ofile= os.path.abspath('c:/temp/MacroCalc.ods')
+		if os.path.isfile(ofile):		# If is Bad.
+			oURL = unohelper.systemPathToFileUrl(ofile)
+			#
+			desktop = XSCRIPTCONTEXT.getDesktop()
+			oDoc = desktop.loadComponentFromURL( oURL,"_blank", 0, () )
+			#
+			oSheet = oDoc.getSheets().getByIndex(0)
+			#
+			oCell = oSheet.getCellByPosition(0,0)
+			#
+			oCell.String = 'MacroTest'
+			oCell.CharColor = 0xff0000		# 文字色=> RGBの16進数6桁で表示　0x + RGB(255,0,0)=> 0xff0000
+			oCell.CharHeight = 15			# 文字Size
+			oCell.CharWeight = 100			# 文字太さ
+		else:
+			oDisp = str( ofile + ' => does not Exist!!')
+			omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoCCPFt"><h6>CCPFt-)<em>[Calc]</em></h6></a><pre><code>
+<img SRC="Python_pic/03Calc/01Cell/02Property/02Font/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br clear="right">
+<p class="s3">[ Address ]</p class="s3">
+<a name="OOoCCAd01"><h6>CCAd-)<em>[Calc]</em>Active CellのAddress取得</h6></a><pre><code>
+import uno
+from com.sun.star.awt import Rectangle
+
+def show_message(desktop, message):
+   """shows message."""
+   frame = desktop.getCurrentFrame()
+   window = frame.getContainerWindow()
+   toolkit = window.getToolkit()
+   msgbox = toolkit.createMessageBox(
+       window, Rectangle(), 'messbox', 1, '', message)
+   return msgbox.execute()
+
+
+def get_active_cell():
+   doc = XSCRIPTCONTEXT.getDocument()
+   selected = doc.getCurrentSelection()
+   try:
+       if selected.supportsService('com.sun.star.sheet.SheetCellRange'):
+           addr = selected.getRangeAddress()
+           
+           txt = 'Column: %s\nRow: %s' % (addr.EndColumn, addr.EndRow)
+           show_message(XSCRIPTCONTEXT.getDesktop(), txt)
+   except:
+       pass
+</code></pre><br>
+
+<a name="OOoCCAd02"><h6>CCAd-)<em>[Calc]</em>最終行No.の取得</h6></a><pre><code>
+import uno
+from com.sun.star.awt import Rectangle
+
+
+def show_message(desktop, message):
+    """shows message."""
+    frame = desktop.getCurrentFrame()
+    window = frame.getContainerWindow()
+    toolkit = window.getToolkit()
+    msgbox = toolkit.createMessageBox(
+        window, Rectangle(), 'messbox', 1, '', message)
+    return msgbox.execute()
+
+from com.sun.star.sheet.CellFlags import (VALUE, DATETIME, STRING, 
+    ANNOTATION, FORMULA, HARDATTR, OBJECTS, EDITATTR, FORMATTED)
+
+
+def get_used_last_row_index():
+    """shows last used row index of specified column"""
+    column_index = 0
+    sheet_index = 0
+    
+    flags = VALUE + DATETIME + STRING + \
+        ANNOTATION + FORMULA + HARDATTR + OBJECTS + EDITATTR + FORMATTED
+    
+    doc = XSCRIPTCONTEXT.getDocument()
+    sheet = doc.getSheets().getByIndex(sheet_index)
+    
+    column = sheet.getColumns().getByIndex(column_index)
+    
+    ranges = column.queryContentCells(flags).getRangeAddresses()
+    
+    n = 0
+    for r in ranges:
+        if n < r.EndRow:
+            n = r.EndRow
+    
+    show_message(XSCRIPTCONTEXT.getDesktop(), 'last row: %s' % n)
+</code></pre><br>
+
+
+<p class="s3">[ HyperLink ]</p class="s3">
+<a name="OOoHy01"><h6>CHy-)<em>[Calc]</em>Hyper Link</h6></a><pre><code>
+def create_url_field():
+    """make url field."""
+    url = 'http://openoffice3.web.fc2.com/'
+    text = 'Link!'
+    
+    doc = XSCRIPTCONTEXT.getDocument()
+    
+    # new URL field
+    field = doc.createInstance('com.sun.star.text.textfield.URL')
+    field.URL = url
+    field.Representation = text
+    
+    # insert it
+    cell = doc.getSheets().getCellByPosition(0, 0, 0)
+    cell.insertTextContent(cell.createTextCursor(), field, False)
+</code></pre><br>
+
+
+<p class="s1">Sheet</p class="s1">
+<a name="OOoCS01"><h6>CS-)<em>[Calc]</em>Sheet Name取得</h6></a><pre><code>
+# -*- coding: utf-8 -*-
+
+import uno
+import unohelper
+import os.path
+
+from com.sun.star.awt import Rectangle
+
+def omsgbox(desktop,message):
+#    """shows message."""
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oMacroTest():
+    try:
+        ofile= os.path.abspath('c:\\temp\\oootest.ods')
+        oURL = unohelper.systemPathToFileUrl(ofile)
+    #
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        oDoc = desktop.loadComponentFromURL( oURL,"_blank", 0, () )
+    #
+        oSheet = oDoc.getSheets().getByIndex(0)
+    #
+        oSName = oSheet.Name
+        oDisp = 'SheetName : ' + oSName
+     #   
+        omsgbox(desktop,oDisp)
+    except:
+        pass
+</code></pre><br>
+
+<a name="OOoCS02"><h6>CS-)<em>[Calc]</em>Sheet Name変更</h6></a><pre><code>
+<img SRC="Python_pic/03Calc/02Sheet/01SheetName01.png" align="right" hspace="4" vspace="4" width="20%">
+# -*- coding: utf-8 -*-
+
+import uno
+import unohelper
+import os.path
+
+from com.sun.star.awt import Rectangle
+
+def omsgbox(desktop,message):
+#    """shows message."""
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oMacroTest():
+    try:
+        ofile= os.path.abspath('c:\\temp\\oootest.ods')
+        oURL = unohelper.systemPathToFileUrl(ofile)
+    #
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        oDoc = desktop.loadComponentFromURL( oURL,"_blank", 0, () )
+    #
+        oSheet = oDoc.getSheets().getByIndex(0)
+    # get Sheet Name
+        oSName1 = oSheet.Name
+        oDisp = 'SheetName : ' + oSName1
+        oDisp = oDisp + "\n"
+        oDisp = oDisp + u'から' + "\n"
+    # set sheet name
+        oSheet.Name = 'macro1'
+    # confirm
+        oSName2 = oSheet.Name
+        oDisp = oDisp + 'SheetName : ' + oSName2
+    #
+        omsgbox(desktop,oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoCS0"><h6>CS-)<em>[Calc]</em></h6></a><pre><code>
+
+</code></pre><br>
+
+<a name="OOoCS0"><h6>CS-)<em>[Calc]</em></h6></a><pre><code>
+
+</code></pre><br>
+
+<a name="OOoCS0"><h6>CS-)<em>[Calc]</em></h6></a><pre><code>
+
+</code></pre><br>
+
+
+
+<p class="s1">File</p class="s1">
+<a name="OOoCF01"><h6>CF-)<em>[Calc]</em>新規Calc file起動</h6></a><pre><code>
+# -*- coding: utf-8 -*-
+
+import uno
+
+def load():
+    desktop = XSCRIPTCONTEXT.getDesktop()
+    doc =desktop.loadComponentFromURL( "private:factory/scalc","_blank", 0, () )
+     # Uno の sequence は Python ではタプル、 Basic だと Array
+</code></pre><br>
+
+<a name="OOoCF02"><h6>CF-)<em>[Calc]</em>指定Calc file起動</h6></a><pre><code>
+# -*- coding: utf-8 -*-
+
+import uno
+import unohelper
+import os.path
+
+def oMacroTest():
+    try:
+        ofile= os.path.abspath('c:\\temp\\oootest.ods')
+        oURL = unohelper.systemPathToFileUrl(ofile)
+    #
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        desktop.loadComponentFromURL( oURL,"_blank", 0, () )
+    except:
+        pass
+</code></pre><br>
+
+<a name="OOoCF03"><h6>CF-)<em>[Calc]</em>指定Calc file保存(上書き保存)</h6></a><pre><code>
+# -*- coding: utf-8 -*-
+
+import uno
+import unohelper
+import os.path
+
+from com.sun.star.awt import Rectangle
+from com.sun.star.beans import PropertyValue
+
+def omsgbox(desktop,message):
+#    """shows message."""
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oMacroTest():
+    try:
+        ofile= os.path.abspath('c:\\temp\\oootest.ods')
+        oURL = unohelper.systemPathToFileUrl(ofile)
+    #
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        oDoc = desktop.loadComponentFromURL( oURL,"_blank", 0, () )
+    #
+        oSheet = oDoc.getSheets().getByIndex(0)
+    #
+        oCell = oSheet.getCellByPosition(0,0)
+        oCell.String = 'Store Success'
+    #
+        p = PropertyValue()
+        p.Name = 'Overwrite'
+        p.Value = True
+        properties = (p,)
+        oDoc.storeAsURL( oURL, properties)
+        oDoc.dispose()
+     #   
+        omsgbox(desktop,"Success")
+    except:
+        pass
+</code></pre><br>
+
+<a name="OOoCF0"><h6>CF-)<em>[Calc]</em></h6></a><pre><code>
+
+</code></pre><br>
+
+
+<a name="OOoCF0"><h6>CF-)<em>[Calc]</em></h6></a><pre><code>
+
+</code></pre><br>
+
+
+<br>
+<center><h6><a href="#TopOfPage">Top of Page</a></h6></center><BR>
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/Python_Macro_Calc.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:36:46 GMT -->
+</html>
+

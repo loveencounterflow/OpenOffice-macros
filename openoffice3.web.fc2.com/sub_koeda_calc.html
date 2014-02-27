@@ -1,0 +1,737 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/sub_koeda_calc.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:09:22 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<SCRIPT language="JavaScript">
+		<!--
+			renew = new Date(document.lastModified);
+			y=renew.getYear();
+			m=renew.getMonth() + 1;
+			d=renew.getDate();
+			if(y<1900) {y=y+1900;}
+				oDate="更新日："+y+"/"+m+"/"+d;
+			document.write(oDate);
+		//-->
+	</SCRIPT>
+	<title>OOoの小枝(Calc編)</title>
+</head>
+<link rel="stylesheet" type="text/css" href="css_koeda.css">
+<body>
+
+<a name="TopOfPage"><left><h3><A HREF="index-2.html">Home of site</a></p></h3></left></a>
+<h1>
+OOoの小<em>枝</em>(Calc編)
+</h1>
+<center><h3>【　目次　】</h3></center>
+<center><h2>LibreOfficeでは、関数中の区切り<em>「;」を「,」</em>(Excelと同じ)に読替えて下さい。</h2></center>
+
+<p class="s1">Cell</p class="s1">
+<ul>
+3)<a href="#ckoedaNo3">セル内の強制改行</a><BR>
+4)<a href="#ckoedaNo4">一番最初のフレーズを大文字(キャピタル)にしない。</a><BR>
+28)<a href="#ckoedaNo28">アルファベットを入力すると先頭が大文字になってしまう(Excel←→Calc　操作性のトラブル)</a><br>
+C-2)<a href="#OOoC-2">英字の大文字を自動的に小文字に変換され無いようにする。(外部)</a><BR>
+5)<a href="#ckoedaNo5">隣り合っていないセルの選択</a><BR>
+6)<a href="#ckoedaNo6">背景の色数を増やし方</a><BR>
+13)<a href="#ckoedaNo13">参照範囲の絶対範囲と相対範囲の切り替え</a><br>
+14)<a href="#ckoedaNo14">セル内縦書きについて</a><br>
+53)<a href="#ckoedaNo53">１つのセルに複数行の縦書き文章を入力</a><br>
+20)<a href="#ckoedaNo20">セルデータのクリア</a><br>
+21)<a href="#ckoedaNo21">範囲を選択したときのアクティブセルの位置(Excel←→Calc　操作性のトラブル)</a><br>
+22)<a href="#ckoedaNo22">範囲とアクティブセルの関係(Excel←→Calc　操作性のトラブル)(Excel←→Calc　操作性のトラブル)</a><br>
+23)<a href="#ckoedaNo23">1セルだけを選択する方法(Excel←→Calc　操作性のトラブル)</a><br>
+25)<a href="#ckoedaNo25">「オートコンプリート」機能の違い(Excel←→Calc　操作性のトラブル)</a><br>
+26)<a href="#ckoedaNo26">「オートコンプリート」機能をオフにする(Excel←→Calc　操作性のトラブル)</a><br>
+27)<a href="#ckoedaNo27">Calcにある2つの「オートコンプリート」機能(Excel←→Calc　操作性のトラブル)</a><br>
+30)<a href="#ckoedaNo30">日付のシリアル値の開始日が異なる(Excel←→Calc　操作性のトラブル)</a><br>
+35)<a href="#ckoedaNo35">選択範囲を図としてコピーする方法</a><br>
+46)<a href="#ckoedaNo46">「切り取り／コピーした行や列の挿入」ができない（いちいち挿入場所に空の行や列を作らなければならない）</a><br>
+51)<a href="#ckoedaNo51">計算結果が「0」の場合は空白にする</a><br>
+55)<a href="#ckoedaNo55">セル内文字数の限界</a><br>
+56)<a href="#ckoedaNo56">隔行で行No.を表示させる。</a><br>
+C-3)<a href="#OOoC-3">文字を反転(外部)</a><BR>
+CC-)<a href="#ckoedaCC24">変更記録をOFFにする。</a><br>
+CC-)<a href="#ckoedaCC25">セルの背景を検索する。</a><br>
+CC-)<a href="#ckoedaCC26">ハイパーリンクを解除する(同じ方法で再度設定は不可)</a><br>
+</ul>
+
+<p class="s1">Sheet</p class="s1">
+<ul>
+19)<a href="#ckoedaNo19">ワークシートごとに表示倍率を変更する</a><br>
+29)<a href="#ckoedaNo29">複数シートを選択したときの行列単位での編集(Excel←→Calc　操作性のトラブル)</a><br>
+39)<a href="#ckoedaNo39">セルの内容を切り取り→貼り付けする際の裏技</a><br>
+40)<a href="#ckoedaNo40">連続データの作成（裏技)</a><br>
+</ul>
+
+
+<p class="s1">Style</p class="s1">
+<ul>
+12)<a href="#ckoedaNo12">標準ではヘッダとフッタを最初からなしにする</a><BR>
+31)<a href="#ckoedaNo31">改ページ設定・解除</a><br>
+32)<a href="#ckoedaNo32">シート毎にヘッダやフッタの有り無しを設定する</a><br>
+C-9)<a href="#OOoC-9">DefaultのCell書式変更(外部)</a><br>
+</ul>
+
+<p class="s1">Draw</p class="s1">
+<p class="s3">[ Graph ]</p class="s3">
+<ul>
+52)<a href="#ckoedaNo52">縦軸（Y軸）に二つの指標を入れる</a><br>
+</ul>
+
+<p class="s3">[ Shape ]</p class="s3">
+<ul>
+15)<a href="#ckoedaNo15">行挿入時に画像が引き伸ばされなくする方法</a><br>
+</ul>
+
+<p class="s1">Sort</p class="s1">
+<ul>
+2)<a href="#ckoedaNo2">漢字のふり仮名にてsort</a><BR>
+38)<a href="#ckoedaNo38">書式を無視してSortする方法</a><br>
+</ul>
+
+<p class="s1">Search</p class="s1">
+<ul>
+33)<a href="#ckoedaNo33">ワイルドカード使用の代わりの検索</a><br>
+</ul>
+
+
+<p class="s1">Function</p class="s1">
+<ul>
+10)<a href="#ckoedaNo10">半角と全角の識別について</a><BR>
+17)<a href="#ckoedaNo17">生年月日から年齢を計算する</a><br>
+36)<a href="#ckoedaNo36">べき乗関数</a><br>
+41)<a href="#ckoedaNo41">最大公約数を求める</a><br>
+42)<a href="#ckoedaNo42">最小公約数を求める</a><br>
+43)<a href="#ckoedaNo43">ランダムの数を発生させる</a><br>
+47)<a href="#ckoedaNo47">furigana,JIS,ASC,KATAKANA,HIRAGANA,HEPBURN関数の追加</a><br>
+48)<a href="#ckoedaNo48">Dateif関数(Excel)に対応するCalc関数</a><br>
+50)<a href="#ckoedaNo50">範囲内の整数値を乱数で返す</a><br>
+54)<a href="#ckoedaNo54">EDATE関数の使い方</a><br>
+Fc-10)<a href="#ckoedaFc10">式を表示させる<em class="c1">[ Formula ]</em class="c1"></a><br>
+</ul>
+
+<p class="s1">File</p class="s1">
+<p class="s3">[ Open ]</p class="s3">
+<ul>
+9)<a href="#ckoedaNo9">住所録のCSVファイルで郵便番号"03"のゼロを残す</a><BR>
+24)<a href="#ckoedaNo24">「読み取り専用」で開いたファイルの編集(Excel←→Calc　操作性のトラブル)</a><br>
+</ul>
+
+<p class="s3">[ Store ]</p class="s3">
+<ul>
+7)<a href="#ckoedaNo7">CSV2形式での保存</a><BR>
+</ul>
+
+<p class="s3">[ 履歴 ]</p class="s3">
+<ul>
+C-6)<a href="#OOoC-6">ファイル履歴の消去方法</a><br>
+</ul>
+
+<p class="s1">Print</p class="s1">
+<ul>
+8)<a href="#ckoedaNo8">印刷時に、Excelで言うところの行タイトルの指定</a><BR>
+37)<a href="#ckoedaNo37">印刷範囲が複数ある場合のpage総数設定</a><br>
+45)<a href="#ckoedaNo45">印刷時に数式が印刷される場合の対処</a><br>
+
+</ul>
+
+
+<p class="s1">Web</p class="s1">
+<ul>
+11)<a href="#ckoedaNo11">HTMLページからの表の貼り付け</a><BR>
+16)<a href="#ckoedaNo16">楽天RSS(リアルタイムスプレッドシート)サービスを使う</a><br>
+</ul>
+
+
+<p class="s1">その他</p class="s1">
+<ul>
+1)<a href="#ckoedaNo1">AutoCadの図をCalcに貼り付ける。</a><BR>
+18)<a href="#ckoedaNo18">マウスによる横スクロール</a><br>
+C-1)<a href="#OOoC-1">Enter押した後の進む方向について（外部）</a><BR>
+34)<a href="#ckoedaNo34">OpenOffice.orgでスペースインベーダー風ゲームをする方法</a><br>
+44)<a href="#ckoedaNo44">(OpenOffice.org3.21から不可です。)3×3の「O」「X」ゲーム（calcの隠しコマンド)</a><br>
+49)<a href="#ckoedaNo49">Excelで作成したファイルをOpenOffice.orgで修正しても、マクロプログラムには問題が起きないようにする</a><br>
+C-4)<a href="#OOoC-4">外字ファイルを使用する方法(外部)</a><BR>
+C-5)<a href="#OOoC-5">マウスポインターを砂時計にする方法(外部)</a><BR>
+C-7)<a href="#OOoC-7">操作性の極秘ポイント</a><br>
+C-8)<a href="#OOoC-8">Calcにてハレ晴レユカイを再現(ニコニコ動画)</a><br>
+C-10)<a href="#OOoC-10">CSVデータのダブルクォートを補完する方法</a><br>
+</ul>
+<br><br><br><br><br>
+
+
+
+
+
+
+
+
+
+<a name="ckoedaNo1"><h5>1)AutoCadの図をCalcに貼り付ける</h5><ul class="c2">
+「挿入」→「オブジェクト」→「OLEオブジェクト」→「ファイルから作成」→「検索」→用意したファイルを指定<BR>
+</ul class="c2">
+<BR>
+<a name="ckoedaNo2"><h5>2)漢字のふり仮名にてsort</h5><ul class="c2">
+別のふりがな表示用の列を作って、=PHONETIC（範囲）を入力して、その列をKeyにしてSort。<br>
+因みにExcelのふりがなの編集は、書式->ふりがな->編集で、可能です。<br>
+</ul class="c2">
+<BR>
+
+<a name="ckoedaNo3"><h5>3)セル内の強制改行</h5><ul class="c2">
+その場所へカーソルを移動させて [CTRL]-Return (または [CTRL]-Enter)<BR>   
+</ul class="c2">
+<BR>
+
+<a name="ckoedaNo4"><h5>4)一番最初のフレーズを大文字(キャピタル)にしない。</h5><ul class="c2">
+メニューバーから ツール->オートコレクト->オプション(これはタブ)を選んで、「全ての文を大文字で始める」のチェックを外す。<BR>
+</ul class="c2"><BR>
+
+<a name="ckoedaNo5"><h5>5)隣り合っていないセルの選択</h5><ul class="c2">
+シフトキーを押したままにして，クリックしてください。そうした後，隣り合っていないセルをコントロールキーを押しつつ複数選択することができます<BR>
+</ul class="c2"><BR>   
+
+<a name="ckoedaNo6"><h5>6)背景の色数を増やし方</h5><ul class="c2">
+<ul class="c3">
+1. 図形描画ツールバーを呼び出す<BR>
+2. 図形を描く<BR>
+3. 書式ツールバーの「表面」ボタンをクリックする<BR>
+4. 「色」タブをクリック<BR>
+5. 新しい色をカスタマイズする<BR>
+6. 「名前」欄に、新しい色の名前を入力し、「追加」ボタンをクリック<BR> 
+</ul class="c3">
+</ul class="c2"><BR>	
+
+<a name="ckoedaNo7"><h5>7)CSV2形式での保存</h5><ul class="c2">
+区切り記号を選ぶだけでなく直接文字を書いて指定できます。お好きな記号またはなし(BS or DELで消す)にできます。囲う部分は「テキストの区切り記号」です。<BR>
+<ul class="c3">
+1. 「名前を付けて保存」のときに「フィルタ設定を編集する」にチェックを付けて保存します。<BR>
+2. 各記号と文字エンコードを指定します。<BR>
+</ul class="c3">
+</ul class="c2"><BR>
+
+<a name="ckoedaNo8"><h5>8)印刷時に、Excelで言うところの行タイトルの指定</h5><ul class="c2">
+［書式］－［印刷範囲］－［編集］を選んで、「印刷範囲の編集」ダイアログの「繰り返す行」にタイトルとする行の範囲を指定します<BR>
+</ul class="c2"><BR>
+
+<a name="ckoedaNo9"><h5>9)住所録のCSVファイルで郵便番号"03"のゼロを残す</h5><ul class="c2">
+CSVファイル読み込み時に表示されるダイアログで、テキストとして読み込みたいフィールドの「列の種類」として"テキスト"を選択します。<BR>
+<ul class="c3">
+1. Calcを起動する<BR>
+2. csvファイルを開く<BR>
+3. ダイアログが表示されたら、種類を選択したい列名をクリック<BR>
+4. 「列の種類」で"テキスト"を選択する<BR>
+</ul class="c3">
+</ul class="c2"><BR>
+
+<a name="ckoedaNo10"><h5>10)半角と全角の識別について</h5><ul class="c2">
+ワークシート上ではEXACT関数<BR>
+マクロではSTRCOMP関数<BR>
+</ul class="c2"><BR>
+
+<a name="ckoedaNo11"><h5>11)HTMLページからの表の貼り付け</h5><ul class="c2">
+<ul class="c3">
+1. IE上で表をコピーします。<BR>
+2. Writer上で、ツールバーの「貼り付け」ボタンを数秒押しつづけ、表示されたサブメニューの「HTML書式(コメントなし)」を選択して、表として貼り付けます。<BR>
+3. 編集」メニューの「検索と置換」を選び、「検索と置換」ダイアログで、「検索テキスト」欄に ( を入力し、〔すべて置換〕ボタンを押して、文字 ( を削除します。<BR>
+4. 同様に、文字 ) を削除します。<BR>
+5. 表全体を選んで、コピーします。<BR>
+6. Calc上で、貼り付けます。<BR>
+</ul class="c3">
+</ul class="c2"><BR>
+
+<a name="ckoedaNo12"><h5>12)標準でヘッダとフッタを最初からなしにする</h5><ul class="c2">
+Calcでは、ヘッダーやフッターは<em>「ページスタイル」</em>に設定し、その「ページスタイル」を各シートに設定します。<br>
+Calcの初期設定では、<br>
+「標準」と「レポート」という2つのページスタイルが用意されていて、このうちの「標準」スタイルが全ワークシート（「表1」「表2」「表3」の3枚が初期状態で用意されている）に設定されています。<br>
+<br>
+もしもシートごとにヘッダーを変えたい場合は、必要な種類のページスタイルを新規作成してそれぞれのシートに割り当てます。<br>
+（ただし、シート名は動的に変更されますので標準スタイルを使い回せばOKです）。<BR>
+<br>
+新しいスタイルの作成は、
+<ul class="c3">
+1. 「スタイルと書式」ウインドウで元にしたいスタイルを右クリックして「新規作成」コマンドを選択します。<br>
+2. 空白部分を右クリックすると白紙のスタイルを新規作成できます。<BR>
+3. 作成したページスタイルは、ダブルクリックすることによってカレントシートに割り付けられます。<BR>
+</ul class="c3"><br>
+参考1）Calcではシートとは別にページスタイルを作成するので、偶数シートと奇数シートのヘッダーを区別してページスタイルを作成することが可能です。<br>
+そのようなときにExcelでは、シートごとに、いちいちヘッダーを作成する必要があります。<BR>
+参考2）このような構造上の違いがあるために、ExcelのワークシートをCalcで開くと、シートの名前をつけたページスタイルが自動的に作成され、各シートに割り付けられるようになっています。<BR>
+</ul class="c2"><BR>
+
+<a name="ckoedaNo13"><h5>13)参照範囲の絶対範囲と相対範囲の切り替え</h5><ul class="c2">
+Shift + F4 を押すと順次切り替え
+</ul class="c2"><BR>
+
+<a name="ckoedaNo14"><h5>14)セル内縦書きについて</h5><ul class="c2">
+<ul class="c3">
+1.セルを右クリック＞セルの書式設定<BR>
+2.配置＞文章の配置＞横に　を「中央揃え」にで、文字が中央揃えになります。<BR>
+3.文字の方向＞縦書きにチェック＞日本語縦書きレイアウトモードをチェック無しとすることで、半角文字が横倒しにならなくなります。<BR>
+</ul class="c3">
+</ul class="c2"><br>
+
+<a name="ckoedaNo15"><h5>15)行挿入時に画像が引き伸ばされなくする方法</h5><ul class="c2">
+図を右クリック＞アンカー＞ページにと選択する。<br>
+</ul class="c2"><BR>
+
+<a name="ckoedaNo16"><h5>16)楽天RSS(リアルタイムスプレッドシート)サービスを使う</h5><ul class="c2">
+Excel : =RSS|'4776.T'!現在値<br>
+Calc  : =DDE("RSS","4776.T","現在値")<br>
+</ul class="c2"><BR>
+
+
+<a name="ckoedaNo17"><h5>17)生年月日から年齢を計算する</h5><ul class="c2">
+今日で何歳？<br>
+&emsp;age=YEARS(A2;TODAY();0)<br>
+YEARS関数の<em>3番目の引数は、「0」を指定すると満年数で、「1」を指定すると暦の年が変わった時点で1年として計算します。</em><br>
+</ul class="c2"><BR>
+
+<a name="ckoedaNo18"><h5>18)マウスによる横スクロール</h5><ul class="c2">
+通常にマウスのホイールを回転させると上下スクロールします。これに加えて、 Shift＋ホイールを回転で横スクロールが出来ます。<BR>
+</ul class="c2"><BR>
+
+<a name="ckoedaNo19"><h5>19)ワークシートごとに表示倍率を変更する</h5><ul class="c2">
+Excelではワークシートごとに異なる表示倍率を設定できます。<br>
+それに対してCalcでは表示倍率を変更すると、すべてのワークシートにその倍率が適用されます。<br>
+Calc で、シートごとに別々の倍率を適用したいときは、
+<ul class="c3">
+1.「ウインドウ」－「新しいウインドウ」コマンドで新しいウインドウを表示。<br>
+2.それぞれのワークシートを表示するようにします。<br>
+</ul class="c3"><br>
+新しいウインドウは独立したアプリケーションウインドウとして表示されますから、Excelの「新しいウインドウを開く」機能よりも、自由度が高く使いやすいと思います。<br>
+ちなみに、Calcの表示倍率の変更は、ステータスバーの％表示を右クリックしてポップアップメニューから選択するのが便利です。<BR>
+</ul class="c2"><BR>
+
+<a name="ckoedaNo20"><h5>20)セルデータのクリア</h5><ul class="c2">
+[Back Space]キーでできます。<BR>
+</ul class="c2"><BR>
+
+<a name="ckoedaNo21"><h5>21)範囲を選択したときのアクティブセルの位置</h5><ul class="c2">
+Excelで範囲を選択したときは、開始位置がアクティブセルとなります。<br>
+Calcの場合には範囲選択の終了位置がアクティブセルとなります。<br>
+Calcを使って範囲を選択したときにExcelと同じ結果を得たいときは、右下から左上に向けて範囲を選択するようにします。<br>
+こうすれば、最終位置である左上をアクティブセルにした状態で範囲を選ぶことができます。<BR>
+</ul class="c2"><BR>
+
+<a name="ckoedaNo22"><h5>22)範囲とアクティブセルの関係</h5><ul class="c2">
+Calcでは<em>アクティブセルと選択範囲はまったく別のもの</em>で、切り離すことが可能です。<br>
+それに対してExcelは、アクティブセルは常に選択範囲内にあります。<br>
+範囲内の1セルがアクティブセルのため範囲はアクティブセルを拡大したもののような印象を持っています。<br>
+Calcでは<em>範囲を選択したあとで範囲だけをドラッグして移動すると、アクティブセルだけが元の位置に残ります。</em><br>
+これがアクティブセルと選択範囲を切り離した状態です。<br>
+この状態でデータを入力すればアクティブセルに入力されます。<br>
+書式を選択すれば選択範囲に設定されます。<BR>
+</ul class="c2"><BR>
+
+<a name="ckoedaNo23"><h5>23)1セルだけを選択する方法</h5><ul class="c2">
+セルをクリックすると、クリックしたセルがアクティブセルになります。<br>
+Excelの場合にはこのアクティブセルの枠線をドラッグするとアクティブセルを移動することができます。<br>
+Calcではこの方法でアクティブセルをドラッグして移動することができません。<br>
+<em>Calcではそもそもアクティブセルだけをドラッグして移動することはできません。</em><br>
+前項で述べたように、<em>ドラッグして移動できるのは「範囲」です。</em><br>
+<br>
+マウスを使ってアクティブセルを移動したいときは<br>
+<ul class="c3">
+1.新しくアクティブセルにしたい位置をクリックします。(1セルだけを範囲として選択すれば、その範囲はドラッグして移動できます。)<br>
+2.Shiftキーを押しながらアクティブセルをクリックします。
+</ul class="c3">
+これで1セルだけを選択した状態ができあがります。<br>
+この状態でセル枠をドラッグすれば選択した1セルの範囲が移動できます<em>（アクティブセルは元の位置にのこります）</em>。<br>
+ Shiftキーを使わずにマウスだけで1セルを選択したいときは、ドラッグ操作でいったん範囲を広げてからそのままアクティブセルの位置まで戻します。<br>
+ なお、もしも範囲が選択されても不都合がなければ、ドラッグでもアクティブセルが移動できます。<br>
+ この場合は、枠線ではなくセルそのものをドラッグします。<br>
+ ドラッグ操作に応じて範囲が選択されてしまいますが、気にせずドラッグ操作を続ければ、選択した範囲の最終セルがアクティブセルとなります。<br>
+ このように Calcでは、範囲選択と同時にアクティブセルが移動します。<BR>
+</ul class="c2"><BR>
+
+<a name="ckoedaNo24"><h5>24)「読み取り専用」で開いたファイルの編集</h5><ul class="c2">
+<em>編集中の文書を2重に開くと「読み取り専用」</em>となります。<br>
+この「読み取り専用」ファイルの取り扱いがExcelとCalcで違っています。<br>
+Excelでは、そのまま「読み取り専用」ファイルを編集することができ、編集後保存するときに別の名前をつけて保存します。<br>
+Calcでは<em>「読み取り専用」で開いたファイルは編集できません</em>。<br>
+あらかじめ別の名前を付けて保存をしてから編集する必要があります。<BR>
+</ul class="c2"><BR>
+
+<a name="ckoedaNo25"><h5>25)「オートコンプリート」機能の違い</h5><ul class="c2">
+「オートコンプリート」と呼ぶのは、同じ列にすでに入力されているデータを検索して自動入力する機能です。<br>
+ワークシート範囲をデータベース（Excelでは「リスト形式」と呼びます）として利用しているときなどに、同じ都道府県や同じ会社名のデータを繰り返して入力するのに便利なユーザー支援機能です。<br>
+ExcelとCalcのどちらもこの機能を装備しています。<br>
+Excelのオートコンプリート機能は、先頭文字からの一致を見ていき、<em>唯一のデータが検索できたとき</em>にだけ働きます。<br>
+それに対してCalcのオートコンプリート機能は、ある程度入力が進んだ段階で、過去に入力したデータを参考表示します。
+Excelのように唯一のデータではありませんから、<em>別の候補が存在します</em>。
+TabキーとShift＋Tabキーで候補を切り替えることができます。<br>
+&emsp;&emsp;候補を受け入れるときはEnterキー<br>
+&emsp;&emsp;候補を消去するときはBackSpaceキーです。<br>
+Excelのオートコンプリート機能は、文字列だけに対して有効です。<br>
+MS-IMEやATOKなどの日本語入力機能を組み合わせて使っている場合は、確定前の文字列の段階でオートコンプリートが働きます。<br>
+Calcのオートコンプリート機能は数式の入力中にも働きます。<br>
+過去に入力した関数名や範囲名をポップアップヒントとして表示します。<br>
+この場合のオートコンプリートは、同じ列でなくても働きます。<BR>
+</ul class="c2"><BR>
+
+<a name="ckoedaNo26"><h5>26)「オートコンプリート」機能をオフにする</h5><ul class="c2">
+Excelでは「ツール」－「オプション」コマンドの「編集」ダイアログにある「オートコンプリートを使用する」チェックボックスをオフにします。<br>
+Calcでは「オートコンプリート」のオン・オフは独立したコマンドとなっています。<br>
+<em>「ツール」－「セルの内容」コマンドの下にサブコマンド</em>として配置されています。<BR>
+</ul class="c2"><BR>
+
+<a name="ckoedaNo27"><h5>27)Calcにある2つの「オートコンプリート」機能</h5><ul class="c2">
+Calcには、「編集」－「連続データ」－「連続データの作成」コマンドのダイアログに「オートコンプリート」オプションがあります。<br>
+これは、「ツール」－「セルの内容」－「オートコンプリート」コマンドとは<em>まったく別の機能で</em>、「順序リスト」にしたがって連続データを作成する機能です。<br>
+この「オートコンプリート機能は、<em>Excelの「オートフィル」機能</em>にあたります。<BR>
+</ul class="c2"><BR>
+
+<a name="ckoedaNo28"><h5>28)アルファベットを入力すると先頭が大文字になってしまう</h5><ul class="c2">
+Calcでは、初期設定でオートコレクトがオンになっています。<br>
+「ツール」－「オートコレクト」コマンドの「オプション」ダイアログで<em>「すべての文を大文字ではじめる」チェックボックスをオフ</em>にします。<BR>
+</ul class="c2"><BR>
+
+<a name="ckoedaNo29"><h5>29)複数シートを選択したときの行列単位での編集</h5><ul class="c2">
+Excelでは複数のワークシート を選択すると「作業グループ」に対する編集となります。<br>
+1つのシート上でおこなった編集作業は作業グループのすべてのワークシートに反映します。たとえば、<br>
+<ul class="c3">
+・セルへのデータ入力や範囲への編集作業<br>
+・行列の挿入や削除<br> 
+</ul class="c3">
+なども、<em>すべてグループ編集の対象</em>となります。<br>
+Calcの場合にも複数のシート を選択してデータ入力や編集作業をすると、選択したすべてのシートに反映されます。<br>
+ただし、この編集操作は<em>データ入力やコピー、書式の設定などに限られます</em>。<br>
+行列の挿入や削除は、選択した表（カレントシート）にのみ影響を与えます。<br>
+<em> 行列単位での編集結果はそれ以外のシートには反映しません。</em>Excelと取り扱いが違いますから注意してください。<BR>
+</ul class="c2"><BR>
+
+<a name="ckoedaNo30"><h5>30)日付のシリアル値の開始日が異なる</h5><ul class="c2">
+ExcelもCalcも、日付はシリアル値（連番）で管理しています。このシリアル値の開始日が異なりますので注意が必要です。<br>
+（ただし、 Excelには1904年から計算するというオプションが、またCalcには3種類の日付オプションがありますが、通常利用する標準設定によるシリアル値の場合を取り上げています）<br>
+<em>Excelは、1900年1月1日を「1」</em>として、以降1日ごとに1を加えます。<em>実際には存在しない1900年2月29日をカウントしています</em>。<br>
+<em>Calcは、1899年12月30日を「0」</em>としてカウントを開始しています。こちらは<em>1900年2月29日はありません</em>。<br>
+したがって、2000年3月1日以降の日付のシリアル値は同じになります。<br>
+<em>1900年1月1日から2月28日までは、Excelのシリアル値はCalcのシリアル値よりも「1」だけ少なくなります。</em><BR>
+</ul class="c2"><BR>
+
+<a name="ckoedaNo31"><h5>31)改ページの設定・解除</h5><ul class="c2">
+&emsp;設定　：　「挿入」⇒「改ページ」⇒「行の区切り」（又は「列の区切り」)<br>
+&emsp;解除　：　「編集」⇒「手動改ページの解除」⇒「行の区切り」（又は「列の区切り」)<br>
+</ul class="c2"><BR>
+
+<a name="ckoedaNo32"><h5>32)シート毎にヘッダやフッタの有り無しを設定する</h5><ul class="c2">
+各シート毎に、ヘッダやフッタの設定をするには、
+ページスタイルを作成し、そのスタイルの設定内容としてヘッダやフッタを付ける、付けないなどを指定する必要があります。<br>
+【ページスタイルの作成方法】<br>
+<ul class="c3">
+1.「書式」→「スタイルと書式」でダイヤログが開きます。<br>
+2. 左上の左から2番目の「ページスタイル」アイコンをクリックします。<br>
+3. 下から「標準」を選択して、右の右から2番目の「選択スタイルから新規作成」アイコンをクリックします。<br>
+4.「スタイルの作成」ダイヤログが表示されるので、「スタイル名」に任意のスタイル名を記述します。<br>
+</ul class="c3">
+これで、スタイル欄に新しいスタイルが作成されます。<br>
+<br>
+【ページスタイルの変更】<br>
+<ul class="c3">
+1.作成したスタイルを右クリックして、「変更」→「ヘッダ」or「フッタ」のタブをクリックします。<br>
+2.「ヘッダをつける」or「フッタを付ける」のチェックで設定を行います。<br>　
+3.「OK」ボタンをクリックします。<br>
+4. 作成したスタイルを選択して、右上の右から2番目の「水やりモード」アイコンをクリックし、作成したスタイルを適用したいシートのセルをクリックすると（どのセルでもOK）、作成したスタイルが適用されます。<br>
+</ul class="c3">
+これでシートごとのヘッダ/フッタの有無を変えられます。<br>
+<em>印刷Previewでの確認を怠らずに行う。</em><br>
+</ul class="c2"><BR>
+
+<a name="ckoedaNo33"><h5>33)ワイルドカード使用の代わりの検索</h5><ul class="c2">
+曲名(アーティスト名)のデータからの検索<br>
+　　　　↓<br>
+OpenOfficeの検索では「*」をワイルドカードとは扱わないようです。<br>
+代わりに正規表現が使えますのでこれで可能です。詳細オプションで「正規表現」にチェックをつけてください。<br>
+この場合、<br>
+&emsp;\(.+<br>
+で曲名のみ、<br>
+&emsp;.+\(<br>
+と<br>
+&emsp;\)<br>
+でアーティスト名のみになります。<br>
+<br>
+456(税125)を456に置換の場合⇒\(税.+\)<br>
+</ul class="c2"><br>
+
+<a name="ckoedaNo34"><h5>34)OpenOffice.orgでスペースインベーダー風ゲームをする方法</h5><ul class="c2">
+「Calc」を起動してA1セルに「=GAME("StarWars")」と入力し、Enterキーを押します。<br>
+</ul class="c2"><br>
+
+<a name="ckoedaNo35"><h5>35)選択範囲を図としてコピーする方法</h5><ul class="c2">
+所望の範囲を選択し、コピーしておいて、<br>
+<ul class="c3">
+1. [挿入]->[オブジェクト]->[OLEオブジェクト]で「OLEオブジェクトの挿入」ダイアログを出す。<br>
+2. [新規作成]の[その他のオブジェクト]を選んで[OK]して「オブジェクトの挿入」ダイアログを出す。<br>
+3. [新規作成]の中の[OpenDocument 表計算]を選んで[OK]する。<br>
+4. 挿入された表にペースト。<br>
+</ul class="c3">
+</ul class="c2"><br>
+
+<a name="ckoedaNo36"><h5>36)べき乗関数</h5><ul class="c2">
+べき乗は<br>
+&emsp;=3^4<br>
+で計算できますが、<br>
+&emsp;=power(3;4)<br>
+でもOKです。<br>
+</ul class="c2"><br>
+
+<a name="ckoedaNo37"><h5>37)印刷範囲が複数ある場合のpage総数設定</h5><ul class="c2">
+フッターでページ番号とページ総数を表示して１つのファイルに<em>複数印刷範囲として設定した表がある場合</em>、<br>
+ページ総数はその表の印刷範囲のページ総数ではなく、別の表も含めた総数になってしまいます。<br>
+各表のページ総数だけ表示する場合は<br>
+<ul class="c3">
+1.印刷したい表を選択します。<em>このとき印刷プレビューにしないでください。</em><br>
+2.そのまま、[ファイル]-[印刷]で[オプション]をクリックします。 <br>
+3.表の[選択した表のみ印刷]で、[OK]をクリックする<br>
+</ul class="c3">
+とその表だけのページ数になると思います。<br>
+また、印刷オプションは、 [ツール]-[オプション]-[表計算ドキュメント]-[印刷]でも設定できます。 <br>
+</ul class="c2"><br>
+
+<a name="ckoedaNo38"><h5>38)書式を無視してSortする方法</h5><ul class="c2">
+行によって色を変えているデータをソートすると、色を付けていた行ではなく別の行に色が付いてたりする事が起こる事をがあります。<br>
+[　回避方法　]<br>
+<em>[並べ替え]-[オプション]</em>で<em>[書式を含む]</em>のチェックボックスを<em>オン</em>にするとセルの書式を含めてソートされます。<br>
+(つまり「書式を含む」のチェックを外す)<br>
+</ul class="c2"><br>
+
+<a name="ckoedaNo39"><h5>39)セルの内容を切り取り→貼り付けする際の裏技</h5><ul class="c2">
+Excelではマウスでドラッグ＆ドロップするが、Calcでは<br>
+いきなり選択範囲の真ん中でマウスボタンを押すだけです。<br>
+このとき，マウスだけだと移動になり，<em>Altキー</em>を押しながら操作すると複製になります。<br>
+OOoの場合、移動（切り取り→貼り付け）の際は、必ず対象となるセルが選択（反転）されている必要があるようです。<br>
+セルの選択は２以上の場合はエクセル同様ドラッグしてできます。<br>
+<em>一つだけの場合は、シフトキーを押しながらクリックすると選択できます。</em><br>
+</ul class="c2"><br>
+
+<a name="ckoedaNo40"><h5>40)連続データの作成（裏技)</h5><ul class="c2">
+1.01.01 → 1.01.02 →1.01.03のような順序の数字を作りたいときに、<br>
+[ Excel ]<br>
+最初の1.01.01をドラッグする<br>
+[ Calc ]<br>
+Excelと同様の方法では2.01.01→3.01.01のように変わってしまう。<br>
+増分値を指定するには<br>
+101.01として連続データを作成したい範囲を101.01から選択し、
+&emsp;[編集]-[連続データ]で、増分を.01にします。<br>
+すると101.01～101.02、101.03、101.04となっていきます。<br>
+で、2桁の区切りにドットを使いたければ連続データを作成した後に書式設定で、0"."00.00とすればよいと思います。<br> 
+</ul class="c2"><br>
+
+<a name="ckoedaNo41"><h5>41)最大公約数を求める</h5><ul class="c2">
+&emsp;=GCD(数値；数値;・・・・)　数値は最大30までOK<br>
+&emsp;=GCD(100;20;5;50)<br>
+と入力すると返し値は「5」となる。<br>
+</ul class="c2"><br>
+
+<a name="ckoedaNo42"><h5>42)最小公約数を求める</h5><ul class="c2">
+&emsp;=LCM(数値１;数値2;・・・)　数値は最大30までOK<br>
+&emsp;=LCM(3;20;5;7)<br>
+と入力すると返し値は「420」となる。<br>
+</ul class="c2"><br>
+
+<a name="ckoedaNo43"><h5>43)ランダムの数を発生させる。</h5><ul class="c2">
+&emsp;=RAND()<br>
+にて0以上1以下の数がランダムで表示されます。表示される値は小数第2位までです。<br>
+</ul class="c2"><br>
+
+<a name="ckoedaNo44"><h5>44)(OpenOffice.org3.21から不可です。)3×3の「O」「X」ゲーム（calcの隠しコマンド)</h5><ul class="c2">
+<ul class="c3">
+1.A1セルに「=GAME(A2:C4;"TicTacToe")」と入力<br>
+2.gameの説明。単純にComputerが「O｣（大文字)でPlayerが「X」(大文字)という事とA2からC4の9マスが範囲という事が表示。<br>
+3.A1セルをダブルクリックでスタート⇒Computerが「O」を打つ<br>
+4.PlayerがXを打つ<br>
+5.A1をダブルクリック＋「Enter」⇒Computerが「O」を打つ<br>
+・<br>
+・<br>
+</ul class="c3">
+として勝負を決める。<br>
+</ul class="c2"><br>
+
+<a name="ckoedaNo45"><h5>45)印刷時に数式が印刷される場合の対処</h5><ul class="c2">
+「書式」⇒「ページ」⇒「シート」タブ選択⇒「印刷」の中の「数式」のCheckを外す。<br>
+</ul class="c2"><br>
+
+<a name="ckoedaNo46"><h5>46)「切り取り／コピーした行や列の挿入」ができない（いちいち挿入場所に空の行や列を作らなければならない）</h5><ul class="c2">
+任意の行（列)を切り取り（コピー)する⇒選択範囲の中で、<em>ＡＬＴキー</em>を押しながらマウスボタンを押し、そのまま挿入したいところにドラッグする<br>
+</ul class="c2"><br>
+
+<a name="ckoedaNo47"><h5>47)furigana,JIS,ASC,KATAKANA,HIRAGANA,HEPBURN関数の追加</h5><ul class="c2">
+<ul class="c3">
+1.右記のサイトから「ふりがなextension」をダウンロー。　URL : http://sourceforge.jp/projects/waooo/downloads/22113/furigana-0.3-Win32-imm.uno.pkg/ <br>
+2.Calcを起動する。<br>
+3.ツール　⇒　拡張機能マネージャー　⇒　追加　⇒　ダウンロードしたfileを選択<br>
+4.Calcの再起動<br>
+</ul class="c3">
+</ul class="c2"><br>
+
+<a name="ckoedaNo48"><h5>48)Dateif関数(Excel)に対応するCalc関数</h5><ul class="c2">
+[Excel]<br>
+&emsp;=DATEDIF("1977/3/18",TODAY(),"y")<br>  
+[Calc]<br>
+&emsp;=YEARS("1977/3/18";TODAY();0)<br>
+YEARS関数の3番目の引数は、「0」を指定すると満年数で、「1」を指定すると暦の年が変わった時点で1年として計算します。<br>
+同様にして<br>
+[Excel]<br>
+&emsp;=DATEDIF("1977/3/18",TODAY(),"m")<br>
+[Calc]<br>
+ =MONTHS("1977/3/18";TODAY();0) <br>
+[Excel]<br>
+&emsp;=DATEDIF("1977/3/18",TODAY(),"d")<br>
+[Calc]<br>
+&emsp;=DAYS("1977/3/18";TODAY();0)<br>
+</ul class="c2"><br>
+
+<a name="ckoedaNo49"><h5>49)Excelで作成したファイルをOpenOffice.orgで修正しても、マクロプログラムには問題が起きないようにする。</h5><ul class="c2">
+「ツール」⇒「オプション」⇒「読み込み保存」⇒「VBA属性」⇒「実行可能コード」のCheckを外す。<br>
+</ul class="c2"><br>
+
+<a name="ckoedaNo50"><h5>50)範囲内の整数値を乱数で返す</h5><ul class="c2">
+1～100までの整数の乱数を得るには<br>
+&emsp;=randbetween(1;100)<br>
+と入力する。セルをコピーすれば新規の値を返す。<br>
+</ul class="c2"><br>
+
+<a name="ckoedaNo51"><h5>51)計算結果が「0」の場合は空白にする</h5><ul class="c2">
+<ul class="c3">
+1.「書式」 ⇒「条件付き書式」を選択<br>
+2.条件1に「セルの値が」「次の値に等しい」「0」を入力する<br>
+3.「新しいセル」ボタンをクリック<br>
+4.「セルスタイル」windowにて「数」タブを選択<br>
+5.「書式コード」に「　#;#;　」 を入力<br>
+</ul class="c3">
+</ul class="c2"><br>
+
+<a name="ckoedaNo52"><h5>52)縦軸（Y軸）に二つの指標を入れる</h5><ul class="c2">
+<ul class="c3">
+1.Y線上で右クリックして「データ系列の書式設定」を選択<br>
+2.「系列のオプション」の項目で使用する軸に「第２軸」にチェックをしてＯＫ<br>
+</ul class="c3">
+</ul class="c2"><br>
+
+<a name="ckoedaNo53"><h5>53)１つのセルに複数行の縦書き文章を入力</h5><ul class="c2">
+「セルの書式設定」⇒「配置」タブ⇒「縦書き」と「日本語縦書きレイアウトモード」にcheck<br>
+</ul class="c2"><br>
+
+<a name="ckoedaNo54"><h5>54)EDATE関数の使い方</h5><ul class="c2">
+EDATA関数　：　結果は、開始日から何か月も離れた日付です。月数だけが考慮され、日数は計算に使用されません。<br>
+<ul class="c3">
+[　使用例　]<br>
+2009年3月31日の1ヶ月前の場合 : =EDATE("2009-3-31";-1)　⇒　2009/2/28が得られる。（セルの書式は日付形式）<br>
+2009年3月31日の2ヶ月後の場合 : =EDATE("2009-3-31";2)　 ⇒　2009/5/31が得られる。（セルの書式は日付形式）<br>
+</ul class="c3">
+因みに　=EDATE("3.31.2009";-1) ⇒ 2.28.2009が得られます。<br>
+<em>本式はver2.xから変更されています。</em><br>
+</ul class="c2"><br>
+
+<a name="ckoedaNo55"><h5>55)セル内文字数の限界</h5><ul class="c2">
+Calc形式では特に問題無し。<br>
+但し、Excelでは場合によって255文字制限がある。(Excel97から引きずっている様である。)<br>
+[　参考サイト　]<br>
+・　http://www6.ocn.ne.jp/~sumwork/sys_03excelcsv.html<br>
+・　http://www.wanichan.com/pc/excel/faq/specifications.htm<br>
+</ul class="c2"><br>
+
+<a name="ckoedaNo56"><h5>56)隔行で行No.を表示させる</h5><ul class="c2">
+<img SRC="http://error.fc2.com/web/404.html" align="right" hspace="4" vspace="4" width="15%">
+1)左記の式を入力。 ： =IF(MOD((ROW());5) = 0;ROW();"")<br>
+2)必要行分Copyする。
+</ul class="c2"><br>
+
+
+<a name="ckoedaCC24"><h5>CC-)変更記録をOFFにする。</h5><ul class="c2">
+「編集」=＞「変更」=＞「記録」のcheckを外す。
+</ul class="c2"><br>
+
+<a name="ckoedaCC25"><h5>CC-)セルの背景を検索する。</h5><ul class="c2">
+[ 検索準備1 ]<br>
+「書式」=>「スタイルと書式設定」=>右上に3つあるアイコンの真ん中のアイコン(選択スタイルから新規作成)を選択=>新規スタイル名を設定<br>
+<br>
+[ 検索準備2 ]<br>
+新規作成したスタイル名を右Click=>「変更」=>任意の背景色を選択=>右上に3つあるアイコンの右端ののアイコン(スタイルの更新)をClick<br>
+<br>
+[ 検索 ]<br>
+「編集」=>「検索と置換」=>「詳細オプション」=>「スタイルの検索」にCheckを入れる=>「検索テキスト」=>に上記で設定したスタイル名を設定=>「検索」<br>
+<img SRC="koeda/03Calc/01Cell/01SearchFormat01.png" align="Left" hspace="4" vspace="4" width="15%"><img SRC="koeda/03Calc/01Cell/01SearchFormat02.png" align="Left" hspace="4" vspace="4" width="15%"><img SRC="koeda/03Calc/01Cell/01SearchFormat03.png" align="Left" hspace="4" vspace="4" width="15%">
+<br><br><br><br><br><br><br><br><br><br><br>
+</ul class="c2"><br>
+
+
+<a name="ckoedaCC26"><h5>CC-)ハイパーリンクを解除する(同じ方法で再度設定は不可)</h5><ul class="c2">
+該当のCellを選択　=>　数式Barに表示されている文字の上で右Click<br>
+右Clickした段階でハイパーリンクは解除されます。<br>
+再度、設定する場合は<br>
+「挿入」=>「ハイパーリンク」で再設定が必要です。<br>
+</ul class="c2"><br>
+
+
+
+
+<a name="ckoedaFc10"><h5>Fc-10)式を表示させる</h5><ul class="c2">
+<img SRC="koeda/03Calc/02Function/01Formula01.png" align="right" hspace="4" vspace="4" width="15%">
+= Formula(A1)<br>
+</ul class="c2"><br>
+
+<br><br><br><br><br><br><br><br><br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<a name="OOoC-1"><h5>C-1)Enter押した後の進む方向について（Calc）</h5></a>
+<h2><a href="http://oooug.jp/cgi-bin/bbs/users/1048917135.html">OOoユーザー会過去ログ</a></h2><br><br>
+
+<a name="OOoC-2"><h5>C-2)英字の大文字を自動的に小文字に変換され無いようにする。</h5></a>
+<h2><a href="http://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q1128594381">Yahoo知恵袋</a></h2><br><br>
+
+<a name="OOoC-3"><h5>C-3)文字を反転</h5></a>
+<h2><a href="http://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q1428627529">Yahoo知恵袋</a></h2><br><br>
+
+<a name="OOoC-4"><h5>C-4)外字ファイルを使用する方法</h5></a>
+<h2><a href="http://oooug.jp/compati/2.0/modules/xoopsfaq/index.php?cat_id=1#q37">OOoユーザー会回答</a></h2><br><br>
+
+<a name="OOoC-5"><h5>C-5)マウスポインターを砂時計にする方法</h5></a>
+<h2><a href="http://blog.tokachi-lab.com/archives/2008/04/ooo_1.html">平原眺望: OOoの ポインタを変える</a></h2><br><br>
+
+<a name="OOoC-6"><h5>C-6)ファイル履歴の消去方法</h5></a>
+<h2><a href="http://oooug.jp/faq/?faq/4/1020">OOoユーザー会回答</a></h2><br><br>
+
+<a name="OOoC-7"><h5>C-7)操作性の極秘ポイント</h5></a>
+<h2><a href="http://www.oooug.jp/compati/unixuser/0403.html">OpenOffice.orgユーザーのためのMicrosoft Office互換性研究室抜粋</a></h2><br><br>
+
+<a name="OOoC-8"><h5>C-8)Calcにてハレ晴レユカイを再現(ニコニコ動画)</h5></a>
+<h2><a href="http://www.nicovideo.jp/watch/sm5314973">Calcで動画を作成</a></h2><br><br>
+
+<a name="OOoC-9"><h5>C-9)DefaultのCell書式変更(外部)</h5></a>
+<h2><a href="http://user.services.openoffice.org/ja/forum/viewtopic.php?f=10&amp;p=2593">OpenOffice.orgコミュニティフォーラム回答</a></h2><br><br>
+
+<a name="OOoC-10"><h5>C-10)CSVデータのダブルクォートを補完する方法</h5></a>
+<h2><a href="http://csv.ccfsl.net/calc.html">Application( CSVカッター )の紹介Siteの1Page</a></h2><br><br>
+
+
+<BR>
+<center><h3><a href="#TopOfPage">Top of Page</a></h3></center><BR>
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/sub_koeda_calc.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:09:33 GMT -->
+</html>

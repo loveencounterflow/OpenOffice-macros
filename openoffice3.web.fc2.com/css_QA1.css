@@ -1,0 +1,18 @@
+body { background: url(bg025.gif); }
+h1 { font-size: 30pt; color: green; text-align: center; line-height: 35pt; font-weight: bold; }
+h2 { font-size: 30pt; color: blue; margin-left : 50px ; font-weight: bold; text-align: left;}
+h3 { font-size: 25pt; color: green; font-weight: bold; margin-top: 0px; margin-bottom: 0px; margin-left: 100px; margin-right: 0em; text-align: left;}
+h4 { font-size: 12pt; color: black; text-align: left; margin: 0px 500px 0px 50px; }
+h5 { font-size: 12pt; color: black; text-align: left; margin: 0px 0px 0px 0px; }
+h6 { font-size: 16pt; color : blue; font-weight: bold; margin: 5px 5px 5px 120px; line-height: 20pt; }
+p { font-size: 20pt; color : black; font-weight: bold; margin-top: 0px; margin-left: 60px; margin-bottom: 0px; line-height: 20pt; text-align: left;}
+p.s1 {font-size: 20pt;line-height: 20pt; color : black; font-weight: bold; font-style:nomal; margin-top: 0px; margin-left: 150px; margin-bottom: 0px;}
+p.s3 {font-size: 16pt; line-height: 14pt; color: green; font-weight: bold; margin-top: 0px; margin-left: 70px; margin-bottom: 0px;}
+p.s4 {font-size: 14pt; line-height: 14pt; color: purple; font-weight: normal; margin-top: 0px; margin-left: 80px; margin-bottom: 0px;}
+ul { font-size: 14pt; line-height: 16pt; color: black; text-align: left; font-weight: bold; margin-top: 0px; margin-left: 50px; margin-right: 0px; margin-bottom: 0px;}
+ul.s1 { list-style: decimal; font-size: 14pt; color : green; margin-top: 0px; margin-left: 50px; margin-bottom: 0px; line-height: 14pt;}
+ul.s2 { font-size: 14pt; color: black; font-weight: nomal; margin-top: 0em; margin-left: 50px; }
+em { color: red; }
+em.s1 { color: blue; }
+div.gazou00 {padding-left:20px; padding-right:20px; width:50px; height:1000px; float: left;}
+div.bun00 { padding-right:20px; width:50px; height:1000px; float: right;}

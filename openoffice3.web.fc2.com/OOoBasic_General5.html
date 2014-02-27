@@ -1,0 +1,2833 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/OOoBasic_General5.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:16:42 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<SCRIPT language="JavaScript">
+		<!--
+			renew = new Date(document.lastModified);
+			y=renew.getYear();
+			m=renew.getMonth() + 1;
+			d=renew.getDate();
+			if(y<1900) {y=y+1900;}
+				oDate="更新日："+y+"/"+m+"/"+d;
+			document.write(oDate);
+		//-->
+	</SCRIPT>
+	
+	<title>Macroの杜(OpenOffice.org/LibreOffice Basic編)/ General No.5</title>
+</head>
+<link rel="stylesheet"
+type="text/css" href="css_macro_Basic.css">
+
+<body>
+<a name="TopOfPage"><left><p><A HREF="index-2.html">Home of site</a></p></left></a><br>
+<h1>Macroの杜<br>
+(OpenOffice.org/LibreOffice Basic編) </h1>
+
+<h2>General No.5</h2>
+
+<center><h1>###【 Continued from <a href="OOoBasic_General4.html">General No.4</a> 】###</h1></center>
+<br>
+
+<h3><Center>**********************【 Index 】**********************</center></h3>
+
+<p class="s1">JavaScript</p class="s1">
+<ul>
+GJS-)<a href="#OOoGJS01a"><em>[General]</em>JavaScript Macro(1)<br><em>[ GetDefaultContext.getValueByName( "/singletons/com.sun.star.script.provider.theMasterScriptProviderFactory") / createScriptProvider("") / getScript("vnd.sun.star.script:Library1.Macro1.js?language=JavaScript&location=user") / invoke() ]</em></a><BR>
+GJS-)<a href="#OOoGJS01b"><em>[General]</em>JavaScript Macro(2) / 他DocumentのMacro<em>[ ThisComponent.ScriptProvider ]</em></a><BR>
+GJS-)<a href="#OOoGJS02a"><em>[General]</em>VBAのEvaluate関数<em>[ Function ]</em></a><BR>
+GJS-)<a href="#OOoGJS"><em>[General]</em><em>[  ]</em></a><BR>
+</ul>
+<br>
+
+
+<p class="s1">Python</p class="s1">
+<ul>
+GPy-)<a href="#OOoGPy01a"><em>[General]</em>Python Macro(1)<br><em>[ GetDefaultContext.getValueByName( "/singletons/com.sun.star.script.provider.theMasterScriptProviderFactory") / createScriptProvider("") / getScript("vnd.sun.star.script:test.py$oTest?language=Python&location=user / invoke() ]</em></a><BR>
+GPy-)<a href="#OOoGPy01b"><em>[General]</em>Python Macro(2) / 他DocumentのMacro<em>[ ThisComponent.ScriptProvider ]</em></a><BR>
+GPy-)<a href="#OOoGPy"><em>[General]</em><em>[  ]</em></a><BR>
+</ul>
+<br>
+
+
+<p class="s1">VBScript</p class="s1">
+<p class="s3">[ FileSystemObject ]</p class="s3">
+<ul>
+GVBSFs-)<a href="#OOoGVBSFs01a"><em>[General]</em>File有無確認<em>[ CreateObject("Scripting.FileSystemObject") / FileExists ]</em></a><br>
+GVBSFs-)<a href="#OOoGVBSFs02a"><em>[General]</em>Folder有無確認<em>[ FolderExists ]</em></a><br>
+GVBSFs-)<a href="#OOoGVBSFs03a"><em>[General]</em>Drive有無確認<em>[ DriveExists ]</em></a><br>
+GVBSFs-)<a href="#OOoGVBSFs04a"><em>[General]</em>File名を抽出<em>[ GetFileName ]</em></a><br>
+GVBSFs-)<a href="#OOoGVBSFs05a"><em>[General]</em>Exe FileのVresion取得<em>[ GetFileVersion ]</em></a><br>
+GVBSFs-)<a href="#OOoGVBSFs06a"><em>[General]</em>Current Folder + File Name<em>[ GetAbsolutePathName ]</em></a><br>
+GVBSFs-)<a href="#OOoGVBSFs07a"><em>[General]</em>Drive Name抽出<em>[ GetDriveName ]</em></a><br>
+GVBSFs-)<a href="#OOoGVBSFs08a"><em>[General]</em>Base File Name( 拡張子を除いたFile Name )抽出<em>[ GetBaseName ]</em></a><br>
+GVBSFs-)<a href="#OOoGVBSFs09a"><em>[General]</em>拡張子の抽出<em>[ GetExtensionName ]</em></a><br>
+GVBSFs-)<a href="#OOoGVBSFs10a"><em>[General]</em>Parent Folder抽出<em>[ GetParentFolderName ]</em></a><br>
+GVBSFs-)<a href="#OOoGVBSFs11a"><em>[General]</em>特殊Folder取得<em>[ GetSpecialFolder ]</em></a><br>
+GVBSFs-)<a href="#OOoGVBSFs12a"><em>[General]</em>Temporary File取得<em>[ GetTempName ]</em></a><br>
+GVBSFs-)<a href="#OOoGVBSFs13a"><em>[General]</em>File Information取得( using FileSystemObject )<em>[ GetFile / Name / Type / Size / DateCreated / DateLastAccessed / DateLastModified / Value ]</em></a><br>
+GVBSFs-)<a href="#OOoGVBSFs14a"><em>[General]</em>Fileの読み取り専用を解除<em>[ Attributes / And 1 / And &HFE ]</em></a><br>
+GVBSFs-)<a href="#OOoGVBSFs15a"><em>[General]</em>File( or Folder )の属性取得<em>[ Attributes ]</em></a><br>
+GVBSFs-)<a href="#OOoGVBSFs"><em>[General]</em><em>[  ]</em></a><br>
+GVBSFs-)<a href="#OOoGVBSFs"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+<p class="s3">[ 正規表現 ](<a href="http://msdn.microsoft.com/ja-jp/library/ms974570.aspx">正規表現による Visual Basic Scripting Edition (VBScript) の機能強化</a>)</p class="s3">
+<ul>
+GVBSRE-)<a href="#OOoGVBSRE01a"><em>[General]</em>検索<em>[ Test ]</em></a><br>
+GVBSRE-)<a href="#OOoGVBSRE02a"><em>[General]</em>置換<em>[ Replace ]</em></a><br>
+GVBSRE-)<a href="#OOoGVBSRE03a"><em>[General]</em>Matche数<em>[ Execute / Count ]</em></a><br>
+GVBSRE-)<a href="#OOoGVBSRE03b"><em>[General]</em>MatcheしたItem取得(未完成)<em>[ Execute / Item ]</em></a><br>
+</ul>
+<br>
+
+<p class="s3">[ WshShell ]</p class="s3">
+<ul>
+GVBSWhS-)<a href="#OOoGVBSWhS01a"><em>[General]</em>Programの実行<em>[ WScript.Shell / Exec ]</em></a><br>
+GVBSWhS-)<a href="#OOoGVBSWhS02a"><em>[General]</em>Programが終了するまで待機(1)<em>[ Status ]</em></a><br>
+GVBSWhS-)<a href="#OOoGVBSWhS02b"><em>[General]</em>Programが終了するまで待機(2)[ Simple boot ]<em>[ Run ]</em></a><br>
+GVBSWhS-)<a href="#OOoGVBSWhS03a"><em>[General]</em>Programを強制終了<em>[ Terminate ]</em></a><br>
+GVBSWhS-)<a href="#OOoGVBSWhS04a"><em>[General]</em>Programの終了Status取得<em>[ ExitCode ]</em></a><br>
+GVBSWhS-)<a href="#OOoGVBSWhS05a"><em>[General]</em>ProgramのProcess ID取得<em>[ AppActivate / ProcessID ]</em></a><br>
+GVBSWhS-)<a href="#OOoGVBSWhS06a"><em>[General]</em>Current Folder取得<em>[ CurrentDirectory ]</em></a><br>
+GVBSWhS-)<a href="#OOoGVBSWhS06b"><em>[General]</em>Current Folder変更<em>[ CurrentDirectory ]</em></a><br>
+GVBSWhS-)<a href="#OOoGVBSWhS07a"><em>[General]</em>時限付messagebox<em>[ Popup ]</em></a><br>
+GVBSWhS-)<a href="#OOoGVBSWhS08a"><em>[General]</em>PCのCPU<em>[ .Environment("Process").Item("PROCESSOR_ARCHITECTURE") ]</em></a><br>
+GVBSWhS-)<a href="#OOoGVBSWhS09a"><em>[General]</em>動画再生( Windows Media Player )<em>[  ]</em></a><br>
+GVBSWhS-)<a href="#OOoGVBSWhS"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+<p class="s3">[ Shell.Application ]</p class="s3">
+<ul>
+GVBSShAp-)<a href="#OOoGVBSShAp01a"><em>[General]</em>Folder選択Dialog<em>[ BrowseForFolder ]</em></a><br>
+GVBSShAp-)<a href="#OOoGVBSShAp02a"><em>[General]</em>Exploreを開く<em>[ Explore ]</em></a><br>
+GVBSShAp-)<a href="#OOoGVBSShAp03a"><em>[General]</em>File名を指定して実行 Windowを開く<em>[ FileRun ]</em></a><br>
+GVBSShAp-)<a href="#OOoGVBSShAp04a"><em>[General]</em>File と Folderの検索 Windowを開く<em>[ FindFiles ]</em></a><br>
+GVBSShAp-)<a href="#OOoGVBSShAp05a"><em>[General]</em>WindowsのHelpを開く<em>[ Help ]</em></a><br>
+GVBSShAp-)<a href="#OOoGVBSShAp06a"><em>[General]</em>全てのWindowの最少化 / 最少化解除<em>[ MinimizeAll / UndoMinimizeAll ]</em></a><br>
+GVBSShAp-)<a href="#OOoGVBSShAp07a"><em>[General]</em>日付と時刻の設定 Windowを開く<em>[ SetTime ]</em></a><br>
+GVBSShAp-)<a href="#OOoGVBSShAp08a"><em>[General]</em>Windowsの Shutdown画面を開く<em>[ ShutdownWindows ]</em></a><br>
+GVBSShAp-)<a href="#OOoGVBSShAp09a"><em>[General]</em>Taskbar と Start Menuの設定画面を開く<em>[ TrayProperties ]</em></a><br>
+GVBSShAp-)<a href="#OOoGVBSShAp10a"><em>[General]</em>File Information取得( using Shell.Application )<em>[ .NameSpace / ParseName / Type / Parent / Size / ModifyDate / Value ]</em></a><br>
+GVBSShAp-)<a href="#OOoGVBSShAp"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+
+
+<p class="s3">[ WScript.Network ]</p class="s3">
+<ul>
+GVBSWsNt-)<a href="#OOoGVBSWsNt01a"><em>[General]</em>Network Information取得<em>[ UserDomain / ComputerName / UserName ]</em></a><br>
+GVBSWsNt-)<a href="#OOoGVBSWsNt02a"><em>[General]</em>Default Printer設定<em>[ SetDefaultPrinter ]</em></a><br>
+GVBSWsNt-)<a href="#OOoGVBSWsNt03a"><em>[General]</em>Printer List取得<em>[  ]</em></a><br>
+GVBSWsNt-)<a href="#OOoGVBSWsNt"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+
+<p class="s3">[ WbemScripting.SWbemLocator ]</p class="s3">
+<ul>
+GVBWbLr-)<a href="#OOoGVBWbLr01a"><em>[General]</em>起動中のProcess数取得<em>[ WbemScripting.SWbemLocator / ExecQuery / Win32_Process / count ]</em></a><br>
+GVBWbLr-)<a href="#OOoGVBWbLr02a"><em>[General]</em>特定Applicationの起動数取得<em>[ Where Caption='' ]</em></a><br>
+</ul>
+<br>
+
+
+<p class="s3">[ MS-Office ]</p class="s3">
+<p class="s4">{{ General }}</p class="s4">
+<ul>
+GVBSMsGn-)<a href="#OOoGVBSMsGn01a"><em>[General]</em>Excel起動<em>[ Excel.Application / Workbooks / Add ]</em></a><br>
+GVBSMsGn-)<a href="#OOoGVBSMsGn02a"><em>[General]</em>Word起動<em>[ Word.Application / Quit(wdDoNotSaveChanges) ]</em></a><br>
+GVBSMsGn-)<a href="#OOoGVBSMsGn"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+<p class="s4">{{ Other }}</p class="s4">
+<ul>
+GVBSMsOtr-)<a href="#OOoGVBSMsOtr01a"><em>[General]</em>VBA実行<em>[ vnd.sun.star.script:VBAProject.Module1 / .invoke ]</em></a><br>
+</ul>
+<br>
+
+
+<p class="s3">[ Internet Explorer ]</p class="s3">
+<ul>
+GVBSIe-)<a href="#OOoGVBSIe01a"><em>[General]</em>IE起動(VBS)<em>[ InternetExplorer.Application / Navigate / Visible ]</em></a><br>
+GVBSIe-)<a href="#OOoGVBSIe01b"><em>[General]</em>IE起動2( Home Page表示 )<em>[ GoHome ]</em></a><br>
+GVBSIe-)<a href="#OOoGVBSIe02a"><em>[General]</em>IE終了<em>[ Qiut ]</em></a><br>
+GVBSIe-)<a href="#OOoGVBSIe03a"><em>[General]</em>読込み完了確認(1)<em>[ Busy ]</em></a><br>
+GVBSIe-)<a href="#OOoGVBSIe03b"><em>[General]</em>読込み完了確認(2)<em>[ ReadyState ]</em></a><br>
+GVBSIe-)<a href="#OOoGVBSIe04a"><em>[General]</em>戻る / 進む / 中止<em>[ GoBack / GoForward / Stop ]</em></a><br>
+GVBSIe-)<a href="#OOoGVBSIe05a"><em>[General]</em>Current siteのURL取得<em>[ LocationURL ]</em></a><br>
+GVBSIe-)<a href="#OOoGVBSIe06a"><em>[General]</em>Current siteのTitle Name取得<em>[ LocationName ]</em></a><br>
+GVBSIe-)<a href="#OOoGVBSIe07a"><em>[General]</em>Screen updates<em>[ Refresh ]</em></a><br>
+GVBSIe-)<a href="#OOoGVBSIe08a"><em>[General]</em>Windowの位置とSize設定<em>[ Width / Height / Top / Left ]</em></a><br>
+GVBSIe-)<a href="#OOoGVBSIe08b"><em>[General]</em>WindowのFull Screen表示<em>[  ]</em></a><br>
+GVBSIe-)<a href="#OOoGVBSIe09a"><em>[General]</em>Adress Bar表示/非表示<em>[ AddressBar ]</em></a><br>
+GVBSIe-)<a href="#OOoGVBSIe10a"><em>[General]</em>Site Source取得( Body部のTextのみ )<em>[ .Document.Body.innerText ]</em></a><br>
+GVBSIe-)<a href="#OOoGVBSIe"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+
+<br><br><br>
+<center><h1>###【 Following <a href="OOoBasic_General6.html">General No.6</a> 】###</h1></center>
+
+
+
+<br><br><br><br><br><br><br><br><br><br>
+<h3><Center>**********************【 Macro Code 】**********************</center></h3>
+
+<p class="s1">JavaScript</p class="s1">
+<a name="OOoGJS01a"><h6>GJS-)<em>[General]</em>JavaScript Macro(1)</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/14JavaScript/01HelloWorld01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub oJavaScriptMacro
+	Dim oMSPF as Object
+	Dim oSP as Object
+	Dim oScript as Object
+		oMSPF = GetDefaultContext.getValueByName( "/singletons/com.sun.star.script.provider.theMasterScriptProviderFactory")
+ 		oSP = oMSPF.createScriptProvider("")
+ 	' JavaScript Macro
+		oScript = oSP.getScript("vnd.sun.star.script:Library1.Macro1.js?language=JavaScript&location=user") 
+	' Macro実行
+		oScript.invoke( array(),array(),array())	
+End Sub
+'
+' [ JavaScript Macro ]
+' マイマクロ/Library1/Macro1.js
+'C:\Users\[UserName]\AppData\Roaming\LibreOffice\3\user\Scripts\javascript\Library1\Macro1.js
+//
+// Hello World in JavaScript
+importClass(Packages.javax.swing.JOptionPane);
+JOptionPane.showMessageDialog(null, "Hello World in JavaScript");
+</code></pre><br>
+
+
+<a name="OOoGJS01b"><h6>GJS-)<em>[General]</em>JavaScript Macro(2) / 他DocumentのMacro</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/14JavaScript/01HelloWorld02.png" align="right" hspace="4" vspace="4" width="25%">
+Sub oJavaScriptMacro
+	Dim oSP as Object
+	Dim oScript as Object
+ 		oSP = ThisComponent.ScriptProvider
+ 	' JavaScript Macro
+		oScript = oSP.getScript("vnd.sun.star.script:Library1.Macro1.js?language=JavaScript&location=user") 
+	' Macro実行
+		oScript.invoke( array(),array(),array())	
+End Sub
+'
+' [ JavaScript Macro ]
+' マイマクロ/Library1/Macro1.js
+'C:\Users\[UserName]\AppData\Roaming\LibreOffice\3\user\Scripts\javascript\Library1\Macro1.js
+//
+// Hello World in JavaScript
+importClass(Packages.javax.swing.JOptionPane);
+JOptionPane.showMessageDialog(null, "Hello World in JavaScript");
+</code></pre><br>
+
+
+<a name="OOoGJS02a"><h6>GJS-)<em>[General]</em>VBAのEvaluate関数</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/14JavaScript/02Evaluate01.png" align="right" hspace="4" vspace="4" width="25%"><img SRC="OOoBasic_pic/01general2/14JavaScript/02Evaluate02.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oEvaluateofVBA
+	Dim oStrEval as Double
+	Dim oDisp as String
+		oStrEval = Eval("1.5+2.6")
+		oDisp = "[ VBAのApplication.Evaluate ]" & Chr$(10) & _
+				" Eval(""1.5+2.6"") = " & oStrEval
+		msgbox oDisp,0,"Evaluate関数"
+End Sub
+'
+Function Eval(oString as String) as Double
+	Dim oSP as Object
+	Dim oScript as Object
+ 		oSP = ThisComponent.ScriptProvider
+ 	' JavaScript Macro
+		oScript = oSP.getScript("vnd.sun.star.script:Library1.Evaluate1.js?language=JavaScript&location=user") 
+	' Macro実行
+		Eval  = oScript.invoke( array(oString),array(1),array(JsResult))
+End Function
+'
+'
+' [ JavaScript Macro ]
+' マイマクロ/Library1/Evaluate1.js
+//
+// Evaluate
+JsResult = eval(String(ARGUMENTS[0]));
+//
+'
+' 上記Functionを設定していればUser定義関数としてCalcの関数として使える。(右図)
+</code></pre><br>
+
+
+<a name="OOoGJS"><h6>GJS-)<em>[General]</em></h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/14JavaScript/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+
+</code></pre><br>
+<br>
+<br>
+<br>
+<br>
+
+
+<p class="s1">Python</p class="s1">
+<a name="OOoGPy01a"><h6>GPy-)<em>[General]</em>Python Macro(1)</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/15Python/01PythonMacro01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub Python_Macro
+	Dim oMSPF as Object
+	Dim oSP as Object
+	Dim oScript as Object
+ 		oMSPF = GetDefaultContext.getValueByName( "/singletons/com.sun.star.script.provider.theMasterScriptProviderFactory")
+ 		oSP = oMSPF.createScriptProvider("")
+ 	' Python Macro
+		oScript = oSP.getScript("vnd.sun.star.script:test.py$oTest?language=Python&location=user") 
+	' Macro実行
+		oScript.invoke( array(),array(),array())	
+End Sub
+'
+' [ Python Macro ]
+' マイマクロ/test.py / def oTest(): 
+'C:\Users\[UserName]\AppData\Roaming\LibreOffice\3\user\Scripts\python\test.py
+#
+#!
+#coding: UTF-8
+# python Marco
+import itertools
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		# Unfinite Iterator
+		oStr = 'ABC'
+		oLmt = 3
+		# oLmtの引数を省略すると無限Iteratorになる。
+		oIterObj = itertools.repeat(oStr, oLmt)		# ABC ABC ABC
+		oIter = oIterObj.__iter__()
+		oDisp = unicode('[ Unifite Iterator ]\n','utf-8')
+		for i in oIter:
+			oDisp = oDisp + str(i) + '\n'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGPy01b"><h6>GPy-)<em>[General]</em>Python Macro(2) / 他DocumentのMacro</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/15Python/01PythonMacro02.png" align="right" hspace="4" vspace="4" width="20%">
+Sub PythonMacro
+	Dim oSP as Object
+	Dim oScript as Object
+ 		oSP = ThisComponent.ScriptProvider
+ 	' Python Macro
+		oScript = oSP.getScript("vnd.sun.star.script:test.py$oTest?language=Python&location=user") 
+	' Macro実行
+		oScript.invoke( array(),array(),array())	
+End Sub
+'
+' [ Python Macro ]
+' マイマクロ/test.py / def oTest(): 
+'C:\Users\[UserName]\AppData\Roaming\LibreOffice\3\user\Scripts\python\test.py
+#
+#!
+#coding: UTF-8
+# python Marco
+import re
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oDisp = u('処理を続けますか?')
+		oAns = omsgbox(oDisp,2,'Normal Box','messbox')
+		oDisp = 'Return => ' + str(oAns)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGPy"><h6>GPy-)<em>[General]</em></h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general2/15Python/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+<br clear="right">
+<p class="s1">VBScript</p class="s1">
+<p class="s3">[ FileSystemObject ]</p class="s3">
+<a name="OOoGVBSFs01a"><h6>GVBSFs-)<em>[General]</em>File有無確認</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/01FileSystemObject/01FileExists01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oFSObject()
+	Dim oFSObj as Object
+	Dim oFile as String
+		set oFSObj = CreateObject("Scripting.FileSystemObject")
+		oFile = "C:\temp\OOoTest.csv"	
+		If oFSObj.FileExists(oFile) then
+			MsgBox( oFile & " は存在します", 0, "File Exist")
+		else
+			MsgBox( oFile & " は存在しません", 0, "Caution !!")
+		End If
+		'
+		set oFSObj = Nothing
+		msgbox "Success",0,"End Code"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSFs02a"><h6>GVBSFs-)<em>[General]</em>Folder有無確認</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/01FileSystemObject/02FolderExists01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oFSObject()
+	Dim oFSObj as Object
+	Dim oFolder as String
+		set oFSObj = CreateObject("Scripting.FileSystemObject")
+		oFolder = "C:\temp"	
+		If oFSObj.FolderExists(oFolder) then
+			MsgBox( oFolder & " Folder は存在します", 0, "FileSystemObject")
+		else
+			MsgBox( oFolder & " Folder は存在しません", 0, "Caution !!")
+		End If
+		'
+		set oFSObj = Nothing
+		msgbox "Success",0,"End Code"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSFs03a"><h6>GVBSFs-)<em>[General]</em>Drive有無確認</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/01FileSystemObject/03DriveExists01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oFSObject()
+	Dim oFSObj as Object
+	Dim oDrive() as String
+	Dim oDisp as String
+		set oFSObj = CreateObject("Scripting.FileSystemObject")
+		oDrive = Array("A:","C:","D:")	
+		oDisp = ""
+		for each oDrName in oDrive
+			if oFSObj.DriveExists(oDrName)　then
+				oDisp = oDisp & oDrName & " Driveは存在します。" & Chr(10)
+			else
+				oDisp = oDisp & oDrName & " Driveは存在しません。" & Chr(10)
+			end if
+		next oDrName
+		'
+		set oFSObj = Nothing
+		msgbox oDisp,0,"End Code"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSFs04a"><h6>GVBSFs-)<em>[General]</em>File名を抽出</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/01FileSystemObject/04GetFileName01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oFSObject()
+	Dim oFSObj as Object
+	Dim oFile as String
+	Dim oFName as String
+		set oFSObj = CreateObject("Scripting.FileSystemObject")
+		oFile = "C:\temp\OOoTest.csv"
+		oFName = oFSObj.GetFileName(oFile)
+		'
+		oDisp = oFile & Chr(10) & " → " & oFName
+		msgbox oDisp,0,"FileSystemObject"
+		'
+		set oFSObj = Nothing
+		msgbox "Success",0,"End Code"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSFs05a"><h6>GVBSFs-)<em>[General]</em>Exe FileのVresion取得</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/01FileSystemObject/05GetFileVersion01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub oFSObject()
+	Dim oFSObj as Object
+	Dim oExeFile as String
+	Dim oVersion as String
+		set oFSObj = CreateObject("Scripting.FileSystemObject")
+		oExeFile = "C:\Program Files\Mozilla Firefox\firefox.exe"
+		oVersion = oFSObj.GetFileVersion(oExeFile)
+		'
+		oDisp = oExeFile & Chr(10) & " → Ver." & oVersion
+		msgbox oDisp,0,"FileSystemObject"
+		'
+		set oFSObj = Nothing
+		msgbox "Success",0,"End Code"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSFs06a"><h6>GVBSFs-)<em>[General]</em>Current Folder + File Name</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/01FileSystemObject/06GetAbsolutePathName01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub oFSObject()
+	Dim oFSObj as Object
+	Dim oFile as String
+	Dim oAbsFile as String
+		set oFSObj = CreateObject("Scripting.FileSystemObject")
+		oFile = "Dummy.txt"
+		oAbsFile = oFSObj.GetAbsolutePathName(oFile)
+		'
+		oDisp = oAbsFile
+		msgbox oDisp,0,"FileSystemObject"
+		'
+		set oFSObj = Nothing
+		msgbox "Success",0,"End Code"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSFs07a"><h6>GVBSFs-)<em>[General]</em>Drive Name抽出</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/01FileSystemObject/07GetDriveName01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oFSObject()
+	Dim oFSObj as Object
+	Dim oFile as String
+	Dim oDriveName as String
+		set oFSObj = CreateObject("Scripting.FileSystemObject")
+		oFile = "c:\Temp\Dummy.txt"
+		oDriveName = oFSObj.GetDriveName(oFile)
+		'
+		oDisp = oFile & Chr(10) & " → " & oDriveName
+		msgbox oDisp,0,"FileSystemObject"
+		'
+		set oFSObj = Nothing
+		msgbox "Success",0,"End Code"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSFs08a"><h6>GVBSFs-)<em>[General]</em>Base File Name抽出</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/01FileSystemObject/08GetBaseName01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oFSObject()
+	Dim oFSObj as Object
+	Dim oFile as String
+	Dim oBaseName as String
+		set oFSObj = CreateObject("Scripting.FileSystemObject")
+		oFile = "c:\Temp\Dummy.txt"
+		oBaseName = oFSObj.GetBaseName(oFile)
+		'
+		oDisp = oFile & Chr(10) & " → " & oBaseName
+		msgbox oDisp,0,"FileSystemObject"
+		'
+		set oFSObj = Nothing
+		msgbox "Success",0,"End Code"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSFs09a"><h6>GVBSFs-)<em>[General]</em>拡張子の抽出</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/01FileSystemObject/09GetExtensionName01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oFSObject()
+	Dim oFSObj as Object
+	Dim oFile as String
+	Dim oExtentName as String
+		set oFSObj = CreateObject("Scripting.FileSystemObject")
+		oFile = "c:\Temp\MacroCalc.ods"
+		oExtentName = oFSObj.GetExtensionName(oFile)
+		'
+		oDisp = oFile & Chr(10) & " → " & oExtentName
+		msgbox oDisp,0,"FileSystemObject"
+		'
+		set oFSObj = Nothing
+		msgbox "Success",0,"End Code"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSFs10a"><h6>GVBSFs-)<em>[General]</em>Parent Folder抽出</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/01FileSystemObject/10GetParentFolderName01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oFSObject()
+	Dim oFSObj as Object
+	Dim oFile as String
+	Dim oParentName as String
+		set oFSObj = CreateObject("Scripting.FileSystemObject")
+		oFile = "c:\Temp\MacroCalc.ods"
+		oParentName = oFSObj.GetParentFolderName(oFile)
+		'
+		oDisp = oFile & Chr(10) & " → " & oParentName
+		msgbox oDisp,0,"FileSystemObject"
+		'
+		set oFSObj = Nothing
+		msgbox "Success",0,"End Code"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSFs11a"><h6>GVBSFs-)<em>[General]</em>Windowsの特殊Folder取得</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/01FileSystemObject/11GetSpecialFolder01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oFSObject()
+	Dim oFSObj as Object
+	Dim oDisp as String
+	Dim oWinFldr as String
+	Dim oSysFldr as String
+	Dim oTmpFldr as String
+		set oFSObj = CreateObject("Scripting.FileSystemObject")
+		'
+		oWinFldr = oFSObj.GetSpecialFolder(0)
+		oSysFldr = oFSObj.GetSpecialFolder(1)
+		oTmpFldr = oFSObj.GetSpecialFolder(2)
+		'
+		oDisp = "WindowsFolder /  " & oWinFldr & Chr(10) & "SystemFolder /  " & oSysFldr
+		msgbox oDisp,0,"FileSystemObject"
+		'
+		set oFSObj = Nothing
+		msgbox "Success",0,"End Code"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSFs12a"><h6>GVBSFs-)<em>[General]</em>Temporary File取得</h6></a><pre><code>
+Sub oFSObject()
+	Dim oFSObj as Object
+	Dim oDisp as String
+	Dim oTmpFile as String
+		set oFSObj = CreateObject("Scripting.FileSystemObject")
+		'
+		oTmpFile = oFSObj.GetTempName()
+		'
+		oDisp = "Temp File Name /  " & oTmpFile
+		msgbox oDisp,0,"FileSystemObject"
+		'
+		set oFSObj = Nothing
+		msgbox "Success",0,"End Code"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSFs13a"><h6>GVBSFs-)<em>[General]</em>File Information取得( using FileSystemObject )</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/01FileSystemObject/13GetFile_FileImformation01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub oFSObject()
+	On Error Goto oBad
+	Dim oFSObj as Object
+	Dim oFile as String
+		set oFSObj = CreateObject("Scripting.FileSystemObject")
+		oFile = "C:\temp\Test_Access.xlsx"	
+		If oFSObj.FileExists(oFile) then
+			Dim oFileObj as Object
+			Dim oName as String
+			Dim oFileType as String
+			Dim oSize as String
+			'
+			Dim oCreateObj as Object
+			Dim oCreate as Date
+			Dim oLastAccessObj as Object
+			Dim oLastAccess as Date
+			Dim oLastModifyObj as Object
+			Dim oLastModify as Date
+				'
+				set oFileObj = oFSObj.GetFile(oFile)
+				'
+				oName = oFileObj.Name
+				oFileType = oFileObj.Type
+				oSize = oFileObj.Size
+				'
+				oCreateObj = oFileObj.DateCreated
+				oCreate = CDate(oCreateObj.Value)					' oCreateObj.Value : Double Type
+				'
+				' LastModifiedされた時のAccess 日時  / CSV や Text Fileは DateLastModified と同じ 
+				oLastAccessObj = oFileObj.DateLastAccessed
+				oLastAccess = CDate(oLastAccessObj.Value)			' oLastAccessObj.Value : Double Type
+				'
+				oLastModifyObj = oFileObj.DateLastModified
+				oLastModify = CDate(oLastModifyObj.Value)			' oLastModifyObj.Value  :  Double Type
+				'
+				oDisp = oFile & Chr$(10) & Chr$(10) & _
+							"File Name :  " & oName & Chr$(10) & _
+							"File Type :  " & oFileType & Chr$(10) & _
+							"File Size  :  " & oSize & Chr$(10) & _
+							"Created date of file  :  " & CStr(oCreate) & Chr$(10) & _
+							"Last accesed date of file  :  " & CStr(oLastAccess) & Chr$(10) & _
+							"Last modified date of file  :  " & CStr(oLastModify)
+							'
+				set oFileObj = Nothing
+		else
+			oDisp = oFile & Chr$(10) & " は存在しません"
+		End If
+		'
+		set oFSObj = Nothing
+		msgbox oDisp,0,"FileSystemObject"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSFs14a"><h6>GVBSFs-)<em>[General]</em>Fileの読み取り専用を解除</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/01FileSystemObject/14GetFileCallingOffReadOnly01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oFSObject()
+	On Error Goto oBad
+	Dim oFSObj as Object
+	Dim oFile as String
+		set oFSObj = CreateObject("Scripting.FileSystemObject")
+		oFile = "C:\temp\OOoTest.csv"	
+		If oFSObj.FileExists(oFile) then
+			Dim oFileObj as Object
+				set oFileObj = oFSObj.GetFile(oFile)
+				'
+				If oFileObj.Attributes And 1 Then
+					oDisp = oFileObj.Name & " ： 読み取り専用です。" & Chr$(10)
+					'
+					' 読み取り専用を解除
+					oFileObj.Attributes = oFileObj.Attributes And &HFE
+					If oFileObj.Attributes And 1 Then
+						oDisp = oDisp & " → " & "  読み取り専用の解除に失敗しました。"
+					else
+						oDisp = oDisp & " → " & "  読み取り専用の解除しました。"
+					End If
+				else
+					oDisp = oFileObj.Name & " ： 読み取り専用ではありません。"
+				End If
+		else
+			oDisp = oFile & Chr$(10) & " は存在しません"
+		End If
+		'
+		set oFSObj = Nothing
+		msgbox oDisp,0,"FileSystemObject"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSFs15a"><h6>GVBSFs-)<em>[General]</em>File( or Folder )の属性取得</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/01FileSystemObject/15GetFileAtrr01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub oFSObject()
+	On Error Goto oBad
+	Dim oFile1 as String, oFile2 as String, oFile3 as String, oFile4 as String, oFile5 as String
+		oFile1 = "C:\temp\OOoTest.csv"	
+		oFile2 = "C:\temp\OOoTest_Readonly.csv"
+		oFile3 = "C:\temp\OOoTest_Hidden.csv"
+		oFile4 = "C:\temp\OOoTest_Comp.7z"
+		oFile5 = "C:\temp\Dummy.txt"
+		'
+		oDisp = ""
+		oDisp = oDisp & oFile1 & "  →  " & FileAttr(oFile1) & Chr$(10)
+		oDisp = oDisp & oFile2 & "  →  " & FileAttr(oFile2) & Chr$(10)
+		oDisp = oDisp & oFile3 & "  →  " & FileAttr(oFile3) & Chr$(10)
+		oDisp = oDisp & oFile4 & "  →  " & FileAttr(oFile4) & Chr$(10)
+		oDisp = oDisp & oFile5 & "  →  " & FileAttr(oFile5) & Chr$(10)
+		'
+		msgbox oDisp,0,"FileSystemObject"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+'
+Function FileAttr( oFile as String) as String
+	Dim oFSObj as Object
+	Dim oFileObj as Object
+		set oFSObj = CreateObject("Scripting.FileSystemObject")
+		set oFileObj = oFSObj.GetFile(oFile)
+		'
+		select case oFileObj.Attributes
+			case 0
+				FileAttr = "Normal"
+			case 1
+				FileAttr = "ReadOnly"
+			case 2
+				FileAttr = "Hidden"
+			case 1+2
+				FileAttr = "ReadOnly + Hidden"
+			case 4
+				FileAttr = "System"
+			case 1+4
+				FileAttr = "ReadOnly + System"
+			case 2+4
+				FileAttr = "Hidden + System"
+			case 1+2+4
+				FileAttr = "ReadOnly + Hidden + System"
+			case 8
+				FileAttr = "Volume"
+			case 1+8
+				FileAttr = "ReadOnly + Volume"
+			case 2+8
+				FileAttr = "Hidden + Volume"
+			case 4+8
+				FileAttr = "System + Volume"
+			case 1+2+8
+				FileAttr = "ReadOnly + Hidden + Volume"
+			case 1+4+8
+				FileAttr = "ReadOnly + System + Volume"
+			case 1+2+4+8
+				FileAttr = "ReadOnly + Hidden + System + Volume"
+			case 16
+				FileAttr = "Directory"
+			case 1+16
+				FileAttr = "ReadOnly + Directory"
+			case 2+16
+				FileAttr = "Hidden + Directory"
+			case 4+16
+				FileAttr = "System + Directory"
+			case 8+16
+				FileAttr = "Volume + Directory"
+			case 1+2+16
+				FileAttr = "ReadOnly + Hidden + Directory"
+			case 1+4+16
+				FileAttr = "ReadOnly + System + Directory"
+			case 1+8+16
+				FileAttr = "ReadOnly + Volume + Directory"
+			case 1+2+4+16
+				FileAttr = "ReadOnly + Hidden + System + Directory"
+			case 1+2+8+16
+				FileAttr = "ReadOnly + Hidden + Volume + Directory"
+			case 1+2+4+8+16
+				
+			case 32
+				FileAttr = "Archive"
+			case 1+32
+				FileAttr = "ReadOnly + Archive"
+			case 2+32
+				FileAttr = "Hidden + Archive"
+			case 4+32
+				FileAttr = "System + Archive"
+			case 8+32
+				FileAttr = "Volume + Archive"
+			case 16+32
+				FileAttr = "Directory + Archive"
+			case 1+2+32
+				FileAttr = "ReadOnly + Hidden + Archive"
+			case 1+4+32
+				FileAttr = "ReadOnly + System + Archive"
+			case 1+8+32
+				FileAttr = "ReadOnly + Volume + Archive"
+			case 1+16+32
+				FileAttr = "ReadOnly + Directory + Archive"
+			case 1+2+4+32
+				FileAttr = "ReadOnly + Hidden + System + Archive"
+			case 1+2+8+32
+				FileAttr = "ReadOnly + Hidden + Volume + Archive"
+			case 1+2+16+32
+				FileAttr = "ReadOnly + Hidden + Directory + Archive"
+			case 1+2+4+8+32
+				FileAttr = "ReadOnly + Hidden + System + Volume + Archive"
+			case 1+2+4+16+32
+				FileAttr = "ReadOnly + Hidden + System + Directory + Archive"
+			case 1+2+4+8+16+32
+				FileAttr = "ReadOnly + Hidden + System + Volume + Directory + Archive"
+			case 64
+				FileAttr = "Alias"
+			case 1+64
+				FileAttr = "ReadOnly + Alias"
+			case 2+64
+				FileAttr = "Hidden + Alias"
+			case 4+64
+				FileAttr = "System + Alias"
+			case 8+64
+				FileAttr = "Volume + Alias"
+			case 16+64
+				FileAttr = "Directory + Alias"
+			case 32+64
+				FileAttr = "Archive + Alias"
+			case 1+2+64
+				FileAttr = "ReadOnly + Hidden + Alias"
+			case 1+4+64
+				FileAttr = "ReadOnly + System + Alias"
+			case 1+8+64
+				FileAttr = "ReadOnly + Volume + Alias"
+			case 1+16+64
+				FileAttr = "ReadOnly + Directory + Alias"
+			case 1+32+64
+				FileAttr = "ReadOnly + Archive + Alias"
+			case 1+2+4+64
+				FileAttr = "ReadOnly + Hidden + System + Alias"
+			case 1+2+8+64
+				FileAttr = "ReadOnly + Hidden + Volume + Alias"
+			case 1+2+16+64
+				FileAttr = "ReadOnly + Hidden + Directory + Alias"
+			case 1+2+32+64
+				FileAttr = "ReadOnly + Hidden + Archive + Alias"
+			case 1+2+4+8+64
+				FileAttr = "ReadOnly + Hidden + System + Volume + Alias"
+			case 1+2+4+16+64
+				FileAttr = "ReadOnly + Hidden + System + Directory + Alias"
+			case 1+2+4+32+64
+				FileAttr = "ReadOnly + Hidden + System + Archive + Alias"
+			case 1+2+4+8+16+64
+				FileAttr = "ReadOnly + Hidden + System + Volume + Directory + Alias"
+			case 1+2+4+8+32+64
+				FileAttr = "ReadOnly + Hidden + System + Volume + Archive + Alias"
+			case 1+2+4+8+16+32+64
+				FileAttr = "ReadOnly + Hidden + System + Volume + Directory + Archive + Alias"	
+			case 128
+				FileAttr = "Compress"
+			case 1+128
+				FileAttr = "ReadOnly + Compress"
+			case 2+128
+				FileAttr = "Hidden + Compress"
+			case 4+128
+				FileAttr = "System + Compress"
+			case 8+128
+				FileAttr = "Volume + Compress"
+			case 16+128
+				FileAttr = "Directory + Compress"
+			case 32+128
+				FileAttr = "Archive + Compress"
+			case 64+128
+				FileAttr = "Alias + Compress"
+			case 1+2+128
+				FileAttr = "ReadOnly + Hidden + Compress"
+			case 1+4+128
+				FileAttr = "ReadOnly + System + Compress"
+			case 1+8+128
+				FileAttr = "ReadOnly + Volume + Compress"
+			case 1+16+128
+				FileAttr = "ReadOnly + Directory + Compress"
+			case 1+32+128
+				FileAttr = "ReadOnly + Archive + Compress"
+			case 1+64+128
+				FileAttr = "ReadOnly + Alias + Compress"
+			case 1+2+4+128
+				FileAttr = "ReadOnly + Hidden + System + Compress"
+			case 1+2+8+128
+				FileAttr = "ReadOnly + Hidden + Volume + Compress"
+			case 1+2+16+128
+				FileAttr = "ReadOnly + Hidden + Directory + Compress"
+			case 1+2+32+128
+				FileAttr = "ReadOnly + Hidden + Archive + Compress"
+			case 1+2+4+8+128
+				FileAttr = "ReadOnly + Hidden + System + Volume + Compress"
+			case 1+2+4+16+128
+				FileAttr = "ReadOnly + Hidden + System + Directory + Compress"
+			case 1+2+4+32+128
+				FileAttr = "ReadOnly + Hidden + System + Archive + Compress"
+			case 1+2+4+64+128
+				FileAttr = "ReadOnly + Hidden + System + Alias + Compress"
+			case 1+2+4+8+16+128
+				FileAttr = "ReadOnly + Hidden + System + Volume + Directory + Compress"
+			case 1+2+4+8+32+128
+				FileAttr = "ReadOnly + Hidden + System + Volume + Archive + Compress"
+			case 1+2+4+8+64+128
+				FileAttr = "ReadOnly + Hidden + System + Volume + Alias + Compress"
+			case 1+2+4+8+16+32+128
+				FileAttr = "ReadOnly + Hidden + System + Volume + Directory + Archive + Compress"
+			case 1+2+4+8+16+64+128
+				FileAttr = "ReadOnly + Hidden + System + Volume + Directory + Alias + Compress"
+			case 1+2+4+8+16+32+64+128
+				FileAttr = "ReadOnly + Hidden + System + Volume + Directory + Archive + Alias + Compress"
+		end select
+		'
+		set oFileObj = Nothing
+		set oFSObj = Nothing
+End Function
+</code></pre><br>
+
+
+<a name="OOoGVBSFs"><h6>GVBSFs-)<em>[General]</em></h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/01FileSystemObject/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+
+<br><br><br><br><br><br><br><br><br><br>
+<p class="s3">[ 正規表現 ]</p class="s3">
+<a name="OOoGVBSRE01a"><h6>GVBSRE-)<em>[General]</em>検索</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/01VBSTest01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub oVBSRegExp
+	Dim oRegExp As Object 
+		oRegExp = CreateObject("VBScript.RegExp") 
+		' 対象文字列のObjectの設定
+		oSchWord = "Office"
+		oRegExp.Pattern = oSchWord		' 検索文字 
+		oRegExp.Ignorecase = True		' 大文字小文字を区別する <= falseは機能しない
+		oRegExp.Global = True		' 正規表現を文字列内のすべての可能なマッチに対してテストすべきかどうか
+	' 正規表現
+	Dim oWords as String
+		'
+		oWords = "OpenOffice.org / LibreOffice"
+		oRltSrch = oRegExp.Test(oWords) 
+		'
+		oDisp = "対象 => " & oWords & Chr$(10) & "検索文字 => " & oSchWord & Chr$(10) & "結果 => " & oRltSrch 
+		msgbox oDisp,0,"VBS 正規表現"
+		' 
+		oRegExp = nothing 
+End Sub 
+</code></pre><br>
+
+
+<a name="OOoGVBSRE02a"><h6>GVBSRE-)<em>[General]</em>置換</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/02VBSReplace01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub oVBSRegExp
+	Dim oRegExp As Object 
+		oRegExp = CreateObject("VBScript.RegExp") 
+		' 対象文字列のObjectの設定
+		oSchWord = "Office"
+		oRegExp.Pattern = oSchWord	' 検索文字 
+		oRegExp.Ignorecase = True	' 大文字小文字を区別する <= falseは機能しない
+		oRegExp.Global = True		' 正規表現を文字列内のすべての可能なマッチに対してテストすべきかどうか
+	' 正規表現
+	Dim oWords as String
+		'
+		oWords = "OpenOffice.org / LibreOffice"
+		oRpleWord = "OFFICE"
+		oRltSrch = oRegExp.Replace(oWords, oRpleWord) 
+		'
+		oDisp = "対象 => " & oWords & Chr$(10) & "検索文字 => " & oSchWord & Chr$(10) & "置換文字 => " & oRpleWord & Chr$(10) & "置換結果 => " & oRltSrch 
+		msgbox oDisp,0,"VBS 正規表現"
+		' 
+		oRegExp = nothing 
+End Sub 
+</code></pre><br>
+
+
+<a name="OOoGVBSRE03a"><h6>GVBSRE-)<em>[General]</em>Matche数</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/03VBSExecuteCount01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub oVBSRegExp
+	Dim oRegExp As Object 
+		oRegExp = CreateObject("VBScript.RegExp") 
+		' 対象文字列のObjectの設定
+		oSchWord = "Office"
+		oRegExp.Pattern = oSchWord	' 検索文字 
+		oRegExp.Ignorecase = False	' 大文字小文字を区別する <= falseは機能しない
+		oRegExp.Global = True	' 正規表現を文字列内のすべての可能なマッチに対してテストすべきかどうか
+	' 正規表現
+	Dim oWords as String
+		'
+		oWords = "Openoffice.org / LibreOffice"
+		oRltSrch = oRegExp.Execute(oWords) 
+		'
+		oDisp = "対象 => " & oWords & Chr$(10) & "検索文字 => " & oSchWord & Chr$(10) & "Matche数 => " & oRltSrch.count
+		msgbox oDisp,0,"VBS 正規表現"
+		' 
+		oRegExp = nothing 
+End Sub 
+</code></pre><br>
+
+
+<a name="OOoGVBSRE03b"><h6>GVBSRE-)<em>[General]</em>MatcheしたItem取得</h6></a><pre><code>
+Sub oVBSRegExp
+	Dim oRegExp As Object 
+		oRegExp = CreateObject("VBScript.RegExp") 
+		' 対象文字列のObjectの設定
+		oSchWord = "[a-e]"
+		oRegExp.Pattern = oSchWord	' 検索文字 
+		oRegExp.Ignorecase = False		' 大文字小文字を区別する <= falseは機能しない
+		oRegExp.Global = True			' 正規表現を文字列内のすべての可能なマッチに対してテストすべきかどうか
+	' 正規表現
+	Dim oWords as String
+	Dim oRltSrch as Object
+	Dim oCount as Integer
+	Dim i as Long
+		'
+		oWords = "OpenOffice.org / LibreOffice"
+		oRltSrch = oRegExp.Execute(oWords) 
+		'
+		oCount = oRltSrch.count
+		msgbox "oCount => " & oCount
+		i = 0
+		msgbox "oRltSrch.Item(i) => " & oRltSrch.Item(i)
+		If oCount > 0 then
+			oMatcheItem = ""
+			for i = 0 to oCount-1
+				msgbox "i => " & i
+				' msgbox oRltSrch.Item(0)	' <= for中でoRltSrch.Item(0)を使うとCrashする。
+				' oMatcheItem = oMatcheItem & "  " & oRltSrch.Item(i) & Chr$(10)	' ' <= for中でoRltSrch.Item(0)を使うとCrashする。
+			next
+		End If
+	
+		msgbox "Success"
+		'oDisp = "対象 => " & oWords & Chr$(10) & "検索文字 => " & oSchWord & Chr$(10) & "[ Matche Item ]" & CHr$(10) & oMatcheItem
+		'msgbox oDisp,0,"VBS 正規表現"
+		' 
+		oRegExp = nothing 
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSRE0"><h6>GVBSRE-)<em>[General]</em></h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br><br><br><br>
+<p class="s3">[ WshShell ]</p class="s3">
+<a name="OOoGVBSWhS01a"><h6>GVBSWhS-)<em>[General]</em>Programの実行</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/03WshShell/01WScriptExec01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oWshShell()
+	On Error Goto oBad
+	Dim oWSObj as Object
+	Dim oCmdLine as String
+		set oWSObj = CreateObject("WScript.Shell")
+		oCmdLine = "notepad.exe"
+		'
+		' Execute natepad.exe
+		oWSObj.Exec(oCmdLine)
+		'
+		set oWSObj = Nothing
+		msgbox "Success",0,"WshShell"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSWhS02a"><h6>GVBSWhS-)<em>[General]</em>Programが終了するまで待機(1)</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/03WshShell/02WScriptStatus01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oWshShell()
+	On Error Goto oBad
+	Dim oWSObj as Object
+	Dim oCmdLine as String
+	Dim oExecObj as Object
+	Dim nk as Long
+	Dim oLimit as Long
+		set oWSObj = CreateObject("WScript.Shell")
+		oCmdLine = "notepad.exe"
+		'
+		' Execute natepad.exe
+		set oExecObj = oWSObj.Exec(oCmdLine)
+		'
+		nk = 0
+		oLimit = 10000
+		Do while oExecObj.Status = 0 and nk < oLimit
+			wait 1000
+			'
+			nk = nk + 1
+			if nk > oLimit then
+				Exit Do
+			end if
+		Loop
+		'
+		if nk > oLimit then
+			oDisp = "Loop制限です。"
+		else
+			oDisp = oCmdLine & " を終了しました。"
+			set oExecObj = Nothing
+		end if
+		
+		'
+		set oWSObj = Nothing
+		msgbox oDisp,0,"WshShell"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+
+<a name="OOoGVBSWhS02b"><h6>GVBSWhS-)<em>[General]</em>Programが終了するまで待機(2)</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/03WshShell/02WScriptRun01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oWshShell()
+	On Error Goto oBad
+	Dim oWSObj as Object
+	Dim oCmdLine as String
+		set oWSObj = CreateObject("WScript.Shell")
+		oCmdLine = "notepad.exe"
+		'
+		' Execute natepad.exe
+		oWSObj.Run(oCmdLine,1, true)
+		'
+		set oWSObj = Nothing
+		msgbox "Success",0,"WshShell"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+'
+' object.Run( cmd, [WinStyle], [WaitOnReturn] )
+' → Execと異なり、単純に起動させるだけなので、起動中のApplicationのStatusは分らない。
+'
+' cmd : Execute File ← Full Pathがbetter
+'
+' [ WinStyle ]
+'	1	:	Active	/ Normal Size	( Default )
+'	2	:	Active  / Minimum Size
+'	3	:	Active  / Maximum Size
+'	4	:	Inactive/ Normal Size
+'	5	:	Active  / Same Size as last time ( According to the application )
+'	7	:	Inactive/ Minimum Size
+'
+' [ WaitOnReturn ]
+'	true	:	Wait until the end
+</code></pre><br>
+
+
+
+<a name="OOoGVBSWhS03a"><h6>GVBSWhS-)<em>[General]</em>Programを強制終了</h6></a><pre><code>
+Sub oWshShell()
+	On Error Goto oBad
+	Dim oWSObj as Object
+	Dim oCmdLine as String
+	Dim oExecObj as Object
+		set oWSObj = CreateObject("WScript.Shell")
+		oCmdLine = "notepad.exe"
+		'
+		' Execute natepad.exe
+		set oExecObj = oWSObj.Exec(oCmdLine)
+		wait 3000			' wait 3 sec
+		'
+		' 強制終了
+		oExecObj.Terminate
+		set oExecObj = Nothing
+		'
+		set oWSObj = Nothing
+		'
+		oDisp = "Success"
+		msgbox oDisp,0,"WshShell"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSWhS04a"><h6>GVBSWhS-)<em>[General]</em>Programの終了Status取得</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/03WshShell/04WScriptExitCode01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oWshShell()
+	On Error Goto oBad
+	Dim oWSObj as Object
+	Dim oCmdLine as String
+	Dim oExecObj as Object
+	Dim nk as Long
+	Dim oLimit as Long
+		set oWSObj = CreateObject("WScript.Shell")
+		oCmdLine = "notepad.exe"
+		'
+		' Execute natepad.exe
+		set oExecObj = oWSObj.Exec(oCmdLine)
+		'
+		nk = 0
+		oLimit = 10000
+		Do while oExecObj.Status = 0 and nk < oLimit
+			wait 1000
+			'
+			nk = nk + 1
+			if nk > oLimit then
+				Exit Do
+			end if
+		Loop
+		'
+		if nk > oLimit then
+			oDisp = "Loop制限です。"
+		else
+			Dim oExitCode as Long
+				oExitCode = oExecObj.ExitCode
+				oDisp = oCmdLine & " を終了しました。" & Chr$(10) & _
+							"  終了Status = " & oExitCode
+				set oExecObj = Nothing
+		end if
+		'
+		set oWSObj = Nothing
+		msgbox oDisp,0,"WshShell"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSWhS05a"><h6>GVBSWhS-)<em>[General]</em>ProgramのProcess ID取得</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/03WshShell/05WScriptProcessID01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oWshShell()
+	On Error Goto oBad
+	Dim oWSObj as Object
+	Dim oCmdLine as String
+	Dim oExecObj as Object
+		set oWSObj = CreateObject("WScript.Shell")
+		oCmdLine = "notepad.exe"
+		'
+		' Execute natepad.exe
+		set oExecObj = oWSObj.Exec(oCmdLine)
+		'
+		msgbox "10 [sec] 以内に起動したProgramをActiveにして下さい。",0,"Active"
+        wait 10000		' wait 10 [ sec ]
+        oWSObj.AppActivate(oExecObj.ProcessID)
+        oDisp = oCmdLine & " をActiveにしました。" & Chr$(10) & "Process ID = " & oExecObj.ProcessID
+		'
+		set oWSObj = Nothing
+		msgbox oDisp,0,"WshShell"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSWhS06a"><h6>GVBSWhS-)<em>[General]</em>Current Folder取得</h6></a><pre><code>
+Sub oWshShell()
+	On Error Goto oBad
+	Dim oWSObj as Object
+	Dim oCurFolder as String
+		set oWSObj = CreateObject("WScript.Shell")
+		'
+		oCurFolder = oWSObj.CurrentDirectory
+		oDisp = "[ Current Folder ] " & Chr$(10) & oCurFolder
+		'
+		set oWSObj = Nothing
+		msgbox oDisp,0,"WshShell"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSWhS06b"><h6>GVBSWhS-)<em>[General]</em>Current Folder変更</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/03WshShell/06WScriptChangeCurrentFolder02.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oWshShell()
+	On Error Goto oBad
+	Dim oWSObj as Object
+	Dim oChgFolder as String
+	Dim oCurFolder as String
+		set oWSObj = CreateObject("WScript.Shell")
+		'
+		oChgFolder = "C:\Temp"
+    	oWSObj.CurrentDirectory = oChgFolder
+    	'
+		oCurFolder = oWSObj.CurrentDirectory
+		oDisp = "[ Current Folder ] " & Chr$(10) & oCurFolder
+		'
+		set oWSObj = Nothing
+		msgbox oDisp,0,"WshShell"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSWhS07a"><h6>GVBSWhS-)<em>[General]</em>時限付messagebox</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/03WshShell/07WScriptPopupTime02.png" align="right" hspace="4" vspace="4" width="25%"><img SRC="OOoBasic_pic/01general3/13VBS/03WshShell/07WScriptPopupTime01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oWshShell()
+	On Error Goto oBad
+	Dim oWSObj as Object
+	Dim oTime as Long
+	Dim oAns as Long
+		set oWSObj = CreateObject("WScript.Shell")
+		'
+		oTime = 2
+		oAns = oWSObj.Popup(oTime & " [sec]以内のClickして下さい。", oTime,  "時間内のClick？", vbOkCancel	 + vbQuestion)
+		'
+		' messagebox の FrameをClick ( OK Button や 「 × 」 以外 )
+		select case oAns
+			case -1
+				oDisp = oTime & " sec が経過したのでMessageBoxをCloseしました。"
+			case 1
+				oDisp = oTime & " sec 以内にClickされました。"
+		end select
+		'
+		set oWSObj = Nothing
+		msgbox oDisp,0,"WshShell"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+'
+' [ 注意 ]
+' OK Buttonしか反応しないことも多い。時間が長いとNG?
+</code></pre><br>
+
+
+<a name="OOoGVBSWhS08a"><h6>GVBSWhS-)<em>[General]</em>PCのCPU</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/03WshShell/08WScriptCpu01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oWshShell()
+	On Error Goto oBad
+	Dim oWSObj as Object
+	Dim oOsBit as String
+	Dim oDisp as String
+		set oWSObj = CreateObject("WScript.Shell")
+		'
+		oOsBit = oWSObj.Environment("Process").Item("PROCESSOR_ARCHITECTURE")
+		oDisp = "[ CPU ]" & Chr$(10)
+		Select case UCase(oOsBit)
+			case "X86"
+				oDisp = oDisp & oOsBit & " / 32Bit CPU "
+			case "AMD64"
+				oDisp = oDisp & oOsBit & " / 64Bit CPU "
+			case "IA64"
+				oDisp = oDisp & oOsBit & " / 64Bit CPU "
+			case else
+				oDisp = oDisp & " → Unknown CPU"
+		End Select
+		'
+		set oWSObj = Nothing
+		msgbox oDisp,0,"WshShell"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSWhS09a"><h6>GVBSWhS-)<em>[General]</em>動画再生( Windows Media Player )</h6></a><pre><code>
+Sub oWshShell()
+	On Error Goto oBad
+	Dim oWSObj as Object
+	Dim oCmdLine as String
+		set oWSObj = CreateObject("WScript.Shell")
+		oCmdLine = "C:\temp\Movie\MovieTest.mp4"
+		'
+		' Execute natepad.exe
+		oWSObj.Run(oCmdLine,1, true)
+		'
+		set oWSObj = Nothing
+		msgbox "Success",0,"WshShell"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSWhS"><h6>GVBSWhS-)<em>[General]</em></h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/03WshShell/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ Shell.Application ]</p class="s3">
+<a name="OOoGVBSShAp01a"><h6>GVBSShAp-)<em>[General]</em></h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/04ShellApp/01BrowserForFolder02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="OOoBasic_pic/01general3/13VBS/04ShellApp/01BrowserForFolder01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub oShell_App()
+	On Error Goto oBad
+	Dim oShellObj as Object
+	Dim oPickFolder as String
+	Dim oDefFolder as String
+	Dim oDisp as String
+	Dim oNote as String
+		set oShellObj = CreateObject("Shell.Application")
+		'
+		oNote = "Folderを選択して下さい。" & Chr$(10) & "キャンセルは不可（Errorになります）"
+		oDefFolder = "C:\Temp\test\"
+		oPickFolder = oShellObj.BrowseForFolder(0, oNote, 0,oDefFolder)
+		'
+		oDisp = "選択されたFolderは" & Chr$(10) & Chr$(9) & oPickFolder & Chr$(10) & "  です。( Defualtは " & oDefFolder & " )"
+		'
+		set oShellObj = Nothing
+		msgbox oDisp,0,"Shell.Application"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSShAp02a"><h6>GVBSShAp-)<em>[General]</em>Exploreを開く</h6></a><pre><code>
+Sub oShell_App()
+	On Error Goto oBad
+	Dim oShellObj as Object
+	Dim oDisp as String
+		set oShellObj = CreateObject("Shell.Application")
+		'
+		oShellObj.Explore "C:\Temp\test"
+		wait 1000
+		'
+		oDisp = "Explorerが開きました。"
+		'
+		set oShellObj = Nothing
+		msgbox oDisp,0,"Shell.Application"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSShAp03a"><h6>GVBSShAp-)<em>[General]</em>File名を指定して実行 Windowを開く</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/04ShellApp/03FileRun01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oShell_App()
+	On Error Goto oBad
+	Dim oShellObj as Object
+	Dim oDisp as String
+		set oShellObj = CreateObject("Shell.Application")
+		'
+		oShellObj.FileRun
+		'
+		oDisp = "File名を指定して実行 Windowが開きました"
+		'
+		set oShellObj = Nothing
+		msgbox oDisp,0,"Shell.Application"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSShAp04a"><h6>GVBSShAp-)<em>[General]</em>File と Folderの検索 Windowを開く</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/04ShellApp/04FindFiles01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oShell_App()
+	On Error Goto oBad
+	Dim oShellObj as Object
+	Dim oDisp as String
+		set oShellObj = CreateObject("Shell.Application")
+		'
+		oShellObj.FindFiles
+		wait 1000
+		'
+		oDisp = "File と Folderの検索 Windowが開きました"
+		'
+		set oShellObj = Nothing
+		msgbox oDisp,0,"Shell.Application"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSShAp05a"><h6>GVBSShAp-)<em>[General]</em>WindowsのHelpを開く</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/04ShellApp/05Help01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oShell_App()
+	On Error Goto oBad
+	Dim oShellObj as Object
+	Dim oDisp as String
+		set oShellObj = CreateObject("Shell.Application")
+		'
+		oShellObj.Help
+		wait 1000
+		'
+		oDisp = "WindowsのHelpが開きました"
+		'
+		set oShellObj = Nothing
+		msgbox oDisp,0,"Shell.Application"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSShAp06a"><h6>GVBSShAp-)<em>[General]</em>全てのWindowの最少化 / 最少化解除</h6></a><pre><code>
+Sub oShell_App()
+	On Error Goto oBad
+	Dim oShellObj as Object
+	Dim oDisp as String
+		set oShellObj = CreateObject("Shell.Application")
+		'
+		' 全てのWindowの最少化
+		oShellObj.MinimizeAll
+		wait 3000		' wait 3 [sec]
+		'
+		' 元のWindow Sizeに戻す( 最少化の解除 )
+		oShellObj.UndoMinimizeAll
+		'
+		oDisp = "Window の最少化→元のSize"
+		'
+		set oShellObj = Nothing
+		msgbox oDisp,0,"Shell.Application"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSShAp07a"><h6>GVBSShAp-)<em>[General]</em>日付と時刻の設定 Windowを開く</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/04ShellApp/07SetTime01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oShell_App()
+	On Error Goto oBad
+	Dim oShellObj as Object
+	Dim oDisp as String
+		set oShellObj = CreateObject("Shell.Application")
+		'
+		oShellObj.SetTime
+		wait 2000		' wait 2 [sec]
+		'
+		oDisp = "日付と時刻の設定 Window が開きました。"
+		'
+		set oShellObj = Nothing
+		msgbox oDisp,0,"Shell.Application"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSShAp08a"><h6>GVBSShAp-)<em>[General]</em>Windowsの Shutdown画面を開く</h6></a><pre><code>
+Sub oShell_App()
+	On Error Goto oBad
+	Dim oShellObj as Object
+	Dim oDisp as String
+		set oShellObj = CreateObject("Shell.Application")
+		'
+		oShellObj.ShutdownWindows
+		wait 2000		' wait 2 [sec]
+		'
+		oDisp = "Windowｓ の Shutdown 画面が開きました。"
+		'
+		set oShellObj = Nothing
+		msgbox oDisp,0,"Shell.Application"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSShAp09a"><h6>GVBSShAp-)<em>[General]</em>Taskbar と Start Menuの設定画面を開く</h6></a><pre><code>
+Sub oShell_App()
+	On Error Goto oBad
+	Dim oShellObj as Object
+	Dim oDisp as String
+		set oShellObj = CreateObject("Shell.Application")
+		'
+		' Current Windowの最少化
+		oShellObj.TrayProperties
+		wait 2000		' wait 2 [sec]
+		'
+		oDisp = "Taskbar と Start Menuの設定画面が開きました。"
+		'
+		set oShellObj = Nothing
+		msgbox oDisp,0,"Shell.Application"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSShAp10a"><h6>GVBSShAp-)<em>[General]</em>File Information取得( using Shell.Application )</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/04ShellApp/10FileObj_ParseName01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oWshShell()
+	On Error Goto oBad
+	Dim oWSObj as Object
+	Dim oFolderObj as Object
+	Dim oFileObj as Object
+	Dim oFoderName as String
+	Dim oChkFile as String
+	Dim oFileName as String
+		set oWSObj = CreateObject("Shell.Application")
+		'
+		oFoderName = "C:\temp"
+		oFileName = "oTextMacro.txt"
+		oChkFile = oFoderName & "\" & oFileName
+		'
+		oDisp = oChkFile & Chr$(10)
+		if FileExists(oChkFile) then
+			set oFolderObj = oWSObj.NameSpace(oFoderName)
+			set oFileObj = oFolderObj.ParseName(oFileName)
+			'
+			Dim oName as String
+			Dim oPath as String
+			Dim oFileType as String
+			Dim oParent as String
+			Dim oSize as String
+			Dim oMdfyDateObj as Object
+			Dim oMdfyDate as Date
+			Dim oHtml as Boolean
+			Dim oIsFldFile as Boolean
+			Dim oIsFolder as Boolean
+			DIm oIsLink as Boolean
+				oName = oFileObj.Name
+				oPath = oFileObj.Path
+				oFileType = oFileObj.Type
+				oParent = oFileObj.Parent
+				oSize = oFileObj.Size
+				'
+				oMdfyDateObj = oFileObj.ModifyDate
+				oMdfyDate = CDate(oMdfyDateObj.Value)		' oMdfyDateObj.Value ← Double
+				'
+				oHtml = oFileObj.IsBrowsable
+				oIsFldFile = oFileObj.IsFileSystem
+				oIsFolder = oFileObj.IsFolder
+				oIsLink = oFileObj.IsLink
+				'
+			oDisp = oDisp & Chr$(10) & "Name :  " & oName & Chr$(10) & _
+						"Path :  " & oPath & Chr$(10) & _
+						"File Type :  " & oFileType & Chr$(10) & _
+						"Parent Folder :  " & oParent & Chr$(10) & _
+						"File Size :  " & oSize & " [ Byte ]" & Chr$(10) & _
+						"Modified Date :  " & CStr(oMdfyDate) & Chr$(10) & Chr$(10) & _
+						"Html File ?  →  " & oHtml & Chr$(10) & _
+						"Folder or File ?  →  " & oIsFldFile & Chr$(10) & _
+						"Folder ?  →  " & oIsFolder & Chr$(10) & _
+						"Link ?  →  " & oIsLink
+			'
+			set oFolderObj = Nothing
+			set oFileObj = Nothing
+		else
+			oDisp = oDisp & "は存在しません。"
+		end if
+		'
+		set oWSObj = Nothing
+		msgbox oDisp,0,"WshShell"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSShAp"><h6>GVBSShAp-)<em>[General]</em></h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/04ShellApp/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ WScript.Network ]</p class="s3">
+<a name="OOoGVBSWsNt01a"><h6>GVBSWsNt-)<em>[General]</em>Network Information取得</h6></a><pre><code>
+Sub oWshShell()
+	On Error Goto oBad
+	Dim oWNetObj as Object
+	Dim oDomain as String
+	Dim oComputer as String
+	Dim oUser as String
+		set oWNetObj = CreateObject("WScript.Network")
+		'
+		oDomain = oWNetObj.UserDomain
+		oComputer = oWNetObj.ComputerName
+		oUser = oWNetObj.UserName
+		'
+		oDisp = "Domain =  " & oDomain & Chr$(10) & "Computer =  " & oComputer & Chr$(10) & "User Name =  " & oUser
+		'
+		set oWNetObj = Nothing
+		msgbox oDisp,0,"Network"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSWsNt02a"><h6>GVBSWsNt-)<em>[General]</em>Default Printer設定</h6></a><pre><code>
+<img src="OOoBasic_pic/01general3/13VBS/07WScriptNet/02aSetDefaultPrinter01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oWshShell()
+	On Error Goto oBad
+	Dim oWNetObj as Object
+	Dim oDefautPrt as String
+		set oWNetObj = CreateObject("WScript.Network")
+		oDefautPrt = "Microsoft XPS Document Writer"
+		REM oDefautPrt = "Fax"
+		'
+		oWNetObj.SetDefaultPrinter oDefautPrt
+		oDisp = "Default Printerが" & Chr$(10) & oDefautPrt & Chr$(10) & "に設定されました。" 
+		'
+		set oWNetObj = Nothing
+		msgbox oDisp,0,"Network"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+'
+' [ Note ]
+' Default Printerの設定は出来るが、<em class="s1">取得は出来ない</em class="s1">。
+</code></pre><br>
+
+
+<a name="OOoGVBSWsNt03a"><h6>GVBSWsNt-)<em>[General]</em>Printer List取得</h6></a><pre><code>
+Sub oWshShell()
+	On Error Goto oBad
+	Dim oWNetObj as Object
+	Dim oPrinters as Object
+	Dim oPort as String
+	Dim oPrtName as String
+		Set oWNetObj = CreateObject("WScript.Network")
+		Set oPrinters = oWNetObj.EnumPrinterConnections
+		'
+		oDisp = "[ Printer List ]" & Chr$(10)
+		for i = 0 to oPrinters.Count - 1 Step 2
+			oPort = oPrinters.Item(i)					' Refer to Note
+			oPrtName = oPrinters.Item(i+1)
+    		oDisp = oDisp & oPort & " = " & oPrtName & Chr(10)
+  		next i
+		'
+		Set oPrinters = Nothing
+		Set oWNetObj = Nothing
+		msgbox oDisp,0,"WScript.Network"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+'
+' [ Note ]
+' Port値は正確では無い。正確な値を取得するにはレジストリをいじる必要がある模様。
+'
+' $$$ [ Reference site ] $$$
+' 1) Blog site <a href="http://blogs.yahoo.co.jp/bardiel_of_may/40864687.html">「 513号室 」の保管庫(Excel：ActivePrinterへ設定するプリンタ名の列挙)</a>より
+' 2) Microsoft / TechNet " <a href="http://social.technet.microsoft.com/Forums/zh/ITCG/thread/0db5ce88-af14-4333-84cd-cef9a05aee2c">Find Printername and PrinterPort on VBScript</a> "
+</code></pre><br>
+
+
+<a name="OOoGVBSWsNt"><h6>GVBSWsNt-)<em>[General]</em></h6></a><pre><code>
+<img src="OOoBasic_pic/01general3/13VBS/07WScriptNet/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ WbemScripting.SWbemLocator ]</p class="s3">
+<a name="OOoGVBWbLr01a"><h6>GVBWbLr-)<em>[General]</em>起動中のProcess数取得</h6></a><pre><code>
+<img src="OOoBasic_pic/01general3/13VBS/04WbemScript/01aExecQuery01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oWbSt_SwLr()
+	On Error Goto oBad
+	Dim oLocatorObj as Object, oSrv as Object, oExeQuery as Object
+	Dim oAppNum as Integer
+	Dim oDisp as String
+		set oLocatorObj = CreateObject("WbemScripting.SWbemLocator")
+		set oSrv = oLocatorObj.ConnectServer 
+		'
+		set oExeQuery = oSrv.ExecQuery("Select * From Win32_Process") 
+		oAppNum = oExeQuery.count
+		oDisp = "起動中のProcess数 は" & Chr$(10) & oAppNum & " です。"
+		'
+		set oExeQuery = Nothing
+		set oSrv = Nothing
+		set oLocatorObj = Nothing
+		'
+		msgbox oDisp,0,"WbemScripting"
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBWbLr02a"><h6>GVBWbLr-)<em>[General]</em>特定Applicationの起動数取得</h6></a><pre><code>
+<img src="OOoBasic_pic/01general3/13VBS/04WbemScript/02aWhereCaption01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oWbSt_SwLr()
+	On Error Goto oBad
+	Dim oLocatorObj as Object, oSrv as Object, oExeQuery as Object
+	Dim oAppNum as Integer
+	Dim oDisp as String
+		set oLocatorObj = CreateObject("WbemScripting.SWbemLocator")
+		set oSrv = oLocatorObj.ConnectServer 
+		'
+		set oExeQuery = oSrv.ExecQuery("Select * From Win32_Process Where Caption='notepad.EXE'")
+		oAppNum = oExeQuery.count
+		'
+		If oAppNum = 0 then
+			oDisp = "NotePadは起動していません。"
+		else
+			oDisp = "NotesPadが " & oAppNum & " つ起動しています。"
+		End If
+		'
+		set oExeQuery = Nothing
+		set oSrv = Nothing
+		set oLocatorObj = Nothing
+		'
+		msgbox oDisp,0,"WbemScripting"
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+'
+' [ Note ]
+' MS-Excel : EXCEL.EXE
+' Internet Explore : iexplore.exe / 1つのIEでprocessは2つ
+' Chrome : chrome.exe / 1つで複数のprocessを使っている。
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ MS-Office ]</p class="s3">
+<p class="s4">{{ General }}</p class="s4">
+<a name="OOoGVBSMsGn01a"><h6>GVBSMsGn-)<em>[General]</em>Excel起動</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/05MsOffice/01General/01ExcelApp01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oMsOffice()
+	On Error Goto oBad
+	Dim oExcelObj as Object
+	Dim xlbook as Object
+	Dim oDisp as String
+		set oExcelObj = CreateObject("Excel.Application")
+		set xlbook = oExcelObj.Workbooks.Add
+		'
+		oExcelObj.Visible = true
+		'
+		oDisp = "MS-Excel が起動しました"
+		msgbox oDisp,0,"MS-Office"
+		'
+		xlbook.Close(false)
+		oExcelObj.Quit
+		'
+		set xlbook = Nothing
+		set oExcelObj = Nothing
+		'
+		oDisp = "Success"
+		msgbox oDisp,0,"MS-Office"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSMsGn02a"><h6>GVBSMsGn-)<em>[General]</em>Word起動</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/05MsOffice/01General/02WordApp01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oMsOffice()
+	On Error Goto oBad
+	Dim oWordObj as Object
+	Dim oErrFlag as Integer
+	Dim oDisp as String
+		oErrFlag = 0
+		set oWordObj = CreateObject("Word.Application")
+		oErrFlag = 999
+		'
+		oWordObj.Visible = true
+		'
+		oDisp = "MS-Word が起動しました"
+		msgbox oDisp,0,"MS-Office"
+		'
+		oWordObj.Quit(wdDoNotSaveChanges)
+		set oWordObj = Nothing
+		oErrFlag = 0
+		'
+		oDisp = "Success"
+		msgbox oDisp,0,"MS-Office"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		'
+		if oErrFlag = 999 then
+			oWordObj.Quit(wdDoNotSaveChanges)
+			set oWordObj = Nothing
+		end if
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSMsOtr01a"><h6>GVBSMsGn-)<em>[General]</em>VBA実行</h6></a><pre><code>
+<img src="OOoBasic_pic/01general3/13VBS/05MsOffice/10Other/01aVBAMacro01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub ExcelVBAMacro()
+	Dim oExcelName as String
+	Dim oExcelDoc as Object
+	Dim oArgToExcel as String
+	Dim oProp(0) as New com.sun.star.beans.PropertyValue
+	Dim oSP as Object
+	Dim oScript as Object
+		'
+		oExcelName = ConvertToUrl("c:\temp\Excel2007Test.xlsm")
+		' Excel Document
+		oProp(0).Name  = "Hidden"
+  		oProp(0).Value = false
+  		oExcelDoc = StarDesktop.loadComponentFromURL(oExcelName,"_default",0, oProp())
+		'
+  		oArgToExcel = "Execute From LibreOfice!!"
+		'
+ 		oSP = oExcelDoc.ScriptProvider
+ 		' VBA Macro
+		oScript = oSP.getScript("vnd.sun.star.script:VBAProject.Module1.ExcelMacro?language=Basic&location=document") 
+		' Macro実行
+		oScript.invoke( array(oArgToExcel),array(),array())	
+		'
+		' Excel Close
+		oExcelDoc.close(true)
+End Sub
+'
+' [ VBA ]
+Sub ExcelMacro(Optional oArg As String)
+    Dim oCellString As String
+    Dim oDisp As String
+        oCellString = Workbooks("Excel2007Test.xlsm").Worksheets("sheet1").Range("B2").Text
+        oDisp = oCellString & Chr(10) & oArg
+        MsgBox oDisp, 0, "Excel Macro"
+End Sub
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s4">{{ Other }}</p class="s4">
+<a name="OOoGVBSMsGn"><h6>GVBSMsGn-)<em>[General]</em></h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/05MsOffice/01General/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ Internet Explorer ]</p class="s3">
+<a name="OOoGVBSIe01a"><h6>GVBSIe-)<em>[General]</em>Internet Explorer起動(VBS)</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/06IE/01BootIE01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oIE_VBS()
+	On Error Goto oBad
+	Dim oIEObj as Object
+	Dim oUrl as String
+		'
+		set oIEObj = CreateObject("InternetExplorer.Application")
+		oUrl = "http://oooug.jp/"
+		'
+    	oIEObj.Navigate( oUrl )
+    	oIEObj.Visible = True
+		'
+		msgbox "Success",0,"IE"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSIe01b"><h6>GVBSIe-)<em>[General]</em>IE起動2</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/06IE/01BootIE_Home01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oIE_VBS()
+	On Error Goto oBad
+	Dim oIEObj as Object
+		'
+		set oIEObj = CreateObject("InternetExplorer.Application")
+		'
+    	oIEObj.GoHome
+    	oIEObj.Visible = True
+		'
+		msgbox "Success",0,"IE"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSIe02a"><h6>GVBSIe-)<em>[General]</em>IE終了</h6></a><pre><code>
+Sub oIE_VBS()
+	On Error Goto oBad
+	Dim oIEObj as Object
+		'
+		set oIEObj = CreateObject("InternetExplorer.Application")
+		'
+    	oIEObj.GoHome
+    	oIEObj.Visible = True
+    	'
+    	wait 1000
+    	oIEObj.Quit
+		'
+		msgbox "Success",0,"IE"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSIe03a"><h6>GVBSIe-)<em>[General]</em>読込み完了確認(1)</h6></a><pre><code>
+Sub oIE_VBS()
+	On Error Goto oBad
+	Dim oIEObj as Object
+	Dim oUrl1 as String
+	Dim oUrl2 as Variant
+		'
+		set oIEObj = CreateObject("InternetExplorer.Application")
+		oUrl1 = "http://oooug.jp/"
+		oUrl2 = "http://www.libreoffice.org/"
+		'
+		oIEObj.Visible = True
+    	oIEObj.Navigate( oUrl1 )		' URL : String
+    	' 
+    	Dim nk as Long
+    	Do until oIEObj.Busy = false or nk > 10000
+    		wait 1000
+    		nk = nk+1
+    	Loop
+    	'
+    	if nk > 10000 then
+    		msgbox("Loop制限です",0,"Loop Limit")
+    		Exit Sub
+    	end if
+    	oIEObj.Navigate2( oUrl2 )		' URL : Variant
+    	'
+		'
+		msgbox "Success",0,"IE"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSIe03b"><h6>GVBSIe-)<em>[General]</em>読込み完了確認(2)</h6></a><pre><code>
+Sub oIE_VBS()
+	On Error Goto oBad
+	Dim oIEObj as Object
+	Dim oUrl1 as String
+	Dim oUrl2 as Variant
+		'
+		set oIEObj = CreateObject("InternetExplorer.Application")
+		oUrl1 = "http://oooug.jp/"
+		oUrl2 = "http://www.libreoffice.org/"
+		'
+		oIEObj.Visible = True
+    	oIEObj.Navigate( oUrl1 )		' URL : String
+    	' 
+    	Dim nk as Long
+    	Do until oIEObj.ReadyState = 4 or nk > 10000
+    		wait 1000
+    		nk = nk+1
+    	Loop
+    	'
+    	if nk > 10000 then
+    		msgbox("Loop制限です",0,"Loop Limit")
+    		Exit Sub
+    	end if
+    	oIEObj.Navigate2( oUrl2 )		' URL : Variant
+    	'
+		'
+		msgbox "Success",0,"IE"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+'
+' [ ReadyState ]
+' 0	:	初期化中 / 前回のページデータのクリア時
+' 1	:	表示データ読み込み中	　
+' 2	:	表示データ読み込み完了	　
+' 3	:	データの表示中	　
+' 4	:	全てのデータが表示終了
+</code></pre><br>
+
+
+<a name="OOoGVBSIe04a"><h6>GVBSIe-)<em>[General]</em>戻る / 進む / 中止</h6></a><pre><code>
+Sub oIE_VBS()
+	On Error Goto oBad
+	Dim oIEObj as Object
+	Dim oUrl1 as String
+	Dim oUrl2 as Variant
+		'
+		set oIEObj = CreateObject("InternetExplorer.Application")
+		oUrl1 = "http://oooug.jp/"
+		oUrl2 = "http://www.libreoffice.org/"
+		'
+		oIEObj.Visible = True
+    	oIEObj.Navigate( oUrl1 )		' URL : String
+    	' 
+    	Dim nk as Long
+    	nk = 0
+    	Do until oIEObj.Busy = false or nk > 10000
+    		wait 1000
+    		nk = nk+1
+    	Loop
+    	if nk > 10000 then
+    		msgbox("Loop制限です",0,"Loop Limit")
+    		Exit Sub
+    	end if
+    	'
+    	oIEObj.Navigate2( oUrl2 )		' URL : Variant
+    	nk = 0
+    	Do until oIEObj.Busy = false or nk > 10000
+    		wait 1000
+    		nk = nk+1
+    	Loop
+    	if nk > 10000 then
+    		msgbox("Loop制限です",0,"Loop Limit")
+    		Exit Sub
+    	end if
+    	'
+    	msgbox("Click → Go Back",0,"IE")
+    	oIEObj.GoBack()
+    	nk = 0
+    	Do until oIEObj.Busy = false or nk > 10000
+    		wait 1000
+    		nk = nk+1
+    	Loop
+    	if nk > 10000 then
+    		msgbox("Loop制限です",0,"Loop Limit")
+    		Exit Sub
+    	end if
+    	'
+    	msgbox("Click → Go Foward",0,"IE")
+    	oIEObj.GoForward()
+    	nk = 0
+    	Do until oIEObj.Busy = false or nk > 10000
+    		wait 1000
+    		nk = nk+1
+    	Loop
+    	if nk > 10000 then
+    		msgbox("Loop制限です",0,"Loop Limit")
+    		Exit Sub
+    	end if
+    	'
+    	' Bad URL → Stop
+    	oIEObj.Navigate( "http://oooug.jpp/" )
+    	oIEObj.Stop
+		'
+		msgbox "Success",0,"IE"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSIe05a"><h6>GVBSIe-)<em>[General]</em>Current siteのURL取得</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/06IE/05LocationURl01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oIE_VBS()
+	On Error Goto oBad
+	Dim oIEObj as Object
+		'
+		set oIEObj = CreateObject("InternetExplorer.Application")
+		'
+    	oIEObj.GoHome
+    	oIEObj.Visible = True
+    	'
+    	Dim nk as Long
+    	nk = 0
+    	Do until oIEObj.ReadyState = 4 or nk > 10000
+    		wait 1000
+    		nk = nk+1
+    	Loop
+    	'
+    	if nk > 10000 then
+    		msgbox("Loop制限です",0,"Loop Limit")
+    		Exit Sub
+    	end if
+		'
+	Dim oUrl as String
+	Dim oDisp as String
+		oUrl = oIEObj.LocationURL()
+		'
+		oDisp = "Current URL" & Chr$(10) & "→  " & oURL
+		'
+		msgbox oDisp,0,"IE"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSIe06a"><h6>GVBSIe-)<em>[General]</em>Current siteのTitle Name取得</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/06IE/06LocationName01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oIE_VBS()
+	On Error Goto oBad
+	Dim oIEObj as Object
+		'
+		set oIEObj = CreateObject("InternetExplorer.Application")
+		'
+    	oIEObj.GoHome
+    	oIEObj.Visible = True
+    	'
+    	Dim nk as Long
+    	nk = 0
+    	Do until oIEObj.ReadyState = 4 or nk > 10000
+    		wait 1000
+    		nk = nk+1
+    	Loop
+    	'
+    	if nk > 10000 then
+    		msgbox("Loop制限です",0,"Loop Limit")
+    		Exit Sub
+    	end if
+		'
+	Dim oUrlName as String
+	Dim oDisp as String
+		oUrlName = oIEObj.LocationName()
+		'
+		oDisp = "Title of Current Site" & Chr$(10) & "→  " & oUrlName
+		'
+		msgbox oDisp,0,"IE"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSIe07a"><h6>GVBSIe-)<em>[General]</em>Screen updates</h6></a><pre><code>
+Sub oIE_VBS()
+	On Error Goto oBad
+	Dim oIEObj as Object
+	Dim oUrl as String
+		'
+		set oIEObj = CreateObject("InternetExplorer.Application")
+		oUrl = "http://oooug.jp/"
+		'
+    	oIEObj.Navigate( oUrl )
+    	oIEObj.Visible = True
+		'
+		wait 5000
+		oIEObj.Refresh()			' Screen updates
+		'
+		msgbox "Success",0,"IE"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSIe08a"><h6>GVBSIe-)<em>[General]</em>Windowの位置とSize設定</h6></a><pre><code>
+Sub oIE_VBS()
+	On Error Goto oBad
+	Dim oIEObj as Object
+	Dim oUrl as String
+		'
+		set oIEObj = CreateObject("InternetExplorer.Application")
+		oUrl = "http://oooug.jp/"
+		'
+    	oIEObj.Navigate( oUrl )
+    	oIEObj.Visible = True
+		'
+		oIEObj.Width = 400
+		oIEObj.Height = 300
+		oIEObj.Top = 100
+		oIEObj.Left = 100
+		'
+		oIEObj.Resizable = False
+		'
+		msgbox "Success",0,"IE"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSIe08b"><h6>GVBSIe-)<em>[General]</em>WindowのFull Screen表示</h6></a><pre><code>
+Sub oIE_VBS()
+	On Error Goto oBad
+	Dim oIEObj as Object
+	Dim oUrl as String
+		'
+		set oIEObj = CreateObject("InternetExplorer.Application")
+		oUrl = "http://oooug.jp/"
+		'
+    	oIEObj.Navigate( oUrl )
+    	oIEObj.Visible = True
+    	'
+		' Full Screen
+		oIEObj.FullScreen  = true
+		msgbox "Full Screen表示中です",0,"IE"
+		'
+		oIEObj.FullScreen  = false
+		msgbox "Noraml 表示です",0,"IE"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSIe09a"><h6>GVBSIe-)<em>[General]</em>Adress Bar表示/非表示</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/06IE/09AdressBar02.png" align="right" hspace="4" vspace="4" width="20%"><img SRC="OOoBasic_pic/01general3/13VBS/06IE/09AdressBar01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oIE_VBS()
+	On Error Goto oBad
+	Dim oIEObj as Object
+	Dim oUrl1 as String
+		'
+		set oIEObj = CreateObject("InternetExplorer.Application")
+		oUrl1 = "http://oooug.jp/"
+		'
+		oIEObj.Visible = True
+		oIEObj.Navigate( oUrl1 )		' URL : String
+		'
+		oIEObj.Width = 400
+		oIEObj.Height = 200
+		oIEObj.Top = 100
+		oIEObj.Left = 100
+		'
+		Dim nk as Long
+			Do until oIEObj.Busy = false or nk > 10000
+				wait 1000
+				nk = nk+1
+			Loop
+			'
+			if nk > 10000 then
+				msgbox("Loop制限です",0,"Loop Limit")
+				Exit Sub
+			end if
+			'
+		oIEObj.AddressBar = false		' .MenuBar 及び .ToolBar はIE9では関係無し
+		oIEObj.Refresh()
+		msgbox "Adress Bar非表示です。",0,"IE"
+		'
+		oIEObj.AddressBar = true
+		oIEObj.Refresh()
+		msgbox "Adress Bar表示です。",0,"IE"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSIe10a"><h6>GVBSIe-)<em>[General]</em>Site Source取得( Body部のTextのみ )</h6></a><pre><code>
+Sub oIE_VBS()
+	On Error Goto oBad
+	Dim oIEObj as Object
+	Dim oUrl1 as String
+		'
+		set oIEObj = CreateObject("InternetExplorer.Application")
+		oUrl1 = "http://www.google.co.jp/"
+		'
+		oIEObj.Visible = True
+		oIEObj.Navigate( oUrl1 )		' URL : String
+		'
+		oIEObj.Width = 400
+		oIEObj.Height = 200
+		oIEObj.Top = 100
+		oIEObj.Left = 100
+		'
+	Dim nk as Long
+		Do until oIEObj.Busy = false or nk > 10000
+			wait 1000
+			nk = nk+1
+		Loop
+		'
+		if nk > 10000 then
+			msgbox("Loop制限です",0,"Loop Limit")
+			Exit Sub
+		end if
+		'
+	Dim oDisp as String
+	Dim oSiteSrc as String
+		oSiteSrc = oIEObj.Document.Body.innerText		' 取得を失敗するSiteもある / innerHtml 	は不可
+		'
+		oIEObj.Quit
+		set oIEObj = Nothing
+		'
+		oDisp = "[ Site Source ]" & Chr$(10) & " *** [ " & oUrl1 & " ] ***" & Chr(10) & Chr$(10) & oSiteSrc
+		msgbox oDisp,0,"Site Source"
+		'
+		Exit Sub
+oBad:
+	Dim oErLine As Integer
+	Dim oErNum As Integer
+	Dim oErMsg As String
+		oErLine = Erl
+		oErNum = Err
+		oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGVBSIe"><h6>GVBSIe-)<em>[General]</em></h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/13VBS/06IE/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br clear="right">
+<center><h6><a href="#TopOfPage">Top of Page</a></h6></center><BR>
+
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/OOoBasic_General5.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:17:22 GMT -->
+</html>

@@ -1,0 +1,2888 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/Python_Macro_General_No4.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:34:38 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<title>Macroの杜(Python編 / General No.4)</title>
+</head>
+<link rel="stylesheet"
+type="text/css" href="css_macroPython.css">
+<body>
+<a name="TopOfPage"><left><p><A HREF="index-2.html">Home of site</a></p></left></a><br>
+<h1>Macroの杜( Python編 )<br>
+[ Python for LibreOffice( Apache OpenOffice ) ]
+</h1>
+
+<h2>【 General No.4 】</h2>
+
+<center><h1>###【 Continued from <a href="Python_Macro_General_No3.html">Python / General No.3</a> 】###</h1></center>
+<br>
+
+<h3><Center>**********************【 Index 】**********************</center></h3>
+
+
+<p class="s1">File</p class="s1">
+<ul>
+GF-)<a href="#OOoGF01a"><em>[General]</em>SytemPath ⇒ URL<em>[ unohelper.systemPathToFileUrl() ]</em></a><br>
+GF-)<a href="#OOoGF02a"><em>[General]</em>URL ⇒ SystemPath<em>[ unohelper.fileUrlToSystemPath() ]</em></a><br>
+GF-)<a href="#OOoGF03a"><em>[General]</em>絶対Pathの標準化<em>[ os.path.abspath() ]</em></a><br>
+GF-)<a href="#OOoGF03a2"><em>[General]</em>Path名の標準化<em>[ os.path.normpath() ]</em></a><br>
+GF-)<a href="#OOoGF03b"><em>[General]</em>Path名の大文字/小文字をOS標準化<em>[ os.path.normcase() ]</em></a><br>
+GF-)<a href="#OOoGF3c"><em>[General]</em>Normal Path(OSに一致した絶対Path)からFile名抽出<em>[ os.path.basename() ]</em></a><br>
+GF-)<a href="#OOoGF3d"><em>[General]</em>絶対PathからPathとFile名抽出<em>[ os.path.split() ]</em></a><br>
+GF-)<a href="#OOoGF4a"><em>[General]</em>PathとFileを接続しOS固有の区切りに変換<em>[ os.path.join ]</em></a><br>
+GF-)<a href="#OOoGF5a"><em>[General]</em>Current Directory取得<em>[ os.getcwd() ]</em></a><br>
+GF-)<a href="#OOoGF6a"><em>[General]</em>Current Directory + File名の絶対Path取得1<em>[ os.path.abspath() ]</em></a><br>
+GF-)<a href="#OOoGF6b"><em>[General]</em>Current Directory + File名の絶対Path取得2<em>[  ]</em></a><br>
+GF-)<a href="#OOoGF7a"><em>[General]</em>Current Directoryの変更<em>[ os.chdir() ]</em></a><br>
+GF-)<a href="#OOoGF8a"><em>[General]</em>実行しているScriptのScript名とPathを取得<em>[ os.path.basename / os.path.abspath ]</em></a><br>
+GF-)<a href="#OOoGF9a"><em>[General]</em>File / Directoryが存在するかCheck(1)<em>[ os.path.isfile / os.path.isdir / os.path.exists ]</em></a><br>
+GF-)<a href="#OOoGF9b"><em>[General]</em>File / Directoryが存在するかCheck(2)<em>[ com.sun.star.ucb.SimpleFileAccess / .exists ]</em></a><br>
+GF-)<a href="#OOoGF10a"><em>[General]</em>File名の変更<em>[ os.rename ]</em></a><br>
+GF-)<a href="#OOoGF11a"><em>[General]</em>FileのCopy<em>[ shutil.copy ]</em></a><br>
+GF-)<a href="#OOoGF12a"><em>[General]</em>再帰的にDirectoryをCopy( SubDirectoryも含めてCopy )<em>[ shutil.copytree ]</em></a><br>
+GF-)<a href="#OOoGF13a"><em>[General]</em>Fileの削除(1)<em>[ os.remove ]</em></a><br>
+GF-)<a href="#OOoGF13b"><em>[General]</em>Fileの削除(2)<em>[ com.sun.star.ucb.SimpleFileAccess / .kill ]</em></a><br>
+GF-)<a href="#OOoGF14a"><em>[General]</em>Fileが読み込み可能かCheck<em>[ os.access / os.R_OK ]</em></a><br>
+GF-)<a href="#OOoGF14b"><em>[General]</em>Fileが書き込み可能かCheck<em>[ os.access / os.W_OK ]</em></a><br>
+GF-)<a href="#OOoGF14c"><em>[General]</em>Fileが読み書き可能かCheck<em>[ os.access / os.R_OK | os.W_OK ]</em></a><br>
+GF-)<a href="#OOoGF14d"><em>[General]</em>Fileが存在するかCheck<em>[ os.access / os.F_OK ]</em></a><br>
+GF-)<a href="#OOoGF14e"><em>[General]</em>Fileの実行可否Check<em>[ os.access / os.X_OK ]</em></a><br>
+GF-)<a href="#OOoGF15a"><em>[General]</em>Fileの状態を最後に変更した時間の取得(エポックからの経過時間(sec)で取得)<em>[ os.path.getctime ]</em></a><br>
+GF-)<a href="#OOoGF15b"><em>[General]</em>エポックがどうなっているか調べる<em>[ time.gmtime(0) ]</em></a><br>
+GF-)<a href="#OOoGF15c"><em>[General]</em>Fileの状態を最後に変更した時間の取得2<em>[ time.ctime(os.path.getctime()) ]</em></a><br>
+GF-)<a href="#OOoGF15d"><em>[General]</em>Fileに最後にAccessした時間の取得<em>[ time.ctime(os.path.getatime()) ]</em></a><br>
+GF-)<a href="#OOoGF15e"><em>[General]</em>Fileを最後に修正した時間の取得<em>[ time.ctime(os.path.getmtime()) ]</em></a><br>
+GF-)<a href="#OOoGF15f"><em>[General]</em>File Sizeの取得<em>[ os.path.getsize ]</em></a><br>
+GF-)<a href="#OOoGF15g"><em>[General]</em>File / Directoryの日付を変更<em>[ os.utime ]</em></a><br>
+GF-)<a href="#OOoGF16a"><em>[General]</em>Directory作成<em>[ os.makedirs ]</em></a><br>
+GF-)<a href="#OOoGF16b"><em>[General]</em>Directory作成2<em>[ os.mkdir ]</em></a><br>
+GF-)<a href="#OOoGF16c"><em>[General]</em>空Directoryの削除<em>[ os.removedir ]</em></a><br>
+GF-)<a href="#OOoGF16d"><em>[General]</em>Directoryの削除( Fileが無いDirectory )<em>[ os.removedirs ]</em></a><br>
+GF-)<a href="#OOoGF16e"><em>[General]</em>Directoryの削除<em>[ import shutil / .rmtree ]</em></a><br>
+GF-)<a href="#OOoGF17a"><em>[General]</em>File Separator / 環境変数のSeparator / 拡張子文字の取得<em>[ os.sep / os.pathsep / os.extsep ]</em></a><br>
+GF-)<a href="#OOoGF18a"><em>[General]</em>File 拡張子の取得( File NameとExtensionで分割した値をTupple形式で取得 )<em>[  ]</em></a><br>
+GF-)<a href="#OOoGF19a"><em>[General]</em>Current DirectoryのWildcard(*)検索<em>[ import glob ]</em></a><br>
+GF-)<a href="#OOoGF20a"><em>[General]</em>Fileを1つに纏める( Size圧縮無し )<em>[ import zipfile / ZIP_STORED ]</em></a><br>
+GF-)<a href="#OOoGF20b"><em>[General]</em>Fileを1つに纏める( Size圧縮 )<em>[ ZIP_DEFLATED ]</em></a><br>
+GF-)<a href="#OOoGF21a"><em>[General]</em>Subdirectoryを含めてDirectory / File / Link File取得<em>[ os.walk ]</em></a><br>
+GF-)<a href="#OOoGF21b"><em>[General]</em>指定Subdirectoryを除いたDirectory / File / Link File取得<em>[  ]</em></a><br>
+GF-)<a href="#OOoGF22a"><em>[General]</em>SubDirectoryを含めてFileをあいまい検索(正規表現)する<em>[ re.search ]</em></a><br>
+GF-)<a href="#OOoGF"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+<p class="s1">Text</p class="s1">
+<p class="s3">[ Text / Binay ]</p class="s3">
+<ul>
+GTxtBny-)<a href="#OOoGTxtBny01a"><em>[General]</em>Text(Binary) FileのRead1(全角文字可)<em>[ with open / read() / .closed ]</em></a><br>
+GTxtBny-)<a href="#OOoGTxtBny01b"><em>[General]</em>Text(Binary) FileのRead2(全角文字可)<em>[ open / read() / .close() ]</em></a><br>
+GTxtBny-)<a href="#OOoGTxtBny01c"><em>[General]</em>Text(Binary) FileのRead3(全角文字不可)<em>[ with open / readlines() / .closed ]</em></a><br>
+GTxtBny-)<a href="#OOoGTxtBny01d"><em>[General]</em>Text(Binary) FileのRead4(全角文字不可)<em>[ open / readlines() / .close() ]</em></a><br>
+GTxtBny-)<a href="#OOoGTxtBny02a"><em>[General]</em>1行毎にText FileのRead1<em>[ open / for in ]</em></a><br>
+GTxtBny-)<a href="#OOoGTxtBny03a"><em>[General]</em>Text(Binary) Fileの1行のみRead(全角文字可)<em>[ with open / readline() / .closed ]</em></a><br>
+GTxtBny-)<a href="#OOoGTxtBny04a"><em>[General]</em>Text File ObjectのClose Check<em>[ .closed ]</em></a><br>
+GTxtBny-)<a href="#OOoGTxtBny05a"><em>[General]</em>Text File ObjectのEncode取得<em>[ .encoding ]</em></a><br>
+GTxtBny-)<a href="#OOoGTxtBny06a"><em>[General]</em>Text File Object Open時のmode取得<em>[ .mode ]</em></a><br>
+GTxtBny-)<a href="#OOoGTxtBny07a"><em>[General]</em>Text File Object Name取得<em>[ .name ]</em></a><br>
+GTxtBny-)<a href="#OOoGTxtBny08a"><em>[General]</em>Text FileへWrite<em>[ open(oFileNmae,'w') / write ]</em></a><br>
+GTxtBny-)<a href="#OOoGTxtBny08b"><em>[General]</em>Binary FileへWrite<em>[ open(oFileNmae,'wb') / write ]</em></a><br>
+GTxtBny-)<a href="#OOoGTxtBny09a"><em>[General]</em>Text FileをRead 又は writeの何れかのmodeとしてOpen<em>[ open(oFileNmae,'r+') ]</em></a><br>
+GTxtBny-)<a href="#OOoGTxtBny09b"><em>[General]</em>Binary FileをRead 又は writeの何れかのmodeとしてOpen<em>[ open(oFileNmae,'r+b') ]</em></a><br>
+GTxtBny-)<a href="#OOoGTxtBny10a"><em>[General]</em>Text Fileに追記<em>[ open(oFileNmae,'a') ]</em></a><br>
+GTxtBny-)<a href="#OOoGTxtBny10b"><em>[General]</em>Binary Fileに追記<em>[ open(oFileNmae,'ab') ]</em></a><br>
+GTxtBny-)<a href="#OOoGTxtBny11a"><em>[General]</em>Text FileをRead 又は 追記の何れかのmodeとしてOpen<em>[ open(oFileNmae,'a+') ]</em></a><br>
+GTxtBny-)<a href="#OOoGTxtBny11b"><em>[General]</em>Binary FileをRead 又は 追記の何れかのmodeとしてOpen<em>[ open(oFileNmae,'a+b') ]</em></a><br>
+GTxtBny-)<a href="#OOoGTxtBny12a"><em>[General]</em>File中のCursor位置を取得<em>[ .tell ]</em></a><br>
+GTxtBny-)<a href="#OOoGTxtBny13a"><em>[General]</em>File中の任意位置に移動<em>[ .seek ]</em></a><br>
+GTxtBny-)<a href="#OOoGTxtBny14a"><em>[General]</em>Binary Dataの処理<em>[ import struct ]</em></a><br>
+GTxtBny-)<a href="#OOoGTxtBny"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+<p class="s3">[ CSV ]</p class="s3">
+<ul>
+GTxtCsv-)<a href="#OOoGTxtCsv01a"><em>[General]</em>CSVに関する注意<em>[  ]</em></a><br>
+GTxtCsv-)<a href="#OOoGTxtCsv02a"><em>[General]</em>Excelで作成したCSV FileのRead<em>[ import csv / .reader / dialect='excel' ]</em></a><br>
+GTxtCsv-)<a href="#OOoGTxtCsv03a"><em>[General]</em>CSV Fileのwrite1( 'wb' mode )<em>[ .writer / .writerows() ]</em></a><br>
+GTxtCsv-)<a href="#OOoGTxtCsv03b"><em>[General]</em>CSV Fileのwrite1( 'w' mode )<em>[  ]</em></a><br>
+GTxtCsv-)<a href="#OOoGTxtCsv03c"><em>[General]</em>入力Dataと同じFormatでwrite<em>[ .writer / .writerrow() ]</em></a><br>
+GTxtCsv-)<a href="#OOoGTxtCsv"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+<p class="s1">XML</p class="s1">
+<ul>
+GXML-)<a href="#OOoGXML01a"><em>[General]</em>XML Fileの構文解析<em>[ import xml.dom.minidom / .parse / .documentElement / .tagName / .childNodes / .ELEMENT_NODE ]</em></a><br>
+GXML-)<a href="#OOoGXML"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+
+
+<br><br><br>
+<h1><center>###【 Following <a href="Python_Macro_General_No5.html">Python / General No.5</a> 】###</center></h1>
+
+
+
+<br><br><br><br><br><br><br><br><br><br>
+<h3><center>******************************[ Macro Code ]******************************</center></h3>
+<br>
+
+<p class="s1">File</p class="s1">
+<a name="OOoGF01a"><h6>GDS-)<em>[General]</em>SytemPath ⇒ URL</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/01aPathtoUrl01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import unohelper
+import os.path
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oMacroTest():
+	try:
+		oFile = 'c:\\temp\\MacroCalc.ods'
+		oAbPath = os.path.abspath(oFile)
+		oURL = unohelper.systemPathToFileUrl(oAbPath)
+		oDisp = u'[ from path to URL ]\n ' + oFile + u'\n\t\t ↓\n ' + oURL
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGF02a"><h6>GF-)<em>[General]</em>URL ⇒ SystemPath</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/02aUrltoPath01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import unohelper
+import os.path
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oMacroTest():
+	try:
+		oFile = 'c:\\temp\\MacroCalc.ods'
+		oAbPath = os.path.abspath(oFile)
+		oURL = unohelper.systemPathToFileUrl(oAbPath)
+		oToFile = unohelper.fileUrlToSystemPath(oURL)
+		oDisp = u'[ from URL to Path ]\n ' + oURL + u'\n\t\t ↓\n ' + oToFile
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGF03a"><h6>GF-)<em>[General]</em>絶対Pathの標準化</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/01Abspath01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import os.path
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oMacroTest():
+	try:
+		oFile = 'C:\\temp\\MacroCalc.ods'
+		oAbslPath = os.path.abspath(oFile)
+		oDisp = u'[ Absolute Path ]\n ' + oFile + u'\n\t\t ↓\n ' + oAbslPath
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+# [ Note ]
+# Windowsでは、os.path.normpath(oFile)と同じ結果であるが、大抵のOSでは os.path.abspath(oFile) は normpath(join(os.getcwd(), oFile))と同じ結果になる。
+</code></pre><br>
+
+
+<a name="OOoGF03a2"><h6>GF-)<em>[General]</em>Path名の標準化</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/01NormalPath01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import os.path
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oMacroTest():
+	try:
+		oFile1 = 'C:/temp/MacroCalc.ods'
+		oFile2 = 'C:\\temp\\MacroCalc.ods'
+		oURL = 'file:///c:/temp/MacroCalc.ods'
+		oNormalPath1 = os.path.normpath(oFile1)
+		oNormalPath2 = os.path.normpath(oFile2)
+		oNormalURL = os.path.normpath(oURL)		# URLでは誤変換
+		oDisp = u'[ Normal Path ]\n ' + oFile1 + u'\n\t\t ↓\n ' + oNormalPath1 + '\n\n ' + oFile2 + u'\n\t\t ↓\n ' + oNormalPath2\
+		+ u'\n\n URLの変換は誤変換\n ' + oURL + u'\n\t\t ↓\n ' + oNormalURL
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+#
+# [ Note ]
+# Path が Symbolic Link を含んでいるかによって意味が変わることに注意。
+# 大文字、小文字は標準化しません ⇒ os.path.normcase(path) を利用
+</code></pre><br>
+
+
+<a name="OOoGF03b"><h6>GF-)<em>[General]</em>Path名の大文字/小文字をOS標準化</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/01Normcase01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import os.path
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oMacroTest():
+	try:
+		oFile = 'C:\\temp\\MacroCalc.ods'
+		oNormalPath = os.path.normpath(oFile)
+		oOsPath = os.path.normcase(oNormalPath)
+		oDisp = u'[ Normal Path ]\n ' + oFile + u'\n\t\t ↓\n ' + oNormalPath + u' ( normpath )\n\t\t ↓\n ' + oOsPath + u'( normcase )'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+<a name="OOoGF3c"><h6>GF-)<em>[General]</em>Normal Path(OSに一致した絶対Path)からFile名抽出</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/01Basename01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import os.path
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oFile = 'c:\\temp\\python.txt'
+		oNormalPath = os.path.normpath(oFile)
+		oFileName = os.path.basename(oNormalPath)
+		oDisp = 'File Name => ' + str(oFileName)
+		omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+
+<a name="OOoGF3d"><h6>GF-)<em>[General]</em>絶対PathからPathとFile名抽出</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/01PathFilename01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import os.path
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oFile = 'c:\\temp\\python.txt'
+		oNormalPath = os.path.normpath(oFile)
+		oPathFile = os.path.split(oNormalPath)
+		oDisp = 'Path and File Name \n\
+		 => ' + str(oPathFile)
+		omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGF4a"><h6>GF-)<em>[General]</em>PathとFileを接続しOS固有の区切りに変換</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/02AbsolutePath01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import os.path
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oFile = 'python.txt'
+		oPath = '/temp/'
+		oAbsPath = os.path.join(os.path.normpath(oPath),oFile)
+		oDisp = 'Absolute Path \n\
+		 => ' + str(oAbsPath)
+		omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGF5a"><h6>GF-)<em>[General]</em>Current Directory取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/03CurrentDir01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import os.path
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oFile = 'python.txt'
+		oCurDir = os.getcwd()
+		oDisp = 'Current Directory \n\
+		 => ' + str(oCurDir)
+		omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGF6a"><h6>GF-)<em>[General]</em>Current Directory + File名の絶対Path取得1</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/04CurrentAbsolutePath01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import os.path
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oFile = 'python.txt'
+		oAbsPath = os.path.abspath(oFile)
+		oDisp = 'Absolute Path \n\
+		 => ' + str(oAbsPath)
+		omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGF6b"><h6>GF-)<em>[General]</em>Current Directory + File名の絶対Path取得2</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/04CurrentAbsolutePath02.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import os.path
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oFile = 'python.txt'
+		oAbsPath = os.path.join(os.getcwd(),oFile)
+		oDisp = 'Absolute Path \n\
+		 => ' + str(oAbsPath)
+		omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGF7a"><h6>GF-)<em>[General]</em>Current Directoryの変更</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/05ChngeCurrentPath01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import os.path
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oPath = 'c:\\temp'
+		oCurDir = str(os.getcwd())
+		os.chdir(oPath)
+		oAftCurDir = str(os.getcwd())
+		oDisp = 'Current Directory \n\
+		 Before => ' + oCurDir + '\n\
+		 After  => ' + oAftCurDir
+		omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGF8a"><h6>GF-)<em>[General]</em>実行しているScriptのScript名とPathを取得</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+import os.path
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oScriptName = os.path.basename(__file__) # スクリプト名
+		oAbsScript = os.path.abspath(__file__)  # スクリプトの絶対パス
+		oAbsScriptPath = os.path.abspath(os.path.dirname(__file__))  # スクリプトあるディレクトリの絶対パス
+		oDisp = 'Executing Script \n\
+		 Script Name => ' + str(oScriptName) + '\n\
+		 Absolute Script => ' + str(oAbsScript) + '\n\
+		 Absolute Path => ' + str(oAbsScriptPath)
+		omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+
+<a name="OOoGF9a"><h6>GF-)<em>[General]</em>File / Directoryが存在するかCheck(1)</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/06Exists01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import os.path
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oFile = 'c:/Temp/python.txt'
+		oDir = 'c:/Tmp'
+		oFileExist = os.path.isfile(oFile)	# isFile is Bad　/ Fileが存在するか
+		oDirExist = os.path.isdir(oDir)	# isDir is Bad / Directoryが存在するか
+		oExist = os.path.exists(oFile)	# FileとDirectoryが存在するか
+		oDisp = 'File and Directory is Exist \n\
+		 File => ' + str(oFile) + ' : Exist => ' + str(oFileExist) + '\n\
+		 Directory => ' + str(oDir) + ' : Exist => ' + str(oDirExist) +'\n\
+		 File And Directory => ' + str(oFile) + ' : Exist => ' + str(oExist)
+		omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGF9b"><h6>GF-)<em>[General]</em>File / Directoryが存在するかCheck(2)</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/06Exists02.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import os
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def createUnoService(service_name):
+	"""Create a UNO Service By this name"""
+	ctx = XSCRIPTCONTEXT.getComponentContext()
+	try:
+		service = ctx.ServiceManager.createInstanceWithContext(service_name, ctx)
+	except:
+		service = NONE
+	return service
+#
+def oTest():
+	try:
+		oFile = 'c:/temp/python.txt'
+		oDir = 'c:/tmp'
+		oSimpleFile = createUnoService('com.sun.star.ucb.SimpleFileAccess')
+		oFileExist = oSimpleFile.exists(oFile)	# Fileが存在するか
+		oDirExist = oSimpleFile.exists(oDir)	# Directoryが存在するか
+		oDisp = 'File and Directory is Exist \n\
+		 File => ' + str(oFile) + ' : Exist => ' + str(oFileExist) + '\n\
+		 Directory => ' + str(oDir) + ' : Exist => ' + str(oDirExist)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGF10a"><h6>GF-)<em>[General]</em>File名の変更</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/07ReName01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno,os
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oFile = 'c:/temp/python.txt'
+		oReName = 'c:/temp/python1.txt'
+		oFileExist1 = os.path.isfile(oFile)	# isFile is Bad　/ Fileが存在するか
+		oFileExist2 = os.path.isfile(oReName)
+		if oFileExist1:		# If is Bad.
+		 os.rename(oFile,oReName)		# 先頭に半角Space
+		 oDisp = oFile + '\n\
+		 => ' + oReName
+		 omsgbox(oDisp)
+		elif oFileExist2:
+		 os.rename(oReName,oFile)		# 先頭に半角Space
+		 oDisp = oReName + '\n\
+		 => ' + oFile
+		 omsgbox(oDisp)
+		
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGF11a"><h6>GF-)<em>[General]</em>FileのCopy</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/08CopyFile01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,os,shutil
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oFile = 'c:/temp/python1.txt'
+		oCopyFile = 'c:/temp/python.txt'
+		oFileExist1 = os.path.isfile(oFile)	# isFile is Bad　/ Fileが存在するか
+		if oFileExist1:		# If is Bad.
+		 shutil.copy(oFile,oCopyFile)		# 先頭に半角Spaceが必要
+		 oDisp = os.path.isfile(oCopyFile)
+		 omsgbox(oDisp)
+		else:
+		 oDisp = 'Copy元のFileが存在しません'
+		 omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGF12a"><h6>GF-)<em>[General]</em>>再帰的にDirectoryをCopy</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/09CopyTree01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,os,shutil
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oDir = 'c:/temp/auction'
+		oCopyDir = 'c:/temp/auction2'
+		oFileExist1 = os.path.isdir(oDir)	# isDir is Bad　/ Directoryが存在するか
+		if oFileExist1:		# If is Bad.
+		 shutil.copytree(oDir,oCopyDir)		# 先頭に半角Spaceが必要
+		 oDisp = os.path.isdir(oCopyDir)
+		 omsgbox(oDisp)
+		else:
+		 oDisp = 'Copy元のDirectoryが存在しません'
+		 omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGF13a"><h6>GF-)<em>[General]</em>Fileの削除(1)</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/10RemoveFile01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,os
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oRmFile = 'c:/temp/python1.txt'
+		oFileExist1 = os.path.isfile(oRmFile)	# isDir is Bad　/ Directoryが存在するか
+		if oFileExist1:		# If is Bad.
+		 os.remove(oRmFile)		# 先頭に半角Spaceが必要
+		 oDisp = os.path.isdir(oRmFile)
+		 omsgbox(oDisp)
+		else:
+		 oDisp = 'Copy元のDirectoryが存在しません'
+		 omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGF13b"><h6>GF-)<em>[General]</em>Fileの削除(2)</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/10killFile02.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import os
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def createUnoService(service_name):
+	"""Create a UNO Service By this name"""
+	ctx = XSCRIPTCONTEXT.getComponentContext()
+	try:
+		service = ctx.ServiceManager.createInstanceWithContext(service_name, ctx)
+	except:
+		service = NONE
+	return service
+#
+def oTest():
+	try:
+		oFile = 'c:/temp/python.txt'
+		oSimpleFile = createUnoService('com.sun.star.ucb.SimpleFileAccess')
+		oFileExist = oSimpleFile.exists(oFile)	# Fileが存在するか
+		if oFileExist:
+			oSimpleFile.kill(oFile)			# delete File
+			oFileExist = oSimpleFile.exists(oFile)
+			if not oFileExist:
+				oDisp = u'Fileを削除しました'
+			else:
+				oDisp = u'Fileの削除に失敗しました'
+		else:
+			oDisp = u'Fileが存在しません'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGF14a"><h6>GF-)<em>[General]</em>Fileが読み込み可能かCheck</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/11osAccessR_OK01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,os
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oChkFile = 'c:/temp/python.txt'
+		oFileExist1 = os.path.isfile(oChkFile)	# isDir is Bad　/ Directoryが存在するか
+		if oFileExist1:		# If is Bad.
+		 oDisp = os.access(oChkFile, os.R_OK)		# 先頭に半角Spaceが必要
+		 omsgbox(oDisp)
+		else:
+		 oDisp = 'Copy元のDirectoryが存在しません'
+		 omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGF14b"><h6>GF-)<em>[General]</em>Fileが書き込み可能かCheck</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/11osAccessW_OK01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,os
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oChkFile = 'c:/temp/python.txt'
+		oFileExist1 = os.path.isfile(oChkFile)	# isDir is Bad　/ Directoryが存在するか
+		if oFileExist1:		# If is Bad.
+		 oDisp = os.access(oChkFile, os.W_OK)		# 先頭に半角Spaceが必要
+		 omsgbox(oDisp)
+		else:
+		 oDisp = 'Copy元のDirectoryが存在しません'
+		 omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGF14c"><h6>GF-)<em>[General]</em>Fileが読み書き可能かCheck</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/11osAccessRW_OK01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,os
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oChkFile = 'c:/temp/python.txt'
+		oFileExist1 = os.path.isfile(oChkFile)	# isDir is Bad　/ Directoryが存在するか
+		if oFileExist1:		# If is Bad.
+		 oDisp = os.access(oChkFile, os.R_OK | os.W_OK)		# 先頭に半角Spaceが必要
+		 omsgbox(oDisp)
+		else:
+		 oDisp = 'Copy元のDirectoryが存在しません'
+		 omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGF14d"><h6>GF-)<em>[General]</em>Fileが存在するかCheck</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/11osAccessF_OK01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,os
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oChkFile = 'c:/temp/python.txt'
+		oFileExist1 = os.path.isfile(oChkFile)	# isDir is Bad　/ Directoryが存在するか
+		if oFileExist1:		# If is Bad.
+		 oDisp = os.access(oChkFile, os.F_OK)		# 先頭に半角Spaceが必要
+		 omsgbox(oDisp)
+		else:
+		 oDisp = 'Copy元のDirectoryが存在しません'
+		 omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGF14e"><h6>GF-)<em>[General]</em>Fileの実行可否Check</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/11osAccessX_OK01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,os
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oChkFile = 'c:/temp/python.txt'
+		oFileExist1 = os.path.isfile(oChkFile)	# isDir is Bad　/ Directoryが存在するか
+		if oFileExist1:		# If is Bad.
+		 oDisp = os.access(oChkFile, os.X_OK)		# 先頭に半角Spaceが必要
+		 omsgbox(oDisp)
+		else:
+		 oDisp = 'Copy元のDirectoryが存在しません'
+		 omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGF15a"><h6>GF-)<em>[General]</em>Fileの状態を最後に変更した時間の取得(エポックからの経過時間(sec)で取得)</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/12GetCtime01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,os,time
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oChkFile = 'c:/temp/python.txt'
+		oFileExist1 = os.path.isfile(oChkFile)	# isDir is Bad　/ Directoryが存在するか
+		if oFileExist1:		# If is Bad.
+		 oDisp = os.path.getctime(oChkFile)		# 先頭に半角Spaceが必要
+		 omsgbox(oDisp)
+		else:
+		 oDisp = 'Copy元のDirectoryが存在しません'
+		 omsgbox(oDisp)
+    except:
+        pass
+#
+# エポック (epoch) : その年の 1 月 1 日の午前 0 時に “エポックからの経過時間” が 0 となる様に設定。
+</code></pre><br>
+
+
+<a name="OOoGF15b"><h6>GF-)<em>[General]</em>エポックがどうなっているか調べる</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/12epoch01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import uno,os,time
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oDisp = str(time.gmtime(0))		# 先頭に半角Spaceが必要
+		omsgbox(oDisp)
+	except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGF15c"><h6>GF-)<em>[General]</em>Fileの状態を最後に変更した時間の取得2</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/12GetCtime02.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,os,time
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oChkFile = 'c:/temp/python.txt'
+		oFileExist1 = os.path.isfile(oChkFile)	# isDir is Bad　/ Directoryが存在するか
+		if oFileExist1:		# If is Bad.
+		 oDisp = time.ctime(os.path.getctime(oChkFile))		# 先頭に半角Spaceが必要
+		 omsgbox(oDisp)
+		else:
+		 oDisp = 'Copy元のDirectoryが存在しません'
+		 omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGF15d"><h6>GF-)<em>[General]</em>Fileに最後にAccessした時間の取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/12GetAtime01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,os,time
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oChkFile = 'c:/temp/python.txt'
+		oFileExist1 = os.path.isfile(oChkFile)	# isDir is Bad　/ Directoryが存在するか
+		if oFileExist1:		# If is Bad.
+		 oDisp = time.ctime(os.path.getatime(oChkFile))		# 先頭に半角Spaceが必要
+		 omsgbox(oDisp)
+		else:
+		 oDisp = 'Copy元のDirectoryが存在しません'
+		 omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGF15e"><h6>GF-)<em>[General]</em>Fileを最後に修正した時間の取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/12GetMtime01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,os,time
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oChkFile = 'c:/temp/python.txt'
+		oFileExist1 = os.path.isfile(oChkFile)	# isDir is Bad　/ Directoryが存在するか
+		if oFileExist1:		# If is Bad.
+		 oDisp = time.ctime(os.path.getmtime(oChkFile))		# 先頭に半角Spaceが必要
+		 omsgbox(oDisp)
+		else:
+		 oDisp = 'Copy元のDirectoryが存在しません'
+		 omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGF15f"><h6>GF-)<em>[General]</em>File Sizeの取得(Byte)</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/12GetSize01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,os,time
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oChkFile = 'c:/temp/python.txt'
+		oFileExist1 = os.path.isfile(oChkFile)	# isDir is Bad　/ Directoryが存在するか
+		if oFileExist1:		# If is Bad.
+		 oDisp = os.path.getsize(oChkFile)		# 先頭に半角Spaceが必要
+		 omsgbox(oDisp)
+		else:
+		 oDisp = 'Copy元のDirectoryが存在しません'
+		 omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGF15g"><h6>GF-)<em>[General]</em>File / Directoryの日付を変更</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/12os_utime01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import time
+import os
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oFile = 'c:\\temp\\python.txt'
+		oBeforeAccess = str(time.ctime(os.path.getatime(oFile)))
+		oBeforeModfy = str(time.ctime(os.path.getmtime(oFile)))
+		# Access Tiem / Modfy Timeは、UTC におけるEpochからの秒数
+		oAccTime = time.mktime((2012, 1, 2, 3, 4, 5, 0, 0, -1))		# 2012年1月2日3時4分5秒
+		oMdyTime = time.mktime((2012, 3, 4, 5, 6, 7, 0, 0, -1))		# 2012年3月4日5時6分7秒
+		#
+		os.utime(oFile, (oAccTime, oMdyTime))
+		oAfterAccess = str(time.ctime(os.path.getatime(oFile)))
+		oAfterModfy = str(time.ctime(os.path.getmtime(oFile)))
+		#
+		oDisp = u'[ File / Directoryの時間を変更 ]\n'\
+		+ u'### [ 変更前 ] ###\n\t' + 'Accessed Time : ' + oBeforeAccess + '\n\t' + 'Modified Time : ' + oBeforeModfy + '\n'\
+		+ u'### [ 変更後 ] ###\n\t' + 'Accessed Time : ' + oAfterAccess + '\n\t' + 'Modified Time : ' + oAfterModfy
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGF16a"><h6>GF-)<em>[General]</em>Directory作成</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/13makedirs01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import os
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+	return msgbox.execute()
+def oTest():
+	try:
+		oDir = 'c:/temp/MacroPython/temp'
+		oDirExist = os.path.isdir(oDir)
+		oDisp=''
+		a=1
+		if oDirExist != 1:			# trueの時は「1」、falseの時は「0」を使う。!= 'true'ではelse以降が使えない
+			os.makedirs(oDir,077)
+			oDisp = 'The Directory is created!!'
+		else:
+			oDisp = 'The Directory existed!!'
+		omsgbox(oDisp)
+		
+	except:
+		pass
+</code></pre><br>
+
+
+<a name="OOoGF16b"><h6>GF-)<em>[General]</em>Directory作成2</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/13mkdir01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import os
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		# Current Directoryの変更
+		oPath = 'c:\\temp\\MacroPython'
+		os.chdir(oPath)
+		#
+		oDir = 'temp2'
+		oChkDir = os.path.join(oPath, oDir)		# Pathを連結する
+		oDirExist = os.path.isdir(oChkDir)
+		oDisp=''
+		if oDirExist != 1:			# trueの時は「1」、falseの時は「0」を使う。!= 'true'ではelse以降が使えない
+			os.mkdir(oDir)
+			oDisp = 'The Directory is created!!'
+		else:
+			oDisp = 'The Directory existed!!'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGF16c"><h6>GF-)<em>[General]</em>空Directoryの削除</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/13os_rmdir01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import os
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oPathDir = 'c:\\temp\\MacroPython\\temp'
+		oDirExist = os.path.isdir(oPathDir)
+		oDisp=''
+		if oDirExist == 1:			# trueの時は「1」、falseの時は「0」を使う。!= 'true'ではelse以降が使えない
+			os.rmdir(oPathDir)
+			oDisp = 'The empty directory is removed.'
+		else:
+			oDisp = 'The Directory does not exist!!'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGF16d"><h6>GF-)<em>[General]</em>Directoryの削除( Fileが無いDirectory )</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/13removedirs01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import os
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oPathDir = 'c:\\temp\\MacroPython\\temp2'
+		oDirExist = os.path.isdir(oPathDir)
+		oDisp=''
+		if oDirExist == 1:			# trueの時は「1」、falseの時は「0」を使う。!= 'true'ではelse以降が使えない
+			os.removedirs(oPathDir)
+			oDisp = 'The Directory is removed.'
+		else:
+			oDisp = 'The Directory does not exist!!'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGF16e"><h6>GF-)<em>[General]</em>Directoryの削除</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/13shutil_rmtree01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import shutil
+import os
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oPathDir = 'c:\\temp\\MacroPython\\temp2'
+		oDirExist = os.path.isdir(oPathDir)
+		oDisp=''
+		if oDirExist == 1:			# trueの時は「1」、falseの時は「0」を使う。!= 'true'ではelse以降が使えない
+			shutil.rmtree(oPathDir)
+			oDisp = 'The Directory is removed with inner file and directory.'
+		else:
+			oDisp = 'The Directory does not exist!!'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# os.removedirsはDirectoryにFileが無ければSubdirectoryを含めて削除するが、shutil.rmtreeはDirectory内のFile,Dirctory共に削除する。
+</code></pre><br>
+
+
+
+<a name="OOoGF17a"><h6>GF-)<em>[General]</em>File Separator / 環境変数のSeparator / 拡張子文字の取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/14Separator01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import os
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oOS = os.sep
+		oEnv = os.pathsep
+		oExt = os.extsep
+		oDisp = u'[ Separator ]' + '\n'
+		oDisp = oDisp + u'File Sparator => ' + str(oOS) + '\n'
+		oDisp = oDisp + u'環境変数 Sparator => ' + str(oEnv) + '\n'
+		oDisp = oDisp + u'拡張子文字 => ' + str(oExt)
+		
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGF18a"><h6>GF-)<em>[General]</em>File 拡張子の取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/15Extension01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import os.path
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oJpg = os.path.splitext('c:/temp/graph.jpg')
+		oAccess2007 = os.path.splitext('c:/temp/ACCESS_SQL.accdb')
+		oAccess2003 = os.path.splitext('c:/temp/ACCESS_SQL2003.mdb')
+		oCSV = os.path.splitext('c:/temp/OOoTest.csv')
+		oBase = os.path.splitext('c:/temp/ACCESS_BASE.odb')
+		oWriter = os.path.splitext('c:/temp/LibreOfficeWriter.odt')
+		oCalc = os.path.splitext('c:/temp/MacroCalc.ods')
+		oTxt = os.path.splitext('c:/temp/BaseError.txt')
+		oDisp = u'[ 各種拡張子 ]' + '\n'
+		oDisp = oDisp + u'Access2007 => ' + str(oAccess2007) + '\n'
+		oDisp = oDisp + u'Access2003 => ' + str(oAccess2003) + '\n'
+		oDisp = oDisp + u'CSV        => ' + str(oCSV) + '\n'
+		oDisp = oDisp + u'Base       => ' + str(oBase) + '\n'
+		oDisp = oDisp + u'Writer     => ' + str(oWriter) + '\n'
+		oDisp = oDisp + u'Calc       => ' + str(oCalc) + '\n'
+		oDisp = oDisp + u'Text       => ' + str(oTxt)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGF19a"><h6>GF-)<em>[General]</em>Current DirectoryのWildcard(*)検索</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/16glob01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import os
+import glob
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oCurDir = os.getcwd()	# Check the Current Directory
+		oGlob = glob.glob('*.ini')
+		oDisp = u'[ Current Directory FileのWildcard検索 ]\n'
+		oDisp = oDisp + 'Current Directory => ' + oCurDir + '\n'\
+		+ u'<< 検索結果 >>\n => '\
+		+ str(oGlob)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGF20a"><h6>GF-)<em>[General]</em>Fileを1つに纏める( Size圧縮無し )</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import zipfile
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		# 格納先File( .zip )
+		oZipFName = 'c:\\temp\\PythonZip.zip'
+		# 纏めるFile一覧
+		oFile = 'c:\\temp\\oTextMacro.txt'
+		oFile1 = 'c:\\temp\\oTextMacro1.txt'
+		oFile2 = 'c:\\temp\\oTextMacro2.txt'
+		#
+		oZipObj = zipfile.ZipFile(oZipFName,'w',zipfile.ZIP_STORED)
+		oZipObj.write(oFile)
+		oZipObj.write(oFile1)
+		oZipObj.write(oFile2)
+		oDisp = 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGF20b"><h6>GF-)<em>[General]</em>Fileを1つに纏める( Size圧縮 )</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import zipfile
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		# 格納先File( .zip )
+		oZipFName = 'c:\\temp\\PythonZip.zip'
+		# 纏めるFile一覧
+		oFile = 'c:\\temp\\oTextMacro.txt'
+		oFile1 = 'c:\\temp\\oTextMacro1.txt'
+		oFile2 = 'c:\\temp\\oTextMacro2.txt'
+		#
+		oZipObj = zipfile.ZipFile(oZipFName,'w',zipfile.ZIP_DEFLATED)
+		oZipObj.write(oFile)
+		oZipObj.write(oFile1)
+		oZipObj.write(oFile2)
+		oDisp = 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGF21a"><h6>GF-)<em>[General]</em>Subdirectoryを含めてDirectory / File / Link File取得</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import os
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		oAp_Idntfy = oDoc.getIdentifier()
+		if oAp_Idntfy == 'com.sun.star.sheet.SpreadsheetDocument':
+			oPath = u'c:\\temp'		# unicodeにしておくとEncode　Errorを避けやすい。
+			oList = []
+			for root, dirs, files in os.walk(oPath, topdown=True):
+				for oFile in files:
+					oFilePath = os.path.join(root,oFile)
+					oList.append(oFilePath)
+			oSheet = oDoc.getSheets().getByIndex(0)
+			i = 0
+			for k in oList:
+				oSheet.getCellByPosition(0,i).String = k
+				i = i + 1
+			oDisp = 'Success'
+		else:
+			oDisp = u'Calcで実行して下さい。'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# [ 注意 ]
+# os.walk(top[, topdown=True[, onerror=None[, followlinks=False]]])
+# 1) 相対Pathを渡した場合、walk() の回復の間でCurrent作業Directoryを変更しないでください。
+#   walk() はCtrrent Directoryを変更せず、呼び出し側もCurrent Directoryを変更しないと仮定しています。
+# 2) Symbolic LinkをSupportするSystemでは、SubdirectoryへのLinkがdirnames Linkに含まれますが、followlinks=False(Default設定)では辿りません。
+#   但し、followlinks=Trueにすると親Directoryを指していた場合無限Loopになりますので、出来るだけ避けた方が良い。
+#   LinkされたDirectoryをたどるには、os.path.islink(path) でLink先Directoryを確認し、Each Directoryに対してwalk(path) を実行すると良い。
+</code></pre><br>
+
+
+<a name="OOoGF21b"><h6>GF-)<em>[General]</em>指定Subdirectoryを除いたDirectory / File / Link File取得</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import os
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		oAp_Idntfy = oDoc.getIdentifier()
+		if oAp_Idntfy == 'com.sun.star.sheet.SpreadsheetDocument':
+			oPath = u'c:\\temp'		# unicodeにしておくとEncode　Errorを避けやすい。
+			oList = []
+			oRmDir = 'PythonMacroTest'
+			for root, dirs, files in os.walk(oPath, topdown=True):
+				if oRmDir in dirs:
+					dirs.remove(oRmDir)  # 'PythonMacroTest'　Directory以下は削除して、取得しない。
+				for oFile in files:
+					oFilePath = os.path.join(root,oFile)
+					oList.append(oFilePath)
+			oSheet = oDoc.getSheets().getByIndex(0)
+			i = 0
+			for k in oList:
+				oSheet.getCellByPosition(0,i).String = k
+				i = i + 1
+			oDisp = 'Success'
+		else:
+			oDisp = u'Calcで実行して下さい。'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# [ 注意 ]
+# os.walk(top[, topdown=True[, onerror=None[, followlinks=False]]])
+# 1) 指定Directoryを除いた取得をする時は、Buttomup( topdown=False )の利用には注意が必要です。
+#    rmdir() はDirectoriが空になる前に削除させないからです 
+# [ Example ]
+# import os
+# for root, dirs, files in os.walk(top, topdown=False):
+#	for name in files:
+#		os.remove(os.path.join(root, name))
+#	for name in dirs:
+#		os.rmdir(os.path.join(root, name))
+</code></pre><br>
+
+
+<a name="OOoGF22a"><h6>GF-)<em>[General]</em>SubDirectoryを含めてFileをあいまい検索(正規表現)する</h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/22os_walk_re01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import os,re
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oPath = u'c:\\temp'		# unicodeにしておくとEncode　Errorを避けやすい。
+		oDisp = u'[ Subdirectoryを含めたFileの検索 ]\n'
+		for root, dirs, files in os.walk(oPath, topdown=True):
+			for oFile in files:
+				if not re.search(r'\.odb$',oFile):
+					continue
+				oFilePath = os.path.join(root,oFile)
+				oDisp = oDisp + oFilePath + '\n'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGF"><h6>GF-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/03File/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">Text</p class="s1">
+<p class="s3">[ Text ]</p class="s3">
+<a name="OOoGTxtBny01a"><h6>GTxtBny-)<em>[General]</em>Text FileのRead1</h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/00TextBinay/01with_read01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oTextFile = 'c:\\temp\\oTextMacro.txt'
+		# Readonly
+		with open(oTextFile,'r') as oFileObj:
+			oTxtSrc = oFileObj.read()
+		oFileObj.closed
+		oDisp = oTxtSrc		# str(oTxtSrc)はError
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# r		:	readonly
+# rb	:	readonly as Binary File
+# r+	:	read / write
+# r+b	:	read / write as Binary File
+#
+# WindowsではBinary FileJPEGやEXE(JPEG,EXE等)を'r'や'w'でOpenするとFileを破損させる危険がある。
+# Unixでは'b'を付けても何も影響が無いので、Binary Fileに対しては'b'を追加すればPlatform非依存になる。
+#
+# また、File Openに「with」構文を使うとwith構文終了時に必ずCloseされる。「.closed」が無いとErrorになる。
+</code></pre><br>
+
+
+<a name="OOoGTxtBny01b"><h6>GTxtBny-)<em>[General]</em>Text(Binary) FileのRead2</h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/00TextBinay/01open_read01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oTextFile = 'c:\\temp\\oTextMacro.txt'
+		# Readonly
+		oFileObj = open(oTextFile,'rb')
+		oTxtSrc = oFileObj.read()
+		oFileObj.close()
+		oDisp = oTxtSrc		# str(oTxtSrc)はError
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGTxtBny01c"><h6>GTxtBny-)<em>[General]</em>Text(Binary) FileのRead3(全角文字不可)</h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/00TextBinay/01with_readlines01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oTextFile = 'c:\\temp\\oTextMacro2.txt'
+		# Open as Text
+		with open(oTextFile,'r') as oFileObjR:
+			oTxtSrcR = oFileObjR.readlines()
+		oFileObjR.closed
+		# Open as Binary
+		with open(oTextFile,'rb') as oFileObjRb:
+			oTxtSrcRb = oFileObjRb.readlines()
+		oFileObjRb.closed
+		# 「readlines」では改行が含まれるので、str化する必要がある。
+		oDisp = u'<< r modeにてOpen >>\n' + str(oTxtSrcR)\
+		+ '\n\n\n'\
+		+ u'<< rb modeにてOpen >>\n' + str(oTxtSrcRb)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGTxtBny01d"><h6>GTxtBny-)<em>[General]</em>Text(Binary) FileのRead4(全角文字不可)</h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/00TextBinay/01open_readlines01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oTextFile = 'c:\\temp\\oTextMacro2.txt'
+		# Open as Text
+		oFileObjR = open(oTextFile,'r')
+		oTxtSrcR = oFileObjR.readlines()
+		oFileObjR.close()
+		# Open as Binary
+		oFileObjRb = open(oTextFile,'rb')
+		oTxtSrcRb = oFileObjRb.readlines()
+		oFileObjRb.close()
+		# 「readlines」では改行が含まれるので、str化する必要がある。
+		oDisp = u'<< r modeにてOpen >>\n' + str(oTxtSrcR)\
+		+ '\n\n\n'\
+		+ u'<< rb modeにてOpen >>\n' + str(oTxtSrcRb)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGTxtBny02a"><h6>GTxtBny-)<em>[General]</em>1行毎にText FileのRead1</h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/00TextBinay/02open_for_in01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oTextFile = 'c:\\temp\\oTextMacro.txt'
+		# Readonly
+		oFileObj = open(oTextFile,'r')
+		oTxtSrc = ''
+		for oline in oFileObj:
+			oTxtSrc = oTxtSrc + oline
+		oFileObj.close()
+		oDisp = oTxtSrc
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGTxtBny03a"><h6>GTxtBny-)<em>[General]</em>Text(Binary) Fileの1行のみRead</h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/00TextBinay/03with_readline01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oTextFile = 'c:\\temp\\oTextMacro.txt'
+		# Readonly
+		with open(oTextFile,'rb') as oFileObj:
+			oTxtSrc = oFileObj.readline()
+		oFileObj.closed
+		oDisp = oTxtSrc		# str(oTxtSrc)はError
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGTxtBny04a"><h6>GTxtBny-)<em>[General]</em>Text File ObjectのClose Check</h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/00TextBinay/04closed01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oTextFile = 'c:\\temp\\oTextMacro.txt'
+		# Readonly
+		with open(oTextFile,'rb') as oFileObj:
+			oCloseChk1 = str(oFileObj.closed)
+		oFileObj.closed
+		oCloseChk2 = str(oFileObj.closed)
+		oDisp = u'[ File ObjectのClosed Check ]\n'\
+		+ 'at Open => ' + oCloseChk1 + '\n'\
+		+ 'after Closed => ' + oCloseChk2
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGTxtBny05a"><h6>GTxtBny-)<em>[General]</em>Text File ObjectのEncode取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/00TextBinay/05encoding01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oTextFile = 'c:\\temp\\oTextMacro.txt'
+		# Readonly
+		with open(oTextFile,'rb') as oFileObj:
+			oEncode = oFileObj.encoding		# 必ず設定されている訳では無い。
+		oFileObj.closed
+		oDisp = u'[ File Objectが使用しているEncoding ]\n　=> '\
+		+ str(oEncode)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGTxtBny06a"><h6>GTxtBny-)<em>[General]</em>Text File Object Open時のmode取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/00TextBinay/06mode01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oTextFile = 'c:\\temp\\oTextMacro.txt'
+		# Readonly
+		with open(oTextFile,'rb') as oFileObj:
+			oMode = oFileObj.mode
+		oFileObj.closed
+		oDisp = u'[ File Object Open時のMode ]\n　=> '\
+		+ str(oMode)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGTxtBny07a"><h6>GTxtBny-)<em>[General]</em>Text File Object Name取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/00TextBinay/07name01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oTextFile = 'c:\\temp\\oTextMacro.txt'
+		# Readonly
+		with open(oTextFile,'rb') as oFileObj:
+			oName = oFileObj.name
+		oFileObj.closed
+		oDisp = u'[ File Objectの名前 ]\n　=> '\
+		+ str(oName)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGTxtBny08a"><h6>GTxtBny-)<em>[General]</em>Text FileへWrite</h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/00TextBinay/08write_w01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oTextFile = 'c:\\temp\\oTextMacro1.txt'
+		# 文字列以外のDataは文字列に変換が必要
+		oTxtData1 = 'Python,Macro \t Data \t Test\n'
+		oTxtData2 = str([1,'Python']) + '\n\n'
+		oTxtData3 = '***** Lat row *****'
+		# Write only
+		with open(oTextFile,'w') as oFileObj:
+			oFileObj.write(oTxtData1)
+			oFileObj.write(oTxtData2)
+			oFileObj.write(oTxtData3)
+		oFileObj.closed
+		oDisp = 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# Text File mode( 'w' )としてOpenすると、「\t」:Tab /「 \n 」:改行として認識される。
+# Fileが無ければ新規Fileとして作成され、既存Fileの場合は内容を上書き変更されてしまうので注意が必要。
+</code></pre><br>
+
+
+<a name="OOoGTxtBny08b"><h6>GTxtBny-)<em>[General]</em>Binary FileへWrite</h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/00TextBinay/08write_wb01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oTextFile = 'c:\\temp\\oTextMacro1.txt'
+		# 文字列以外のDataは文字列に変換が必要
+		oTxtData1 = 'Python,Macro \t Data \t Test\n'
+		oTxtData2 = str([1,'Python']) + '\n\n'
+		oTxtData3 = '***** Lat row *****'
+		# Write only
+		with open(oTextFile,'wb') as oFileObj:
+			oFileObj.write(oTxtData1)
+			oFileObj.write(oTxtData2)
+			oFileObj.write(oTxtData3)
+		oFileObj.closed
+		oDisp = 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# Binary File mode( 'wb' )としてOpenすると、「\t」は「Tab」として認識されるが、「 \n 」は「文字列」として認識される場合がある。
+# 例えば、 WindowsのNote Padの場合は「Shift-JIS」なので、図の様になるが「utf-8」のEditorでは改行されている。
+# Fileが無ければ新規Fileとして作成され、既存Fileの場合は内容を上書き変更されてしまうので注意が必要。
+</code></pre><br>
+
+
+<a name="OOoGTxtBny09a"><h6>GTxtBny-)<em>[General]</em>Text FileをRead 又は writeの何れかのmodeとしてOpen</h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/00TextBinay/09read_write_r_Plus02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="Python_pic/02general2/05Text/00TextBinay/09read_write_r_Plus01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oTextFile = 'c:\\temp\\oTextMacro1.txt'
+		#
+		oTxtData1 = '\n\n\n ***** Top *****\n\n'
+		oTxtData2 = 'Python,Macro \t Data \t Test\n\n'
+		oTxtData3 = '***** Bottom *****'
+		# Read or Write
+		with open(oTextFile,'r+') as oFileObj:
+			oTxtSrc = oFileObj.read()
+			#oFileObj.write(oTxtData1)	# 一度のOpenではRead又は追記の何れかしか使え無い。
+			#oFileObj.write(oTxtData2)	# 本行のComment記号を外すとErrorになる。
+			#oFileObj.write(oTxtData3)
+		oFileObj.closed
+		omsgbox(oTxtSrc,1)	# 最初に確認
+		# Read or Write
+		with open(oTextFile,'r+') as oFileObj:
+			oFileObj.write(oTxtData1)
+			oFileObj.write(oTxtData2)
+			oFileObj.write(oTxtData3)
+		oFileObj.closed
+		# 再確認
+		with open(oTextFile,'r+') as oFileObj:
+			oTxtSrc = oFileObj.read()
+		oFileObj.closed
+		oDisp = oTxtSrc 
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGTxtBny09b"><h6>GTxtBny-)<em>[General]</em>Binary FileをRead 又は writeの何れかのmodeとしてOpen</h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/00TextBinay/09read_write_r_Plus_b02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="Python_pic/02general2/05Text/00TextBinay/09read_write_r_Plus_b01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oTextFile = 'c:\\temp\\oTextMacro1.txt'
+		#
+		oTxtData1 = '\n\n\n ***** Top *****\n\n'
+		oTxtData2 = 'Python,Macro \t Data \t Test\n\n'
+		oTxtData3 = '***** Bottom *****'
+		# Read or Write
+		with open(oTextFile,'r+b') as oFileObj:
+			oTxtSrc = oFileObj.read()
+			#oFileObj.write(oTxtData1)	# 一度のOpenではRead又はwriteの何れかしか使え無い。
+			#oFileObj.write(oTxtData2)	# 本行のComment記号を外すとErrorになる。
+			#oFileObj.write(oTxtData3)
+		oFileObj.closed
+		omsgbox(oTxtSrc,1,'Before Write')	# 最初に確認
+		# Read or Write
+		with open(oTextFile,'r+b') as oFileObj:
+			oFileObj.write(oTxtData1)
+			oFileObj.write(oTxtData2)
+			oFileObj.write(oTxtData3)
+		oFileObj.closed
+		# 再確認
+		with open(oTextFile,'r+b') as oFileObj:
+			oTxtSrc = oFileObj.read()
+		oFileObj.closed
+		omsgbox(oTxtSrc,1,'After Write')	# 最初に確認
+		oDisp = 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGTxtBny10a"><h6>GTxtBny-)<em>[General]</em>Text Fileに追記</h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/00TextBinay/10add_write02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="Python_pic/02general2/05Text/00TextBinay/10add_write01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oTextFile = 'c:\\temp\\oTextMacro1.txt'
+		#
+		oTxtData1 = '\n\n\n ***** Top *****\n\n'
+		oTxtData2 = 'Python,Macro \t Data \t Test\n\n'
+		oTxtData3 = '***** Bottom *****'
+		# Before
+		with open(oTextFile,'r') as oFileObj:
+			oTxtSrc = oFileObj.read()
+		oFileObj.closed
+		omsgbox(oTxtSrc,1,'Before Add')
+		# Add
+		with open(oTextFile,'a') as oFileObj:
+			oFileObj.write(oTxtData1)
+			oFileObj.write(oTxtData2)
+			oFileObj.write(oTxtData3)
+		oFileObj.closed
+		# 確認
+		with open(oTextFile,'r') as oFileObj:
+			oTxtSrc = oFileObj.read()
+		oFileObj.closed
+		omsgbox(oTxtSrc,1,'Add Write')
+		oDisp = 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGTxtBny10b"><h6>GTxtBny-)<em>[General]</em>Binary Fileに追記</h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/00TextBinay/10add_b02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="Python_pic/02general2/05Text/00TextBinay/10add_b01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oTextFile = 'c:\\temp\\oTextMacro1.txt'
+		#
+		oTxtData1 = '\n\n\n ***** Top *****\n\n'
+		oTxtData2 = 'Python,Macro \t Data \t Test\n\n'
+		oTxtData3 = '***** Bottom *****'
+		# Before
+		with open(oTextFile,'rb') as oFileObj:
+			oTxtSrc = oFileObj.read()
+		oFileObj.closed
+		omsgbox(oTxtSrc,1,'Before Add')
+		# Add
+		with open(oTextFile,'ab') as oFileObj:
+			oFileObj.write(oTxtData1)
+			oFileObj.write(oTxtData2)
+			oFileObj.write(oTxtData3)
+		oFileObj.closed
+		# 確認
+		with open(oTextFile,'rb') as oFileObj:
+			oTxtSrc = oFileObj.read()
+		oFileObj.closed
+		omsgbox(oTxtSrc,1,'Add Write')
+		oDisp = 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGTxtBny11a"><h6>GTxtBny-)<em>[General]</em>Text FileをRead 又は 追記の何れかのmodeとしてOpen</h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/00TextBinay/11add_Plus02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="Python_pic/02general2/05Text/00TextBinay/11add_Plus01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oTextFile = 'c:\\temp\\oTextMacro1.txt'
+		#
+		oTxtData1 = '\n\n\n ***** Top *****\n\n'
+		oTxtData2 = 'Python,Macro \t Data \t Test\n\n'
+		oTxtData3 = '***** Bottom *****'
+		# Read or Write
+		with open(oTextFile,'a+') as oFileObj:
+			oTxtSrc = oFileObj.read()
+			#oFileObj.write(oTxtData1)	# 一度のOpenではRead又は追記の何れかしか使え無い。
+			#oFileObj.write(oTxtData2)	# 本行のComment記号を外すとErrorになる。
+			#oFileObj.write(oTxtData3)
+		oFileObj.closed
+		omsgbox(oTxtSrc,1,'Before( a+ )')	# 最初に確認
+		# Read or Write
+		with open(oTextFile,'a+') as oFileObj:
+			oFileObj.write(oTxtData1)
+			oFileObj.write(oTxtData2)
+			oFileObj.write(oTxtData3)
+		oFileObj.closed
+		# 再確認
+		with open(oTextFile,'a+') as oFileObj:
+			oTxtSrc = oFileObj.read()
+		oFileObj.closed
+		omsgbox(oTxtSrc,1,'After( a+ )')
+		oDisp = 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGTxtBny11b"><h6>GTxtBny-)<em>[General]</em>Binary FileをRead 又は 追記の何れかのmodeとしてOpen</h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/00TextBinay/11add_Plus_b02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="Python_pic/02general2/05Text/00TextBinay/11add_Plus_b01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oTextFile = 'c:\\temp\\oTextMacro1.txt'
+		#
+		oTxtData1 = '\n\n\n ***** Top *****\n\n'
+		oTxtData2 = 'Python,Macro \t Data \t Test\n\n'
+		oTxtData3 = '***** Bottom *****'
+		# Read or Write
+		with open(oTextFile,'a+b') as oFileObj:
+			oTxtSrc = oFileObj.read()
+			#oFileObj.write(oTxtData1)	# 一度のOpenではRead又は追記の何れかしか使え無い。
+			#oFileObj.write(oTxtData2)	# 本行のComment記号を外すとErrorになる。
+			#oFileObj.write(oTxtData3)
+		oFileObj.closed
+		omsgbox(oTxtSrc,1,'Before( a+b )')	# 最初に確認
+		# Read or Write
+		with open(oTextFile,'a+b') as oFileObj:
+			oFileObj.write(oTxtData1)
+			oFileObj.write(oTxtData2)
+			oFileObj.write(oTxtData3)
+		oFileObj.closed
+		# 再確認
+		with open(oTextFile,'a+b') as oFileObj:
+			oTxtSrc = oFileObj.read()
+		oFileObj.closed
+		omsgbox(oTxtSrc,1,'After( a+b )')
+		oDisp = 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGTxtBny12a"><h6>GTxtBny-)<em>[General]</em>File中のCursor位置を取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/00TextBinay/12tell01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oTextFile = 'c:\\temp\\oTextMacro.txt'
+		# Readonly
+		with open(oTextFile,'rb') as oFileObj:
+			oTxtPos = oFileObj.tell()
+		oFileObj.closed
+		oDisp = u'[ FIle中のCursor位置の取得 ]\n'\
+		+ 'oFileObj.tell() = ' + str(oTxtPos)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGTxtBny13a"><h6>GTxtBny-)<em>[General]</em>File中の任意位置に移動</h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/00TextBinay/13seek01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oTextFile = 'c:\\temp\\oTextMacro.txt'
+		# Readonly
+		with open(oTextFile,'rb') as oFileObj:
+			# File終端から-10の位置取得
+			oFileObj.seek(-10,2)
+			oTxtPos = oFileObj.tell()
+		oFileObj.closed
+		oDisp = u'[ File終端から-10の位置取得 ]\n'\
+		+ 'oFileObj.tell() = ' + str(oTxtPos)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# [ .seekの説明 ] 
+# f.seek(offset, from_what)の場合、「from_what」位置からoffset値分足した値が得られる。
+# from_waht値
+# 0 : Fileの先頭(Default値)
+# 1 : 現在位置
+# 2 : Fileの終端
+</code></pre><br>
+
+
+<a name="OOoGTxtBny14a"><h6>GTxtBny-)<em>[General]</em>Binary Dataの処理</h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/00TextBinay/14struct_unpack01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import zipfile
+import struct
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		# 格納先File( .zip )
+		oZipFName = 'c:\\temp\\PythonZip.zip'
+		# 纏めるFile一覧
+		oFile = 'c:\\temp\\oTextMacro.txt'
+		oFile1 = 'c:\\temp\\oTextMacro1.txt'
+		oFile2 = 'c:\\temp\\oTextMacro2.txt'
+		#
+		oZipObj = zipfile.ZipFile(oZipFName,'w',zipfile.ZIP_DEFLATED)
+		oZipObj.write(oFile)
+		oZipObj.write(oFile1)
+		oZipObj.write(oFile2)
+		#
+		# Binary　DataからData取得
+		oBinFile = open('c:\\temp\\PythonZip.zip', 'rb')
+		oBinData = oBinFile.read()
+		oStart = 0
+		oDisp = '[ struct module ]\n'
+		for i in range(2):	# 先頭から2つのFileのHeadを示す
+			oStart = +14
+			oField = struct.unpack('LLLHH',oBinData[oStart:oStart+16])
+			crc32, comp_size, uncomp_size, filenamesize, extra_size = oField
+			oDisp = oDisp + 'crc32 : ' + str(crc32) + '\t compsize : ' + str(comp_size) + '\t uncomp_size : ' + str(uncomp_size) + '\n'\
+			+ 'filenamesize : ' + str(filenamesize) + '\t' + 'extra_size : ' + str(extra_size) + '\n\n'
+		oBinFile.close()
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# [ Format character ]
+#&emsp;'LLLHH'は出力するformat characterを指定している。
+#&emsp;&emsp;crc32&emsp;:&emsp;L
+#&emsp;&emsp;comp_size&emsp;:&emsp;L
+#&emsp;&emsp;uncomp_size&emsp;:&emsp;L
+#&emsp;&emsp;filenamesize&emsp;:&emsp;H
+#&emsp;&emsp;extra_size&emsp;:&emsp;H
+# [ format character list ]
+#&emsp;format&emsp;/&emsp;C での型		&emsp;/&emsp;Python
+#&emsp;  x   &emsp;/&emsp;pad byte		&emsp;/&emsp;no value	
+#&emsp;  c   &emsp;/&emsp;char		&emsp;/&emsp;長さ 1 の文字列	
+#&emsp;  b   &emsp;/&emsp;signed char	&emsp;/&emsp;整数型 (integer)	
+#&emsp;  B   &emsp;/&emsp;unsigned char	&emsp;/&emsp;整数型	
+#&emsp;  h   &emsp;/&emsp;short		&emsp;/&emsp;整数型	
+#&emsp;  H   &emsp;/&emsp;unsigned short	&emsp;/&emsp;整数型	
+#&emsp;  i   &emsp;/&emsp;int		&emsp;/&emsp;整数型	
+#&emsp;  I   &emsp;/&emsp;unsigned int	&emsp;/&emsp;long 整数型	
+#&emsp;  l   &emsp;/&emsp;long		&emsp;/&emsp;整数型	
+#&emsp;  L   &emsp;/&emsp;unsigned long	&emsp;/&emsp;long 整数型	
+#&emsp;  q   &emsp;/&emsp;long long		&emsp;/&emsp;long 整数型&emsp;&emsp;注2)
+#&emsp;  Q   &emsp;/&emsp;unsigned long long&emsp;/&emsp;long 整数型&emsp;注2)
+#&emsp;  f   &emsp;/&emsp;float		&emsp;/&emsp;浮動小数点型	
+#&emsp;  d   &emsp;/&emsp;double		&emsp;/&emsp;浮動小数点型	
+#&emsp;  s   &emsp;/&emsp;char[]		&emsp;/&emsp;文字列	
+#&emsp;  p   &emsp;/&emsp;char[]		&emsp;/&emsp;文字列	
+#&emsp;  P   &emsp;/&emsp;void *		&emsp;/&emsp;整数型
+# [ 注意 ]
+#&emsp;1) C と Python の間の変換では、値は正確に上記に指定された型でなくてはなりません。
+#&emsp;2) format character "q" および "Q" はplatformの C Complierが C の long long 型、 Windows では __int64 をSupprtする場合にのみ、 netive platformの値との変換を行うmodeだけで利用可能。
+#&emsp;3) format characterの前に整数をつけ、繰り返し回数 (count) を指定することが できます。 例えばformat character '4h' は 'hhhh' と全く同じ 意味です。
+#&emsp;4) format character間の空白文字は無視されます; count とformat characterの間にはspaceを入れてはいけません。
+#&emsp;5) format character "s" では、count は文字列のsizeとして扱われます。他のformat characterのように繰り返し回数ではありません; 例えば、'10c' が 10 個のcharcterを表すのに対して、 '10s' は 10byteの長さを持った 1 個 の文字列です。文字列をpackする際には指定した長さにfitするように、必要に応じて切り詰められたりNull文字で穴埋めされたりします。また特殊なcaseとして、('0c' が 0 個のcharacterを表すのに対して) '0s' は 1 個の空文字列を意味します。
+#&emsp;6) format character"p"は"Pascal文字列(pascal string)"をcodeします。Pascal文字列は固定長のbyte列に収められた短い可変長の文字列です。countは実際に文字列data中に収められる全体の長さです。このdataの先頭の 1byteには文字列の長さか255のうち小さい方の数が収められます。その後に文字列のbyte dataが続きます。 pack() に渡された Pascal 文字列の長さが長すぎた(count-1 よりも長い)場合、先頭の count-1 byteが書き込まれます。文字列が count-1 よりも短い場合、指定したcount byteに達するまでの残りの 部分はNullで埋められます。unpack() では、format character "p" は指定された count byteだけdataを読み込みますが返される文字列は決して 255 文字を超えることはないので注意してください。
+#&emsp;7) format character"I"、 "L"、 "q" および "Q" では、返される値は Python long 整数です。format character "P" では、返される値は Python 整数型または long 整数型で、これはpointerの値を Python での整数にcastする際に、 値を保持するために必要なsizeに依存します。 Null pointerは常に Python 整数型の 0 になります。 pointer型のsizeを持った値をpackする際には、Python 整数型 および long 整数型Objectを使うことができます。例えば、 Alpha および Merced processorは 64 bit のpointer値を使いますが、これはpointerを保持するために Python long 整数型が使われることを意味します; 32 bit pointerを使う他のplatformでは Python 整数型が使われます。
+#&emsp;8) defaultでは、C では数値はmachineの native形式 および byte order で表され、適切に alignment するために、必要に応じて数byteのpaddingを行ってskipします (これは C complierが用いるruleに従います)。
+#&emsp;9) 8)項に代わって、format characterの最初の文字を使って、byte orderや size、alignmentを指定することができます。指定できる文字は以下の通りです。
+#&emsp;&emsp;文字	&emsp;/&emsp;バイトオーダ	&emsp;/&emsp;サイズおよびアラインメント
+#&emsp;&emsp;@		&emsp;/&emsp;ネイティブ		&emsp;/&emsp;ネイティブ
+#&emsp;&emsp;=		&emsp;/&emsp;ネイティブ		&emsp;/&emsp;標準
+#&emsp;&emsp;＜(半角)	&emsp;/&emsp;リトルエンディアン	&emsp;/&emsp;標準
+#&emsp;&emsp;＞(半角)	&emsp;/&emsp;ビッグエンディアン	&emsp;/&emsp;標準
+#&emsp;&emsp;!		&emsp;/&emsp;ネットワークバイトオーダ (= ビッグエンディアン)&emsp;/&emsp;標準
+#&emsp;format characterの最初の文字が上のいずれかでない場合、"@" であるとみなされます。
+#&emsp;9) "@" と "=" の違いに注意してください: 両方とも netiveのbyte orderですが、後者のbyte sizeやbyte orderは標準のものに合わせてあります。
+</code></pre><br>
+
+
+<a name="OOoGTxtBny"><h6>GTxtBny-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/00TextBinay/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ CSV ](<em1>Python3.3 ではError</em1> )</p class="s3">
+<a name="OOoGTxtCsv01a"><h6>GTxtCsv-)<em>[General]</em>CSVに関する注意</h6></a><pre><code>
+[ 注意 ]
+&emsp;1) 「 CSV 」に関する<em1>「標準」は存在しない</em1>為、CSV形式は、DataをRead / WriteするApplicationの操作に適して定義されているにすぎません。
+&emsp;「標準」が無いという事は、異なるApplication間では生成されるDataには微妙な違いが生じる事がある事を留意する必要があります。
+
+&emsp;2) file openする前にos.access()を使ってAccess状態を調べる事はSecurity Holeを作り出してしまいます。
+&emsp; 調べる時点と開く時点の利用して他のUserがFileを操作するかも知れないからです。 
+
+&emsp;3) Windows で用いる際には「wb」modeで開く
+</code></pre><br>
+
+
+<a name="OOoGTxtCsv02a"><h6>GTxtCsv-)<em>[General]</em>Excelで作成したCSV FileのRead</h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/01CSV/02ExcelCsv01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import csv
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oExcelCsv = 'c:\\temp\\PythonExcel.csv'
+		oOpenObj = open(oExcelCsv, 'rb')
+		csvObj = csv.reader(oOpenObj, dialect='excel')
+		oCsv = ''
+		for k in csvObj:
+			oCsv = oCsv + ','.join(k) + '\n'
+		oOpenObj.close()
+		oDisp = u'[ Excelで作成したCSV ]\n\n'\
+		+ unicode(oCsv,'utf-8')
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGTxtCsv03a"><h6>GTxtCsv-)<em>[General]</em>CSV Fileのwrite1( 'wb' mode )</h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/01CSV/03Csv_writerows_wb01.png" align="right" hspace="4" vspace="4" width="20%"><img SRC="Python_pic/02general2/05Text/01CSV/03Csv_writerows_wb03.png" align="right" hspace="4" vspace="4" width="20%"><img SRC="Python_pic/02general2/05Text/01CSV/03Csv_writerows_wb02.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import csv
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oCsvFile = 'c:\\temp\\PythonCSV.csv'
+		oWriteObj = open(oCsvFile, 'wb')
+		#
+		csvObj = csv.writer(oWriteObj,delimiter=',', quotechar='|',quoting=csv.QUOTE_MINIMAL)
+		oWriteDate1 = [('No','Name','Address','Tel'),('1','Python1','Japan1','081-123-4567'),('2','Python2','Japan2','081-***-1234')]
+		oWriteDate2 = [('3','Python3','Japan3','081-???-5678')]
+		# 必ず1行目から上書きされる。
+		csvObj.writerows(oWriteDate1)
+		# 追加のwrite
+		csvObj.writerows(oWriteDate2)
+		#
+		oWriteObj.close()
+		oDisp = 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# [ Option ]
+# 1) delimiter&emsp;:&emsp;列区切り文字
+# 2) quotechar&emsp;:&emsp;カラム内容をクォートする際に用いられる文字。
+# 3) escapechar&emsp;:&emsp;列区切文字をエスケープする際に用いられる文字（None 可）
+# 4) doublequote&emsp;:&emsp;quotechar 自身をどう処理するか。 Trueで二重化、 FalseでEscape(escapecharがNoneの時、実行時Errorとなる可能性あり）
+# 5) lineterminator&emsp;: &emsp;行区切り文字
+# 6) quoting&emsp;:&emsp;以下の値を設定
+#&emsp;&emsp;6-1) csv.QUOTE_ALL&emsp;:&emsp;無条件ですべてをクォートする
+#&emsp;&emsp;6-2) csv.QUOTE_MINIMAL&emsp;:&emsp;特殊な文字が含まれているときのみクォートする
+#&emsp;&emsp;6-3) csv.QUOTE_NONNUMERIC&emsp;:&emsp;非数値のみクォートする（浮動小数点数が多用されたデータ向け）
+#&emsp;&emsp;6-4) csv.QUOTE_NONE&emsp;:&emsp;特殊な文字をエスケープすることで処理する（escapechar が None の時、実行時エラーとなる可能性あり）
+</code></pre><br>
+
+
+<a name="OOoGTxtCsv03b"><h6>GTxtCsv-)<em>[General]</em>CSV Fileのwrite1( 'w' mode )</h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/01CSV/03Csv_writerows_w01.png" align="right" hspace="4" vspace="4" width="20%"><img SRC="Python_pic/02general2/05Text/01CSV/03Csv_writerows_w03.png" align="right" hspace="4" vspace="4" width="20%"><img SRC="Python_pic/02general2/05Text/01CSV/03Csv_writerows_w02.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import csv
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oCsvFile = 'c:\\temp\\PythonCSV2.csv'
+		oWriteObj = open(oCsvFile, 'w')
+		#
+		csvObj = csv.writer(oWriteObj,delimiter=',', quotechar='|',quoting=csv.QUOTE_MINIMAL)
+		oWriteDate1 = [('No','Name','Address','Tel'),('1','Python1','Japan1','081-123-4567'),('2','Python2','Japan2','081-***-1234')]
+		oWriteDate2 = [('3','Python3','Japan3','081-???-5678')]
+		# 必ず1行目から上書きされる。
+		csvObj.writerows(oWriteDate1)
+		# 追加のwrite
+		csvObj.writerows(oWriteDate2)
+		#
+		oWriteObj.close()
+		oDisp = 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGTxtCsv03c"><h6>GTxtCsv-)<em>[General]</em>入力Dataと同じFormatでwrite</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import csv
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oCsvFile = 'c:\\temp\\PythonCSV3.csv'
+		oWriteObj = open(oCsvFile, 'wb')
+		#
+		csvObj = csv.writer(oWriteObj,delimiter=',', quotechar='|',quoting=csv.QUOTE_MINIMAL)
+		oWriteDate1 = [('No','Name','Address','Tel'),('1','Python1','Japan1','081-123-4567'),('2','Python2','Japan2','081-***-1234')]
+		oWriteDate2 = [('3','Python3','Japan3','081-???-5678')]
+		# 必ず1行目から上書きされる。
+		csvObj.writerow(oWriteDate1)
+		# 追加のwrite
+		csvObj.writerow(oWriteDate2)
+		#
+		oWriteObj.close()
+		oDisp = 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+<img SRC="Python_pic/02general2/05Text/01CSV/03writerow_wb02.png" align="right" hspace="4" vspace="4" width="80%"><br>
+<img SRC="Python_pic/02general2/05Text/01CSV/03writerow_wb03.png" align="right" hspace="4" vspace="4" width="80%"><br>
+<img SRC="Python_pic/02general2/05Text/01CSV/03writerow_wb01.png" align="right" hspace="4" vspace="4" width="80%">
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</code></pre><br>
+
+
+<a name="OOoGTxtCsv"><h6>GTxtCsv-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/05Text/01CSV/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">XML</p class="s1">
+<a name="OOoGXML01a"><h6>GTxtCsv-)<em>[General]</em>XML Fileの構文解析</h6></a><pre><code>
+<img SRC="Python_pic/02general2/13XML/01xml_parse02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="Python_pic/02general2/13XML/01xml_parse01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import xml.dom.minidom
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+	return msgbox.execute()
+#
+def oTest():
+	try:
+		oXmlFile = 'c:\\temp\\PythonMacroTest.xml'
+		oDom = xml.dom.minidom.parse(oXmlFile)
+		oTopTag = oDom.documentElement.tagName
+		oDisp= '[ Top Tag ]\n' + str(oTopTag) + '\n' + '[ Second Tag ]\n'
+		for node1 in oDom.documentElement.childNodes:
+			if node1.nodeType == node1.ELEMENT_NODE:
+				oDisp = oDisp + '\t' + node1.tagName + '\n'
+				for node2 in node1.childNodes:
+					if node2.nodeType == node2.ELEMENT_NODE:
+						oDisp = oDisp + '\t\t' + node2.tagName + '\n'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGXML"><h6>GTxtCsv-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/13XML/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+
+<br clear="right">
+<h6><center><a href="#TopOfPage">Top of Page</a></center></h6><br>
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/Python_Macro_General_No4.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:35:23 GMT -->
+</html>

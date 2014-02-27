@@ -1,0 +1,21 @@
+body { background: url(bg025.gif); }
+h1 { font-size: 30pt; color: green; text-align: center; line-height: 35pt; font-weight: bold; }
+h2 { font-size: 35pt; color: blue; text-align: center; font-weight: bold;}
+h3 { font-size: 25pt; color: Black; font-weight: bold; margin-top: 0px; margin-bottom: 0px; margin-left: 50px; margin-right: 0em; }
+h4 { font-size: 12pt; color: black; text-align: left; margin: 0px 500px 0px 50px; }
+h5 { font-size: 12pt; color: black; text-align: left; margin: 0px 0px 0px 0px; }
+h6 { font-size: 16pt; color : blue; font-weight: bold; margin: 5px 5px 5px 120px; line-height: 20pt; }
+p { font-size: 20pt; color : black; font-weight: bold; margin-top: 0px; margin-left: 60px; margin-bottom: 0px; line-height: 20pt; }
+p.s1 { font-size: 20pt; color : green; font-weight: bold; margin-top: 0px; margin-left: 50px; margin-bottom: 0px; line-height: 25pt;}
+p.s2 {font-size: 12pt; line-height: 12pt; color : black; background-color: #ffffe0; font-weight: normal; margin-top: 0px; margin-left: 150px; width: 1000px; padding-top: 0px; padding-left: 30px; white-space: pre;}
+p.s3 {font-size: 16pt; line-height: 14pt; color: green; font-weight: bold; margin-top: 0px; margin-left: 70px; margin-bottom: 0px; }
+p.s4 {font-size: 14pt; line-height: 14pt; color: purple; font-weight: normal; margin-top: 0px; margin-left: 80px; margin-bottom: 0px;}
+ul { font-size: 14pt; line-height: 16pt; color: black; text-align: left; font-weight: bold; margin-top: 0px; margin-left: 50px; margin-right: 0px; margin-bottom: 0px; }
+ul.s1 { list-style: decimal; font-size: 14pt; color : green; margin-top: 0px; margin-left: 50px; margin-bottom: 0px; line-height: 14pt;}
+ul.s2 { font-size: 14pt; color: black; font-weight: nomal; margin-top: 0em; margin-left: 50px;}
+em { font-size: 10pt;font-weight: nomal; color: Black; font-style: heading; margin-right: 0.5em;}
+em.s1{ font-size: 25pt; color: Red; font-weight: Bold; margin-right: 0.5em;}
+em.s2{ font-size: 16pt; color: Blue; font-weight: Bold; margin-right: 0.5em;}
+em.c3 { color: blue; }
+em.c4 { color: red; }
+div.gazou { margin-left:200px; height:150px; width: 1000px; float:left; }

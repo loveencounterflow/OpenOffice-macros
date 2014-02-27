@@ -1,0 +1,11 @@
+body { background: url(bg025.gif); }
+h1 { font-size: 30pt; color: green; text-align: center; line-height: 15pt; font-weight: bold;}
+h2 { font-size: 25pt; color: blue; text-align: left; font-weight: bold; margin: 0px 50px 0px 50px}
+h3 { font-size: 16pt; color: purple; text-align: center; font-weight: bold;}
+h4 { font-size: 12pt; color: black; text-align: left; margin: 0px 500px 0px 50px}
+h5 { font-size: 20pt; color: black; text-align: left; font-weight: bold;}
+h6 { font-size: 20pt; color: black; font-weight:bold; line-height: 50%}
+p { font-size: 20pt; color : black; text-aline: left; margin: 0px 50px 0px 40px; line-height: 25pt; letter-space: 10px;}
+ul { font-size: 15pt; color:black; text-aline: left; font-weight: bold; margin: 0px 200px 0px 50px;}
+em { font-style: normal; font-weight: bold; color: red; }
+em1 { font-weight: bold; font-size : 20pt;}

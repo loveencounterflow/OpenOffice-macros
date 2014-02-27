@@ -1,0 +1,4214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/Python_Macro_General_No3.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:33:54 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<title>Macroの杜(Python編 / General No.3)</title>
+</head>
+<link rel="stylesheet"
+type="text/css" href="css_macroPython.css">
+<body>
+<a name="TopOfPage"><left><p><A HREF="index-2.html">Home of site</a></p></left></a><br>
+<h1>Macroの杜( Python編 )<br>
+[ Python for LibreOffice( Apache OpenOffice ) ]
+</h1>
+
+<h2>【 General No.3 】</h2>
+
+<center><h1>###【 Continued from <a href="Python_Macro_General_No2.html">Python / General No.2</a> 】###</h1></center>
+<br>
+
+<h3><Center>**********************【 Index 】**********************</center></h3>
+
+<p class="s1">Data2</p class="s1">
+<p class="s3">[ Date ]</p class="s3">
+<ul>
+GDDt-)<a href="#OOoGDDt01a"><em>[General]</em>Today<em>[ import datetime / datetime.date.today() ]</em></a><br>
+GDDt-)<a href="#OOoGDDt02a"><em>[General]</em>Now<em>[ datetime.datetime.today() ]</em></a><br>
+GDDt-)<a href="#OOoGDDt03a"><em>[General]</em>Year<em>[ .year ]</em></a><br>
+GDDt-)<a href="#OOoGDDt03b"><em>[General]</em>Month<em>[ .month ]</em></a><br>
+GDDt-)<a href="#OOoGDDt03c"><em>[General]</em>Day<em>[ .day ]</em></a><br>
+GDDt-)<a href="#OOoGDDt04a"><em>[General]</em>Hour<em>[ .hour ]</em></a><br>
+GDDt-)<a href="#OOoGDDt04b"><em>[General]</em>Minute<em>[ .minute ]</em></a><br>
+GDDt-)<a href="#OOoGDDt04c"><em>[General]</em>Second<em>[ .second ]</em></a><br>
+GDDt-)<a href="#OOoGDDt04d"><em>[General]</em>Microsecond<em>[ .microsecond ]</em></a><br>
+GDDt-)<a href="#OOoGDDt05a"><em>[General]</em>datetime Format1<em>[ datetime / .isoformat ]</em></a><br>
+GDDt-)<a href="#OOoGDDt05b"><em>[General]</em>datetime Format2<em>[ datatime / .strftime() ]</em></a><br>
+GDDt-)<a href="#OOoGDDt05c"><em>[General]</em>date Format<em>[ date / .strftime() ]</em></a><br>
+GDDt-)<a href="#OOoGDDt06a"><em>[General]</em>明日の日付<em>[ .timedelta(days=1) ]</em></a><br>
+GDDt-)<a href="#OOoGDDt06b"><em>[General]</em>任意の日付の一週間後<em>[ .datetime(,,) ]</em></a><br>
+GDDt-)<a href="#OOoGDDt06c"><em>[General]</em>任意の日付から今日までの日数<em>[  ]</em></a><br>
+GDDt-)<a href="#OOoGDDt07a"><em>[General]</em>任意の時間処理を中断<em>[ time.sleep ]</em></a><br>
+GDDt-)<a href="#OOoGDDt08a"><em>[General]</em>calendar moduleを使わない曜日の取得<em>[ from datetime import datetime / .weekday() ]</em></a><br>
+GDDt-)<a href="#OOoGDDt"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+&emsp;<p class="s4">[[-- Calendar --]]</p class="s4">
+<ul>
+GDDCal-)<a href="#OOoGDDCal01a"><em>[General]</em>任意MonthのCalendar<em>[ import calendar / .monthcalendar ]</em></a><br>
+GDDCal-)<a href="#OOoGDDCal01b"><em>[General]</em>任意の曜日開始のcalendar<em>[ .setfirstweekday() ]</em></a><br>
+GDDCal-)<a href="#OOoGDDCal02a"><em>[General]</em>現在設定されている週の最初の曜日取得<em>[ .firstweekday() ]</em></a><br>
+GDDCal-)<a href="#OOoGDDCal03a"><em>[General]</em>閏年かどうかのCheck<em>[ .isleap() ]</em></a><br>
+GDDCal-)<a href="#OOoGDDCal03b"><em>[General]</em>指定された期間の閏年の回数取得<em>[ .leapdays(,) ]</em></a><br>
+GDDCal-)<a href="#OOoGDDCal04a"><em>[General]</em>曜日取得<em>[ .weekday() ]</em></a><br>
+GDDCal-)<a href="#OOoGDDCal05a"><em>[General]</em>指定された月の1日の曜日と日数取得<em>[ .monthrange() ]</em></a><br>
+GDDCal-)<a href="#OOoGDDCal06a"><em>[General]</em>現時刻(協定世界時[UTC])のTime Stamp取得<em>[ .timegm() / .datetime.utcnow().timetuple() ]</em></a><br>
+GDDCal-)<a href="#OOoGDDCal"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+<br><br>
+
+
+<p class="s3">[ List / Tuple ]</p class="s3">
+<ul>
+GDAy-)<a href="#OOoGDAy01a"><em>[General]</em>リストの作成1<em>[  ]</em></a><br>
+GDAy-)<a href="#OOoGDAy01a1"><em>[General]</em>リストの作成2<em>[  ]</em></a><br>
+GDAy-)<a href="#OOoGDAy01a2"><em>[General]</em>リストの作成3[ 2.7系 ]<em>[ range ]</em></a><br>
+GDAy-)<a href="#OOoGDAy01a2v33"><em>[General]</em>リストの作成3[ 3.3系 ]<em>[ range / list ]</em></a><br>
+GDAy-)<a href="#OOoGDAy01a3"><em>[General]</em>リストの作成4<em>[ slice ]</em></a><br>
+GDAy-)<a href="#OOoGDAy01a4"><em>[General]</em>同じ型のリストの作成<em>[ import array / .array(,) ]</em></a><br>
+GDAy-)<a href="#OOoGDAy01b"><em>[General]</em>リストに値を追加<em>[  ]</em></a><br>
+GDAy-)<a href="#OOoGDAy01c"><em>[General]</em>リストの初期化<em>[  ]</em></a><br>
+GDAy-)<a href="#OOoGDAy01d"><em>[General]</em>リストの取出し<em>[  ]</em></a><br>
+GDAy-)<a href="#OOoGDAy01e"><em>[General]</em>リストの置換<em>[  ]</em></a><br>
+GDAy-)<a href="#OOoGDAy01f"><em>[General]</em>リストの追加<em>[ .append / .insert ]</em></a><br>
+GDAy-)<a href="#OOoGDAy01g"><em>[General]</em>リストの結合<em>[ .extend ]</em></a><br>
+GDAy-)<a href="#OOoGDAy01h"><em>[General]</em>リストの検索<em>[ in / .index ]</em></a><br>
+GDAy-)<a href="#OOoGDAy01i"><em>[General]</em>リストの削除<em>[ .pop / .remove / del ]</em></a><br>
+GDAy-)<a href="#OOoGDAy01j"><em>[General]</em>リストの要素数<em>[ len() / .count ]</em></a><br>
+GDAy-)<a href="#OOoGDAy01k"><em>[General]</em>リストの重複する要素を取り除く<em>[ set ]</em></a><br>
+GDAy-)<a href="#OOoGDAy01L"><em>[General]</em>リスト自体を逆順にする<em>[ .reverse() ]</em></a><br>
+GDAy-)<a href="#OOoGDAy01m"><em>[General]</em>リスト自体は変更せずに表示のみ順逆<em>[ reversed() ]</em></a><br>
+GDAy-)<a href="#OOoGDAy01n"><em>[General]</em>Sortされた新規List Object作成[ 2.7系 ]<em>[ sorted() ]</em></a><br>
+GDAy-)<a href="#OOoGDAy01n33"><em>[General]</em>Sortされた新規List Object作成[ 3.3系 ]<em>[ sorted() ]</em></a><br>
+GDAy-)<a href="#OOoGDAy02a"><em>[General]</em>タプル( Tuple )<em>[  ]</em></a><br>
+GDAy-)<a href="#OOoGDAy04a"><em>[General]</em>通し番号を付ける<em>[ enumerate(,) ]</em></a><br>
+GDAy-)<a href="#OOoGDAy05a"><em>[General]</em>List1(Tuple1)にあってList2(Tuple2)に無いItem Listのset object作成[ 2.7系 ]<em>[ set / - ]</em></a><br>
+GDAy-)<a href="#OOoGDAy05a33"><em>[General]</em>List1(Tuple1)にあってList2(Tuple2)に無いItem Listのset object作成[ 3.3系 ]<em>[ set / - ]</em></a><br>
+GDAy-)<a href="#OOoGDAy05b"><em>[General]</em>List1(Tuple1)かList2(Tuple2)にあるItem Listのset object作成<em>[ set / | ]</em></a><br>
+GDAy-)<a href="#OOoGDAy05c"><em>[General]</em>List1(Tuple1)とList2(Tuple2)の両方にあるItem Listのset object作成<em>[ set / & ]</em></a><br>
+GDAy-)<a href="#OOoGDAy05d"><em>[General]</em>List1(Tuple1)又はList2(Tuple2)の片方にあるItem Listのset object作成<em>[ set / ^ ]</em></a><br>
+GDAy-)<a href="#OOoGDAy06a"><em>[General]</em>行列の行と列を入替える<em>[  ]</em></a><br>
+GDAy-)<a href="#OOoGDAy07a"><em>[General]</em>ListのTupleをTupleのListにする<em>[ zip ]</em></a><br>
+GDAy-)<a href="#OOoGDAy08a"><em>[General]</em>ListにData追加と共にSort<em>[ import bisect / .insort(,) ]</em></a><br>
+GDAy-)<a href="#OOoGDAy"><em>[General]</em><em>[  ]</em></a><br>
+GDAy-)<a href="#OOoGDAy"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+<p class="s3">[ Dictionary ]</p class="s3">
+<ul>
+GDDct-)<a href="#OOoGDDct01aV2"><em>[General]</em>Dictionary型Data作成1(ver2.7)<em>[ {} ]</em></a><br>
+GDDct-)<a href="#OOoGDDct01aV3"><em>[General]</em>Dictionary型Data作成1(ver3.3)<em>[ {} ]</em></a><br>
+GDDct-)<a href="#OOoGDDct01b"><em>[General]</em>Dictionary型Data作成2<em>[ dict ]</em></a><br>
+GDDct-)<a href="#OOoGDDct02aV2"><em>[General]</em>Dictionary Item抽出(ver2.7)<em>[ iteritems ]</em></a><br>
+GDDct-)<a href="#OOoGDDct02aV3"><em>[General]</em>Dictionary Item抽出(ver3.3)<em>[  ]</em></a><br>
+GDDct-)<a href="#OOoGDDct"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+<p class="s3">[ Boolean ]</p class="s3">
+<ul>
+GDBln-)<a href="#OOoGDBln1a"><em>[General]</em>Tuple中の何れかの要素がTrueかどうか<em>[ any ]</em></a><br>
+GDBln-)<a href="#OOoGDBln2a"><em>[General]</em>Tuple中の全ての要素がTrueかどうか<em>[ all ]</em></a><br>
+GDBln-)<a href="#OOoGDBln"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+<p class="s3">[ 集合型 / set(可変) ,frozenset(不変) ]</p class="s3">
+<ul>
+GDSet-)<a href="#OOoGDSet01a"><em>[General]</em>set Objectの作成と演算<em>[ set / - / | / & / ^ ]</em></a><br>
+GDSet-)<a href="#OOoGDSet02a"><em>[General]</em>frozenset Objectの作成と演算<em>[ frozenset / - / | / & / ^ ]</em></a><br>
+GDSet-)<a href="#OOoGDSet"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+<p class="s3">[ iterable( イテレータ型 ) ]</p class="s3">
+<ul>
+GDIter-)<a href="#OOoGDIter0a"><em>[General]</em>iterableの利点<em>[  ]</em></a><br>
+GDIter-)<a href="#OOoGDIter01a"><em>[General]</em>iterable作成1[ 2.7系 ]<em>[ iter / .next() ]</em></a><br>
+GDIter-)<a href="#OOoGDIter01a33"><em>[General]</em>iterable作成1[ 3.3系 ]<em>[ iter / next(iterable) ]</em></a><br>
+GDIter-)<a href="#OOoGDIter01b"><em>[General]</em>iterable作成2<em>[ __iter__ ]</em></a><br>
+GDIter-)<a href="#OOoGDIter02a"><em>[General]</em>無限iterable作成1{ 2.7系 ]<em>[ import itertools / .count() ]</em></a><br>
+GDIter-)<a href="#OOoGDIter02a33"><em>[General]</em>無限iterable作成1{ 3.3系 ]<em>[ import itertools / .count(,) ]</em></a><br>
+GDIter-)<a href="#OOoGDIter02b"><em>[General]</em>無限iterable作成2<em>[ .cycle() ]</em></a><br>
+GDIter-)<a href="#OOoGDIter03a"><em>[General]</em>任意回数の繰返しiterable作成<em>[ .repeat(,) ]</em></a><br>
+GDIter-)<a href="#OOoGDIter04a"><em>[General]</em>複数の文字列からiterable作成<em>[ .chain ]</em></a><br>
+GDIter-)<a href="#OOoGDIter05a"><em>[General]</em>条件不一致以降のList Dataのiterable作成<em>[ .dropwhile() ]</em></a><br>
+GDIter-)<a href="#OOoGDIter05b"><em>[General]</em>条件不一致になるまでList Dataのiterable作成<em>[ .takewhile() ]</em></a><br>
+GDIter-)<a href="#OOoGDIter06a"><em>[General]</em>要素のGroup化1<em>[ .groupby() ]</em></a><br>
+GDIter-)<a href="#OOoGDIter06b"><em>[General]</em>要素のGroup化2<em>[ .groupby(,lambda x: ) ]</em></a><br>
+GDIter-)<a href="#OOoGDIter07a"><em>[General]</em>条件が一致するDataのiterable作成<em>[ .iflter() ]</em></a><br>
+GDIter-)<a href="#OOoGDIter07b"><em>[General]</em>条件が不一致のDataのiterable作成<em>[ .iflterfalse() ]</em></a><br>
+GDIter-)<a href="#OOoGDIter08a"><em>[General]</em>任意の区間のiterable作成<em>[ .islice ]</em></a><br>
+GDIter-)<a href="#OOoGDIter09a"><em>[General]</em>iterable( or List )要素からmap iterable作成<em>[ .imap ]</em></a><br>
+GDIter-)<a href="#OOoGDIter09b"><em>[General]</em>Tupleのiterable( or List )要素からmap iterable作成<em>[ .starmap ]</em></a><br>
+GDIter-)<a href="#OOoGDIter10a"><em>[General]</em>iterable( or List )要素から任意数分の独立したiterable作成<em>[ .tee ]</em></a><br>
+GDIter-)<a href="#OOoGDIter11a"><em>[General]</em>複数のiterable( or List )要素を各要素をTuple化した1つのiterable作成(最少要素数揃え)<em>[ .izip ]</em></a><br>
+GDIter-)<a href="#OOoGDIter11b"><em>[General]</em>複数のiterable( or List )要素を各要素をTuple化した1つのiterable作成(最多要素数揃え)<em>[ .izip_longest ]</em></a><br>
+GDIter-)<a href="#OOoGDIter12a"><em>[General]</em>集合のデカルト積(直積)1<em>[ .product ]</em></a><br>
+GDIter-)<a href="#OOoGDIter12b"><em>[General]</em>集合のデカルト積(直積)2<em>[ .product ]</em></a><br>
+GDIter-)<a href="#OOoGDIter13a"><em>[General]</em>順列作成(取り出す要素数を無指定)<em>[ .permutations ]</em></a><br>
+GDIter-)<a href="#OOoGDIter13b"><em>[General]</em>順列作成(取り出す要素数を指定)<em>[ .permutations ]</em></a><br>
+GDIter-)<a href="#OOoGDIter14a"><em>[General]</em>組合せ作成<em>[ .combinations ]</em></a><br>
+GDIter-)<a href="#OOoGDIter"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+
+<p class="s1"> collections(コンテナデータ型)</p class="s1">
+<p class="s3">[ deque ]</p class="s3">
+<ul>
+GDDeque-)<a href="#GDDeque00a"><em>[General]</em>dequeの利点<em>[  ]</em></a><br>
+GDDeque-)<a href="#GDDeque01a"><em>[General]</em>ListへData追加比較(右から追加)<em>[ from collections import deque / deque / .append ]</em></a><br>
+GDDeque-)<a href="#GDDeque02a"><em>[General]</em>ListへData追加比較(左から追加)<em>[ .appendleft ]</em></a><br>
+GDDeque-)<a href="#GDDeque03a"><em>[General]</em>Listから要素取出比較(右から要素を取出)<em>[ .pop() ]</em></a><br>
+GDDeque-)<a href="#GDDeque04a"><em>[General]</em>Listから要素取出比較(右から要素を取出)<em>[ .popleft() ]</em></a><br>
+GDDeque-)<a href="#GDDeque05a"><em>[General]</em>dequeを空にする<em>[ .clear() ]</em></a><br>
+GDDeque-)<a href="#GDDeque06a"><em>[General]</em>iterableに要素追加(右から追加)<em>[ .extend ]</em></a><br>
+GDDeque-)<a href="#GDDeque07a"><em>[General]</em>iterableに要素追加(左から追加)<em>[ .extendleft ]</em></a><br>
+GDDeque-)<a href="#GDDeque08a"><em>[General]</em>要素を左右へ n 個分rotate<em>[ .rotate(n) ]</em></a><br>
+GDDeque-)<a href="#GDDeque09a"><em>[General]</em>要素数を数える<em>[ .count(x) ]</em></a><br>
+GDDeque-)<a href="#GDDeque10a"><em>[General]</em>要素順の反転<em>[ .reverse() ]</em></a><br>
+GDDeque-)<a href="#GDDeque11a"><em>[General]</em>要素数を制限してdeque化<em>[ deque(,maxlen=n) ]</em></a><br>
+GDDeque-)<a href="#GDDeque"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+
+
+<br><br><br>
+<h1><center>###【 Following <a href="Python_Macro_General_No4.html">Python / General No.4</a> 】###</center></h1>
+
+
+
+<br><br><br><br><br><br><br><br><br><br>
+<h3><center>******************************[ Macro Code ]******************************</center></h3>
+<br>
+
+<h3>【　General No.3　】<h3>
+<p class="s1">Data2</p class="s1">
+<p class="s3">[ Date ]</p class="s3">
+<a name="OOoGDDt01a"><h6>GDDt-)<em>[General]</em>Today</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Date/01Today01.html" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,datetime
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oToday = datetime.date.today()
+		oDisp = str(oToday)
+		omsgbox(oDisp)
+		
+	except:
+		pass
+</code></pre><br>
+
+
+<a name="OOoGDDt02a"><h6>GDDt-)<em>[General]</em>Now</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Date/02Now01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,datetime
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oNow = datetime.datetime.today()
+		oDisp = str(oNow)
+		omsgbox(oDisp)
+		
+	except:
+		pass
+</code></pre><br>
+
+
+<a name="OOoGDDt03a"><h6>GDDt-)<em>[General]</em>Year</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Date/03Yaer01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,datetime
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oToday = datetime.date.today()
+		oYear = oToday.year
+		oDisp = str(oYear)
+		omsgbox(oDisp)
+		
+	except:
+		pass
+</code></pre><br>
+
+
+<a name="OOoGDDt03b"><h6>GDDt-)<em>[General]</em>Month</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Date/03Month01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,datetime
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oToday = datetime.date.today()
+		oMonth = oToday.month
+		oDisp = str(oMonth)
+		omsgbox(oDisp)
+		
+	except:
+		pass
+</code></pre><br>
+
+
+<a name="OOoGDDt03c"><h6>GDDt-)<em>[General]</em>Day</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Date/03Day01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,datetime
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oToday = datetime.date.today()
+		oDay = oToday.day
+		oDisp = str(oDay)
+		omsgbox(oDisp)
+		
+	except:
+		pass
+</code></pre><br>
+
+
+<a name="OOoGDDt04a"><h6>GDDt-)<em>[General]</em>Hour</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Date/04Hour01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,datetime
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oNow = datetime.datetime.today()
+		oHour = oNow.hour
+		oDisp = str(oHour)
+		omsgbox(oDisp)
+		
+	except:
+		pass
+</code></pre><br>
+
+
+<a name="OOoGDDt04b"><h6>GDDt-)<em>[General]</em>Minute</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Date/04Minute01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,datetime
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oNow = datetime.datetime.today()
+		oMinute = oNow.minute
+		oDisp = str(oMinute)
+		omsgbox(oDisp)
+		
+	except:
+		pass
+</code></pre><br>
+
+
+<a name="OOoGDDt4c"><h6>GDDt-)<em>[General]</em>Second</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Date/04Second01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,datetime
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oNow = datetime.datetime.today()
+		oSecond = oNow.second
+		oDisp = str(oSecond)
+		omsgbox(oDisp)
+		
+	except:
+		pass
+</code></pre><br>
+
+
+<a name="OOoGDDt04d"><h6>GDDt-)<em>[General]</em>Microsecond</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Date/04Microsecond01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,datetime
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oNow = datetime.datetime.today()
+		oMicrosecond = oNow.microsecond
+		oDisp = str(oMicrosecond)
+		omsgbox(oDisp)
+		
+	except:
+		pass
+</code></pre><br>
+
+
+<a name="OOoGDDt05a"><h6>GDDt-)<em>[General]</em>datetime Format1</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Date/05Isoformat01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,datetime
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oToday = datetime.date.today()
+		oIsoFormat = oToday.isoformat()
+		oDisp = str(oIsoFormat)
+		omsgbox(oDisp)
+		
+	except:
+		pass
+</code></pre><br>
+
+
+<a name="OOoGDDt05b"><h6>GDDt-)<em>[General]</em>datetime Format2</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Date/05DatetimeFormat01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import datetime
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oNow = datetime.datetime.now()
+		oNowFormat1 = oNow.strftime('%y/%m/%d %A %H:%M:%S')
+		oNowFormat2 = oNow.strftime('%Y.%B.%d %A %I:%M%p')
+		oDisp = u'[ Now Format ]\n' + str(oNowFormat1) + '\n' + str(oNowFormat2)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+#
+#
+%a&emsp;:&emsp;ロケールの短縮された曜日名を表示します
+%A&emsp;:&emsp;ロケールの曜日名を表示します
+%b&emsp;:&emsp;ロケールの短縮された月名を表示します
+%B&emsp;:&emsp;ロケールの月名を表示します
+%c&emsp;:&emsp;ロケールの日時を適切な形式で表示します
+%d&emsp;:&emsp;月中の日にちを10 進表記した文字列[01,31] を表示します
+%f&emsp;:&emsp;マイクロ秒を10 進表記した文字列[000000,999999] を表示します(左側から0 埋めされます)<em>[ 注1 ]</em>
+%H&emsp;:&emsp;時間(24 時間表記)を10 進表記した文字列[00,23] を表示します
+%I&emsp;:&emsp;時間(12 時間表記) を10 進表記した文字列[01,12] を表示します
+%j&emsp;:&emsp;年中の日にちを10 進表記した文字列[001,366] を表示します
+%m&emsp;:&emsp;月を10 進表記した文字列[01,12]を表示します
+%M&emsp;:&emsp;分を10 進表記した文字列[00,59]を表示します
+%p&emsp;:&emsp;ロケールのAM もしくはPM を表示します<em>[ 注2 ]</em>
+%S&emsp;:&emsp;秒を10 進表記した文字列[00,61]を表示します<em>[ 注3 ]</em>
+%U&emsp;:&emsp;年中の週番号(週の始まりは日曜日とする)を10 進表記した文字列[00,53]を表示します新年の最初の日曜日に先立つ日は0 週に属するとします<em>[ 注4 ]</em>
+%w&emsp;:&emsp;曜日を10 進表記した文字列[0(日曜日),6]を表示します
+%W&emsp;:&emsp;年中の週番号(週の始まりは月曜日とする)を10 進表記した文字列[00,53]を表示します新年の最初の月曜日に先立つ日は0 週に属するとします<em>[ 注4 ]</em>
+%x&emsp;:&emsp;ロケールの日付を適切な形式で表示します
+%X&emsp;:&emsp;ロケールの時間を適切な形式で表示します
+%y&emsp;:&emsp;世紀なしの年(下2 桁) を10 進表記した文字列[00,99] を表示します
+%Y&emsp;:&emsp;世紀ありの年を10 進表記した文字列を表示します
+%z&emsp;:&emsp;UTC オフセットを+HHMM もしくは-HHMM の形式で表示します(オブジェクトがnaive であれば空文字列)<em>[ 注5 ]</em>
+%Z&emsp;:&emsp;タイムゾーンの名前を表示します(オブジェクトがnaive であれば空文字列)
+%%&emsp;:&emsp;文字「 % 」を表示します
+#
+#
+注1)&emsp;strptime() 関数と共に使われた場合、 %f 指定子は1 桁から6 桁の数字を受け付け、右側から0 埋めされます。
+&emsp;&emsp;%f はC 標準規格の書式セットに拡張されます。
+注2)&emsp;strptime() 関数と共に使われた場合、 %p 指定子は出力の時間フィールドのみに影響し、
+&emsp;&emsp;%I 指定子が使われたかのように振る舞います。
+注3)&emsp;範囲は 0 から 61 で正しいです; これはうるう秒と、(極めて稀ですが) 2 秒のうるう秒を考慮してのことです。
+注4)&emsp;strptime() 関数と共に使われた場合、 %U と %W 指定子は、年と曜日が指定された場合の計算でのみ使われます。
+注5)&emsp;例えば、 utcoffset() が timedelta(hours=-3,  minutes=-30) を返すとしたら、「 %z 」は文字列、「 -0330 」で置き換えられます。
+</code></pre><br>
+
+
+<a name="OOoGDDt05c"><h6>GDDt-)<em>[General]</em>Date Format</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Date/05dateFormat01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+from datetime import date
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oToday = date.today()
+		oDateFormat1 = oToday.strftime('%y/%m/%d %A')
+		oDateFormat2 = oToday.strftime('%Y.%B.%d %A')
+		oDisp = u'[ date Format ]\n\t' + str(oDateFormat1) + '\n\t' + str(oDateFormat2)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+
+
+
+<a name="OOoGDDt06a"><h6>GDDt-)<em>[General]</em>明日の日付</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Date/06TimeDelta01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,datetime
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oToday = datetime.date.today()
+		oTomorrow = oToday + datetime.timedelta(days=1)
+		oDisp = str(oTomorrow)
+		omsgbox(oDisp)
+		
+	except:
+		pass
+</code></pre><br>
+
+
+<a name="OOoGDDt06b"><h6>GDDt-)<em>[General]</em>任意の日付の一週間後</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Date/06TimeDelta02.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,datetime
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		aDate = datetime.datetime(1990,2,25)
+		oAfterWeek = aDate + datetime.timedelta(days=7)
+		oDisp = str(oAfterWeek)
+		omsgbox(oDisp)
+		
+	except:
+		pass
+</code></pre><br>
+
+
+<a name="OOoGDDt06c"><h6>GDDt-)<em>[General]</em>任意の日付から今日までの日数</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Date/06TimeDelta03.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,datetime
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oToday = datetime.datetime.today()
+		aDate = datetime.datetime(2001,8,11)
+		# うるう年も考慮される
+		oDayDiff = oToday - aDate
+		oDisp = str(oDayDiff)
+		omsgbox(oDisp)
+		#
+	except:
+		pass
+</code></pre><br>
+
+
+<a name="OOoGDDt07a"><h6>GDDt-)<em>[General]</em>任意の時間処理を中断</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Date/07time_sleep01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import time,datetime
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oNowB = str(datetime.datetime.now())
+		# 5[sec]待機
+		time.sleep(5.0)
+		#
+		oNowA = str(datetime.datetime.now())
+		oDisp = u'[ 任意時間(5[sec])処理を中断 ]\n'
+		oDisp = oDisp + oNowB + '\n\n' + oNowA
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+
+<a name="OOoGDDt08a"><h6>GDDt-)<em>[General]</em>calendar moduleを使わない曜日の取得</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Date/08datetime_weekday01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+from datetime import datetime		# import datetimeのみでは不可
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oYear = 2012
+		oMonth = 1
+		oDay = 21
+		oData = datetime(oYear,oMonth,oDay)
+		oDateSerial = oData.weekday()
+		if oDateSerial == 0:
+			oDate = 'Monday'
+		elif oDateSerial == 1:
+			oDate = 'Tuesday'
+		elif oDateSerial == 2:
+			oDate = 'Wednesday'
+		elif oDateSerial == 3:
+			oDate = 'Thursday'
+		elif oDateSerial == 4:
+			oDate = 'Friday'
+		elif oDateSerial == 5:
+			oDate = 'Saturday'
+		elif oDateSerial == 6:
+			oDate = 'Sunday'
+		else:
+			oDate = 'No Date'
+		oDisp = u'[ from datetime import datetime / .weekday() ]\n　' + str(oYear) + '/' + str(oMonth) + '/' + str(oDay) + ' : ' + str(oDate)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+
+<a name="OOoGDDt"><h6>GDDt-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Date/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+<br clear="right">
+&emsp;<p class="s4">[[-- Calendar --]]</p class="s4">
+<a name="OOoGDDCal01a"><h6>GDDCal-)<em>[General]</em>任意MonthのCalendar</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Date/01calendar/01monthcalendar01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import calendar
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oYear = 2012
+		oMonth = 1
+		oCalendar = calendar.monthcalendar(oYear,oMonth)
+		oDisp = u'[ calendar ]\n'
+		for i in oCalendar:
+			oDisp = oDisp + str(list(i)) + '\n'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+#
+# [ 注意 ]
+# 1) List( 各Week )のTopはMondayになる。
+# 2) 月の範囲外の日は0。
+</code></pre><br>
+
+
+<a name="OOoGDDCal01b"><h6>GDDCal-)<em>[General]</em>任意の曜日開始のcalendar</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Date/01calendar/01monthcalendar_setfirstweekday01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import calendar
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oYear = 2012
+		oMonth = 1
+		calendar.setfirstweekday(calendar.SUNDAY)
+		oCalendar = calendar.monthcalendar(oYear,oMonth)
+		oDisp = u'[ calendar ]'
+		for i in oCalendar:
+			oDisp = oDisp + '\n' + str(list(i))
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDDCal02a"><h6>GDDCal-)<em>[General]</em>現在設定されている週の最初の曜日取得</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Date/01calendar/02firstweekday01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import calendar
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		calendar.setfirstweekday(calendar.SUNDAY)
+		oFirst_Date = calendar.firstweekday()
+		oDisp = u'[ calendar / .firstweekday() : 表示Calendarの曜日 ]\n　'
+		if oFirst_Date == 0:
+			oDisp = oDisp + 'Monday'
+		elif oFirst_Date == 1:
+			oDisp = oDisp + 'Tuesdar'
+		elif oFirst_Date == 2:
+			oDisp = oDisp + 'Wednesday'
+		elif oFirst_Date == 3:
+			oDisp = oDisp + 'Thursday'
+		elif oFirst_Date == 4:
+			oDisp = oDisp + 'Friday'
+		elif oFirst_Date == 5:
+			oDisp = oDisp + 'Saturday'
+		elif oFirst_Date == 6:
+			oDisp = oDisp + 'Sunday'
+		else:
+			oDisp = oDisp + 'No Date'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+
+<a name="OOoGDDCal03a"><h6>GDDCal-)<em>[General]</em>閏年かどうかのCheck</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Date/01calendar/03isleap01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import calendar
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oYear = 2012
+		oLeapYear = calendar.isleap(oYear)
+		oDisp = u'[ calendar / .isleap() ]\n　'
+		oDisp = oDisp + str(oYear) + u' is leap year. ⇒ ' + str(oLeapYear)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDDCal03b"><h6>GDDCal-)<em>[General]</em>指定された期間の閏年の回数取得</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Date/01calendar/03leapday01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import calendar
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oYear1 = 2001
+		oYear2 = 2012
+		oLeapDay = calendar.leapdays(oYear1,oYear2)
+		oDisp = u'[ calendar / .leapdays() ]\n　' + str(oYear1) + ' - ' + str(oYear2) + ' : ' + str(oLeapDay) + u' 回'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDDCal04a"><h6>GDDCal-)<em>[General]</em>曜日取得</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Date/01calendar/04weekday01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import calendar
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oYear = 2012
+		oMonth = 1
+		oDay = 20
+		oDateSerial = calendar.weekday(oYear,oMonth,oDay)
+		if oDateSerial == 0:
+			oDate = 'Monday'
+		elif oDateSerial == 1:
+			oDate = 'Tuesday'
+		elif oDateSerial == 2:
+			oDate = 'Wednesday'
+		elif oDateSerial == 3:
+			oDate = 'Thursday'
+		elif oDateSerial == 4:
+			oDate = 'Friday'
+		elif oDateSerial == 5:
+			oDate = 'Saturday'
+		elif oDateSerial == 6:
+			oDate = 'Sunday'
+		else:
+			oDate = 'No Date'
+		oDisp = u'[ calendar / .weekday() ]\n　' + str(oYear) + '/' + str(oMonth) + '/' + str(oDay) + ' : ' + str(oDate)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDDCal05a"><h6>GDDCal-)<em>[General]</em>指定された月の1日の曜日と日数取得</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/02Date/01calendar/05monthrange01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import calendar
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oYear = 2012
+		oMonth = 1
+		oDate_Days = calendar.monthrange(oYear,oMonth)
+		if oDate_Days[0] == 0:
+			oDate = 'Monday'
+		elif oDate_Days[0] == 1:
+			oDate = 'Tuesday'
+		elif oDate_Days[0] == 2:
+			oDate = 'Wednesday'
+		elif oDate_Days[0] == 3:
+			oDate = 'Thursday'
+		elif oDate_Days[0] == 4:
+			oDate = 'Friday'
+		elif oDate_Days[0] == 5:
+			oDate = 'Saturday'
+		elif oDate_Days[0] == 6:
+			oDate = 'Sunday'
+		else:
+			oDate = 'No Date'
+		oDisp = u'[ calendar / .monthrange ]\n' + str(oYear) + '/' + str(oMonth) + u'\n 1日の曜日 : ' + str(oDate)\
+		+ u'\n 日数 : ' + str(oDate_Days[1])
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDDCal06a"><h6>GDDCal-)<em>[General]</em>現時刻(協定世界時[UTC])のTime Stamp取得</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/02Date/01calendar/06aUTC_TimeStamp01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import datetime
+import calendar
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oUtcTime = datetime.datetime.utcnow()
+		oTimeStamp = calendar.timegm(oUtcTime.timetuple())
+		oDisp = u'[ UTC Time Stamp ]\n' + str(oUtcTime) + u'\n = ' + str(oTimeStamp)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+#
+# [ Note ]
+# import datetime → form datetime import datetime にすると
+# datetime.datetime.utcnow() → datetime.utcnow() に出来る。
+# <a href="http://ja.wikipedia.org/wiki/UNIX%E6%99%82%E9%96%93">協定世界時[UTC]</a>
+</code></pre><br>
+
+
+<a name="OOoGDDCal"><h6>GDDCal-)<em>[General]</em></h6></a><pre><code>
+<img src="Python_pic/02general/02Data/02Date/01calendar/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ List / Tuple / Dictionary ]</p class="s3">
+<a name="OOoGDAy01a"><h6>GDAy-)<em>[General]</em>リストの作成1</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/01List_Data01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,datetime
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oToday = datetime.datetime.today()
+		oList = [oToday.year,oToday.month,oToday.day]
+		oDisp = str(oList)
+		omsgbox(oDisp)
+		
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGDAy01a1"><h6>GDAy-)<em>[General]</em>リストの作成2</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/01List_Data02.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import datetime
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oToday = datetime.datetime.today()
+		oList = []
+		# ListはDimension数が可変。上記では配列無し
+		oList.append(oToday.year)
+		oList.append(oToday.month)
+		oList.append(oToday.day)
+		# 配列番号は入力した順番で決まる。
+		oDisp = str(oList[0]) + u'年' + str(oList[1]) + u'月' + str(oList[2]) + u'日'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDAy01a2"><h6>GDAy-)<em>[General]</em>リストの作成3[ 2.7系 ]</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/02range01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oRng = range(10,20,2)	# range(start,stop,step)
+		oDisp = unicode('[ range関数 ]\n => ','utf-8') + str(oRng)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDAy01a2v33"><h6>GDAy-)<em>[General]</em>リストの作成3[ 3.3系 ]</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/02range_list01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oRng = range(10,20,2)	# range(start,stop,step)
+		oList = list(range(10,20,2))
+		oDisp = u'[ range関数 ]\n\t str(oRng)= ' + str(oRng) + '\n\t str(list(oRng))= ' + str(oList)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDAy01a3"><h6>GDAy-)<em>[General]</em>リストの作成4</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/02slice01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oSc = slice(10,20,2)
+		oDisp = u'[ slice関数 ]\n oSc = slice(10,20,2)\n\t str(oSc) = ' + str(oSc) + '\n\t\t oSc.start = '\
+		+ str(oSc.start) + '\n\t\t oS.stop = ' + str(oSc.stop) + '\n\t\t oS.strp = ' + str(oSc.step)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+#
+# range(start, stop, step) で指定されるインデクスの集合を表す、スライス (slice) オブジェクトを返します。引数 start および step はデフォルトでは None です。スライスオブジェクトは読み出し専用の属性 start、stop および step を持ち、<em1>これらは単に引数で使われた 値 (またはデフォルト値) を返します。これらの値には、その他のはっきりとした機能はありません</em1>。
+</code></pre><br>
+
+
+<a name="OOoGDAy01a4"><h6>GDAy-)<em>[General]</em>同じ型のリストの作成</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/02array01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import array
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oArray = array.array('i', range(5))		# i : int型
+		oDisp = u'[ array module / 同じ型のList ]\n' + u'初期値 : ' + str(oArray) + '\n'
+		# Arrayの追加
+		oArray.extend(range(10,12))
+		oDisp = oDisp + u'追加後 : ' + str(oArray) + '\n'
+		# Slice
+		oSliceArray = str(oArray[3:7])
+		oDisp = oDisp + 'Slice : ' + str(oSliceArray) + '\n'
+		# iterator
+		oItrArray = list(enumerate(oArray))
+		oDisp = oDisp + 'itretor : ' + str(oItrArray)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+#&emsp;1)&emsp;array moduleは全ての要素が同じData型でなければいけないことを除けば List そっくりのSequence Data構造を定義する。
+#&emsp;2)&emsp;array module利用の利点はmemoryが少ない事です。
+#&emsp;3)&emsp;Data型は全て数値か、Byte型のような固定長のData型に限られる。
+#&emsp;&emsp;Code	&emsp;/&emsp;Data型	&emsp;/&emsp;最小Size (Byte)
+#&emsp;&emsp;  c	&emsp;/&emsp;character&emsp;&emsp;/&emsp;1
+#&emsp;&emsp;  b	&emsp;/&emsp;  int	&emsp;/&emsp;1
+#&emsp;&emsp;  B	&emsp;/&emsp;  int	&emsp;/&emsp;1
+#&emsp;&emsp;  u	&emsp;/&emsp;Unicode character&emsp;/&emsp;2 or 4 (build-dependent)
+#&emsp;&emsp;  h	&emsp;/&emsp;  int	&emsp;/&emsp;2
+#&emsp;&emsp;  H	&emsp;/&emsp;  int	&emsp;/&emsp;2
+#&emsp;&emsp;  i	&emsp;/&emsp;  int	&emsp;/&emsp;2
+#&emsp;&emsp;  I	&emsp;/&emsp; long	&emsp;/&emsp;2
+#&emsp;&emsp;  l	&emsp;/&emsp;  int	&emsp;/&emsp;4
+#&emsp;&emsp;  L	&emsp;/&emsp; long	&emsp;/&emsp;4
+#&emsp;&emsp;  f	&emsp;/&emsp; float	&emsp;/&emsp;4
+#&emsp;&emsp;  d	&emsp;/&emsp; float	&emsp;/&emsp;8
+</code></pre><br>
+
+
+<a name="OOoGDAy01b"><h6>GDAy-)<em>[General]</em>リストに値を追加</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/02Add_List_Data01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,datetime
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oToday = datetime.datetime.today()
+		oList = [oToday.year,oToday.month,oToday.day]
+		oList.append(oToday.hour)
+		oList.append(oToday.minute)
+		oList.append(oToday.second)
+
+		oDisp = str(oList)
+		omsgbox(oDisp)
+		
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGDAy01c"><h6>GDAy-)<em>[General]</em>リストの初期化</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/03Initialize_List_Data01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno,datetime
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oToday = datetime.datetime.today()
+		oList = [oToday.year,oToday.month,oToday.day]
+		# Initiazile
+		oList = []
+		oList.append("Initialize")
+		oDisp = str(oList)
+		omsgbox(oDisp)
+		
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGDAy01d"><h6>GDAy-)<em>[General]</em>リストの取出し</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/04PDataickup01.png" align="right" hspace="4" vspace="4" width="35%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import datetime
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oToday = datetime.datetime.today()
+		oList = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+		oData1 = oList[1]		# n番目の要素を取出す
+		oData2 = oList[-2]		# インデクスが負の数だと後ろから数える
+		oData3 = oList[2:4]		# n番目からm-1番目の要素を取り出す
+		oData4 = oList[:4]		# 始点を省略すると0番目から
+		oData5 = oList[2:]		# 終点を省略すると-1番目まで
+		oData6 = oList[2:10]		# 範囲外のインデクスは-1を指定したのと同じ
+		#
+		oDisp = u'n番目の要素を取出す\n\t ⇒ ' + str(oData1) + u'\n インデクスが負の数だと後ろから数える\n\t ⇒ ' + str(oData2)\
+		+ u'\n n番目からm-1番目の要素を取出す\n\t ⇒ ' + str(oData3) + u'\n 始点を省略すると0番目から\n\t ⇒ ' + str(oData4)\
+		+ u'\n 終点を省略すると-1番目まで\n\t ⇒ ' + str(oData5) + u'\n 範囲外のインデクスは-1を指定したのと同じ\n\t ⇒ ' + str(oData6)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDAy01e"><h6>GDAy-)<em>[General]</em>リストの置換</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/05DataReplace01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+		oList[0]='1'					# n番目の要素を置き換える
+		oData1 = str(oList)
+		oList[1:3] = ['2','3','4']		# n番目からm-1番目の要素を置き換える
+		oData2 = str(oList)
+		oList[-1:]= ['8','Nin9']		# 右辺の要素数が多いと自動的に拡張
+		oData3 = str(oList)
+		oList[-5:] = ['5']				# 少ないと縮小(Dataが削除される)
+		oData4 = str(oList)
+		#
+		oDisp = u'n番目の要素を置き換える\n\t ⇒ ' + oData1 + u'\n\n n番目からm-1番目の要素を置き換える\n\t ⇒ ' + oData2\
+		+ u'\n\n 右辺の要素数が多いと自動的に拡張\n\t ⇒ ' + oData3 + u'\n\n 少ないと縮小(Dataが削除される)\n\t ⇒ ' + oData4
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDAy01f"><h6>GDAy-)<em>[General]</em>リストの追加</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/06AddData01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = ['one','two','tree','four','five','six','seven']
+		oList.append('eight')		#末尾に追加
+		oData1 = str(oList)
+		oList.insert(0,'zero')		# n番目の要素の前に追加
+		oData2 = str(oList)
+		oList[2:2] = ['++','--']	# n番目の要素の前に複数の要素を追加
+		oData3 = str(oList)
+		#
+		oDisp = u'末尾に追加\n\t ⇒ ' + oData1 + u'\n\n n番目の要素の前に追加\n\t ⇒ ' + oData2 + u'\n\n n番目の要素の前に複数の要素を追加\n\t ⇒ ' + oData3
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDAy01g"><h6>GDAy-)<em>[General]</em>リストの結合</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/07MergeData01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList1 = ['one','two','tree','four']
+		oList2 = ['five','six']
+		oList3 = oList1 + oList2	#新しいリストを作成して結合
+		oData1 = str(oList3)
+		oList1.extend(oList2)		#新しいリストを作らずに結合/Listに追加
+		oData2 = str(oList1)
+		#
+		oDisp = u'新しいリストを作成して結合\n\t ⇒ ' + oData1 + u'\n\n 新しいリストを作らずに結合/Listに追加\n\t ⇒ ' + oData2
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDAy01h"><h6>GDAy-)<em>[General]</em>リストの検索</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/08FindData01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = ['one','two','three','four']
+		oData1 = 'two' in oList				#「two」があるか
+		oData2 = 'nine' in oList			#「nine」があるか
+		oData3 = oList.index('three')		#最初の「three」のインデクスを取得。無ければError
+		#
+		oDisp = str(oList) + u'\n\n 「two」があるか\n\t ⇒ ' + str(oData1) + u'\n\n 「nine」があるか\n\t ⇒ ' + str(oData2)\
+		+ u'\n\n 最初の「three」のインデクスを取得\n\t ⇒ ' + str(oData3)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDAy01i"><h6>GDAy-)<em>[General]</em>リストの削除</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/09RemoveDelData01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList1 = ['one','two','three','four','three','five','two','six']
+		oList2 = ['one','two','three','four','three','five','two','six']
+		oList3 = ['one','two','three','four','three','five','two','six']
+		oList4 = ['one','two','three','four','three','five','two','six']
+		oList5 = ['one','two','three','four','three','five','two','six']
+		oList6 = ['one','two','three','four','three','five','two','six']
+		oList7 = ['one','two','three','four','three','five','two','six']
+		#
+		oData1 = oList1.pop()				#末尾の要素を削除（削除した値を返す）
+		oData2 = oList2.pop(3)				#n番目の要素を削除（削除した値を返す）
+		oList3.remove('three')				#1番目の「three」を削除。見つからなければError
+		oData3 = oList3
+		while 'two' in oList4: oList4.remove('two')		#全てのxを削除
+		oData4 = oList4
+		#n番目からm-1番目の要素を削除
+		del oList5[2:5]	# list5[2:5] = [] と同じ
+		oData5 = oList5
+		#リストを空にする
+		del oList6[:]		# list6[:] = [] と同じ
+		oData6 = oList6
+		oDisp = str(oList7) + u'\n 末尾の要素を削除（削除した値を返す）\n\t ⇒ ' + str(oData1) + u'\n\n n番目の要素を削除（削除した値を返す）\n\t ⇒ '\
+		+ str(oData2) + u'\n\n 1番目の「three」を削除。見つからなければError\n\t ⇒ ' + str(oData3) + u'\n\n 全ての「two」を削除\n\t ⇒ ' + str(oData4)\
+		+ u'\n\n n番目からm-1番目の要素を削除\n\t ⇒ ' + str(oData5) + '\n\n リストを空にする\n\t ⇒ ' + str(oData6)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDAy01j"><h6>GDAy-)<em>[General]</em>リストの要素数</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/10Len_Count01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = ['one','two','three','four','five','six']
+		#全体の要素数を数える
+		oData1 = len(oList)
+		#「two」の左からの位置取得
+		oData2 = oList.count('two')
+		oDisp = str(oList) + u'\n\n 全体の要素数を数える\n\t ⇒ ' + str(oData1) + '\n\n 「two」の左からの位置取得\n\t ⇒ ' + str(oData2)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDAy01k"><h6>GDAy-)<em>[General]</em>リストの重複する要素を取り除く</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/11setData01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = ['2two','1one','4four','3three','3three','5five','2two']
+		oData1 = set(oList)					#重複する要素を取り除く。自動でSort/Sort順は不明
+		oData2 = sorted(set(oList), key=oList.index)	#順序を維持したまま重複要素を取り除く
+		oDisp = str(oList) + '\n\n 重複する要素を取り除く。(自動でSort)\n\t ⇒ ' + str(oData1) + '\n\n 順序を維持したまま重複要素を取り除く\n\t ⇒ ' + str(oData2)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDAy01L"><h6>GDAy-)<em>[General]</em>リスト自体を逆順にする</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/14ListReverse01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import datetime
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oToday = datetime.datetime.today()
+		oList = [oToday.year,oToday.month,oToday.day]
+		oList.reverse()
+		oDisp = str(oList)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDAy01m"><h6>GDAy-)<em>[General]</em>リスト自体は変更せずに表示のみ順逆</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/14ListReverse02.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import datetime
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oToday = datetime.datetime.today()
+		oList = [oToday.year,oToday.month,oToday.day]
+		oReverse = []
+		for i in reversed(oList):
+			oReverse.append(i)
+		oDisp = u' 元のData\n ' +str(oList) + u'\n\n 表示のみ逆順\n ' + str(oReverse)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDAy01n"><h6>GDAy-)<em>[General]</em>Sortされた新規List Object作成[ 2.7系 ]</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/14sorted01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oList = [3,5,1,2,'a']
+		oTuple = (3,5,1,2,'a')
+		oDict = {3:'three',5:'five',1:'one',2:'two','a':'A'}
+		oSortL = sorted(oList)
+		oSortT = sorted(oTuple)
+		oSortD = sorted(oDict)
+		oDisp = unicode('[ Sortされた新規Object作成 / sorted関数 ]\n\n　sorted(oLIst) = ','utf-8') + str(oSortL) + '\n'\
+		+ 'sorted(oTuple) = ' + str(oSortT) + '\n'\
+		+ 'sorted(oDict) = ' + str(oSortD)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDAy01n33"><h6>GDAy-)<em>[General]</em>Sortされた新規List Object作成[ 3.3系 ]</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/14sortedV33_01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oList = 'Paris,Tokyo,New York,London'
+		oTuple = [(1,'France','Paris'),(2,'Japan','Tokyo'),(3,'UAS','New York'),(4,'UK','London')]
+		oDict = {3:'three',5:'five',1:'one',2:'two',4:'A'}
+		oSortL = sorted(oList.split(','),key=str.lower,reverse=False)
+		oSortT = sorted(oTuple,key = lambda x: x[1],reverse=True)
+		oSortD = sorted(oDict.items(), key=lambda x: x[0],reverse=True)
+		oDisp = u'[ Sortされた新規Object作成 / sorted関数 ]\n\n　sorted(oLIst)\n = ' + str(oSortL) + u'\n\n sorted(oTuple)\n = ' + str(oSortT)\
+		+ u'\n\n sorted(oDict)\n = ' + str(oSortD)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+#
+# Sortは型が同じ　⇒ sorted([3,5,1,2,'a'])、sorted((3,5,1,2,'a'))、sorted({3:'three',5:'five',1:'one',2:'two','a':'A'})はErrror
+</code></pre><br>
+
+
+<a name="OOoGDAy02a"><h6>GDAy-)<em>[General]</em>タプル(Tuple)</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/12TupleData01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oTuple = ('2two','1one','4four','3three','3three','5five','2two')
+		oData1 = oTuple[0]
+		oData2 = oTuple[1:6]
+		oDisp = str(oTuple) + '\n\n TupleからData取出1\n\t ⇒ ' + str(oData1) + '\n\n TupleからData取出2\n\t ⇒ ' + str(oData2)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+#
+# タプルの利点は初期化後の変更が不可能
+</code></pre><br>
+
+
+
+
+<a name="OOoGDAy04a"><h6>GDAy-)<em>[General]</em>通し番号を付ける</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/15enumerate01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+		oTuple = ('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday')
+		oDict =  {'one':'first','two':'second','three':'third'}
+		oList2 = [(1,'Gold'),(2,'Silver'),(3,'Bronze')]
+		#
+		oDisp = u' [ Listに通し番号を付ける1(引数無し) ]\n'
+		for i,j in enumerate(oList):
+			oDisp = oDisp + str(i) + ',' + str(j) + '\n'
+		oDisp = oDisp + u'\n [ Listに任意の開始番号で通し番号を付ける2 ]\n'
+		for i,j in enumerate(oTuple,11):
+			oDisp = oDisp + str(i) + ',' + str(j) + '\n'
+		oDisp = oDisp + u'\n [ Listに任意の開始番号で通し番号を付ける3 ]\n'
+		for i,j in enumerate(oDict,101):
+			oDisp = oDisp + str(i) + ',' + str(j) + ':' + str(oDict[j]) + '\n'
+		oDisp = oDisp + u'\n [ Listに任意の開始番号で通し番号を付ける4 ]\n'
+		for i,j in enumerate(oList2,51):
+			oDisp = oDisp + str(i) + ',' + str(j) + '\n'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+
+<a name="OOoGDAy05a"><h6>GDAy-)<em>[General]</em>List1(Tuple1)にあってList2(Tuple2)に無いItemのset object作成[ 2.7系 ]</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/16set_Dif01.png" align="right" hspace="4" vspace="4" width="35%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		# set(集合型)を使うとあたかもList(Tuple)の演算結果の様なListを作成出来る。
+		oList1 = ['one','two','three']
+		oList2 = ['two','three','four']
+		oSet = set(oList1) - set(oList2)
+		oDisp = unicode('[ List( Tuple )の演算 ]','utf-8') + '\n'
+		oDisp = oDisp + unicode('< 元のData >\n','utf-8') + str(oList1) + '\n' + str(oList2) + '\n\n'
+		oDisp = oDisp + unicode('List1(Tuple1)にあってList2(Tuple2)に無いItem Listのset object作成\n =>','utf-8') + str(oSet)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGDAy05a33"><h6>GDAy-)<em>[General]</em>List1(Tuple1)にあってList2(Tuple2)に無いItemのset object作成[ 3.3系 ]</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/16set_Dif33_01.png" align="right" hspace="4" vspace="4" width="35%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		# set(集合型)を使うとあたかもList(Tuple)の演算結果の様なListを作成出来る。
+		oList1 = ['one','two','three']
+		oList2 = ['two','three','four']
+		oSet = set(oList1) - set(oList2)
+		oDisp = u'[ List( Tuple )の演算( Ver3.3系 ) ]\n'
+		oDisp = oDisp + u'< 元のData >\n' + str(oList1) + '\n' + str(oList2) + '\n\n'
+		oDisp = oDisp + u'List1(Tuple1)にあってList2(Tuple2)に無いItem Listのset object作成\n ⇒ ' + str(oSet)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDAy05b"><h6>GDAy-)<em>[General]</em>List1(Tuple1)かList2(Tuple2)にあるItem Listのset object作成</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/16set_Either01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		# set(集合型)を使うとあたかもList(Tuple)の演算結果の様なListを作成出来る。
+		oList1 = ['one','two','three']
+		oList2 = ['two','three','four']
+		oSet = set(oList1) | set(oList2)
+		oDisp = unicode('[ List( Tuple )の演算 ]','utf-8') + '\n'
+		oDisp = oDisp + unicode('< 元のData >\n','utf-8') + str(oList1) + '\n' + str(oList2) + '\n\n'
+		oDisp = oDisp + unicode('List1(Tuple1)かList2(Tuple2)にあるItem Listのset object作成\n =>','utf-8') + str(oSet)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGDAy05c"><h6>GDAy-)<em>[General]</em>List1(Tuple1)とList2(Tuple2)の両方にあるItemのset object作成</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/16set_Both01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		# set(集合型)を使うとあたかもList(Tuple)の演算結果の様なListを作成出来る。
+		oList1 = ['one','two','three']
+		oList2 = ['two','three','four']
+		oSet = set(oList1) & set(oList2)
+		oDisp = unicode('[ List( Tuple )の演算 ]','utf-8') + '\n'
+		oDisp = oDisp + unicode('< 元のData >\n','utf-8') + str(oList1) + '\n' + str(oList2) + '\n\n'
+		oDisp = oDisp + unicode('List1(Tuple1)とList2(Tuple2)の両方にあるItem Listのset object作成\n =>','utf-8') + str(oSet)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGDAy05d"><h6>GDAy-)<em>[General]</em>List1(Tuple1)又はList2(Tuple2)の片方にあるItem Listのset object作成</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/16set_Either_one01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		# set(集合型)を使うとあたかもList(Tuple)の演算結果の様なListを作成出来る。
+		oList1 = ['one','two','three']
+		oList2 = ['two','three','four']
+		oSet = set(oList1) ^ set(oList2)
+		oDisp = unicode('[ List( Tuple )の演算 ]','utf-8') + '\n'
+		oDisp = oDisp + unicode('< 元のData >\n','utf-8') + str(oList1) + '\n' + str(oList2) + '\n\n'
+		oDisp = oDisp + unicode('List1(Tuple1)又はList2(Tuple2)の片方にあるItem Listのset object作成\n =>','utf-8') + str(oSet)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGDAy06a"><h6>GDAy-)<em>[General]</em>行列の行と列を入替える</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/17Matrix01.png" align="right" hspace="4" vspace="4" width="35%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oMatrix = [
+					[1,2,3],
+					[4,5,6],
+					[7,8,9]
+					]
+		# 行と列を入替える(その1)
+		oData1 = []
+		oData1 = [[orow[ocol] for orow in oMatrix] for ocol in [0,1,2]]
+		# 行と列を入替える(その2)
+		oData2 = []
+		oData2Tmp = []
+		for ocol in [0,1,2]:
+			for orow in oMatrix:
+				oData2Tmp.append(orow[ocol])
+			oData2.append(oData2Tmp)
+			oData2Tmp = []
+		# 行と列を入替える/ReturnはTuple(その3)
+		oData3 = []
+		oData3 = list(zip(*oMatrix))
+		# oData3 = zip(*oMatrix)		# 2.7系ではlist化不要
+		#
+		oDisp = u'[ 行列 ]\n 元の値 ⇒ ' + str(oMatrix) + '\n\n'
+		oDisp = oDisp + u'行と列を入替える(その1) ⇒ ' + str(oData1) + '\n'
+		oDisp = oDisp + u'行と列を入替える(その2) for文利用 ⇒ ' + str(oData2) + '\n'
+		oDisp = oDisp + u'行と列を入替える(その3) ReturnはTuple ⇒ ' + str(oData3)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDAy07a"><h6>GDAy-)<em>[General]</em>ListのTupleをTupleのListにする</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/18zip01.png" align="right" hspace="4" vspace="4" width="35%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oList1 = [1,2,3,4]
+		oList2 = ['apple','orange','melon','banana']
+		oZip = list(zip(oList1,oList2))
+		# oZip = zip(oList1,oList2)		# 2.7系ではlist化不要
+		oDisp = u'[ ListのTuple ⇒ TupleのListにする ]\n\n'
+		oDisp = oDisp + u'<元のData>\n' + 'oList1 = ' + str(oList1) + '\n'
+		oDisp = oDisp + 'oList2 = ' + str(oList2) + '\n\n zip(oList1,oList2) = ' + str(oZip)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDAy08a"><h6>GDAy-)<em>[General]</em>ListにData追加と共にSort</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/19bisect_insort01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import bisect
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = [[1,'Java'],[2,'C++'],[4,'Perl'],[5,'Ruby']]
+		oIni = str(oList)
+		bisect.insort(oList,[3,'Python'])
+		oDisp = u'[ 要素追加と共にSort ]\n 初期値 : ' + oIni + u'\n 追加後 : ' + str(oList)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDAy"><h6>GDAy-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/03List/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br clear="right">
+<p class="s3">[ Dictionary ]</p class="s3">
+<a name="OOoGDDct01aV2"><h6>GDDct-)<em>[General]</em>Dictionary型Data作成1(ver2.7)</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/05Dictionary/01CreateDictiData01.png" align="right" hspace="4" vspace="4" width="20%">
+# ディクショナリ( Dictionary : 辞書型 )はPythonの標準のMap型Objectであり、Key項目と値のsetで構成される。
+# タプルでは「 () 」（カッコ）、リストでは「 [] 」（大カッコ）で初期化を行いますが、
+# ディクショナリは「 {} 」（中カッコ）を使用します。
+# 一つの要素を「 "キー":値 」のように入れ込み、次の要素の間に「 , 」（カンマ）で区切りを入れます。
+
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oDictionary = {'Japan':'日本','America':'米国','France':'仏国'}
+		#Key項目から値取得
+		oData1 = oDictionary['Japan']
+		#初期化語に値をSet
+		oDictionary = {}
+		oDictionary['Japan'] = 'ニッポン'
+		oData2 = oDictionary['Japan']
+		oDisp = unicode('[ ディクショナリ ]','utf-8') + '\n\
+		 ' + unicode('Key項目から値取得','utf-8') + '\n\
+		 => ' + unicode(oData1,'utf-8') + '\n\
+		 ' + unicode('初期後にKey項目から値取得','utf-8') + '\n\
+		 => ' + unicode(oData2,'utf-8')
+		omsgbox(oDisp)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+
+<a name="OOoGDDct01aV3"><h6>GDDct-)<em>[General]</em>Dictionary型Data作成1(ver3.3)</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/05Dictionary/01CreateDictV3_3_01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oDictionary = {'Japan':'日本','America':'米国','France':'仏国'}
+		oCnt = str(len(oDictionary))
+		#Key項目から値取得
+		oData1 = oDictionary['Japan']
+		#初期化語に値をSet
+		oDictionary = {}
+		oDictionary['Japan'] = u'ニッポン'
+		oData2 = oDictionary['Japan']
+		oDisp = u'[ Dictionary(Ver3.3) ]\n'\
+		+ u' 最初の要素数\n → ' + oCnt\
+		+ u'\n Key項目から値取得\n →　' + str(oData1)\
+		+ u'\n 初期後にKey項目から値取得\n → ' + str(oData2)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+<a name="OOoGDDct01b"><h6>GDDct-)<em>[General]</em>Dictionary型Data作成2</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/05Dictionary/01CreateDictiData02.png" align="right" hspace="4" vspace="4" width="35%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oDict1 = {1:'one',2:'two',3:'three',4:'four',5:'five'}
+		oDict2 = dict({1:'one',2:'two',3:'three',4:'four',5:'five'})
+		oDict3 = dict(zip((1,2,3,4,5),('one','two','three','four','five')))
+		oDict4 = {}
+		oDict4[1]='one'; oDict4[2]='two'; oDict4[3]='three'; oDict4[4]='four';oDict4[5]='five'
+		#
+		oDisp = u'[ Dictionary型Objectの作成(ver2.7 and ver3.3 ]'\
+		+ u'\n [ Case1 ]\n {1:\'one\',2:\'two\',3:\'three\',4:\'four\',5:\'five\'}\n\t → ' + str(oDict1)\
+		+ u'\n\n [ Case2 ]\n dict({1:\'one\',2:\'two\',3:\'three\',4:\'four\',5:\'five\'})\n\t → ' + str(oDict2)\
+		+ u'\n\n [ Case3 ]\n dict(zip((1,2,3,4,5),(\'one\',\'two\',\'three\',\'four\',\'five\')))\n\t → ' + str(oDict3)\
+		+ u'\n\n [ Case4 ]\n oDict4[1]=\'one\'; oDict4[2]=\'two\'; oDict4[3]=\'three\'; oDict4[4]=\'four\';oDict4[5]=\'five\'\n\t → ' + str(oDict4)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+
+<a name="OOoGDDct02aV2"><h6>GDDct-)<em>[General]</em>Dictionary Item抽出(ver2.7)</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/05Dictionary/02dict_iteritems01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oDict = {1:'one',2:'two',3:'three',4:'four',5:'five'}
+		oDisp1 = ''
+		oDisp2 = ''
+		# Item抽出その1
+		for v in oDict:
+			oDisp1 = oDisp1 + str(v) + ',' + str(oDict[v]) + '\n'
+		# Item抽出その2
+		for v, w in oDict.iteritems():
+			oDisp2 = oDisp2 + str(v) + ',' + str(w) + '\n'
+		oDisp = unicode('[ Dictionary型Dataのfor文テクニック ]\n\n','utf-8')\
+		 + unicode('<oDict[v]使用>\n','utf-8') + oDisp1 + '\n'
+		oDisp = oDisp + unicode('<iteritems()利用>\n','utf-8') + oDisp2
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGDDct02aV3"><h6>GDDct-)<em>[General]</em>Dictionary Item抽出(ver3.3)</h6></a><pre><code>
+<img src="Python_pic/02general/02Data/05Dictionary/02dict_for_V3_01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oDict = {1:'one',2:'two',3:'three',4:'four',5:'five'}
+		oDisp1 = ''
+		oDisp2 = ''
+		# Item抽出その1
+		for v in oDict:
+			oDisp1 = oDisp1 + str(v) + '\t = ' + str(oDict[v]) + '\n'
+		# Item抽出その2(ver3.3ではError)
+		#for v, w in oDict.iteritems():
+		#	oDisp2 = oDisp2 + str(v) + ',' + str(w) + '\n'
+		oDisp = u'[ Dictionary型Dataの\n for文テクニック(3.3) ]\n\n'\
+		+ oDisp1
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDDct"><h6>GDDct-)<em>[General]</em></h6></a><pre><code>
+<img src="Python_pic/02general/02Data/05Dictionary/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+<br clear="right">
+<p class="s3">[ Boolean ]</p class="s3">
+<a name="OOoGDBln1a"><h6>GDBln-)<em>[General]</em>Tuple中の何れかの要素がTrueかどうか</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/04Boolean/01Tuple_any01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oNum = 15.0				# 実数型
+		oInt = 20					# 整数型
+		oVal = [oNum,oInt]				# List
+		oAny1 = any([oNum>5,oInt>5])
+		oAny2 = any(i > 5 for i in oVal)
+		oDisp = u'[ Tuple Elementの何れかTrueかどうか? ]\n\t any([oNum>5,oInt>5]) ⇒ ' + str(oAny1) + u'\n\t any(i > 5 for i in oVal) ⇒ ' + str(oAny2)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDBln2a"><h6>GDBln-)<em>[General]</em>Tuple中の全ての要素がTrueかどうか</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/04Boolean/02Tuple_all01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oNum = 15.0			# 実数型
+		oInt = 20				# 整数型
+		oVal = [oNum,oInt]			# List
+		oAll_1 = all([oNum>5,oInt>5])
+		oAll_2 = all(i > 15 for i in oVal)
+		oDisp = u'[ Tuple Elementの全てがTrueかどうか? ]\n\t all([oNum>5,oInt>5]) ⇒ ' + str(oAll_1) + u'\n\t all(i > 15 for i in oVal) ⇒ ' + str(oAll_2)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDBln"><h6>GDBln-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/04Boolean/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+
+<br clear="right">
+<p class="s3">[ Set ]</p class="s3">
+<a name="OOoGDSet01a"><h6>GDSet-)<em>[General]</em>set Objectの作成と演算</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/06Set/01set_object01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oList = ['apple','orange','apple','melon','orange','banana']
+		oStr1 = 'OpenOffice.org'
+		oStr2 = 'LibreOffice'
+		oSet11 = set(oList)
+		oSet12 = set(oStr1)
+		oSet2 = set(oStr1) - set(oStr2)
+		oSet3 = set(oStr1) | set(oStr2)
+		oSet4 = set(oStr1) & set(oStr2)
+		oSet5 = set(oStr1) ^ set(oStr2)
+		#
+		oDisp = unicode('[ Set型 ]','utf-8') + '\n'
+		oDisp = oDisp + unicode('< 元のList Data >\n => ','utf-8') + str(oList) + '\n'
+		oDisp = oDisp + unicode('重複Itemを1つに纏めたList作成 => ','utf-8') + str(oSet11) + '\n\n'
+		oDisp = oDisp + unicode('< 元のData >\n','utf-8') + 'oSet1 = ' + str(oStr1) + '\n' + 'oSet2 = ' + str(oStr2) + '\n'
+		oDisp = oDisp + unicode('< set Object >\n','utf-8') + 'set(oSet1) = ' + str(set(oStr1)) + '\n' + 'set(oSet2) = ' + str(set(oStr2)) + '\n\n'
+		oDisp = oDisp + unicode('重複文字を1つに纏めたList作成\n','utf-8') + str(oStr1) + ' => ' + str(oSet12) + '\n\n'
+		oDisp = oDisp + unicode('set(oStr1)にあってset(oStr2)に無い文字\n => ','utf-8') + str(oSet2) + '\n\n'
+		oDisp = oDisp + unicode('set(oStr1)かset(oStr2)にある文字\n => ','utf-8') + str(oSet3) + '\n\n'
+		oDisp = oDisp + unicode('set(oStr1)とset(oStr2)の両方にある文字\n => ','utf-8') + str(oSet4) + '\n\n'
+		oDisp = oDisp + unicode('set(oStr1)またはset(oStr2)の片方にある文字\n => ','utf-8') + str(oSet5)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGDSet02a"><h6>GDSet-)<em>[General]</em>frozenset Objectの作成と演算</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/06Set/02frozenset_object01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oList = ['apple','orange','apple','melon','orange','banana']
+		oStr1 = 'OpenOffice.org'
+		oStr2 = 'LibreOffice'
+		oFSet0 = frozenset(oList)
+		oFSet11 = frozenset(oStr1)
+		oFSet12 = frozenset(oStr2)
+		oFSet2 = frozenset(oStr1) - frozenset(oStr2)
+		oFSet3 = frozenset(oStr1) | frozenset(oStr2)
+		oFSet4 = frozenset(oStr1) & frozenset(oStr2)
+		oFSet5 = frozenset(oStr1) ^ frozenset(oStr2)
+		#
+		oDisp = unicode('[ 集合型 / frozen(不変) ]','utf-8') + '\n'
+		oDisp = oDisp + unicode('1)元のList Data\n  ','utf-8') + str(oList) + '\n\n'
+		oDisp = oDisp + unicode('1-1)重複Itemを1つに纏めたList作成\n ','utf-8') + str(oFSet0) + '\n\n'
+		oDisp = oDisp + unicode('2)元のData\n','utf-8') + 'oStr1 = ' + str(oStr1) + '\n' + 'oStr2 = ' + str(oStr2) + '\n\n'
+		oDisp = oDisp + unicode('3)frozenset Object\n','utf-8') + ' frozenset(oStr1) = ' + str(oFSet11) + '\n' + ' frozenset(oStr2) = ' + str(oFSet12) + '\n\n'
+		oDisp = oDisp + unicode('4-1)重複文字を1つに纏めた集合型Object(不変)作成（After sort）\n','utf-8') + 'frozenset(' + str(oStr2) + ') = ' + str(oFSet12) + '\n\n'
+		oDisp = oDisp + unicode('4-2)frozenset(oStr1)にあってfrozenset(oStr2)に無い文字\n  ','utf-8') + str(oFSet2) + '\n\n'
+		oDisp = oDisp + unicode('4-3)frozenset(oStr1)かfrozenset(oStr2)にある文字\n  ','utf-8') + str(oFSet3) + '\n\n'
+		oDisp = oDisp + unicode('4-4)frozenset(oStr1)とfrozenset(oStr2)の両方にある文字\n  ','utf-8') + str(oFSet4) + '\n\n'
+		oDisp = oDisp + unicode('4-5)frozenset(oStr1)またはfrozenset(oStr2)の片方にある文字\n  ','utf-8') + str(oFSet5)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGDSet"><h6>GDSet-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/06Set/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br clear="right">
+<p class="s3">[ iterable( イテレータ型 ) ]</p class="s3">
+<a name="OOoGDIter00a"><h6>GDIter-)<em>[General]</em>iterable作成</h6></a><pre><code>
+[ 利点 ]
+iterableは<em1>実際にnext()で値を取り出すまではMemoryを消費しない</em1>という点です。
+この仕組があるために、[1, 2, 3, 1, 2, 3…]と無限に循環するようなiterableを作成してfor文に使用する事が可能です。
+但し、どこかでbreakしないと無限Loopと同じになってしまいますので注意。
+List( or Tuple )では先にMemoryを確保されてしまいます。
+</code></pre><br>
+
+<a name="OOoGDIter01a"><h6>GDIter-)<em>[General]</em>iterable作成[ 2.7系 ]</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/01iter_next01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = ['one','two','three','four','five']
+		# iterable
+		oIterObj = iter(oList)
+		oDisp = unicode('[ iterable Data ]\n','utf-8')
+		for i in oList:
+			oDisp = oDisp + oIterObj<em1>.next()</em1> + '\n'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDIter01a33"><h6>GDIter-)<em>[General]</em>iterable作成[ 3.3系 ]</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/01iter_next33_01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = ['one','two','three','four','five']
+		# iterable
+		oIterObj = iter(oList)
+		oDisp = u'[ iterable Data ](3.3系)'
+		for i in oList:
+			oDisp = oDisp + '\n\t' + <em1>next(oIterObj)</em1>
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+
+<a name="OOoGDIter01b"><h6>GDIter-)<em>[General]</em>iterable作成2</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/01iter_next__iter__02.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = ['one','two','three','four','five']
+		# iterable
+		oIterObj = iter(oList)
+		oIter = oIterObj.__iter__()
+		oDisp = u'[ iterable Data ]\n'
+		for i in oIter:
+			oDisp = oDisp + str(i) + '\n'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+#
+# iterable Object自体を返します。このMethodはコンテナとイテレータの 両方をfor および in 文で使えるようにするために必要です。
+# このMethodは Python/C API において Python Objectを表す 型構造体の tp_iter Slotに対応します。
+</code></pre><br>
+
+
+<a name="OOoGDIter02a"><h6>GDIter-)<em>[General]</em>無限iterable作成1[ 2.7系 ]</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/02itertools_count01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import itertools
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		# Unfinite iterable
+		oStartIter = 10		# 初期値
+		oIterObj = itertools.count(oStartIter)
+		oDisp = unicode('[ Unifite iterable ]\n','utf-8')
+		oDisp = oDisp + str(oIterObj.next()) + ', ' + str(oIterObj.next())
+		oIterObj.next()		# 12
+		oIterObj.next()		# 13
+		oIterObj.next()		# 14
+		oDisp = oDisp + ', ' + str(oIterObj.next())
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# Note : count()はOverflowのCheckを行いません。このため、 sys.maxintを超えると負の値を返します。この動作は将来変更されま す。
+#
+# count([n]) は以下と同じ。
+# [ generatorを使った記述 ]
+#def count(n=0):
+#	while True:
+#		yield n
+#		n += 1
+</code></pre><br>
+
+
+<a name="OOoGDIter02a33"><h6>GDIter-)<em>[General]</em>無限iterable作成1[ 3.3系 ]</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/02itertools_count33_01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import itertools
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		# Unfinite iterable
+		oStartIter = 10		# 初期値
+		oStepIter = 5		# Step値 / ver3.1で追加
+		oIterObj = itertools.count(oStartIter,oStepIter)
+		oDisp = u'[Unifite iterable/3.3系]\n\t'
+		oDisp = oDisp + str(next(oIterObj)) + ' , ' + str(next(oIterObj))
+		next(oIterObj)		# 20
+		next(oIterObj)		# 25
+		next(oIterObj)		# 30
+		oDisp = oDisp + ' , ' + str(next(oIterObj))
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+#
+# [ Note ]
+# itertools.count(start=0, step=1) は以下のCodeと同じ。ver 3.1 で変更: step 引数が追加され、非整数の引数が可能になりました。
+</code></pre><br>
+
+
+
+<a name="OOoGDIter02b"><h6>GDIter-)<em>[General]</em>無限iterable作成2</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/02itertools_cycle33_02.png" align="right" hspace="4" vspace="4" width="20%"><img SRC="Python_pic/02general/02Data/07iterable/02itertools_cycle02.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import itertools
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		# Unfinite iterable
+		oStr = 'ABC'
+		oIterObj = itertools.cycle(oStr)		# A B C A B C A B C･･･
+		oDisp = u'[Unifite iterable/3.3系]\n\t'
+		oDisp = oDisp + str(next(oIterObj)) + ', ' + str(next(oIterObj))
+		next(oIterObj)		# C	/ 2.7系: oIterObj.next()
+		next(oIterObj)		# A
+		oDisp = oDisp + ', ' + str(next(oIterObj))
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+#
+# Note: cycleは大きなMemory領域を使用し ます。使用するMemory量はiterableの大きさに依存します。
+#
+# cycle(iterable)  は以下と同じ。
+# [ generatorを使った記述 ]
+#def cycle(iterable):
+#	saved = []
+#	for element in iterable:
+#		yield element
+#		saved.append(element)
+#	while saved:
+#		for element in saved:
+#			yield element
+</code></pre><br>
+
+
+<a name="OOoGDIter03a"><h6>GDIter-)<em>[General]</em>任意回数の繰返しiterable作成</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/03itertools_repeat01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import itertools
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		# Unfinite iterable
+		oStr = 'ABC'
+		oLmt = 3
+		# oLmtの引数を省略すると無限iterableになる。
+		oIterObj = itertools.repeat(oStr, oLmt)		# ABC ABC ABC
+		oIter = oIterObj.__iter__()
+		oDisp = unicode('[ Unifite iterable ]\n','utf-8')
+		for i in oIter:
+			oDisp = oDisp + str(i) + '\n'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# repeat(object[, times])  は以下と同じ。
+# [ generatorを使った記述 ]
+#def repeat(object, times=None):
+#	if times is None:
+#		while True:
+#			yield object
+#	else:
+#		for i in xrange(times):
+#			yield object
+</code></pre><br>
+
+
+<a name="OOoGDIter04a"><h6>GDIter-)<em>[General]</em>複数の文字列からiterable作成</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/04itertools_chain01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import itertools
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oStr1 = 'AB'
+		oStr2 = 'cd'
+		oStr3 = '12'
+		oIterObj = itertools.chain(oStr1,oStr2,oStr3)
+		oDisp = unicode('[ iterable / .chain ]\n','utf-8')
+		oDisp = oDisp + str(oIterObj.next()) + ' / ' + str(oIterObj.next())
+		oIterObj.next()		# c
+		oDisp = oDisp + ' / ' + oIterObj.next()		# d
+		oDisp = oDisp + ' / ' + str(oIterObj.next())  + ' / ' + str(oIterObj.next())
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# chain(*iterables) は以下と同じ。
+# [ generatorを使った記述 ]
+#def chain(*iterables):
+#	for it in iterables:
+#		for element in it:
+#			yield element
+</code></pre><br>
+
+
+<a name="OOoGDIter05a"><h6>GDIter-)<em>[General]</em>条件不一致以降のList Dataのiterable作成</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/05itertools_dropwhile01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import itertools
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = [1,2,5,8,1]
+		oIterObj = itertools.dropwhile(lambda x: x < 5,oList)
+		oDisp = unicode('[ iterable / .dropwhile ]\n','utf-8')
+		oDisp = oDisp + str(oIterObj.next()) + ' / ' + str(oIterObj.next()) + ' / ' + str(oIterObj.next())
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# lamdba式で無くdef関数でもOK
+#
+# dropwhile(predicate, iterable) は以下と同じ。
+# [ generatorを使った記述 ]
+#def dropwhile(predicate, iterable):
+#	iterable = iter(iterable)
+#	for x in iterable:
+#		if not predicate(x):
+#			yield x
+#			break
+#	for x in iterable:
+#		yield x
+</code></pre><br>
+
+
+<a name="OOoGDIter05b"><h6>GDIter-)<em>[General]</em>条件不一致になるまでList Dataのiterable作成</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/05itertools_takewhile01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import itertools
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = [1,2,3,2,7,1,3,8]
+		oDisp = unicode('[ iterable / .takewhile ]\n','utf-8')
+		for k in itertools.takewhile(lambda x: x < 5,oList):
+			oDisp = oDisp + str(k) + '\n'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# takewhile(predicate, iterable) は以下と同じ。
+# [ generatorを使った記述 ]
+#def takewhile(predicate, iterable):
+#	for x in iterable:
+#		x = iterable.next()
+#		if predicate(x):
+#			yield x
+#		else:
+#			break
+</code></pre><br>
+
+
+
+<a name="OOoGDIter06a"><h6>GDIter-)<em>[General]</em>要素のGroup化1</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/06itertools_groupby01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import itertools
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = [1,4,3,2,4,1,3,4]
+		oSortL = sorted(oList)
+		oDisp = unicode('[ iterable / .groupby ]\n','utf-8')
+		for k,g in itertools.groupby(oSortL):
+			oDisp = oDisp + str(k) + ' / ' + str(list(g)) + '\n'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+# 同じキー関数で並べ替え済みである事。
+# 
+#
+# groupby()  は以下と同じ。
+# [ generatorを用いたClassでの記述 ]
+#class groupby(object):
+#	def __init__(self, iterable, key=None):
+#		if key is None:
+#			key = lambda x: x
+#		self.keyfunc = key
+#		self.it = iter(iterable)
+#		self.tgtkey = self.currkey = self.currvalue = xrange(0)
+#	def __iter__(self):
+#		return self
+#	def next(self):
+#		while self.currkey == self.tgtkey:
+#			self.currvalue = self.it.next() 			# Exit on StopIteration
+#			self.currkey = self.keyfunc(self.currvalue)
+#		self.tgtkey = self.currkey
+#		return (self.currkey, self._grouper(self.tgtkey))
+#	def _grouper(self, tgtkey):
+#		while self.currkey == tgtkey:
+#			yield self.currvalue
+#			self.currvalue = self.it.next() 			# Exit on StopIteration
+#			self.currkey = self.keyfunc(self.currvalue)
+</code></pre><br>
+
+
+<a name="OOoGDIter06b"><h6>GDIter-)<em>[General]</em>要素のGroup化2</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/06itertools_groupby02.png" align="right" hspace="4" vspace="4" width="15%">
+# Optionとして関数を渡すと、返されるKeyを変更することができる。
+#
+#!
+#coding: utf-8
+# python Marco
+import itertools
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = [1,4,3,2,4,1,3,4]
+		oSortL = sorted(oList)
+		oDisp = unicode('[ iterable / .groupby ]\n','utf-8')
+		for k,g in itertools.groupby(oSortL,  lambda x: str(x) + ': Pyton'):
+			oDisp = oDisp + str(k) + ' / ' + str(list(g)) + '\n'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDIter07a"><h6>GDIter-)<em>[General]</em>条件が一致するDataのiterable作成</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/07itertools_iflter01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import itertools
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = [1,5,3,2,7,1,3,8]
+		oDisp = unicode('[ iterable / .iflter ]\n','utf-8')
+		for k in itertools.ifilter(lambda x: x > 2,oList):
+			oDisp = oDisp + str(k) + '\n'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDIter07b"><h6>GDIter-)<em>[General]</em>条件が不一致のDataのiterable作成</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/07itertools_iflterfalse01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import itertools
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = [1,5,3,2,7,1,3,8]
+		oDisp = unicode('[ iterable / .iflterfalse ]\n','utf-8')
+		for k in itertools.ifilterfalse(lambda x: x > 2,oList):
+			oDisp = oDisp + str(k) + '\n'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# ifilterfalse(	predicate, iterable) は以下と同じ。
+# [ generatorを使った記述 ]
+#def ifilterfalse(predicate, iterable):
+#         if predicate is None:
+#             predicate = bool
+#         for x in iterable:
+#             if not predicate(x):
+#                 yield x
+</code></pre><br>
+
+
+<a name="OOoGDIter08a"><h6>GDIter-)<em>[General]</em>任意の区間のiterable作成</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/08itertools_islice01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import itertools
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oRng = range(10)
+		oDisp = unicode('[ iterable / .islice ]\n','utf-8')
+		for k in itertools.islice(oRng,1,9,2):
+			oDisp = oDisp + str(k) + ' '
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# 'abcdefg'やListでもOK
+# Listのslice関数同様にStart位置 / Stop位置 / Stepを指定してiterableが作成できる。
+# 但し、slice関数とは異なり、start / stop / stepに負の値を指定することは出来ません。
+# Startが0以外ならば、先頭要素までSkip。
+# Stopが省略されると無限iterable or oRngのAll Element返す。
+# Stepが1以下ならば連続したElementを返し、2以上ならば指定された値分のElementをSkipする。
+#
+# islice(iterable, [start,] stop [, step]) は以下と同じ。
+# [ generatorを使った記述 ]
+#def islice(iterable, *args):
+#	s = slice(*args)
+#	it = iter(xrange(s.start or 0, s.stop or sys.maxint, s.step or 1))
+#	nexti = it.next()
+#	for i, element in enumerate(iterable):
+#		if i == nexti:
+#			yield element
+#			nexti = it.next()
+</code></pre><br>
+
+
+<a name="OOoGDIter09a"><h6>GDIter-)<em>[General]</em>iterable( or List )要素からmap iterable作成</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/09itertools_imap01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import itertools
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oRng = range(5,11)
+		oDisp = unicode('[ iterable / .imap ]\n','utf-8')
+		for k in itertools.imap(lambda x:pow(x,3),oRng):
+			oDisp = oDisp + str(k) + '\n'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+# 
+# functionがNoneの場合は引数のTupleを返す。
+# Python3では2系で組み込みのmap関数がこのimapに置き換えられた。
+#
+# imap(	function, *iterables) は以下と同じ。
+# [ generatorを使った記述 ]
+#def imap(function, *iterables):
+#         iterables = map(iter, iterables)
+#         while True:
+#             args = [i.next() for i in iterables]
+#             if function is None:
+#                 yield tuple(args)
+#             else:
+#                 yield function(*args)
+</code></pre><br>
+
+
+<a name="OOoGDIter09b"><h6>GDIter-)<em>[General]</em>Tupleのiterable( or List )要素からmap iterable作成</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/09itertools_starmap01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import itertools
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = [(1,2),(3,4),(5,6)]
+		oDisp = unicode('[ iterable / .starmap ]\n','utf-8')
+		for k in itertools.starmap(lambda x,y: x*y,oList):
+			oDisp = oDisp + str(k) + '\n'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# 関数の引数が単一のiterable( or List )にTupleとして格納されている場合、imapでは無くstarmapを使う。
+#
+# starmap(	function, iterable) は以下と同じ。
+# [ generatorを使った記述 ]
+#def starmap(function, iterable):
+#	iterable = iter(iterable)
+#	while True:
+#		yield function(*iterable.next())
+</code></pre><br>
+
+
+
+<a name="OOoGDIter10a"><h6>GDIter-)<em>[General]</em>iterable( or List )要素から任意数分の独立したiterable作成</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/10itertools_tee01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import itertools
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = [1,2,3,4,5]
+		oDisp = unicode('[ iterable / .tee ]\n','utf-8')
+		for k in itertools.tee(oList,3):
+			oDisp = oDisp + '\n'
+			for i in k:
+				oDisp = oDisp + str(i) + ' / '
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# 行列式を作る時に便利かも？
+#
+# [ 注意 ]
+# 1) 元のiterable( or List )とteeで生成されたiterableは共有関係にあるので# teeで新たなiterableを生成した後は
+#	Originalのiterableを使ってはいけない。
+# 2) teeはかなり大きなMemory領域を使用します (使用するメモリ量はiterableの大きさに依存します)。 
+#	一般には、一つのiterableが他のiterableよりも先に ほとんどまたは全ての要素を消費するような場合には、tee() よりもlist() を使った方が高速です。
+#
+# tee(iterable[, n=2]) は以下と同じ。
+# [ generatorを使った記述 ]
+#def tee(iterable):
+#	def gen(next, data={}, cnt=[0]):
+#		for i in count():
+#			if i == cnt[0]:
+#				item = data[i] = next()
+#				cnt[0] += 1
+#			else:
+#				item = data.pop(i)
+#			yield item
+#	it = iter(iterable)
+#	return (gen(it.next), gen(it.next))
+</code></pre><br>
+
+
+
+<a name="OOoGDIter11a"><h6>GDIter-)<em>[General]</em>複数のiterable( or List )要素を各要素をTuple化した1つのiterable作成(最少要素数揃え)</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/11itertools_izip01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import itertools
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList1 = [1,2,3,4,5]
+		oList2 = [('a','b'),('c','d')]
+		oList3 = ['ABC','DEF','GHI']
+		oDisp = unicode('[ iterable / .izip ]\n','utf-8')
+		for k in itertools.izip(oList1,oList2,oList3):
+			oDisp = oDisp + str(k) + '\n'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# [ 注意 ]
+# 1) 元iterable( or List )の要素数が異なる場合は、最少の要素数のiterableに合せる様に他のiterableの要素は削除される。
+# 2) Python3では2系で組み込みのzip関数がこのizipに置き換えられた。
+#
+# izip(	*iterables) は以下と同じ。
+# [ generatorを使った記述 ]
+#def izip(*iterables):
+#	iterables = map(iter, iterables)
+#	while iterables:
+#		result = [it.next() for it in iterables]
+#		yield tuple(result)
+</code></pre><br>
+
+
+<a name="OOoGDIter11b"><h6>GDIter-)<em>[General]</em>複数のiterable( or List )要素を各要素をTuple化した1つのiterable作成(最多要素数揃え)</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/11itertools_izip_longest01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import itertools
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList1 = [1,2,3,4,5]
+		oList2 = [('a','b'),('c','d')]
+		oList3 = ['ABC','DEF','GHIJK','LMN']
+		oDisp = unicode('[ iterable / .izip_longest ]\n','utf-8')
+		for k in itertools.izip_longest(oList1,oList2,oList3,fillvalue='Empty'):
+			oDisp = oDisp + str(k) + '\n'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# [ 注意 ]
+# 1) izipとは逆に最も長いイテレータに長さを揃える。 
+#	足りない部分はfillvalueに値を指定すればそれで埋められる。
+#	指定しなければNoneが入る。
+# 2) １つでも無限iterableである可能性があるiterableがある場合の使用は避けた方が良い。無限Loopと同じになる。
+# 3) python3ではizip_longestからzip_longestへ名称変更。
+#
+# izip_longest('ABCD', 'xy', fillvalue='-')  は以下と同じ。
+# [ generatorを使った記述 ]
+#def izip_longest(*args, **kwds):
+#	# izip_longest('ABCD', 'xy', fillvalue='-') --> Ax By C- D-
+#	fillvalue = kwds.get('fillvalue')
+#	def sentinel(counter = ([fillvalue]*(len(args)-1)).pop):
+#		yield counter()         # yields the fillvalue, or raises IndexError
+#	fillers = repeat(fillvalue)
+#	iters = [chain(it, sentinel(), fillers) for it in args]
+#	try:
+#		for tup in izip(*iters):
+#			yield tup
+#	except IndexError:
+#		pass
+</code></pre><br>
+
+
+<a name="OOoGDIter12a"><h6>GDIter-)<em>[General]</em>集合のデカルト積(直積)1</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/12itertools_product01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import itertools
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList1 = [1,2,3]
+		oList2 = ['ab','cd','ef']
+		oCartesian = list(itertools.product(oList1,oList2))
+		oDisp = unicode('[ iterable / .product ]\n','utf-8')
+		oDisp = oDisp + str(oCartesian)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# 集合のデカルト積(直積)とは(<a href="http://ja.wikipedia.org/wiki/%E7%9B%B4%E7%A9%8D%E9%9B%86%E5%90%88">http://ja.wikipedia.org/wiki/%E7%9B%B4%E7%A9%8D%E9%9B%86%E5%90%88</a>)
+#
+# itertools.product(*iterables[, repeat])  は以下と同じ。
+# 但し、実際の実装ではメモリ中に中間結果を作りません
+# [ generatorを使った記述 ]
+#def product(*args, **kwds):
+#	# product('ABCD', 'xy') ＝＞ Ax Ay Bx By Cx Cy Dx Dy
+#	# product(range(2), repeat=3) ＝＞ 000 001 010 011 100 101 110 111
+#	pools = map(tuple, args) * kwds.get('repeat', 1)
+#	result = [[]]
+#	for pool in pools:
+#		result = [x+[y] for x in result for y in pool]
+#	for prod in result:
+#		yield tuple(prod)
+</code></pre><br>
+
+
+<a name="OOoGDIter12b"><h6>GDIter-)<em>[General]</em>集合のデカルト積(直積)2</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/12itertools_product02.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import itertools
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList1 = [1,2]
+		oList2 = ['ab','cd']
+		oCartesian = list(itertools.product(oList1,oList2,repeat=2))
+		#oCartesian = list(itertools.product(oList1,oList2,oList1,oList2))		# 本式と等価
+		oDisp = unicode('[ iterable / .product ]\n','utf-8')
+		oDisp = oDisp + str(oCartesian)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDIter13a"><h6>GDIter-)<em>[General]</em>順列作成(取り出す要素数を無指定)</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/13itertools_permutations01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import itertools
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = [123,'bc','D']
+		oCartesian = list(itertools.permutations(oList))
+		oDisp = unicode('[ iterable / .permutations ]\n','utf-8')
+		oDisp = oDisp + str(oCartesian)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# 1)それぞれの順列はタプルで格納される。
+# 2)permutations() のCodeは .product() の列から重複のあるもの (それらは入力プールの同じ位置から取られたものです) を
+#	除外するようにFilterを掛けたものとしても表現できます。
+#
+# itertools.permutations(iterable[, r])  は以下と同じ。
+# [ generatorを使った記述 ]
+#def permutations(iterable, r=None):
+#	# permutations('ABCD', 2) ＝＞ AB AC AD BA BC BD CA CB CD DA DB DC
+#	# permutations(range(3)) ＝＞ 012 021 102 120 201 210
+#	pool = tuple(iterable)
+#	n = len(pool)
+#	r = n if r is None else r
+#	if r > n:
+#		return
+#	indices = range(n)
+#	cycles = range(n, n-r, -1)
+#	yield tuple(pool[i] for i in indices[:r])
+#	while n:
+#		for i in reversed(range(r)):
+#			cycles[i] -= 1
+#			if cycles[i] == 0:
+#				indices[i:] = indices[i+1:] + indices[i:i+1]
+#				cycles[i] = n - i
+#			else:
+#				j = cycles[i]
+#				indices[i], indices[-j] = indices[-j], indices[i]
+#				yield tuple(pool[i] for i in indices[:r])
+#				break
+#		else:
+#			return
+#
+# [ .product()を利用した場合 ]
+#def permutations(iterable, r=None):
+#	pool = tuple(iterable)
+#	n = len(pool)
+#	r = n if r is None else r
+#	for indices in product(range(n), repeat=r):
+#		if len(set(indices)) == r:
+#			yield tuple(pool[i] for i in indices)
+</code></pre><br>
+
+
+<a name="OOoGDIter13b"><h6>GDIter-)<em>[General]</em>順列作成(取り出す要素数を指定)</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/13itertools_permutations02.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import itertools
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = [123,'bc','D']
+		oCartesian = list(itertools.permutations(oList,2))
+		oDisp = unicode('[ iterable / .permutations ]\n','utf-8')
+		oDisp = oDisp + str(oCartesian)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# 1)行列の非対角要素にアクセス
+# 2) rは一度に取り出す要素数を指定する。rを指定しなかったりNoneを与えると、rはiterableの長さとなる。
+# 3) 要素は位置に基づいて一意的に扱われ、値に基づいてではありません。
+</code></pre><br>
+
+
+
+<a name="OOoGDIter14a"><h6>GDIter-)<em>[General]</em>組合せ作成</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/14itertools_combinations01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import itertools
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = ['bc',123,'D',123]
+		oCartesian1 = list(itertools.combinations(oList,1))
+		oCartesian2 = list(itertools.combinations(oList,2))
+		oCartesian3 = list(itertools.combinations(oList,3))
+		oCartesian4 = list(itertools.combinations(oList,4))
+		oDisp = unicode('[ iterable / .combinations ]\n','utf-8')
+		oDisp = oDisp + str(oCartesian1) + '\n'
+		oDisp = oDisp + str(oCartesian2) + '\n'
+		oDisp = oDisp + str(oCartesian3) + '\n'
+		oDisp = oDisp + str(oCartesian4)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# 1) 取出す要素数は必須。
+# 2) 入力iterableの要素（oList）から長さrの部分を返す。
+# 3) permutations()と異なり組合せは辞書順序でSortされる。
+# 4) 組合せが同じであれば、順番が違うものも同じとされる。つまり、順列にはならない。
+# 5) それぞれの組合せはタプルで格納される。
+# 6) combination() のCodeは permutations() のシーケンスから (入力プールでの位置に応じた順序で) 要素がSortされていないものを
+#	Filterしたようにも表現できます。
+#
+# itertools.combinations(iterable, r))  は以下と同じ。
+# [ generatorを使った記述 ]
+#def combinations(iterable, r):
+#	# combinations('ABCD', 2) ＝＞ AB AC AD BC BD CD
+#	# combinations(range(4), 3) ＝＞ 012 013 023 123
+#	pool = tuple(iterable)
+#	n = len(pool)
+#	if r > n:
+#		return
+#	indices = range(r)
+#	yield tuple(pool[i] for i in indices)
+#	while True:
+#		for i in reversed(range(r)):
+#			if indices[i] != i + n - r:
+#				break
+#		else:
+#			return
+#		indices[i] += 1
+#		for j in range(i+1, r):
+#			indices[j] = indices[j-1] + 1
+#		yield tuple(pool[i] for i in indices)
+#
+# [ .permutations()を利用した場合 ]
+#def combinations(iterable, r):
+#	pool = tuple(iterable)
+#	n = len(pool)
+#	for indices in permutations(range(n), r):
+#		if sorted(indices) == list(indices):
+#			yield tuple(pool[i] for i in indices)
+</code></pre><br>
+
+
+<a name="OOoGDIter"><h6>GDIter-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/07iterable/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+
+<br clear="right">
+<p class="s1"> collections(コンテナデータ型)</p class="s1">
+<p class="s3">[ deque ]</p class="s3">
+<a name="GDDeque00a"><h6>GDDeque-)<em>[General]</em>dequeの利点</h6></a><pre><code>
+[ 利点 ]
+List型を用いてもStackやQueueとしての動作をさせることは可能ですが、 各Data型には得意苦手があります。
+両端へのData追加、取り出しを行ったときのData再配列Costが問題になります。
+両端へのData追加、取り出しはcollections モジュールの deque のほうが適任です。
+要素列の左への追加・削除、右への追加・削除をともに得意としています。
+但し、Python のdequeは添え字によるrandam access風の操作にも対応していますが、こちらは苦手としています。
+処理速度は、僅かにdequeの方が速い様です。
+
+deque はListと同じ様な操作をいくつかSuppotしています。
+
+1) len の引数に与えるとリスト同様に現在の長さを得ることができます。
+2) イテレータ化可能のため for 文で要素のすべてにアクセスできます。
+3) for 文と reversed の併用で逆順にすべてアクセスできます。
+4) in 演算子が適用可能です。 "a" in d でデキュー d に文字列 "a" が含まれているか確認できます。
+5) d[1]? のような添え字によるアクセスが可能です。
+</code></pre><br>
+
+
+<a name="GDDeque01a"><h6>GDDeque-)<em>[General]</em>ListへData追加比較(右から追加)</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/08deque/01deque_append01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+from collections import deque
+import datetime
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def deque_append(num):
+	# dequeの初期化
+	oQueue = deque([])
+	for i in range(num):
+		oQueue.append(i)
+	return oQueue
+def list_append(num):
+	oList = []
+	for i in range(num):
+		oList.append(i)
+	return oList
+def oTest():
+	try:
+		oNum = 1000000
+		# deque
+		oNow11 = datetime.datetime.today()
+		oTime11 = oNow11.second * 60 * 1000000 + oNow11.second * 1000000 + oNow11.microsecond
+		oDeque = deque_append(oNum)
+		oNow12 = datetime.datetime.today()
+		oTime12 = oNow12.second * 60 * 1000000 + oNow12.second * 1000000 + oNow12.microsecond
+		oDifTime1 = str(oTime12 - oTime11)
+		# List
+		oNow21 = datetime.datetime.today()
+		oTime21 = oNow21.second * 60 * 1000000 + oNow21.second * 1000000 + oNow21.microsecond
+		oList = list_append(oNum)
+		oNow22 = datetime.datetime.today()
+		oTime22 = oNow22.second * 60 * 1000000 + oNow22.second * 1000000 + oNow22.microsecond
+		oDifTime2 = str(oTime22 - oTime21)
+		oDisp = u'[ dequeとListでの実行時間差( unit : 1/1,000,000 sec ) ]\n deque : ' + oDifTime1 + '\n List \t: ' + oDifTime2
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="GDDeque02a"><h6>GDDeque-)<em>[General]</em>ListへData追加比較(左から追加)</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/08deque/02deque_appendleft01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+from collections import deque
+import datetime
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def deque_append(num):
+	# dequeの初期化
+	oQueue = deque([])
+	for i in range(num):
+		oQueue.append(i)
+	return oQueue
+def deque_appendleft(num):
+	# dequeの初期化
+	oQueueleft = deque([])
+	for i in range(num):
+		oQueueleft.append(i)
+	return oQueueleft
+def oTest():
+	try:
+		oNum = 1000000
+		# append
+		oNow11 = datetime.datetime.today()
+		oTime11 = oNow11.second * 60 * 1000000 + oNow11.second * 1000000 + oNow11.microsecond
+		oAppend = deque_append(oNum)
+		oNow12 = datetime.datetime.today()
+		oTime12 = oNow12.second * 60 * 1000000 + oNow12.second * 1000000 + oNow12.microsecond
+		oDifTime1 = str(oTime12 - oTime11)
+		# appendleft
+		oNow21 = datetime.datetime.today()
+		oTime21 = oNow21.second * 60 * 1000000 + oNow21.second * 1000000 + oNow21.microsecond
+		oAppendleft = deque_appendleft(oNum)
+		oNow22 = datetime.datetime.today()
+		oTime22 = oNow22.second * 60 * 1000000 + oNow22.second * 1000000 + oNow22.microsecond
+		oDifTime2 = str(oTime22 - oTime21)
+		oDisp = u'[ dequeでの実行時間( unit : 1/1,000,000 sec ) ]\n append     : ' + oDifTime1 + '\n appendleft : ' + oDifTime2
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="GDDeque03a"><h6>GDDeque-)<em>[General]</em>Listから要素取出比較(右から要素を取出)</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/08deque/03deque_pop01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+from collections import deque
+import datetime
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oNum = 1000000
+		oDeque = deque(range(oNum))
+		oList = range(oNum)
+		oPop1 = ''
+		oPop2 = ''
+		# deque / pop()
+		oNow11 = datetime.datetime.today()
+		oTime11 = oNow11.second * 60 * 1000000 + oNow11.second * 1000000 + oNow11.microsecond
+		for i in range(oNum/10):
+			oPop1 = oPop1 + str(oDeque.pop())
+		oNow12 = datetime.datetime.today()
+		oTime12 = oNow12.second * 60 * 1000000 + oNow12.second * 1000000 + oNow12.microsecond
+		oDifTime1 = str(oTime12 - oTime11)
+		# List / pop()
+		oNow21 = datetime.datetime.today()
+		oTime21 = oNow21.second * 60 * 1000000 + oNow21.second * 1000000 + oNow21.microsecond
+		for i in range(oNum/10):
+			oPop2 = oPop2 + str(oList.pop())
+		oNow22 = datetime.datetime.today()
+		oTime22 = oNow22.second * 60 * 1000000 + oNow22.second * 1000000 + oNow22.microsecond
+		oDifTime2 = str(oTime22 - oTime21)
+		oDisp = u'[ dequeでの実行時間( unit : 1/1,000,000 sec ) ]\n'\
+		+ 'deque / pop : ' + oDifTime1 + '\n'\
+		+ 'list\t / pop : ' + oDifTime2
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="GDDeque04a"><h6>GDDeque-)<em>[General]</em>Listから要素取出比較(右から要素を取出)</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/08deque/04deque_popleft01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+from collections import deque
+import datetime
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oNum = 1000000
+		oDeque = deque(range(oNum))
+		oPop1 = ''
+		oPop2 = ''
+		# deque / pop()
+		oNow11 = datetime.datetime.today()
+		oTime11 = oNow11.second * 60 * 1000000 + oNow11.second * 1000000 + oNow11.microsecond
+		for i in range(oNum/10):
+			oPop1 = oPop1 + str(oDeque.pop())
+		oNow12 = datetime.datetime.today()
+		oTime12 = oNow12.second * 60 * 1000000 + oNow12.second * 1000000 + oNow12.microsecond
+		oDifTime1 = str(oTime12 - oTime11)
+		# List / pop()
+		oNow21 = datetime.datetime.today()
+		oTime21 = oNow21.second * 60 * 1000000 + oNow21.second * 1000000 + oNow21.microsecond
+		for i in range(oNum/10):
+			oPop2 = oPop2 + str(oDeque.popleft())
+		oNow22 = datetime.datetime.today()
+		oTime22 = oNow22.second * 60 * 1000000 + oNow22.second * 1000000 + oNow22.microsecond
+		oDifTime2 = str(oTime22 - oTime21)
+		oDisp = u'[ dequeでの実行時間( unit : 1/1,000,000 sec ) ]\n'\
+		+ 'deque / pop\t  : ' + oDifTime1 + '\n'\
+		+ 'deque / popleft : ' + oDifTime2
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="GDDeque05a"><h6>GDDeque-)<em>[General]</em>dequeを空にする</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+from collections import deque
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oNum = 1000000
+		oDeque = deque(range(oNum))
+		# dequeをClear
+		oDeque.clear()
+		oDisp = 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="GDDeque06a"><h6>GDDeque-)<em>[General]</em>iterableに要素追加(右から追加)</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/08deque/06deque_extend01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+from collections import deque
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oList = ['a','b','c']
+		oIter = iter(oList)
+		# dequeの初期化
+		oDeque = deque([])
+		oDeque.append('z')
+		oDisp = u'[ iterableに要素追加 ]\n' + u'初期値 : ' + str(oDeque) + '\n'
+		for i in oIter:
+			oDeque.extend(i)
+		oDisp = oDisp + u'追加後 : ' + str(oDeque)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="GDDeque07a"><h6>GDDeque-)<em>[General]</em>iterableに要素追加(左から追加)</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/08deque/07deque_extendleft01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+from collections import deque
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oList = ['a','b','c']
+		oIter = iter(oList)
+		# dequeの初期化
+		oDeque = deque([])
+		oDeque.append('z')
+		oDisp = u'[ iterableに要素追加 ]\n' + u'初期値 : ' + str(oDeque) + '\n'
+		for i in oIter:
+			oDeque.extendleft(i)
+		oDisp = oDisp + u'追加後 : ' + str(oDeque)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="GDDeque08a"><h6>GDDeque-)<em>[General]</em>要素を左右へ n 個分rotate</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/08deque/08deque_rotate01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+from collections import deque
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oList = ['a','b','c','d','e']
+		oDeque1 = deque(oList)
+		oDeque2 = deque(oList)
+		oDisp = u'[ 要素をrotate ]\n' + u'初期値 : ' + str(oDeque1) + '\n'
+		oDeque1.rotate(2)
+		oDeque2.rotate(-2)
+		oDisp = oDisp + u'右へrotate後 : ' + str(oDeque1) +'\n'\
+		+ u'左へrotate後 : ' + str(oDeque2)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="GDDeque09a"><h6>GDDeque-)<em>[General]</em>要素数を数える</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/08deque/09aCount01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+from collections import deque
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = ['a','b','c','d','e','a','b','a']
+		oDeque = deque(oList)
+		oDisp = u'[ 要素の数 ]\n' + u'初期値 : ' + str(oDeque) + '\n'
+		oCnt1 = oDeque.count('a')		# 3.2で追加
+		oCnt2 = oDeque.count('b')
+		oCnt3 = oDeque.count('z')
+		oDisp = oDisp + u' a の数 = ' + str(oCnt1) +'\n b の数 = ' + str(oCnt2) +'\n z の数 = ' + str(oCnt3)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="GDDeque10a"><h6>GDDeque-)<em>[General]</em>要素順の反転</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/08deque/10aReverse01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+from collections import deque
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = ['a','b','c','d','e']
+		oDeque1 = deque(oList)
+		oDeque2 = deque(oList)
+		oDisp = u'[ 要素順の反転 ]\n' + u'初期値 : ' + str(oDeque1) + '\n'
+		oDeque2.reverse()		# ver3.2で追加
+		oDisp = oDisp + u'反転後 : ' + str(oDeque2)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="GDDeque11a"><h6>GDDeque-)<em>[General]</em>要素数を制限してdeque化</h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/08deque/11aMaxlen01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+from collections import deque
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = ['a','b','c','d','e']
+		oDeque1 = deque(oList,maxlen=3)		# msxlen : ver3.1で追加
+		oDeque2 = deque(oList,maxlen=1)
+		oDeque3 = deque(oList,maxlen=10)
+		oDisp = u'[ 要素数の制限 ]\n' + u'初期値 : ' + str(oList) + u'\n　⇒ ' + str(oDeque1) + u'\n　⇒ ' + str(oDeque2) + u'\n　⇒ ' + str(oDeque3)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="GDDeque"><h6>GDDeque-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general/02Data/08deque/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+
+<br><br><br><br clear="right">
+<center><h6><a href="#TopOfPage">Top of Page</a></h6></center><BR>
+
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/Python_Macro_General_No3.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:34:38 GMT -->
+</html>

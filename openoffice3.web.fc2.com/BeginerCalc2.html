@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/BeginerCalc2.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:08:36 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<html lang="ja">
+	<title>初心者Memo / Calc No.2</title>
+	
+	<SCRIPT language="JavaScript">
+		<!--
+			renew = new Date(document.lastModified);
+			y=renew.getYear();
+			m=renew.getMonth() + 1;
+			d=renew.getDate();
+			if(y<1900) {y=y+1900;}
+				oDate="更新日："+y+"/"+m+"/"+d;
+			document.write(oDate);
+		//-->
+	</SCRIPT>
+	
+</head>
+<link rel="stylesheet" type="text/css" href="css_new_beginer.css">
+
+<body>
+<a name="TopOfPage"><left><p><A HREF="index-2.html">Home of site</a></p></left></a><br>
+<h1>
+初心者Memo / Calc No.2<br><br>
+( 関数 )
+</h1>
+<br><br>
+
+<p>
+OOo入門Calc編の続編です。<br>
+前編で、ExcelとCalcの関数文法は、<em2>","</em2>と<em2>";"</em2><em>(&emsp;LibreOfficeではExcelと同じ","&emsp;)</em>の違いである事を示しました。<br>
+今回も前回に引き続いてよく使う関数について紹介します。<br>
+</p>
+<BR><br><br>
+
+<p>1.数学に使う関数</p>
+<ul>
+1)PI() : Π（3.14)の事<br>
+2)Sin(x) ： Sin関数。xはラジアン表記<br>
+3)Cos(x) :  Cos関数。xはラジアン表記<br>
+4)Tan(x) :  Tan関数。xはラジアン表記<br>
+5)LN(x)	: LOGe関数。<br>
+6)^(x)　：べき乗関数。xを分数にするとべき乗根になる。例）2^(1/2)=1.4142<br>
+7)Exp(x) : e を底とする数値のべき乗を返します。<br>
+8)round(数値;四捨五入した後に残す少数点以下の桁数)：round(10.12345;2)=10.12<br>
+9)Roundup(数値;切り上げした後に残す少数点以下の桁数)：Roundup(10.12345;2)=10.13<br>
+10)Rounddown(数値;切り下げした後に残す少数点以下の桁数)：Rounddown(10.12345;2)=10.12<br>
+11)mod(割り算)　：　割り算した際の余りの数を返す。<br>
+</ul>
+<br>
+
+<p>2.文字列関数：文字列を制御する関数</p>
+<ul>
+1)Len("文字列"）: 文字列の数を返す。<br>
+2)Left("文字列";取得する文字数)　： 文字列の<em>左</em>から指定した数の文字列を返す。<br>
+3)right("文字列"；取得する文字数)	:  文字列の<em>右</em>から指定した数の文字列を返す。<br>
+4)mid("文字列";取得開始位置;取得文字数) : 取得開始位置から指定した数の文字列を返す。<br>
+5)FIND("検索文字"; "対象文字列"; 検索開始位置) ：文字列の中から、検索文字がある場所を左からの数値として返す。<br>
+6)Datevalue("文字列") : 文字列の日付を日付データに変換<br>
+7)Code("文字列") : 文字列の頭文字(1文字)のコード番号を返す。Code("E") => 69 / Code("Excel") => 69 / Code(A2) => 69 (A2 Cell値="Excel") 日本語(全角文字)は全て「0」<br>
+8)Trim("文字列") : 文字列の前後のSpaceを削除した値を返す<br>
+</ul>
+<BR>
+
+<p>3．統計関数</p>
+<ul>
+1)max(検索範囲)　：　検索範囲内の最大値を返す。検索範囲は複数の行列にまたがってOK<br>
+2)min(検索範囲)　：　検索範囲内の最小値を返す。検索範囲は複数の行列にまたがってOK<br>
+</ul>
+<br>
+
+<p>4.検索関数</p>
+<ul>
+1)HlookUP(検索条件；範囲；インデックス）：範囲の<em>1列目</em>を検索条件し、一致する列のインデックスで記された範囲の行にある値を返す。インデックスが2ならば範囲の上から2番目。但し、検索範囲は範囲の一番上の列である事に注意。<br>
+2)Vlookup(検索条件；範囲；インデックス）：範囲の<em>1行目</em>を検索条件し、一致する行のインデックスで記された範囲の列にある値を返す。インデックスが2ならば範囲の左から2番目。但し、検索範囲は範囲の一番上の左である事に注意。<br>
+3)INDEX(参照; 行; 列; 範囲)　：　INDEX((multi);0;0;2) は、重複範囲の 2 番目の範囲への参照を返します。但し<em>検索は範囲内の1列のみに対して行われる。</em><br>
+4)MATCH(検索条件; ルックアップ行列; タイプ) :検索条件 は、単一行または単一列の行列で検索される値です。MATCH(200;D1:D100) は、列 D で並べ替えられる範囲 D1:D100 で値 200 を検索します。この値に到達するとすぐに、この値が見つかった行の番号が返されます。<br>
+</ul>
+<br>
+
+<p>5．日付・時間関数</p>
+<ul>
+1)Today() : 本日の日付を返す。（時間は含まない）<br>
+2)Year(x) : xに関する年を返す　例)　Year(today())=2009<br>　
+3)month(x) :　xに関する月を返す。<br>
+4)day(x) : xに関する日を返す。<br>
+5)Date() : DATE(年; 月; 日) 例）Date(year(today());month(today();day(today())=2009/8/12<br>
+6)now()　：現在の日時を返す。 例)now()=2009/8/12/ 22:10:15<br>
+7)Hour() : 時間を返す。　例)Hour(now())=22<br>
+8)Minite() ：分を返す。<br>
+9)Second() : 秒を返す。<br>
+10)DAYS(日付 2; 日付 1) : 日付1,2間の日数を返す。<br>
+11)DAYSINYEAR(日付) : 日付を含む年の年間日数を返す。例)DAYSINYEAR(1968/2/29)=366　←うるう年<br>
+12)DAYSINMONTH(日付) : 日付を含む月の月間日数を返す。　例)DAYSINMONTH(1968/2/17)=29<br>
+13)Networkday(開始日; 終了日; 祝日リスト範囲)　：　セル F3 から J3 には、「2001-12-24」、「2001-12-25」、「2001-12-26」、「2001-12-31」、「2002-01-01」のクリスマスと新年休暇が含まれています。NETWORKDAYS(C3;D3;F3:J3) =17<br>
+</ul>
+<br>
+
+<p>その他</p>
+<ul>
+1)Column(x) :　セルxの列を返す。　例)column()ならば、現在activeな列番号を返す。<br>
+2)Coiumns(指定範囲）：指定範囲内の列数を返す。<br>
+3)Row(x)　：　セルxの行を返す。　例)column()ならば、現在activeな行番号を返す。<br>
+4)Rows(指定範囲）：指定範囲内の行数を返す。<br>
+5)奇数の行列の判別　：　奇数行かどうか⇒ISODD(CELL("ROW";A2)),　奇数列かどうか⇒ISODD(CELL("COLUMN";A2))
+6)偶数の行列の判別　：　偶数行かどうか⇒ISEVEN(CELL("ROW";A2)),　偶数列かどうか⇒ISEVEN(CELL("COLUMN";A2))
+</ul>
+<br>
+
+<p>・OpenOffice.org Calcで関数ウィザードを使う。</p>
+<ul>
+&emsp;数式入力ボックスの左の方にある、「関数ウィザード」をクリックすると、関数の一覧が表示される。そこで、「関数」の一覧をクリックして、希望の関数が分かっていれば、キーボードから入力すると、希望の関数に移動します。<br>
+</ul>
+<br>
+
+<p>・セルの結合</p>
+<ul>
+&emsp;セル選択⇒書式⇒セルの結合⇒「選択範囲のセルの内容すべてを結合セルに表示しますか」⇒はい<br>
+</ul>
+<br>
+
+<p>・計算式が式で表示される。（値にしたい)</p>
+<ul>
+&emsp;書式⇒セル⇒保護タブ⇒保護のCheckを外し、数式を表示しないにcheckをいれる。<br>
+</ul>
+<br>
+
+
+<p>・ヘッター/フッターを削除（挿入)</p>
+<ul>
+&emsp;書式⇒ページ⇒ヘッダーおよびフッター「ヘッダーをつける」「フッターをつける」のチェックを外す(挿入時はcheckを入れる)⇒OK<br>
+</ul>
+<br>
+
+<p>・改ページの挿入及び削除</p>
+<ul>
+&emsp;[挿入]　：　「挿入」 ⇒ 「改ページ」 ⇒ 「行の区切り」<br>
+&emsp;[削除]　：　「編集」 ⇒ 「手動改ページの解除」 ⇒ 「行の区切り」<br>
+</ul>
+<br>
+
+<p>・CSVファイル形式(Tab区切り)で保存</p>
+<ul>
+&emsp;名前をつけて保存　⇒　ファイルの種類に「テキスト CSV（csv）」を選んで「保存」⇒　表示されるダイアログで「現在の書式を保持」をクリック　⇒「テキストのエクスポート」画面の「フィールドの区切り」を「タブ」にする。<br>
+</ul>
+<br>
+
+<p>・自動計算⇒手動計算への切替</p>
+<ul>
+&emsp;「ツール」－「セルの内容」－「自動計算」のチェックを外す(手動計算)<br>
+</ul>
+<br>
+
+<p>・パスワードを付けて保存</p>
+<ul>
+&emsp;名前をつけて保存　⇒　「パスワード付きで保存する」にcheckをいれる。<br>
+</ul>
+<br>
+
+<p>・Graphの目盛の書式設定</p>
+<ul>
+<img SRC="beginer/01calc2/01graph.jpg" align="right" hspace="0" vspace="0" WIDTH="30%">
+&emsp;縦軸(又は横軸)を選択して、右クリック　⇒　Y軸の書式windowsが開く(右図参照)　⇒「数」タブ選択　⇒「取り込んだセルと同じ書式」のcheckを外す　⇒任意の書式を選択　⇒　OK<br>
+</ul>
+<br>
+<br><br><br><br><br><br><br><br><br><br><br>
+
+<p>・日付Dataの不具合Check</p>
+<ul>
+<img SRC="http://error.fc2.com/web/404.html" align="right" hspace="0" vspace="0" WIDTH="30%">
+&emsp;「ツール」=>「オプション」=>「OpenOffice.org Calc( or LibreOffice Calc)」=>「計算式」=>「日付」の項目が12/30/1899(標準)になっているかどうか調べる。
+</ul>
+<br>
+<br><br><br><br><br>
+
+
+<p>・ERROR TYPE関数</p>
+<ul>
+&emsp;&emsp;Error Code&emsp;&emsp;Error内容<br>
+&emsp;&emsp;&emsp;501&emsp;:&emsp;&emsp;無効な文字が使われています<br>
+&emsp;&emsp;&emsp;502&emsp;:&emsp;&emsp;無効な引数が使われています<br>
+&emsp;&emsp;&emsp;503&emsp;:&emsp;&emsp;無効な浮動小数点演算です<br>
+&emsp;&emsp;&emsp;504&emsp;:&emsp;&emsp;Parameter listにError<br>
+&emsp;&emsp;&emsp;505&emsp;:&emsp;&emsp;内部のSyntax Error<br>
+&emsp;&emsp;&emsp;506&emsp;:&emsp;&emsp;無効なSemicolon( ; ) or Comma( , )が使われています<br>
+&emsp;&emsp;&emsp;507&emsp;:&emsp;&emsp;( )内のError<br>
+&emsp;&emsp;&emsp;508&emsp;:&emsp;&emsp;( )内のError<br>
+&emsp;&emsp;&emsp;509&emsp;:&emsp;&emsp;演算子が足りません<br>
+&emsp;&emsp;&emsp;510&emsp;:&emsp;&emsp;変数が足りません<br>
+&emsp;&emsp;&emsp;511&emsp;:&emsp;&emsp;変数が足りません<br>
+&emsp;&emsp;&emsp;512&emsp;:&emsp;&emsp;数式が長すぎます<br>
+&emsp;&emsp;&emsp;513&emsp;:&emsp;&emsp;文字列が長すぎます<br>
+&emsp;&emsp;&emsp;514&emsp;:&emsp;&emsp;内部のOverflow<br>
+&emsp;&emsp;&emsp;515&emsp;:&emsp;&emsp;内部のSyntax Error<br>
+&emsp;&emsp;&emsp;516&emsp;:&emsp;&emsp;内部のSyntax Error<br>
+&emsp;&emsp;&emsp;517&emsp;:&emsp;&emsp;内部のSyntax Error<br>
+&emsp;&emsp;&emsp;518&emsp;:&emsp;&emsp;内部のSyntax Error<br>
+&emsp;&emsp;&emsp;519&emsp;:&emsp;&emsp;結果がありません（Cellには ｴﾗｰ:519 ではなく#VALUE!と表示されます）<br>
+&emsp;&emsp;&emsp;520&emsp;:&emsp;&emsp;内部のSyntax Error<br>
+&emsp;&emsp;&emsp;521&emsp;:&emsp;&emsp;内部のSyntax Error<br>
+&emsp;&emsp;&emsp;522&emsp;:&emsp;&emsp;循環参照<br>
+&emsp;&emsp;&emsp;523&emsp;:&emsp;&emsp;計算Processが収束しません<br>
+&emsp;&emsp;&emsp;524&emsp;:&emsp;&emsp;無効な参照（Cellには ｴﾗｰ:524 ではなく #REF! と表示されます）<br>
+&emsp;&emsp;&emsp;525&emsp;:&emsp;&emsp;無効な名前がつかわれています（Cellには エラー:525 ではなく #NAME? と表示されます）<br>
+&emsp;&emsp;&emsp;526&emsp;:&emsp;&emsp;内部のSyntax Error<br>
+&emsp;&emsp;&emsp;527&emsp;:&emsp;&emsp;内部のOverflow<br>
+</ul>
+<br>
+
+
+<center><p><a href="#TopOfPage">Top of Page</a></p></center><BR>
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/BeginerCalc2.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:08:37 GMT -->
+</html>

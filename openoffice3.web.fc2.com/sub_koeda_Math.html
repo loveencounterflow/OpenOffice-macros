@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/sub_koeda_Math.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:09:52 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<SCRIPT language="JavaScript">
+		<!--
+			renew = new Date(document.lastModified);
+			y=renew.getYear();
+			m=renew.getMonth() + 1;
+			d=renew.getDate();
+			if(y<1900) {y=y+1900;}
+				oDate="更新日："+y+"/"+m+"/"+d;
+			document.write(oDate);
+		//-->
+	</SCRIPT>
+	<title>OOoの小枝(Math編)</title>
+</head>
+<link rel="stylesheet" type="text/css" href="css_koeda.css">
+<body>
+
+<a name="TopOfPage"><left><h3><A HREF="index-2.html">Home of site</a></p></h3></left></a>
+<h1>
+OOoの小<em>枝</em>(Math編)
+</h1>
+<center><h3>【　目次　】</h3></center>
+
+<ul>
+1)<a href="#mkoedaNo1">複数行の数式で、= で揃える</a><BR>
+2)<a href="#mkoedaNo2">数式を立体化する</a><br>
+3)<a href="#mkoedaNo3">数式に色をつける</a><br>
+4)<a href="#mkoedaNo4">%phi_{in} %psi^{in} として上付き、下付き添え字で "in" をつけようとすると失敗する</a><br>
+5)<a href="#mkoedaNo5">Fe2+の２＋を上付きにする。</a><br>
+6)<a href="#mkoedaNo6">OpenOffice.org Mathで数式を画像として保存する方法</a><br>
+7)<a href="#mkoedaNo7">≧、≦を表示させる。(Mathの機能では無理、単語登録する。)</a><br>
+8)<a href="#mkoedaNo8">四面体ベクトルOR</a><br>
+9)<a href="#mkoedaNo9">片方だけの括弧を入れる</a><br>
+
+
+<BR>
+M1-1)<a href="#OOoM-1"></a><BR>
+M1-2)<a href="#OOoM-1"></a><br>
+
+</ul>
+
+<BR>
+
+<a name="mkoedaNo1"><h5>1)複数行の数式で、= で揃える</h5></a><ul class="c2">
+phantom 命令を用いて、<br>
+&emsp;alignl (a+b)^2=(a+b)(a+b) newline<br>
+&emsp;alignl phantom{(a+b)^2}=a(a+b)+b(a+b) newline<br>
+&emsp;alignl phantom{(a+b)^2}=a^2+2ab+b^2<br>
+<br>
+のようにすれば、等号でそろえることができます。<br> 
+</ul class="c2"><BR>
+
+<a name="mkoedaNo2"><h5>2)数式を立体化する</h5></a><ul class="c2">
+nitalic というコマンドを用いて、<br> 
+&emsp;abs{a} =-a (nitalic if a<0)<br> 
+とすると if が立体に、<br> 
+&emsp;abs{a} =-a (nitalic {if a<0})<br> 
+とグループ化をすれば a<0 も含めて立体にすることができます。<br> 
+</ul class="c2"><br>
+
+<a name="mkoedaNo3"><h5>3)数式に色をつける</h5></a><ul class="c2">
+&emsp;color green {1+2=3}<br>
+と打ち込むと、緑色になるようです。<br>
+色は、white, black, cyan, magenta, red, blue, green, yellowから選択できるようです。<br>
+</ul class="c2"><br>
+
+<a name="mkoedaNo4"><h5>4)%phi_{in} %psi^{in} として上付き、下付き添え字で "in" をつけようとすると失敗する</h5></a><ul class="c2">
+"in" の前に"%"をつけて<br>
+&emsp;%phi_{%in} %psi^{%in}<br>
+とすれば上手くいきます。<br>
+これはバグではなく、inが集合要素で使用されているからだと思います。<br>
+&emsp;"x in Y"は"x∈Y"<br> 
+</ul class="c2"><br>
+
+<a name="mkoedaNo5"><h5>5)Fe2+の２＋を上付きにする。</h5></a><ul class="c2">
+&emsp;Fe^{2+{}}<br>
+起こり易い間違い　⇒　「Fe^{2+}」、Fe^2+<br>
+</ul class="c2"><br>
+
+<a name="mkoedaNo6"><h5>6)OpenOffice.org Mathで数式を画像として保存する方法</h5></a><ul class="c2">
+1)「Writer」を新規で起動<br>
+2)「挿入」　⇒　「オブジェクト」　⇒　「数式」<br>
+3) 数式を記し、数式Editorを閉じる。<br>
+4)「ファイル」　⇒　「名前をつけて保存」⇒ファイルの種類を「HTMLドキュメント」を選択　⇒　保存<br>
+5) 保存したfile(Html形式)とは別にgif形式file（画像file)が作成される。<br>
+</ul class="c2"><br>
+
+
+<a name="mkoedaNo7"><h5>7)≧、≦を表示させる。(Mathの機能では無理、単語登録する。)</h5></a><ul class="c2">
+IME(Google又はMS)にて単語登録を行う。
+</ul class="c2"><br>
+
+
+
+
+<div class="gozou00">
+<img SRC="koeda/07math/vector01.png" align="right" hspace="4" vspace="4" width="35%">	
+<a name="mkoedaNo8"><h5>8)四面体ベクトルOR</h5></a><ul class="c2">
+<p>
+ORの書式を変更する場合<br>
+ORを範囲選択　=> menu barの「書式」 => 「フォントの種類」=>「modifiy」=>「テキスト」=>「任意の書式を選択」&「斜体にcheck」
+</p>
+</ul class="c2"><br>
+<Br clear="right">
+</div>
+
+
+<a name="mkoedaNo9"><h5>9)片方だけの括弧を入れる</h5></a><ul class="c2">
+left ( x right none<br>
+と、left、rightで指定する括弧の種類に none を入れる。<br>
+</ul class="c2"><br>
+
+
+
+
+
+<a name="OOoM-1"><h5>M-1)</h5></a><br>
+<a href="#"></a><br>
+<br>
+
+<a name="OOoM-2"><h5>M-2)</h5></a><br>
+<a href="#"></a><br>
+<br>
+
+
+<BR>
+<center><h3><a href="#TopOfPage">Top of Page</a></h3></center><BR>
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/sub_koeda_Math.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:09:53 GMT -->
+</html>

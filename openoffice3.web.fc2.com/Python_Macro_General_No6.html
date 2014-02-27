@@ -1,0 +1,1887 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/Python_Macro_General_No6.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:36:24 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<title>Macroの杜(Python編 / General No.6)</title>
+</head>
+<link rel="stylesheet"
+type="text/css" href="css_macroPython.css">
+<body>
+<a name="TopOfPage"><left><p><A HREF="index-2.html">Home of site</a></p></left></a><br>
+<h1>Macroの杜( Python編 )<br>
+[ Python for LibreOffice( Apache OpenOffice ) ]
+</h1>
+
+<h2>【 General No.6 】</h2>
+
+<center><h1>###【 Continued from <a href="Python_Macro_General_No5.html">Python / General No.5</a> 】###</h1></center>
+<br>
+
+<h3><Center>**********************【 Index 】**********************</center></h3>
+
+
+<h3>【　LibreOffice( Apache OpenOffice )　】<h3>
+<p class="s1">Tips</p class="s1">
+<ul>
+GTp-)<a href="#OOoGTp1"><em>[General]</em>MRIの使用方法<em>[ <a href="http://hermione.s41.xrea.com/pukiwiki/index.php?OOoBasic/Macros/MRI/Documentation/RunMRI#uddad561">「はにゃ」さん個人サイトより</a> ]</em></a><br>
+GTp-)<a href="#OOoGTp"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+<p class="s3">[ Screen ]</p class="s3">
+<ul>
+GTpS-)<a href="#OOoGTpS02a"><em>[General]</em>Status Indicator<em>[ createStatusIndicator() / reset / start(,) / setText() / setValue() ]</em></a><br>
+GTpS-)<a href="#OOoGTpS"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+<p class="s1">Window</p class="s1">
+<ul>
+GW-)<a href="#OOoGW01a"><em>[General]</em>Current Frame Title取得<em>[ com.sun.star.frame.Desktop / getCurrentFrame() / Title ]</em></a><br>
+GW-)<a href="#OOoGW01b"><em>[General]</em>ActiveFrame Title取得<em>[ getDesktop() / getActiveFrame() / Title ]</em></a><br>
+GW-)<a href="#OOoGW02a"><em>[General]</em>Window Sizeを設定する(位置指定可)<em>[ getDesktop() / getCurrentFrame() / getContainerWindow() / setPosSize() ]</em></a><br>
+GW-)<a href="#OOoGW"><em>[General]</em><em>[  ]</em></a><br>
+GW-)<a href="#OOoGW"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+<p class="s3">[ Property ]</p class="s3">
+&emsp;<p class="s4">[[-- URL --]]</p class="s4">
+<ul>
+GDPu-)<a href="#OOoGDPu01a"><em>[General]</em>URL取得(1)<em>[ .getURL() ]</em></a><br>
+GDPu-)<a href="#OOoGDPu02a"><em>[General]</em>URL取得(2)<em>[ .getLocation() ]</em></a><br>
+</ul>
+
+
+&emsp;<p class="s4">[[-- Title --]]</p class="s4">
+<ul>
+GDPt-)<a href="#OOoGDPt01a"><em>[General]</em>File Title取得<em>[ .getTitle ]</em></a><br>
+GDPt-)<a href="#OOoGDPt"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+&emsp;<p class="s4">[[-- Identification --]]</p class="s4">
+<ul>
+GDPi-)<a href="#OOoGDPi01a"><em>[General]</em>Applicetion Identitfy(Baseは除く)<em>[ getIdentifier() ]</em></a><br>
+GDPi-)<a href="#OOoGDPi"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+&emsp;<p class="s4">[[-- Document Type --]]</p class="s4">
+<ul>
+GDPi-)<a href="#OOoGDPTyp01a"><em>[General]</em>読込み時のDocument Type取得<em>[ com.sun.star.document.TypeDetection / .queryTypeByURL ]</em></a><br>
+GDPi-)<a href="#OOoGDPTyp"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+<p class="s1">Dialog</p class="s1">
+<ul>
+GDlg-)<a href="#OOoGDlg01a"><em>[General]</em>既成Dialog表示<br>
+<em>[ import uno / import unohelper / from com.sun.star.awt import XActionListener / self.objectControl / .getComponentContext() / .ServiceManager / .createInstance('com.sun.star.awt.DialogProvider') / createDialog('vnd.sun.star.script:Standard.' + oDialogName + '?location=application') / .getControl() / .addActionListener() / .execute() / .dispose() ]</em></a><br>
+GDlg-)<a href="#OOoGDlg02a"><em>[General]</em>Dialogからfileを取得<em>[ com.sun.star.ui.dialogs.FilePicker / .appendFilter / .execute / .getFiles ]</em></a><br>
+GDlg-)<a href="#OOoGDlg03a"><em>[General]</em>DialogからFolderを取得<em>[ com.sun.star.ui.dialogs.FolderPicker / .setTitle / .setDisplayDirectory / .setDescription / .execute / .getDirectory ]</em></a><br>
+GDlg-)<a href="#OOoGDlg04a"><em>[General]</em>Plane Dialog作成<em>[ com.sun.star.awt.UnoControlDialogModel / com.sun.star.awt.UnoControlDialog / com.sun.star.awt.Toolkit ]</em></a><br>
+GDlg-)<a href="#OOoGDlg05a"><em>[General]</em>Dialog with OK / Cancel Button<em>[ com.sun.star.awt.UnoControlButtonModel ]</em></a><br>
+GDlg-)<a href="#OOoGDlg06a"><em>[General]</em>Dialog with ProgressBar<em>[ com.sun.star.awt.UnoControlProgressBarModel ]</em></a><br>
+GDlg-)<a href="#OOoGDlg07a"><em>[General]</em>Edit Dialog<em>[ com.sun.star.awt.UnoControlEditModel ]</em></a><br>
+GDlg-)<a href="#OOoGDlg08a"><em>[General]</em>Radio Button Dialog<em>[ com.sun.star.awt.UnoControlRadioButtonModel ]</em></a><br>
+GDlg-)<a href="#OOoGDlg09a"><em>[General]</em>CheckBox Dialog<em>[ com.sun.star.awt.UnoControlCheckBoxModel ]</em></a><br>
+GDlg-)<a href="#OOoGDlg10a"><em>[General]</em>ComboBox Dialog<em>[ com.sun.star.awt.UnoControlComboBoxModel ]</em></a><br>
+GDlg-)<a href="#OOoGDlg11a"><em>[General]</em>ListBox Dialog<em>[ com.sun.star.awt.UnoControlListBoxModel ]</em></a><br>
+GDlg-)<a href="#OOoGDlg12a"><em>[General]</em>Date Field Dialog<em>[ com.sun.star.awt.UnoControlDateFieldModel ]</em></a><br>
+GDlg-)<a href="#OOoGDlg13a"><em>[General]</em>Time Ffield Dialog<em>[ com.sun.star.awt.UnoControlTimeFieldModel ]</em></a><br>
+GDlg-)<a href="#OOoGDlg14a"><em>[General]</em>File Dialog<em>[ com.sun.star.awt.UnoControlFileControlModel ]</em></a><br>
+GDlg-)<a href="#OOoGDlg15a"><em>[General]</em>Label in Dialog<em>[ com.sun.star.awt.UnoControlFixedTextModel ]</em></a><br>
+GDlg-)<a href="#OOoGDlg"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+<p class="s1">dispatchHelper</p class="s1">
+<p class="s3">[ Calc ]</p class="s3">
+<ul>
+GDpHpC-)<a href="#OOoGDpHpC01a"><em>[General / Calc]</em>Cellの移動<em>[ com.sun.star.frame.DispatchHelper / .uno:GoToCell ]</em></a><br>
+GDpHpC-)<a href="#OOoGDpHpC"><em>[General / Calc]</em><em>[  ]</em></a><br>
+</ul>
+
+
+
+<br><br><br><br><br><br><br><br><br><br>
+<h3><center>******************************[ Macro Code ]******************************</center></h3>
+<br>
+
+<h3>【　LibreOffice( Apache OpenOffice )　】<h3>
+<p class="s1">Tips</p class="s1">
+<a name="OOoGTp1"><h6>GTp-)<em>[General]</em>MRIの使用方法</h6></a><pre><code>
+<img src="Python_pic/02general2/01tips/01mri01.png" align="right" hspace="4" vspace="4" width="30%">
+[　入手元　]
+以下のSiteよりExtensionをDL、Install
+URL : http://hermione.s41.xrea.com/pukiwiki/pukiwiki.php?OOo%2FExt%2FMRI
+
+[ 使用例　]
+document = XSCRIPTCONTEXT.getDocument()
+document.～ に続くMethods / Properties / Interface を調べる。   
+
+[ Sample Code ]
+def Mri_test():
+    ctx = XSCRIPTCONTEXT.getComponentContext()
+    document = XSCRIPTCONTEXT.getDocument()
+    
+    mri(ctx,document)
+
+def mri(ctx, target):
+    mri = ctx.ServiceManager.createInstanceWithContext('mytools.Mri',ctx)
+    mri.inspect(target)
+</code></pre><br>
+
+
+<a name="OOoGTp"><h6>GTp-)<em>[General]</em></h6></a><pre><code>
+<img src="Python_pic/02general2/01tips/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ Screen ]</p class="s3">
+<a name="OOoGTpS02a"><h6>GTpS-)<em>[General]</em>Status Indicator</h6></a><pre><code>
+<img src="Python_pic/02general2/01tips/01Screen/02aStatusIndicator01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import time
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def Test():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		# set up Status Indicator
+		oCntl = oDoc.getCurrentController()
+		oFrame = oCntl.getFrame()
+		oSI = oFrame.createStatusIndicator()
+		oEnd = 100
+		oSI.reset		# Reset : NG
+		oSI.start('Excuting',oEnd)	# Start : NG
+		#
+		for i in range(1,11):
+			oSI.setText('Processing: ' + str(i) )
+			oSI.setValue(10*i)
+			time.sleep(3)
+			#
+		oSI.setText('Finished')
+		oDisp = 'Success'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGTpS"><h6>GTpS-)<em>[General]</em></h6></a><pre><code>
+<img src="Python_pic/02general2/01tips/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">Window</p class="s1">
+<a name="OOoGW01a"><h6>GW-)<em>[General]</em>Current Frame Title取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/01window/01FrameTitle01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def createUnoService(service_name):
+	"""Create a UNO Service By this name"""
+	ctx = XSCRIPTCONTEXT.getComponentContext()
+	try:
+		service = ctx.ServiceManager.createInstanceWithContext(service_name, ctx)
+	except:
+		service = NONE
+	return service
+def oTest():
+	try:
+		oDesktop = createUnoService('com.sun.star.frame.Desktop')
+		oFrame = oDesktop.getCurrentFrame()
+		oFTitle = oFrame.Title
+		oDisp = oFTitle		# str(oFTitle) / unicode(oFTitle,'utf-8')は共にError
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGW01b"><h6>GW-)<em>[General]</em>ActiveFrame Title取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/01window/01ActiveFrameTitle02.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getActiveFrame()
+		oActiveFrameTitle = frame.Title
+		#
+		oDisp = oActiveFrameTitle
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+
+<a name="OOoGW02a"><h6>GW-)<em>[General]</em>Window Sizeを設定する(位置指定可)</h6></a><pre><code>
+<img SRC="Python_pic/02general2/01window/02WindowSize01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		window.setPosSize( 0, 0, 512, 384, 12 )
+		oDisp = 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGW"><h6>GW-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/01window/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+<a name="OOoGW"><h6>GW-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/01window/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ Property ]</p class="s3">
+&emsp;<p class="s4">[[-- URL --]]</p class="s4">
+<a name="OOoGDPu01a"><h6>GDPt-)<em>[General]</em>URL取得(1)</h6></a><pre><code>
+<img SRC="Python_pic/02general2/01window/01Property/03URL/01getURL01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: UTF-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		oURL = oDoc.getURL()
+		oDisp= str(oURL)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDPu02a"><h6>GDPt-)<em>[General]</em>URL取得(2)</h6></a><pre><code>
+<img SRC="Python_pic/02general2/01window/01Property/03URL/02getLocation01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: UTF-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		oLocal = oDoc.getLocation()
+		oDisp= str(oLocal)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+&emsp;<p class="s4">[[-- Title --]]</p class="s4">
+<a name="OOoGDPt01a"><h6>GDPt-)<em>[General]</em>File Title取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/01window/01Property/01Title/01getTitle01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+#
+def oTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		oTitle = oDoc.getTitle()
+		oDisp = oTitle		#  unicode(oTitle,'utf-8')はError
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDPt"><h6>GDPt-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/01window/01Property/01Title/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+&emsp;<p class="s4">[[-- Identification --]]</p class="s4">
+<a name="OOoGDPi01a"><h6>GDPi-)<em>[General]</em>Applicetion Identitfy(Baseは除く)</h6></a><pre><code>
+<img SRC="Python_pic/02general2/01window/01Property/02Identification/01getIdentifire01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		oAp_Idntfy = oDoc.getIdentifier()
+		if oAp_Idntfy == 'com.sun.star.text.TextDocument':
+			oApName = 'writer'
+		elif oAp_Idntfy == 'com.sun.star.sheet.SpreadsheetDocument':
+			oApName = 'Calc'
+		elif oAp_Idntfy == 'com.sun.star.presentation.PresentationDocument':
+			oApName = 'Impress'
+		elif oAp_Idntfy == 'com.sun.star.drawing.DrawindDocument':
+			oApName = 'Draw'
+		elif oAp_Idntfy == 'com.sun.star.formula.FormulaProperties':
+			oApName = 'math'
+		else:
+			oApName = 'Not LibreOffice File'
+		oDisp = u'[ 現在のFileのApplication ]\n ' + oApName + ' : ' + oAp_Idntfy		#  unicode(oTitle,'utf-8')はError
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+
+<a name="OOoGDPi"><h6>GDPi-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/01window/01Property/02Identification/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+&emsp;<p class="s4">[[-- Document Type --]]</p class="s4">
+<a name="OOoGDTyp01a"><h6>GDTyp-)<em>[General]</em>読込み時のDocument Type取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/15DocumentProperty/01TypeDetection/01File_TypeDetection01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import unohelper
+import os.path
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oCtx = uno.getComponentContext()
+		oServiceManager = oCtx.ServiceManager
+		oTypeDetection = oServiceManager.createInstance('com.sun.star.document.TypeDetection')
+		#
+		oFile= os.path.abspath('c:\\temp\\MacroCalc.ods')
+		oURL = unohelper.systemPathToFileUrl(oFile)
+		oDocType = oTypeDetection.queryTypeByURL(oURL)
+		oDisp = u'[ 読込み時のDocument Type 取得 ]\n ' + oDocType
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDTyp"><h6>GDTyp-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/15DocumentProperty/01TypeDetection/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">Dialog</p class="s1">
+<a name="OOoGDlg01a"><h6>GDlg-)<em>[General]</em>既成Dialog表示</h6></a><pre><code>
+<img SRC="Python_pic/02general2/02Dialog/01Dialog01.png" align="right" hspace="4" vspace="4" width="25%"><img SRC="Python_pic/02general2/02Dialog/01ShowDialog01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import random
+import unohelper
+from com.sun.star.awt import XActionListener
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+#
+class ButtonListen( unohelper.Base, XActionListener ):		# class名の先頭文字は大文字
+    def __init__(self, oControl):
+		self.objectControl = oControl
+	#actionPerformed not to be renamed
+    def actionPerformed(self, actionEvent):
+        #create Random
+		oRnd = random.randint(1,100)
+		self.objectControl.setText( str( oRnd ) )
+#
+def RandamDialog():
+	try:
+		oDialogName = 'PythonDialog'
+		oCtx = uno.getComponentContext()
+		oServiceManager = oCtx.ServiceManager
+		oDialog = oServiceManager.createInstance('com.sun.star.awt.DialogProvider')
+		oDlg_Control = oDialog.createDialog('vnd.sun.star.script:Standard.' + oDialogName + '?location=application')
+		#
+		oTextField1_Ctrl = oDlg_Control.getControl( 'TextField1' )
+		oTextField1_Ctrl.setText('Start')
+		oButton1_Listener = ButtonListen(oTextField1_Ctrl)
+		# add the action listener
+		oCmdBtn1_Ctrl = oDlg_Control.getControl('CommandButton1')
+		oCmdBtn1_Ctrl.addActionListener(oButton1_Listener)
+		# execute dialog
+		oDlg_Control.execute()
+		oDlg_Control.dispose()
+		#
+		oDisp = 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDlg02a"><h6>GDlg-)<em>[General]</em>Dialogからfileを取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/02Dialog/02FilePicker01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oCtx = uno.getComponentContext()
+		oServiceManager = oCtx.ServiceManager
+		oFilePicker = oServiceManager.createInstance('com.sun.star.ui.dialogs.FilePicker')
+		# 表示するFileのFilter設定
+		oFilePicker.appendFilter("All Files (*.*)", "*.*")
+		oFilePicker.appendFilter("Writer(*.odt)","*.odt")
+		oFilePicker.appendFilter("Calc(*.ods)","*.ods")
+		oFilePicker.appendFilter("Base(*.odb)","*.odb")
+		oFilePicker.appendFilter("Draw(*.odg)","*.odg")
+		oFilePicker.appendFilter("Impress(*.odp)","*.odp")
+		oFilePicker.appendFilter("Math(*.odf)","*.odf" )
+		oAccept = oFilePicker.execute()
+		if oAccept == 1:
+			oFiles = oFilePicker.getFiles()
+			oFileURL = oFiles[0]
+			oDisp = oFileURL
+		else:
+			oDisp = u'Fileが選択されませんでした。'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDlg03a"><h6>GDlg-)<em>[General]</em>DialogからFolderを取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/02Dialog/03FolderPicker01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oCtx = uno.getComponentContext()
+		oServiceManager = oCtx.ServiceManager
+		oFolderPicker = oServiceManager.createInstance('com.sun.star.ui.dialogs.FolderPicker')
+		# Dailpg Title設定
+		oDialogTitle = u'Folder選択'
+		oFolderPicker.setTitle(oDialogTitle)
+		# 最初に表示するFolder設定
+		oFolderPicker.setDisplayDirectory('c:\\temp')
+		# Dialogに表示する説明
+		oDescript = u'Folderを選択して下さい'
+		oFolderPicker.setDescription(oDescript)
+		oAccept = oFolderPicker.execute()
+		if oAccept == 1:
+			oFolders = oFolderPicker.getDirectory()
+			oDisp = oFolders
+		else:
+			oDisp = u'Folderが選択されませんでした。'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDlg04a"><h6>GDlg-)<em>[General]</em>Plane Dialog作成</h6></a><pre><code>
+<img SRC="Python_pic/02general2/02Dialog/04CreatePlaneDialog01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import os
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+#
+def oTest():
+	try:
+		oCtx = uno.getComponentContext()
+		oServiceManager = oCtx.ServiceManager
+		oDlgModel = oServiceManager.createInstance('com.sun.star.awt.UnoControlDialogModel')
+		# Size of Dialog
+		oDlgModel.Width = 100
+  		oDlgModel.Height = 75
+		# Title of Dialog
+		oDlgModel.Title = 'Dialog Title'
+		#
+		# Create the dialog and set the model
+		oDlg = oServiceManager.createInstance('com.sun.star.awt.UnoControlDialog')
+		oDlg.setModel(oDlgModel)
+		#
+		# Create a window and then tell the dialog to use the created window.
+		oWindow = oServiceManager.createInstance('com.sun.star.awt.Toolkit')
+		oDlg.createPeer(oWindow,None)		# None : OK / none : NG
+		# Dialogの表示実行
+		oDlg.execute()
+		#
+		oDisp = 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDlg05a"><h6>GDlg-)<em>[General]</em>Dialog with OK / Cancel Button</h6></a><pre><code>
+<img SRC="Python_pic/02general2/02Dialog/05OkCancelButtonDialog02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="Python_pic/02general2/02Dialog/05OkCancelButtonDialog01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import os
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+#
+def oTest():
+	try:
+		oCtx = uno.getComponentContext()
+		oServiceManager = oCtx.ServiceManager
+		oDlgModel = oServiceManager.createInstance('com.sun.star.awt.UnoControlDialogModel')
+		# Size of Dialog
+		oDlgWth = 100
+		oDlgHgt = 75
+		oDlgModel.Width = oDlgWth
+		oDlgModel.Height = oDlgHgt
+		# Title of Dialog
+		oDlgModel.Title = 'Dialog Title'
+		#
+		# ***** [ OK / Cancel  Button 設定 ] *****
+		# OK Button 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlButtonModel')
+		oTabIndex = 0
+		oModel.Name = 'OKButton'
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = oDlgWth/2 - 40
+		oModel.PositionY = oDlgHgt - 20
+		oModel.Width = 30
+		oModel.Height = 15
+		oModel.Label = u'OKです'
+		oModel.PushButtonType = 1		# 1 : OK
+		# Dialog Modelの仕様に OK Button の仕様を設定
+		oDlgModel.insertByName('OKButton', oModel)
+		#
+		# Cancel Button 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlButtonModel')
+		oTabIndex = oTabIndex + 1
+		oModel.Name = 'CANCELButton'
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = oDlgWth/ 2 + 10
+		oModel.PositionY = oDlgHgt-20
+		oModel.Width = 30
+		oModel.Height = 15
+		oModel.Label = u'Cancelです'
+		oModel.PushButtonType = 2		# 2 : Canceel
+		# Dialog Modelの仕様に OK Button の仕様を設定
+		oDlgModel.insertByName('CANCELButton', oModel)
+		# ***** [ OK / Cancel  Button 設定 ] *****
+		#
+		# Create the dialog and set the model
+		oDlg = oServiceManager.createInstance('com.sun.star.awt.UnoControlDialog')
+		oDlg.setModel(oDlgModel)
+		#
+		# Create a window and then tell the dialog to use the created window.
+		oWindow = oServiceManager.createInstance('com.sun.star.awt.Toolkit')
+		oDlg.createPeer(oWindow,None)		# None : OK / none : NG
+		# Dialogの表示実行
+		oClick = oDlg.execute()
+		# Click Button
+		if oClick == 1:
+			oDisp = u'OK Button　がClickされました。'
+		else:
+			oDisp = u'Click Cancel Button or ×　がClickされました。'
+		oDlg.endExecute()
+	# Python2.7
+	# except:
+	#	oDisp = traceback.format_exc(sys.exc_info()[2])
+	# Python3.3
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDlg06a"><h6>GDlg-)<em>[General]</em>Dialog with ProgressBar</h6></a><pre><code>
+<img SRC="Python_pic/02general2/02Dialog/06ProgressBarDialog01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import os
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+#
+def oTest():
+	try:
+		oCtx = uno.getComponentContext()
+		oServiceManager = oCtx.ServiceManager
+		oDlgModel = oServiceManager.createInstance('com.sun.star.awt.UnoControlDialogModel')
+		# Size of Dialog
+		oDlgWth = 100
+  		oDlgHgt = 75
+		oDlgModel.Width = oDlgWth
+  		oDlgModel.Height = oDlgHgt
+		# Title of Dialog
+		oDlgModel.Title = 'Dialog Title'
+		#
+		# ***** [ OK / Cancel  Button 設定 ] *****
+		# OK Button 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlButtonModel')
+		oTabIndex = 0
+		oModel.Name = 'StepButton'
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = oDlgWth/2 - 20
+		oModel.PositionY = oDlgHgt - 20
+		oModel.Width = 40
+		oModel.Height = 15
+		oModel.Label = u'Step'
+		oModel.PushButtonType = 1		# 1 : OK
+		# Dialog Modelの仕様に Step Button の仕様を設定
+		oDlgModel.insertByName('StepButton', oModel)
+		# ***** [ OK / Cancel  Button 設定 ] *****
+		#
+		# ***** [ ProgressBar 設定 ] *****
+		# ProgressBar 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlProgressBarModel')
+		oTabIndex = oTabIndex + 1
+		oModel.Name = 'Progress'
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = 10
+		oModel.PositionY = oDlgHgt - 45
+		oModel.Width = oDlgWth - 20
+		oModel.Height = 15
+		oModel.ProgressValueMin = 0
+		oModel.ProgressValueMax = 100
+		# Dialog Modelの仕様に Progress Bar の仕様を設定
+		oDlgModel.insertByName('Progress', oModel)
+		# ***** [ ProgressBar 設定 ] *****
+		#
+		# Create the dialog and set the model
+		oDlg = oServiceManager.createInstance('com.sun.star.awt.UnoControlDialog')
+		oDlg.setModel(oDlgModel)
+		#
+		# Create a window and then tell the dialog to use the created window.
+		oWindow = oServiceManager.createInstance('com.sun.star.awt.Toolkit')
+		oDlg.createPeer(oWindow,None)		# None : OK / none : NG
+		#
+		# Dialogの表示実行
+		oProgressBar = oDlgModel.getByName('Progress')
+		oProgressBar.ProgressValue = 0
+		for i in range(11):		# Rangeは不可( Basicの for i=0 to 10 と同じ )
+			oProgressBar.ProgressValue = i * 10
+			if oProgressBar.ProgressValue >100:
+				breake
+			else:
+				oDlg.execute()	# OK Button( Step ) Click でProgressBarを増分
+		oDisp = 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDlg07a"><h6>GDlg-)<em>[General]</em>Edit Dialog</h6></a><pre><code>
+<img SRC="Python_pic/02general2/02Dialog/07EditDialog02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="Python_pic/02general2/02Dialog/07EditDialog01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import os
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+#
+def oTest():
+	try:
+		oCtx = uno.getComponentContext()
+		oServiceManager = oCtx.ServiceManager
+		oDlgModel = oServiceManager.createInstance('com.sun.star.awt.UnoControlDialogModel')
+		# Size of Dialog
+		oDlgWth = 100
+  		oDlgHgt = 75
+		oDlgModel.Width = oDlgWth
+  		oDlgModel.Height = oDlgHgt
+		# Title of Dialog
+		oDlgModel.Title = 'Dialog Title'
+		#
+		# ***** [ OK / Cancel  Button 設定 ] *****
+		# OK Button 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlButtonModel')
+		oTabIndex = 0
+		oModel.Name = 'OkBtn'
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = oDlgWth/2 - 20
+		oModel.PositionY = oDlgHgt - 20
+		oModel.Width = 40
+		oModel.Height = 15
+		oModel.Label = u'OK'
+		oModel.PushButtonType = 1		# 1 : OK
+		# Dialog Modelの仕様に Step Button の仕様を設定
+		oDlgModel.insertByName('OkBtn', oModel)
+		# ***** [ OK / Cancel  Button 設定 ] *****
+		#
+		# ***** [ Edit Dialog 設定 ] *****
+		# Edit Dialog 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlEditModel')
+		oTabIndex = oTabIndex + 1
+		oModel.Name = 'EditD'
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = 10
+		oModel.PositionY = 10
+		oModel.Width = oDlgWth - 20
+		oModel.Height = oDlgHgt -40
+		oModel.HScroll = 1			# 1 : true
+		oModel.VScroll = 1			# 1 : true
+		oModel.MultiLine = 1		# 1 : true
+		oModel.HardLineBreaks = 0	# 0 : false
+		# Dialog Modelの仕様に Edit Dialog の仕様を設定
+		oDlgModel.insertByName('EditD', oModel)
+		# ***** [ Edit Dialog 設定 ] *****
+		#
+		# Create the dialog and set the model
+		oDlg = oServiceManager.createInstance('com.sun.star.awt.UnoControlDialog')
+		oDlg.setModel(oDlgModel)
+		#
+		# Create a window and then tell the dialog to use the created window.
+		oWindow = oServiceManager.createInstance('com.sun.star.awt.Toolkit')
+		oDlg.createPeer(oWindow,None)		# None : OK / none : NG
+		#
+		# Dialogの表示実行
+		oClick = oDlg.execute()
+		if oClick == 1:
+			oTxtEdit = oDlgModel.getByName('EditD')
+			oDisp = oTxtEdit.Text		# not to be used '.text'
+		else:
+			oDisp = u'Cancelされました。'
+		# End Dialog
+		oDlg.endExecute()
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDlg08a"><h6>GDlg-)<em>[General]</em>Radio Button Dialog</h6></a><pre><code>
+<img SRC="Python_pic/02general2/02Dialog/08RadioButtonDialog02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="Python_pic/02general2/02Dialog/08RadioButtonDialog01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import os
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def mri(ctx, target):
+    mri = ctx.ServiceManager.createInstanceWithContext('mytools.Mri',ctx)
+    mri.inspect(target)
+#
+def oTest():
+	try:
+		oCtx = uno.getComponentContext()
+		oServiceManager = oCtx.ServiceManager
+		oDlgModel = oServiceManager.createInstance('com.sun.star.awt.UnoControlDialogModel')
+		# Size of Dialog
+		oDlgWth = 100
+  		oDlgHgt = 75
+		oDlgModel.Width = oDlgWth
+  		oDlgModel.Height = oDlgHgt
+		# Title of Dialog
+		oDlgModel.Title = 'Dialog Title'
+		#
+		# ***** [ OK / Cancel  Button 設定 ] *****
+		# OK Button 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlButtonModel')
+		oTabIndex = 0
+		oModel.Name = 'OkBtn'
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = oDlgWth/2 - 20
+		oModel.PositionY = oDlgHgt - 20
+		oModel.Width = 40
+		oModel.Height = 15
+		oModel.Label = u'OK'
+		oModel.PushButtonType = 1		# 1 : OK
+		# Dialog Modelの仕様に Step Button の仕様を設定
+		oDlgModel.insertByName('OkBtn', oModel)
+		# ***** [ OK / Cancel  Button 設定 ] *****
+		#
+		oRadioName = [u'Japan( 日本 )',u'USA( 米国 )',u'Germany( 独国 )']
+		#
+		# ***** [ Radio Button1 設定 ] *****
+		# Radio Button1 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlRadioButtonModel')
+		oTabIndex = oTabIndex + 1
+		oModel.Name = oRadioName[0]
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = 10
+		oModel.PositionY = 10
+		oModel.Width = 100
+		oModel.Height = 15
+		oModel.Label = oRadioName[0]
+		oModel.State = 1				# Set default Button
+		# Dialog Modelの仕様に Radio Button1 の仕様を設定
+		oDlgModel.insertByName(oRadioName[0], oModel)
+		# ***** [ Radio Button1 設定 ] *****
+		#
+		# ***** [ Radio Button2 設定 ] *****
+		# Radio Button2 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlRadioButtonModel')
+		oTabIndex = oTabIndex + 1
+		oModel.Name = oRadioName[1]
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = 10
+		oModel.PositionY = 25
+		oModel.Width = 100
+		oModel.Height = 15
+		oModel.Label = oRadioName[1]
+		# Dialog Modelの仕様に Radio Button2 の仕様を設定
+		oDlgModel.insertByName(oRadioName[1], oModel)
+		# ***** [ Radio Button2 設定 ] *****
+		#
+		# ***** [ Radio Button3 設定 ] *****
+		# Radio Button3 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlRadioButtonModel')
+		oTabIndex = oTabIndex + 1
+		oModel.Name = oRadioName[2]
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = 10
+		oModel.PositionY = 40
+		oModel.Width = 100
+		oModel.Height = 15
+		oModel.Label = oRadioName[2]
+		# Dialog Modelの仕様に Radio Button3 の仕様を設定
+		oDlgModel.insertByName(oRadioName[2], oModel)
+		# ***** [ Radio Button3 設定 ] *****
+		#
+		# Create the dialog and set the model
+		oDlg = oServiceManager.createInstance('com.sun.star.awt.UnoControlDialog')
+		oDlg.setModel(oDlgModel)
+		#
+		# Create a window and then tell the dialog to use the created window.
+		oWindow = oServiceManager.createInstance('com.sun.star.awt.Toolkit')
+		oDlg.createPeer(oWindow,None)		# None : OK / none : NG
+		#
+		# Dialogの表示実行
+		oClick = oDlg.execute()
+		if oClick == 1:
+			oDMdl = oDlg.getModel()
+			oEmtName = oDMdl.getElementNames()
+			oCnt = len(oEmtName)
+			for i in range(oCnt):
+				oSelBtn = oDlgModel.getByName(oEmtName[i])
+				if oSelBtn.ServiceName == 'stardiv.vcl.controlmodel.RadioButton':
+					if oSelBtn.State == 1:
+						oDisp = oSelBtn.Label
+						break
+		else:
+			oDisp = u'Cancelされました。'
+		# End Dialog
+		oDlg.endExecute()
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDlg09a"><h6>GDlg-)<em>[General]</em>CheckBox Dialog</h6></a><pre><code>
+<img SRC="Python_pic/02general2/02Dialog/09CheckBoxButtonDialog02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="Python_pic/02general2/02Dialog/09CheckBoxButtonDialog01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import os
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+#
+def oTest():
+	try:
+		oCtx = uno.getComponentContext()
+		oServiceManager = oCtx.ServiceManager
+		oDlgModel = oServiceManager.createInstance('com.sun.star.awt.UnoControlDialogModel')
+		# Size of Dialog
+		oDlgWth = 100
+  		oDlgHgt = 75
+		oDlgModel.Width = oDlgWth
+  		oDlgModel.Height = oDlgHgt
+		# Title of Dialog
+		oDlgModel.Title = 'Dialog Title'
+		#
+		# ***** [ OK / Cancel  Button 設定 ] *****
+		# OK Button 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlButtonModel')
+		oTabIndex = 0
+		oModel.Name = 'OkBtn'
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = oDlgWth/2 - 20
+		oModel.PositionY = oDlgHgt - 20
+		oModel.Width = 40
+		oModel.Height = 15
+		oModel.Label = u'OK'
+		oModel.PushButtonType = 1		# 1 : OK
+		# Dialog Modelの仕様に Step Button の仕様を設定
+		oDlgModel.insertByName('OkBtn', oModel)
+		# ***** [ OK / Cancel  Button 設定 ] *****
+		#
+		oChkBtnName = [u'Japan( 日本 )',u'USA( 米国 )',u'Germany( 独国 )']
+		#
+		# ***** [ CheckBox Button1 設定 ] *****
+		# CheckBox Button1 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlCheckBoxModel')
+		oTabIndex = oTabIndex + 1
+		oModel.Name = oChkBtnName[0]
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = 10
+		oModel.PositionY = 10
+		oModel.Width = 100
+		oModel.Height = 15
+		oModel.Label = oChkBtnName[0]
+		# Dialog Modelの仕様に CheckBox Button1 の仕様を設定
+		oDlgModel.insertByName(oChkBtnName[0], oModel)
+		# ***** [ CheckBox Button1 設定 ] *****
+		#
+		# ***** [ CheckBox Button2 設定 ] *****
+		# CheckBox Button2 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlCheckBoxModel')
+		oTabIndex = oTabIndex + 1
+		oModel.Name = oChkBtnName[1]
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = 10
+		oModel.PositionY = 25
+		oModel.Width = 100
+		oModel.Height = 15
+		oModel.Label = oChkBtnName[1]
+		# Dialog Modelの仕様に CheckBox Button2 の仕様を設定
+		oDlgModel.insertByName(oChkBtnName[1], oModel)
+		# ***** [ CheckBox Button2 設定 ] *****
+		#
+		# ***** [ CheckBox Button3 設定 ] *****
+		# CheckBox Button3 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlCheckBoxModel')
+		oTabIndex = oTabIndex + 1
+		oModel.Name = oChkBtnName[2]
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = 10
+		oModel.PositionY = 40
+		oModel.Width = 100
+		oModel.Height = 15
+		oModel.Label = oChkBtnName[2]
+		# Dialog Modelの仕様に CheckBox Button3 の仕様を設定
+		oDlgModel.insertByName(oChkBtnName[2], oModel)
+		# ***** [ CheckBox Button3 設定 ] *****
+		#
+		# Create the dialog and set the model
+		oDlg = oServiceManager.createInstance('com.sun.star.awt.UnoControlDialog')
+		oDlg.setModel(oDlgModel)
+		#
+		# Create a window and then tell the dialog to use the created window.
+		oWindow = oServiceManager.createInstance('com.sun.star.awt.Toolkit')
+		oDlg.createPeer(oWindow,None)		# None : OK / none : NG
+		#
+		# Dialogの表示実行
+		oClick = oDlg.execute()
+		if oClick == 1:
+			oDMdl = oDlg.getModel()
+			oEmtName = oDMdl.getElementNames()
+			oCnt = len(oEmtName)
+			oDisp = ''
+			for i in range(oCnt):
+				oSelBtn = oDlgModel.getByName(oEmtName[i])
+				if oSelBtn.ServiceName == 'stardiv.vcl.controlmodel.CheckBox':
+					if oSelBtn.State == 1:
+						oDisp = oDisp + oSelBtn.Label + '\n'
+			if oDisp == '':
+				oDisp = u'CheckBoxが１つも選択されていません。'
+		else:
+			oDisp = u'Cancelされました。'
+		# End Dialog
+		oDlg.endExecute()
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDlg10a"><h6>GDlg-)<em>[General]</em>ComboBox Dialog</h6></a><pre><code>
+<img SRC="Python_pic/02general2/02Dialog/10ComboBoxDialog02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="Python_pic/02general2/02Dialog/10ComboBoxDialog01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import os
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+#
+def oTest():
+	try:
+		oCtx = uno.getComponentContext()
+		oServiceManager = oCtx.ServiceManager
+		oDlgModel = oServiceManager.createInstance('com.sun.star.awt.UnoControlDialogModel')
+		# Size of Dialog
+		oDlgWth = 100
+  		oDlgHgt = 75
+		oDlgModel.Width = oDlgWth
+  		oDlgModel.Height = oDlgHgt
+		# Title of Dialog
+		oDlgModel.Title = 'Dialog Title'
+		#
+		# ***** [ OK / Cancel  Button 設定 ] *****
+		# OK Button 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlButtonModel')
+		oTabIndex = 0
+		oModel.Name = 'OkBtn'
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = oDlgWth/2 - 20
+		oModel.PositionY = oDlgHgt - 20
+		oModel.Width = 40
+		oModel.Height = 15
+		oModel.Label = u'OK'
+		oModel.PushButtonType = 1		# 1 : OK
+		# Dialog Modelの仕様に Step Button の仕様を設定
+		oDlgModel.insertByName('OkBtn', oModel)
+		# ***** [ OK / Cancel  Button 設定 ] *****
+		#
+		oComboList = (u'Mathmatics( 数学 )',u'Phyics( 物理 )',u'Chemistry( 化学 )',u'English( 英語 )',u'German( ドイツ語 )',u'World History( 世界史 )')
+		#
+		# ***** [ ComboBox 設定 ] *****
+		# CheckBox Button1 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlComboBoxModel')
+		oTabIndex = oTabIndex + 1
+		oModel.Name = 'Combo'
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = 10
+		oModel.PositionY = oDlgHgt - 60
+		oModel.Width = oDlgWth - 20
+		oModel.Height = 15
+		oModel.Enabled = 1
+		oModel.Text = oComboList[0]
+		oModel.Dropdown = 1				# 1 : true
+		oModel.StringItemList = oComboList			# The Type of StringItemLst must be Tuple!!
+		oModel.Border = 1
+		# Dialog Modelの仕様に ComboBox の仕様を設定
+		oDlgModel.insertByName('Combo', oModel)
+		# ***** [ ComboBox 設定 ] *****
+		#
+		# Create the dialog and set the model
+		oDlg = oServiceManager.createInstance('com.sun.star.awt.UnoControlDialog')
+		oDlg.setModel(oDlgModel)
+		#
+		# Create a window and then tell the dialog to use the created window.
+		oWindow = oServiceManager.createInstance('com.sun.star.awt.Toolkit')
+		oDlg.createPeer(oWindow,None)		# None : OK / none : NG
+		#
+		# Dialogの表示実行
+		oClick = oDlg.execute()
+		if oClick == 1:
+			oComboTxt = oDlgModel.getByName('Combo')
+			oDisp = oComboTxt.Text
+		else:
+			oDisp = u'Cancelされました。'
+		# End Dialog
+		oDlg.endExecute()
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDlg11a"><h6>GDlg-)<em>[General]</em>ListBox Dialog</h6></a><pre><code>
+<img SRC="Python_pic/02general2/02Dialog/11ListBoxDialog02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="Python_pic/02general2/02Dialog/11ListBoxDialog01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import os
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+#
+def oTest():
+	try:
+		oCtx = uno.getComponentContext()
+		oServiceManager = oCtx.ServiceManager
+		oDlgModel = oServiceManager.createInstance('com.sun.star.awt.UnoControlDialogModel')
+		# Size of Dialog
+		oDlgWth = 100
+  		oDlgHgt = 75
+		oDlgModel.Width = oDlgWth
+  		oDlgModel.Height = oDlgHgt
+		# Title of Dialog
+		oDlgModel.Title = 'Dialog Title'
+		#
+		# ***** [ OK / Cancel  Button 設定 ] *****
+		# OK Button 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlButtonModel')
+		oTabIndex = 0
+		oModel.Name = 'OkBtn'
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = oDlgWth/2 - 20
+		oModel.PositionY = oDlgHgt - 20
+		oModel.Width = 40
+		oModel.Height = 15
+		oModel.Label = u'OK'
+		oModel.PushButtonType = 1		# 1 : OK
+		# Dialog Modelの仕様に Step Button の仕様を設定
+		oDlgModel.insertByName('OkBtn', oModel)
+		# ***** [ OK / Cancel  Button 設定 ] *****
+		#
+		oComboList = (u'Mathmatics( 数学 )',u'Phyics( 物理 )',u'Chemistry( 化学 )',u'English( 英語 )',u'German( ドイツ語 )',u'World History( 世界史 )')
+		#
+		# ***** [ ListBox 設定 ] *****
+		# ListBox 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlListBoxModel')
+		oTabIndex = oTabIndex + 1
+		oModel.Name = 'ListBox'
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = 10
+		oModel.PositionY = oDlgHgt - 70
+		oModel.Width = oDlgWth - 20
+		oModel.Height = 45
+		oModel.Enabled = 1
+		oModel.Dropdown = 0				# 0 : false / DropDown表示　MultiSelect = true ならば　falseにする
+		# oModel.LineCount = 3			# DropDown表示の時の最大表示項目数
+		oModel.MultiSelection = 1		# 複数選択
+		oModel.BackgroundColor = 0xc8ffb9		# 0x + RGB値　/ red ならば 0xff0000
+		oModel.StringItemList = oComboList			# The Type of StringItemLst must be Tuple!!
+		oModel.Border = 1
+		# Dialog Modelの仕様に ListBox の仕様を設定
+		oDlgModel.insertByName('ListBox', oModel)
+		# ***** [ ListBox 設定 ] *****
+		#
+		# Create the dialog and set the model
+		oDlg = oServiceManager.createInstance('com.sun.star.awt.UnoControlDialog')
+		oDlg.setModel(oDlgModel)
+		#
+		# Create a window and then tell the dialog to use the created window.
+		oWindow = oServiceManager.createInstance('com.sun.star.awt.Toolkit')
+		oDlg.createPeer(oWindow,None)		# None : OK / none : NG
+		#
+		# Dialogの表示実行
+		oClick = oDlg.execute()
+		if oClick == 1:
+			oLstVal = oDlgModel.getByName('ListBox')
+			oSelItem = oLstVal.SelectedItems
+			oDisp = ''
+			for oNo in oSelItem:
+				oDisp = oDisp + oComboList[oNo] + '\n'
+			if oDisp == '':
+				oDisp = u'CheckBoxが１つも選択されていません。'
+		else:
+			oDisp = u'Cancelされました。'
+		# End Dialog
+		oDlg.endExecute()
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDlg12a"><h6>GDlg-)<em>[General]</em>Date Field Dialog</h6></a><pre><code>
+<img SRC="Python_pic/02general2/02Dialog/12DateFieldDialog02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="Python_pic/02general2/02Dialog/12DateFieldDialog01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import os
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+#
+def oTest():
+	try:
+		oCtx = uno.getComponentContext()
+		oServiceManager = oCtx.ServiceManager
+		oDlgModel = oServiceManager.createInstance('com.sun.star.awt.UnoControlDialogModel')
+		# Size of Dialog
+		oDlgWth = 100
+  		oDlgHgt = 75
+		oDlgModel.Width = oDlgWth
+  		oDlgModel.Height = oDlgHgt
+		# Title of Dialog
+		oDlgModel.Title = 'Dialog Title'
+		#
+		# ***** [ OK / Cancel  Button 設定 ] *****
+		# OK Button 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlButtonModel')
+		oTabIndex = 0
+		oModel.Name = 'OkBtn'
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = oDlgWth/2 - 20
+		oModel.PositionY = oDlgHgt - 20
+		oModel.Width = 40
+		oModel.Height = 15
+		oModel.Label = u'OK'
+		oModel.PushButtonType = 1		# 1 : OK
+		# Dialog Modelの仕様に Step Button の仕様を設定
+		oDlgModel.insertByName('OkBtn', oModel)
+		# ***** [ OK / Cancel  Button 設定 ] *****
+		#
+		# ***** [ DateField 設定 ] *****
+		# DateField 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlDateFieldModel')
+		oTabIndex = oTabIndex + 1
+		oModel.Name = 'DateF'
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = 10
+		oModel.PositionY = oDlgHgt - 60
+		oModel.Width = oDlgWth - 20
+		oModel.Height = 15
+		oModel.DateFormat = 9			# Dialogに表示されるFormat = 9 : YYYY/MM/DD
+		oModel.Dropdown = 1
+		oModel.Enabled = 1
+		oModel.Border = 1
+		# Dialog Modelの仕様に DateField の仕様を設定
+		oDlgModel.insertByName('DateF', oModel)
+		# ***** [ DateField 設定 ] *****
+		#
+		# Create the dialog and set the model
+		oDlg = oServiceManager.createInstance('com.sun.star.awt.UnoControlDialog')
+		oDlg.setModel(oDlgModel)
+		#
+		# Create a window and then tell the dialog to use the created window.
+		oWindow = oServiceManager.createInstance('com.sun.star.awt.Toolkit')
+		oDlg.createPeer(oWindow,None)		# None : OK / none : NG
+		#
+		# Dialogの表示実行
+		oClick = oDlg.execute()
+		if oClick == 1:
+			oDateVal = oDlgModel.getByName("DateF")
+			oDateStr = str(oDateVal.Date)
+			oYear = oDateStr[0:4]		# [Start:End] / Start : 0～、　End : 1～
+			oMonth = oDateStr[4:6]
+			oDay = oDateStr[6:8]
+			oDisp = oYear + u'年' + oMonth + u'月' + oDay + u'日'
+		else:
+			oDisp = u'Cancelされました。'
+		# End Dialog
+		oDlg.endExecute()
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDlg13a"><h6>GDlg-)<em>[General]</em>Time Ffield Dialog</h6></a><pre><code>
+<img SRC="Python_pic/02general2/02Dialog/13TimeFieldDialog02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="Python_pic/02general2/02Dialog/13TimeFieldDialog01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import os
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+#
+def oTest():
+	try:
+		oCtx = uno.getComponentContext()
+		oServiceManager = oCtx.ServiceManager
+		oDlgModel = oServiceManager.createInstance('com.sun.star.awt.UnoControlDialogModel')
+		# Size of Dialog
+		oDlgWth = 100
+  		oDlgHgt = 75
+		oDlgModel.Width = oDlgWth
+  		oDlgModel.Height = oDlgHgt
+		# Title of Dialog
+		oDlgModel.Title = 'Dialog Title'
+		#
+		# ***** [ OK / Cancel  Button 設定 ] *****
+		# OK Button 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlButtonModel')
+		oTabIndex = 0
+		oModel.Name = 'OkBtn'
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = oDlgWth/2 - 20
+		oModel.PositionY = oDlgHgt - 20
+		oModel.Width = 40
+		oModel.Height = 15
+		oModel.Label = u'OK'
+		oModel.PushButtonType = 1		# 1 : OK
+		# Dialog Modelの仕様に Step Button の仕様を設定
+		oDlgModel.insertByName('OkBtn', oModel)
+		# ***** [ OK / Cancel  Button 設定 ] *****
+		#
+		# ***** [ TimeField 設定 ] *****
+		# TimeField 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlTimeFieldModel')
+		oTabIndex = oTabIndex + 1
+		oModel.Name = 'TimeF'
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = 10
+		oModel.PositionY = oDlgHgt - 60
+		oModel.Width = oDlgWth - 20
+		oModel.Height = 15
+		oModel.TimeFormat = 3
+		oModel.Spin = 1
+		oModel.Enabled = 1
+		oModel.Border = 1
+		# Dialog Modelの仕様に TimeField の仕様を設定
+		oDlgModel.insertByName('TimeF', oModel)
+		# ***** [ TimeField 設定 ] *****
+		#
+		# Create the dialog and set the model
+		oDlg = oServiceManager.createInstance('com.sun.star.awt.UnoControlDialog')
+		oDlg.setModel(oDlgModel)
+		#
+		# Create a window and then tell the dialog to use the created window.
+		oWindow = oServiceManager.createInstance('com.sun.star.awt.Toolkit')
+		oDlg.createPeer(oWindow,None)		# None : OK / none : NG
+		#
+		# Dialogの表示実行
+		oClick = oDlg.execute()
+		if oClick == 1:
+			oTimeVal = oDlgModel.getByName("TimeF")
+			oTime = oTimeVal.Time
+			oHr = int(oTime / 1000000)
+			oMin = int( oTime / 10000 % 100 )
+			oSec = int( oTime / 100 % 100 )
+			oDisp = str(oHr) + u'時' + str(oMin) + u'分' + str(oSec) + u'秒'
+		else:
+			oDisp = u'Cancelされました。'
+		# End Dialog
+		oDlg.endExecute()
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDlg14a"><h6>GDlg-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/02Dialog/14FileControlDialog02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="Python_pic/02general2/02Dialog/14FileControlDialog01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import os
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+#
+def oTest():
+	try:
+		oCtx = uno.getComponentContext()
+		oServiceManager = oCtx.ServiceManager
+		oDlgModel = oServiceManager.createInstance('com.sun.star.awt.UnoControlDialogModel')
+		# Size of Dialog
+		oDlgWth = 100
+  		oDlgHgt = 75
+		oDlgModel.Width = oDlgWth
+  		oDlgModel.Height = oDlgHgt
+		# Title of Dialog
+		oDlgModel.Title = 'Dialog Title'
+		#
+		# ***** [ OK / Cancel  Button 設定 ] *****
+		# OK Button 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlButtonModel')
+		oTabIndex = 0
+		oModel.Name = 'OkBtn'
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = oDlgWth/2 - 20
+		oModel.PositionY = oDlgHgt - 20
+		oModel.Width = 40
+		oModel.Height = 15
+		oModel.Label = u'OK'
+		oModel.PushButtonType = 1		# 1 : OK
+		# Dialog Modelの仕様に Step Button の仕様を設定
+		oDlgModel.insertByName('OkBtn', oModel)
+		# ***** [ OK / Cancel  Button 設定 ] *****
+		#
+		# ***** [ FileCntrol 設定 ] *****
+		# FileCntrol 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlFileControlModel')
+		oTabIndex = oTabIndex + 1
+		oModel.Name = 'FileCtrl'
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = 10
+		oModel.PositionY = oDlgHgt - 60
+		oModel.Width = oDlgWth - 20
+		oModel.Height = 15
+		oModel.Enabled = 1
+		oModel.Border = 1
+		# Dialog Modelの仕様に FileCntrol の仕様を設定
+		oDlgModel.insertByName('FileCtrl', oModel)
+		# ***** [ FileCntrol 設定 ] *****
+		#
+		# Create the dialog and set the model
+		oDlg = oServiceManager.createInstance('com.sun.star.awt.UnoControlDialog')
+		oDlg.setModel(oDlgModel)
+		#
+		# Create a window and then tell the dialog to use the created window.
+		oWindow = oServiceManager.createInstance('com.sun.star.awt.Toolkit')
+		oDlg.createPeer(oWindow,None)		# None : OK / none : NG
+		#
+		# Dialogの表示実行
+		oClick = oDlg.execute()
+		if oClick == 1:
+			oSelFile = oDlgModel.getByName('FileCtrl')
+			oDisp = oSelFile.Text
+		else:
+			oDisp = u'Cancelされました。'
+		# End Dialog
+		oDlg.endExecute()
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDlg15a"><h6>GDlg-)<em>[General]</em>Label in Dialog</h6></a><pre><code>
+<img SRC="Python_pic/02general2/02Dialog/15LabelDialog01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import os
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+#
+def oTest():
+	try:
+		oCtx = uno.getComponentContext()
+		oServiceManager = oCtx.ServiceManager
+		oDlgModel = oServiceManager.createInstance('com.sun.star.awt.UnoControlDialogModel')
+		# Size of Dialog
+		oDlgWth = 100
+  		oDlgHgt = 75
+		oDlgModel.Width = oDlgWth
+  		oDlgModel.Height = oDlgHgt
+		# Title of Dialog
+		oDlgModel.Title = 'Dialog Title'
+		#
+		# ***** [ OK / Cancel  Button 設定 ] *****
+		# OK Button 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlButtonModel')
+		oTabIndex = 0
+		oModel.Name = 'OkBtn'
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = oDlgWth/2 - 20
+		oModel.PositionY = oDlgHgt - 20
+		oModel.Width = 40
+		oModel.Height = 15
+		oModel.Label = u'OK'
+		oModel.PushButtonType = 1		# 1 : OK
+		# Dialog Modelの仕様に Step Button の仕様を設定
+		oDlgModel.insertByName('OkBtn', oModel)
+		# ***** [ OK / Cancel  Button 設定 ] *****
+		#
+		# ***** [ Label 設定 ] *****
+		# Label 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlFixedTextModel')
+		oTabIndex = oTabIndex + 1
+		oModel.Name = 'FixedLabel'
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = 20
+		oModel.PositionY = oDlgHgt - 72
+		oModel.Width = oDlgWth - 40
+		oModel.Height = 10
+		oModel.Label = "Select File !!"
+		oModel.Align = 1					# 0 : Left / 1 : Center / 2 : Right
+		oModel.Border = 0
+		oModel.TextColor = 0xff0000
+		oModel.Enabled = 1
+		# Dialog Modelの仕様に Label の仕様を設定
+		oDlgModel.insertByName('FixedLabel', oModel)
+		# ***** [ Label 設定 ] *****
+		#
+		# ***** [ FileCntrol 設定 ] *****
+		# FileCntrol 仕様
+		oModel = oDlgModel.createInstance('com.sun.star.awt.UnoControlFileControlModel')
+		oTabIndex = oTabIndex + 1
+		oModel.Name = 'FileCtrl'
+		oModel.TabIndex = oTabIndex
+		oModel.PositionX = 10
+		oModel.PositionY = oDlgHgt - 60
+		oModel.Width = oDlgWth - 20
+		oModel.Height = 15
+		oModel.Enabled = 1
+		oModel.Border = 1
+		# Dialog Modelの仕様に FileCntrol の仕様を設定
+		oDlgModel.insertByName('FileCtrl', oModel)
+		# ***** [ FileCntrol 設定 ] *****
+		#
+		# Create the dialog and set the model
+		oDlg = oServiceManager.createInstance('com.sun.star.awt.UnoControlDialog')
+		oDlg.setModel(oDlgModel)
+		#
+		# Create a window and then tell the dialog to use the created window.
+		oWindow = oServiceManager.createInstance('com.sun.star.awt.Toolkit')
+		oDlg.createPeer(oWindow,None)		# None : OK / none : NG
+		#
+		# Dialogの表示実行
+		oClick = oDlg.execute()
+		if oClick == 1:
+			oSelFile = oDlgModel.getByName('FileCtrl')
+			oDisp = oSelFile.Text
+		else:
+			oDisp = u'Cancelされました。'
+		# End Dialog
+		oDlg.endExecute()
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGDlg"><h6>GDlg-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/02Dialog/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">dispatchHelper</p class="s1">
+<a name="OOoGDpHpC01a"><h6>GDpHpC-)<em>[General / Calc]</em>Cellの移動</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+#
+from com.sun.star.beans import PropertyValue	# must be after 'import uno'　
+def omsgbox(message):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+	return msgbox.execute()
+
+def oTest():
+	try:
+		ctx = XSCRIPTCONTEXT.getComponentContext()
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		dispatchHelper = ctx.ServiceManager.createInstanceWithContext( 'com.sun.star.frame.DispatchHelper', ctx )
+		# B2へ移動
+		oProp = PropertyValue()
+		oProp.Name = 'ToPoint'
+		oProp.Value = 'B2'
+		properties = (oProp,)
+		dispatchHelper.executeDispatch( frame, '.uno:GoToCell', '', 0, properties )
+		oDisp = 'Success'
+	except webbrowser.Error:
+		oDisp = str(sys.stderr) + ' open failed'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGDpHpC"><h6>GDpHpC-)<em>[General / Calc]</em></h6></a><pre><code>
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br><br><br><br>
+<center><h6><a href="#TopOfPage">Top of Page</a></h6></center><BR>
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/Python_Macro_General_No6.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:36:40 GMT -->
+</html>

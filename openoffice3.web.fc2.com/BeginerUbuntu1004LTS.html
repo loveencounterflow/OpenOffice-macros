@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/BeginerUbuntu1004LTS.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:08:42 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<html lang="ja">
+	
+	<SCRIPT language="JavaScript">
+		<!--
+			renew = new Date(document.lastModified);
+			y=renew.getYear();
+			m=renew.getMonth() + 1;
+			d=renew.getDate();
+			if(y<1900) {y=y+1900;}
+				oDate="更新日："+y+"/"+m+"/"+d;
+			document.write(oDate);
+		//-->
+	</SCRIPT>
+	
+	<title>初心者Memo / LibreOffice(Ubuntu編)</title>
+</head>
+<link rel="stylesheet" type="text/css" href="css_new_beginer.css">
+
+<body>
+<a name="TopOfPage"><left><p><A HREF="index-2.html">Home of site</a></p></left></a><br>
+<h1>初心者Memo / LibreOffice(Ubuntu編)</h1>
+<br><br>
+
+<h2>&emsp;1. Ubuntu10.04LTSへのInstall</h2>
+<ul>
+<em1>1)既存のOfficeをUn-Install</em1><br>
+<p>sudo apt-get remove openoffice*.*</p><br>
+
+<em1>2)既存のPPAの削除</em1><br>
+<p>sudo add-apt-repository ppa:libreoffice/ppa</p><br>
+
+<em1>3)LibreOfficeのInstall</em1><br>
+<p>sudo apt-get update</p>
+<p>sudo apt-get install libreoffice</p>
+<br>
+
+<em1>4)LibreOfficeの日本語化</em1><br>
+<p>
+「Synapticパッケージ･マネージャ」にて以下のPakageを追加<br>
+&emsp;&emsp;&emsp;1) Libreoffice-l10n-ja<br>
+&emsp;&emsp;&emsp;2) Libreoffice-gtk( <= 文字化け対策)<br>
+</p>
+</ul>
+<br>
+
+<h2>&emsp;2. KDE4上の文字化け対策</h2>
+<ul>
+<em1>1)Defualtの日本語Font設定を変更</em1><br>
+<p>
+「ツール」=>「オプション」=>「LibreOffice」=>「フォントの種類」=>「フォントの種類(D)」の項目を<br>
+&emsp;&emsp;「Droid Sans」=>「Umeplus Gothic」等の日本語フォント<br>
+に変更する。<br>
+</p>
+</ul>
+
+<h2>&emsp;3. LibreOfficeを最新版にUpgrade</h2>
+<ul>
+<a href="http://d.hatena.ne.jp/akamushi97/20140223/1393126106"><em1>ほのぼのLinux備忘録/2014/02/23参照</em1></a>
+</ul>
+
+<br>
+<br>
+<center><p><a href="#TopOfPage">Top of Page</a></p></center><BR>
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/BeginerUbuntu1004LTS.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:08:42 GMT -->
+</html>

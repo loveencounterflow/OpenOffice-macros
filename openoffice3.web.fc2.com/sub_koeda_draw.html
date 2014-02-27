@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/sub_koeda_draw.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:09:39 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<SCRIPT language="JavaScript">
+		<!--
+			renew = new Date(document.lastModified);
+			y=renew.getYear();
+			m=renew.getMonth() + 1;
+			d=renew.getDate();
+			if(y<1900) {y=y+1900;}
+				oDate="更新日："+y+"/"+m+"/"+d;
+			document.write(oDate);
+		//-->
+	</SCRIPT>
+	<title>OOoの小枝(Draw編)</title>
+</head>
+<link rel="stylesheet" type="text/css" href="css_koeda.css">
+<body>
+
+<a name="TopOfPage"><left><h3><A HREF="index-2.html">Home of site</a></p></h3></left></a>
+<h1>OpenOffice.org/LibreOfficeの小<em>枝</em>(Draw編)
+</h1> 
+<center><h3>【　目次　】</h3></center>
+
+<ul>
+1)<a href="#dkoedaNo1">「ハッチング」の種類を増やす。</a><BR>
+2)<a href="#dkoedaNo2">図形の切り抜き</a><br>
+3)<a href="#dkoedaNo3">オブジェクトと同時に、フォントサイズや線の太さを拡大縮小する</a><br>
+4)<a href="#dkoedaNo4">グリッド線で枠の位置合わせを行いたい</a><br>
+5)<a href="#dkoedaNo5">複数のページ背景に共通で使うマスターモードは、１タイプしか設定できないのでしょうか。</a><br>
+6)<a href="#dkoedaNo6">.dxfファイルを読み込んでDrawで表示した際、日本語のフォントが正しく表示されない</a><br>
+7)<a href="#dkoedaNo7">Drawで図を傾斜させる方法</a><br>
+8)<a href="#dkoedaNo8">Draw作品例1</a><br>
+9)<a href="#dkoedaNo9">Draw作品例2</a><br>
+10)<a href="#dkoedaNo10">Barcode作成</a><br>
+11)<a href="#dkoedaNo11">円（楕円）の始点を中心にする方法</a><br>
+<BR>
+D1-1)<a href="#OOoD-1">OpenOffice.orgのDrawでネットワーク図を書くときに役立つShapeのダウンロードサイト</a><BR>
+D1-2)<a href="#OOoD-1">5m×5mサイズのDrawページ</a><br>
+D1-3)<a href="#OOoD-1">立体図を描く</a><br>
+
+</ul>
+<BR>
+
+<a name="dkoedaNo1"><h5>1)「ハッチング」の種類は増やす。</h5></a><ul class="c2">
+書式→表面→ハッチングで追加・削除<BR> 
+</ul class="c2"><BR>
+
+<a name="dkoedaNo2"><h5>2)図形の切り抜き</h5></a><ul class="c2">
+<p><IMG SRC="draw_kirinuki1.png" align="left" hspace="4" vspace="4"></p><br>
+<p><IMG SRC="draw_kirinuki2.png" align="left" hspace="4" vspace="4" ></p><br>
+<p><IMG SRC="draw_kirinuki3.png" align="left" ></p><br clear="all"><BR><br><br><br>
+</ul class="c2"><BR>
+
+<a name="dkoedaNo3"><h5>3)オブジェクトと同時に、フォントサイズや線の太さを拡大縮小する</h5></a><ul class="c2">
+オブジェクトの枠を右クリック-[テキスト]-[テキスト](タブ)の[テキストに高さを合わせる]のチェックを外し、[枠に合わせる]のチェック<br>
+</ul class="c2"><br>
+
+<a name="dkoedaNo4"><h5>4)グリッド線で枠の位置合わせを行いたい</h5></a><ul class="c2">
+[ツール]-[オプション]-[図形描画]-[グリッド線]の[スナップ網目スクリーンを使用する]と[グリッド線を表示する]にチェックを入れる<br>
+念のため[点の間隔]を縦横共に0ポイントにする<br>
+</ul class="c2"><br>
+
+<a name="dkoedaNo5"><h5>5)複数のページ背景に共通で使うマスターモードは、１タイプしか設定できないのでしょうか。</h5></a><ul class="c2">
+ページモードに切り替えます。 変更したいページで、[書式]-[スタイルとテンプレート]-[ページスタイル]を開きます。<br>
+[ページスタイルの読み込み]で、どの範囲でも良いですから、どれかテンプレートを選択します。<br>
+ページスタイルに読み込まれると、黒い枠で強調され、[OK]ボタンで変更されます。<br>
+あとはページの変更、又はマスターモードに切り替えて、追加されたページを変更できます。<br>
+</ul class="c2"><br> 
+
+<a name="dkoedaNo6"><h5>6).dxfファイルを読み込んでDrawで表示した際、日本語のフォントが正しく表示されない</h5></a><ul class="c2">
+ファイルの先頭部分にある HEADER セクションを次のように編集してください。<br>
+0<br>
+SECTION<br>
+2<br>
+HEADER<br>
+9<br>
+$DWGCODEPAGE<br>
+3<br>
+ANSI_932<br>
+1<br>
+AC1009<br>
+9<br>
+$INSBASE<br>
+10<br> 
+</ul class="c2"><br>
+
+<a name="dkoedaNo7"><h5>7)Drawで図を傾斜させる方法</h5></a><ul class="c2">
+1)オブジェクトを選択し、右クリック→変換→曲線に変換（または輪郭に変換）<br>
+2)オブジェクトを選択し、右クリック→位置とサイズ<br>
+3)開いたダイアログボックスの「傾斜角度/角の半径」タブを選択し、傾斜角度を入力してOK<br>
+</ul class="c2"><br>
+
+<a name="dkoedaNo8"><h5>8)Draw作品例1</h5></a><ul class="c2">
+<p><IMG SRC="Draw_Sample1.png" align="right" WIDTH="15%" ></p>
+1)「基本図形」の菱形を一つ作る。<br>
+2)「線」(外周の)を消す。<br>
+3)「表面」をグラデーションにする。<br>
+4) 出来た図形をのコピーペーストをひたすら繰り返す。<br>
+[　注意事項　]<br>
+・各ひし形の外周の線を消す(ひし形を選び、右クリックで「線」→「線」タブの「スタイル」で「透明」にする)<br>
+・同様に右クリックで「表面」を選び、「グラデーション」タブにする。今回は「グラデーション1」を修正し、青のものであれば、「始め」を「青5」で90%、「終り」を「青4」で70%にする。<br>
+・ひし形のサイズを間に隙間がでないよう微調整し、ひたすらコピペして並べる。<br>
+・一番上の段のひし形だけは、「青6」でグラデーションではなく塗りつぶし(「表面」タブ)にする。<br>
+・四角に切り抜くのは、今回はpngでエクスポートし、gimpで開き直して必要な部分だけ矩形に切り抜く。<br>
+[ 参考サイト ]
+URL1 : <a href="http://ameblo.jp/fireflysquid/entry-10403722348.html#c10549159210">ほたるいかの書きつけ</a><br>
+URL2 : <a href="http://xxx.xxxxxxxx.jp/illusion.html">錯視の実体験が出来る。</a><br>
+URL3 : <a href="http://shibuken.seesaa.net/article/134735166.html">PSJ渋谷研究所X</a><br>
+URL4 : <a href="http://shibuken.seesaa.net/article/134635855.html">錯視の動画</a><br>
+</ul class="c2"><br>
+
+<a name="dkoedaNo9"><h5>9)Draw作品例2</h5></a><ul class="c2">
+<p><IMG SRC="Draw_Sample2.png" align="left" WIDTH="30%" ></p><br>
+本作品はぺんぎん鉄道グループのHPにて公開されています。(下記URL参照)<br>
+他の車両や3面図もあります。<br>
+URL : <a href="http://pentetsu.shakunage.net/kaku_syaryou_list.htm">http://pentetsu.shakunage.net/kaku_syaryou_list.htm</a><br>
+</ul class="c2"><br>
+
+
+<a name="dkoedaNo10"><h5>10)Barcode作成</h5></a><ul class="c2">
+拡張機能&emsp;:&emsp;Barcode<br>
+&emsp;URL&emsp;:&emsp;<a href="http://extensions.services.openoffice.org/en/project/barcode">http://extensions.services.openoffice.org/en/project/barcode</a><br>
+[ 利用方法 ]<br>
+&emsp;拡張機能をInstall => Drawの再起動 => 「挿入」=>「バーコード」の項目が追加されている。<br>
+<p><IMG SRC="koeda/05Draw/01Barcode01.png" align="Left" WIDTH="20%" ><IMG SRC="koeda/05Draw/01Barcode02.png" align="Left" WIDTH="20%" ></p><br>
+</ul class="c2"><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+<a name="dkoedaNo11"><h5>11)円（楕円）の始点を中心にする方法</h5></a><ul class="c2">
+&emsp;1) 円（楕円）描写アイコンを選択<br>
+&emsp;2) 「<em> Alt</em> 」Keyを押しながらMouseでSizeを指定。<br>
+&emsp;「 Alt 」Key無しの場合は四角(左上等)が始点になります。<br> 
+</ul class="c2"><br>
+
+
+<br><br><br><br><br><br>
+<a name="OOoD-1"><h5>D-1)OpenOffice.orgのDrawでネットワーク図を書くときに役立つShapeのダウンロードサイト</h5></a>
+<h2><a href="http://www.lautman.net/mark/coo/index.html">Custom OO Shape. Drawを使うときのTemplate集</a></h2><br>
+<br>
+
+<a name="OOoD-2"><h5>D-2)5m×5mサイズのDrawページ</h5></a>
+<h2><a href="http://user.services.openoffice.org/ja/forum/viewtopic.php?f=14&amp;p=1821">maxページサイズを3m×3m　⇒　5m×5m　に変更する方法及び5m×5mページのファイルがダウンロード出来るサイトページ</a></h2><br>
+<br>
+
+<a name="OOoD-3"><h5>D-3)立体図を描く</h5></a>
+<h2><a href="http://www.ex.media.osaka-cu.ac.jp/openoffice/draw_3dobject.html">立体図の作成方法を図入りで記している。</a></h2><br>
+<br>
+
+<BR>
+<center><h3><a href="#TopOfPage">Top of Page</a></h3></center><BR>
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/sub_koeda_draw.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:09:52 GMT -->
+</html>

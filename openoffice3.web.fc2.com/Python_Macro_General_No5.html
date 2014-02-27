@@ -1,0 +1,4670 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/Python_Macro_General_No5.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:35:24 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<title>Macroの杜(Python編 / General No.5)</title>
+</head>
+<link rel="stylesheet"
+type="text/css" href="css_macroPython.css">
+<body>
+<a name="TopOfPage"><left><p><A HREF="index-2.html">Home of site</a></p></left></a><br>
+<h1>Macroの杜( Python編 )<br>
+[ Python for LibreOffice( Apache OpenOffice ) ]
+</h1>
+
+<h2>【 General No.5 】</h2>
+
+<center><h1>###【 Continued from <a href="Python_Macro_General_No4.html">Python / General No.4</a> 】###</h1></center>
+<br>
+
+<h3><Center>**********************【 Index 】**********************</center></h3>
+
+
+<p class="s1">Data構造の直列化(serialize)したり非直列化(de-serialize)</p class="s1">
+<p class="s3">[ Pickle ]</p class="s3">
+<ul>
+GSzPk-)<a href="#OOoGSzPk01a"><em>[General]</em>文字列をSizialize化<em>[ import pickle / .dump() ]</em></a><br>
+GSzPk-)<a href="#OOoGSzPk02a"><em>[General]</em>Sizialize化された文字列の復元<em>[ .loads() ]</em></a><br>
+GSzPk-)<a href="#OOoGSzPk03a"><em>[General]</em>Pickle化されたData ObjectをFileに保存( Piccle Fileの作成 )<em>[ .dump(,) ]</em></a><br>
+GSzPk-)<a href="#OOoGSzPk04a"><em>[General]</em>Pickle Fileの読込み<em>[ .load(,) ]</em></a><br>
+GSzPk-)<a href="#OOoGSzPk"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+<p class="s1">Module</p class="s1">
+<ul>
+GMdle-)<a href="#OOoGMdle01a"><em>[General]</em>Command Lineでのmain moduleの安全なimport<em>[  ]</em></a><br>
+GMdle-)<a href="#OOoGMdle01b"><em>[General]</em>Moduleのimpotと関数のimport<em>[  ]</em></a><br>
+GMdle-)<a href="#OOoGMdle02a"><em>[General]</em>組込みModule名一覧<em>[ sys / .builtin_module_names ]</em></a><br>
+GMdle-)<a href="#OOoGMdle03a"><em>[General]</em>Loadされているmodule一覧<em>[ sys / .modules ]</em></a><br>
+GMdle-)<a href="#OOoGMdle04a"><em>[General]</em>Global変数一覧の取得<em>[ globals() ]</em></a><br>
+GMdle-)<a href="#OOoGMdle05a"><em>[General]</em>Local変数一覧の取得1<em>[ locals() ]</em></a><br>
+GMdle-)<a href="#OOoGMdle05b"><em>[General]</em>Local変数一覧の取得2<em>[ var() ]</em></a><br>
+GMdle-)<a href="#OOoGMdle06a"><em>[General]</em>Module情報取得<em>[ import inspect / .getmoduleinfo ]</em></a><br>
+GMdle-)<a href="#OOoGMdle07a"><em>[General]</em>Module Name取得<em>[ .getmodulename ]</em></a><br>
+GMdle-)<a href="#OOoGMdle08a"><em>[General]</em>Module内のclassを取得<em>[ .getmembers / .isclass ]</em></a><br>
+GMdle-)<a href="#OOoGMdle09a"><em>[General]</em>ModuleかどうかCheck<em>[ .ismodule ]</em></a><br>
+GMdle-)<a href="#OOoGMdle10a"><em>[General]</em>Module内のfunctionを取得<em>[ .isfunction ]</em></a><br>
+GMdle-)<a href="#OOoGMdle11a"><em>[General]</em>Module内のbuiltin関数を取得<em>[ .isbuiltin ]</em></a><br>
+GMdle-)<a href="#OOoGMdle12a"><em>[General]</em>指定したObjectが含まれているModuleを取得<em>[ .getmodule ]</em></a><br>
+GMdle-)<a href="#OOoGMdle13a"><em>[General]</em>importするmoduleの型取得<em>[ import imp / .get_suffixes() ]</em></a><br>
+GMdle-)<a href="#OOoGMdle"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+<p class="s1">Python</p class="s1">
+<ul>
+GPy-)<a href="#OOoGPy01a"><em>[General]</em>Pythonの各種情報取得<em>[ sys / .version / .version_Info / .subversion ]</em></a><br>
+GPy-)<a href="#OOoGPy02a"><em>[General]</em>PythonのVersion確認<em>[ platform / .python_version / .python_version_tuple ]</em></a><br>
+GPy-)<a href="#OOoGPy02aa"><em>[General]</em>整数化したPythonのVersion<em>[ sys / .herversion ]</em></a><br>
+GPy-)<a href="#OOoGPy02b"><em>[General]</em>Python実装後の名称<em>[ platform / .python_implementation ]</em></a><br>
+GPy-)<a href="#OOoGPy02c"><em>[General]</em>Version管理<em>[ platform / .python_branch / .python_revision ]</em></a><br>
+GPy-)<a href="#OOoGPy02d"><em>[General]</em>Build & Complier情報<em>[ platform / .python_build / .python_complier ]</em></a><br>
+GPy-)<a href="#OOoGPy03a"><em>[General]</em>Copy Right取得<em>[ sys / .copyright ]</em></a><br>
+GPy-)<a href="#OOoGPy04a"><em>[General]</em>DLLのベースアドレスのHandle値(整数値)<em>[ sys / .dllhandle ]</em></a><br>
+GPy-)<a href="#OOoGPy05a"><em>[General]</em>Pythonの実行Fileの格納Directory<em>[ sys / exec_prefix ]</em></a><br>
+GPy-)<a href="#OOoGPy05b"><em>[General]</em>Pythonの実行Fileの格納Directory2<em>[ sys / .prefix ]</em></a><br>
+GPy-)<a href="#OOoGPy06a"><em>[General]</em>PythonのSignal処理のcheck周期<em>[ sys / .getcheckintarval() ]</em></a><br>
+GPy-)<a href="#OOoGPy07a"><em>[General]</em>Pythonの再帰呼び出しの上限<em>[ sys / .getrecursionlimit() ]</em></a><br>
+GPy-)<a href="#OOoGPy08a"><em>[General]</em>C APIのVersion<em>[ sys / .api_version ]</em></a><br>
+GPy-)<a href="#OOoGPy09a"><em>[General]</em>Pythonが使用するResistry Version( only Windows )<em>[ sys / .winver ]</em></a><br>
+GPy-)<a href="#OOoGPy10a"><em>[General]</em>組込関数一覧<em>[ __builtin__ ]</em></a><br>
+GPy-)<a href="#OOoGPy11a"><em>[General]</em>Objectの識別子(id)取得<em>[ id() ]</em></a><br>
+GPy-)<a href="#OOoGPy12a"><em>[General]</em>呼出し可能Object Check<em>[ callable() ]</em></a><br>
+GPy-)<a href="#OOoGPy"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+<p class="s1">System[ Platform ]</p class="s1">
+<ul>
+GSys-)<a href="#OOoGSys01a"><em>[General]</em>OS名( Platform名 )取得1<em>[ os.name / exception OSError ]</em></a><br>
+GSys-)<a href="#OOoGSys02a"><em>[General]</em>OS名( Platform名 )取得2<em>[ platform / .platform(0,0) ]</em></a><br>
+GSys-)<a href="#OOoGSys02b"><em>[General]</em>OS名取得3<em>[ platform / .system ]</em></a><br>
+GSys-)<a href="#OOoGSys02c"><em>[General]</em>OSのRelease情報取得<em>[ platform / .release ]</em></a><br>
+GSys-)<a href="#OOoGSys02d"><em>[General]</em>OSのVersion情報取得<em>[ platform / .version ]</em></a><br>
+GSys-)<a href="#OOoGSys02e"><em>[General]</em>OS名( Platform名 )取得3<em>[ platform / system_alias ]</em></a><br>
+GSys-)<a href="#OOoGSys02f"><em>[General]</em>Architecture情報<em>[ platform / .architecture ]</em></a><br>
+GSys-)<a href="#OOoGSys02g"><em>[General]</em>各種OS情報<em>[ platform / .win32_ver / .linux_distribution / .mac_ver / .java_ver ]</em></a><br>
+GSys-)<a href="#OOoGSys03a"><em>[General]</em>OS情報 & CPU情報 & network上の認識名を取得<em>[ platform.uname ]</em></a><br>
+GSys-)<a href="#OOoGSys04a"><em>[General]</em>Network上の認識名取得<em>[ platform / .node ]</em></a><br>
+GSys-)<a href="#OOoGSys04b"><em>[General]</em>CPUの簡易情報<em>[ platform / .machine ]</em></a><br>
+GSys-)<a href="#OOoGSys04c"><em>[General]</em>CPUの詳細情報<em>[ platform / .processor ]</em></a><br>
+GSys-)<a href="#OOoGSys05a"><em>[General]</em>CPUのエンディアン(endianness)<em>[ sys / .byteorder ]</em></a><br>
+GSys-)<a href="#OOoGSys06a"><em>[General]</em>WindowsのVersion<em>[ sys / .getwindowsversion() ]</em></a><br>
+GSys-)<a href="#OOoGSys"><em>[General]</em><em>[  ]</em></a><br>
+GSys-)<a href="#OOoGSys"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+<p class="s3">[ Command ]</p class="s3">
+<ul>
+GSysCmd-)<a href="#OOoGSysCmd01a"><em>[General]</em>Command実行<em>[ import os / os.system ]</em></a><br>
+GSysCmd-)<a href="#OOoGSysCmd"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+<p class="s1">Windows API</p class="s1">
+<ul>
+GWinAPI-)<a href="#OOoGWinAPI01a"><em>[General]</em>MessageBoxA<em>[ from ctypes import * / windll.user32 / .MessageBoxA ]</em></a><br>
+GWinAPI-)<a href="#OOoGWinAPI"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+<p class="s1">Network</p class="s1">
+<ul>
+GNet-)<a href="#OOoGNet01a"><em>[General]</em>siteのCharset取得<em>[ import urllib2 / urlopen / info() / get() ]</em></a><br>
+GNet-)<a href="#OOoGNet02a"><em>[General]</em>siteのSorce取得<em>[ urlopen / 3.3 : import urllib.request / 2.7 : import urllib ]</em></a><br>
+GNet-)<a href="#OOoGNet03a"><em>[General]</em>URLからLocal Path取得<em>[ url2patname ]</em></a><br>
+GNet-)<a href="#OOoGNet03b"><em>[General]</em>URI Encode/Decode<em>[ import urllib.request / quote() / unquote() ]</em></a><br>
+GNet-)<a href="#OOoGNet04a"><em>[General]</em>HTTP Server(<em1>To be careful!!</em1>)<em>[ import SimpleHTTPServer / import BaseHTTPServer / .HTTPServer / .SimpleHTTPRequestHandler ]</em></a><br>
+GNet-)<a href="#OOoGNet05a"><em>[General]</em>Web browser( Default browser )<em>[ import webbrowser ]</em></a><br>
+GNet-)<a href="#OOoGNet05b"><em>[General]</em>Web browser( Specified browser )<em>[ .get ]</em></a><br>
+GNet-)<a href="#OOoGNet06a"><em>[General]</em>Web serverにあるfileをdownload<em>[ .urlretrieve(,) ]</em></a><br>
+GNet-)<a href="#OOoGNet"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+<p class="s3">[ Google ]</p class="s3">
+<ul>
+GnGgle-)<a href="#OOoGnGgle01a"><em>[General]</em>YouTube<em>[ import webbrowser ]</em></a><br>
+GnGgle-)<a href="#OOoGnGgle02a"><em>[General]</em>Google Mapから緯度/経度取得(XML)<em>[ import xml.dom.minidom / xml.dom.minidom.parseString() / getElementsByTagName() ]</em></a><br>
+GnGgle-)<a href="#OOoGnGgle02b"><em>[General]</em>Google Mapから緯度/経度取得(JSON)<em>[ import json / .loads(str(oBuffer.decode()),) / object_hook ]</em></a><br>
+GnGgle-)<a href="#OOoGnGgle02c"><em>[General]</em>Google Mapから緯度/経度取得( JSON表示 )<em>[ .dumps ]</em></a><br>
+GnGgle-)<a href="#OOoGnGgle02d"><em>[General]</em>緯度/経度からAddress取得/Reverse geocoding(XML)<em>[  ]</em></a><br>
+GnGgle-)<a href="#OOoGnGgle02e"><em>[General]</em>緯度/経度からAddress取得/Reverse geocoding(JSON)<em>[  ]</em></a><br>
+GnGgle-)<a href="#OOoGnGgle02f"><em>[General]</em>緯度/経度からAddress取得/Reverse geocoding( JSON表示 )<em>[  ]</em></a><br>
+GnGgle-)<a href="#OOoGnGgle03a"><em>[General]</em>Google map / Route検索(XML)<em>[  ]</em></a><br>
+GnGgle-)<a href="#OOoGnGgle03b"><em>[General]</em>Google map / Route検索(JSON)<em>[  ]</em></a><br>
+GnGgle-)<a href="#OOoGnGgle04a"><em>[General]</em>Google Stock(XML)<em>[ .attributes['data'].value ]</em></a><br>
+GnGgle-)<a href="#OOoGnGgle05a"><em>[General]</em>Google Currency Converter<em>[  ]</em></a><br>
+GnGgle-)<a href="#OOoGnGgle06b"><em>[General]</em>Google Time Zone(JSON)<em>[  ]</em></a><br>
+GnGgle-)<a href="#OOoGnGgle"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+<p class="s3">[ Other ]</p class="s3">
+<ul>
+GnNetOtr-)<a href="#OOoGnNetOtr01a"><em>[General]</em>O'Reilly Japan Ebook Storeから書籍情報取得<em>[  ]</em></a><br>
+GnNetOtr-)<a href="#OOoGnNetOtr02a"><em>[General]</em>国立国会図書館Search<em>[ import xml.etree.ElementTree / .fromstring() / .findall() / .text ]</em></a><br>
+GnNetOtr-)<a href="#OOoGnNetOtr"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+<p class="s1">Regular Expression( 正規表現 )</p class="s1">
+<ul>
+GReEp-)<a href="#OOoGReEp01a"><em>[General]</em>該当する検索文字を全て取得<em>[ import re / findall ]</em></a><br>
+GReEp-)<a href="#OOoGReEp02a"><em>[General]</em>重複しないmatchの中で一番左の値を置換<em>[ sub ]</em></a><br>
+GReEp-)<a href="#OOoGReEp03a"><em>[General]</em>正規表現で文字列を分割<em>[ re.split(,) ]</em></a><br>
+GReEp-)<a href="#OOoGReEp"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+<p class="s1">Audio</p class="s1">
+<p class="s3">[ Sound ]</p class="s3">
+<ul>
+GASnd-)<a href="#OOoGASnd01a"><em>[General]</em>Windows Sytem音を鳴らす( only Windows )<em>[ import winsound / .PlaySound / SND_ALIAS ]</em></a><br>
+GASnd-)<a href="#OOoGASnd"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+<p class="s3">[ Audio File ]</p class="s3">
+<ul>
+GAF-)<a href="#OOoGAF01a"><em>[General]</em>wave FileのOpen / Close<em>[ import wave ]</em></a><br>
+GAF-)<a href="#OOoGAF02a"><em>[General]</em>Sound Fileの識別<em>[ import sndhdr / .what() / whathdr() ]</em></a><br>
+GAF-)<a href="#OOoGAF"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+
+
+<p class="s1">Japanese Coding</p class="s1">
+<ul>
+GJp-)<a href="#OOoGJp00a"><em>[General]</em>日本語文字を扱う際の注意事項</a><br>
+GJp-)<a href="#OOoGJp00b"><em>[General]</em>文字列型とunicode型の違い<em>[  ]</em></a><br>
+GJp-)<a href="#OOoGJp01a"><em>[General]</em>Default Cording 1<em>[ # Coding: utf-8 ]</em></a><br>
+GJp-)<a href="#OOoGJp01b"><em>[General]</em>Default Cording 2<em>[ # -*- coding: utf_8 -*- ]</em></a><br>
+GJp-)<a href="#OOoGJp02a"><em>[General]</em>Editorと異なるCodingに変換した時の例(1)<em>[ .decode('utf-8') ]</em></a><br>
+GJp-)<a href="#OOoGJp02b"><em>[General]</em>Editorと異なるCodingに変換した時の例(2)<em>[ .decode('euc_jp') ]</em></a><br>
+GJp-)<a href="#OOoGJp03a"><em>[General]</em>日本語文字の長さ( UTF-8 )1<em>[ 文字化け ]</em></a><br>
+GJp-)<a href="#OOoGJp03b"><em>[General]</em>日本語文字の長さ( UTF-8 )2<em>[  ]</em></a><br>
+GJp-)<a href="#OOoGJp03c"><em>[General]</em>日本語文字の長さ( EUC-JP )<em>[  ]</em></a><br>
+GJp-)<a href="#OOoGJp03d"><em>[General]</em>日本語文字の長さ( Shift-JIS )<em>[  ]</em></a><br>
+GJp-)<a href="#OOoGJp04a"><em>[General]</em>PythonのDefault Encoding<em>[ sys / .getdefaultencoding() ]</em></a><br>
+GJp-)<a href="#OOoGJp05a"><em>[General]</em>UnicodeのFile NameのEncoding<em>[ sys / .getfilesystemencoding() ]</em></a><br>
+GJp-)<a href="#OOoGJp06a"><em>[General]</em>unicode型の内部表現<em>[ sys / .maxunicode ]</em></a><br>
+GJp-)<a href="#OOoGJp07a"><em>[General]</em>codecs module(1)<em>[ import codecs / encode ]</em></a><br>
+GJp-)<a href="#OOoGJp07b"><em>[General]</em>codecs module(2)<em>[ import codecs / encode ]</em></a><br>
+GJp-)<a href="#OOoGJp"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+<p class="s1">Internationalization / Localization</p class="s1">
+<h4>
+&emsp;国際化 / l18N ( I-nternationalizatio-N ) : Programを複数の言語に対応させる操作<br>
+&emsp;地域化 / l10n ( L-calizatio-N ) : 既に国際化されているProgramを特定の地域の言語や文化的な事情に対応させること<br>
+</h4>
+<br>
+<ul>
+GIntLcl-)<a href="#OOoGIntLcl01a"><em>[General]</em>Localization設定取得<em>[ import locale / .getdefaultlocale / .getlocale ]</em></a><br>
+GIntLcl-)<a href="#OOoGIntLcl"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+
+<p class="s1">認証( authentication )</p class="s1">
+<ul>
+GAuthn-)<a href="#OOoGAuthn01a"><em>[General]</em>Basic認証 / BASE64<em>[ import base64 / .encodestring / .decodestring ]</em></a><br>
+GAuthn-)<a href="#OOoGAuthn02a"><em>[General]</em>MD5 (Message Digest Algorithm 5) / SHA (Secure Hash Algorithm)<em>[ import hashlib / .md5 / .sha1 ]</em></a><br>
+GAuthn-)<a href="#OOoGAuthn03a"><em>[General]</em>UUID生成<em>[ import uuid / .uuid4() ]</em></a><br>
+GAuthn-)<a href="#OOoGAuthn"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+
+<p class="s1">Exception( <em1>殆どの例外は'Error'で終わる名前で定義されています。</em1>)</p class="s1">
+<ul>
+GExpt-)<a href="#OOoGExpt01a"><em>[General]</em>Error内容取得<em>[ sys / traceback ]</em></a><br>
+GExpt-)<a href="#OOoGExpt02a"><em>[General]</em>Script途中での処理終了<em>[ sys / .exit / SystemExit ]</em></a><br>
+GExpt-)<a href="#OOoGExpt03a"><em>[General]</em>警告制御Option<em>[ sys / .warningoptions ]</em></a><br>
+GExpt-)<a href="#OOoGExpt04a"><em>[General]</em>強制的に例外を送出する<em>[ raise ]</em></a><br>
+GExpt-)<a href="#OOoGExpt05a"><em>[General]</em>複数の例外を1つのExcept節で処理<em>[  ]</em></a><br>
+GExpt-)<a href="#OOoGExpt06a"><em>[General]</em>例外の詳細説明<em>[ detail ]</em></a><br>
+GExpt-)<a href="#OOoGExpt07a"><em>[General]</em>User定義のException<em>[  ]</em></a><br>
+GExpt-)<a href="#OOoGExpt08a"><em>[General]</em>Error NoとError Message<em>[ import errno,os / .errorcode.keys() / .strerror() ]</em></a><br>
+GExpt-)<a href="#OOoGExpt09a"><em>[General]</em>Log Fileに出力<em>[ import loggibg / .basicConfig() ]</em></a><br>
+GExpt-)<a href="#OOoGExpt"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+<p class="s1">Other</p class="s1">
+<ul>
+GOthr-)<a href="#OOoGOthr01a"><em>[General]</em>登録したProfiler関数の取得<em>[ sys / .getprofiler ]</em></a><br>
+GOthr-)<a href="#OOoGOthr02a"><em>[General]</em>登録したtrace 関数の取得<em>[ sys / .gettrace() ]</em></a><br>
+GOthr-)<a href="#OOoGOthr03a"><em>[General]</em>importするmoduleがPackageに含まれる時の__path__属性取得<em>[ sys / .meta_path ]</em></a><br>
+GOthr-)<a href="#OOoGOthr04a"><em>[General]</em>path_hooks<em>[ sys / .path_hooks ]</em></a><br>
+GOthr-)<a href="#OOoGOthr05a"><em>[General]</em>path_importer_cache<em>[ sys / .path_importer_cache ]</em></a><br>
+GOthr-)<a href="#OOoGOthr06a"><em>[General]</em>自動GCが有効かどうか<em>[  ]</em></a><br>
+GOthr-)<a href="#OOoGOthr07a"><em>[General]</em>Performance測定<em>[ import timeit / .Timer() / .timeit(1) ]</em></a><br>
+GOthr-)<a href="#OOoGOthr"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+
+
+
+<br><br><br>
+<h1><center>###【 Following <a href="Python_Macro_General_No6.html">Python / General No.6</a> 】###</center></h1>
+
+
+
+<br><br><br><br><br><br><br><br><br><br>
+<h3><center>******************************[ Macro Code ]******************************</center></h3>
+<br>
+
+<p class="s1">Data構造の直列化(serialize)したり非直列化(de-serialize)</p class="s1">
+<p class="s3">[ Pickle ]</p class="s3">
+<a name="OOoGSzPk01a"><h6>GSzPk-)<em>[General]</em>文字列をSizialize化</h6></a><pre><code>
+<img SRC="Python_pic/02general2/16Sirialize/01Pickle/01dump_string01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: UTF-8
+# python Marco
+import pickle
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = [1,2,'three','four',u'五']
+		oPkDmp = pickle.dumps(oList)
+		oDisp= unicode(oPkDmp,'utf-8')
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGSzPk02a"><h6>GSzPk-)<em>[General]</em>Sizialize化された文字列の復元</h6></a><pre><code>
+<img SRC="Python_pic/02general2/16Sirialize/01Pickle/02loads_string01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: UTF-8
+# python Marco
+import pickle
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oList = [1,2,'three','four',u'五']
+		oPkDmp = pickle.dumps(oList)
+		# de-sirializze
+		oPkLoad = pickle.loads(oPkDmp)
+		oDisp= str(oPkLoad)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGSzPk03a"><h6>GSzPk-)<em>[General]</em>Pickle化されたData ObjectをFileに保存</h6></a><pre><code>
+<img SRC="Python_pic/02general2/16Sirialize/01Pickle/03dump_file01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: UTF-8
+# python Marco
+import pickle
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oFile = 'c:/temp/oTextPython.pickle'
+		oDictionary = {'Japan':u'日本','America':u'米国','France':u'仏国'}
+		#
+		with open(oFile, 'wb') as f:
+			pickle.dump(oDictionary, f)
+		oDisp= 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGSzPk04a"><h6>GSzPk-)<em>[General]</em>Pickle Fileの読込み</h6></a><pre><code>
+<img SRC="Python_pic/02general2/16Sirialize/01Pickle/04load_file01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: UTF-8
+# python Marco
+import pickle
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oFile = 'c:/temp/oTextPython.pickle'
+		oDictionary = {'Japan':u'日本','America':u'米国','France':u'仏国'}
+		# create pickle file
+		with open(oFile, 'wb') as f:
+			pickle.dump(oDictionary, f)
+		# load pickle file
+		with open(oFile, 'rb') as f2:
+			oPkFile = pickle.load(f2)
+		oDisp= str(oPkFile)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGSzPk"><h6>GSzPk-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/16Sirialize/01Pickle/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">Module</p class="s1">
+<a name="OOoGMdle01a"><h6>GMdle-)<em>[General]</em>コマンドラインでのmain moduleの安全なimport</h6></a><pre><code>
+「if __name__=='__main__':」は<em>Global変数</em>の「__name__」が「__main__」と認識されると
+<em>コマンドラインを解釈するコードが実行</em>されるので、GUI上では使用不可です。
+
+OpenOffice.org / LibreOffice上で実行した場合
+<em>__name__=='ooo_script_framework'</em>です。
+
+[ 参考 ]
+コマンドラインで実行する場合は以下の様にするProgramのEntry Pointが保護され、
+moduleを安全にimport出来ます。
+
+[ Good Example ]
+from multiprocessing import Process, freeze_support
+def foo():
+	print ' Hello'
+if __name__=='__main__':
+	freeze_support()		# <= 通常は省略
+	p = Process(target=foo)
+	p.start()
+
+
+[ Bad Example ]
+from multiprocessing import Process
+def foo():
+	print ' Hello'
+p = Process(target=foo)
+p.start()
+
+</code></pre><br>
+
+
+<a name="OOoGMdle01b"><h6>GMdle-)<em>[General]</em>Moduleのimpotと関数のimport</h6></a><pre><code>
+#
+#「python_module.py」file中に関数py_funcを定義した場合
+# Moduleをimportする場合
+import python_module
+a = python_module.py_func()
+#
+# 関数だけをimportする場合
+from python_module import py_func()
+a = py_func()
+#
+</code></pre><br>
+
+
+
+<a name="OOoGMdle02a"><h6>GMdle-)<em>[General]</em>組込みModule名一覧</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Module/01builtin_module_names01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oBltMdle = sys.builtin_module_names
+		oDisp = u'[ 組込みModeule名 一覧 ]\n\n' + str(oBltMdle)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGMdle03a"><h6>GMdle-)<em>[General]</em>Loadされているmodule一覧</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Module/02sys_modules01.png" align="right" hspace="4" vspace="4" width="10%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oSys = sys.modules
+		oDisp = u'[ Loadされているmodule一覧 ]\n'
+		for oMdle in oSys:
+			oDisp = oDisp + str(oMdle) + '\n'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGMdle04a"><h6>GMdle-)<em>[General]</em>Global変数一覧の取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Module/04globals01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oGbl = globals()
+		oDisp = ''
+		for k in oGbl:
+			oDisp = oDisp + str(k) + '\n'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGMdle05a"><h6>GMdle-)<em>[General]</em>Local変数一覧の取得1</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Module/05locals01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oLocal_1 = 'PythonMacro'
+		oLocal_2 = 100
+		oLocal_3 = [1,2,3,4]
+		oLocal_4 = {1:'a',2:'b'}
+		oLcls = locals()
+		oDisp = u'[ Local変数と値をDictionary型で取得 ]\n' + str(oLcls) + '\n'
+		for k in oLcls:
+			oDisp = oDisp + str(k) + '\n'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+#
+# 関数内で変数に代入するとその変数は、その関数内でのみ有効なローカル変数になります。
+# また、関数の仮引数もローカル変数です。
+</code></pre><br>
+
+
+<a name="OOoGMdle05b"><h6>GMdle-)<em>[General]</em>Local変数一覧の取得2</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Module/05vars01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oLocal_1 = 'PythonMacro'
+		oLocal_2 = 100
+		oLocal_3 = [1,2,3,4]
+		oLocal_4 = {1:'a',2:'b'}
+		oV = vars()
+		oDisp = u'[ Local変数と値をDictionary型で取得 ]\n' + str(oV) + '\n'
+		for k in oV:
+			oDisp = oDisp + str(k) + '\n'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+
+<a name="OOoGMdle06a"><h6>GMdle-)<em>[General]</em>Module情報取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Module/06inspect_moduleinfo01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import inspect
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oPath = 'C:\Program Files\LibreOffice 3\Basis\program\python-core-2.6.1\lib\os.py'
+		oMdleInfo = inspect.getmoduleinfo(oPath)
+		oDisp = '[ Module Information ]\n' + str(oMdleInfo)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# Return値 : (name, suffix, mode, module_type) のTuple
+#&emsp;name&emsp;&emsp;:&emsp;Package Nameを含まないModule Name
+#&emsp;suffix&emsp;&emsp;:&emsp;File NameからModule Nameを除いた残りの部分 
+#&emsp;mode&emsp;&emsp;:&emsp;open() で指定されるFile Mode('r' または 'rb')
+#&emsp;module_type&emsp;:&emsp;Module Typeを示す整数で、 imp で定義している定数のいずれか
+</code></pre><br>
+
+
+<a name="OOoGMdle07a"><h6>GMdle-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Module/07inspect_modulename01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import inspect
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oPath = 'C:\Program Files\LibreOffice 3\Basis\program\python-core-2.6.1\lib\os.py'
+		oMdleName = inspect.getmodulename(oPath)
+		oDisp = '[ Module Name ]\n' + str(oMdleName)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGMdle08a"><h6>GMdle-)<em>[General]</em>Module内のclassを取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Module/08inspect_getmembers01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import inspect
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oDisp = u'[ Module内のclass取得 ]\n'
+		for name,member in inspect.getmembers(uno):
+			if inspect.isclass(member):
+				oDisp = oDisp + "%s is class." % name + '\n'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGMdle09a"><h6>GMdle-)<em>[General]</em>ModuleかどうかCheck</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Module/09inspect_ismodule01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import inspect
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oDisp = u'[ uno　Module内のModule取得 ]\n'
+		for oName,oMember in inspect.getmembers(uno):
+			if inspect.ismodule(oMember):
+				oDisp = oDisp + "%s is module." % oName + '\n'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGMdle10a"><h6>GMdle-)<em>[General]</em>Module内のfunctionを取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Module/10inspect_isfunction01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import inspect
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oDisp = u'[ uno　Module内のfunction取得 ]\n'
+		for oName,oMember in inspect.getmembers(uno):
+			if inspect.isfunction(oMember):
+				oDisp = oDisp + "%s is function." % oName + '\n'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGMdle11a"><h6>GMdle-)<em>[General]</em>Module内のbuiltin関数を取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Module/11inspect_isbuiltin01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import inspect
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oDisp = u'[ uno　Module内のbuiltin関数取得 ]\n'
+		for oName,oMember in inspect.getmembers(uno):
+			if inspect.isbuiltin(oMember):
+				oDisp = oDisp + "%s is builtin." % oName + '\n'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGMdle12a"><h6>GMdle-)<em>[General]</em>指定したObjectが含まれているModuleを取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Module/12inspect_getmodule01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import inspect
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oModule = inspect.getmodule(uno)
+		oDisp = u'[ 指定したObject( uno )が含まれているModule取得 ]\n'\
+		+ 'inspect.getmodule(uno)\n =\n' + str(oModule)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGMdle13a"><h6>GMdle-)<em>[General]</em>importするmoduleの型取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Module/13imp_get_suffixes01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import imp
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+	return msgbox.execute()
+#
+def oTest():
+	try:
+		oSuffix = imp.get_suffixes()
+		oDisp = u'[ importする時の型]\n [suffix, mode, type]\n'\
+		+ str(oSuffix)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+#
+#&emsp;suffix&emsp;:&emsp;module fileの拡張子
+#&emsp;mode&emsp;:&emsp;読込む時のmode。Text Fileに対しては'r',Binary Fileに対しては'rb'
+#&emsp;type&emsp;:&emsp;1 = PY_SOURCE&emsp;/&emsp;2 = PY_COMPILED&emsp;/&emsp;3 = C_EXTENSION
+</code></pre><br>
+
+
+<a name="OOoGMdle"><h6>GMdle-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Module/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">Python</p class="s1">
+<a name="OOoGPy01a"><h6>GPy-)<em>[General]</em>Pythonの各種情報取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Python/01Version01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oVer = sys.version
+		oVer_Info = sys.version_info
+		oSubVer = sys.subversion
+		oDisp = u'[ PythonのVersion ( sys modeule ) ]' + '\n\
+		 Version => ' + str(oVer) + '\n\
+		 Version Info => ' + str(oVer_Info) + '\n\
+		 Subversion => ' + str(oSubVer)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+#
+# [ .subversionのReturn ]
+# (repo, branch, version)のTuple。
+# repo		: リポジトリの名前
+# branch	:  'trunk', 'branches/name' または 'tags/name' のいずれかの形式の文字列
+# version
+# => Python インタプリタが Subversion のチェックアウトから ビルドされたものならば svnversion の出力であり、
+# リビジョン番号 (範囲) とローカルでの変更がある場合には最後に ‘M’ が付きます。
+#  ツリーがエクスポートされたもの (または svnversion が取得できない) で、
+#  branch がタグならば Include/patchlevel.h のリビジョンになります。
+#  それ以外の場合には None です。
+</code></pre><br>
+
+
+<a name="OOoGPy02a"><h6>GPy-)<em>[General]</em>PythonのVersion確認</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Python/02PyVersion01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import platform
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oPyVer = platform.python_version()
+		oPyVerTuple = platform.python_version_tuple()
+		oDisp = u'[ PythonのVersion( platform module ) ]' + '\n\
+		 ' + 'python_version => ' + str(oPyVer) + '\n\
+		 ' + 'python_version_tuple => ' + str(oPyVerTuple)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGPy02aa"><h6>GPy-)<em>[General]</em>整数化したPythonのVersion</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Python/02hexversion01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oSystmp = sys.hexversion
+		oSys = hex(oSystmp)
+		oDisp = u'[ 整数化されたPython Version ]\n => ' + str(oSys)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# 0x20601f0 => version 2.6.1
+# hexversionは16進数に変換しないと値の意味は分りません。
+</code></pre><br>
+
+
+<a name="OOoGPy02b"><h6>GPy-)<em>[General]</em>Python実装後の名称</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Python/02PyImplement02.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import platform
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oPlatform = platform.python_implementation()
+		oDisp = u'[ Python実装後の名称( platform module ) ]' + '\n\
+		 ' + 'python_implementation => ' + str(oPlatform)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGPy02c"><h6>GPy-)<em>[General]</em>Version管理(<em1>Python3.3(LO4.0.1)では取得出来ない</em1>)</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Python/02PyBrchRev03.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import platform
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oPlatform1 = platform.python_branch()
+		oPlatform2 = platform.python_revision()
+		oDisp = u'[ Version管理( platform module ) ]' + '\n\
+		 ' + 'python_branch => ' + str(oPlatform1) + '\n\
+		 ' + 'python_revision => ' + str(oPlatform2)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGPy02d"><h6>GPy-)<em>[General]</em>Build & Complier情報</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Python/02PyBldCplr04.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import platform
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oPlatform1 = platform.python_build()
+		oPlatform2 = platform.python_compiler()
+		oDisp = u'[ Build & Complier情報( platform module ) ]' + '\n\
+		 ' + 'python_build => ' + str(oPlatform1) + '\n\
+		 ' + 'python_compiler => ' + str(oPlatform2)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGPy03a"><h6>GPy-)<em>[General]</em>Copy Right取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Python/03copyright01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oCpRight = sys.copyright
+		oDisp = u'[ Copy Right ]\n\n' + str(oCpRight)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGPy04a"><h6>GPy-)<em>[General]</em>DLLのベースアドレスのHandle値(整数値)</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oCpRight = sys.dllhandle
+		oDisp = u'[ Copy Right ]\n\n' + str(oCpRight)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# Only Windows
+# DLL : Dynamic Link Library
+</code></pre><br>
+
+
+<a name="OOoGPy05a"><h6>GPy-)<em>[General]</em>Pythonの実行Fileの格納Directory</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oCpRight = sys.exec_prefix
+		oDisp = u'[ Pythonの実行File格納Directory ]\n\n' + str(oCpRight)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGPy05b"><h6>GPy-)<em>[General]</em>Pythonの実行Fileの格納Directory2</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oSys = sys.prefix
+		oDisp = u'[ path_importer_cache ]\n => ' + str(oSys)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+
+<a name="OOoGPy06a"><h6>GPy-)<em>[General]</em>PythonのSignal処理のcheck周期</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Python/04getcheckinterval01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oPyChk = sys.getcheckinterval()
+		oDisp = u'[ PythonのSignal処理のcheck周期 ]\n\n' + str(oPyChk) + '[ bytecodes ]'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGPy07a"><h6>GPy-)<em>[General]</em>Pythonの再帰呼び出しの上限</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Python/05getrecursionlimit01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oPyReLimit = sys.getrecursionlimit()
+		oDisp = u'[ 再帰呼び出しの上限 ]\n => ' + str(oPyReLimit) + u' 回'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# 再帰呼び出しとは、関数内でその関数自身を実行することを言う。
+# あまりにも深い再帰呼び出しによるオーバーフローを防ぐため、
+# Python では、再帰呼び出しの上限を設定している。（Defaultは 1000 回）
+</code></pre><br>
+
+
+<a name="OOoGPy08a"><h6>GPy-)<em>[General]</em>C APIのVersion</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Python/06c_api_version01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oSys = sys.api_version
+		oDisp = u'[ C APIのVersion ]\n => ' + str(oSys)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# Python と拡張モジュール間の不整合をデバッグする場合などに利用できます。
+</code></pre><br>
+
+
+<a name="OOoGPy09a"><h6>GPy-)<em>[General]</em>Pythonが使用するResistry Version</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Python/07sys_winver01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oSys = sys.winver
+		oDisp = u'[ Pythonが使用するResistry Version ]\n => ' + str(oSys)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# Windowsプラットフォームで、レジストリのキーとなるバージョン番号。
+# 通常、この値は versionの先頭三文字となります。つまり、Python version 2.6.1 => 2.6
+</code></pre><br>
+
+
+<a name="OOoGPy10a"><h6>GPy-)<em>[General]</em>組込関数一覧</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Python/08__builtin__01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import __builtin__
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oBuiltin = dir(__builtin__)
+		oDisp = u'[ 組込関数一覧 ]\n\n' + str(oBuiltin)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGPy11a"><h6>GPy-)<em>[General]</em>Objectの識別子(id)取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Python/09id01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		def oFunc(oVal1,oVal2):
+			return oVal1 + oVal2
+		class Cls():				# class名の先頭文字は大文字
+			oData1 = oFunc(1,2)
+			oData2 = oData1 * 3
+		oChkFunc = oFunc(10,20)
+		oIdF = id(oFunc)
+		oIdC = id(Cls)
+		oIdV = id(oChkFunc)
+		oIdBlt = id(hex)
+		oDisp = u'[ 識別子(id)を表す整数 ]\n User定義関数 / id(oFunc) = ' + str(oIdF) + '\n'\
+		+ u'User定義Class / id(Cls) = ' + str(oIdC) + '\n'\
+		+ u'変数 / id(oChkFunc) = ' + str(oIdV) + '\n'\
+		+ u'組込み関数 / id(hex) = ' + str(oIdBlt)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGPy12a"><h6>GPy-)<em>[General]</em>呼出し可能Object Check</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Python/10callable01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		def oFunc(oVal1,oVal2):
+			return oVal1 + oVal2
+		class Cls():				# class名の先頭文字は大文字
+			oData1 = oFunc(1,2)
+			oData2 = oData1 * 3
+		oStr = 'Hello world!!'
+		oCall1 = callable(oFunc)
+		oCall2 = callable(Cls)
+		oCall3 = callable(oStr)
+		oDisp = u'[ 呼出し可能ObjectかCheck / callable関数 ]\n\n'\
+		+ 'call(oFunc) = ' + str(oCall1) + '\n'\
+		+ 'call(Cls) = ' + str(oCall2) + '\n'\
+		+ 'call(oStr) = ' + str(oCall3)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGPy"><h6>GPy-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/00Python/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">System[ Platform ]</p class="s1">
+<a name="OOoGSys01a"><h6>GSys-)<em>[General]</em>OS名( Platform名 )取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00System/01os_name01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import os
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def oTest():
+	try:
+		oOsTmp = os.name
+		if oOsTmp == 'nt':
+			oOsName = 'Windows NT系'
+		elif oOsTmp == 'mac':
+			oOsName = 'Mac OS'
+		elif oOsTmp == 'dos':
+			oOsName = 'MS-DOS'
+		elif oOsTmp == 'ce':
+			oOsName = 'Windows　CE系'
+		elif oOsTmp == 'posix':
+			oOsName = 'Unix / Linux' + '\n'
+			oOsName = oOsName + '(Portable Operation System Interface)'
+		elif oOsTmp == 'riscos':
+			oOsName = 'RISC/OS( Unix )'
+		elif oOsTmp == 'java':
+			oOsName = 'JavaVM'
+		#
+		oDisp = u'[ OS名(Platform名) ]' + '\n\
+		 ' + oOsName
+	except OSError:
+		oDisp = 'Exception of OS Error'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGSys02a"><h6>GSys-)<em>[General]</em>OS名( Platform名 )取得2</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00System/02Platform_platform01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import platform
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oPlatform1 = platform.platform(0,0)
+		oPlatform2 = platform.platform(1,0)
+		oPlatform3 = platform.platform(0,1)
+		oPlatform4 = platform.platform(1,1)
+		oDisp = u'[ Platform( platform module ) ]' + '\n\
+		 ' + '.platform(0,0) => ' + str(oPlatform1) + '\n\
+		 ' + '.platform(1,0) => ' + str(oPlatform2) + '\n\
+		 ' + '.platform(0,1) => ' + str(oPlatform3) + '\n\
+		 ' + '.platform(1,1) => ' + str(oPlatform4)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGSys02b"><h6>GSys-)<em>[General]</em>OS名取得3</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00System/02Platform_system02.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import platform
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oPlatform1 = platform.system()
+		oDisp = u'[ Platform( platform module ) ]' + '\n\
+		 ' + '.system => ' + str(oPlatform1)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGSys02c"><h6>GSys-)<em>[General]</em>OSのRelease情報取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00System/02Platform_release03.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import platform
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oPlatform1 = platform.release()
+		oDisp = u'[ Platform( platform module ) ]' + '\n\
+		 ' + '.release => ' + str(oPlatform1)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGSys02d"><h6>GSys-)<em>[General]</em>OSのVersion情報取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00System/02Platform_version04.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import platform
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oPlatform1 = platform.version()
+		oDisp = u'[ Platform( platform module ) ]' + '\n\
+		 ' + '.version => ' + str(oPlatform1)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGSys02e"><h6>GSys-)<em>[General]</em>OS名( Platform名 )取得3</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00System/02Platform_sys_alias05.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import platform
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oPltfmSys = platform.system()
+		oPltfmRels = platform.release()
+		oPltfmVer = platform.version()
+		oPlatform1 = platform.system_alias(str(oPltfmSys),str(oPltfmRels),str(oPltfmVer))
+		oDisp = u'[ Platform( platform module ) ]' + '\n\
+		 ' + '.system_alias => ' + str(oPlatform1)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGSys02f"><h6>GSys-)<em>[General]</em>Architecture情報</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00System/02Platform_architecture.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import platform
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oPlatform1 = platform.architecture()
+		oDisp = u'[ Platform( platform module ) ]' + '\n\
+		 ' + '.architecture => ' + str(oPlatform1)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGSys02g"><h6>GSys-)<em>[General]</em>各種OS情報</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00System/02Platform_win32_ver.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import platform
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oPlatform1 = platform.win32_ver()	# Window
+		#oPlatform1 = platform.linux_distribution()	# Linux
+		#oPlatform1 = platform.linux_dist()	# Unix
+		#oPlatform1 = platform.mac_ver()	# Mac
+		#oPlatform1 = platform.java_ver()	# Java
+		oDisp = u'[ Platform( platform module ) ]' + '\n\
+		 ' + '.win32_ver => ' + str(oPlatform1)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGSys03a"><h6>GSys-)<em>[General]</em>OS情報 & CPU情報 & network上の認識名を取得</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import platform
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oPlatform1 = platform.uname()
+		oDisp = u'[ Platform( platform module ) ]' + '\n\
+		 ' + '.uname => ' + str(oPlatform1)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+#
+# CPUが複数あれば、複数のCPU情報が取得出来る。
+</code></pre><br>
+
+
+<a name="OOoGSys04a"><h6>GSys-)<em>[General]</em>Network上の認識名取得</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import platform
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oPlatform1 = platform.node()
+		oDisp = u'[ Platform( platform module ) ]' + '\n\
+		 ' + '.node => ' + str(oPlatform1)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGSys04b"><h6>GSys-)<em>[General]</em>CPUの簡易情報</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00System/04Platform_machine.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import platform
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oPlatform1 = platform.machine()
+		oDisp = u'[ Platform( platform module ) ]' + '\n\
+		 ' + '.machine => ' + str(oPlatform1)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGSys04c"><h6>GSys-)<em>[General]</em>CPUの詳細情報</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00System/04Platform_processor.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import platform
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oPlatform1 = platform.processor()
+		oDisp = u'[ Platform( platform module ) ]' + '\n\
+		 ' + '.processor => ' + str(oPlatform1)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGSys05a"><h6>GSys-)<em>[General]</em>CPUのエンディアン</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00System/05ByteOrder01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oByteOdr = sys.byteorder
+		oDisp = u'稼働CPUのエンディアン\n => ' + str(oByteOdr)
+	except SystemExit:
+		oDisp = u'処理を終了します。'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# エンディアン (endianness) とは、多バイトのデータ（即ち基本情報記憶単位を超えるデータ）をメモリ上に配置する方式の種類のこと。
+# 例えば16進数で 0x1234ABCD という4バイトのデータを、
+# データの上位バイトからメモリに「12 34 AB CD」と並べる方式をビッグエンディアン (big endian)、
+# データの下位バイトから「CD AB 34 12」と並べる方式をリトルエンディアン (little endian) という。
+# 稼動CPUを問わずJava仮想マシンについてはビッグエンディアンである。
+</code></pre><br>
+
+
+<a name="OOoGSys06a"><h6>GSys-)<em>[General]</em>WindowsのVersion</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00System/06windowsversion01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oWinVer = sys.getwindowsversion()
+		oDisp = u'[ WindowsのVersion ]\n => ' + str(oWinVer)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# Tuple値 => (majar,minor,build,platform,text)
+# [ platform値 ]
+# 0	: Windows 3.1
+# 1	: Windows 95/98/ME
+# 2	: Windows NT/2000/XP/VISTA/7
+# 3	: Windows CE
+</code></pre><br>
+
+
+<a name="OOoGSys"><h6>GSys-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/00System/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+<a name="OOoGSys"><h6>GSys-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/00System/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ Command ]</p class="s3">
+<a name="OOoGSysCmd01a"><h6>GSys-)<em>[General]</em>Command実行</h6></a><pre><code>
+<img SRC="Python_pic/02general2/00System/01Command/01Command_NotePad01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import os
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		os.system('notepad.exe c:\\temp\\Dummy.txt')
+		# os.system('dir')	# Windows
+		# os.system('ls')	# Unix, Linux
+		#
+		oDisp = 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGSysCmd"><h6>GSys-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/00System/01Command/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">Windows API</p class="s1">
+<a name="OOoGWinAPI01a"><h6>GSys-)<em>[General]</em>MessageBoxA</h6></a><pre><code>
+<img SRC="Python_pic/02general2/12WindowsAPI/01WinAPI_MessageboxB01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+from ctypes import *
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+	return msgbox.execute()
+
+def oTest():
+	try:
+		oUser32 = windll.user32
+		oMessage = 'Hello World!!'
+		oTitle = 'Python to Windows API'
+		oUser32.MessageBoxA(0,oMessage,oTitle,0x00000040)
+		oDisp = 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+#
+# MB_ICONINFORMATION (=0x00000040) 
+</code></pre><br>
+
+
+<a name="OOoGWinAPI"><h6>GSys-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/12WindowsAPI/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">Network</p class="s1">
+<a name="OOoGNet01a"><h6>GNet-)<em>[General]</em>siteのCharset取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/06Network/01urllib2_open01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import urllib2
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oURL = u'http://ja.libreoffice.org/'
+		oOpenUrl = urllib2.urlopen(oURL)
+		oCharset1 = oOpenUrl.info().get('content-type')
+		oCharset2_0 = oOpenUrl.info().get('content-type', oCharset1).split(';')[0]
+		oCharset2_1 = oOpenUrl.info().get('content-type', oCharset1).split(';')[1]
+		oCharset3 = oOpenUrl.info().get('content-type', oCharset1).split('=')[1]
+		#
+		oOpenUrl.close()
+		oDisp = u'[ URL / charset ]\n' + str(oCharset1) + '\n'\
+		+ str(oCharset2_0) + '\n' + str(oCharset2_1) + '\n'\
+		+ str(oCharset3)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# [ 注意事項 ]
+# 1) Python3系ではPython2系のurllibは廃止され、urllib2もurllib.requestという名称に変更されているらしい。
+</code></pre><br>
+
+
+<a name="OOoGNet02a"><h6>GNet-)<em>[General]</em>siteのSorce取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/06Network/02urllib_open01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+#
+import urllib.request	# 3.3
+#import urllib			# 2.7
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oURL = 'http://ja.libreoffice.org/'
+		oOpenUrl = urllib.request.urlopen(oURL)	# 3.3
+		#oOpenUrl = urllib.urlopen(oURL)		# 2.7
+		#
+		oUrlSrc = oOpenUrl.read()
+		oDisp = oUrlSrc.decode('utf-8')
+		#
+		oOpenUrl.close()
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+#
+# [ 注意事項 ]
+# 1) urllib2 moduleで行うとdecode変換Errorとなった。
+# 2) urllibは読出し専用でしか開けません。またseek操作を行う事は出来ません。
+</code></pre><br>
+
+
+<a name="OOoGNet03a"><h6>GNet-)<em>[General]</em>URLからLocal Path取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/06Network/03urllib2_url2path01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import urllib2
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oURL = 'http://ja.libreoffice.org/'
+		oLocalPath = urllib2.url2pathname(oURL)
+		oDisp = u'[ URL =＞ Local Path ]\n' + str(oURL) + '\n'\
+		+ u' =＞\n' + str(oLocalPath) 
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGNet03b"><h6>GNet-)<em>[General]</em>URI Encode/Decode</h6></a><pre><code>
+<img src="Python_pic/02general2/06Network/03bUrlEncodeDecode01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import urllib.request
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def Test():
+	try:
+		oEncoding = 'utf-8'
+		oUrl = u'http://www.post.japanpost.jp/cgi-zip/zipcode.php?pref=13&city=1131010&id=45946'
+		oUri_EnCd = urllib.request.quote(oUrl.encode(oEncoding))
+		oUri_DeCd = urllib.request.unquote(oUri_EnCd)
+		oDisp = oUrl + '\n  ↓\n [ URI Encode ]\n ' + str(oUri_EnCd) + '\n  ↓\n [ URI Decode ]\n ' + str(oUri_DeCd)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGNet04a"><h6>GNet-)<em>[General]</em>HTTP Server(<em1>To be careful</em1>)</h6></a><pre><code>
+# MacroからHTTP Serverを起動させると言う「子亀が親亀をのせる」様な事はしないと思うが、忘備録として記す。
+# 下記Codeを実行後にBrowserから「 http://127.0.0.1:8000 」を指定するとCurrent DirectoryのFile ListをBrowserに表示させる事が出来る。
+# しかし、『PythonのThreadは外部からの強制停止ができない』ので<em1>Hang状態</em1>になる。
+# Pythonでは以下のKeyで強制終了可能な場合もあるらしいが、<em1>Macroでは無意味</em1>です。
+# [ Net上での情報 ]
+# Linux, Mac OS&emsp;：[Ctrl]+[c]
+# Windows&emsp;&emsp;: [Ctrl]+[z]（停止しないときはコンソールを閉じる）
+# cmd.exe shellを使用時は[Ctrl]+[Break] (cmd.exe以外のShellを使っているとShellごと落ちる)
+# 従って、下記Codeは<em1>取扱注意</em1>です。
+#
+********** [ Reference Code ] **********
+#!
+#coding: utf-8
+# python Marco
+import SimpleHTTPServer
+import BaseHTTPServer
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+	return msgbox.execute()
+
+def oTest():
+	try:
+		addr = ('127.0.0.1', 8000)
+		Server = BaseHTTPServer.HTTPServer
+		handler = SimpleHTTPServer.SimpleHTTPRequestHandler
+		#
+		httpd = Server(addr, handler)
+		httpd.serve_forever()	# <= 待機し続ける状態になり終了出来くなる。/ httpd.handle_request()でも駄目
+		#
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+
+<a name="OOoGNet05a"><h6>GNet-)<em>[General]</em>Web browser( Default browser )</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import webbrowser
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+	return msgbox.execute()
+
+def oTest():
+	try:
+		oURL = 'http://www.yahoo.co.jp/'
+		if webbrowser.open(oURL,new=1,autoraise=1)== False:		# false is error
+			raise webbrowser.Error
+		oDisp = 'Success'
+	except webbrowser.Error:
+		oDisp = str(sys.stderr) + ' open failed'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+#
+# ///// [ Option ] /////
+#&emsp;[ new ]
+#&emsp;&emsp;0&emsp;:&emsp;同じwindowでOpen
+#&emsp;&emsp;1&emsp;:&emsp;可能であればBrowserのnew windowでOpen
+#&emsp;&emsp;2&emsp;:&emsp;可能であればBrowserのnew TabでOpen
+#&emsp;[ autoraise ]
+#&emsp;&emsp;1&emsp;:&emsp;open windowが前面
+#&emsp;&emsp;2&emsp;:&emsp;open windowが後面(設定不可の場合がある。)
+</code></pre><br>
+
+
+<a name="OOoGNet05b"><h6>GNet-)<em>[General]</em>Web browser( Specified browser )</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import webbrowser
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+	return msgbox.execute()
+#
+def oTest():
+	try:
+		oURL = 'http://www.yahoo.co.jp/'
+		# Browser実行Fileの絶対Pathを「 "　" 」間に記述
+		browser = webbrowser.get('"c:\\Program Files\\Mozilla Firefox\\firefox.exe" %s')
+		if browser.open(oURL)== False:		# false is error
+			raise webbrowser.Error
+		oDisp = 'Success'
+	except webbrowser.Error:
+		oDisp = str(sys.stderr) + ' open failed'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+#
+# [ 注意 ]
+# Optionを付けるとHang状態になる。
+</code></pre><br>
+
+
+<a name="OOoGNet06a"><h6>GNet-)<em>[General]</em>Web serverにあるfileをdownload</h6></a><pre><code>
+<img SRC="Python_pic/02general2/06Network/06urllib_urlretrieve01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import urllib
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oURL = 'http://ja.libreoffice.org/'
+		oLocal = 'c:\\temp\\PythonMacroTest.html'
+		urllib.urlretrieve(oURL , oLocal)
+		oDisp = 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGNet"><h6>GNet-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/06Network/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ Google ]</p class="s3">
+<a name="OOoGnGgle01a"><h6>GnGgle-)<em>[General]</em>YouTube</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import webbrowser
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+	return msgbox.execute()
+
+def oTest():
+	try:
+		oYouTubeId = 'sloEMUt7n5Q'
+		oURL = 'http://www.youtube.com/watch?v=' + oYouTubeId
+		if webbrowser.open(oURL,new=1,autoraise=1)== False:		# false is error
+			raise webbrowser.Error
+		oDisp = 'Success'
+	except webbrowser.Error:
+		oDisp = str(sys.stderr) + ' open failed'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGnGgle02a"><h6>GnGgle-)<em>[General]</em>Google Mapから緯度/経度取得</h6></a><pre><code>
+<img src="Python_pic/02general2/06Network/01Google/02aMapLat_Log01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import urllib.request
+import xml.dom.minidom
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def Test():
+	try:
+		oEncoding = 'utf-8'
+		oAddr = u'東京都墨田区押上１-１-２'
+		oUrl = u'http://maps.google.com/maps/api/geocode/xml?&language=ja&sensor=false＆region=ja&address='	# ←regionの前の＆は半角に変換する事
+		oUrl = oUrl + urllib.request.quote(oAddr.encode(oEncoding))
+		oBuffer = urllib.request.urlopen(oUrl).read()
+		oDom = xml.dom.minidom.parseString(oBuffer)
+		oLocation = oDom.getElementsByTagName('location')
+		if oLocation.length > 0:
+			oLatitude = oLocation[0].getElementsByTagName('lat')[0].firstChild.data
+			oLongitude = oLocation[0].getElementsByTagName('lng')[0].firstChild.data
+			oDisp = u'[ 世界測地系 ]\n' + oAddr + '\n' + u'(東京スカイツリー)' + '\n → \n' + u'緯度 = '\
+			+ str(oLatitude) + '\n' + u'経度 = ' + str(oLongitude)
+		else:
+			oDisp = u'緯度/経度の取得に失敗しました。'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+#
+# 緯度/経度の取得は「<a href="http://d.hatena.ne.jp/kiwikiwi789/20100912/1284310744">キウイと鳴くからキウイフルーツ/pythonでgoogle mapを弄る</a>」のPageを参照させて頂きました。
+# 上記Pageに記されている様に、JSON形式での取得の場合、/xml? → /json? にすれば良いらしい。
+# 緯度/経度の確認は「<a href="http://api.knecht.jp/geocoding">knecht api</a>」のSiteを利用させて頂きました。
+</code></pre><br>
+
+
+<a name="OOoGnGgle02b"><h6>GnGgle-)<em>[General]</em>Google Mapから緯度/経度取得(JSON)</h6></a><pre><code>
+<img src="Python_pic/02general2/06Network/01Google/02bMapLat_Log_JSON01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import urllib.request
+import json
+#
+class DictObj(dict):
+	__getattr__ = dict.__getitem__ 
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def Test():
+	try:
+		oEncoding = 'utf-8'
+		oAddr = u'東京都墨田区押上１-１-２'
+		oUrl = u'http://maps.google.com/maps/api/geocode/json?&language=ja&sensor=false＆region=ja&address='	# ←regionの前の＆は半角に変換する事
+		oUrl = oUrl + urllib.request.quote(oAddr.encode(oEncoding))
+		oBuffer = urllib.request.urlopen(oUrl).read()
+		# JSON DataをDictionanry typeへ変換
+		oDict = json.loads(str(oBuffer.decode(oEncoding)),object_hook=DictObj)
+		oStatus = oDict['status']
+		if oStatus == 'OK':
+			oDict2 = oDict['results']
+			oLatitude = oDict2[0].geometry.location.lat
+			oLongitude = oDict2[0].geometry.location.lng
+			oDisp = u'[ Google Map/JSON ]\n\n' + oAddr + '\n' + u'(東京スカイツリー)' + '\n → \n' + u'緯度 = '\
+			+ str(oLatitude) + '\n' + u'経度 = ' + str(oLongitude)
+		else:
+			oDisp = u'Dataの取得に失敗しました。'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+#
+# [ Note ]
+# oDisp = str(oDict) とすると Google GeometoryのReturn項目全てが確認出来る(と思う?)。
+#
+# [ Reference Site ]
+# 1) <a href="https://developers.google.com/maps/documentation/geocoding/?hl=ja#JSON">Google Geocoding API(JSON 出力形式)</a>
+# 2) <a href="https://developers.google.com/maps/documentation/webservices/index?hl=ja#ParsingJSON">Google Maps API ウェブ サービス(Javascript による JSON の処理)</a>
+# 3) <a href="http://www-al.nii.ac.jp/~kameda/blog/cmlog/1207021823.htm">CMLog(Python3でsimplejson?)</a>
+# 4) <a href="http://masahito.hatenablog.com/entry/20110621/1308669151">Keep on moving / 辞書にオブジェクトっぽくアクセスする</a>
+</code></pre><br>
+
+
+
+<a name="OOoGnGgle02c"><h6>GnGgle-)<em>[General]</em>Google Mapから緯度/経度取得( JSON表示 )</h6></a><pre><code>
+<img src="Python_pic/02general2/06Network/01Google/02cJSON_Disp01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import urllib.request
+import json
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def Test():
+	try:
+		oEncoding = 'utf-8'
+		oAddr = u'東京都墨田区押上１-１-２'
+		oUrl = u'http://maps.google.com/maps/api/geocode/json?&language=ja&sensor=false＆region=ja&address='		# ←regionの前の＆は半角に変換する事
+		oUrl = oUrl + urllib.request.quote(oAddr.encode(oEncoding))
+		oBuffer = urllib.request.urlopen(oUrl).read()
+		oJson = json.loads(oBuffer.decode(oEncoding))
+		oDom = json.dumps([s1['geometry'] for s1 in oJson['results']],indent=2)	# 階層に2space分のindentを付ける。省略するとindent無し( =0 )
+		oDisp = oDom
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGnGgle02d"><h6>GnGgle-)<em>[General]</em>緯度/経度からAddress取得/Reverse geocoding(XML)</h6></a><pre><code>
+<img src="Python_pic/02general2/06Network/01Google/02dRvsGeoCodeXML01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import urllib.request
+import xml.dom.minidom
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def Test():
+	try:
+		oEncoding = 'utf-8'
+		oLat = u'35.7100327'
+		oLng = u'139.8107155'
+		oUrl = u'http://maps.google.com/maps/api/geocode/xml?latlng=' + oLat + u',' + oLng + u'&sensor=false'
+		oBuffer = urllib.request.urlopen(oUrl).read()
+		oDom = xml.dom.minidom.parseString(oBuffer)
+		oStatus = oDom.getElementsByTagName('GeocodeResponse')[0].getElementsByTagName('status')[0].firstChild.data
+		if oStatus == 'OK':
+			oResult = oDom.getElementsByTagName('result')
+			oAddress = oResult[0].getElementsByTagName('formatted_address')[0].firstChild.data
+			oDisp = u'[ 緯度 = ' + str(oLat) + u' / 経度 = ' + str(oLng) + ' ]\n' + str(oAddress) 
+		else:
+			oDisp = u'Addressの取得に失敗しました。'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGnGgle02e"><h6>GnGgle-)<em>[General]</em>緯度/経度からAddress取得/Reverse geocoding(JSON)</h6></a><pre><code>
+<img src="Python_pic/02general2/06Network/01Google/02eRvsGeoCodeJSON01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import urllib.request
+import json
+#
+class DictObj(dict):
+	__getattr__ = dict.__getitem__ 
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def Test():
+	try:
+		oEncoding = 'utf-8'
+		oLat = u'35.7100327'
+		oLng = u'139.8107155'
+		oUrl = u'http://maps.google.com/maps/api/geocode/json?latlng=' + oLat + u',' + oLng + u'&sensor=false'
+		oBuffer = urllib.request.urlopen(oUrl).read()
+		# JSON DataをDictionanry typeへ変換
+		oDict = json.loads(str(oBuffer.decode(oEncoding)),object_hook=DictObj)
+		oStatus = oDict['status']
+		if oStatus == 'OK':
+			oDict2 = oDict['results']
+			oGou = oDict2[0].address_components[0].short_name
+			oBanchi = oDict2[0].address_components[1].short_name
+			oChou = oDict2[0].address_components[2].short_name
+			oCity2 = oDict2[0].address_components[3].short_name
+			oCity1 = oDict2[0].address_components[4].short_name
+			oPref = oDict2[0].address_components[5].short_name
+			oCountry = oDict2[0].address_components[6].short_name
+			oDisp = u'[ Google Map/JSON ]\n' + u'(Address of TOKYO SKYTREE)\n → '\
+			+ str(oGou) + ',' + str(oBanchi) + ',' + str(oChou) + ',' + str(oCity2)\
+			+ ',' + str(oCity1) + ',' + str(oPref) + ',' + str(oCountry)
+		else:
+			oDisp = u'Addressの取得に失敗しました。'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGnGgle02f"><h6>GnGgle-)<em>[General]</em>緯度/経度からAddress取得/Reverse geocoding( JSON表示 )</h6></a><pre><code>
+<img src="Python_pic/02general2/06Network/01Google/02fRvsGeoCodeJSON_Disp01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import urllib.request
+import json
+#
+class DictObj(dict):
+	__getattr__ = dict.__getitem__ 
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def Test():
+	try:
+		oEncoding = 'utf-8'
+		oLat = u'35.7100327'
+		oLng = u'139.8107155'
+		oUrl = u'http://maps.google.com/maps/api/geocode/json?latlng=' + oLat + u',' + oLng + u'&sensor=false'
+		oBuffer = urllib.request.urlopen(oUrl).read()
+		# JSON DataをDictionanry typeへ変換
+		oJson = json.loads(oBuffer.decode(oEncoding))
+		oDom = json.dumps([s1['address_components'] for s1 in oJson['results']],indent=2)
+		oDisp = oDom
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGnGgle03a"><h6>GnGgle-)<em>[General]</em>Google map / Route検索(XML)</h6></a><pre><code>
+<img src="Python_pic/02general2/06Network/01Google/03aMapDirectionsXML01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import urllib.request
+import xml.dom.minidom
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def Test():
+	try:
+		oEncoding = 'utf-8'
+		oStart = u'東京都新宿区新宿三丁目38-1'	# JR新宿駅西口
+		oEnd = u'東京都新宿区西新宿2-8-1'	# 東京都庁
+		oMode = 'walking'
+		oUrl = u'http://maps.googleapis.com/maps/api/directions/xml?origin='
+		oUrl = oUrl + urllib.request.quote(oStart.encode(oEncoding)) + '&destination='\
+			+ urllib.request.quote(oEnd.encode(oEncoding)) + '&sensor=false&mode=' + oMode
+		oBuffer = urllib.request.urlopen(oUrl).read()
+		oDom = xml.dom.minidom.parseString(oBuffer)
+		oStatus = oDom.getElementsByTagName('status')[0].firstChild.data
+		if oStatus == 'OK':
+			oRoute = oDom.getElementsByTagName('route')
+			oSummary = oRoute[0].getElementsByTagName('summary')[0].firstChild.data
+			oLeg = oRoute[0].getElementsByTagName('leg')
+			oDistance = oLeg[0].getElementsByTagName('distance')[7].getElementsByTagName('text')[0].firstChild.data
+			oTime = oLeg[0].getElementsByTagName('duration')[7].getElementsByTagName('text')[0].firstChild.data
+			oDisp = oDistance + ', ' + oTime + '\n\n [ ' + oSummary + ' ]'
+			for oSp in range(7):
+				oStepIct = oLeg[0].getElementsByTagName('step')[oSp].getElementsByTagName('html_instructions')[0].firstChild.data
+				oStepDtc = oLeg[0].getElementsByTagName('step')[oSp].getElementsByTagName('distance')[0].getElementsByTagName('text')[0].firstChild.data
+				oStepTm = oLeg[0].getElementsByTagName('step')[oSp].getElementsByTagName('duration')[0].getElementsByTagName('text')[0].firstChild.data
+				oNo = oSp + 1
+				oDisp = oDisp + '\n' + str(oNo) + ' : ' + oStepIct + ' / ' + oStepDtc + '( ' + oStepTm + ' )'
+		else:
+			oDisp = u'Route取得に失敗しました。'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+#
+# [ Note ]
+# 交通手段は　driving, walkingのみ。bicycling, transitを指定するとReturn Error( Status = INVALID_REQUEST: 指定されたリクエストが無効であることを示します。 )
+</code></pre><br>
+
+
+
+<a name="OOoGnGgle03b"><h6>GnGgle-)<em>[General]</em>Google map / Route検索(JSON)</h6></a><pre><code>
+<img src="Python_pic/02general2/06Network/01Google/03bMapDirectionsJSON03.png" align="right" hspace="4" vspace="4" width="15%"><img src="Python_pic/02general2/06Network/01Google/03bMapDirectionsJSON02.png" align="right" hspace="4" vspace="4" width="15%"><img src="Python_pic/02general2/06Network/01Google/03bMapDirectionsJSON01.png" align="right" hspace="4" vspace="4" width="35%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import urllib.request
+import json
+#
+class DictObj(dict):
+	__getattr__ = dict.__getitem__ 
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def Test():
+	try:
+		oEncoding = 'utf-8'
+		oStart = u'東京都新宿区新宿三丁目38-1'	# JR新宿駅西口
+		oEnd = u'東京都新宿区西新宿2-8-1'	# 東京都庁
+		oMode = 'walking'
+		# 
+		oUrl = u'http://maps.googleapis.com/maps/api/directions/json?origin='
+		oUrl = oUrl + urllib.request.quote(oStart.encode(oEncoding)) + '&destination='\
+			+ urllib.request.quote(oEnd.encode(oEncoding)) + '&sensor=false&mode=' + oMode
+		oBuffer = urllib.request.urlopen(oUrl).read()
+		# JSON DataをDictionanry typeへ変換
+		oDict = json.loads(str(oBuffer.decode(oEncoding)),object_hook=DictObj)
+		oDict2 = oDict['routes']
+		oDistance = oDict2[0].legs[0].distance.text
+		oTime = oDict2[0].legs[0].duration.text
+		oDisp = oDistance + ', ' + oTime
+		# Step(道順)
+		for oSp in range(7):
+			oStepIct = oDict2[0].legs[0].steps[oSp].html_instructions
+			oStepDtc = oDict2[0].legs[0].steps[oSp].distance.text
+			#oStepTm = oDict2[0].legs[0].steps[oSp].duration.text
+			oNo = oSp + 1
+			oDisp = oDisp + '\n' + str(oNo) + ' : ' + oStepIct + ' / ' + oStepDtc
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+#
+# [ Note ]
+# Refet site : <a href="https://developers.google.com/maps/documentation/directions/?hl=ja">Google Directions API</a>
+</code></pre><br>
+
+
+<a name="OOoGnGgle04a"><h6>GnGgle-)<em>[General]</em>Google Stock(XML)</h6></a><pre><code>
+<img src="Python_pic/02general2/06Network/01Google/04aStockGerman01.png" align="right" hspace="4" vspace="4" width="20%"><img src="Python_pic/02general2/06Network/01Google/04aStockUSA01.png" align="right" hspace="4" vspace="4" width="20%"><img src="Python_pic/02general2/06Network/01Google/04aStockJapan01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import urllib.request
+import xml.dom.minidom
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def Test():
+	try:
+		oSymbol = u'6758'
+		oUrl = u'http://www.google.co.jp/ig/api?stock=' + oSymbol
+		oOpen = urllib.request.urlopen(oUrl)
+		oCharset = oOpen.info().get('content-type')
+		oEncoding = oOpen.info().get('content-type', oCharset).split('=')[1]
+		oBuffer = oOpen.read()
+		oDecode = str(oBuffer.decode(oEncoding))
+		oDom = xml.dom.minidom.parseString(oDecode)
+		oComyChk = oDom.getElementsByTagName('company')
+		if oComyChk.length > 0:
+			oComy = oDom.getElementsByTagName('company')[0].attributes['data'].value
+			oCmySymbol = oDom.getElementsByTagName('symbol')[0].attributes['data'].value
+			oMarket = oDom.getElementsByTagName('exchange')[0].attributes['data'].value
+			oCurcy = oDom.getElementsByTagName('currency')[0].attributes['data'].value
+			oStock = oDom.getElementsByTagName('last')[0].attributes['data'].value
+			oHigh = oDom.getElementsByTagName('high')[0].attributes['data'].value
+			oLow = oDom.getElementsByTagName('low')[0].attributes['data'].value
+			oDiff = oDom.getElementsByTagName('change')[0].attributes['data'].value
+			oDate = oDom.getElementsByTagName('current_date_utc')[0].attributes['data'].value
+			oTime = oDom.getElementsByTagName('current_time_utc')[0].attributes['data'].value 
+			oDisp = '[ Google Stock ]\n Date Time\t : ' + str(oDate) + '( ' + str(oTime) + ' )'
+			oDisp = oDisp + '\n Campany\t : ' + str(oComy) +'\n Symbol\t\t : ' + str(oCmySymbol) + '\n Market\t\t : ' + str(oMarket)
+			oDisp = oDisp + '\n Currency\t : ' + str(oCurcy) + '\n Value\t\t\t : ' + str(oStock) + '(' + str(oDiff) + ')' 
+			oDisp = oDisp + '\n High / Low\t : ' + str(oHigh) + ' / ' + str(oLow)
+		else:
+			oDisp = u'Stock Dataの取得に失敗しました。'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+#
+# [ Note ]
+# Tokyo in Japan&emsp;&emsp; : oCode = <a href="http://www5.tse.or.jp/tseHpFront/HPLCDS0201.do">Stock Code</a> / u'http://www.google.co.jp/ig/api?stock='
+# New York in USA&emsp;&emsp;: oCode = <a href="http://eoddata.com/symbols.aspx">Ticker Symbol</a> / u'http://www.google.com/ig/api?stock='
+# Frankfurt or Euronext Brussels in Germany : oCode = <a href="http://www.chartslive.com/symbollist-fra/">Symbol</a> / u'http://www.google.de/ig/api?stock='
+# { Market Symbol }
+# TYO : Tokyo / NYSE : New York / Nasdaq : Nasdaq / BIT : Frankfurt or Euronext Brussels? 
+# Decodeしないと USA 以外はXML取得に失敗する。
+</code></pre><br>
+
+
+<a name="OOoGnGgle05a"><h6>GnGgle-)<em>[General]</em>Google Currency Converter</h6></a><pre><code>
+<img src="Python_pic/02general2/06Network/01Google/05aCurrencyConvert01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import urllib.request
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def Test():
+	try:
+		oCurrency = u'USD'
+		oExchange = u'JPY'
+		oUrl = u'http://www.google.com/ig/calculator?hl=en&q=1' + oCurrency + '=?' + oExchange
+		oBuffer = urllib.request.urlopen(oUrl).read()
+		# Create Dictionary with Retuen( String ) from URL
+		oBufStr = str(oBuffer)
+		oLen = len(oBufStr)
+		oData = oBufStr[3:oLen-2]
+		oSplit = oData.split(',')
+		oDict = {}
+		for oElm in oSplit:
+			oUnit = oElm.split(':')
+			oKey = str(oUnit[0])
+			oVal = oUnit[1].replace('"','')
+			oDict[oKey] = oVal
+		if oDict['error'] != '':
+			oCurVal = oDict['lhs']
+			oExcVal = oDict['rhs']
+			oDisp = u'[ Google Currency Coverter ]\n' + oCurVal + '\n\t ↑ ↓ \n' + oExcVal
+		else:
+			oDisp = u'Dataの取得に失敗しました。'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+#
+# [ Note ]
+# <a href="http://www.xe.com/symbols.php">Cuurncy Symbol</a> / 取得出来ない通貨(ex. Iran Rial)もある。
+# Refer site : <a href="http://stackoverflow.com/questions/3139879/how-do-i-get-currency-exchange-rates-using-google-finance-api">Stockoverflow / how do I get currency exchange rates using Google Finance API</a>
+</code></pre><br>
+
+
+<a name="OOoGnGgle06b"><h6>GnGgle-)<em>[General]</em>Google Time Zone(JSON)</h6></a><pre><code>
+<img src="Python_pic/02general2/06Network/01Google/06aTimeZoneJSON01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import urllib.request
+import json
+import datetime, calendar
+#
+class DictObj(dict):
+	__getattr__ = dict.__getitem__ 
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def Test():
+	try:
+		oEncoding = 'utf-8'
+		# 緯度、経度取得
+		oAddr = u'東京都'
+		oUrl = u'http://maps.google.com/maps/api/geocode/json?&language=ja&sensor=false&region=ja&address='
+		oUrl = oUrl + urllib.request.quote(oAddr.encode(oEncoding))
+		oBuffer = urllib.request.urlopen(oUrl).read()
+		oDict = json.loads(str(oBuffer.decode(oEncoding)),object_hook=DictObj)
+		oStatus = oDict['status']
+		if oStatus == 'OK':
+			oDict2 = oDict['results']
+			oLatitude = oDict2[0].geometry.location.lat
+			oLongitude = oDict2[0].geometry.location.lng
+		else:
+			oDisp = u'緯度、経度Dataの取得に失敗しました。'
+		# UTC Stime Stamp
+		oUtcTime = datetime.datetime.utcnow()
+		oTimeStamp = calendar.timegm(oUtcTime.timetuple())
+		# Time Zone取得
+		oUrl=''; oBuffer=''; oDict = ''; oStatus = ''	# 念の為に初期化
+		oUrl ='https://maps.googleapis.com/maps/api/timezone/json?location='
+		oUrl =oUrl + str(oLatitude) + ',' + str(oLongitude) + '&timestamp=' + str(oTimeStamp) + '&sensor=false'
+		oBuffer = urllib.request.urlopen(oUrl).read()
+		oDict = json.loads(str(oBuffer.decode(oEncoding)),object_hook=DictObj)
+		oStatus = oDict['status']
+		if oStatus == 'OK':
+			oDateDiff = oDict['dstOffset']
+			oTimeDiff = oDict['rawOffset']
+			oZoneId = oDict['timeZoneId']
+			oZoneName = oDict['timeZoneName']
+			oDisp = u'[ Google Time Zone ]\n 協定世界時(UTC)\n → ' + str(oUtcTime) + '\n Date差 = ' + str(oDateDiff) + u' [ days ]\n 協定世界時(UTC)との差 = '\
+			+ str(oTimeDiff) + u'[ sec ]\n Zome Id = ' + str(oZoneId) + u'\n Zome Name = ' + str(oZoneName)
+		else:
+			oDisp = u'Time Zone Dataの取得に失敗しました。'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+#
+# [ Note ]
+# <a href="https://developers.google.com/maps/documentation/timezone/">The Google Time Zone API</a>
+# <a href="http://ja.wikipedia.org/wiki/UNIX%E6%99%82%E9%96%93">協定世界時(UTC)</a>
+</code></pre><br>
+
+
+<a name="OOoGnGgle"><h6>GnGgle-)<em>[General]</em></h6></a><pre><code>
+<img src="Python_pic/02general2/06Network/01Google/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ Other ]</p class="s3">
+<a name="OOoGnNetOtr01a"><h6>GnNetOtr-)<em>[General]</em></h6></a><pre><code>
+<img src="Python_pic/02general2/06Network/99Other/01aO_ReillyEBook01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import urllib.request
+import json
+#
+class DictObj(dict):
+	__getattr__ = dict.__getitem__ 
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def Test():
+	try:
+		oEncoding = 'utf-8'
+		oISBN = u'4873111773'
+		oUrl = u'http://www.oreilly.co.jp/books/' + oISBN + '/biblio.json'
+		oBuffer = urllib.request.urlopen(oUrl).read()
+		oDict = json.loads(str(oBuffer.decode(oEncoding)),object_hook=DictObj)
+		oTitle = oDict['title']
+		oAuth = oDict['authors']
+		oRelease = oDict['released']
+		oPage = oDict['pages']
+		oPrice = oDict['price']
+		oDisp = u'[ O\'Reilly Book ]\n Title\t\t : ' + str(oTitle) + '\n Author\t  : ' + str(oAuth) + '\n Release\t : ' + str(oRelease)\
+			+ '\n Page\t\t : ' + str(oPage) + '\n Price\t\t : ' + str(oPrice)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+#
+#[ Note ]
+# Refer Site : <a href="http://www.oreilly.co.jp/community/blog/2010/11/bibliographical-info-in-json.html">O'Reilly Japan / JSON形式による書誌情報の提供をはじめました</a>
+# ISBN は <a href="http://www.oreilly.co.jp/ebook/">O'Reilly Japan Ebook Store</a> の13桁のISBNを用いる事。O'Reilly Japan Ebook Storeで扱っていないISBNはError。
+</code></pre><br>
+
+
+<a name="OOoGnNetOtr02a"><h6>GnNetOtr-)<em>[General]</em>国立国会図書館Search</h6></a><pre><code>
+<img src="Python_pic/02general2/06Network/99Other/02aNationalDietLibrary01.png" align="right" hspace="4" vspace="4" width="35%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import urllib.request
+import xml.etree.ElementTree as oTr
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def Test():
+	try:
+		oEncoding = 'utf-8'
+		oKeyword = u'title=LibreOffice'
+		oFrom = u'from=2012'
+		oTmpQuery = oKeyword +' AND ' + oFrom
+		oQuery = urllib.request.quote(oTmpQuery.encode(oEncoding))
+		oUrl = u'http://iss.ndl.go.jp/api/sru?operation=searchRetrieve&query=' + oQuery
+		oBuffer = urllib.request.urlopen(oUrl).read()
+		root = oTr.fromstring(oBuffer)
+		oRecs = root.findall('{http://www.loc.gov/zing/srw/}records')
+		oRec = oRecs[0].findall('{http://www.loc.gov/zing/srw/}record')
+		oNum = len(oRec)
+		if oNum != 0:
+			oDisp = u'[ 国立国会図書館 API ]'
+			for oS in range(oNum):
+				oRecData = oRec[oS].findall('{http://www.loc.gov/zing/srw/}recordData')
+				# recordData　Tagの子は文字列の模様
+				oText = oRecData[0].text
+				oTitleTop = oText.find('<dc:title>')
+				oTitleEnd  = oText.find('</dc:title>')
+				oTitle = oText[oTitleTop+10:oTitleEnd]
+				oAuthTop = oText.find('<dc:creator>')
+				oAuthEnd  = oText.find('</dc:creator>')
+				oAuthor = oText[oAuthTop+12:oAuthEnd]
+				oPubhTop = oText.find('<dc:publisher>')
+				oPubhEnd  = oText.find('</dc:publisher>')
+				oPublish = oText[oPubhTop+14:oPubhEnd]
+				oDisp = oDisp + u'\n検索結果(' + str(oS+1) + ')\n' + oTitle + '\n' + oAuthor + '\n' + oPublish + '\n'
+		else:
+			oDisp = u' 該当する図書が無いか \n Dataの取得に失敗しました'
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+# [ Note ]
+# <a href="#">国立国会図書館サーチ/外部提供インタフェース（API）</a>
+# Refer Site : Dive Into Python 3 / XML ( <a href="http://diveintopython3-ja.rdy.jp/xml.html">Japanease</a> / <a href="http://www.diveinto.org/python3/xml.html">English</a> )
+# ( 注意!! )
+# 期間( FROM )やKeywordを汎用句を用いると処理時間が非常に掛かる事ので注意!!
+</code></pre><br>
+
+
+<a name="OOoGnNetOtr"><h6>GnNetOtr-)<em>[General]</em></h6></a><pre><code>
+<img src="Python_pic/02general2/06Network/99Other/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">Regular Expression( 正規表現 )</p class="s1">
+<a name="OOoGReEp01a"><h6>GReEp-)<em>[General]</em>該当する検索文字を全て取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/09RegularExpression/01findall01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import re
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oStr = 'Which foot or hand fell fastest'
+		oReEp = re.findall(r'\bf[a-z]*',oStr)		# fから始まる文字の検索
+		oDisp = u'[ 正規表現 ]\n'\
+		+ 're.findall(r\'\\bf[a-z]*\',' + oStr + ')\n => '\
+		+ str(oReEp)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGReEp02a"><h6>GReEp-)<em>[General]</em>重複しないmatchの中で一番左の値を置換</h6></a><pre><code>
+<img SRC="Python_pic/02general2/09RegularExpression/02sub01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import re
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oStr = 'cat cat in in the hat hat'
+		# re.sub(pattern, repl, string[, count])
+		# string 内で、 pattern と重複しないマッチの内、一番左にあるものを置換 repl で置換して得られた文字列を返します。
+		# もしパターンが見つからなければ、 string を変更せずに返します。 
+		oReEp = re.sub(r'(\b[a-z]+) \1',r'\1',oStr)
+		oDisp = u'[ 正規表現 ]\n'\
+		+ 're.sub(r\'(\\b[a-z]+) \\1\',r\'\\1\',' + oStr + ')\n => '\
+		+ str(oReEp)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGReEp03a"><h6>GReEp-)<em>[General]</em>正規表現で文字列を分割</h6></a><pre><code>
+<img SRC="Python_pic/02general2/09RegularExpression/03re_split01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import re
+import os
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oResult = re.split('[ceg]', 'abcdefghi')
+		oDisp = u'[ 正規表現で文字列を分割 ]\n' + 're.split(''[ceg]'', ''abcdefghi'')\n = ' + str(oResult)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGReEp"><h6>GReEp-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/09RegularExpression/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">Audio</p class="s1">
+<p class="s3">[ Sound ]</p class="s3">
+<a name="OOoGASnd01a"><h6>GASnd-)<em>[General]</em>Windows Sytem音を鳴らす( only Windows )</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import winsound
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		winsound.PlaySound('SystemAsterisk', winsound.SND_ALIAS)
+		winsound.PlaySound('SystemExclamation', winsound.SND_ALIAS)
+		winsound.PlaySound('SystemExit', winsound.SND_ALIAS)
+		winsound.PlaySound('SystemHand', winsound.SND_ALIAS)
+		winsound.PlaySound('SystemQuestion', winsound.SND_ALIAS)
+		#
+		oDisp = 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# 1) 全ての Win32 Systemは少なくとも以下の名前をSupportします; ほとんどのSystemでは他に多数あります。
+#
+# PlaySound() name    / 対応するControl Pannelでの音声名
+# 'SystemAsterisk'    / Asterisk&emsp;:&emsp;作業が完了した時などによく鳴る音
+# 'SystemExclamation' / Exclamation&emsp;:&emsp;いわゆる警告音。確認事項があったりする時のWindowの出現と同時によく鳴る音
+# 'SystemExit'        / Exit Windows&emsp;:&emsp;Windows終了時に鳴る音
+# 'SystemHand'        / Critical Stop&emsp;:&emsp;Error音
+# 'SystemQuestion'    / Question&emsp;:&emsp;
+</code></pre><br>
+
+
+<a name="OOoGASnd"><h6>GASnd-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/10Audio/01Sound/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ Audio File ]</p class="s3">
+<a name="OOoGAF01a"><h6>GASnd-)<em>[General]</em>wave FileのOpen / Close</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import wave
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oWaveFile = 'C:\Windows\Media\chimes.wav'
+		oWaveObj = wave.open(oWaveFile,'r')
+		oWaveObj.close()
+		#
+		oDisp = 'Success'
+	except wave.Error:
+		oDisp = 'Audio Error'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGAF02a"><h6>GASnd-)<em>[General]</em>Sound Fileの識別</h6></a><pre><code>
+<img SRC="Python_pic/02general2/10Audio/02AudioFile/02sndhdr_what_wahthdr01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import sndhdr
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		oWaveFile = 'C:\Windows\Media\chimes.wav'
+		oSndType1 = sndhdr.what(oWaveFile)
+		oSndType2 = sndhdr.whathdr(oWaveFile)
+		#
+		oDisp = u'[ Sound Fileの識別 ]\n'\
+		+ 'sndhdr.what() : ' + str(oSndType1) + '\n'\
+		+ 'sndhdr.whathdr() : ' + str(oSndType1)
+	except wave.Error:
+		oDisp = 'Audio Error'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# Return値 : (type, sampling_rate, channels, frames, bits_per_sample) 
+# type : Data形式  / 'aifc', 'aiff', 'au', 'hcom', 'sndr', 'sndt', 'voc', 'wav', '8svx', 'sb', 'ub', 'ul'の何れか。
+# sampling_rate : 実際のSampling Grade値で、未知の場合や読み取ることが出来なかった場合は 0 になる。
+# channels : Channel数で、識別できない場合や読み取ることが出来なかった場合は 0  になる。
+# frames : Frame数で、識別できない場合は -1 になる。
+# bits_per_sample : Sampling Sizeを示すBit数ですが、A-LAWなら 'A', u-LAWなら 'U' 
+</code></pre><br>
+
+
+<a name="OOoGAF"><h6>GASnd-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/10Audio/02AudioFile/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">Japanese Coding</p class="s1">
+<a name="OOoGJp00a"><h6>GJp-)<em>[General]</em>日本語文字を扱う際の注意事項</h6></a><pre>
+[ Code中の文字 ]
+	Python Interpreterはource Codeがどんな文字Encoding方法を使って記述されているのかを認識します。
+	従って、Code中に日本語が含まれる時はソースコードの一行目か二行目に次のように書きます。
+
+		# coding: エンコーディング名	=>	# Coding: utf-8
+				or
+		# coding=エンコーディング名		=>	# Coding=utf8
+
+	また、「coding: エンコーディング名」の前後には余計な文字列を書くこともできます。利用するEditorによって
+	
+		Emacs　	=>  # -*- coding: euc-jp -*-
+		vim		=>  # vim: fileencoding=euc-jp
+
+	のようにするといいらしいです。
+
+
+[ Python文字 ]
+	Pythonには
+	
+		1) 文字列			=>		'Hello, world!!'
+		2) Unicode文字列 	=>		u'Hello, world!!'
+	
+	がある。
+	日本語の様なmulti-byte文字列を扱う時はunicode型の方が楽である。
+ 	また、主なCodingを以下に示す。
+ 	
+ 		・utf-8( utf-8 )
+ 		・Shift JIS( shift_jis )
+ 		・EUC JP( euc-jp )
+ 	
+ 	
+<em1>[ 文字列型 ]</em1>
+#!
+# coding: utf-8			# Code中に日本語がある場合は必須
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+#
+def oTest():
+	try:
+		oStr = '日本語のテストでーす'
+		#oDisp =&emsp;<em1>unicode(oStr,'utf-8') ← Python3.3 では unicode関数は廃止</em1>
+		oDisp =&emsp;<em1>oStr</em1>
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+		
+に対して
+<em1>[ unicode型文字列 ]</em1>
+
+#!
+# coding: utf-8			# Code中に日本語がある場合は必須
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+#
+def oTest():
+	try:
+		oStr =&emsp;<em1>u</em1>'日本語のテストでーす'
+		oDisp =&emsp;<em1>oStr</em1>		# unicode(oStr,'utf-8')はError
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+		
+となる。
+
+
+[ 文字長さ ]
+	Unicode 文字列は 1 文字を 1 文字としてきちんと認識しますが、普通の文字列は単なるバイト列として扱います。
+	そのため文字列の長さを求めようとした場合、結果に違いがありますので注意が必要です。
+	<em1>UTF-8の場合は日本語1文字が3バイト</em1>となります。他の形式では日本語1文字が<em1>2</em1>バイト。
+	
+</pre>
+<br>
+
+
+<a name="OOoGJp00b"><h6>GJp-)<em>[General]</em>文字列型とunicode型の違い</h6></a><pre><code>
+<img SRC="Python_pic/02general2/04Coding/00unicode_string02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="Python_pic/02general2/04Coding/00unicode_string01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+# coding: utf-8			# Code中に日本語がある場合は必須
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+#
+def oTest():
+	try:
+		oStr = '日本語のテストでーす。( 文字列 )'
+		oStr_1 = str(oStr[2])	# 3番目の文字を取出す
+		oStr_2 = str(oStr[1:4])	# 2から4番目の文字を取出す
+		oUniStr = u'日本語のテストでーす。( unicode )'
+		oUniStr_1 = oUniStr[2]
+		oUniStr_2 = oUniStr[1:4]
+		oDisp = '1) ' + oStr_1 + '\n' + '2) ' + oStr_2
+		omsgbox(oDisp,1)
+		oDisp = '3) ' + oUniStr_1 + '\n' + '4) ' + oUniStr_2
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# １つの変数内のcodecは同じで無ければならない。oDispPreとoDispを一緒には出来ない。
+</code></pre><br>
+
+
+<a name="OOoGJp01a"><h6>GJp-)<em>[General]</em>Default Cording 1</h6></a><pre><code>
+<img SRC="Python_pic/02general2/04Coding/01DefaultCoding01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+# coding: utf-8			# Code中に日本語がある場合は必須
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+#
+def oTest():
+	try:
+		oStr = '日本語のテストでーす。( 文字列型 )'
+		oUniStr = u'日本語のテストでーす。( unicode )'
+		oDisp = u'[ 日本語codecの比較 ]' + '\n\n'\
+		+ '1) ' + oStr + '\n'\						# ← Python3.xでは文字列はByte型になったので oStr だけでOK。unicode関数は廃止されたので unicode(oStr,'utf-8') はError 
+		oDisp = oDisp + '2) ' + oUniStr
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+
+<a name="OOoGJp01b"><h6>GJp-)<em>[General]</em>Default Cording 2</h6></a><pre><code>
+<img SRC="Python_pic/02general2/04Coding/01DefaultCoding02.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+# coding: utf-8			# Code中に日本語がある場合は必須
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+#
+def oTest():
+	try:
+		oStr = '日本語のテストでーす。( 文字列型 )'
+		oUniStr = u'日本語のテストでーす。( unicode )'
+		oDisp = u'[ 日本語codecの比較(2) ]' + '\n\n'\
+		+ '1) ' + oStr + '\n'\
+		+ '2) ' + oUniStr
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGJp02a"><h6>GJp-)<em>[General]</em>Editorと異なるCodingに変換した時の例(1)<em1>[ Error になる ]</em1></h6></a><pre><code>
+<img SRC="Python_pic/02general2/04Coding/02JapaneseCoding01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+# coding: utf-8			# Code中に日本語がある場合は必須
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+#
+def oTest():
+	try:
+		oStr = '日本語のテストでーす。( shift_jis )'
+		oShft_Jis = oStr.decode('shift_jis','ignore')
+		oDisp = '1) ' + oShft_Jis
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# .decode('shift_jis','ignore')の第2引数「'ignore'」は変換Errorが生じた時の指示を示しており、
+# 'ignore'は変換エラーが起こった文字列をそのまま残す事を意味する。
+</code></pre><br>
+
+
+<a name="OOoGJp02b"><h6>GJp-)<em>[General]</em>Editorと異なるCodingに変換した時の例(2)</h6></a><pre><code>
+<img SRC="Python_pic/02general2/04Coding/02JapaneseCoding02.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+# coding: utf-8			# Code中に日本語がある場合は必須
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+#
+def oTest():
+	try:
+		oStr = '日本語のテストでーす。( euc-jp )'
+		oEuc_Jp = oStr.decode('euc-jp','ignore')
+		oDisp = '1) ' + oEuc_Jp
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGJp03a"><h6>GJp-)<em>[General]</em>日本語文字の長さ( UTF-8 )1</h6></a><pre><code>
+<img SRC="Python_pic/02general2/04Coding/03JapaneseCharLen01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+# coding: utf-8			# Code中に日本語がある場合は必須
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oJpWord = '日本語のテストで～す。'
+		oDecode = oJpWord.decode('utf-8')
+		oDisp = 'The character length of ' + oDecode + '\n\
+		is ' + str(len(oJpWord))
+		omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGJp03b"><h6>GJp-)<em>[General]</em>日本語文字の長さ( UTF-8 )2<em1>[ decode関数Error ]</em1></h6></a><pre><code>
+<img SRC="Python_pic/02general2/04Coding/03JapaneseCharLen02.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+# coding: utf-8			# Code中に日本語がある場合は必須
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oJpWord = '日本語のテストで～す。'
+		oDecode = oJpWord.decode('utf-8')
+		oDisp = u'「 ' + oDecode + u' 」の文字長さは' + '\n\
+		' + str(len(oJpWord)) + u' ( UTF-8の場合)'
+		omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+
+<a name="OOoGJp03c"><h6>GJp-)<em>[General]</em>日本語文字の長さ( EUC-JP )<em1>[ decode関数Error ]</em1></h6></a><pre><code>
+<img SRC="Python_pic/02general2/04Coding/03Jp_CharLen03EUC-JP.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+# coding: euc-jp			# Code中に日本語がある時は必須
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+def oTest():
+    try:
+		oJpWord = '日本語のテストで～す。'
+		oDecode = oJpWord.decode('euc-jp')
+		oDisp = unicode('「 ','euc-jp') + oDecode + unicode(' 」の文字長さは','euc-jp') + '\n\
+		' + str(len(oJpWord)) + unicode(' ( EUC-JPの場合 )','euc-jp')
+		omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGJp03d"><h6>GJp-)<em>[General]</em>日本語文字の長さ( Shift-JIS )<em1>[ decode関数Error ]</em1></h6></a><pre><code>
+<img SRC="Python_pic/02general2/04Coding/03Jp_CharLen04ShiftJIS.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+# coding: shift_jis			# Code中に日本語がある時は必須
+import uno
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#    """shows message."""
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        frame = desktop.getCurrentFrame()
+        window = frame.getContainerWindow()
+        toolkit = window.getToolkit()
+        msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+        return msgbox.execute()
+
+def oTest():
+    try:
+		oJpWord = '日本語のテストで～す。'
+		oDecode = oJpWord.decode('shift_jis')
+		oDisp = unicode('「 ','shift_jis') + oDecode + unicode(' 」の文字長さは','shift_jis') + '\n\
+		' + str(len(oJpWord)) + unicode(' ( Shift-JISの場合 )','shift_jis')
+		omsgbox(oDisp)
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoGJp04a"><h6>GJp-)<em>[General]</em>PythonのDefault Encoding</h6></a><pre><code>
+<img SRC="Python_pic/02general2/04Coding/04getdefaultencoding01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oPyEncode = sys.getdefaultencoding()
+		oDisp = u'[ PythonのDefault Encode ]\n => ' + str(oPyEncode)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGJp05a"><h6>GJp-)<em>[General]</em>UnicodeのFile NameのEncoding</h6></a><pre><code>
+<img SRC="Python_pic/02general2/04Coding/05getfilesystemencoding01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oPyEncode = sys.getfilesystemencoding()
+		oDisp = u'[ File NameのEncoding ]\n => ' + str(oPyEncode)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# Windows9x系		: mbcs
+# WindowsNT系		: unicodeをFile名に使えるので変換(Encoding)の必要は無い。但し上記Codeでは「mbcs」と表わされる。
+# Unix				: nl_langinfo(CODESET)のReturn値 / Retun値取得に失敗した時はNone
+# Mac OS X系		: utf-8 
+</code></pre><br>
+
+
+<a name="OOoGJp06a"><h6>GJp-)<em>[General]</em>unicode型の内部表現</h6></a><pre><code>
+<img SRC="Python_pic/02general2/04Coding/06maxunicode01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oSys = sys.maxunicode
+		if oSys == 65535:
+			oEncode = 'UTF-16'
+		elif oSys == 1114111:
+			oEncode = 'UTF-32'
+		else:
+			oEncode = 'None'
+		oDisp = u'[ unicodeの内部表現 ]\n => ' + str(oEncode)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# unicode型の内部表現にはUTF-16とUTF-32がある。
+</code></pre><br>
+
+
+<a name="OOoGJp07a"><h6>GJp-)<em>[General]</em>codecs module(1)</h6></a><pre><code>
+<img SRC="Python_pic/02general2/04Coding/07codecs_readline01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import codecs
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		# Open File
+		oFile = 'c:\\temp\\oTextMacro.txt'
+		# 読込み文字Code指定( NotePad作成 File )
+		oFileObj = codecs.open(oFile,'r','shift_jis')
+		oTxtSrc = oFileObj.readline()
+		oFileObj.close()
+		# 
+		oDisp = oTxtSrc.encode('shift_jis')
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGJp07b"><h6>GJp-)<em>[General]</em>codecs module(2)</h6></a><pre><code>
+<img SRC="Python_pic/02general2/04Coding/07codecs_readline02.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import codecs
+import sys
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		# Open File
+		oFile = 'c:\\temp\\oTextMacro.txt'
+		# 読込み文字Code指定( NotePad作成 File )
+		oFileObj = codecs.open(oFile,'r','shift_jis')
+		oTxtSrc = oFileObj.readlines()
+		oFileObj.close()
+		# 改行文字はEncode不可の為、各行で行う。
+		oDisp = ''
+		for oLine in oTxtSrc:
+			oDisp = oDisp + oLine.encode('shift_jis')
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGJp"><h6>GJp-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/04Coding/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">Internationalization / Localization</p class="s1">
+<a name="OOoGIntLcl01a"><h6>GIntLcl-)<em>[General]</em>Localization設定取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/11International_Locale/01defaultlocale_locale01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import locale
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def oTest():
+	try:
+		# User環境に基づいたDefault設定
+		locale.setlocale(locale.LC_ALL, '')
+		oDft_Locale = locale.getdefaultlocale()
+		oCur_Locale = locale.getlocale()
+		#
+		oDisp = u'[ Localization / 地域化 ]\n'\
+		+ str(oDft_Locale) + '\n'\
+		+ str(oCur_Locale)
+	except locale.Error:
+		oDisp = u'setlocale() が失敗しました。'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGIntLcl"><h6>GIntLcl-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/11International_Locale/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">認証</p class="s1">
+<a name="OOoGAuthn01a"><h6>GAuthn-)<em>[General]</em>Basic認証 / BASE64</h6></a><pre><code>
+<img SRC="Python_pic/02general2/14Authentication/01base64_01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import base64
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oTxt = 'A2cD5fG'
+		oEncode = base64.encodestring(oTxt)
+		oDecode = base64.decodestring(oEncode)
+		oDisp = u'[ BASIC認証 / BASE64 ]\n'\
+		+ u'初期文字 : ' + str(oTxt) + '\n'\
+		+ u'Encode( 暗号化後の文字 ) : ' + str(oEncode) + '\n'\
+		+ u'Decode( 元に戻した文字 ) : ' + str(oDecode)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGAuthn02a"><h6>GAuthn-)<em>[General]</em>MD5 / SHA</h6></a><pre><code>
+<img SRC="Python_pic/02general2/14Authentication/02hashlib_md5_sha01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import hashlib
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oPassword = 'password'
+		oMd5 = hashlib.md5(oPassword).hexdigest()
+		oSha = hashlib.sha1(oPassword).hexdigest()
+		oDisp = u'[ Hash関数( MD5 / SHA ) ]\n'\
+		+ u'初期文字 : ' + str(oPassword) + '\n'\
+		+ u'MD5 Object( 16進数文字列表記 )\n = ' + str(oMd5) + '\n'\
+		+ u'SHA Object( 16進数文字列表記 )\n = ' + str(oSha)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGAuthn03a"><h6>GAuthn-)<em>[General]</em>UUID生成</h6></a><pre><code>
+<img SRC="Python_pic/02general2/14Authentication/03aUuId01.png" align="right" hspace="4" vspace="4" width="25%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+import uuid
+#
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def Test():
+	try:
+		oUuId = uuid.uuid4()
+		oDisp = u'[ UUID生成 ]\n' + str(oUuId)
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGAuthn"><h6>GAuthn-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/14Authentication/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">Exception</p class="s1">
+<a name="OOoGExpt01a"><h6>GExpt-)<em>[General]</em>Error内容取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/07Exception/01TraceBack01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import datetime
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+		return msgbox.execute()
+def otest():
+	try:
+		oToday = datetime.datetime.today()
+		aDate = datetime.datetime(2001,8,11)
+		# うるう年も考慮される
+		oDayDiff = aToday - aDate
+		oDisp = str(oDayDiff)
+	# Python2.7
+	# except:
+	#	oDisp = traceback.format_exc(sys.exc_info()[2])
+	# Python3.3
+	except Exception as er:
+		oDisp = ''
+		oDisp = str(traceback.format_exc()) + '\n' + str(er)
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGExpt02a"><h6>GExpt-)<em>[General]</em>Script途中での処理終了</h6></a><pre><code>
+<img SRC="Python_pic/02general2/07Exception/02sys_exit01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import datetime
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oDisp = u'処理を終了しますか？'
+		oAns = omsgbox(oDisp,3,'Script Exit','querybox')
+		if oAns == 2:
+			sys.exit([0])
+		oDisp = u'処理継続が選択されました。'
+	except SystemExit:
+		oDisp = u'処理を終了します。'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGExpt03a"><h6>GExpt-)<em>[General]</em>警告制御Option</h6></a><pre><code>
+<img SRC="Python_pic/02general2/07Exception/03warningoptions01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oSys = sys.warnoptions
+		oDisp = u'[ 警告制御Option ]\n => ' + str(oSys)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGExpt04a"><h6>GExpt-)<em>[General]</em>強制的に例外を送出する</h6></a><pre><code>
+<img SRC="Python_pic/02general2/07Exception/04raise_Exception01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		raise NameError
+	except NameError:
+		oDisp = 'NameError !!'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGExpt05a"><h6>GExpt-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/07Exception/05Multi_Exception01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		raise NameError
+	except (RuntimeError, TypeError, NameError):
+		oDisp = 'RuntimeError or TypeError or NameError !!'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGExpt06a"><h6>GExpt-)<em>[General]</em>例外の詳細説明</h6></a><pre><code>
+<img SRC="Python_pic/02general2/07Exception/06detail_Exception01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		def oFail():
+			x = 1/0
+			return x
+		oChk = oFail()
+	except ZeroDivisionError, detail:
+		oDisp = 'Exception Detail \n => ' + str(detail)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGExpt07a"><h6>GExpt-)<em>[General]</em>User定義のException</h6></a><pre><code>
+<img SRC="Python_pic/02general2/07Exception/07UserDefine_Exception01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+class MyError(Exception):			# class名の先頭文字は大文字
+	def __init__(self, oVal):
+		self.value = oVal
+		def __str__(self):
+			return repr(self.value)
+def otest():
+	try:
+		raise MyError(2*5)
+	except MyError as e:		# <= MyError という名の例外をcatchする
+		oDisp = 'User Defined Exception \n Value = ' + str(e.value)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGExpt08a"><h6>GExpt-)<em>[General]</em>Error NoとError Message</h6></a><pre><code>
+<img SRC="Python_pic/02general2/07Exception/08errno_strerror01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import errno
+import os
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		oErrKey = errno.errorcode.keys()
+		oDisp = u'[ Error Code NoとError ]\n'
+		for er in oErrKey:
+			oErrCode = os.strerror(er)
+			oDisp = oDisp + str(er) + ' : ' + str(oErrCode) + '\n'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# [ 取得Symbol ]
+#&emsp;EPERM&emsp;:&emsp;許可されていない操作です (Operation not permitted)
+#&emsp;ENOENT&emsp;:&emsp;ファイルまたはディレクトリがありません (No such file or directory)
+#&emsp;ESRCH&emsp;:&emsp;指定したプロセスが存在しません (No such process)
+#&emsp;EINTR&emsp;:&emsp;割り込みシステムコールです (Interrupted system call)
+#&emsp;EIO&emsp;:&emsp;I/O エラーです (I/O error)
+#&emsp;ENXIO&emsp;:&emsp;そのようなデバイスまたはアドレスはありません (No such device or address)
+#&emsp;E2BIG&emsp;:&emsp;引数リストが長すぎます (Arg list too long)
+#&emsp;ENOEXEC&emsp;:&emsp;実行形式にエラーがあります (Exec format error)
+#&emsp;EBADF&emsp;:&emsp;ファイル番号が間違っています (Bad file number)
+#&emsp;ECHILD&emsp;:&emsp;子プロセスがありません (No child processes)
+#&emsp;EAGAIN&emsp;:&emsp;再試行してください (Try again)
+#&emsp;ENOMEM&emsp;:&emsp;空きメモリがありません (Out of memory)
+#&emsp;EACCES&emsp;:&emsp;許可がありません (Permission denied)
+#&emsp;EFAULT&emsp;:&emsp;不正なアドレスです (Bad address)
+#&emsp;ENOTBLK&emsp;:&emsp;ブロックデバイスが必要です (Block device required)
+#&emsp;EBUSY&emsp;:&emsp;そのデバイスまたは資源は使用中です (Device or resource busy)
+#&emsp;EEXIST&emsp;:&emsp;ファイルがすでに存在します	(File exists)
+#&emsp;EXDEV&emsp;:&emsp;デバイス間のリンクです (Cross-device link)
+#&emsp;ENODEV&emsp;:&emsp;そのようなデバイスはありません (No such device)
+#&emsp;ENOTDIR&emsp;:&emsp;ディレクトリではありません (Not a directory)
+#&emsp;EISDIR&emsp;:&emsp;ディレクトリです (Is a directory)
+#&emsp;EINVAL&emsp;:&emsp;無効な引数です (Invalid argument)
+#&emsp;ENFILE&emsp;:&emsp;ファイルテーブルがオーバフローしています (File table overflow)
+#&emsp;EMFILE&emsp;:&emsp;開かれたファイルが多すぎます (Too many open files)
+#&emsp;ENOTTY&emsp;:&emsp;タイプライタではありません (Not a typewriter)
+#&emsp;ETXTBSY&emsp;:&emsp;テキストファイルが使用中です (Text file busy)
+#&emsp;EFBIG&emsp;:&emsp;ファイルが大きすぎます (File too large)
+#&emsp;ENOSPC&emsp;:&emsp;デバイス上に空きがありません (No space left on device)
+#&emsp;ESPIPE&emsp;:&emsp;不正なシークです (Illegal seek)
+#&emsp;EROFS&emsp;:&emsp;読み出し専用ファイルシステムです (Read-only file system)
+#&emsp;EMLINK&emsp;:&emsp;リンクが多すぎます (Too many links)
+#&emsp;EPIPE&emsp;:&emsp;パイプが壊れました (Broken pipe)
+#&emsp;EDOM&emsp;:&emsp;数学引数が関数の定義域を越えています (Math argument out of domain of func)
+#&emsp;ERANGE&emsp;:&emsp;表現できない数学演算結果になりました (Math result not representable)
+#&emsp;EDEADLK&emsp;:&emsp;リソースのデッドロックが起きます (Resource deadlock would occur)
+#&emsp;ENAMETOOLONG&emsp;:&emsp;ファイル名が長すぎます (File name too long)
+#&emsp;ENOLCK&emsp;:&emsp;レコードロッキングが利用できません (No record locks available)
+#&emsp;ENOSYS&emsp;:&emsp;実装されていない機能です (Function not implemented)
+#&emsp;ENOTEMPTY&emsp;:&emsp;ディレクトリが空ではありません (Directory not empty)
+#&emsp;ELOOP&emsp;:&emsp;これ以上シンボリックリンクを追跡できません (Too many symbolic links encountered)
+#&emsp;EWOULDBLOCK&emsp;:&emsp;操作がブロックします (Operation would block)
+#&emsp;ENOMSG&emsp;:&emsp;指定された型のメッセージはありません (No message of desired type)
+#&emsp;EIDRM&emsp;:&emsp;識別子が除去されました (Identifier removed)
+#&emsp;ECHRNG&emsp;:&emsp;チャネル番号が範囲を超えました (Channel number out of range)
+#&emsp;EL2NSYNC&emsp;:&emsp;レベル 2 で同期がとれていません (Level 2 not synchronized)
+#&emsp;EL3HLT&emsp;:&emsp;レベル 3 で終了しました (Level 3 halted)
+#&emsp;EL3RST&emsp;:&emsp;レベル 3 でリセットしました (Level 3 reset)
+#&emsp;ELNRNG&emsp;:&emsp;リンク番号が範囲を超えています (Link number out of range)
+#&emsp;EUNATCH&emsp;:&emsp;プロトコルドライバが接続されていません (Protocol driver not attached)
+#&emsp;ENOCSI&emsp;:&emsp;CSI 構造体がありません (No CSI structure available)
+#&emsp;EL2HLT&emsp;:&emsp;レベル 2 で終了しました (Level 2 halted)
+#&emsp;EBADE&emsp;:&emsp;無効な変換です (Invalid exchange)
+#&emsp;EBADR&emsp;:&emsp;無効な要求記述子です (Invalid request descriptor)
+#&emsp;EXFULL&emsp;:&emsp;変換テーブルが一杯です (Exchange full)
+#&emsp;ENOANO&emsp;:&emsp;陰極がありません (No anode)
+#&emsp;EBADRQC&emsp;:&emsp;無効なリクエストコードです (Invalid request code)
+#&emsp;EBADSLT&emsp;:&emsp;無効なスロットです (Invalid slot)
+#&emsp;EDEADLOCK&emsp;:&emsp;ファイルロックにおけるデッドロックエラーです (File locking deadlock error)
+#&emsp;EBFONT&emsp;:&emsp;フォントファイル形式が間違っています (Bad font file format)
+#&emsp;ENOSTR&emsp;:&emsp;ストリーム型でないデバイスです (Device not a stream)
+#&emsp;ENODATA&emsp;:&emsp;利用可能なデータがありません (No data available)
+#&emsp;ETIME&emsp;:&emsp;時間切れです (Timer expired)
+#&emsp;ENOSR&emsp;:&emsp;streams リソースを使い切りました (Out of streams resources)
+#&emsp;ENONET&emsp;:&emsp;計算機はネットワーク上にありません (Machine is not on the network)
+#&emsp;ENOPKG&emsp;:&emsp;パッケージがインストールされていません (Package not installed)
+#&emsp;EREMOTE&emsp;:&emsp;対象物は遠隔にあります (Object is remote)
+#&emsp;ENOLINK&emsp;:&emsp;リンクが切られました (Link has been severed)
+#&emsp;EADV&emsp;:&emsp;Advertise エラーです (Advertise error)
+#&emsp;ESRMNT&emsp;:&emsp;Srmount エラーです (Srmount error)
+#&emsp;ECOMM&emsp;:&emsp;送信時の通信エラーです (Communication error on send)
+#&emsp;EPROTO&emsp;:&emsp;プロトコルエラーです (Protocol error)
+#&emsp;EMULTIHOP&emsp;:&emsp;多重ホップを試みました (Multihop attempted)
+#&emsp;EDOTDOT&emsp;:&emsp;RFS 特有のエラーです (RFS specific error)
+#&emsp;EBADMSG&emsp;:&emsp;データメッセージではありません (Not a data message)
+#&emsp;EOVERFLOW&emsp;:&emsp;定義されたデータ型にとって大きすぎる値です (Value too large for defined data type)
+#&emsp;ENOTUNIQ&emsp;:&emsp;名前がネットワーク上で一意でありません (Name not unique on network)
+#&emsp;EBADFD&emsp;:&emsp;ファイル記述子の状態が不正です (File descriptor in bad state)
+#&emsp;EREMCHG&emsp;:&emsp;遠隔のアドレスが変更されました (Remote address changed)
+#&emsp;ELIBACC&emsp;:&emsp;必要な共有ライブラリにアクセスできません (Can not access a needed shared library)
+#&emsp;ELIBBAD&emsp;:&emsp;壊れた共有ライブラリにアクセスしています (Accessing a corrupted shared library)
+#&emsp;ELIBSCN&emsp;:&emsp;a.out の .lib セクションが壊れています (.lib section in a.out corrupted)
+#&emsp;ELIBMAX&emsp;:&emsp;リンクを試みる共有ライブラリが多すぎます (Attempting to link in too many shared libraries)
+#&emsp;ELIBEXEC&emsp;:&emsp;共有ライブラリを直接実行することができません (Cannot exec a shared library directly)
+#&emsp;EILSEQ&emsp;:&emsp;不正なバイト列です (Illegal byte sequence)
+#&emsp;ERESTART&emsp;:&emsp;割り込みシステムコールを復帰しなければなりません (Interrupted system call should be restarted)
+#&emsp;ESTRPIPE&emsp;:&emsp;ストリームパイプのエラーです (Streams pipe error)
+#&emsp;EUSERS&emsp;:&emsp;ユーザが多すぎます (Too many users)
+#&emsp;ENOTSOCK&emsp;:&emsp;非ソケットに対するソケット操作です (Socket operation on non-socket)
+#&emsp;EDESTADDRREQ&emsp;:&emsp;目的アドレスが必要です (Destination address required)
+#&emsp;EMSGSIZE&emsp;:&emsp;メッセージが長すぎます (Message too long)
+#&emsp;EPROTOTYPE&emsp;:&emsp;ソケットに対して不正なプロトコル型です (Protocol wrong type for socket)
+#&emsp;ENOPROTOOPT&emsp;:&emsp;利用できないプロトコルです (Protocol not available)
+#&emsp;EPROTONOSUPPORT&emsp;:&emsp;サポートされていないプロトコルです (Protocol not supported)
+#&emsp;ESOCKTNOSUPPORT&emsp;:&emsp;サポートされていないソケット型です (Socket type not supported)
+#&emsp;EOPNOTSUPP&emsp;:&emsp;通信端点に対してサポートされていない操作です (Operation not supported on transport endpoint)
+#&emsp;EPFNOSUPPORT&emsp;:&emsp;サポートされていないプロトコルファミリです (Protocol family not supported)
+#&emsp;EAFNOSUPPORT&emsp;:&emsp;プロトコルでサポートされていないアドレスファミリです (Address family not supported by protocol)
+#&emsp;EADDRINUSE&emsp;:&emsp;アドレスは使用中です (Address already in use)
+#&emsp;EADDRNOTAVAIL&emsp;:&emsp;要求されたアドレスを割り当てできません (Cannot assign requested address)
+#&emsp;ENETDOWN&emsp;:&emsp;ネットワークがダウンしています (Network is down)
+#&emsp;ENETUNREACH&emsp;:&emsp;ネットワークに到達できません (Network is unreachable)
+#&emsp;ENETRESET&emsp;:&emsp;リセットによってネットワーク接続が切られました (Network dropped connection because of reset)
+#&emsp;ECONNABORTED&emsp;:&emsp;ソフトウェアによって接続が終了されました (Software caused connection abort)
+#&emsp;ECONNRESET&emsp;:&emsp;接続がピアによってリセットされました (Connection reset by peer)
+#&emsp;ENOBUFS&emsp;:&emsp;バッファに空きがありません (No buffer space available)
+#&emsp;EISCONN&emsp;:&emsp;通信端点がすでに接続されています (Transport endpoint is already connected)
+#&emsp;ENOTCONN&emsp;:&emsp;通信端点が接続されていません (Transport endpoint is not connected)
+#&emsp;ESHUTDOWN&emsp;:&emsp;通信端点のシャットダウン後は送信できません (Cannot send after transport endpoint shutdown)
+#&emsp;ETOOMANYREFS&emsp;:&emsp;参照が多すぎます: 接続できません (Too many references: cannot splice)
+#&emsp;ETIMEDOUT&emsp;:&emsp;接続がタイムアウトしました (Connection timed out)
+#&emsp;ECONNREFUSED&emsp;:&emsp;接続を拒否されました (Connection refused)
+#&emsp;EHOSTDOWN&emsp;:&emsp;ホストはシステムダウンしています (Host is down)
+#&emsp;EHOSTUNREACH&emsp;:&emsp;ホストへの経路がありません (No route to host)
+#&emsp;EALREADY&emsp;:&emsp;すでに処理中です (Operation already in progress)
+#&emsp;EINPROGRESS&emsp;:&emsp;現在処理中です (Operation now in progress)
+#&emsp;ESTALE&emsp;:&emsp;無効な NFS ファイルハンドルです (Stale NFS file handle)
+#&emsp;EUCLEAN&emsp;:&emsp;(Structure needs cleaning)
+#&emsp;ENOTNAM&emsp;:&emsp;XENIX 名前付きファイルではありません (Not a XENIX named type file)
+#&emsp;ENAVAIL&emsp;:&emsp;XENIX セマフォは利用できません (No XENIX semaphores available)
+#&emsp;EISNAM&emsp;:&emsp;名前付きファイルです (Is a named type file)
+#&emsp;EREMOTEIO&emsp;:&emsp;遠隔側の I/O エラーです (Remote I/O error)
+#&emsp;EDQUOT&emsp;:&emsp;ディスククオータを超えました (Quota exceeded)
+</code></pre><br>
+
+
+<a name="OOoGExpt09a"><h6>GExpt-)<em>[General]</em>Log Fileに出力</h6></a><pre><code>
+<img SRC="Python_pic/02general2/07Exception/09Logging01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import logging
+import errno
+import datetime
+import os
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+	return msgbox.execute()
+def oTest():
+	try:
+		# Log Fileと出力Levelの設定
+		oLogFile = 'c:\\temp\\Log\\PythonLog.txt'
+		logging.basicConfig(level=logging.DEBUG,filename=oLogFile, filemode='w')	# filemode='w'は省略可( 注1 )
+		# Except
+		oCheck = 10/0
+		oDisp = 'Suucess'
+	except:
+		oErr = str(datetime.datetime.today())
+		oDebug = str(traceback.format_exc(sys.exc_info()[2]))
+		logging.error(oErr)
+		logging.debug(oDebug)
+		oDisp = u'例外Errorが発生しました。\n 詳細はLog Fileを参照。'
+	finally:
+		omsgbox(oDisp,1)
+#
+# [ 注意 ]
+# 1) Macro実行後のLog Fileの編集は不可。編集する為にはPython( つまりLibreOffice )を終了させる必要がある。
+# 2) LibreOffice3.5ではfilemode='w'としてもDefaultと同じく追記になる。
+</code></pre><br>
+
+
+<a name="OOoGExpt"><h6>GExpt-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/07Exception/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">Other</p class="s1">
+<a name="OOoGOthr01a"><h6>GOthr-)<em>[General]</em>登録したProfiler関数の取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/08Other/01getprofiler01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oPyProFiler = sys.getprofile
+		oDisp = u'[ 登録したProfile関数 ]\n => ' + str(oPyProFiler)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# Profilerとは、Program実行時の様々な状態を得ることにより、その実行効率を調べるためのProgramです。
+</code></pre><br>
+
+
+<a name="OOoGOthr02a"><h6>GOthr-)<em>[General]</em>登録したtrace 関数の取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/08Other/02gettrace01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oPyTrace = sys.gettrace()
+		oDisp = u'[ 登録したtrace関数 ]\n => ' + str(oPyTrace)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGOthr03a"><h6>GOthr-)<em>[General]</em>importするmoduleがPackageに含まれる時の__path__属性取得</h6></a><pre><code>
+<img SRC="Python_pic/02general2/08Other/03meta_path01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oSys = sys.meta_path
+		oDisp = u'[ importするmoduleがPackageに含まれる時の__path__属性取得 ]\n => ' + str(oSys)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# importするmoduleがPackageに含まれる場合、親Packageの__path__属性が第2引数として渡されます。
+# 渡された属性のmethodsはmoduleが見つからなかった場合はNone
+# 見つかった場合はloaderを返します。
+</code></pre><br>
+
+
+<a name="OOoGOthr04a"><h6>GOthr-)<em>[General]</em>path_hooks</h6></a><pre><code>
+<img SRC="Python_pic/02general2/08Other/04path_hooks01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oSys = sys.path_hooks
+		oDisp = u'[ path_hooks ]\n => ' + str(oSys)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGOthr05a"><h6>GOthr-)<em>[General]</em>path_importer_cache</h6></a><pre><code>
+#!
+#coding: utf-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oSys = sys.path_importer_cache
+		oDisp = u'[ path_importer_cache ]\n => '
+		for i in oSys:
+			oDisp = oDisp + str(i) + ',' + str(oSys[i]) + '\n'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoGOthr06a"><h6>GOthr-)<em>[General]</em>自動GCが有効かどうか</h6></a><pre><code>
+<img SRC="Python_pic/02general2/08Other/05gc_isenabledo1.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import gc
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def otest():
+	try:
+		oGC = gc.isenabled()
+		oDisp = u'[ 自動GCが有効かどうか ]\n => ' + str(oGC)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# ガベージコレクション（garbage collection; GC）とは、Programが動的に確保したmemory領域のうち、
+# 不要になった領域を自動的に解放する機能である。「ガベージコレクション」を直訳すれば「ゴミ収集」となる。
+# また、自動GCが有効でなければ、「import GC」でErrorになる。
+</code></pre><br>
+
+
+<a name="OOoGOthr07a"><h6>GOthr-)<em>[General]</em>Performance測定</h6></a><pre><code>
+<img SRC="Python_pic/02general2/08Other/06timeit_Timer01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: utf-8
+# python Marco
+import timeit
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(message):
+	"""shows message."""
+	desktop = XSCRIPTCONTEXT.getDesktop()
+	frame = desktop.getCurrentFrame()
+	window = frame.getContainerWindow()
+	toolkit = window.getToolkit()
+	msgbox = toolkit.createMessageBox(window, Rectangle(), 'messbox', 1, 'Title', message)
+	return msgbox.execute()
+#
+def oTest():
+	try:
+		oDisp = 'Timer'
+		oTime = timeit.Timer('[n for n in range(1000000)]').timeit(1)
+		oDisp = u'[ performance測定 ]\n' + str(oTime) + ' [ sec ]'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp)
+</code></pre><br>
+
+
+<a name="OOoGOthr"><h6>GOthr-)<em>[General]</em></h6></a><pre><code>
+<img SRC="Python_pic/02general2/08Other/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br clear="right">
+<h6><center><a href="#TopOfPage">Top of Page</a></center></h6><br>
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/Python_Macro_General_No5.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:36:24 GMT -->
+</html>

@@ -1,0 +1,19 @@
+body { background: url(bg025.gif); }
+h1 { font-family: 'Vernada',sans-serif; font-size: 30pt; color: green; text-align: center; line-height: 30pt; font-weight: bold; }
+h2 { font-family: 'Vernada',sans-serif; font-size: 25pt; color: blue; margin-left: 100pt; margin-top: 0pt; margin-bottom: 0pt; font-weight: normal;}
+h3 { font-family: 'Vernada',sans-serif; font-size: 25pt; color: purple; font-weight: bold; margin-left: 20pt;}
+h4 { font-family: 'Vernada',sans-serif; font-size: 22pt; color: green; margin-left: -20pt; margin-top: 0pt; margin-bottom: 0pt; font-weight: bold;}
+h5 { font-family: 'Vernada',sans-serif; font-size: 22pt; color: green; margin-left: 80pt; margin-top: 0pt; margin-bottom: 0pt; font-weight: bold;}
+p { font-family: 'Vernada',sans-serif; font-size: 20pt; color : black; margin-left: 120pt; margin-top: 0pt; margin-bottom: 0pt; line-height: 22pt; font-weight: normal;white-space:pre-wrap; word-wrap:break-word;}
+p.s1 { font-family: 'Vernada',sans-serif; font-size: 30pt; color : green; font-weight: bold; margin-top: 0px; margin-left: 50px; margin-bottom: 0px; line-height: 25pt;}
+p.s2 { font-family: 'Vernada',sans-serif; font-size: 12pt; line-height: 12pt; color : black; background-color: #ffffe0; font-weight: normal; margin-top: 0px; margin-left: 150px; width: 1000px; padding-top: 0px; padding-left: 30px; white-space: pre;}
+p.s3 { font-family: 'Vernada',sans-serif; font-size: 25pt; line-height: 14pt; color: green; font-weight: bold; margin-top: 0px; margin-left: 70px; margin-bottom: 0px; }
+p.s4 { font-family: 'Vernada',sans-serif; font-size: 14pt; line-height: 14pt; color: purple; font-weight: normal; margin-top: 0px; margin-left: 80px; margin-bottom: 0px;}
+ul { font-family: 'Vernada',sans-serif; font-size: 20pt; color:black; font-weight: normal; margin-left: 25pt;}
+ul.c2 { font-family: 'Vernada',sans-serif; font-size: 20pt; color:black; font-weight: normal; margin-left: 70pt; margin-top: 0pt; margin-bottom: 0pt;}
+ul.c3 { font-family: 'Vernada',sans-serif; font-size: 17pt; color:blue; font-weight: normal; margin-left: 5pt; margin-top: 0pt; margin-bottom: 0pt;}
+ul.c4 { font-family: 'Vernada',sans-serif; font-size: 14pt; color:purple; font-weight: normal; margin-left: 120pt; margin-top: 0pt; margin-bottom: 0pt;}
+em { font-family: 'Vernada',sans-serif; font-weight: bold; color: red; font-style: normal;}
+em.c1 { font-family: 'Vernada',sans-serif; font-weight: normal; color: black; font-style: Italic;}
+div.gazou01 { margin-left:20pt; height:400px; width:1200px; float:left; }
+a{ text-decoration:none; border-bottom :1px solid;}

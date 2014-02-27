@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/BeginerCalc.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:08:36 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<html lang="ja">
+	<title>初心者Memo/ Calc no.1</title>
+	
+	<SCRIPT language="JavaScript">
+		<!--
+			renew = new Date(document.lastModified);
+			y=renew.getYear();
+			m=renew.getMonth() + 1;
+			d=renew.getDate();
+			if(y<1900) {y=y+1900;}
+				oDate="更新日："+y+"/"+m+"/"+d;
+			document.write(oDate);
+		//-->
+	</SCRIPT>	
+	
+</head>
+<link rel="stylesheet" type="text/css" href="css_new_beginer.css">
+
+<body> 
+<a name="TopOfPage"><left><p><A HREF="index-2.html">Home of site</a></p></left></a><br>
+<h1>
+初心者Memo / Calc No.1<br><br>
+( 関数 )
+</h1>
+<br><br>
+
+<p>OOoでもExcel数種類の関数を覚えれば大半の事は出来ます。本ページでは必要最小限の関数等を紹介していきます。</p><br>
+
+<br><br>
+<h2>1.演算関数：数値の足し算、掛け算等を行う関数</h2>
+<p1>
+&emsp;&emsp;&emsp;&emsp;1)&emsp;Sum&emsp;:&emsp;指定範囲の数値を足し合わせて合計を返す。<br>
+&emsp;&emsp;&emsp;&emsp;2)&emsp;SubTotal&emsp;:&emsp;ワークシートの途中に小計等を表示したいけど、この数値は合計には入れたくない場合に使う。<br>
+&emsp;&emsp;&emsp;&emsp;3)&emsp;SumIf&emsp;:&emsp;指定範囲において条件が一致する行の値のみを足し合わせて合計を返す。<br>
+&emsp;&emsp;&emsp;&emsp;4)&emsp;SumProduct&emsp;:&emsp;指定の行列内において一致する要素を乗算し、それらの積の和を返します。<br>
+&emsp;&emsp;&emsp;&emsp;5)&emsp;CountIf&emsp;:&emsp;セル範囲内で特定の基準を満たすセルの数を返します。<br>
+</p1>
+<br><br>
+
+
+<p>【使用方法】</p>
+<p1>
+&emsp;&emsp;&emsp;&emsp;1)&emsp;Sum<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Calc&emsp;：&emsp;=SUM(指定範囲)<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Excel&emsp;:&emsp;同じ<br>
+<br>
+&emsp;&emsp;&emsp;&emsp;2)&emsp;SubTotal&emsp;:<em>";"と","の違いに注意&emsp;←&emsp;LibreOfficeではExcelと同じ","</em><br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Calc&emsp;: =SubToTal(9<em2>;</em2>指定範囲)<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Excel&emsp;: =SubTotal(9<em2>,</em2>指定範囲)<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;9は合計を出す場合に使う関数インデックス。<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;1	:	平均　(Average)<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;2	:　カウント	(Count)<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;3	:　カウント	(CountA)<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;4	:　最大値	(Max)<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;5	:　最小値	(Min)<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;6	:  合計積  	(Product)←あまり使わない。<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;7	:　標準偏差を予測	(STDEV)←あまり使わない。<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;8	:　標準偏差			(STDEVP)←あまり使わない。<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;9	:　合計		(SUM)<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;10	:　不偏分散を予測	(VAR)←あまり使わない。<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;11	:　分散値			(VARP)←あまり使わない。<br>
+<br>
+&emsp;&emsp;&emsp;&emsp;3)&emsp;SumIf&emsp;:&emsp;<em>";"と","の違いに注意&emsp;←&emsp;LibreOfficeではExcelと同じ","</em><br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Calc&emsp;: =SumIf(範囲<em>;</em> 条件<em>;</em> 合計範囲)<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Excel&emsp;: =SumIf(範囲<em>,</em>条件<em>,</em>合計範囲)<br>
+<br>
+&emsp;&emsp;&emsp;&emsp;4)&emsp;SumProduct&emsp;: <em>";"と","の違いに注意&emsp;←&emsp;LibreOfficeではExcelと同じ","</em><br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Calc&emsp;: =SumProduct(行列 1<em>;</em> 行列 2...行列 30)<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Excel&emsp;: =SumProduct(行列 1<em>,</em> 行列 2...行列 30)　<br>
+<br>
+&emsp;&emsp;&emsp;&emsp;5)&emsp;CountIf&emsp;: <em>";"と","の違いに注意&emsp;←&emsp;LibreOfficeではExcelと同じ","</em><br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Calc&emsp;：=CountIf(範囲<em>;</em> 検索条件)<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Excel&emsp;：=CountIf(範囲<em>,</em>検索条件)<br>
+</p1>
+<br>
+<br>
+
+<h2>2.論理関数：条件にて処理を分岐させる関数</h2>
+<br>
+<p1>
+&emsp;&emsp;&emsp;&emsp;1)&emsp;If&emsp;:&emsp;条件によって処理を分岐<br>
+&emsp;&emsp;&emsp;&emsp;2)&emsp;And&emsp;：&emsp;複数の条件が全て一致した場合に所定の処理を実行<br>
+&emsp;&emsp;&emsp;&emsp;3)&emsp;Or&emsp;:&emsp;複数の条件の１つが一致した場合に所定の処理を実行<br>
+&emsp;&emsp;&emsp;&emsp;4)&emsp;IsError&emsp;:&emsp;#N/A エラー値を含むエラー状態をテストし、TRUE または FALSE を返します。<br>
+&emsp;&emsp;&emsp;&emsp;5)&emsp;IsBlank&emsp;:&emsp;セルの内容が空の場合に TRUE を返します。この関数は、セルの内容が空であるかどうかを検査します。数式が入っているセルは空ではありません。<br>
+</p1>
+<br><br>
+
+
+<p>【使用方法】</p>
+<p1>
+&emsp;&emsp;&emsp;&emsp;1)&emsp;If : <em>";"と","の違いに注意&emsp;<=&emsp;LibreOfficeではExcelと同じ","</em><br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Calc	：　=IF(A1＞5<em2>;</em2>100<em2>;</em2>"too small")	: A1 の値が 5 より大きい場合、値 100 が現在のセルに入力されます。それ以外の場合は、テキスト「too small」を返す。<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Excel	：　=IF(A1＞5<em2>,</em2>100<em2>,</em2>"too small")<br>
+<br>
+&emsp;&emsp;&emsp;&emsp;2)&emsp;And :<em>";"と","の違いに注意&emsp;<=&emsp;LibreOfficeではExcelと同じ","</em><br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Calc	: =AND(12＜13<em2>;</em2>14＞12<em2>;</em2>7＞6) は、FALSE を返します。<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Excel	: =AND(12＜13<em2>,</em2>14＞12<em2>,</em2>7＜6) は、FALSE を返します。<br>
+<br>
+&emsp;&emsp;&emsp;&emsp;3)&emsp;Or : <em>";"と","の違いに注意&emsp;<=&emsp;LibreOfficeではExcelと同じ","</em><br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Calc	: =OR(12＜11<em2>;</em2>13＞22<em2>;</em2>45=45) は、TRUE を返します。<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Excel	: =OR(12＜11<em2>,</em2>13＞22<em2>,</em2>45=45) は、TRUE を返します。<br>
+<br>
+&emsp;&emsp;&emsp;&emsp;4)&emsp;IsError<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Calc	: =ISERROR(1/0)はTrueを返します。<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Excel	: 同じ<br>
+<br>
+&emsp;&emsp;&emsp;&emsp;5)&emsp;IsBlank<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Calc	:　=IsBlank(A1)はtrueを返します。(但しA1は空白[スペースも駄目])それ以外はfalseを返す。<br> 
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Excel	: 同じ<br>
+</p1>
+<br><br>
+
+
+<h2>3.超基本操作</h2>
+<div>
+<p1>
+<img SRC="beginer/01calc/01CellEnter.png" align="right" hspace="4" vspace="4" width="30%">
+&emsp;&emsp;&emsp;&emsp;1)&emsp;Cell内での改行<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Calc 	:	CTL + Enter<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Excel	:	Alt + Enter<br>
+</p1>
+<br clear="left">
+</div>
+
+
+<br><br><br><br><br><br><br><br><br><br>
+<center><p><a href="#TopOfPage">Top of Page</a></p></center><BR>
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/BeginerCalc.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:08:36 GMT -->
+</html>

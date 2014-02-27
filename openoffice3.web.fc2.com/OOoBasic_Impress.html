@@ -1,0 +1,2403 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/OOoBasic_Impress.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:31:15 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<SCRIPT language="JavaScript">
+		<!--
+			renew = new Date(document.lastModified);
+			y=renew.getYear();
+			m=renew.getMonth() + 1;
+			d=renew.getDate();
+			if(y<1900) {y=y+1900;}
+				oDate="更新日："+y+"/"+m+"/"+d;
+			document.write(oDate);
+		//-->
+	</SCRIPT>
+	
+<title>Macroの杜(OpenOffice.org/LibreOffice Basic編)/Impress</title>
+</head>
+<link rel="stylesheet"
+type="text/css" href="css_macro_Basic.css">
+
+<body>
+<a name="TopOfPage"><left><p><A HREF="index-2.html">Home of site</a></p></left></a><br>
+<h1>Macroの杜<br>
+(OpenOffice.org/LibreOffice Basic編)</h1>
+
+<h2>Impress( Presentation )</h2>
+<br>
+
+<h3><Center>**********************【 Index 】**********************</center></h3>
+<br>
+
+<p class="s1">File</p class="s1"><br>
+<ul>
+IF-1)<a href="#OOoIF1"><em>[Impress]</em>新規Impress fileの開閉(保存確認無し)</a><br>
+IF-2)<a href="#OOoIFA"><em>[Impress]</em>新規Impress fileの開閉(保存確認有りし)</a><br>
+</ul>
+<br>
+
+
+<p class="s3">[ MasterPage ]</p class="s3">
+<ul>
+IMP-)<a href="#OOoIMP01"><em>[Impress]</em>MasterPageの名前と番号取得</a><br>
+IMP-)<a href="#OOoIMP02"><em>[Impress]</em>新規MasterPageの追加<em>[ insertNewByIndex ]</em></a><br>
+IMP-)<a href="#OOoIMP03"><em>[Impress]</em>新規MasterPageの名前変更</a><br>
+IMP-)<a href="#OOoIMP0"><em>[Impress]</em></a><br>
+</ul>
+<br>
+
+<p class="s1">Page</p class="s1">
+<ul>
+IP-1)<a href="#OOoIP1"><em>[Impress]</em>Page追加</a><br>
+IP-2)<a href="#OOoIP2"><em>[Impress]</em>Page削除</a><br>
+IP-3)<a href="#OOoIP3"><em>[Impress]</em>Page名の取得</a><br>
+IP-4)<a href="#OOoIP4"><em>[Impress]</em>Page総数を取得</a><br>
+IP-)<a href="#OOoIP05a"><em>[Impress]</em>Current Page情報取得<em>[ CurrentPage ]</em></a><br>
+IP-)<a href="#OOoIP06a"><em>[Impress]</em>PageのCopy<em>[ duplicate() ]</em></a><br>
+IP-)<a href="#OOoIP"><em>[Impress]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+<p class="s3">[ Layout ]</p class="s3">
+<ul>
+IPLy-)<a href="#OOoIPLy01a"><em>[Impress]</em>現在表示中のSlideのLayout番号取得<em>[ .Layout ]</em></a><br>
+IPLy-)<a href="#OOoIPLy01a1"><em>[Impress]</em>Title SlideのShapeType<em>[ .getShapeType ]</em></a><br>
+IPLy-)<a href="#OOoIPLy01b"><em>[Impress]</em>Title, ContentのShapeType<em>[  ]</em></a><br>
+IPLy-)<a href="#OOoIPLy01c"><em>[Impress]</em>Title and 2 ContentのShapeType<em>[  ]</em></a><br>
+IPLy-)<a href="#OOoIPLy01d"><em>[Impress]</em>Tiltle OnlyのShapeType<em>[  ]</em></a><br>
+IPLy-)<a href="#OOoIPLy01e"><em>[Impress]</em>Centered TextのShapeType<em>[  ]</em></a><br>
+IPLy-)<a href="#OOoIPLy01f"><em>[Impress]</em>Title, ObjectのShapeType<em>[  ]</em></a><br>
+IPLy-)<a href="#OOoIPLy01g"><em>[Impress]</em>Title, ChartのShapeType<em>[  ]</em></a><br>
+IPLy-)<a href="#OOoIPLy01h"><em>[Impress]</em>Title, TableのShapeType<em>[  ]</em></a><br>
+IPLy-)<a href="#OOoIPLy01i"><em>[Impress]</em>Title, Clipart and ContentのShapeType<em>[  ]</em></a><br>
+IPLy-)<a href="#OOoIPLy01j"><em>[Impress]</em>Vertial Title, Vertial TextのShapeType<em>[  ]</em></a><br>
+IPLy-)<a href="#OOoIPLy02b"><em>[Impress]</em>Title, Content<em>[ com.sun.star.presentation.OutlinerShape ]</em></a><br>
+IPLy-)<a href="#OOoIPLy02c"><em>[Impress]</em>Title and 2 Content<em>[ com.sun.star.presentation.OutlinerShape ]</em></a><br>
+IPLy-)<a href="#OOoIPLy02d"><em>[Impress]</em>Title Only<em>[ com.sun.star.presentation.TitleTextShape ]</em></a><br>
+IPLy-)<a href="#OOoIPLy02e"><em>[Impress]</em>Title, Clipart and Content(未完成)<em>[ com.sun.star.presentation.GraphicObjectShape ]</em></a><br>
+</ul>
+<br>
+
+
+<p class="s1">Export</p class="s1">
+<ul>
+IE-1)<a href="#OOoIE1"><em>[Impress]</em>各PageをJpeg形式でExport(XDrawPageSupplier)</a><br>
+</ul>
+<br>
+
+<p class="s1">Shape</p class="s1">
+<ul>
+ISp-)<a href="#OOoISp1"><em>[Impress]</em>他Slide内容を表示するShapeの追加(Thumbnail(サムネイル)表示可能)<em>[ com.sun.star.drawing.PageShape ]</em></a><br>
+ISp-)<a href="#OOoISp2"><em>[Impress]</em>動画／画像を表示するShapeの追加(Thumbnail(サムネイル)表示可能)<em>[ com.sun.star.drawing.MediaShape ]</em></a><br>
+ISp-)<a href="#OOoISp2a"><em>[Impress]</em>画像fileを挿入<em>[ com.sun.star.drawing.GraphicObjectShape ]</em></a><br>
+ISp-)<a href="#OOoISp3"><em>[Impress]</em>Title Shape(表題欄)の設定</a><em>[ <a href="http://api.openoffice.org/docs/common/ref/com/sun/star/presentation/PresentationDocument.html">com.sun.star.presentation.TitleTextShape / com.sun.star.lang.XMultiServiceFactory</a>  ]</em><br>
+ISp-)<a href="#OOoISp4"><em>[Impress]</em>SubTitle Shape(本文欄)の設定<em>[ com.sun.star.presentation.SubtitleShape ]</em></a><br>
+ISp-)<a href="#OOoISp5"><em>[Impress]</em>Outliner Shape(箇条書き)の設定<em>[ com.sun.star.presentation.OutlinerShape ]</em></a><br>
+ISp-)<a href="#OOoISp5b"><em>[Impress]</em>Outliner Shape(箇条書き)のNumbering Rules取得<em>[ com.sun.star.presentation.OutlinerShape ]</em></a><br>
+ISp-)<a href="#OOoISp6a"><em>[Impress]</em>OLE2Shapeの設定1(Table)<em>[ com.sun.star.drawing.OLE2Shape ]</em></a><br>
+ISp-)<a href="#OOoISp6b"><em>[Impress]</em>OLE2Shapeの設定2(Chart)<em>[ com.sun.star.drawing.OLE2Shape ]</em></a><br>
+ISp-)<a href="#OOoISp6c"><em>[Impress]</em>OLE2Shapeの設定3(Table / Chart)<em>[ com.sun.star.drawing.OLE2Shape ]</em></a><br>
+ISp-)<a href="#OOoISp7"><em>[Impress]</em>Note Shapeの設定<em>[ com.sun.star.presentation.NotesShape ]</em></a><br>
+ISp-)<a href="#OOoISp8"><em>[Impress]</em>Handout Shapeの設定<em>[ com.sun.star.presentation.HandoutShape ]</em></a><br>
+</ul>
+<br>
+
+<p class="s3">[ InterAction ]</p class="s3">
+<ul>
+ISpIA-)<a href="#OOoISpIA01"><em>[Impress]</em>前のPageに移動<em>[ com.sun.star.presentation.ClickAction.PREVPAGE ]</em></a><br>
+ISpIA-)<a href="#OOoISpIA02"><em>[Impress]</em>次のPageに移動<em>[ com.sun.star.presentation.ClickAction.NEXTPAGE ]</em></a><br>
+ISpIA-)<a href="#OOoISpIA03"><em>[Impress]</em>最初のPageに移動<em>[ com.sun.star.presentation.ClickAction.FIRSTPAGE ]</em></a><br>
+ISpIA-)<a href="#OOoISpIA04"><em>[Impress]</em>最後のPageに移動<em>[ com.sun.star.presentation.ClickAction.LASTPAGE ]</em></a><br>
+ISpIA-)<a href="#OOoISpIA05"><em>[Impress]</em>任意のPage / Objectに移動<em>[ com.sun.star.presentation.ClickAction.BOOKMARK ]</em></a><br>
+ISpIA-)<a href="#OOoISpIA06"><em>[Impress]</em>別Documentを開く<em>[ com.sun.star.presentation.ClickAction.DOCUMENT ]</em></a><br>
+ISpIA-)<a href="#OOoISpIA06b"><em>[Impress]</em>Movie( wmv File )再生<em>[ com.sun.star.presentation.ClickAction.DOCUMENT ]</em></a><br>
+ISpIA-)<a href="#OOoISpIA07"><em>[Impress]</em>Slideを非表示にする<em>[ com.sun.star.presentation.ClickAction.INVISIBLE ]</em></a><br>
+ISpIA-)<a href="#OOoISpIA08"><em>[Impress]</em>音楽を流す(現Slide中のみ)<em>[ com.sun.star.presentation.ClickAction.SOUND ]</em></a><br>
+ISpIA-)<a href="#OOoISpIA09"><em>[Impress]</em>VERB(未完成)<em>[ com.sun.star.presentation.ClickAction.VERB ]</em></a><br>
+ISpIA-)<a href="#OOoISpIA10a"><em>[Impress]</em>指定方法でObject( Shape等 )をFade out<em>[ com.sun.star.presentation.ClickAction.VANISH / Effect / com.sun.star.presentation.AnimationEffect ]</em></a><br>
+ISpIA-)<a href="#OOoISpIA11a"><em>[Impress]</em>Programを実行( Writer,Calc,Draw,Impress,Base,Math で実行可能なFileのみ )<em>[ com.sun.star.presentation.ClickAction.PROGRAM ]</em></a><br>
+ISpIA-)<a href="#OOoISpIA12"><em>[Impress]</em>Macroを実行<em>[ com.sun.star.presentation.ClickAction.MACRO ]</em></a><br>
+ISpIA-)<a href="#OOoISpIA13"><em>[Impress]</em>Slide Show中止<em>[ com.sun.star.presentation.ClickAction.STOPPRESENTATION ]</em></a><br>
+</ul>
+<br>
+
+
+<br><br><br><br><br><br><br><br><br><br>
+<h3><Center>**********************【 Macro Code 】**********************</center></h3>
+
+<p class="s1">File</p class="s1"><br>
+<a name="OOoIF1"><h6>IF-1)<em>[Impress]</em>新規Impress fileの開閉(保存確認無し)</h6></a><pre><code>
+Sub oImpressOpen
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oAns = Msgbox("ファイルを閉じますか?",4, "File Close確認")
+		if oAns = 6 then
+			oDoc.dispose
+		End if
+End Sub
+</code></pre><br>
+
+
+<a name="OOoIFA"><h6>IF-2)<em>[Impress]</em>新規Impress fileの開閉(保存確認有り)</h6></a><pre><code>
+Sub oImpressOpen_Save
+	Dim Dummy() 
+		oDoc = StarDesktop.loadComponentFromURL( "private:factory/simpress", "_blank", 0, Dummy())
+ 		oAns = Msgbox("fileを保存しますか?",4, "File Save確認")
+ 		 if oAns = 6 then
+ 		 	oInp = InputBox("Full pathでFile nameを入力して下さい(例 ： C:\temp\btest.odp)","保存File nameの入力")
+ 		 	If NOT IsNull(oInp) then
+ 		 		oIName = ConvertToUrl(oInp) 
+ 		 		oDoc.storeAsURL(oIName, Dummy())
+ 		 	End If
+		End If
+		oAnsC = MsgBox("Fileを閉じますか?",4,"Fileの終了確認")	
+ 		 If oAnsC = 6 then
+ 		 		oDoc.dispose
+ 		 End If
+End Sub
+</code></pre><br>
+
+<p class="s3">[ MasterPage ]</p class="s3">
+<a name="OOoIMP01"><h6>IMP-1)<em>[Impress]</em>MasterPageの名前と番号取得</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/02MasterPage/01masterpageName01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oMasterImpress
+	Dim oDoc
+	Dim oDisp
+	Dim oMpages
+	Dim oMaster
+	Dim oMasterName
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy()) 
+		oMpages = oDoc.getMasterPages()
+		oP = oMpages.getCount()-1
+		oDisp = " [ MasterPage ]" & Chr$(10)
+		for i = 0 to oP
+			oMaster = oMpages.getByIndex(i)
+			If oMaster.supportsService("com.sun.star.drawing.MasterPage") then
+				oMasterName = oMaster.getName()
+				oDisp = oDisp & "MasterPage番号 =　" & i & Chr$(10) _
+						& "   Name　:  " & oMasterName()
+			End If
+			oDisp = oDisp & Chr$(10)
+		next i
+		msgbox(oDisp, 0, "[ Master Page ] ") 
+End Sub
+</code></pre><br>
+
+
+<a name="OOoIMP02"><h6>IMP-)<em>[Impress]</em>新規MasterPageの追加</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/02MasterPage/02AddMasterPage01.png" align="right" hspace="4" vspace="4" width="35%">
+Sub oMasterImp
+	Dim oDoc
+	Dim oDisp
+	Dim oMpages
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oMpages = oDoc.getMasterPages()
+		oMPages.insertNewByIndex(0)
+End Sub
+</code></pre><br>
+
+
+<a name="OOoIMP03"><h6>IMP-)<em>[Impress]</em>新規MasterPageの名前変更</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/02MasterPage/03MasterPageName01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oMasterImp
+	Dim oDoc
+	Dim oFirstMpage
+	Dim oNewMaster
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oFirstMpage = oDoc.getMasterPages()
+		'
+		oNewMaster = oFirstMpage.insertNewByIndex(0)
+		oNewMaster.setName("NewMasetr01")
+		'
+	Dim oMpages
+	Dim oP
+	Dim oMaster
+	Dim oMasterName
+		oMpages = oDoc.getMasterPages()
+		oP = oMpages.getCount()-1
+		oDisp = " [ MasterPage ]" & Chr$(10)
+		for i = 0 to oP
+			oMaster = oMpages.getByIndex(i)
+			If oMaster.supportsService("com.sun.star.drawing.MasterPage") then
+				oMasterName = oMaster.getName()
+				oDisp = oDisp & "MasterPage番号 =　" & i & Chr$(10) _
+						& "   Name　:  " & oMasterName()
+			End If
+			oDisp = oDisp & Chr$(10)
+		next i
+		msgbox(oDisp, 0, "[ Master Page ] ") 
+End Sub
+</code></pre><br>
+
+
+<a name="OOoIMP"><h6>IMP-)<em>[Impress]</em></h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/02MasterPage/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+<a name="OOoIMP"><h6>IMP-)<em>[Impress]</em></h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/02MasterPage/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">Page</p class="s1">
+<a name="OOoIP1"><h6>IP-1)<em>[Impress]</em>Page追加</h6></a><pre><code>
+Sub oAddPage
+	Dim Dummy()
+		oName = "C:\temp\oMacro_test(Impress).odp"
+		oImp_file = ConvertToUrl(oName)
+		oDoc = StarDesktop.loadComponentFromURL(oImp_file, "_blank", 0, Dummy()) 
+		oImpPages = oDoc.getDrawPages()
+		oImpPages.InsertNewByIndex(0) 
+End Sub
+</code></pre><br>
+
+<a name="OOoIP2"><h6>IP-2)<em>[Impress]</em>Page削除</h6></a><pre><code>
+Sub oRemovePage
+	Dim Dummy()
+		oName = "C:\temp\oMacro_test(Impress).odp"
+		oImp_file = ConvertToUrl(oName)
+		oDoc = StarDesktop.loadComponentFromURL(oImp_file, "_blank", 0, Dummy()) 
+		oPages = oDoc.getDrawPages()
+		if oPages.getcount() >= 2 then
+			oImpPage = oPages.getByIndex(1)
+			oPName = oPages.remove(oImpPage)
+		else
+			Msgbox("削除するPageがありません。")
+			Exit Sub
+		End If
+End Sub
+</code></pre><br>
+
+<a name="OOoIP3"><h6>IP-3)<em>[Impress]</em>Page名の取得</h6></a><pre><code>
+Sub oPageName
+	Dim Dummy()
+		oName = "C:\temp\oMacro_test(Impress).odp"
+		oImp_file = ConvertToUrl(oName)
+		oDoc = StarDesktop.loadComponentFromURL(oImp_file, "_blank", 0, Dummy()) 
+		oImpPage = oDoc.getDrawPages().getByIndex(1)
+		oPName = oImpPage.Name
+		print oPName
+End Sub
+</code></pre><br>
+
+<a name="OOoIP4"><h6>IP-4)<em>[Impress]</em>Page総数を取得</h6></a><pre><code>
+Sub oCountPage
+	Dim Dummy()
+		oName = "C:\temp\oMacro_test(Impress).odp"
+		oImp_file = ConvertToUrl(oName)
+		oDoc = StarDesktop.loadComponentFromURL(oImp_file, "_blank", 0, Dummy()) 
+		oNum_pages = oDoc.getDrawPages().getcount() 
+		Print oNum_pages & "Pages"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoIP05a"><h6>IP-)<em>[Impress]</em>Current Page情報取得</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/03Page/05CurrentPage01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub PageMacro()
+	Dim oDoc as Object
+	Dim oCurCtrl as Object
+	Dim oCurPage as Object
+	Dim oPageNo as Long
+	Dim oPageName as String
+	Dim oPageLayout as Long
+	Dim oDisp as String
+		oDoc = ThisComponent
+		'
+		oCurCtrl = oDoc.getCurrentController
+		oCurPage = oCurCtrl.CurrentPage
+		'
+		oPageNo = oCurPage.Number
+		oPageName = oCurPage.Name
+		oPageLayout = oCurPage.Layout
+		'
+		oDisp = "[ Cuurent Page( Slide ) ]" & Chr$(10) & "Page No.  =  " & oPageNo & Chr$(10) & _
+					"Page Name  = " & oPageName & Chr$(10) & "Page Layout No.  = " & oPageLayout
+		msgbox(oDisp,0,"Current page")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoIP06a"><h6>IP-)<em>[Impress]</em>PageのCopy</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/03Page/06DuplicatePage01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub PageMacro()
+	Dim oDoc as Object
+	Dim oPage as Object
+	Dim oCopyPage as Object
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oPage = oDoc.getDrawPages()
+		'
+		oCopyPage = oDoc.duplicate(oPage.getByIndex(0))	
+		'
+		oDisp = "Success"
+		msgbox(oDisp,0,"Pageの複製")
+End Sub
+'
+' Copy PageはCopy元も次Pageに配置される
+</code></pre><br>
+
+
+<a name="OOoIP"><h6>IP-)<em>[Impress]</em></h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/03Page/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ Layout ]</p class="s3">
+<a name="OOoIPLy01a"><h6>IPLy-)<em>[Impress]</em>現在表示中のSlideのLayout番号取得</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/03Page/01Layout/01PageLayoutNo01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oPageLayout
+	Dim oDoc as Object
+	Dim oCtrl as Object
+	Dim oPage as Object
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oPage = oCtrl.CurrentPage
+		oPLayout = oPage.Layout
+		msgbox (oPLayout, 0, "Layout番号")
+End Sub
+
+' 白紙のslide( Blunk Slide )	:	20
+' Title Slide	:	0
+' Title / Content	:	1
+' Title and 2 Content	:	3
+' Tiltle Only	:	19
+' Centered Text	:	32
+' Title / Object	:	11
+' Title / Chart	:	2
+' Title / Table	:	8
+' Title, Clipart and Content	:	9
+' Title, Content and Chart	:	4
+' Title. Content and Clipart	:	6
+' Title, Chart and Content	:	7
+' Title, Content and Object	:	10
+' Title, Content and 2 Object	:	12 
+' Title, Object and Content	:	13
+' Title, Object over Content	:	14
+' Title, Content over Object	:	15
+' Title, 2 Object and Cintent	:	16
+' Title, Content over Object	:	17
+' Title / 4 Object	:	18
+' Title / 4 Clipart	:	33
+' Title / 6 Clipart	:	34
+' Vertial Title, Vertial Text and Chart	:	27
+' Vertial Title / Vertial Text	:	28
+' Title / Vertial Text	:	29
+' Title, Vertial Text and Clipart	:	30
+</code></pre>
+<br>
+
+
+<a name="OOoIPLy01a1"><h6>IPLy-)<em>[Impress]</em>Title SlideのShapeType</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/03Page/01Layout/01bShapeTypeLayout00_01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub oPageLayoutImpress
+	Dim oDoc
+	Dim oPage
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oPage = oDoc.getDrawPages().getByIndex(0)
+		'
+	Dim oLayoutNo
+		oLayoutNo = 0
+		oPage.Layout = oLayoutNo 
+		'
+	Dim oShape
+	Dim oSType
+	Dim oShapeNum
+		oDisp = "[ Layout No. =>  " & oLayoutNo & "  ]" &Chr$(10)& Chr$(10) 
+		oShapeNum = oPage.getCount - 1
+		for i = 0 to oShapeNum
+			oShape = oPage.getByIndex(i)
+			oSType = oShape.getShapeType()
+			oDisp = oDisp & oSType & Chr$(10)
+		next i
+		msgbox(oDisp, 0, "Shape Type for Impres")
+		'
+		oDoc.dispose
+End Sub
+</code></pre><br>
+
+
+<a name="OOoIPLy01b"><h6>IPLy-)<em>[Impress]</em>Title, ContentのShapeType</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/03Page/01Layout/01bShapeTypeLayout01_01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub oPageLayoutImpress
+	Dim oDoc
+	Dim oPage
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oPage = oDoc.getDrawPages().getByIndex(0)
+		'
+	Dim oLayoutNo
+		oLayoutNo = 1
+		oPage.Layout = oLayoutNo 
+		'
+	Dim oShape
+	Dim oSType
+	Dim oShapeNum
+		oDisp = "[ Layout No. =>  " & oLayoutNo & "  ]" &Chr$(10)& Chr$(10) 
+		oShapeNum = oPage.getCount - 1
+		for i = 0 to oShapeNum
+			oShape = oPage.getByIndex(i)
+			oSType = oShape.getShapeType()
+			oDisp = oDisp & oSType & Chr$(10)
+		next i
+		msgbox(oDisp, 0, "Shape Type for Impres")
+		'
+		oDoc.dispose
+End Sub
+</code></pre><br>
+
+
+<a name="OOoIPLy01c"><h6>IPLy-)<em>[Impress]</em>Title and 2 ContentのShapeType</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/03Page/01Layout/01bShapeTypeLayout03_01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub oPageLayoutImpress
+	Dim oDoc
+	Dim oPage
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oPage = oDoc.getDrawPages().getByIndex(0)
+		'
+	Dim oLayoutNo
+		oLayoutNo = 3
+		oPage.Layout = oLayoutNo 
+		'
+	Dim oShape
+	Dim oSType
+	Dim oShapeNum
+		oDisp = "[ Layout No. =>  " & oLayoutNo & "  ]" &Chr$(10)& Chr$(10) 
+		oShapeNum = oPage.getCount - 1
+		for i = 0 to oShapeNum
+			oShape = oPage.getByIndex(i)
+			oSType = oShape.getShapeType()
+			oDisp = oDisp & oSType & Chr$(10)
+		next i
+		msgbox(oDisp, 0, "Shape Type for Impres")
+		'
+		oDoc.dispose
+End Sub
+</code></pre><br>
+
+
+<a name="OOoIPLy01d"><h6>IPLy-)<em>[Impress]</em>Tiltle OnlyのShapeType</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/03Page/01Layout/01bShapeTypeLayout19_01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub oPageLayoutImpress
+	Dim oDoc
+	Dim oPage
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oPage = oDoc.getDrawPages().getByIndex(0)
+		'
+	Dim oLayoutNo
+		oLayoutNo = 19
+		oPage.Layout = oLayoutNo 
+		'
+	Dim oShape
+	Dim oSType
+	Dim oShapeNum
+		oDisp = "[ Layout No. =>  " & oLayoutNo & "  ]" &Chr$(10)& Chr$(10) 
+		oShapeNum = oPage.getCount - 1
+		for i = 0 to oShapeNum
+			oShape = oPage.getByIndex(i)
+			oSType = oShape.getShapeType()
+			oDisp = oDisp & oSType & Chr$(10)
+		next i
+		msgbox(oDisp, 0, "Shape Type for Impres")
+		'
+		oDoc.dispose
+End Sub
+</code></pre><br>
+
+
+<a name="OOoIPLy01e"><h6>IPLy-)<em>[Impress]</em>Centered TextのShapeType</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/03Page/01Layout/01bShapeTypeLayout32_01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub oPageLayoutImpress
+	Dim oDoc
+	Dim oPage
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oPage = oDoc.getDrawPages().getByIndex(0)
+		'
+	Dim oLayoutNo
+		oLayoutNo = 32
+		oPage.Layout = oLayoutNo 
+		'
+	Dim oShape
+	Dim oSType
+	Dim oShapeNum
+		oDisp = "[ Layout No. =>  " & oLayoutNo & "  ]" &Chr$(10)& Chr$(10) 
+		oShapeNum = oPage.getCount - 1
+		for i = 0 to oShapeNum
+			oShape = oPage.getByIndex(i)
+			oSType = oShape.getShapeType()
+			oDisp = oDisp & oSType & Chr$(10)
+		next i
+		msgbox(oDisp, 0, "Shape Type for Impres")
+		'
+		oDoc.dispose
+End Sub
+</code></pre><br>
+
+
+<a name="OOoIPLy01f"><h6>IPLy-)<em>[Impress]</em>Title, ObjectのShapeType</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/03Page/01Layout/01bShapeTypeLayout11_01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub oPageLayoutImpress
+	Dim oDoc
+	Dim oPage
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oPage = oDoc.getDrawPages().getByIndex(0)
+		'
+	Dim oLayoutNo
+		oLayoutNo = 11
+		oPage.Layout = oLayoutNo 
+		'
+	Dim oShape
+	Dim oSType
+	Dim oShapeNum
+		oDisp = "[ Layout No. =>  " & oLayoutNo & "  ]" &Chr$(10)& Chr$(10) 
+		oShapeNum = oPage.getCount - 1
+		for i = 0 to oShapeNum
+			oShape = oPage.getByIndex(i)
+			oSType = oShape.getShapeType()
+			oDisp = oDisp & oSType & Chr$(10)
+		next i
+		msgbox(oDisp, 0, "Shape Type for Impress")
+		'
+		oDoc.dispose
+End Sub
+</code></pre><br>
+
+
+<a name="OOoIPLy01g"><h6>IPLy-)<em>[Impress]</em>Title, ChartのShapeType</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/03Page/01Layout/01bShapeTypeLayout02_01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub oPageLayoutImpress
+	Dim oDoc
+	Dim oPage
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oPage = oDoc.getDrawPages().getByIndex(0)
+		'
+	Dim oLayoutNo
+		oLayoutNo = 2
+		oPage.Layout = oLayoutNo 
+		'
+	Dim oShape
+	Dim oSType
+	Dim oShapeNum
+		oDisp = "[ Layout No. =>  " & oLayoutNo & "  ]" &Chr$(10)& Chr$(10) 
+		oShapeNum = oPage.getCount - 1
+		for i = 0 to oShapeNum
+			oShape = oPage.getByIndex(i)
+			oSType = oShape.getShapeType()
+			oDisp = oDisp & oSType & Chr$(10)
+		next i
+		msgbox(oDisp, 0, "Shape Type for Impress")
+		'
+		oDoc.dispose
+End Sub
+</code></pre><br>
+
+
+<a name="OOoIPLy01h"><h6>IPLy-)<em>[Impress]</em>Title. TableのShapeType</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/03Page/01Layout/01bShapeTypeLayout08_01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub oPageLayoutImpress
+	Dim oDoc
+	Dim oPage
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oPage = oDoc.getDrawPages().getByIndex(0)
+		'
+	Dim oLayoutNo
+		oLayoutNo = 8
+		oPage.Layout = oLayoutNo 
+		'
+	Dim oShape
+	Dim oSType
+	Dim oShapeNum
+		oDisp = "[ Layout No. =>  " & oLayoutNo & "  ]" &Chr$(10)& Chr$(10) 
+		oShapeNum = oPage.getCount - 1
+		for i = 0 to oShapeNum
+			oShape = oPage.getByIndex(i)
+			oSType = oShape.getShapeType()
+			oDisp = oDisp & oSType & Chr$(10)
+		next i
+		msgbox(oDisp, 0, "Shape Type for Impress")
+		'
+		oDoc.dispose
+End Sub
+</code></pre><br>
+
+
+<a name="OOoIPLy01i"><h6>IPLy-)<em>[Impress]</em>Title, Clipart and ContentのShapeType</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/03Page/01Layout/01bShapeTypeLayout09_01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub oPageLayoutImpress
+	Dim oDoc
+	Dim oPage
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oPage = oDoc.getDrawPages().getByIndex(0)
+		'
+	Dim oLayoutNo
+		oLayoutNo = 9
+		oPage.Layout = oLayoutNo 
+		'
+	Dim oShape
+	Dim oSType
+	Dim oShapeNum
+		oDisp = "[ Layout No. =>  " & oLayoutNo & "  ]" &Chr$(10)& Chr$(10) 
+		oShapeNum = oPage.getCount - 1
+		for i = 0 to oShapeNum
+			oShape = oPage.getByIndex(i)
+			oSType = oShape.getShapeType()
+			oDisp = oDisp & oSType & Chr$(10)
+		next i
+		msgbox(oDisp, 0, "Shape Type for Impress")
+		'
+		oDoc.dispose
+End Sub
+</code></pre><br>
+
+
+<a name="OOoIPLy01j"><h6>IPLy-)<em>[Impress]</em>Vertial Title, Vertial TextのShapeType</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/03Page/01Layout/01bShapeTypeLayout28_01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub oPageLayoutImpress
+	Dim oDoc
+	Dim oPage
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oPage = oDoc.getDrawPages().getByIndex(0)
+		'
+	Dim oLayoutNo
+		oLayoutNo = 28
+		oPage.Layout = oLayoutNo 
+		'
+	Dim oShape
+	Dim oSType
+	Dim oShapeNum
+		oDisp = "[ Layout No. =>  " & oLayoutNo & "  ]" &Chr$(10)& Chr$(10) 
+		oShapeNum = oPage.getCount - 1
+		for i = 0 to oShapeNum
+			oShape = oPage.getByIndex(i)
+			oSType = oShape.getShapeType()
+			oDisp = oDisp & oSType & Chr$(10)
+		next i
+		msgbox(oDisp, 0, "Shape Type for Impress")
+		'
+		oDoc.dispose
+End Sub
+</code></pre><br>
+
+
+<a name="OOoIPLy02b"><h6>IPLy-)<em>[Impress]</em>Title, Content</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/03Page/01Layout/02aTitleContent01.png" align="right" hspace="4" vspace="4" width="35%">
+Sub oPageLayoutImpress
+	Dim oDoc
+	Dim oPage
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oPage = oDoc.getDrawPages().getByIndex(0)
+		'
+		oPage.Layout = 1
+		'
+		oShapeNum = oPage.getCount - 1
+		'
+	Dim oShape
+		m = 1
+		for i = 0 to oShapeNum
+			oShape = oPage.getByIndex(i)
+			If oShape.supportsService("com.sun.star.presentation.TitleTextShape") then
+				oShape.setString("Slide 1 / Title Shape") 
+			End If
+			'
+			If oShape.supportsService("com.sun.star.presentation.OutlinerShape") then
+				oShape.setString("Slide 1 / Outliner Shape" & m)
+				m = m +1 
+			End If
+		next i
+		msgbox "Success"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoIPLy02c"><h6>IPLy-)<em>[Impress]</em>Title and 2 Content</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/03Page/01Layout/02aTitle2Content01.png" align="right" hspace="4" vspace="4" width="35%">
+Sub oPageLayoutImpress
+	Dim oDoc
+	Dim oPage
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oPage = oDoc.getDrawPages().getByIndex(0)
+		'
+		oPage.Layout = 3
+		'
+		oShapeNum = oPage.getCount - 1
+		'
+	Dim oShape
+		m = 1
+		for i = 0 to oShapeNum
+			oShape = oPage.getByIndex(i)
+			If oShape.supportsService("com.sun.star.presentation.TitleTextShape") then
+				oShape.setString("Slide 1 / Title Shape") 
+			End If
+			'
+			If oShape.supportsService("com.sun.star.presentation.OutlinerShape") then
+				oShape.setString("Slide 1 / Outliner Shape" & m)
+				m = m +1 
+			End If
+		next i
+		msgbox "Success"
+End Sub
+</code></pre><br>
+
+
+
+<a name="OOoIPLy02d"><h6>IPLy-)<em>[Impress]</em>Title Only</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/03Page/01Layout/02aTitleOnly01.png" align="right" hspace="4" vspace="4" width="35%">
+Sub oPageLayoutImpress
+	Dim oDoc
+	Dim oPage
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oPage = oDoc.getDrawPages().getByIndex(0)
+		'
+		oPage.Layout = 19
+		'
+		oShapeNum = oPage.getCount - 1
+		'
+	Dim oShape
+		for i = 0 to oShapeNum
+			oShape = oPage.getByIndex(i)
+			If oShape.supportsService("com.sun.star.presentation.TitleTextShape") then
+				oShape.setString("Slide 1 / Title Shape") 
+			End If
+		next i
+		msgbox "Success"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoIPLy02e"><h6>IPLy-)<em>[Impress]</em>Title, Clipart and Content(未完成)</h6></a><pre><code>
+Sub PageLayoutImp()
+	Dim oDoc as Object, oPage as Object
+	Dim Dummy()
+	Dim oShapeNum as Long
+	Dim oObjFile as String
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oPage = oDoc.getDrawPages().getByIndex(0)
+		'
+		oObjFile = "c:\temp\graph.jpg"
+		oPage.Layout = 9
+		'
+		oShapeNum = oPage.getCount - 1
+		'
+	Dim oShape as Object
+		for i = 0 to oShapeNum
+			oShape = oPage.getByIndex(i)
+			If oShape.supportsService("com.sun.star.presentation.TitleTextShape") then
+				oShape.setString("Slide 1 / Title Shape") 
+			End If
+			'
+			If oShape.supportsService("com.sun.star.presentation.OutlinerShape") then
+				oShape.setString("Outliner Shape" ) 
+			End If
+			'
+			If oShape.getShapeType = "com.sun.star.presentation.GraphicObjectShape" then
+				oShape.GraphicURL = ConvertToUrl(oObjFile)
+				oShape.AdjustBlue = -50
+				oShape.AdjustGreen = 5
+				oShape.AdjustBlue = 10
+				oShape.AdjustContrast = 20
+				oShape.AdjustLuminance = 50
+				oShape.Transparency = 40
+				oShape.GraphicColorMode = com.sun.star.drawing.ColorMode.STANDARD
+			End If
+		next i
+		msgbox "Success"
+End Sub
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">Export</p class="s1">
+<a name="OOoIE1"><h6>IE-1)<em>[Impress]</em>各PageをJpeg形式でExport(XDrawPageSupplier)</h6></a><pre><code>
+Sub oExportJPG	
+	oFilter = CreateUnoService("com.sun.star.drawing.GraphicExportFilter")
+	Dim oExport(1) As new com.sun.star.beans.PropertyValue
+	Dim Dummy()	
+		oName = "C:\temp\oMacro_test(Impress).odp"
+		oImp_file = ConvertToUrl(oName)
+		oDoc = StarDesktop.loadComponentFromURL(oImp_file, "_blank", 0, Dummy()) 
+		oNum_pages = oDoc.getDrawPages().getcount() 
+		for i=0 to oNum_pages-1
+			oPage = oDoc.getDrawPages().getByIndex(i)
+			oPName = oPage.Name
+			oFilter.setSourceDocument(oPage)
+			oExport(0).Name = "URL"
+			oExport(0).Value = "file:///c|/temp/" & oPName &".jpg"
+			oExport(1).Name = "MediaType"
+			oExport(1).Value = "image/jpeg"
+			oFilter.filter(oExport())
+		next i
+		oDoc.dispose()
+End Sub
+</code></pre><br>
+
+<a name="OOoIE"><h6>IE-)<em>[Impress]</em></h6></a><pre><code>
+
+</code></pre><br>
+
+
+<p class="s1">Shape</p class="s1">
+<a name="OOoISp1"><h6>ISp-)<em>[Impress]</em>他Slide内容を表示するShapeの追加</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/01shape/01pageshape01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub oImpShape
+	Dim oDoc
+	Dim oDrawPage
+	Dim oPoint
+	Dim oSize
+	Dim oThumbnail
+		oDoc = ThisComponent
+  		oDrawPage = oDoc.getDrawPages().getByIndex(0)
+  			oPoint = CreateUnoStruct("com.sun.star.awt.Point")
+  			oSize = CreateUnoStruct("com.sun.star.awt.Size")
+  		for i = 2 to 4
+  			oThumbnail = oDoc.createInstance("com.sun.star.drawing.PageShape")
+ 				oPoint.X = 2000
+  				oPoint.Y = 1000 + 5000*(i-2) + 500
+  				oSize.Width = 5000
+  				oSize.Height = 5000
+  				oThumbnail.setPosition(oPoint)
+  				oThumbnail.setSize(oSize)
+   				oDrawPage.add(oThumbnail)
+  				oThumbnail.PageNumber = i
+  		next i
+End Sub
+</code></pre><br>
+
+
+<a name="OOoISp2"><h6>ISp-)<em>[Impress]</em>動画／画像を表示するShapeの追加</h6></a><pre><code>
+Sub oImpShape()
+	Dim oDoc
+	Dim oDrawPage
+	Dim oPoint
+	Dim oSize
+	Dim oIShape
+		oDoc = ThisComponent
+  		oDrawPage = oDoc.getDrawPages().getByIndex(0)
+  			oPoint = CreateUnoStruct("com.sun.star.awt.Point")
+  			oSize = CreateUnoStruct("com.sun.star.awt.Size")
+				oPoint.X = 2000
+  				oPoint.Y = 1000
+  				oSize.Width = 5000
+  				oSize.Height = 5000
+	'Media	
+		oIShape = oDoc.createInstance("com.sun.star.drawing.MediaShape")
+  			oIShape.setPosition(oPoint)
+  			oIShape.setSize(oSize)
+  		oDrawPage.add(oIShape)
+  			oMediaFile = "C:\temp\clock.avi"
+  		oIShape.MediaURL = ConvertToUrl(oMediaFile)
+End Sub
+</code></pre>
+<div>
+<IMG SRC="OOoBasic_pic/06impress/01shape/02mediashape03.png" align="right" hspace="4" vspace="4" width="25%"><IMG SRC="OOoBasic_pic/06impress/01shape/02mediashape02.png" align="right" hspace="4" vspace="4" width="25%"><IMG SRC="OOoBasic_pic/06impress/01shape/02mediashape01.png" align="right" hspace="4" vspace="4" width="25%">
+<br clear="right">
+</div>
+
+
+<br><br><br><br><br><br><br>
+<a name="OOoISp2a"><h6>IP-)<em>[Impress]</em>画像fileを挿入</h6></a></p><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/01shape/021graphicObjectShape01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub oAddPropGraphic
+	Dim oDoc
+	Dim oImpPage
+	Dim oGraph
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_default", 0, Dummy()) 
+		oImpPage = oDoc.getDrawPages().getByIndex(0)
+		oGraph = oDoc.createInstance("com.sun.star.drawing.GraphicObjectShape")
+		oGName = "C:\temp\oBlue_hills.jpg"
+		oGraph.GraphicURL = convertToUrl(oGName)
+		oImpPage.add(oGraph)
+		'Change Graphic Size
+			Dim oNewSize As New com.sun.star.awt.Size
+			Dim oBitMapSize As New com.sun.star.awt.Size			'Bitmap size
+			Dim oImageRatio As Double									'Ratio of the height to width
+			Dim oPageRatio As Double										'Ratio of the height to width
+				oBitMapSize=oGraph.GraphicObjectFillBitmap.GetSize
+				oImageRatio=CDbl(oBitMapSize.height) / CDbl(oBitMapSize.width)
+				oPageRatio=CDbl(oImpPage.height) / CDbl(oImpPage.width)
+				If oPageRatio > oImageRatio then
+					oNewSize.width = oImpPage.width
+					oNewSize.height = CLng(CDbl(oImpPage.width) * oImageRatio)
+				else
+					oNewSize.width = CLng(CDbl(oImpPage.height) / oImageRatio)
+					oNewSize.height = oImpPage.height
+				end if
+			'Center the image on the page
+				Dim oPosition As New com.sun.star.awt.Point
+				oPosition.x = (oImpPage.width - oNewSize.width) / 2
+				oPosition.y = (oImpPage.height - oNewSize.height) / 2
+				
+			oGraph.setSize(oNewSize)
+			oGraph.setPosition(oPosition)			 
+End Sub
+</code></pre><br>
+
+<a name="OOoISp3"><h6>ISp-)<em>[Impress]</em>Title Shapeの設定</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/01shape/03TitleTextShape01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub oImpShape
+	Dim oDoc
+	Dim oDrawPage
+	Dim oPoint as new com.sun.star.awt.Point
+	Dim oSize as new com.sun.star.awt.Size
+	Dim oIShape
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_default", 0, Dummy()) 
+  		oDrawPage = oDoc.getDrawPages().getByIndex(0)
+		'Position
+			oPoint.X = 1000
+  			oPoint.Y = 1000
+  		'Size
+  			'Get page size
+  				oPageH = oDrawPage.Height
+				oPageW = oDrawPage.Width
+			'
+			oSize.Height = 5000		' unit : 1/100 mm
+  			oSize.Width =  oPageW - 1000*2
+  	'
+  		oIShape = oDoc.createInstance("com.sun.star.presentation.TitleTextShape")
+  			oIShape.setPosition(oPoint)
+  			oIShape.setSize(oSize)
+  		oDrawPage.add(oIShape)
+  		oIshape.setString("Slide 1 / Title Text Shape")   			
+End Sub
+</code></pre><br>
+
+<a name="OOoISp4"><h6>ISp-)<em>[Impress]</em>SubTitle Shapeの設定</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/01shape/04SubTitleShape01.png" align="right" hspace="4" vspace="4" width="30%">
+'Size / PositionはMaster Pageにて設定
+Sub oImpShape
+	Dim oDoc
+	Dim oDrawPage
+	Dim oIShape
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_default", 0, Dummy()) 
+  		oDrawPage = oDoc.getDrawPages().getByIndex(0)
+ 	'
+  		oIShape = oDoc.createInstance("com.sun.star.presentation.SubtitleShape")
+  		oDrawPage.add(oIShape)
+  		oIshape.setString("Slide 1 / Subtitle Shape") 			
+End Sub
+</code></pre><br>
+
+<a name="OOoISp5"><h6>ISp-)<em>[Impress]</em>Outliner Shapeの設定1</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/01shape/05OutlinerShape01.png" align="right" hspace="4" vspace="4" width="30%">
+'Size / PositionはMaster Pageにて設定
+Sub oImpShape
+	Dim oDoc
+	Dim oDrawPage
+	Dim oIShape
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_default", 0, Dummy()) 
+  		oDrawPage = oDoc.getDrawPages().getByIndex(0)
+ 	'
+  		oIShape = oDoc.createInstance("com.sun.star.presentation.OutlinerShape")
+  	'	
+  		oDrawPage.add(oIShape)
+  			oDisp = "[ OutlinerShape ]"
+  		oIShape.setString(oDisp)
+  'Add OutLinerShape Text  	
+  	oText = oIShape.getText()
+  	oArg = createUnoStruct("com.sun.star.beans.PropertyValue")
+   	' Level1 (with bullet)
+   		oArg.Name = "NumberingLevel"
+   		oArg.Value = 0    
+   	oText.appendParagraph(Array(oArg))
+   		oLevelText = "Level1-1" & Chr$(13) & "Level1-2"
+   	oText.insertString(oText.getEnd(), oLevelText, False)
+   	' Level2
+   		oArg.Name = "NumberingLevel"
+   		oArg.Value = 1
+   	oText.appendParagraph(Array(oArg))
+   		oLevelText = "Level2-1" & Chr$(13) & "Level2-2"
+   	oText.insertString(oText.getEnd(), oLevelText, False)
+   	' non outline
+   		oArg.Value = nothing
+   oText.appendParagraph(Array(oArg))
+   oText.insertString(oText.getEnd(), "Non Outline", False)
+End Sub
+</code></pre><br>
+
+<a name="OOoISp5b"><h6>ISp-)<em>[Impress]</em>Outliner ShapeのNumbering Rules取得</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/01shape/05OutlinerShape02.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oImpShape
+	Dim oDoc
+	Dim oDrawPage
+	Dim oSize as new com.sun.star.awt.Size
+	Dim oIShape
+		On Error Resume Next
+		oDoc = ThisComponent
+  		oDrawPage = oDoc.getDrawPages().getByIndex(0)
+ 	'
+  		oIShape = oDoc.createInstance("com.sun.star.presentation.OutlinerShape")
+  	'	
+  		oDrawPage.add(oIShape)
+  	'	oIShape.setName("Outliner")
+  	'
+  		oShape = oDrawPage.getByIndex(2)
+ 	'	oMRI = CreateUnoService("mytools.Mri")
+	'	oMRI.inspect(oDrawPage)
+		oObj_2 = oShape.createEnumeration()
+  		oObj_4 = oObj_2.nextElement()
+  		oNumberingRules = oObj_4.NumberingRules
+  		oDisp =""
+  	for j = 0 to 0	
+  		oObj_5 = oNumberingRules.getByIndex(j)
+  		
+  		for i=0 to 12
+  			oDisp = oDisp & oObj_5(i).Name
+  			oDisp = oDisp & " => " & oObj_5(i).Value
+  			oDisp = oDisp & Chr$(10)
+  		next i
+  	next j
+  		msgbox oDisp
+End Sub
+</code></pre><br>
+
+<a name="OOoISp6a"><h6>ISp-)<em>[Impress]</em>OLE2Shapeの設定1</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/01shape/06OLE2ShapeCalc01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub oImpShape
+	Dim oDoc
+	Dim oImpPage
+	Dim oPoint as new com.sun.star.awt.Point
+	Dim oSize as new com.sun.star.awt.Size
+	Dim oIShape
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_default", 0, Dummy()) 
+  		oImpPage = oDoc.getDrawPages().getByIndex(0)
+  		oImpPage.Layout = 20
+  		'
+  		' TitleTextShape
+		'Position
+			oPoint.X = 1000
+  			oPoint.Y = 1000
+  		'Size
+  			'Get page size
+  				oPageH = oImpPage.Height
+				oPageW = oImpPage.Width
+			' Shape Size
+			oSize.Height = 5000		' unit : 1/100 mm
+  			oSize.Width =  oPageW - 1000*2
+  		' Instance
+  			oIShape = oDoc.createInstance("com.sun.star.presentation.TitleTextShape")
+  				oIShape.setPosition(oPoint)
+  				oIShape.setSize(oSize)
+  				oIShape.LineStyle = com.sun.star.drawing.LineStyle.SOLID
+  			oImpPage.add(oIShape)
+  				oIShape.setString("TitleTextShape")
+  		'
+  		'
+  		' OLE2Shape
+  		'Position
+			oPoint.X = 1000
+  			oPoint.Y = 6500
+  		'Size
+			' Shape Size
+			oSize.Height = 10000		' unit : 1/100 mm
+  			oSize.Width =  oPageW - 1000*2
+  		' Instance
+  			oIShape = oDoc.createInstance("com.sun.star.drawing.OLE2Shape")		' <=  com.sun.star.presentation.OLE2ShapeはSlideに表示されない。
+  			' Calc
+  				oIShape.CLSID = "47bbb4cb-ce4c-4e80-a591-42d9ae74950f"
+  				oIShape.setPosition(oPoint)
+  				oIShape.setSize(oSize)
+  			oImpPage.add(oIShape)
+  			'
+			'
+			Dim oEmbeded
+			Dim oOLEComponent
+			Dim oCalcSheets
+			Dim oObj
+				oEmbedded = oIShape.EmbeddedObject
+				oOLEComponent = oEmbedded.getComponent()
+ 					oCalcSheets = oOLEComponent.getSheets()
+ 						oObj = oCalcSheets.getByIndex(0)
+ 							oObj.getCellByPosition(0,0).String = "OLE Calc Document in Impress"
+ 							oObj.getCellByPosition(0,1).Value = 10
+ 							oObj.getCellByPosition(0,2).Value = 20
+ 							oObj.getCellByPosition(0,3).Formula = "=A2+A3" 
+ 						' Cell Font
+ 							oObj.getCellRangeByPosition(0,0,0,3).CharHeight=40
+ 							oObj.getCellRangeByPosition(0,0,0,3).CharHeightAsian=40			
+End Sub
+</code></pre><br>
+
+<a name="OOoISp6b"><h6>ISp-)<em>[Impress]</em>OLE2Shapeの設定2</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/01shape/06OLE2ShapeChart01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub oImpShape
+	Dim oDoc
+	Dim oImpPage
+	Dim oPoint as new com.sun.star.awt.Point
+	Dim oSize as new com.sun.star.awt.Size
+	Dim oIShape
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_default", 0, Dummy()) 
+  		oImpPage = oDoc.getDrawPages().getByIndex(0)
+  		oImpPage.Layout = 20
+  		'
+  		' TitleTextShape
+		'Position
+			oPoint.X = 1000
+  			oPoint.Y = 1000
+  		'Size
+  			'Get page size
+  				oPageH = oImpPage.Height
+				oPageW = oImpPage.Width
+			' Shape Size
+			oSize.Height = 5000		' unit : 1/100 mm
+  			oSize.Width =  oPageW - 1000*2
+  		' Instance
+  			oIShape = oDoc.createInstance("com.sun.star.presentation.TitleTextShape")
+  				oIShape.setPosition(oPoint)
+  				oIShape.setSize(oSize)
+  				oIShape.LineStyle = com.sun.star.drawing.LineStyle.SOLID
+  			oImpPage.add(oIShape)
+  				oIShape.setString("OLE2Shape / Chart")
+  		'
+  		'
+  		' OLE2Shape
+  		'Position
+			oPoint.X = 1000
+  			oPoint.Y = 6500
+  		'Size
+			' Shape Size
+			oSize.Height = 10000		' unit : 1/100 mm
+  			oSize.Width =  oPageW - 1000*2
+  		' Instance
+  			oIShape = oDoc.createInstance("com.sun.star.drawing.OLE2Shape")	' <=  com.sun.star.presentation.ChartShapeではSlideには表示されるが、Slide Showに表示されない。
+  			' Chart
+  				oIShape.CLSID = "12dcae26-281f-416f-a234-c3086127382e"
+  				oIShape.setPosition(oPoint)
+  				oIShape.setSize(oSize)
+  			oImpPage.add(oIShape)
+  			'
+			Dim oChart
+			Dim oCalcSheets
+				oChart = oIShape.Model
+  				oDiagram = oChart.createInstance("com.sun.star.chart.StackableDiagram")
+				'
+  				oChart.setDiagram(oDiagram)
+  				oDiagram = oChart.getDiagram()
+  				With oDiagram
+    				.Stacked = True
+    				.Percent = True
+    				.Vertical = True
+  				End With
+			'
+  				oChartData = oChart.getData()
+  					Dim oData(1,3) As Double
+  					' X Axis
+  						oData(0,0) = 100.0
+  						oData(0,1) = 50.0
+  						oData(0,2) = 25.0
+  						oData(0,3) = 12.5
+  					' Y Axis
+  						oData(1,0) = 100.0
+  						oData(1,1) = 50.0
+  						oData(1,2) = 25.0
+  						oData(1,3) = 12.5
+					'  			
+  					oChartData.setData(oData)
+  					'
+  					' Cellの位置を設定
+  						oChartData.setRowDescriptions(Array("Data 1", "Data 2"))
+  						oChartData.setColumnDescriptions(Array("A", "B", "C", "D"))
+					'
+  						oChart.HasMainTitle = True
+  						oTitle = oChart.Title
+  						oTitle.String = "OLE Chart in Impress" 		
+End Sub
+</code></pre><br>
+
+
+<a name="OOoISp6c"><h6>ISp-)<em>[Impress]</em>OLE2Shapeの設定3</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/01shape/06OLE2ShapeCalcandChart01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub oImpShape
+	Dim oDoc
+	Dim oImpPage
+	Dim oPoint as new com.sun.star.awt.Point
+	Dim oSize as new com.sun.star.awt.Size
+	Dim oIShape
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_default", 0, Dummy()) 
+  		oImpPage = oDoc.getDrawPages().getByIndex(0)
+  		oImpPage.Layout = 20
+  		'
+  		' TitleTextShape
+		'Position
+			oPoint.X = 1000
+  			oPoint.Y = 1000
+  		'Size
+  			'Get page size
+  				oPageH = oImpPage.Height
+				oPageW = oImpPage.Width
+			' Shape Size
+			oSize.Height = 5000		' unit : 1/100 mm
+  			oSize.Width =  oPageW - 1000*2
+  		' Instance
+  			oIShape = oDoc.createInstance("com.sun.star.presentation.TitleTextShape")
+  				oIShape.setPosition(oPoint)
+  				oIShape.setSize(oSize)
+  				oIShape.LineStyle = com.sun.star.drawing.LineStyle.SOLID
+  			oImpPage.add(oIShape)
+  				oIShape.setString("TitleTextShape　and OLE2Shape Table / Chart")
+  		'
+  		'
+  		' OLE2Shape
+  		' Data
+  		' Data数( 4data　=>　n=3)
+  		n = 3
+  		Dim oOrgData(1,n) As Double
+  			' X Axis
+  				oOrgData(0,0) = 100.0
+  				oOrgData(0,1) = 50.0
+  				oOrgData(0,2) = 25.0
+  				oOrgData(0,3) = 12.5
+  			' Y Axis
+  				oOrgData(1,0) = 100.0
+  				oOrgData(1,1) = 50.0
+  				oOrgData(1,2) = 25.0
+  				oOrgData(1,3) = 12.5
+   		'
+  		' Table
+  		'Position
+			oPoint.X = 3000
+  			oPoint.Y = 6500
+  		'Size
+			' Shape Size
+			oSize.Height = 10000		' unit : 1/100 mm
+  			oSize.Width =  10000
+  		' Instance
+  			oIShape = oDoc.createInstance("com.sun.star.drawing.OLE2Shape")		' <=  com.sun.star.presentation.OLE2ShapeはSlideに表示されない。
+  			' Calc
+  				oIShape.CLSID = "47bbb4cb-ce4c-4e80-a591-42d9ae74950f"
+  				oIShape.setPosition(oPoint)
+  				oIShape.setSize(oSize)
+  			oImpPage.add(oIShape)
+			'
+			Dim oEmbeded
+			Dim oOLEComponent
+			Dim oCalcSheets
+			Dim oObj
+				oEmbedded = oIShape.EmbeddedObject
+				oOLEComponent = oEmbedded.getComponent()
+ 					oCalcSheets = oOLEComponent.getSheets()
+ 						oObj = oCalcSheets.getByIndex(0)
+ 							for i = 0 to n
+ 								oObj.getCellByPosition(0,i).Value = oOrgData(0,i)
+ 								oObj.getCellByPosition(1,i).Formula = "=A" & i+1 & "^2"
+ 								oOrgData(1,i) = oObj.getCellByPosition(1,i).Value
+ 							next i	
+ 						' 範囲
+ 						Dim oDataRange
+ 							oDataRange = oObj.getCellRangeByPosition(0,0,1,n) 						
+ 						' Cell Font
+ 							oDataRange.CharHeight=25
+ 							oDataRange.CharHeightAsian=25
+ 						' 列幅
+ 							oColumns = oDataRange.Columns
+ 							oColumns.Width=4000
+ 						' Cell内横位置
+ 							oDataRange.HoriJustify = com.sun.star.table.CellHoriJustify.CENTER	'←横 中央揃え
+ 		'				' 罫線
+							oTableBorder = CreateUnoStruct("com.sun.star.table.TableBorder")
+							oLine = CreateUnoStruct("com.sun.star.table.BorderLine")
+							' Line Property
+								oLine.OuterLineWidth = 1
+								oLine.InnerLineWidth = 0
+								oLine.LineDistance = 0
+								oLine.Color = RGB(0,0,0)
+							'表用罫線外枠のライン指定
+								oTableBorder.TopLine = oLine
+								oTableBorder.BottomLine = oLine
+								oTableBorder.LeftLine = oLine
+								oTableBorder.RightLine = oLine
+								'表用罫線外枠のライン表示のオン
+									oTableBorder.IsTopLineValid = True
+									oTableBorder.IsBottomLineValid = True
+									oTableBorder.IsLeftLineValid = True
+									oTableBorder.IsRightLineValid = True
+							'表用罫線内側のライン指定
+								oTableBorder.HorizontalLine = oLine
+								oTableBorder.VerticalLine = oLine
+								'表用罫線内側のライン表示のオン 
+									oTableBorder.IsHorizontalLineValid = true
+									oTableBorder.IsVerticalLineValid = true
+							'範囲に表用罫線設定反映   
+								oDataRange.TableBorder = oTableBorder
+		'
+		' OLE2Shape
+  		'Position
+			oPoint.X = 14000
+  			oPoint.Y = 6500
+  		'Size
+			' Shape Size
+			oSize.Height = 10000		' unit : 1/100 mm
+  			oSize.Width =  10000
+  		' Instance
+  			oIShape = oDoc.createInstance("com.sun.star.drawing.OLE2Shape")		' <=  com.sun.star.presentation.OLE2ShapeはSlideに表示されない。
+  			' Chart
+  				oIShape.CLSID = "12dcae26-281f-416f-a234-c3086127382e"
+  				oIShape.setPosition(oPoint)
+  				oIShape.setSize(oSize)
+  			oImpPage.add(oIShape)
+  			oChart = oIShape.Model
+			oDiagram = oChart.createInstance("com.sun.star.chart.StackableDiagram")
+				'
+  				oChart.setDiagram(oDiagram)
+  				oDiagram = oChart.getDiagram()
+  				With oDiagram
+    				.Stacked = True
+    				.Percent = True
+    				.Vertical = True
+  				End With
+			'
+  				oChartData = oChart.getData()
+  				oChartData.setData(oOrgData)
+  					'
+  					' Cellの位置を設定
+  						oChartData.setRowDescriptions(Array("Data 1", "Data 2"))
+  						oChartData.setColumnDescriptions(Array("A", "B", "C", "D"))
+					'
+  						oChart.HasMainTitle = True
+  						oTitle = oChart.Title
+  						oTitle.String = "OLE Chart in Impress"
+End Sub
+</code></pre><br>
+
+<a name="OOoISp7"><h6>ISp-)<em>[Impress]</em>Note Shapeの設定</h6></a><pre><code>
+<img src="OOoBasic_pic/06impress/01shape/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+<a name="OOoISp8"><h6>ISp-)<em>[Impress]</em>HandoutShapeの設定</h6></a><pre><code>
+<img src="OOoBasic_pic/06impress/01shape/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+<a name="OOoISp"><h6>ISp-)<em>[Impress]</em></h6></a><pre><code>
+<img src="OOoBasic_pic/06impress/01shape/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ InterAction ]</p class="s3">
+<a name="OOoISpIA01"><h6>ISpIA-)<em>[Impress]</em>前のPageに移動</h6></a><pre><code>
+Sub oShapeInterActionImpress
+	Dim oDoc
+	Dim oImpPage
+	Dim oSlide
+	Dim oShape
+	Dim oUno As New com.sun.star.beans.PropertyValue
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oImpPage = oDoc.getDrawPages()
+		'
+		for i = 0 to 5 
+			oImpPage.InsertNewByIndex(i)
+			oSlide = oImpPage.getByIndex(i)
+			oSlide.Name = "Slide" & i+1
+			oSlide.Layout = 19
+			'
+			oShapeNume = oSlide.getCount() - 1
+			for j = 0 to oShapeNume
+				oShape = oSlide.getByIndex(j)
+				If oShape.supportsService("com.sun.star.presentation.TitleTextShape") then
+					oTitleText = " Slide - " & i+1
+					oShape.setString(oTitleText)  
+				End If
+			next j
+		next i
+		' 
+		' Slide2にBookMark付きShapeを作成
+			oSlide = oImpPage.getByName("Slide2")
+				' 四角形の中にTEXT
+					oRectangleShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+					oSlide.add(oRectangleShape)
+ 						oRectangleShape.setPosition(createPoint(3000, 6000))
+						oRectangleShape.setSize(createSize(12000, 3000))
+						oRectangleShapeText = "OOoMacro with PREVPAGE"
+						oRectangleShape.setString(oRectangleShapeText)
+						oRectangleShape.FillStyle = com.sun.star.drawing.FillStyle.SOLID
+						oRectangleShape.TextFitToSize = com.sun.star.drawing.TextFitToSizeType.PROPORTIONAL
+				'　影付き
+					oRectangleShape.Shadow = True
+				' InterAction
+					oRectangleShape.OnClick = com.sun.star.presentation.ClickAction.PREVPAGE
+				'
+			' Slide Show
+			Dim oPres
+				oPres = oDoc.getPresentation()
+				' Slide Show中にPenを表示させる
+				oPres.UsePen = True
+				' Start
+				oPres.Start()				
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+</code></pre><br>
+
+
+<a name="OOoISpIA02"><h6>ISpIA-)<em>[Impress]</em>次のPageに移動</h6></a><pre><code>
+Sub oShapeInterActionImpress
+	Dim oDoc
+	Dim oImpPage
+	Dim oSlide
+	Dim oShape
+	Dim oUno As New com.sun.star.beans.PropertyValue
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oImpPage = oDoc.getDrawPages()
+		'
+		for i = 0 to 5 
+			oImpPage.InsertNewByIndex(i)
+			oSlide = oImpPage.getByIndex(i)
+			oSlide.Name = "Slide" & i+1
+			oSlide.Layout = 19
+			'
+			oShapeNume = oSlide.getCount() - 1
+			for j = 0 to oShapeNume
+				oShape = oSlide.getByIndex(j)
+				If oShape.supportsService("com.sun.star.presentation.TitleTextShape") then
+					oTitleText = " Slide - " & i+1
+					oShape.setString(oTitleText)  
+				End If
+			next j
+		next i
+		' 
+		' Slide2にBookMark付きShapeを作成
+			oSlide = oImpPage.getByName("Slide2")
+				' 四角形の中にTEXT
+					oRectangleShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+					oSlide.add(oRectangleShape)
+ 						oRectangleShape.setPosition(createPoint(3000, 6000))
+						oRectangleShape.setSize(createSize(12000, 3000))
+						oRectangleShapeText = "OOoMacro with NEXTPAGE"
+						oRectangleShape.setString(oRectangleShapeText)
+						oRectangleShape.FillStyle = com.sun.star.drawing.FillStyle.SOLID
+						oRectangleShape.TextFitToSize = com.sun.star.drawing.TextFitToSizeType.PROPORTIONAL
+				'　影付き
+					oRectangleShape.Shadow = True
+				' InterAction
+					oRectangleShape.OnClick = com.sun.star.presentation.ClickAction.NEXTPAGE
+				'
+			' Slide Show
+			Dim oPres
+				oPres = oDoc.getPresentation()
+				' Slide Show中にPenを表示させる
+				oPres.UsePen = True
+				' Start
+				oPres.Start()				
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+</code></pre><br>
+
+
+<a name="OOoISpIA03"><h6>ISpIA-)<em>[Impress]</em>最初のPageに移動</h6></a><pre><code>
+Sub oShapeInterActionImpress
+	Dim oDoc
+	Dim oImpPage
+	Dim oSlide
+	Dim oShape
+	Dim oUno As New com.sun.star.beans.PropertyValue
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oImpPage = oDoc.getDrawPages()
+		'
+		for i = 0 to 5 
+			oImpPage.InsertNewByIndex(i)
+			oSlide = oImpPage.getByIndex(i)
+			oSlide.Name = "Slide" & i+1
+			oSlide.Layout = 19
+			'
+			oShapeNume = oSlide.getCount() - 1
+			for j = 0 to oShapeNume
+				oShape = oSlide.getByIndex(j)
+				If oShape.supportsService("com.sun.star.presentation.TitleTextShape") then
+					oTitleText = " Slide - " & i+1
+					oShape.setString(oTitleText)  
+				End If
+			next j
+		next i
+		' 
+		' Slide2にBookMark付きShapeを作成
+			oSlide = oImpPage.getByName("Slide2")
+				' 四角形の中にTEXT
+					oRectangleShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+					oSlide.add(oRectangleShape)
+ 						oRectangleShape.setPosition(createPoint(3000, 6000))
+						oRectangleShape.setSize(createSize(12000, 3000))
+						oRectangleShapeText = "OOoMacro with FIRSTPAGE"
+						oRectangleShape.setString(oRectangleShapeText)
+						oRectangleShape.FillStyle = com.sun.star.drawing.FillStyle.SOLID
+						oRectangleShape.TextFitToSize = com.sun.star.drawing.TextFitToSizeType.PROPORTIONAL
+				'　影付き
+					oRectangleShape.Shadow = True
+				' InterAction
+					oRectangleShape.OnClick = com.sun.star.presentation.ClickAction.FIRSTPAGE
+				'
+			' Slide Show
+			Dim oPres
+				oPres = oDoc.getPresentation()
+				' Slide Show中にPenを表示させる
+				oPres.UsePen = True
+				' Start
+				oPres.Start()				
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+</code></pre><br>
+
+
+<a name="OOoISpIA04"><h6>ISpIA-)<em>[Impress]</em>最後のPageに移動</h6></a><pre><code>
+Sub oShapeInterActionImpress
+	Dim oDoc
+	Dim oImpPage
+	Dim oSlide
+	Dim oShape
+	Dim oUno As New com.sun.star.beans.PropertyValue
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oImpPage = oDoc.getDrawPages()
+		'
+		for i = 0 to 5 
+			oImpPage.InsertNewByIndex(i)
+			oSlide = oImpPage.getByIndex(i)
+			oSlide.Name = "Slide" & i+1
+			oSlide.Layout = 19
+			'
+			oShapeNume = oSlide.getCount() - 1
+			for j = 0 to oShapeNume
+				oShape = oSlide.getByIndex(j)
+				If oShape.supportsService("com.sun.star.presentation.TitleTextShape") then
+					oTitleText = " Slide - " & i+1
+					oShape.setString(oTitleText)  
+				End If
+			next j
+		next i
+		' 
+		' Slide2にBookMark付きShapeを作成
+			oSlide = oImpPage.getByName("Slide2")
+				' 四角形の中にTEXT
+					oRectangleShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+					oSlide.add(oRectangleShape)
+ 						oRectangleShape.setPosition(createPoint(3000, 6000))
+						oRectangleShape.setSize(createSize(12000, 3000))
+						oRectangleShapeText = "OOoMacro with LASTPAGE"
+						oRectangleShape.setString(oRectangleShapeText)
+						oRectangleShape.FillStyle = com.sun.star.drawing.FillStyle.SOLID
+						oRectangleShape.TextFitToSize = com.sun.star.drawing.TextFitToSizeType.PROPORTIONAL
+				'　影付き
+					oRectangleShape.Shadow = True
+				' InterAction
+					oRectangleShape.OnClick = com.sun.star.presentation.ClickAction.LASTPAGE
+				'
+			' Slide Show
+			Dim oPres
+				oPres = oDoc.getPresentation()
+				' Slide Show中にPenを表示させる
+				oPres.UsePen = True
+				' Start
+				oPres.Start()				
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+</code></pre><br>
+
+
+<a name="OOoISpIA05"><h6>ISpIA-)<em>[Impress]</em>任意のPage / Objectに移動</h6></a><pre><code>
+Sub oShapeInterActionImpress
+	Dim oDoc
+	Dim oImpPage
+	Dim oSlide
+	Dim oShape
+	Dim oUno As New com.sun.star.beans.PropertyValue
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oImpPage = oDoc.getDrawPages()
+		'
+		for i = 0 to 5 
+			oImpPage.InsertNewByIndex(i)
+			oSlide = oImpPage.getByIndex(i)
+			oSlide.Name = "Slide" & i+1
+			oSlide.Layout = 19
+			'
+			oShapeNume = oSlide.getCount() - 1
+			for j = 0 to oShapeNume
+				oShape = oSlide.getByIndex(j)
+				If oShape.supportsService("com.sun.star.presentation.TitleTextShape") then
+					oTitleText = " Slide - " & i+1
+					oShape.setString(oTitleText)  
+				End If
+			next j
+		next i
+		' 
+		' Slide2にBookMark付きShapeを作成
+			oSlide = oImpPage.getByName("Slide2")
+				' 四角形の中にTEXT
+					oRectangleShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+					oSlide.add(oRectangleShape)
+ 						oRectangleShape.setPosition(createPoint(3000, 6000))
+						oRectangleShape.setSize(createSize(12000, 3000))
+						oRectangleShapeText = "OOoMacro with Bookmark"
+						oRectangleShape.setString(oRectangleShapeText)
+						oRectangleShape.FillStyle = com.sun.star.drawing.FillStyle.SOLID
+						oRectangleShape.TextFitToSize = com.sun.star.drawing.TextFitToSizeType.PROPORTIONAL
+				'　影付き
+					oRectangleShape.Shadow = True
+				' InterAction
+					oRectangleShape.OnClick = com.sun.star.presentation.ClickAction.BOOKMARK
+					oRectangleShape.Bookmark = "Slide5"
+				'
+			' Slide Show
+			Dim oPres
+				oPres = oDoc.getPresentation()
+				' Slide Show中にPenを表示させる
+				oPres.UsePen = True
+				' Start
+				oPres.Start()				
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+</code></pre><br>
+
+
+<a name="OOoISpIA06"><h6>ISpIA-)<em>[Impress]</em>別Documentを開く</h6></a><pre><code>
+Sub oShapeInterActionImpress
+	Dim oDoc
+	Dim oImpPage
+	Dim oSlide
+	Dim oShape
+	Dim oUno As New com.sun.star.beans.PropertyValue
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oImpPage = oDoc.getDrawPages()
+		'
+		for i = 0 to 5 
+			oImpPage.InsertNewByIndex(i)
+			oSlide = oImpPage.getByIndex(i)
+			oSlide.Name = "Slide" & i+1
+			oSlide.Layout = 19
+			'
+			oShapeNume = oSlide.getCount() - 1
+			for j = 0 to oShapeNume
+				oShape = oSlide.getByIndex(j)
+				If oShape.supportsService("com.sun.star.presentation.TitleTextShape") then
+					oTitleText = " Slide - " & i+1
+					oShape.setString(oTitleText)  
+				End If
+			next j
+		next i
+		' 
+		' Slide2にBookMark付きShapeを作成
+			oSlide = oImpPage.getByName("Slide2")
+				' 四角形の中にTEXT
+					oRectangleShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+					oSlide.add(oRectangleShape)
+ 						oRectangleShape.setPosition(createPoint(3000, 6000))
+						oRectangleShape.setSize(createSize(12000, 3000))
+						oRectangleShapeText = "OOoMacro with DOCUMENT"
+						oRectangleShape.setString(oRectangleShapeText)
+						oRectangleShape.FillStyle = com.sun.star.drawing.FillStyle.SOLID
+						oRectangleShape.TextFitToSize = com.sun.star.drawing.TextFitToSizeType.PROPORTIONAL
+				'　影付き
+					oRectangleShape.Shadow = True
+				' InterAction
+					oRectangleShape.OnClick = com.sun.star.presentation.ClickAction.DOCUMENT
+					oFileName = "c:\temp\oMacro_test_Draw02.odg"
+					oURL = ConvertToURL(oFileName)
+					oRectangleShape.Bookmark = oURL
+				'
+			' Slide Show
+			Dim oPres
+				oPres = oDoc.getPresentation()
+				' Slide Show中にPenを表示させる
+				oPres.UsePen = True
+				' Start
+				oPres.Start()				
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+</code></pre><br>
+
+
+<a name="OOoISpIA06b"><h6>ISpIA-)<em>[Impress]</em>Movie( wmv File )再生</h6></a><pre><code>
+Sub ShapeInterActionWmv()
+	Dim oDoc as Object
+	Dim oImpPage as Object
+	Dim oSlide as Object
+	Dim oShape as Object
+	Dim oUno As New com.sun.star.beans.PropertyValue
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oImpPage = oDoc.getDrawPages()
+		'
+		for i = 0 to 5 
+			oImpPage.InsertNewByIndex(i)
+			oSlide = oImpPage.getByIndex(i)
+			oSlide.Name = "Slide" & i+1
+			oSlide.Layout = 19
+			'
+			oShapeNume = oSlide.getCount() - 1
+			for j = 0 to oShapeNume
+				oShape = oSlide.getByIndex(j)
+				If oShape.supportsService("com.sun.star.presentation.TitleTextShape") then
+					oTitleText = " Slide - " & i+1
+					oShape.setString(oTitleText)  
+				End If
+			next j
+		next i
+		' 
+		' Slide2にBookMark付きShapeを作成
+			oSlide = oImpPage.getByName("Slide2")
+				' 四角形の中にTEXT
+					oRectangleShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+					oSlide.add(oRectangleShape)
+ 						oRectangleShape.setPosition(createPoint(3000, 6000))
+						oRectangleShape.setSize(createSize(12000, 3000))
+						oRectangleShapeText = "Start wmv file !!"
+						oRectangleShape.setString(oRectangleShapeText)
+						oRectangleShape.FillStyle = com.sun.star.drawing.FillStyle.SOLID
+						oRectangleShape.TextFitToSize = com.sun.star.drawing.TextFitToSizeType.PROPORTIONAL
+				'　影付き
+					oRectangleShape.Shadow = True
+				' InterAction
+					oRectangleShape.OnClick = com.sun.star.presentation.ClickAction.DOCUMENT
+					oFileName = "C:\Users\Public\Videos\Sample Videos\Wildlife.wmv"
+					oURL = ConvertToURL(oFileName)
+					oRectangleShape.Bookmark = oURL
+				'
+			' Slide Show
+			Dim oPres
+				oPres = oDoc.getPresentation()
+				' Slide Show中にPenを表示させる
+				oPres.UsePen = True
+				' Start
+				oPres.Start()				
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+</code></pre>
+<div>
+<IMG SRC="OOoBasic_pic/06impress/01shape/02InterAction/06bDocWmv01.png" align="right" hspace="4" vspace="4" width="20%">
+<IMG SRC="OOoBasic_pic/06impress/01shape/02InterAction/06bDocWmv02.png" align="right" hspace="4" vspace="4" width="20%">
+<IMG SRC="OOoBasic_pic/06impress/01shape/02InterAction/06bDocWmv03.png" align="right" hspace="4" vspace="4" width="20%">
+<IMG SRC="OOoBasic_pic/06impress/01shape/02InterAction/06bDocWmv04.png" align="right" hspace="4" vspace="4" width="20%">
+<br clear="right">
+</div>
+
+
+<br><br><br><br><br><br><br>
+<a name="OOoISpIA07"><h6>ISpIA-)<em>[Impress]</em>Slideを非表示にする</h6></a><pre><code>
+Sub oShapeInterActionImpress
+	Dim oDoc
+	Dim oImpPage
+	Dim oSlide
+	Dim oShape
+	Dim oUno As New com.sun.star.beans.PropertyValue
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oImpPage = oDoc.getDrawPages()
+		'
+		for i = 0 to 5 
+			oImpPage.InsertNewByIndex(i)
+			oSlide = oImpPage.getByIndex(i)
+			oSlide.Name = "Slide" & i+1
+			oSlide.Layout = 19
+			'
+			oShapeNume = oSlide.getCount() - 1
+			for j = 0 to oShapeNume
+				oShape = oSlide.getByIndex(j)
+				If oShape.supportsService("com.sun.star.presentation.TitleTextShape") then
+					oTitleText = " Slide - " & i+1
+					oShape.setString(oTitleText)  
+				End If
+			next j
+		next i
+		' 
+		' Slide2にBookMark付きShapeを作成
+			oSlide = oImpPage.getByName("Slide2")
+				' 四角形の中にTEXT
+					oRectangleShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+					oSlide.add(oRectangleShape)
+ 						oRectangleShape.setPosition(createPoint(3000, 6000))
+						oRectangleShape.setSize(createSize(12000, 3000))
+						oRectangleShapeText = "OOoMacro with INVISIBLE"
+						oRectangleShape.setString(oRectangleShapeText)
+						oRectangleShape.FillStyle = com.sun.star.drawing.FillStyle.SOLID
+						oRectangleShape.TextFitToSize = com.sun.star.drawing.TextFitToSizeType.PROPORTIONAL
+				'　影付き
+					oRectangleShape.Shadow = True
+				' InterAction
+					oRectangleShape.OnClick = com.sun.star.presentation.ClickAction.INVISIBLE
+				'
+			' Slide Show
+			Dim oPres
+				oPres = oDoc.getPresentation()
+				' Slide Show中にPenを表示させる
+				oPres.UsePen = True
+				' Start
+				oPres.Start()				
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+</code></pre><br>
+
+
+<a name="OOoISpIA08"><h6>ISpIA-)<em>[Impress]</em>音楽を流す</h6></a><pre><code>
+Sub oShapeInterActionImpress
+	Dim oDoc
+	Dim oImpPage
+	Dim oSlide
+	Dim oShape
+	Dim oUno As New com.sun.star.beans.PropertyValue
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oImpPage = oDoc.getDrawPages()
+		'
+		for i = 0 to 5 
+			oImpPage.InsertNewByIndex(i)
+			oSlide = oImpPage.getByIndex(i)
+			oSlide.Name = "Slide" & i+1
+			oSlide.Layout = 19
+			'
+			oShapeNume = oSlide.getCount() - 1
+			for j = 0 to oShapeNume
+				oShape = oSlide.getByIndex(j)
+				If oShape.supportsService("com.sun.star.presentation.TitleTextShape") then
+					oTitleText = " Slide - " & i+1
+					oShape.setString(oTitleText)  
+				End If
+			next j
+		next i
+		' 
+		' Slide2にBookMark付きShapeを作成
+			oSlide = oImpPage.getByName("Slide2")
+				' 四角形の中にTEXT
+					oRectangleShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+					oSlide.add(oRectangleShape)
+ 						oRectangleShape.setPosition(createPoint(3000, 6000))
+						oRectangleShape.setSize(createSize(12000, 3000))
+						oRectangleShapeText = "OOoMacro with SOUND"
+						oRectangleShape.setString(oRectangleShapeText)
+						oRectangleShape.FillStyle = com.sun.star.drawing.FillStyle.SOLID
+						oRectangleShape.TextFitToSize = com.sun.star.drawing.TextFitToSizeType.PROPORTIONAL
+				'　影付き
+					oRectangleShape.Shadow = True
+				' InterAction
+					oRectangleShape.OnClick = com.sun.star.presentation.ClickAction.SOUND
+					oFileName = "C:\temp\sound\sample_sound.wav"
+					oURL = ConvertToURL(oFileName)
+					oRectangleShape.Bookmark = oURL
+				'
+			' Slide Show
+			Dim oPres
+				oPres = oDoc.getPresentation()
+				' Slide Show中にPenを表示させる
+				oPres.UsePen = True
+				' Start
+				oPres.Start()				
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+</code></pre><br>
+
+
+<a name="OOoISpIA09"><h6>ISpIA-)<em>[Impress]</em>VERB(未完成)</h6></a><pre><code>
+
+</code></pre><br>
+
+
+<a name="OOoISpIA10a"><h6>ISpIA-)<em>[Impress]</em>指定方法でObject( Shape等 )をFade out</h6></a><pre><code>
+Sub oShapeInterActionImpress
+	Dim oDoc as Object
+	Dim oImpPage as Object
+	Dim oSlide as Object
+	Dim oShape as Object
+	Dim oUno As New com.sun.star.beans.PropertyValue
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oImpPage = oDoc.getDrawPages()
+		'
+		for i = 0 to 5 
+			oImpPage.InsertNewByIndex(i)
+			oSlide = oImpPage.getByIndex(i)
+			oSlide.Name = "Slide" & i+1
+			oSlide.Layout = 19
+			'
+			oShapeNume = oSlide.getCount() - 1
+			for j = 0 to oShapeNume
+				oShape = oSlide.getByIndex(j)
+				If oShape.supportsService("com.sun.star.presentation.TitleTextShape") then
+					oTitleText = " Slide - " & i+1
+					oShape.setString(oTitleText)  
+				End If
+			next j
+		next i
+		' 
+		' Slide2にBookMark付きShapeを作成
+			oSlide = oImpPage.getByName("Slide2")
+				' 四角形の中にTEXT
+					oRectangleShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+					oSlide.add(oRectangleShape)
+ 						oRectangleShape.setPosition(createPoint(3000, 6000))
+						oRectangleShape.setSize(createSize(12000, 3000))
+						oRectangleShapeText = "Varnish"
+						oRectangleShape.setString(oRectangleShapeText)
+						oRectangleShape.FillStyle = com.sun.star.drawing.FillStyle.SOLID
+						oRectangleShape.TextFitToSize = com.sun.star.drawing.TextFitToSizeType.PROPORTIONAL
+				'　影付き
+					oRectangleShape.Shadow = True
+				' InterAction
+					oRectangleShape.Effect = com.sun.star.presentation.AnimationEffect.MOVE_TO_LEFT		' VANISHする時の動作を指定
+					oRectangleShape.OnClick = com.sun.star.presentation.ClickAction.VANISH
+				'
+			' Slide Show
+			Dim oPres
+				oPres = oDoc.getPresentation()
+				' Slide Show中にPenを表示させる
+				oPres.UsePen = True
+				' Start
+				oPres.Start()				
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint as Object
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize as Object
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+'
+' [ Note ]
+'  com.sun.star.presentation.AnimationEffect について
+'	.MOVE_TO_LEFT	:	左から右へObjectが消えていく。設定失敗の場合もある。（原因不明）
+'	.MOVE_FROM_LEFT	:	Objectが無い状態でClickすると左からObjectが現れる。ObjectをCickしても動作無し。
+'	.ZOOM_OUT_FROM_LEFT	:	設定不可
+</code></pre><br>
+
+
+<a name="OOoISpIA11a"><h6>ISpIA-)<em>[Impress]</em>Programを実行( Writer,Calc,Draw,Impress,Base,Math で実行可能なFileのみ )</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/01shape/02InterAction/11_Program01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub oShapeInterActionImpress
+	Dim oDoc as Object
+	Dim oImpPage as Object
+	Dim oSlide as Object
+	Dim oShape as Object
+	Dim oUno As New com.sun.star.beans.PropertyValue
+		oDoc = ThisComponent
+		oImpPage = oDoc.getDrawPages()
+		'
+		for i = 0 to 5 
+			oImpPage.InsertNewByIndex(i)
+			oSlide = oImpPage.getByIndex(i)
+			oSlide.Name = "Slide" & i+1
+			oSlide.Layout = 19
+			'
+			oShapeNume = oSlide.getCount() - 1
+			for j = 0 to oShapeNume
+				oShape = oSlide.getByIndex(j)
+				If oShape.supportsService("com.sun.star.presentation.TitleTextShape") then
+					oTitleText = " Slide - " & i+1
+					oShape.setString(oTitleText)  
+				End If
+			next j
+		next i
+		' 
+		' Slide2にBookMark付きShapeを作成
+			oSlide = oImpPage.getByName("Slide2")
+				' 四角形の中にTEXT
+					oRectangleShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+					oSlide.add(oRectangleShape)
+ 						oRectangleShape.setPosition(createPoint(3000, 6000))
+						oRectangleShape.setSize(createSize(12000, 3000))
+						oRectangleShapeText = "Boot Writer Document"
+						oRectangleShape.setString(oRectangleShapeText)
+						oRectangleShape.FillStyle = com.sun.star.drawing.FillStyle.SOLID
+						oRectangleShape.TextFitToSize = com.sun.star.drawing.TextFitToSizeType.PROPORTIONAL		' 日本語が入ると機能しない
+				'　影付き
+					oRectangleShape.Shadow = True
+				' InterAction
+					oRectangleShape.OnClick = com.sun.star.presentation.ClickAction.PROGRAM
+					oFileName = "C:\temp\LibreOfficeMacro.odt"
+					oURL = ConvertToURL(oFileName)
+					oRectangleShape.Bookmark = oURL
+				'
+			' Slide Show
+			Dim oPres
+				oPres = oDoc.getPresentation()
+				' Slide Show中にPenを表示させる
+				oPres.UsePen = True
+				' Start
+				oPres.Start()				
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+' [ Note ]
+' OpenOffice.org 2.3 等では他Applicationでも実行可能であった様です。
+</code></pre><br>
+
+
+<a name="OOoISpIA12"><h6>ISpIA-)<em>[Impress]</em>Macroを実行</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/06impress/01shape/02InterAction/12ExecuteMacro02.png" align="right" hspace="4" vspace="4" width="20%"><IMG SRC="OOoBasic_pic/06impress/01shape/02InterAction/12ExecuteMacro01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oShapeInterActionImpress
+	Dim oDoc as Object
+	Dim oImpPage as Object
+	Dim oSlide as Object
+	Dim oShape as Object
+		oDoc = ThisComponent
+		oImpPage = oDoc.getDrawPages()
+		'
+		for i = 0 to 5 
+			oImpPage.InsertNewByIndex(i)
+			oSlide = oImpPage.getByIndex(i)
+			oSlide.Name = "Slide" & i+1
+			oSlide.Layout = 19
+			'
+			oShapeNume = oSlide.getCount() - 1
+			for j = 0 to oShapeNume
+				oShape = oSlide.getByIndex(j)
+				If oShape.supportsService("com.sun.star.presentation.TitleTextShape") then
+					oTitleText = " Slide - " & i+1
+					oShape.setString(oTitleText)  
+				End If
+			next j
+		next i
+		' 
+		' Slide2にBookMark付きShapeを作成
+			oSlide = oImpPage.getByName("Slide2")
+				' 四角形の中にTEXT
+				Dim oRectangleShape as Object
+					oRectangleShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+					oSlide.add(oRectangleShape)
+ 						oRectangleShape.setPosition(createPoint(3000, 6000))
+						oRectangleShape.setSize(createSize(12000, 3000))
+						oRectangleShapeText = "Execute Macro"
+						oRectangleShape.setString(oRectangleShapeText)
+						oRectangleShape.FillStyle = com.sun.star.drawing.FillStyle.SOLID
+						oRectangleShape.TextFitToSize = com.sun.star.drawing.TextFitToSizeType.PROPORTIONAL
+				'　影付き
+					oRectangleShape.Shadow = True
+				' InterAction
+					oRectangleShape.OnClick = com.sun.star.presentation.ClickAction.MACRO
+					oRectangleShape.Bookmark = "SampleMacro.Module1.Standard"
+				'
+			' Slide Show
+			Dim oPres as Object
+				oPres = oDoc.getPresentation()
+				' Slide Show中にPenを表示させる
+				oPres.UsePen = True
+				' Start
+				oPres.Start()				
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint as Object
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize as Object
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+'
+'[ Macro ]
+'マイマクロ → Standard → Modulue1 → SampleMacro
+'
+' ### [ Code ]  ###
+'Sub SampleMacro
+'	msgbox("Clickされました",0,"Macro in Slideshow")
+'End Sub
+</code></pre><br>
+
+
+<a name="OOoISpIA13"><h6>ISpIA-)<em>[Impress]</em>Slide Show中止</h6></a><pre><code>
+Sub oShapeInterActionImpress
+	Dim oDoc
+	Dim oImpPage
+	Dim oSlide
+	Dim oShape
+	Dim oUno As New com.sun.star.beans.PropertyValue
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oImpPage = oDoc.getDrawPages()
+		'
+		for i = 0 to 5 
+			oImpPage.InsertNewByIndex(i)
+			oSlide = oImpPage.getByIndex(i)
+			oSlide.Name = "Slide" & i+1
+			oSlide.Layout = 19
+			'
+			oShapeNume = oSlide.getCount() - 1
+			for j = 0 to oShapeNume
+				oShape = oSlide.getByIndex(j)
+				If oShape.supportsService("com.sun.star.presentation.TitleTextShape") then
+					oTitleText = " Slide - " & i+1
+					oShape.setString(oTitleText)  
+				End If
+			next j
+		next i
+		' 
+		' Slide2にBookMark付きShapeを作成
+			oSlide = oImpPage.getByName("Slide2")
+				' 四角形の中にTEXT
+					oRectangleShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+					oSlide.add(oRectangleShape)
+ 						oRectangleShape.setPosition(createPoint(3000, 6000))
+						oRectangleShape.setSize(createSize(12000, 3000))
+						oRectangleShapeText = "OOoMacro with STOPPRESENTATION"
+						oRectangleShape.setString(oRectangleShapeText)
+						oRectangleShape.FillStyle = com.sun.star.drawing.FillStyle.SOLID
+						oRectangleShape.TextFitToSize = com.sun.star.drawing.TextFitToSizeType.PROPORTIONAL
+				'　影付き
+					oRectangleShape.Shadow = True
+				' InterAction
+					oRectangleShape.OnClick = com.sun.star.presentation.ClickAction.STOPPRESENTATION
+				'
+			' Slide Show
+			Dim oPres
+				oPres = oDoc.getPresentation()
+				' Slide Show中にPenを表示させる
+				oPres.UsePen = True
+				' Start
+				oPres.Start()				
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+</code></pre><br>
+
+
+
+
+<br>
+<center><h6><a href="#TopOfPage">Top of Page</a></h6></center><BR>
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/OOoBasic_Impress.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:32:24 GMT -->
+</html>

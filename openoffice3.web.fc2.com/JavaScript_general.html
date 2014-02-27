@@ -1,0 +1,4673 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/JavaScript_general.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:36:53 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<title>Macroの杜(JavaScript編 / General)</title>
+</head>
+<link rel="stylesheet"
+type="text/css" href="css_macroJavaScript_Gneneral.css">
+<body>
+<left><p><A HREF="index-2.html">Home of site</a></p></left><br>
+<a name="TopOfPage"><h1>Macroの杜(JavaScript編)</h1></a>
+
+<h2>【 General 】</h2>
+
+<h3><Center>**********************【 Index 】**********************</center></h3>
+
+<h3>【 Rhino 】</h3>
+</p>
+<p class="s1">Macroの保管場所</p class="s1">
+<ul>
+GPlc-)<a href="#OOoGPlc1"><em>[General]</em>Macro保管場所</a><br>
+</ul>
+
+<p class="s1">Macroの基</p class="s1">
+<ul>
+GM-1)<a href="#OOoGM1"><em>[General]</em>Hello World in JavaScript!!</a><br>
+GM-)<a href="#OOoGM02a"><em>[General]</em>if</a><br>
+GM-)<a href="#OOoGM02b"><em>[General]</em>if(条件演算子)</a><br>
+GM-3)<a href="#OOoGM3"><em>[General]</em>for(回数){処置}</a><br>
+GM-4)<a href="#OOoGM4"><em>[General]</em>while(条件){処置}</a><br>
+GM-5)<a href="#OOoGM5"><em>[General]</em>switch(){case breake default}</a><br>
+GM-6)<a href="#OOoGM6"><em>[General]</em>配列</a><br>
+GM-7)<a href="#OOoGM7"><em>[General]</em>配列への入力</a><br>
+GM-8)<a href="#OOoGM8"><em>[General]</em>配列を次々変更する</a><br>
+</ul>
+<p class="s1">Msgbox</p class="s1">
+<ul>
+GMsg-)<a href="#OOoGMsg0a"><em>[General]</em>Default<em>[ Packages.javax.swing.JFrame("frame") ]</em></a><br>
+GMsg-)<a href="#OOoGMsg0b"><em>[General]</em>Warning<em>[ JOptionPane.WARNING_MESSAGE ]</em></a><br>
+GMsg-)<a href="#OOoGMsg0c"><em>[General]</em>Error<em>[ JOptionPane.ERROR_MESSAGE ]</em></a><br>
+GMsg-)<a href="#OOoGMsg0d"><em>[General]</em>PLAIN_MESSAGE<em>[ JOptionPane.PLAIN_MESSAGE ]</em></a><br>
+GMsg-)<a href="#OOoGMsg1"><em>[General]</em>Yes/No Button Message<em>[ showOptionDialog ]</em></a><br>
+GMsg-)<a href="#OOoGMsg0e"><em>[General]</em>Custon Button<em>[ JOptionPane.QUESTION_MESSAGE / null,options,options[2] ]</em></a><br>
+GMsg-)<a href="#OOoGMsg2"><em>[General]</em>確認message<em>[ showConfirmDialog ]</em></a><br>
+GMsg-)<a href="#OOoGMsg3"><em>[General]</em>message box関数定義</a><br><em>[ getCurrentFrame() / getContainerWindow() / awt.XWindowPeer / awt.XWindow / awt.XMessageBoxFactory / awt.Rectangle ]</em><br>
+GMsg-)<a href="#OOoGMsg4a"><em>[General]</em>Mesgboxの戻り値を取得</a><br><em>[  ]</em><br>
+</ul>
+<br>
+
+<p class="s1">Data</p class="s1">
+<p class="s3">[ Date ]</p class="s3">
+<ul>
+GRDa-)<a href="#OOoGBRDa1"><em>[General]</em>日付の取得<em>[ Package(java.util.date) ]</em></a><br>
+GRDa-)<a href="#OOoGBRDa2"><em>[General]</em>Long型 => Date表示変換<em>[ Packages.java.text.SimpleDateFormat / Packages.java.util.Calendar ]</em></a><br>
+</ul>
+<p class="s3">[ Time ]</p class="s3">
+<ul>
+GRDt-)<a href="#OOoGRDt1"><em>[General]</em>時間の取得<em>[ Package(java.util.date) ]</em></a><br>
+</ul>
+
+<p class="s3">[ Number ]</p class="s3">
+<ul>
+GRDn-)<a href="#OOoGRDn1"><em>[General]</em>整数(小数点切り捨て)<em>[ Integer ]</em></a><br>
+GRDn-)<a href="#OOoGRDn2"><em>[General]</em>倍精度<em>[ Double ]</em></a><br>
+GRDn-)<a href="#OOoGRDn3"><em>[General]</em>配列<em>[ Array() ]</em></a><br>
+GRDn-)<a href="#OOoGRDn3a"><em>[General]</em>配列要素数<em>[ .length ]</em></a><br>
+GRDn-)<a href="#OOoGRDn3b"><em>[General]</em>配列要素の追加(末尾)<em>[ .push() ]</em></a><br>
+GRDn-)<a href="#OOoGRDn3c"><em>[General]</em>配列要素の削除(末尾)<em>[ .pop() ]</em></a><br>
+GRDn-)<a href="#OOoGRDn3"><em>[General]</em>配列要素のSort<em>[ .sort() ]</em></a><br>
+GRDn-)<a href="#OOoGRDn3"><em>[General]</em>配列要素のReverse<em>[ .reverse() ]</em></a><br>
+GRDn-)<a href="#OOoGRDn3"><em>[General]</em>配列要素の移動(先頭削除)<em>[ .shift() ]</em></a><br>
+GRDn-)<a href="#OOoGRDn3"><em>[General]</em>配列要素の移動(先頭追加)<em>[ .unshift() ]</em></a><br>
+GRDn-)<a href="#OOoGRDn4"><em>[General]</em>π<em>[ java.lang.Math.PI ]</em></a><br>
+GRDn-)<a href="#OOoGRDn5"><em>[General]</em>三角関数1<em>[ java.lang.Math.cos() ]</em></a><br>
+GRDn-)<a href="#OOoGRDn5b"><em>[General]</em>三角関数2<em>[ java.lang.Math.acos() ]</em></a><br>
+GRDn-)<a href="#OOoGRDn6"><em>[General]</em>余り<em>[ % ]</em></a><br>
+GRDn-)<a href="#OOoGRDn7"><em>[General]</em>整数化<em>[ parseInt() ]</em></a><br>
+GRDn-)<a href="#OOoGRDn8"><em>[General]</em>実数化<em>[ parseFloat() ]</em></a><br>
+GRDn-)<a href="#OOoGRDn9"><em>[General]</em>式を評価&計算<em>[ eval() ]</em></a><br>
+GRDn-)<a href="#OOoGRDn10"><em>[General]</em>数値で無いか?<em>[ isNaN() ]</em></a><br>
+GRDn-)<a href="#OOoGRDn11"><em>[General]</em>有限値?<em>[ isFinite() ]</em></a><br>
+GRDn-)<a href="#OOoGRDn12"><em>[General]</em>絶対値<em>[ java.lang.Math.abs() ]</em></a><br>
+GRDn-)<a href="#OOoGRDn13"><em>[General]</em>切上げ<em>[ java.lang.Math.ceil() ]</em></a><br>
+GRDn-)<a href="#OOoGRDn14"><em>[General]</em>切下げ<em>[ java.lang.Math.floor() ]</em></a><br>
+GRDn-)<a href="#OOoGRDn15"><em>[General]</em>四捨五入<em>[ java.lang.Math.round() ]</em></a><br>
+GRDn-)<a href="#OOoGRDn16"><em>[General]</em>対数<em>[ java.lang.Math.log() ]</em></a><br>
+GRDn-)<a href="#OOoGRDn17"><em>[General]</em>eの累乗<em>[ java.lang.Math.exp() ]</em></a><br>
+GRDn-)<a href="#OOoGRDn18"><em>[General]</em>比較値1<em>[ java.lang.Math.max() ]</em></a><br>
+GRDn-)<a href="#OOoGRDn19"><em>[General]</em>比較値2<em>[ java.lang.Math.min() ]</em></a><br>
+GRDn-)<a href="#OOoGRDn20"><em>[General]</em>べき乗<em>[ java.lang.Math.pow(,) ]</em></a><br>
+GRDn-)<a href="#OOoGRDn21"><em>[General]</em>平方根<em>[ java.lang.Math.sqrt() ]</em></a><br>
+GRDn-)<a href="#OOoGRDn22"><em>[General]</em>乱数(1以下の値)<em>[ java.lang.Math.randam() ]</em></a><br>
+GRDn-)<a href="#OOoGRDn23"><em>[General]</em>指数表示<em>[ .toExponential() ]</em></a><br>
+GRDn-)<a href="#OOoGRDn24"><em>[General]</em>小数点以下指定表示<em>[ .toFixed ]</em></a><br>
+GRDn-)<a href="#OOoGRDn25"><em>[General]</em>桁数指定表示<em>[ .toPrecision() ]</em></a><br>
+</ul>
+
+<p class="s3">[ String ]</p class="s3">
+<ul>
+GRDs-)<a href="#OOoGRDs1"><em>[General]</em>引数位置の文字を取得<em>[ charAt() ]</em></a><br>
+GRDs-)<a href="#OOoGRDs2"><em>[General]</em>引数で指定された文字列を最後に連結<em>[ concat("") ]</em></a><br>
+GRDs-)<a href="#OOoGRDs3"><em>[General]</em>指定された文字列と比較<em>[ equals("") ]</em></a><br>
+GRDs-)<a href="#OOoGRDs4"><em>[General]</em>oldChar を newChar に変換<em>[ replace("oldChar","newChar") ]</em></a><br>
+GRDs-)<a href="#OOoGRDs5"><em>[General]</em>引数の文字列が最初に出現する位置<em>[ indexOf("") ]</em></a><br>
+GRDs-)<a href="#OOoGRDs6"><em>[General]</em>引数の文字列が最後に出現する位置<em>[ lastIndexOf("") ]</em></a><br>
+GRDs-)<a href="#OOoGRDs7"><em>[General]</em>引数の位置から最後までの部分文字列<em>[ substring() ]</em></a><br>
+GRDs-)<a href="#OOoGRDs8"><em>[General]</em>特定位置の部分文字列<em>[ substring(開始位置,終了位置) ]</em></a><br>
+GRDs-)<a href="#OOoGRDs8b"><em>[General]</em>特定位置の部分文字列2<em>[ slice(開始位置,終了位置) ]</em></a><br>
+GRDs-)<a href="#OOoGRDs8c"><em>[General]</em>特定位置の部分文字列3<em>[ substr(開始位置,文字数) ]</em></a><br>
+GRDs-)<a href="#OOoGRDs9"><em>[General]</em>文字列を小文字に変換<em>[ toLowerCase() ]</em></a><br>
+GRDs-)<a href="#OOoGRDs10"><em>[General]</em>文字列を大文字に変換<em>[ toUpperCase() ]</em></a><br>
+GRDs-)<a href="#OOoGRDs11"><em>[General]</em>String ClassのObjectに変換<em>[ toString() ]</em></a><br>
+GRDs-)<a href="#OOoGRDs12"><em>[General]</em>Latin-1 Codeに変換<em>[ .charCodeAt() ]</em></a><br>
+GRDs-)<a href="#OOoGRDs13"><em>[General]</em>Latin-1 Codeから変換<em>[ .fromCharCode() ]</em></a><br>
+GRDs-)<a href="#OOoGRDs14"><em>[General]</em>URL/URIをencode<em>[ escape() / encodeURI() ]</em></a><br>
+GRDs-)<a href="#OOoGRDs14b"><em>[General]</em>URLをencode<em>[  ]</em></a><br>
+GRDs-)<a href="#OOoGRDs15"><em>[General]</em>URL/URIをdecode<em>[ unescape() / decodeURI() ]</em></a><br>
+GRDs-)<a href="#OOoGRDs15b"><em>[General]</em>URLをdecode<em>[ unescape() / decodeURI() ]</em></a><br>
+GRDs-)<a href="#OOoGRDs16"><em>[General]</em>文字列を検索(頭から)<em>[ .indexOf(,) ]</em></a><br>
+GRDs-)<a href="#OOoGRDs17"><em>[General]</em>正規表現で検索<em>[ RegExp(,) / .match( ) ]</em></a><br>
+GRDs-)<a href="#OOoGRDs18"><em>[General]</em>文字長さ<em>[ .length ]</em></a><br>
+GRDs-)<a href="#OOoGRDs19a"><em>[General]</em>改行<em>[ "\n" ]</em></a><br>
+</ul>
+
+<p class="s3">[ 正規表現 ]</p class="s3">
+<ul>
+GRDre-)<a href="#OOoGRDre01"><em>[General]</em>正規表現を使って文字数をCheck<em>[ Packages.java.util.regex.Matcher / Packages.java.util.regex.Pattern / .compile(".{4,7}") ]</em></a><br>
+GRDre-)<a href="#OOoGRDre02"><em>[General]</em>正規表現を使ってを半角英数Check<em>[  ]</em></a><br>
+GRDre-)<a href="#OOoGRDre03"><em>[General]</em>(未完成)正規表現を使って記号をCheck<em>[  ]</em></a><br>
+GRDre-)<a href="#OOoGRDre04"><em>[General]</em>正規表現を使って郵便番号をCheck<em>[  ]</em></a><br>
+GRDre-)<a href="#OOoGRDre05"><em>[General]</em>正規表現を使って電話番号をCheck<em>[  ]</em></a><br>
+GRDre-)<a href="#OOoGRDre06"><em>[General]</em>正規表現を使ってmail addressをCheck<em>[  ]</em></a><br>
+</ul>
+
+
+<p class="s1">Function</p class="s1">
+<ul>
+GRF-)<a href="#OOoGRF1"><em>[General]</em>Function定義<em>[ function ]</em></a><br>
+</ul>
+
+<p class="s1">Object</p class="s1">
+<ul>
+GROj-)<a href="#OOoGROj1"><em>[General]</em>JavaScript Objectの作成<em>[ org.mozilla.javascript.Context / org.mozilla.javascript.Scriptable ]</em></a><br>
+GROj-)<a href="#OOoGROj3"><em>[General]</em>New Contextに表示(1)<em>[ evaluateString ]</em></a><br>
+GROj-)<a href="#OOoGROj4"><em>[General]</em>New Contextに表示(2)<em>[ evaluateString ]</em></a><br>
+GROj-)<a href="#OOoGROj2"><em>[General]</em>Class Name取得<em>[ .getClass() / .getName() ]</em></a><br>
+</ul>
+
+<p class="s1">I/O( File )</p class="s1">
+<p class="s3">[ File操作 ]</p class="s3">
+<ul>
+GFh-)<a href="#OOoGFh1"><em>[General]</em>Fileの有無確認<em>[ java.io / File / exists() ]</em></a><br>
+GFh-)<a href="#OOoGFh2"><em>[General]</em>File名変更<em>[ java.io / File / renameTo() ]</em></a><br>
+GFh-)<a href="#OOoGFh3"><em>[General]</em>File作成<em>[ java.io / File / createNewFile() ]</em></a><br>
+GFh-)<a href="#OOoGFh4"><em>[General]</em>(未完成)File削除<em>[ java.io / File / delete ]</em></a><br>
+GFh-)<a href="#OOoGFh5"><em>[General]</em>Directory作成<em>[ java.io / File / mkdir() ]</em></a><br>
+</ul>
+
+<p class="s3">[ File情報 ]</p class="s3">
+<p class="s4"><< 取得・確認 >></p class="s4">
+<ul>
+GFi-)<a href="#OOoGFi1"><em>[General]</em>Fileの読み込み可能かどうか<em>[ java.io / File / canRead() ]</em></a><br>
+GFi-)<a href="#OOoGFi1b"><em>[General]</em>Fileの書き込み可能かどうか(ReadOnlyか)<em>[ java.io / File / canWrite() ]</em></a><br>
+GFi-)<a href="#OOoGFi2"><em>[General]</em>Fileかどうか<em>[ java.io / File / isFile() ]</em></a><br>
+GFi-)<a href="#OOoGFi3"><em>[General]</em>Directoryかどうか<em>[ java.io / File / isDirectory() ]</em></a><br>
+GFi-)<a href="#OOoGFi3b"><em>[General]</em>Hidden Fileかどうか<em>[ isHidden ]</em></a><br>
+GFi-)<a href="#OOoGFi3c"><em>[General]</em>絶対Pathかどうか<em>[ isAbsolute ]</em></a><br>
+GFi-)<a href="#OOoGFi4a"><em>[General]</em>File名/Directory名の取得<em>[ java.io / File / getName() ]</em></a><br>
+GFi-)<a href="#OOoGFi4b"><em>[General]</em>絶対Path名の取得<em>[ getAbsolutePath() ]</em></a><br>
+GFi-)<a href="#OOoGFi4c"><em>[General]</em>Path名の取得<em>[ getPath() ]</em></a><br>
+GFi-)<a href="#OOoGFi5"><em>[General]</em>親Directoryの取得<em>[ getParent() ]</em></a><br>
+GFi-)<a href="#OOoGFi6"><em>[General]</em>最終更新日の取得<em>[ lastModified() ]</em></a><br>
+GFi-)<a href="#OOoGFi7"><em>[General]</em>Directory内のFile & Directory数取得<em>[ length / list() ]</em></a><br>
+GFi-)<a href="#OOoGFi7a"><em>[General]</em>Directory内のFile List取得1(文字列)<em>[ list() ]</em></a><br>
+GFi-)<a href="#OOoGFi7b"><em>[General]</em>Directory内のFile List取得2(File Object配列)<em>[ listFiles() ]</em></a><br>
+GFi-)<a href="#OOoGFi8a"><em>[General]</em>Path区切り文字の取得1(複数のpathを続けて記述する場合に使う)<em>[ pathSeparator ]</em></a><br>
+GFi-)<a href="#OOoGFi8b"><em>[General]</em>Path区切り文字の取得2(名前区切り文字)<em>[ separator ]</em></a><br>
+</ul>
+
+<p class="s4"><< 設定 >></p class="s4">
+<ul>
+GFs-)<a href="#OOoGFs1"><em>[General]</em>ReadOnlyに設定<em>[ setReadOnly ]</em></a><br>
+GFs-)<a href="#OOoGFs2"><em>[General]</em>最終更新日の設定<em>[ setLastModified() ]</em></a><br>
+</ul>
+
+<p class="s3">[ Drive ]</p class="s3">
+<ul>
+GFd-)<a href="#OOoGFd1a"><em>[General]</em>Disk容量取得1(total)<em>[ getTotalSpace ]</em></a><br>
+GFd-)<a href="#OOoGFd1b"><em>[General]</em>Disk容量取得2(free)<em>[ getTotalSpace ]</em></a><br>
+GFd-)<a href="#OOoGFd1c"><em>[General]</em>Disk容量取得3(usable)<em>[ getTotalSpace ]</em></a><br>
+</ul>
+
+<p class="s3">[ Stream ]</p class="s3">
+<ul>
+GFSb-)<a href="#OOoGFSb01"><em>[General]</em>Text fileの読込及び書出し[ Byte Stream ]</a><br>
+<em>[ Packages.java.io.BufferedInputStream / Packages.java.io.BufferedOutputStream / Packages.java.io.FileInputStream / Packages.java.io.FileOutputStream / read() / write() ]</em><br>
+GFSb-)<a href="#OOoGFSb02"><em>[General]</em>Text fileの読込及び書出し(文字形式指定)[ 文字Stream ]</a><br>
+<em>[ Packages.java.io.BufferedReader / Packages.java.io.BufferedWriter ]</em>
+</ul>
+
+<p class="s1">Thead</p class="s1">
+<ul>
+GRT-)<a href="#OOoGRT1"><em>[General]</em>5se間実行待ち(Thread Class)<em>[  ]</em></a><br>
+GRT-)<a href="#OOoGRT"><em>[General]</em><em>[  ]</em></a><br>
+GRT-)<a href="#OOoGRT"><em>[General]</em><em>[  ]</em></a><br>
+GRT-)<a href="#OOoGRT"><em>[General]</em><em>[  ]</em></a><br>
+GRT-)<a href="#OOoGRT"><em>[General]</em><em>[  ]</em></a><br>
+GRT-)<a href="#OOoGRT"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+<p class="s1">Utility</p class="s1">
+<ul>
+GRUt-)<a href="#OOoGRUt1"><em>[General]</em>Hashmap<em>[ java.util.Hashmap ]</em></a><br>
+GRUt-)<a href="#OOoGRUt1b"><em>[General]</em>Map Size<em>[ java.util.Hashmap / java.util.map / size ]</em></a><br>
+GRUt-)<a href="#OOoGRUt1c"><em>[General]</em>Map から削除<em>[ java.util.Hashmap / java.util.map / remove ]</em></a><br>
+GRUt-)<a href="#OOoGRUt1d"><em>[General]</em>Map から全て削除<em>[ java.util.Hashmap / java.util.map / clear ]</em></a><br>
+GRUt-)<a href="#OOoGRUt1e"><em>[General]</em>Map の存在をcheckする<em>[ java.util.Hashmap / java.util.map / containsKey / containsValue ]</em></a><br>
+GRUt-)<a href="#OOoGRUt2"><em>[General]</em>(未完成)Hashtable<em>[ java.util.Hashtable / java.util.Enumeration ]</em></a><br>
+GRUt-)<a href="#OOoGRUt3"><em>[General]</em>Text fileの圧縮、解凍<em>[  ]</em></a><br>
+GRUt-)<a href="#OOoGRUt4"><em>[General]</em>利用可能なMemory容量取得<em>[ freeMemory() ]</em></a><br>
+GRUt-)<a href="#OOoGRUt5"><em>[General]</em>全Memory容量取得<em>[ totalMemory() ]</em></a><br>
+GRUt-)<a href="#OOoGRUt"><em>[General]</em><em>[  ]</em></a><br>
+GRUt-)<a href="#OOoGRUt"><em>[General]</em><em>[  ]</em></a><br>
+</ul>
+
+<p class="s1">Swing</p class="s1">
+<p class="s3">[ Frame ]</p class="s3">
+<ul>
+GRAF-)<a href="#OOoGRAF1"><em>[General]</em>Applet Frame作成</a><br><em>[ org.mozilla.javascript.ScriptableObject / putProperty / Packages.javax.swing.JFrame / .defaultCloseOperation = Packages.javax.swing.JFrame.DISPOSE_ON_CLOSE ]</em><br>
+GRAF-)<a href="#OOoGRAF2"><em>[General]</em>Simile図作成1(注：図を消すとOOoまで終了する)</a><br><em>[  ]</em><br>
+GRAF-)<a href="#OOoGRAF2b"><em>[General]</em>Simile図作成2(注：図を消すとOOoまで終了せず)</a><br><em>[  ]</em><br>
+GRAF-)<a href="#OOoGRAF3a"><em>[General]</em>新規Frame作成<em>[ Packages.javax.swing.JFrame ]</em></a><br>
+GRAF-)<a href="#OOoGRAF3b"><em>[General]</em>Labelの追加<em>[ Packages.javax.swing.JPanel / Packages.javax.swing.JLabel ]</em></a><br>
+GRAF-)<a href="#OOoGRAF3c"><em>[General]</em>Text Boxの追加<em>[ Packages.javax.swing.JTextField ]</em></a><br><br>
+GRAF-)<a href="#OOoGRAF3d"><em>[General]</em>Password入力欄(入力値が*になる)の追加<em>[ Packages.javax.swing.JPasswordField ]</em></a><br>
+GRAF-)<a href="#OOoGRAF3e"><em>[General]</em>Text Areaの追加<em>[ Packages.javax.swing.JTextArea ]</em></a><br>
+GRAF-)<a href="#OOoGRAF3f"><em>[General]</em>Buttonの追加<em>[ Packages.javax.swing.JButton ]</em></a><br>
+GRAF-)<a href="#OOoGRAF3g"><em>[General]</em>Check Boxの追加<em>[ Packages.javax.swing.JCheckBox ]</em></a><br>
+GRAF-)<a href="#OOoGRAF3h"><em>[General]</em>Radio Boxの追加<em>[ Packages.javax.swing.JRadioButton ]</em></a><br>
+GRAF-)<a href="#OOoGRAF3i"><em>[General]</em>Radio BOxをGroup化する。(1つしか選択できなくする。)<em>[ Packages.javax.swing.ButtonGroup ]</em></a><br>
+GRAF-)<a href="#OOoGRAF4"><em>[General]</em>Menue Panel<em>[ Packages.javax.swing.JMenu / Packages.javax.swing.JMenuBar / Packages.javax.swing.JMenuItem ]</em></a><br>
+GRAF-)<a href="#OOoGRAF5"><em>[General]</em>Tree表示<em>[ Packages.javax.swing.JTree ]</em></a><br><br>
+GRAF-)<a href="#OOoGRAF6"><em>[General]</em>Tab作成<em>[ Packages.javax.swing.JTabbedPane ]</em></a><br>
+GRAF-)<a href="#OOoGRAF7"><em>[General]</em>ComboBox<em>[ Packages.javax.swing.SwingConstants ]</em></a><br>
+</ul>
+
+<p class="s3">[ Listener ]</p class="s3">
+<ul>
+GRAL-)<a href="#OOoGRAL2a"><em>[General]</em>Action Button作成</a><br><em>[ Packages.java.awt.event.ActionEvent / Packages.java.awt.event.ActionListener / Packages.java.awt.Color / Packages.java.awt.event.MouseEvent / Packages.java.awt.event.MouseListener / Packages.java.awt.event.WindowAdapter / Packages.java.awt.event.WindowEvent ]</em><br>
+GRAL-)<a href="#OOoGRAL2b"><em>[General]</em>mouse Click<em>[ addMouseListener / MouseListener / mouseClicked ]</em></a><br>
+GRAL-)<a href="#OOoGRAL2c"><em>[General]</em>mouse cursorがLabel上にあるか<em>[ mouseEntered ]</em></a><br>
+GRAL-)<a href="#OOoGRAL2d"><em>[General]</em>Mouse CursorがLabel上から外れたの処理<em>[ mouseExited ]</em></a><br>
+GRAL-)<a href="#OOoGRAL2e"><em>[General]</em>MouseがLabel上で押されている時の処理<em>[ mousePressed ]</em></a><br>
+GRAL-)<a href="#OOoGRAL1"><em>[General]</em>Listener Frame作成<em>[ addActionListener / java.awt.event.ActionListener /  ]</em></a><br>
+</ul>
+
+<p class="s1">NetWork</p class="s1">
+<ul>
+GNW-1)<a href="#OOoGNW1"><em>[General]</em>Local情報取得<em>[ Packages.java.net.InetAddress / Packages.java.net.UnknownHostException / getLocalHost() / getHostAddress() / getHostName() ]</em></a><br>
+GNW-2)<a href="#OOoGNW2"><em>[General]</em>Host Nameから情報取得<em>[ Packages.java.net.InetAddress / Packages.java.net.UnknownHostException / getByName() / getHostAddress() / getHostName() ]</em></a><br>
+GNW-3)<a href="#OOoGNW3"><em>[General]</em>IP Addressから情報取得<em>[ Packages.java.net.InetAddress / Packages.java.net.UnknownHostException / getByName() / getHostAddress() / getHostName() ]</em></a><br>
+GNW-4)<a href="#OOoGNW4"><em>[General]</em>複数のIP Address取得<em>[ Packages.java.net.InetAddress / Packages.java.net.UnknownHostException / getAllByName() ]</em></a><br>
+GNW-)<a href="#OOoGNW5a"><em>[General]</em>URL Object作成1<em>[ Packages.java.net.URL / Packages.java.net.MalformedURLException ]</em></a><br>
+GNW-)<a href="#OOoGNW5b"><em>[General]</em>URL Object作成2<em>[ Packages.java.net.URL / Packages.java.net.MalformedURLException  ]</em></a><br>
+GNW-)<a href="#OOoGNW5c"><em>[General]</em>URL Object作成3<em>[ Packages.java.net.URL / Packages.java.net.MalformedURLException  ]</em></a><br>
+GNW-)<a href="#OOoGNW6a"><em>[General]</em>URL ObjectからProtocl取得<em>[ getProtocol() ]</em></a><br>
+GNW-)<a href="#OOoGNW6b"><em>[General]</em>URL Objectからhost name取得<em>[ getHost() ]</em></a><br>
+GNW-)<a href="#OOoGNW6c"><em>[General]</em>URL ObjectからPort No.取得<em>[ getPort() ]</em></a><br>
+GNW-)<a href="#OOoGNW6d"><em>[General]</em>URL Objectから送信文字列取得<em>[ getQuery() ]</em></a><br>
+GNW-)<a href="#OOoGNW6e"><em>[General]</em>URL ObjectからPath取得<em>[ getPath() ]</em></a><br>
+GNW-)<a href="#OOoGNW6f"><em>[General]</em>URL ObjectからFile name取得<em>[ getFile() ]</em></a><br>
+GNW-)<a href="#OOoGNW6g"><em>[General]</em>URL ObjectからAnchor取得<em>[ getRef() ]</em></a><br>
+GNW-)<a href="#OOoGNW6h"><em>[General]</em>URL ObjectからUserInfo取得<em>[ getUserInfo() ]</em></a><br>
+GNW-)<a href="#OOoGNW6i"><em>[General]</em>URL ObjectからUser権限取得<em>[ getAuthority() ]</em></a><br>
+GNW-)<a href="#OOoGNW7a"><em>[General]</em>Contentと接続<em>[ Packages.java.net.URLConnection / openConnection() ]</em></a><br>
+GNW-)<a href="#OOoGNW7b"><em>[General]</em>Contnt Type取得<em>[ Packages.java.net.URLConnection / openConnection() / getContentType() ]</em></a><br>
+GNW-)<a href="#OOoGNW7c"><em>[General]</em>Contnt Size取得<em>[ Packages.java.net.URLConnection / openConnection() / getContentLength() ]</em></a><br>
+GNW-)<a href="#OOoGNW7d"><em>[General]</em>ContntのEncode方式取得<em>[ Packages.java.net.URLConnection / openConnection() / getContentEncoding() ]</em></a><br>
+GNW-)<a href="#OOoGNW7e"><em>[General]</em>Contnt送信日時取得<em>[ Packages.java.net.URLConnection / Packages.java.text.SimpleDateFormat / openConnection() / getDate() ]</em></a><br>
+GNW-)<a href="#OOoGNW7f"><em>[General]</em>Contnt有効期限取得<em>[ Packages.java.net.URLConnection / Packages.java.text.SimpleDateFormat / Packages.java.util.Calendar / openConnection() / getExpiration() ]</em></a><br>
+GNW-)<a href="#OOoGNW7g"><em>[General]</em>Contnt最終更新日取得<em>[ Packages.java.net.URLConnection / Packages.java.text.SimpleDateFormat / Packages.java.util.Calendar / openConnection() / getLastModified() ]</em></a><br>
+GNW-)<a href="#OOoGNW8a"><em>[General]</em>Socket通信<em>[ Packages.java.net.Socket / Packages.java.net.UnknownHostException / new Socket("", 80) ]</em></a><br>
+GNW-)<a href="#OOoGNW8b"><em>[General]</em>Socket通信/接続先のHOST名とIP取得<em>[   ]</em></a><br>
+GNW-)<a href="#OOoGNW8c"><em>[General]</em>Socket通信/接続先のPort No.取得<em>[   ]</em></a><br>
+GNW-)<a href="#OOoGNW8d"><em>[General]</em>Socket通信/バインド先のLocal HOST名とIP取得<em>[   ]</em></a><br>
+GNW-)<a href="#OOoGNW"><em>[General]</em><em>[   ]</em></a><br>
+</ul>
+<br>
+
+<p class="s1">Shell関数</p class="s1">
+<ul>
+GSh-)<a href="#OOoGSh01"><em>[General]</em>Notepadを起動<em>[ com.sun.star.system.XSystemShellExecute ]</em></a><br>
+</ul>
+
+
+
+<p class="s1">Rhino定義関数</p class="s1">
+<ul>
+GRSG-)<a href="#OOoGRSG01"><em>[General]</em>ReadURL<em>[ Packages.org.mozilla.javascript.tools.shell.Global / readUrl() ]</em></a><br>
+</ul>
+
+<p class="s1">XMLHttpRequest()</p class="s1">
+<ul>
+GXHR-)<a href="#OOoGXHR01"><em>[General]</em>XMLHttpRequest()<em>[  ]</em></a><br>
+</ul>
+
+
+<p class="s1">Mouse</p class="s1">
+<ul>
+GMus-1)<a href="#OOoGMus1"><em>[General]</em>Mouse(Cursor)座標</a><br>
+</ul>
+<br>
+
+<p class="s1">ScriptEngine</p class="s1">
+<ul>
+GMus-1)<a href="#OOoGJSe1"><em>[General]</em>ScriptEngine</a><br>
+</ul>
+<br>
+
+<p class="s1">Tips</p class="s1">
+<ul>
+GTs-)<a href="#OOoGTs0"><em>[General]</em>MRIの使用方法<em>[ <a href="http://hermione.s41.xrea.com/pukiwiki/index.php?OOoBasic/Macros/MRI/Documentation/RunMRI#uddad561">「はにゃ」さん個人サイトより</a> ]</em><br>
+GTs-)<a href="#OOoGTs1"><em>[General]</em>Internet ExplorerからNotePad起動(only IE)<em>[  ]</em></a><br>
+GTs-)<a href="#OOoGTs2"><em>[General]</em>Rhino Shell<em>[  ]</em></a><br>
+GTs-)<a href="#OOoGTs3"><em>[General]</em>Rhino Debugger<em>[  ]</em></a><br>
+GTs-)<a href="#OOoGTs4a"><em>[General]</em>Error Handling<em>[  ]</em></a><br>
+</ul>
+
+<p class="s1">RhinoからOpenOffice.org起動(外部起動)</p class="s1">
+<ul>
+GRB-)<a href="#OOoGRB1"><em>[General]</em>RhinoからOpenOffice.org起動<em>[  ]</em></a><br>
+</ul>
+
+<br><br>
+
+
+<center><h3>**********[ Macro Code ]**********</h3></center>
+
+<h3>【 Rhino 】</h3>
+<p class="s1">Macroの保管場所</p class="s1">
+<a name="OOoGPlc1"><h6>GPlc-)<em>[General]</em>Macro保管場所</h6></a><p class="s2">
+[ Windows7 ]
+	マイマクロ			：	C:\Users\[ UserName ]\AppData\Roaming\LibreOffice\3\user\Scripts\javascript\
+	LibreOfficeのマクロ	：	C:\Program Files\LibreOffice 3\Basis\share\Scripts\javascript\
+[ WindowsXP ]
+	マイマクロ			：	C:\Documents and Settings\[ UserName ]\Application Data\OpenOffice.org\3\user\Scripts\javascript\
+	LibreOfficeのマクロ	：	C:\Program Files\OpenOffice 3\Basis\share\Scripts\javascript\
+		
+[ Ubuntu11.04 ]	<= 但し、Ubuntu11.04ではjavascript macroは実行出来ません。(2011/05/14時点)
+	マイマクロ			：	/home/[ UserName ]/.libreoffice/3/user/Scripts/javascript/
+	LibreOfficeのマクロ	：	/usr/lib/libreoffice/basis-link/share/Scripts/javascript/
+[ Ubuntu10.04LTS ]
+	マイマクロ			：	/home/[ UserName ]/.libreoffice/3/user/Scripts/javascript/
+	LibreOfficeのマクロ	：	/usr/lib/libreoffice/basis-link/share/Scripts/javascript/
+</p class="s2"><br>
+
+<p class="s1">Macroの基</p class="s1">
+<a name="OOoGM1"><h6>GM-1)<em>[General]</em>何は無くとも「Hello World!!」(Message Box)</h6></a><pre><code>
+// Hello World in JavaScript
+importClass(Packages.javax.swing.JOptionPane);
+JOptionPane.showMessageDialog(null, "Hello World in JavaScript");
+</code></pre><br>
+
+<a name="OOoGM02a"><h6>GM-2)<em>[General]</em>if</h6></a><pre><code>
+//if <= Ifは駄目
+importClass(Packages.javax.swing.JOptionPane);
+	var oI=2
+	if(oI != 1){
+		JOptionPane.showMessageDialog(null, "oI = 1　ではありません");
+		}
+	else{
+		JOptionPane.showMessageDialog(null, "oI = " + oI + "です");
+}
+</code></pre><br>
+
+
+<a name="OOoGM02b"><h6>GM-2)<em>[General]</em>if(条件演算子)</h6></a><pre><code>
+importClass(Packages.javax.swing.JOptionPane);
+	var oDisp =""; 
+	var oI = 2;
+	oDisp = (oI != 1) ? oDisp = "oI = 1　ではありません" : oDisp = "oI = " + oI + "です"; 
+	//oDisp = "Success"
+	JOptionPane.showMessageDialog(null, oDisp);
+</code></pre><br>
+
+
+<a name="OOoGM3"><h6>GM-3)<em>[General]</em>for(回数){処置}</h6></a><pre><code>
+//for(){ }
+importClass(Packages.javax.swing.JOptionPane);
+	for(i=0; i<=3; i++){
+		JOptionPane.showMessageDialog(null, i + "回目です");
+		}
+</code></pre><br>
+
+
+<a name="OOoGM4"><h6>GM-4)<em>[General]</em>while(条件){処置}</h6></a><pre><code>
+//while(){}
+importClass(Packages.javax.swing.JOptionPane);
+	var i = 1
+	while(i <= 3){
+		JOptionPane.showMessageDialog(null, i + "回目です");
+		i = i + 1
+		}
+</code></pre><br>
+
+
+<a name="OOoGM5"><h6>GM-5)<em>[General]</em>switch(){case breake default}</h6></a><pre><code>
+//Switch(){case default}
+importClass(Packages.javax.swing.JOptionPane);
+importPackage(java.util.date);
+	JOptionPane.showMessageDialog(null, "今日の何曜日?");
+	oToday = new Date();
+	oWeek  = oToday.getDay();
+
+	switch(oWeek)
+		{
+  		case 0: JOptionPane.showMessageDialog(null, "今日は日曜日です！"); break;
+		case 1: JOptionPane.showMessageDialog(null, "今日は月曜日です！"); break;
+		case 2: JOptionPane.showMessageDialog(null, "今日は火曜日です！"); break;
+		case 3: JOptionPane.showMessageDialog(null, "今日は水曜日です！"); break;
+		case 4: JOptionPane.showMessageDialog(null, "今日は木曜日です！"); break;
+		case 5: JOptionPane.showMessageDialog(null, "今日は金曜日です！"); break;
+		default : JOptionPane.showMessageDialog(null, "今日は土曜日です！");break;
+		}
+</code></pre><br>
+
+<a name="OOoGM6"><h6>GM-6)<em>[General]</em>配列</h6></a><pre><code>
+//Array[]
+importClass(Packages.javax.swing.JOptionPane);
+	oTimes = new Array();
+	for(i=0; i<=3; i++){
+		oTimes[i] = i + "回目です"
+	JOptionPane.showMessageDialog(null, oTimes[i]);
+	}
+</code></pre><br>
+
+<a name="OOoGM7"><h6>GM-)<em>[General]</em>配列への入力</h6></a><pre><code>
+//Input data of Array[]
+importClass(java.lang.System);
+importPackage(java.util);
+	var list = new ArrayList();
+		list.add("value1");
+		list.add("value2");
+		list.add("value3");
+</code></pre><br>
+
+<a name="OOoGM8"><h6>GM-)<em>[General]</em>配列を次々変更する</h6></a><pre><code>
+//Input data of Array[]
+importClass(java.lang.System);
+importPackage(java.util);
+importClass(Packages.javax.swing.JOptionPane);
+	var list = new ArrayList();
+		list.add("value1");
+		list.add("value2");
+		list.add("value3");
+		var it = list.iterator();
+		while(it.hasNext()){
+			JOptionPane.showMessageDialog(null, it.next());
+			}
+</code></pre><br>
+
+<p class="s1">Msgbox</p class="s1">
+<a name="OOoGMsg0a"><h6>GJSe-)<em>[General]</em>Default</h6></a><pre><code>
+// message box default
+	importClass(Packages.javax.swing.JOptionPane);
+		frame = new Packages.javax.swing.JFrame("frame")
+		frame.setSize(200,200)
+	JOptionPane.showMessageDialog(frame, "Success");
+</code></pre><br>
+
+<a name="OOoGMsg0b"><h6>GJSe-)<em>[General]</em>Warning</h6></a><pre><code>
+// message box Warning
+	importClass(Packages.javax.swing.JOptionPane);
+		frame = new Packages.javax.swing.JFrame("frame")
+		frame.setSize(200,200)
+	JOptionPane.showMessageDialog(frame, "Success","Title",JOptionPane.WARNING_MESSAGE);
+</code></pre><br>
+
+<a name="OOoGMsg0c"><h6>GJSe-)<em>[General]</em>Error</h6></a><pre><code>
+// message box Error
+	importClass(Packages.javax.swing.JOptionPane);
+		frame = new Packages.javax.swing.JFrame("frame")
+		frame.setSize(200,200)
+	JOptionPane.showMessageDialog(frame, "Error","Title",JOptionPane.ERROR_MESSAGE);
+</code></pre><br>
+
+<a name="OOoGMsg0d"><h6>GJSe-)<em>[General]</em>PLAIN_MESSAGE</h6></a><pre><code>
+// message box Error
+	importClass(Packages.javax.swing.JOptionPane);
+		frame = new Packages.javax.swing.JFrame("frame")
+		frame.setSize(200,200)
+	JOptionPane.showMessageDialog(frame, "No Icon Message","A plain message",JOptionPane.PLAIN_MESSAGE);
+</code></pre><br>
+
+
+<a name="OOoGMsg1"><h6>GJSe-1)<em>[General]</em>Yes/No Button message</h6></a><pre><code>
+// Confirm1
+importClass(Packages.javax.swing.JOptionPane);
+JOptionPane.showOptionDialog(null, "Hello World in JavaScript","test",
+				JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE,
+				null,null,null);
+</code></pre><br>
+			
+<a name="OOoGMsg0e"><h6>GJSe-)<em>[General]</em>Custon Button</h6></a><pre><code>
+//Custom button
+importClass(Packages.javax.swing.JOptionPane);
+frame = new Packages.javax.swing.JFrame("frame")
+frame.setSize(200,200)
+options = new Array("Yes, please","No, thanks","No eggs, no ham!");
+JOptionPane.showOptionDialog(frame,"Would you like some green eggs to go with that ham?",
+    			"Title : A Silly Question", 
+			JOptionPane.YES_NO_CANCEL_OPTION,
+    			JOptionPane.QUESTION_MESSAGE,
+    			null,options,options[2]);
+//
+// options[2] => Defaultにて選択されているButton 
+</code></pre><br>
+
+
+<a name="OOoGMsg2"><h6>GMsg-2)<em>[General]</em>確認message</h6></a><pre><code>
+// Confirm2
+importClass(Packages.javax.swing.JOptionPane);
+JOptionPane.showConfirmDialog(null, "Hello World in JavaScript");
+</code></pre><br>
+
+
+<a name="OOoGMsg3"><h6>GMsg-)<em>[General]</em>message box関数定義</h6></a><pre><code>
+// shows message in the message box
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.awt.XWindowPeer);
+importClass(Packages.com.sun.star.awt.XWindow);
+importClass(Packages.com.sun.star.awt.XMessageBoxFactory);
+importClass(Packages.com.sun.star.awt.Rectangle);
+
+	function showMessage(xDesktop, message)
+		{
+  			xFrame = xDesktop.getCurrentFrame();
+  			xWindow = xFrame.getContainerWindow();
+  			xWindowPeer = UnoRuntime.queryInterface(XWindowPeer, xWindow);
+  			xToolkit = xWindowPeer.getToolkit();
+  			xMessageboxFactory = UnoRuntime.queryInterface(XMessageBoxFactory, xToolkit);
+  			xMessageBox = xMessageboxFactory.createMessageBox(xWindowPeer, new Rectangle(), 'messbox', 1, "", message);
+  		return xMessageBox.execute();
+		}
+// 
+		oDisp = "To Be defined a Function" + "\n" + "for MessageBox";
+	showMessage(XSCRIPTCONTEXT.getDesktop(), oDisp);
+</code></pre><br>
+
+
+<a name="OOoGMsg4a"><h6>GMsg-)<em>[General]</em></h6></a><pre><code>
+// Msgbox_Return
+importClass(Packages.javax.swing.JOptionPane);
+oAns = JOptionPane.showOptionDialog(null, "Hello World in JavaScript","test",
+				JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE,
+				null,null,null);
+frame = new Packages.javax.swing.JFrame("frame")
+frame.setSize(200,200)
+if(oAns == 0){
+	JOptionPane.showMessageDialog(frame, "「はい」が選択されました。");
+	}
+if(oAns == 1){
+	JOptionPane.showMessageDialog(frame, "「いいえ」が選択されました。");
+	}
+if(oAns == -1){
+	JOptionPane.showMessageDialog(frame, "「×」でキャンセルされました。");
+	}
+<img SRC="JavaScript_Pic/01general/01msgbox/01msgboxYesNoReturn01.png" align="Left" hspace="4" vspace="4" width="20%"><img SRC="JavaScript_Pic/01general/01msgbox/01msgboxYesNoReturn02.png" align="Left" hspace="4" vspace="4" width="20%"><img SRC="JavaScript_Pic/01general/01msgbox/01msgboxYesNoReturn03.png" align="Left" hspace="4" vspace="4" width="20%">
+</code></pre><br>
+<br><br><br><br><br><br><br><br>
+
+
+<p class="s1">Data</p class="s1">
+<p class="s3">[ Date ]</p class="s3">
+<a name="OOoGBRDa1"><h6>GRDa-)<em>[General]</em>日付の取得</h6></a><pre><code>
+// Date
+	importClass(Packages.javax.swing.JOptionPane);
+	importPackage(java.util.date);
+		oDateTime = new Date()
+		oYear = oDateTime.getYear() + 1900
+		oMonth = oDateTime.getMonth() + 1
+		oDate = oDateTime.getDate()
+		oDay = oDateTime.getDay()
+			switch(oDay){
+				case 0: oWeek="日"; break;
+				case 1: oWeek="月"; break;
+				case 2: oWeek="火"; break;
+				case 3: oWeek="水"; break;
+				case 4: oWeek="木"; break;
+				case 5: oWeek="金"; break;
+				default : oWeek="土"; break;
+						}
+		JOptionPane.showMessageDialog(null, oYear+"年");
+		JOptionPane.showMessageDialog(null, oMonth+"月");
+		JOptionPane.showMessageDialog(null, oDate+"日");
+		JOptionPane.showMessageDialog(null, oWeek+"曜日");
+	JOptionPane.showMessageDialog(null, "Success");
+</code></pre><br>
+
+<a name="OOoGBRDa2"><h6>GRDa-)<em>[General]</em>Long型 => Date表示変換</h6></a><pre><code>
+// setLastModified
+importClass(Packages.java.text.SimpleDateFormat);
+importClass(Packages.java.util.Calendar);
+importPackage(java.util.date);
+importClass(Packages.javax.swing.JOptionPane);
+	//Long type => Date Type
+		function convertDate(lo){
+			cal = Calendar.getInstance();
+			sf = new SimpleDateFormat("yyyy/MM/dd");
+			return sf.format(cal.getTime());
+								}
+</code></pre><br>
+
+
+<a name="OOoGRDt1"><h6>GRDt-)<em>[General]</em>時間の取得</h6></a><pre><code>
+// Time
+importClass(Packages.javax.swing.JOptionPane);
+importPackage(java.util.date);
+oDateTime = new Date()
+oHour = oDateTime.getHours()
+oMinute = oDateTime.getMinutes()
+oSecond = oDateTime.getSeconds()
+
+JOptionPane.showMessageDialog(null, oHour+"時");
+JOptionPane.showMessageDialog(null, oMinute+"分");
+JOptionPane.showMessageDialog(null, oSecond+"秒");
+JOptionPane.showMessageDialog(null, "Success");
+</code></pre><br>
+
+<p class="s3">[ Number ]</p class="s3">
+<a name="OOoGRDn1"><h6>GRDn-)<em>[General]</em>整数(小数点切り捨て)</h6></a><pre><code>
+// Number
+importClass(Packages.javax.swing.JOptionPane);
+var oNum = 12345.67890123456789
+oInt = Integer(oNum)
+JOptionPane.showMessageDialog(null, oInt+" <= [ Integer ]");
+JOptionPane.showMessageDialog(null, "Success");
+</code></pre><br>
+
+<a name="OOoGRDn2"><h6>GRDn-)<em>[General]</em>倍精度</h6></a><pre><code>
+// Number
+importClass(Packages.javax.swing.JOptionPane);
+var oNum = 12345.67890123456789
+oDbl = Double(oNum)
+JOptionPane.showMessageDialog(null, oDbl+" <= [ Double ]");
+JOptionPane.showMessageDialog(null, "Success");
+</code></pre><br>
+
+<a name="OOoGRDn3"><h6>GRDn-)<em>[General]</em>配列</h6></a><pre><code>
+// Array()
+importClass(Packages.javax.swing.JOptionPane);
+jArr = new Array(200,500,600)
+// jArr[0] = 300					// <= OK
+JOptionPane.showMessageDialog(null, jArr[0]);
+JOptionPane.showMessageDialog(null, "Success");
+</code></pre><br>
+
+
+<a name="OOoGRDn3a"><h6>GRDn-)<em>[General]</em>配列要素数</h6></a><pre><code>
+//length
+importClass(Packages.javax.swing.JOptionPane);
+jArr = new Array(200,500,600)
+jNum = jArr.length
+JOptionPane.showMessageDialog(null, jArr+" の配列要素数は => "+jNum);
+JOptionPane.showMessageDialog(null, "Success");
+</code></pre><br>
+
+<a name="OOoGRDn3"><h6>GRDn-)<em>[General]</em>配列要素の追加(末尾)</h6></a><pre><code>
+//push()
+importClass(Packages.javax.swing.JOptionPane);
+jArr = new Array(200,500,600)
+old = jArr.toString()
+jArr.push(100)
+JOptionPane.showMessageDialog(null, old + " => "+ jArr);
+JOptionPane.showMessageDialog(null, "Success");
+</code></pre><br>
+
+<a name="OOoGRDn3"><h6>GRDn-)<em>[General]</em>配列要素の削除(末尾)</h6></a><pre><code>
+//pop()
+importClass(Packages.javax.swing.JOptionPane);
+jArr = new Array("black","red","yellow","green","white")
+old = jArr.toString()
+jArr.pop()
+JOptionPane.showMessageDialog(null, old + "\n" + " => "+ jArr);
+JOptionPane.showMessageDialog(null, "Success");
+</code></pre><br>
+
+<a name="OOoGRDn3"><h6>GRDn-)<em>[General]</em>配列要素のSort</h6></a><pre><code>
+//sort()
+importClass(Packages.javax.swing.JOptionPane);
+function sortFunc(n1,n2){
+						return n1-n2;
+						}
+jArr = new Array(60,40,50,30,100,20,70);
+old = jArr.toString();
+jArr.sort(sortFunc);
+JOptionPane.showMessageDialog(null, old + "\n" + " => " + "\n" + jArr);
+JOptionPane.showMessageDialog(null, "Success");
+</code></pre><br>
+
+<a name="OOoGRDn3"><h6>GRDn-)<em>[General]</em>配列要素のReverse</h6></a><pre><code>
+//reverse()
+importClass(Packages.javax.swing.JOptionPane);
+jArr = new Array(60,40,50,30,100,20,70);
+old = jArr.toString();
+jArr.reverse();
+JOptionPane.showMessageDialog(null, old + "\n" + " => " + "\n" + jArr);
+JOptionPane.showMessageDialog(null, "Success");
+</code></pre><br>
+
+<a name="OOoGRDn3"><h6>GRDn-)<em>[General]</em>配列要素の移動(先頭削除)</h6></a><pre><code>
+//shift()
+importClass(Packages.javax.swing.JOptionPane);
+jArr = new Array("gold","silver","black","white");
+old = jArr.toString();
+jArr.shift();
+JOptionPane.showMessageDialog(null, old + "\n" + " => " + "\n" + jArr);
+</code></pre><br>
+
+<a name="OOoGRDn3"><h6>GRDn-)<em>[General]</em>配列要素の移動(先頭追加)</h6></a><pre><code>
+//unshift()
+importClass(Packages.javax.swing.JOptionPane);
+jArr = new Array("gold","silver","black","white");
+old = jArr.toString();
+jArr.unshift("add");
+JOptionPane.showMessageDialog(null, old + "\n" + " => " + "\n" + jArr);
+</code></pre><br>
+
+<a name="OOoGRDn4"><h6>GRDn-)<em>[General]</em>π</h6></a><pre><code>
+// PAI
+importClass(Packages.javax.swing.JOptionPane);
+var oNum = java.lang.Math.PI;
+JOptionPane.showMessageDialog(null, oNum);
+</code></pre><br>
+
+<a name="OOoGRDn5"><h6>GRDn-)<em><em></em></em></em>[General]</em>三角関数1</h6></a><pre><code>
+// Trigonometric function
+importClass(Packages.javax.swing.JOptionPane);
+var oNum = java.lang.Math.cos(0);
+JOptionPane.showMessageDialog(null, oNum);
+</code></pre><br>
+
+<a name="OOoGRDn5b"><h6>GRDn-)<em>[General]</em>三角関数2</h6></a><pre><code>
+// Trigonometric function
+importClass(Packages.javax.swing.JOptionPane);
+var oPI = java.lang.Math.PI
+var oNum1 = java.lang.Math.acos(0);
+var oNum = oNum1*180/oPI
+JOptionPane.showMessageDialog(null, oNum+"°");
+</code></pre><br>
+
+<a name="OOoGRDn6"><h6>GRDn-)<em>[General]</em>余り</h6></a><pre><code>
+// Surplus
+importClass(Packages.javax.swing.JOptionPane);
+var oNum = 5%3
+JOptionPane.showMessageDialog(null, oNum);
+</code></pre><br>
+
+<a name="OOoGRDn7"><h6>GRDn-)<em>[General]</em>整数化</h6></a><pre><code>
+// Integer
+importClass(Packages.javax.swing.JOptionPane);
+var oPI = java.lang.Math.PI
+var oNum = parseInt(oPI) 
+JOptionPane.showMessageDialog(null, oNum);
+</code></pre><br>
+
+<a name="OOoGRDn8"><h6>GRDn-)<em>[General]</em>実数化</h6></a><pre><code>
+// Float
+importClass(Packages.javax.swing.JOptionPane);
+var oPI = java.lang.Math.PI
+var oNum = parseFloat(oPI) 
+JOptionPane.showMessageDialog(null, oNum);
+</code></pre><br>
+
+<a name="OOoGRDn9"><h6>GRDn-)<em>[General]</em>式を評価&計算</h6></a><pre><code>
+// eval
+importClass(Packages.javax.swing.JOptionPane);
+var oPI = java.lang.Math.PI
+var oNum = eval(oPI/2) 
+JOptionPane.showMessageDialog(null, oNum);
+</code></pre><br>
+
+<a name="OOoGRDn10"><h6>GRDn-)<em>[General]</em>数値で無いか?</h6></a><pre><code>
+// Not to be Number
+importClass(Packages.javax.swing.JOptionPane);
+var oPI = java.lang.Math.PI
+var oNum = parseInt(oPI)
+oStr = "test"
+oN = isNaN(oNum)
+oS = isNaN(oStr) 
+JOptionPane.showMessageDialog(null, oNum+ "は数値で無い? => "+oN+" : "+oStr+"は数値で無い?=> "+oS);
+</code></pre><br>
+
+<a name="OOoGRDn11"><h6>GRDn-)<em>[General]</em>有限値?</h6></a><pre><code>
+// Finite
+importClass(Packages.javax.swing.JOptionPane);
+var oPI = java.lang.Math.PI
+var oNum = parseInt(oPI)
+var oNum2 = 1/0
+oF1 = isFinite(oNum)
+oF2 = isFinite(oNum2) 
+JOptionPane.showMessageDialog(null, oNum+ "は有限? => "+oF1+" : "+oNum2+"は有限?=> "+oF2);
+</code></pre><br>
+
+<a name="OOoGRDn"><h6>GRDn-)<em>[General]</em></h6></a><pre><code>
+// abs
+importClass(Packages.javax.swing.JOptionPane);
+var oNum1 = -100
+var oNum2 = java.lang.Math.abs(oNum1)
+oF1 = isFinite(oNum)
+oF2 = isFinite(oNum2) 
+JOptionPane.showMessageDialog(null, oNum1+ "の絶対値は => "+oNum2);
+</code></pre><br>
+
+<a name="OOoGRDn"><h6>GRDn-)<em>[General]</em>切上げ</h6></a><pre><code>
+// ceil
+importClass(Packages.javax.swing.JOptionPane);
+var oPI = java.lang.Math.PI
+var oNum = java.lang.Math.ceil(oPI)
+JOptionPane.showMessageDialog(null, oPI+ "の切上げ値は => "+oNum);
+</code></pre><br>
+
+<a name="OOoGRDn"><h6>GRDn-)<em>[General]</em>切下げ</h6></a><pre><code>
+// floor
+importClass(Packages.javax.swing.JOptionPane);
+var oPI = java.lang.Math.PI
+var oNum = java.lang.Math.floor(oPI)
+JOptionPane.showMessageDialog(null, oPI+ "の切下げ値は => "+oNum);
+</code></pre><br>
+
+<a name="OOoGRDn"><h6>GRDn-)<em>[General]</em>四捨五入</h6></a><pre><code>
+// round
+importClass(Packages.javax.swing.JOptionPane);
+var oPI = java.lang.Math.PI
+var oNum = java.lang.Math.round(oPI)
+JOptionPane.showMessageDialog(null, oPI+ "の四捨五入値は => "+oNum);
+</code></pre><br>
+
+<a name="OOoGRDn"><h6>GRDn-)<em>[General]</em>対数</h6></a><pre><code>
+// log
+importClass(Packages.javax.swing.JOptionPane);
+var oNum = java.lang.Math.log(5*2)
+JOptionPane.showMessageDialog(null, "e^(5*2) = "+oNum);
+</code></pre><br>
+
+<a name="OOoGRDn"><h6>GRDn-)<em>[General]</em>eの累乗</h6></a><pre><code>
+// exp
+importClass(Packages.javax.swing.JOptionPane);
+var oNum = java.lang.Math.exp(5*2)
+JOptionPane.showMessageDialog(null, "exp(5*2) = "+oNum);
+</code></pre><br>
+
+<a name="OOoGRDn"><h6>GRDn-)<em>[General]</em>比較値1</h6></a><pre><code>
+// max
+importClass(Packages.javax.swing.JOptionPane);
+var oNum = java.lang.Math.max(1,2)
+JOptionPane.showMessageDialog(null, "max(1,2) = "+oNum);
+</code></pre><br>
+
+<a name="OOoGRDn"><h6>GRDn-)<em>[General]</em>比較値2</h6></a><pre><code>
+// min
+importClass(Packages.javax.swing.JOptionPane);
+var oNum = java.lang.Math.min(1,2)
+JOptionPane.showMessageDialog(null, "max(1,2) = "+oNum);
+</code></pre><br>
+
+<a name="OOoGRDn"><h6>GRDn-)<em>[General]</em>べき乗</h6></a><pre><code>
+// pow
+importClass(Packages.javax.swing.JOptionPane);
+var oNum = java.lang.Math.pow(2,5)
+JOptionPane.showMessageDialog(null, "2^5 = "+oNum);
+</code></pre><br>
+
+<a name="OOoGRDn"><h6>GRDn-)<em>[General]</em>平方根</h6></a><pre><code>
+// squrt
+importClass(Packages.javax.swing.JOptionPane);
+var oNum = java.lang.Math.sqrt(3*3*3)
+JOptionPane.showMessageDialog(null, "sqrt(3*3*3) = "+oNum);
+</code></pre><br>
+
+<a name="OOoGRDn"><h6>GRDn-)<em>[General]</em>乱数</h6></a><pre><code>
+// random()
+importClass(Packages.javax.swing.JOptionPane);
+var oNum1 = java.lang.Math.random()
+JOptionPane.showMessageDialog(null, "1回目の乱数 => "+oNum1);
+var oNum2 = java.lang.Math.random()
+JOptionPane.showMessageDialog(null, "2回目の乱数 => "+oNum2);
+</code></pre><br>
+
+<a name="OOoGRDn"><h6>GRDn-)<em>[General]</em>指数表示</h6></a><pre><code>
+// toExponential
+importClass(Packages.javax.swing.JOptionPane);
+var oPI = java.lang.Math.PI
+var oNum1 = oPI * 100
+var oNum2 = oNum1.toExponential(3)
+JOptionPane.showMessageDialog(null, oNum2);
+</code></pre><br>
+
+<a name="OOoGRDn"><h6>GRDn-)<em>[General]</em>小数点以下指定表示</h6></a><pre><code>
+// toFixed
+importClass(Packages.javax.swing.JOptionPane);
+var oPI = java.lang.Math.PI
+var oNum1 = oPI * 100
+var oNum2 = oNum1.toFixed(1)
+JOptionPane.showMessageDialog(null, oNum2);
+</code></pre><br>
+
+<a name="OOoGRDn"><h6>GRDn-)<em>[General]</em>桁数指定表示</h6></a><pre><code>
+// toPrecision
+importClass(Packages.javax.swing.JOptionPane);
+var oPI = java.lang.Math.PI
+var oNum1 = oPI * 100
+var oNum2 = oNum1.toPrecision(2)
+JOptionPane.showMessageDialog(null, oNum2);
+</code></pre><br>
+
+
+
+<p class="s3">[ String ]</p class="s3">
+<a name="OOoGRDs1"><h6>GRDs-)<em>[General]</em>引数位置の文字を取得</h6></a><pre><code>
+// charAt()
+importClass(Packages.javax.swing.JOptionPane);
+	jString = "ABSDEFG";
+		oTC = jString.charAt(0);
+	JOptionPane.showMessageDialog(null, oTC);
+	jString = "坂本龍馬"
+		oTC = jString.charAt(2);
+	JOptionPane.showMessageDialog(null, oTC);
+</code></pre><br>
+
+<a name="OOoGRDs2"><h6>GRDs-)<em>[General]</em>引数で指定された文字列を最後に連結</h6></a><pre><code>
+// concat("")
+importClass(Packages.javax.swing.JOptionPane);
+	jString = "ABSDEFG";
+		oTC = jString.concat("を繋ぎました。");
+	JOptionPane.showMessageDialog(null, oTC);
+	jString = "坂本龍馬"
+		oTC = jString.concat("を繋ぎました。");
+	JOptionPane.showMessageDialog(null, oTC);
+</code></pre><br>
+
+
+<a name="OOoGRDs3"><h6>GRDs-)<em>[General]</em>指定された文字列と比較</h6></a><pre><code>
+// equals("")
+importClass(Packages.javax.swing.JOptionPane);
+	jString = "ABcdEfG";
+		oTC = jString.equals("BC");
+	JOptionPane.showMessageDialog(null, oTC);
+	jString = "坂本龍馬"
+		oTC = jString.equals("坂本龍馬");
+	JOptionPane.showMessageDialog(null, oTC);
+</code></pre><br>
+
+
+<a name="OOoGRDs4"><h6>GRDs-)<em>[General]</em>oldChar を newChar に変換</h6></a><pre><code>
+// replace("","")
+importClass(Packages.javax.swing.JOptionPane);
+	jString = "ABcdEfG";
+		oTC = jString.replace("B","zz");
+	JOptionPane.showMessageDialog(null, oTC);
+//	jString = "坂本龍馬";		
+//		oTC = jString.equals("龍","竜"); <=　Not To Be Used
+</code></pre><br>
+
+
+<a name="OOoGRDs5"><h6>GRDs-)<em>[General]</em>引数の文字列が最初に出現する位置</h6></a><pre><code>
+// indexOf("")
+importClass(Packages.javax.swing.JOptionPane);
+	jString = "ABcdEfG";
+		oTC = jString.indexOf("dE");
+	JOptionPane.showMessageDialog(null, oTC);
+	jString = "坂本龍馬";
+		oTC = jString.indexOf("本");
+	JOptionPane.showMessageDialog(null, oTC);
+</code></pre><br>
+
+
+<a name="OOoGRDs6"><h6>GRDs-)<em>[General]</em>引数の文字列が最後に出現する位置</h6></a><pre><code>
+// lastIndexOf("")
+importClass(Packages.javax.swing.JOptionPane);
+	jString = "ABcdEfAG";
+		oTC = jString.lastIndexOf("A");
+	JOptionPane.showMessageDialog(null, oTC);
+	jString = "坂本龍馬日本";
+		oTC = jString.lastIndexOf("本");
+	JOptionPane.showMessageDialog(null, oTC);
+</code></pre><br>
+
+
+<a name="OOoGRDs7"><h6>GRDs-)<em>[General]</em>引数の位置から最後までの部分文字列</h6></a><pre><code>
+// substring()
+importClass(Packages.javax.swing.JOptionPane);
+	jString = "ABcdEfAG";
+		oTC = jString.substring(4);
+	JOptionPane.showMessageDialog(null, oTC);
+	jString = "坂本龍馬日本";
+		oTC = jString.substring(4);
+	JOptionPane.showMessageDialog(null, oTC);
+</code></pre><br>
+
+
+<a name="OOoGRDs8"><h6>GRDs-)<em>[General]</em>特定位置の部分文字列</h6></a><pre><code>
+// substring(開始位置,終了位置)
+importClass(Packages.javax.swing.JOptionPane);
+	jString = "ABcdEfAG";
+		oTC = jString.substring(2,5);	// substring(開始位置,終了位置)
+	JOptionPane.showMessageDialog(null, oTC);
+	jString = "坂本龍馬日本";
+		oTC = jString.substring(2,4);
+	JOptionPane.showMessageDialog(null, oTC);
+</code></pre><br>
+
+
+<a name="OOoGRDs8b"><h6>GRDs-)<em>[General]</em>特定位置の部分文字列2</h6></a><pre><code>
+// slice(開始位置,終了位置)
+importClass(Packages.javax.swing.JOptionPane);
+	jString = "ABcdEfAG";
+		oTC = jString.slice(2,5);
+	JOptionPane.showMessageDialog(null, oTC);
+	jString = "坂本龍馬日本";
+		oTC = jString.slice(2,4);
+	JOptionPane.showMessageDialog(null, oTC);
+</code></pre><br>
+
+
+<a name="OOoGRDs8c"><h6>GRDs-)<em>[General]</em>特定位置の部分文字列3</h6></a><pre><code>
+// substr(開始位置,文字数)
+importClass(Packages.javax.swing.JOptionPane);
+	jString = "ABcdEfAG";
+		oTC = jString.substr(2,2);	// substring(開始位置,終了位置+1)
+	JOptionPane.showMessageDialog(null, oTC);
+	jString = "坂本龍馬日本";
+		oTC = jString.substr(2,2);
+	JOptionPane.showMessageDialog(null, oTC);
+</code></pre><br>
+
+
+<a name="OOoGRDs9"><h6>GRDs-)<em>[General]</em>文字列を小文字に変換</h6></a><pre><code>
+// toLowerCase()
+importClass(Packages.javax.swing.JOptionPane);
+	jString = "ABcdEfAG";
+		oTC = jString.toLowerCase();
+	JOptionPane.showMessageDialog(null, oTC);
+</code></pre><br>
+
+
+<a name="OOoGRDs10"><h6>GRDs-)<em>[General]</em>文字列を大文字に変換</h6></a><pre><code>
+// toUpperCase()
+importClass(Packages.javax.swing.JOptionPane);
+	jString = "ABcdEfAG";
+		oTC = jString.toUpperCase();
+	JOptionPane.showMessageDialog(null, oTC);
+</code></pre><br>
+
+<a name="OOoGRDs11"><h6>GRDs-)<em>[General]</em>String ClassのObjectに変換</h6></a><pre><code>
+// toString()
+importClass(Packages.javax.swing.JOptionPane);
+	jString = "ABcdEfAG";
+		oTC = jString.toString();
+	JOptionPane.showMessageDialog(null, oTC);
+	jString = "坂本龍馬";
+		oTC = jString.toString();
+	JOptionPane.showMessageDialog(null, oTC);
+</code></pre><br>
+
+<a name="OOoGRDs12"><h6>GRDs-)<em>[General]</em>Latin-1 Codeに変換</h6></a><pre><code>
+// charCodeAt()
+importClass(Packages.javax.swing.JOptionPane);
+	jString = "ABcdEfAG";
+	oTC = jString.charCodeAt(3);
+		JOptionPane.showMessageDialog(null, jString.charAt(3)+" => "+oTC);
+	oTC = jString.charCodeAt(1);
+		JOptionPane.showMessageDialog(null, jString.charAt(1)+" => "+oTC);
+	jString = "坂本龍馬";
+	oTC = jString.charCodeAt(0);
+		JOptionPane.showMessageDialog(null, jString.charAt(0)+" => "+oTC);
+	oTC = jString.charCodeAt(2);
+		JOptionPane.showMessageDialog(null, jString.charAt(2)+" => "+oTC);
+</code></pre><br>
+
+
+<a name="OOoGRDs13"><h6>GRDs-)<em>[General]</em>Latin-1 Codeから変換</h6></a><pre><code>
+// fromCharCode
+importClass(Packages.javax.swing.JOptionPane);
+	jCode = 65;
+		oTC = String.fromCharCode(jCode);
+	JOptionPane.showMessageDialog(null, jCode+" => "+oTC);
+	jCode = 22338;
+		oTC = String.fromCharCode(jCode);
+	JOptionPane.showMessageDialog(null, jCode+" => "+oTC);
+</code></pre><br>
+
+
+<a name="OOoGRDs14"><h6>GRDs-)<em>[General]</em>URL/URIをencode</h6></a><pre><code>
+// escape() / encodeURI()
+importClass(Packages.javax.swing.JOptionPane);
+	jString = "ABcdEfAG";
+		oTC = escape(jString);
+			JOptionPane.showMessageDialog(null, jString+" => "+oTC);
+		oTC = encodeURI(jString);
+			JOptionPane.showMessageDialog(null, jString+" => "+oTC);
+	jString = "坂本龍馬";
+		oTC = escape(jString);
+			JOptionPane.showMessageDialog(null, jString+" => "+oTC);
+		oTC = encodeURI(jString);
+			JOptionPane.showMessageDialog(null, jString+" => "+oTC);
+</code></pre><br>
+
+
+<a name="OOoGRDs14b"><h6>GRDs-)<em>[General]</em>URLをencode</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/String/01Encode01.png" align="right" hspace="4" vspace="4" width="45%">
+// Encode using Java Class
+	importClass(Packages.java.io.UnsupportedEncodingException);
+	importClass(Packages.java.net.URLEncoder);
+	importClass(Packages.javax.swing.JOptionPane);
+	// 
+		param = "あいうえおかきくけこ";
+		try{
+			oCode = URLEncoder.encode(param,"UTF-8");
+			oDisp = param + "\n" + "  =>  " + "\n" + oCode;
+			JOptionPane.showMessageDialog(null, oDisp);
+			} catch(UnsupportedEncodingException) {
+				// 例外処理
+				JOptionPane.showMessageDialog(null, "文字CodeがSupportされていません");
+			}
+</code></pre><br>
+
+
+<a name="OOoGRDs15"><h6>GRDs-)<em>[General]</em>URL/URIをdecode</h6></a><pre><code>
+// unescape()
+importClass(Packages.javax.swing.JOptionPane);
+	jString = "%u5742%u672C%u9F8D%u99AC";
+		oTC = unescape(jString);
+			JOptionPane.showMessageDialog(null, jString+" => "+oTC);
+//		oTC = decodeURI(jString);
+//			JOptionPane.showMessageDialog(null, jString+" => "+oTC);
+	jString = "%E5%9D%E6%9C%AC%E9%AC%E9%BE%8D%E9%A6%AC";
+		oTC = unescape(jString);
+			JOptionPane.showMessageDialog(null, jString+" => "+oTC);
+//		oTC = decodeURI(jString);
+//			JOptionPane.showMessageDialog(null, jString+" => "+oTC);
+</code></pre><br>
+
+
+<a name="OOoGRDs15b"><h6>GRDs-)<em>[General]</em>URLをdecode</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/String/02Decode01.png" align="right" hspace="4" vspace="4" width="45%">
+// Decode using Java Class
+	importClass(Packages.java.io.UnsupportedEncodingException);
+	importClass(Packages.java.net.URLEncoder);
+	importClass(Packages.java.net.URLDecoder);
+	importClass(Packages.javax.swing.JOptionPane);
+	// 
+		param = "あいうえおかきくけこ";
+		try{
+			oEnCode = URLEncoder.encode(param,"UTF-8");
+			oDeCode = URLDecoder.decode(oEnCode,"UTF-8");
+			oDisp = param + "\n" + "  =>  " + "\n" + oEnCode;
+			oDisp = oDisp + "\n" + "  =>  " + "\n" + oDeCode;
+			JOptionPane.showMessageDialog(null, oDisp);
+			} catch(UnsupportedEncodingException) {
+				// 例外処理
+				JOptionPane.showMessageDialog(null, "文字CodeがSupportされていません");
+			}
+</code></pre><br>
+
+
+<a name="OOoGRDs16"><h6>GRDs-)<em>[General]</em>文字列を検索(頭から)</h6></a><pre><code>
+// indexOf()
+importClass(Packages.javax.swing.JOptionPane);
+	jString = "ABcdEfAG坂本龍馬";
+		oTC = jString.indexOf("d",0)+1;
+	JOptionPane.showMessageDialog(null, jString+" におけるdの位置は頭から"+oTC+"番目");
+	jString = "坂本龍馬ABcdEfAG";
+		oTC = jString.indexOf("龍",0)+1;
+	JOptionPane.showMessageDialog(null, jString+" における「龍」の位置は頭から"+oTC+"番目");
+</code></pre><br>
+
+<a name="OOoGRDs17"><h6>GRDs-)<em>[General]</em>正規表現で検索</h6></a><pre><code>
+// match()
+importClass(Packages.javax.swing.JOptionPane);
+	jString = "龍ABcdEfAG坂本龍馬";
+		oR = new RegExp("龍", "g");
+		oTC1 = jString.match(oR);
+		oTC =oTC1.length
+	JOptionPane.showMessageDialog(null, jString+" 中に「龍」は"+oTC+"個matchしました");
+</code></pre><br>
+
+<a name="OOoGRDs18"><h6>GRDs-)<em>[General]</em>文字長さ</h6></a><pre><code>
+// length
+importClass(Packages.javax.swing.JOptionPane);
+	jString = "ABcdEfAG";
+		oTC = jString.length;
+	JOptionPane.showMessageDialog(null, jString+" は "+oTC+" 文字です");
+	jString = "坂本龍馬";
+		oTC = jString.length;
+	JOptionPane.showMessageDialog(null, jString+" は "+oTC+" 文字です");
+</code></pre><br>
+
+<a name="OOoGRDs19a"><h6>GRDs-)<em>[General]</em>改行</h6></a><pre><code>
+// Retun
+importClass(Packages.javax.swing.JOptionPane);
+	oDisp = "OpenOffice.org" + "\n" + "Macro using JavaScript";
+JOptionPane.showMessageDialog(null, oDisp);
+</code></pre><br>
+
+<p class="s3">[ 正規表現 ]</p class="s3">
+<a name="OOoGRDre01"><h6>GRDre-)<em>[General]</em>正規表現を使って文字数をCheck</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/regex/01mojisu01.png" align="right" hspace="4" vspace="4" width="25%">
+//正規表現
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.java.util.regex.Matcher);
+importClass(Packages.java.util.regex.Pattern);
+	function isCorrectLetterNumber(otarget){
+		isCorrect = false;
+		if(otarget != null){
+			oP = Pattern.compile(".{4,7}");		// <= 4文字以上7文字以内
+			oM =oP.matcher(otarget);
+			if (oM.matches()){
+				isCorrect = true;
+				}
+			}
+		return isCorrect;
+		}
+	
+	try{
+		oStr1 = "12345";
+		oStr2 = "マクロ";
+		oCheck1 = isCorrectLetterNumber(oStr1);
+		oCheck2 = isCorrectLetterNumber(oStr2);
+		oDisp1 = oStr1 + "は4～7文字? => " + oCheck1
+		oDisp2 = oStr2 + "は4～7文字? => " + oCheck2
+				 
+		JOptionPane.showMessageDialog(null, oDisp1 + "\n" + oDisp2);
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+				}
+</code></pre><br>
+
+<a name="OOoGRDre02"><h6>GRDre-)<em>[General]</em>正規表現を使ってを半角英数Check</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/regex/02hankaku01.png" align="right" hspace="4" vspace="4" width="25%">
+//正規表現
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.java.util.regex.Matcher);
+importClass(Packages.java.util.regex.Pattern);
+	function isCorrectLetter(otarget){
+		isCorrect = false;
+		if(otarget != null){
+			oP = Pattern.compile("[a-zA-Z0-9]+");
+			oM =oP.matcher(otarget);
+			if (oM.matches()){
+				isCorrect = true;
+				}
+			}
+		return isCorrect;
+		}
+	
+	try{
+		oStr1 = "12345ABCabc";
+		oStr2 = "マクロ";
+		oStr3 = "aマbクcロd";
+		oCheck1 = isCorrectLetter(oStr1);
+		oCheck2 = isCorrectLetter(oStr2);
+		oCheck3 = isCorrectLetter(oStr3);
+		oDisp1 = oStr1 + "は半角文字? => " + oCheck1
+		oDisp2 = oStr2 + "は半角文字? => " + oCheck2
+		oDisp3 = oStr3 + "は半角文字? => " + oCheck3		 
+		JOptionPane.showMessageDialog(null, oDisp1 + "\n" + oDisp2 + "\n" + oDisp3);
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+				}
+</code></pre><br>
+
+<a name="OOoGRDre03"><h6>GRDre-)<em>[General]</em>正規表現を使って記号をCheck</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/regex/index.html" align="right" hspace="4" vspace="4" width="25%">
+//正規表現
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.java.util.regex.Matcher);
+importClass(Packages.java.util.regex.Pattern);
+	function isCorrectLetter(otarget){
+		isCorrect = false;
+		if(otarget != null){
+			oP = Pattern.compile("['\",]+");
+			oM =oP.matcher(otarget);
+			if (oM.matches()){
+				isCorrect = true;
+				}
+			}
+		return isCorrect;
+		}
+	
+	try{
+		oStr1 = "1234";
+		oStr2 = "'temp";
+		oStr3 = "\temp";
+		oCheck1 = isCorrectLetter(oStr1);
+		oCheck2 = isCorrectLetter(oStr2);
+		oCheck3 = isCorrectLetter(oStr3);
+		oDisp1 = oStr1 + "は記号を含む? => " + oCheck1
+		oDisp2 = oStr2 + "は記号を含む? => " + oCheck2
+		oDisp3 = oStr3 + "は記号を含む? => " + oCheck3		 
+		JOptionPane.showMessageDialog(null, oDisp1 + "\n" + oDisp2 + "\n" + oDisp3);
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+				}
+</code></pre><br>
+
+<a name="OOoGRDre04"><h6>GRDre-)<em>[General]</em>正規表現を使って郵便番号をCheck</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/regex/03zipcode01.png" align="right" hspace="4" vspace="4" width="25%">
+//正規表現
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.java.util.regex.Matcher);
+importClass(Packages.java.util.regex.Pattern);
+	function isCorrectLetter(otarget){
+		isCorrect = false;
+		if(otarget != null){
+			oP = Pattern.compile("[0-9]{3}-[0-9]{4}");
+			oM =oP.matcher(otarget);
+			if (oM.matches()){
+				isCorrect = true;
+				}
+			}
+		return isCorrect;
+		}
+	
+	try{
+		oStr1 = "100-0003";
+		oStr2 = "１００－０００３";
+		oCheck1 = isCorrectLetter(oStr1);
+		oCheck2 = isCorrectLetter(oStr2);
+		oDisp1 = oStr1 + "は郵便番号? => " + oCheck1
+		oDisp2 = oStr2 + "は郵便番号? => " + oCheck2
+		JOptionPane.showMessageDialog(null, oDisp1 + "\n" + oDisp2);
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+				}
+</code></pre><br>
+
+<a name="OOoGRDre05"><h6>GRDre-)<em>[General]</em>正規表現を使って電話番号をCheck</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/regex/04phone01.png" align="right" hspace="4" vspace="4" width="25%">
+//正規表現
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.java.util.regex.Matcher);
+importClass(Packages.java.util.regex.Pattern);
+	function isCorrectLetter(otarget){
+		isCorrect = false;
+		if(otarget != null){
+			oP = Pattern.compile("\\d{2,4}-\\d{2,4}-\\d{4}");		// <= 定義済文字使用
+//			oP = Pattern.compile("[0-9]{2,4}-[0-9]{2,4}-[0-9]{4}");	// <= こちらでも良い
+			oM =oP.matcher(otarget);
+			if (oM.matches()){
+				isCorrect = true;
+				}
+			}
+		return isCorrect;
+		}
+	
+	try{
+		oStr1 = "03-6267-4000";
+		oStr2 = "01234-5-6789";
+		oCheck1 = isCorrectLetter(oStr1);
+		oCheck2 = isCorrectLetter(oStr2);
+		oDisp1 = oStr1 + "は電話番号? => " + oCheck1
+		oDisp2 = oStr2 + "は電話番号? => " + oCheck2
+		JOptionPane.showMessageDialog(null, oDisp1 + "\n" + oDisp2);
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+				}
+</code></pre><br>
+
+<a name="OOoGRDre06"><h6>GRDre-)<em>[General]</em>正規表現を使ってmail addressをCheck</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/regex/05mailaddress01.png" align="right" hspace="4" vspace="4" width="25%">
+//正規表現
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.java.util.regex.Matcher);
+importClass(Packages.java.util.regex.Pattern);
+	function isCorrectLetter(otarget){
+		isCorrect = false;
+		if(otarget != null){
+			oP = Pattern.compile("[\\w]+@[\\w-][.\\w]+");
+			oM =oP.matcher(otarget);
+			if (oM.matches()){
+				isCorrect = true;
+				}
+			}
+		return isCorrect;
+		}
+	
+	try{
+		oStr1 = "test_@test.co.jp";
+		oStr2 = "test*@aaa.com";
+		oCheck1 = isCorrectLetter(oStr1);
+		oCheck2 = isCorrectLetter(oStr2);
+		oDisp1 = oStr1 + "は不正文字の使用は無い? => " + oCheck1
+		oDisp2 = oStr2 + "は不正文字の使用は無い? => " + oCheck2
+		JOptionPane.showMessageDialog(null, oDisp1 + "\n" + oDisp2);
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+				}
+</code></pre><br>
+
+
+
+<p class="s1">Function</p class="s1">
+<a name="OOoGRF1"><h6>GRF-)<em>[General]</em>Function定義</h6></a><pre><code>
+// Define Function
+importClass(Packages.javax.swing.JOptionPane);
+//
+function func1(fp1,fp2){
+	return fp1 + " = " + fp2
+		};
+oInt1 = "Macro_Test" ;
+oInt2 = 1.0 ;
+exmp1 = func1("oInt1",oInt1);
+exmp2 = func1("oInt2",oInt2);
+JOptionPane.showMessageDialog(null, exmp1);
+JOptionPane.showMessageDialog(null, exmp2);
+JOptionPane.showMessageDialog(null, "Success");
+</code></pre><br>
+
+<p class="s1">Object</p class="s1">
+<a name="OOoGROj1"><h6>GROj-)<em>[General]</em>JavaScript Objectの作成</h6></a><pre><code>
+// Rhino
+importClass(Packages.org.mozilla.javascript.Context);
+importClass(Packages.org.mozilla.javascript.Scriptable);
+// JavaScriptの実行に必要なObject
+ctx = Context.enter();
+scope = ctx.initStandardObjects();
+// JavaScriptを実行
+result = ctx.evaluateString( scope, "function add(a, b) {return a+b} add(5.4,3.8)",
+	"RhinoExample",0,null);
+// 実行結果を表示
+rNum = Context.toString( result );
+// JavaScriptの実行を終了
+Context.exit();
+</code></pre><br>
+
+<a name="OOoGROj3"><h6>GROj-)<em>[General]</em>New Contextに表示</h6></a><pre><code>
+<img SRC="JavaScript_Pic/jShowonNewContext.png" align="right" hspace="4" vspace="4" width="20%">
+// Rhino2
+importClass(Packages.org.mozilla.javascript.Context);
+importClass(Packages.org.mozilla.javascript.Scriptable);
+// JavaScriptの実行に必要なObject
+ctx = Context.enter();
+scope = ctx.initStandardObjects();
+//Initial Value
+oInt1 = 10;
+oInt2 = 20;
+// Define Function
+function func(a, b) {return a+b} ;
+// Show the result of Funtion "func" on New Context
+result = ctx.evaluateString( scope, func(oInt1, oInt2),"RhinoExample",0,null);	// New Contextにfunc(oInt1,oInt2)の結果を表示
+// JavaScriptの実行を終了
+Context.exit();
+</code></pre><br>
+
+<a name="OOoGROj4"><h6>GROj-)<em>[General]</em>New Contextに表示(2)</h6></a><pre><code>
+<img SRC="JavaScript_Pic/jShowonNewContext2.png" align="right" hspace="4" vspace="4" width="20%">
+// Rhino2
+importClass(Packages.org.mozilla.javascript.Context);
+importClass(Packages.org.mozilla.javascript.Scriptable);
+importClass(Packages.javax.swing.JOptionPane);
+// JavaScriptの実行に必要なObject
+ctx = Context.enter();
+scope = ctx.initStandardObjects();
+//Initial Value
+oInt1 = 10;
+oInt2 = 20;
+// Define Function
+function func(a, b) {return a+b} ;
+// Show the result of Funtion "func" on New Context
+result = ctx.evaluateString( scope, "function add(a, b) {return a+b} add(5.4,3.8)",
+	"RhinoExample",0,null);			// Contextにadd(oInt1,oInt2)の結果を表示
+// JavaScriptの実行を終了
+Context.exit();
+</code></pre><br>
+
+
+<a name="OOoGROj2"><h6>GROj-)<em>[General]</em>Class Name取得</h6></a><pre><code>
+<img SRC="JavaScript_Pic/jClassName.png" align="right" hspace="4" vspace="4">
+// Rhino Class
+importClass(Packages.org.mozilla.javascript.Context);
+importClass(Packages.org.mozilla.javascript.Scriptable);
+// JavaScriptの実行に必要なObject
+ctx = Context.enter();
+scope = ctx.initStandardObjects();
+// JavaScriptを実行
+result = ctx.evaluateString( scope, "function add(a, b) {return a+b} add(5.4,3.8)",
+	"RhinoExample",0,null);
+// 実行結果のJava Class Nameを取得
+rJavaClassName = result.getClass().getName();
+JOptionPane.showMessageDialog(null, rJavaClassName)
+// JavaScriptの実行を終了
+Context.exit();
+
+//[ Note ]
+//引数がIntegerでも戻り値はDoubleになる。
+</code></pre><br>
+
+
+<p class="s1">File</p class="s1">
+<p class="s3">[ File操作 ]</p class="s3">
+<a name="OOoGFh1"><h6>GFh-1)<em>[General]</em>Fileの有無確認</h6></a><pre><code>
+// File Exists
+importPackage(java.io);
+importClass(Packages.javax.swing.JOptionPane);
+
+oFile = File("C:/temp/test.csv");
+
+oExists = oFile.exists();
+if(!oExists){
+	JOptionPane.showMessageDialog(null, oFile + "　は存在しません!!");
+	}else{
+	JOptionPane.showMessageDialog(null, oFile + "　は存在します");
+}
+</code></pre><br>
+
+<a name="OOoGFh2"><h6>GFh-1)<em>[General]</em>File名変更</h6></a><pre><code>
+// File to be Renamed
+importPackage(java.io);
+importClass(Packages.javax.swing.JOptionPane);
+
+oFile = File("C:/temp/test1.csv");
+
+oExists = oFile.exists();
+if(!oExists){
+	JOptionPane.showMessageDialog(null, oFile + "　は存在しません!!");
+	}else{
+	if(oFile.renameTo(new File("C:/temp/test2.csv"))){
+		JOptionPane.showMessageDialog(null, oFile + "　のFile名を変更しました。");
+		}
+}
+</code></pre><br>
+
+<a name="OOoGFh3"><h6>GFh-)<em>[General]</em>File作成</h6></a><pre><code>
+// File to be Create
+importPackage(java.io);
+importClass(Packages.javax.swing.JOptionPane);
+
+oFile = File("C:/temp/test1.csv");
+oExists = oFile.exists();
+if(oExists){
+	JOptionPane.showMessageDialog(null, oFile + "　は既に存在します!!");
+	}else{
+	if(oFile.createNewFile()){
+		JOptionPane.showMessageDialog(null, oFile + "　の作成に成功しました。");
+		}
+}
+</code></pre><br>
+
+
+<a name="OOoGFh4"><h6>GFh-)<em>[General]</em>File削除</h6></a><pre><code>
+// File Exists
+importPackage(java.io);
+importClass(Packages.javax.swing.JOptionPane);
+	//
+		try{
+			oFile = File("C:/temp/test_test.csv");
+			oExists = oFile.exists();
+			if(!oExists){
+						JOptionPane.showMessageDialog(null, oFile + "　は存在しません!!");
+						}else{
+						delete oFile
+						oEx=oFile.exists();
+						if(!oEx){
+									JOptionPane.showMessageDialog(null, oFile + "　を削除しました。");
+								}else{
+									JOptionPane.showMessageDialog(null, oFile + "　は削除出来ません。");
+								}
+						}
+			}catch(e){
+		//Error
+			JOptionPane.showMessageDialog(null, "Error発生");
+			}
+</code></pre><br>
+
+<a name="OOoGFh5"><h6>GFh-)<em>[General]</em>Directory作成</h6></a><pre><code>
+// Directory to be Create 
+importPackage(java.io);
+importClass(Packages.javax.swing.JOptionPane);
+
+oDir = File("C:/temp/test_D");
+oExists = oDir.exists();
+if(oExists){
+	JOptionPane.showMessageDialog(null, oDir + "　は既に存在します!!");
+	}else{
+	if(oDir.mkdir()){
+		JOptionPane.showMessageDialog(null, oDir + "　の作成に成功しました。");
+		}
+}
+</code></pre><br>
+
+
+<p class="s3">[ File情報 ]</p class="s3">
+<p class="s4"><< 取得・確認 >></p class="s4">
+<a name="OOoGFi1"><h6>GFi-1)<em>[General]</em>Fileの読み込み可能かどうか</h6></a><pre><code>
+// File to be Check　case1
+importPackage(java.io);
+importClass(Packages.javax.swing.JOptionPane);
+
+oFile = File("C:/temp/test1.csv");
+
+oExists = oFile.exists();
+if(!oExists){
+	JOptionPane.showMessageDialog(null, oFile + "　は存在しません!!");
+	}else{
+	if(oFile.canRead()){
+		JOptionPane.showMessageDialog(null, oFile + "　は「読み込み可能」です。");
+		}else{
+		JOptionPane.showMessageDialog(null, oFile + "　は「読み込み可能」ではありません。");
+		}
+}
+</code></pre><br>
+
+<a name="OOoGFi1b"><h6>GFi-)<em>[General]</em>Fileの書き込み可能かどうか</h6></a><pre><code>
+// File to be Check　case1b
+importPackage(java.io);
+importClass(Packages.javax.swing.JOptionPane);
+
+oFile = File("C:/temp/test2.csv");
+
+oExists = oFile.exists();
+if(!oExists){
+	JOptionPane.showMessageDialog(null, oFile + "　は存在しません!!");
+	}else{
+	if(oFile.canWrite()){
+		JOptionPane.showMessageDialog(null, oFile + "　は「書き込み可能」です。");
+		}else{
+		JOptionPane.showMessageDialog(null, oFile + "　は「書き込み可能」ではありません。");
+		}
+}
+</code></pre><br>
+
+
+<a name="OOoGFi2"><h6>GFi-2)<em>[General]</em>Fileかどうか</h6></a><pre><code>
+// File to be Check　case2
+importPackage(java.io);
+importClass(Packages.javax.swing.JOptionPane);
+
+oFile = File("C:/temp/test1.csv");
+
+oExists = oFile.exists();
+if(!oExists){
+	JOptionPane.showMessageDialog(null, oFile + "　は存在しません!!");
+	}else{
+	if(oFile.isFile()){
+		JOptionPane.showMessageDialog(null, oFile + "　は「File」です。");
+		}else{
+		JOptionPane.showMessageDialog(null, oFile + "　は「File」ではありません。");
+		}
+}
+</code></pre><br>
+
+<a name="OOoGFi3"><h6>GFi-)<em>[General]</em>Directoryかどうか</h6></a><pre><code>
+// File to be Check　case3
+importPackage(java.io);
+importClass(Packages.javax.swing.JOptionPane);
+
+oFile = File("C:/temp/test1.csv");
+
+oExists = oFile.exists();
+if(!oExists){
+	JOptionPane.showMessageDialog(null, oFile + "　は存在しません!!");
+	}else{
+	if(oFile.isDirectory()){
+		JOptionPane.showMessageDialog(null, oFile + "　は「Directory」です。");
+		}else{
+		JOptionPane.showMessageDialog(null, oFile + "　は「Directory」ではありません。");
+		}
+}
+</code></pre><br>
+
+
+<a name="OOoGFi3b"><h6>GFi-)<em>[General]</em>Hidden Fileかどうか</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/file/01fileInfo/01isHidden.png" align="right" hspace="4" vspace="4" width="40%">
+// File
+importClass(Packages.java.io.File);
+importClass(Packages.java.io.IOException);
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+			oFile = File("C:/temp/test.csv");
+			oExists = oFile.exists();
+			if(!oExists){
+	
+				JOptionPane.showMessageDialog(null, oFile + "　は存在しません!!");
+						}else{
+								oHidden = oFile.isHidden();
+								if(oHidden){
+											JOptionPane.showMessageDialog(null, oFile + "　はHidden Fileです。");
+											}else{
+					JOptionPane.showMessageDialog(null, oFile + "　はHidden Fileではありません。");
+												}
+							}
+		}catch(IOException){
+			//例外処理
+				JOptionPane.showMessageDialog(null, "Error発生");
+		}
+</code></pre><br>
+
+
+<a name="OOoGFi3c"><h6>GFi-)<em>[General]</em>絶対Pathかどうか</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/file/01fileInfo/02isAbsolute.png" align="right" hspace="4" vspace="4" width="40%">
+// File
+importClass(Packages.java.io.File);
+importClass(Packages.java.io.IOException);
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+			oFile = File("test.csv");
+			oAbsolute = oFile.isAbsolute();
+			if(oAbsolute){
+							JOptionPane.showMessageDialog(null, oFile + "　のPathは絶対Pathです。");
+						}else{
+							JOptionPane.showMessageDialog(null, oFile + "　のPathは絶対Pathではありません。");
+							}
+		}catch(IOException){
+			//例外処理
+				JOptionPane.showMessageDialog(null, "Error発生");
+		}
+</code></pre><br>
+
+
+
+
+
+<a name="OOoGFi4a"><h6>GFi-)<em>[General]</em>File名/Directory名の取得</h6></a><pre><code>
+// Get File Name
+importPackage(java.io);
+importClass(Packages.javax.swing.JOptionPane);
+
+oFile = File("C:/temp/test.csv");
+
+oName = oFile.getName();
+JOptionPane.showMessageDialog(null, oName);
+</code></pre><br>
+
+
+<a name="OOoGFi4b"><h6>GFi-)<em>[General]</em>絶対Path名の取得</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/file/01fileInfo/03getAbsolutePath.png" align="right" hspace="4" vspace="4" width="35%">
+// File
+importClass(Packages.java.io.File);
+importClass(Packages.java.io.IOException);
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+			oFile = File("C:/temp/test.csv");
+			oExists = oFile.exists();
+			if(!oExists){
+	
+				JOptionPane.showMessageDialog(null, oFile + "　は存在しません!!");
+						}else{
+								oP = oFile.getAbsolutePath();
+								oDisp = "[ getAbsolutePath() ］ =>  " + oP;
+								JOptionPane.showMessageDialog(null, oDisp);
+							}
+		}catch(IOException){
+			//例外処理
+				JOptionPane.showMessageDialog(null, "例外発生");
+		}
+</code></pre><br>
+
+
+<a name="OOoGFi4c"><h6>GFi-)<em>[General]</em>Path名の取得</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/file/01fileInfo/03getPath.png" align="right" hspace="4" vspace="4" width="35%">
+// File
+importClass(Packages.java.io.File);
+importClass(Packages.java.io.IOException);
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+			oFile = File("C:/temp/test.csv");
+			oExists = oFile.exists();
+			if(!oExists){
+	
+				JOptionPane.showMessageDialog(null, oFile + "　は存在しません!!");
+						}else{
+								oP = oFile.getPath();
+								oDisp = "[ getPath() ］ =>  " + oP;
+								JOptionPane.showMessageDialog(null, oDisp);
+							}
+		}catch(IOException){
+			//例外処理
+				JOptionPane.showMessageDialog(null, "例外発生");
+		}
+</code></pre><br>
+
+
+<a name="OOoGFi5"><h6>GFi-)<em>[General]</em>親Directoryの取得</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/file/01fileInfo/03getParent.png" align="right" hspace="4" vspace="4" width="35%">
+// File
+importClass(Packages.java.io.File);
+importClass(Packages.java.io.IOException);
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+			oFile = File("C:/temp/test.csv");
+			oExists = oFile.exists();
+			if(!oExists){
+	
+				JOptionPane.showMessageDialog(null, oFile + "　は存在しません!!");
+						}else{
+								oP = oFile.getParent();
+								oDisp = "[ getParent() ］ =>  " + oP;
+								JOptionPane.showMessageDialog(null, oDisp);
+							}
+		}catch(IOException){
+			//例外処理
+				JOptionPane.showMessageDialog(null, "例外発生");
+		}
+</code></pre><br>
+
+
+<a name="OOoGFi6"><h6>GFi-)<em>[General]</em>最終更新日の取得</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/file/01fileInfo/04LastModified.png" align="right" hspace="4" vspace="4" width="30%">
+// File
+importClass(Packages.java.io.File);
+importClass(Packages.java.io.IOException);
+importClass(Packages.java.text.SimpleDateFormat);
+importClass(Packages.java.util.Calendar);
+importClass(Packages.javax.swing.JOptionPane);
+	//Long type => Date Type
+		function convertDate(lo){
+			cal = Calendar.getInstance();
+			sf = new SimpleDateFormat("yyyy/MM/dd");
+			return sf.format(cal.getTime());
+								}
+	//
+	try{
+			oFile = File("C:/temp/test.csv");
+			oExists = oFile.exists();
+			if(!oExists){
+	
+				JOptionPane.showMessageDialog(null, oFile + "　は存在しません!!");
+						}else{
+								oM = oFile.lastModified();
+								oMD = convertDate(oM);
+								oDisp = "[ lastModified() ］ =>  " + oMD;
+								JOptionPane.showMessageDialog(null, oDisp);
+							}
+		}catch(IOException){
+			//例外処理
+				JOptionPane.showMessageDialog(null, "例外発生");
+		}
+</code></pre><br>
+
+<a name="OOoGFi7"><h6>GFi-)<em>[General]</em>Directory内のFile & Directory数取得</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/file/01fileInfo/05List_length.png" align="right" hspace="4" vspace="4" width="30%">
+// List
+importClass(Packages.java.io.File);
+importClass(Packages.java.io.IOException);
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+			oDir = File("C:/temp/rhino");
+			oExists = oDir.exists();
+			if(!oExists){
+	
+				JOptionPane.showMessageDialog(null, oDir + "　は存在しません!!");
+						}else{
+								oL = oDir.list();
+								oC = oL.length
+								oDisp = "[ Directory内のFile&Directory数 ］" + "\n" +" =>  " + oC;
+								JOptionPane.showMessageDialog(null, oDisp);
+							}
+		}catch(IOException){
+			//例外処理
+				JOptionPane.showMessageDialog(null, "例外発生");
+		}
+</code></pre><br>
+
+
+<a name="OOoGFi7a"><h6>GFi-)<em>[General]</em>Directory内のFile List取得1(文字列)</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/file/01fileInfo/05List01.png" align="right" hspace="4" vspace="4" width="30%">
+// List
+importClass(Packages.java.io.File);
+importClass(Packages.java.io.IOException);
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+			oDir = File("C:/temp/rhino");
+			oExists = oDir.exists();
+			if(!oExists){
+	
+				JOptionPane.showMessageDialog(null, oDir + "　は存在しません!!");
+						}else{
+								oL = oDir.list();
+								oC = oL.length;
+								for(i=0 ; i < oC ; i++){
+									oDisp = oL[i];
+									JOptionPane.showMessageDialog(null, oDisp);
+													}
+							}
+		}catch(IOException){
+			//例外処理
+				JOptionPane.showMessageDialog(null, "例外発生");
+		}
+</code></pre><br>
+
+
+<a name="OOoGFi7b"><h6>GFi-)<em>[General]</em>Directory内のFile List取得2(File Object配列)</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/file/01fileInfo/05List02.png" align="right" hspace="4" vspace="4" width="30%">
+// List
+importClass(Packages.java.io.File);
+importClass(Packages.java.io.IOException);
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+			oDir = File("C:/temp/rhino");
+			oExists = oDir.exists();
+			if(!oExists){
+	
+				JOptionPane.showMessageDialog(null, oDir + "　は存在しません!!");
+						}else{
+								oL = oDir.listFiles();
+								oC = oL.length;
+								for(i=0 ; i < oC ; i++){
+									oDisp = oL[i];
+									JOptionPane.showMessageDialog(null, oDisp);
+													}
+							//	JOptionPane.showMessageDialog(null, oDisp);
+							}
+		}catch(IOException){
+			//例外処理
+				JOptionPane.showMessageDialog(null, "例外発生");
+		}
+</code></pre><br>
+
+<a name="OOoGFi8a"><h6>GFi-)<em>[General]</em>Path区切り文字の取得1</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/file/01fileInfo/07separator01.png" align="right" hspace="4" vspace="4" width="35%">
+// Separator
+importClass(Packages.java.io.File);
+importClass(Packages.java.io.IOException);
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+			oFile = File("C:/temp/test.csv");
+			oExists = oFile.exists();
+			if(!oExists){
+	
+				JOptionPane.showMessageDialog(null, oFile + "　は存在しません!!");
+						}else{
+								oP = oFile.pathSeparator;
+								oDisp = "[ path separator ］ =>  " + oP;
+								JOptionPane.showMessageDialog(null, oDisp);
+							}
+		}catch(IOException){
+			//例外処理
+				JOptionPane.showMessageDialog(null, "例外発生");
+		}
+</code></pre><br>
+
+
+<a name="OOoGFi8b"><h6>GFi-)<em>[General]</em>Path区切り文字の取得2</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/file/01fileInfo/07separator02.png" align="right" hspace="4" vspace="4" width="35%">
+// Separator
+importClass(Packages.java.io.File);
+importClass(Packages.java.io.IOException);
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+			oFile = File("C:/temp/test.csv");
+			oExists = oFile.exists();
+			if(!oExists){
+	
+				JOptionPane.showMessageDialog(null, oFile + "　は存在しません!!");
+						}else{
+								oP = oFile.separator;
+								oDisp = "[ path separator ］ =>  " + oP;
+								JOptionPane.showMessageDialog(null, oDisp);
+							}
+		}catch(IOException){
+			//例外処理
+				JOptionPane.showMessageDialog(null, "例外発生");
+		}
+</code></pre><br>
+
+
+<p class="s4"><< 設定 >></p class="s4">
+<a name="OOoGFs1"><h6>GFs-)<em>[General]</em>ReadOnlyに設定</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/file/01fileInfo/06setReadonly.png" align="right" hspace="4" vspace="4" width="35%">
+// setRreadOnly
+importClass(Packages.java.io.File);
+importClass(Packages.java.io.IOException);
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+			oFile = File("C:/temp/test.csv");
+			oExists = oFile.exists();
+			if(!oExists){
+	
+				JOptionPane.showMessageDialog(null, oFile + "　は存在しません!!");
+						}else{
+								oFile.setReadOnly();
+								//Confirm
+								oDisp = "[ Not ReadOnly? ］ =>  " + oFile.canWrite();
+								JOptionPane.showMessageDialog(null, oDisp);
+							}
+		}catch(IOException){
+			//例外処理
+				JOptionPane.showMessageDialog(null, "例外発生");
+		}
+</code></pre><br>
+
+
+<a name="OOoGFs2"><h6>GFs-)<em>[General]</em>最終更新日の設定</h6></a><pre><code>
+// setLastModified
+importClass(Packages.java.io.File);
+importClass(Packages.java.io.IOException);
+importClass(Packages.java.text.SimpleDateFormat);
+importClass(Packages.java.util.Calendar);
+importPackage(java.util.date);
+importClass(Packages.javax.swing.JOptionPane);
+	//Long type => Date Type
+		function convertDate(lo){
+			cal = Calendar.getInstance();
+			sf = new SimpleDateFormat("yyyy/MM/dd");
+			return sf.format(cal.getTime());
+								}
+	//
+	try{
+			oFile = File("C:/temp/test_test.csv");
+			oExists = oFile.exists();
+			if(!oExists){
+	
+				JOptionPane.showMessageDialog(null, oFile + "　は存在しません!!");
+						}else{
+								oDate = new Date();
+								oMT = oDate.getSeconds();
+								oFile.setLastModified(oMT);
+								// Confirm
+								oM = oFile.lastModified();
+								oMD = convertDate(oM);
+								oDisp = "[ lastModified() ］ =>  " + oMD;
+								JOptionPane.showMessageDialog(null, oDisp);
+							}
+		}catch(IOException){
+			//例外処理
+				JOptionPane.showMessageDialog(null, "例外発生");
+		}
+</code></pre><br>
+
+
+<p class="s3">[ Drive ]</p class="s3">
+<a name="OOoGFd1a"><h6>GFd-)<em>[General]</em>Disk容量取得1</h6></a><pre><code>
+// Drive
+importClass(Packages.java.io.File);
+importClass(Packages.java.io.IOException);
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+			oDrive = File("C:/");
+			oP = oDrive.getTotalSpace();
+			oDisp = oP + "[ bytes ]";
+			JOptionPane.showMessageDialog(null, oDisp);
+		}catch(IOException){
+			//例外処理
+				JOptionPane.showMessageDialog(null, "例外発生");
+		}
+</code></pre><br>
+
+<a name="OOoGFd1b"><h6>GFd-)<em>[General]</em>Disk容量取得2</h6></a><pre><code>
+// Drive
+importClass(Packages.java.io.File);
+importClass(Packages.java.io.IOException);
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+			oDrive = File("C:/");
+			oP = oDrive.getFreeSpace();
+			oDisp = oP + "[ bytes ]";
+			JOptionPane.showMessageDialog(null, oDisp);
+		}catch(IOException){
+			//例外処理
+				JOptionPane.showMessageDialog(null, "例外発生");
+		}
+</code></pre><br>
+
+
+<a name="OOoGFd1c"><h6>GFd-)<em>[General]</em>Disk容量取得3</h6></a><pre><code>
+// Drive
+importClass(Packages.java.io.File);
+importClass(Packages.java.io.IOException);
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+			oDrive = File("C:/");
+			oP = oDrive.getUsableSpace();
+			oDisp = oP + "[ bytes ]";
+			JOptionPane.showMessageDialog(null, oDisp);
+		}catch(IOException){
+			//例外処理
+				JOptionPane.showMessageDialog(null, "例外発生");
+		}
+</code></pre><br>
+
+
+<p class="s3">[ Stream ]</p class="s3">
+<p class="s4"><< Byte Stream >></p class="s4">
+<a name="OOoGFSb01"><h6>GFSb-)<em>[General]</em>Text fileの読込及び書出し</h6></a><pre><code>
+// Stream
+//in.txt / out.txtは事前に作成済み(out.txtはEmpty　file)
+importClass(Packages.java.io.BufferedInputStream);
+importClass(Packages.java.io.BufferedOutputStream);
+importClass(Packages.java.io.File);
+importClass(Packages.java.io.FileInputStream);
+importClass(Packages.java.io.FileOutputStream);
+importClass(Packages.java.io.FileNotFoundException);
+importClass(Packages.java.io.IOException);
+importClass(Packages.javax.swing.JOptionPane);
+	//入力用のfile objectを生成
+		inputfile = new File("c:/temp/Rhino/tmp/in.txt");
+	//出力用のfile objectを生成
+		outputfile = new File("c:/temp/Rhino/tmp/out.txt")
+	 //Finaly句にてStreamのclose処理をする為にtry句の外にstreamを定義する
+	 	inputputStream = null;
+	 	outputStream = null;
+	try{
+		//入力fileからbufferに蓄えるstream生成
+			inFS = new FileInputStream(inputfile);
+			inputStream = new BufferedInputStream(inFS);
+		//bufferに蓄えたbyteを出力fileへ書込むstream生成
+			outFS = new FileOutputStream(outputfile);
+			outputStream = new BufferedOutputStream(outFS);
+		//入力fileからbyte読込
+		//出力fileにdefaultのbuffer単位で書出
+			while((bytes=inputStream.read()) != -1){
+												outputStream.write(bytes);												
+												} 
+		JOptionPane.showMessageDialog(null, "success");
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+		}finally{
+			// Streamのclose処理をfillay句で行う
+				if(inputStream != null){
+					try{
+						inputStream.close();
+						}catch(IOException){
+							ename1 = e.name;
+							emsg1 = e.message;
+							eDisp1= ename1 + "\n" + emsg1;
+							JOptionPane.showMessageDialog(null, eDisp1);	
+						}
+				}
+				if(outputStream != null){
+					try{
+						outputStream.close();
+						}catch(IOException){
+							ename2 = e.name;
+							emsg2 = e.message;
+							eDisp2= ename2 + "\n" + emsg2;
+							JOptionPane.showMessageDialog(null, eDisp2);	
+						}
+				}
+		JOptionPane.showMessageDialog(null, "Closed Stream");
+		}
+</code></pre><br>
+
+<a name="OOoGFdSb02"><h6>GFSb-)<em>[General]</em>Text fileの読込及び書出し(文字形式指定)</h6></a><pre><code>
+// Char Stream
+//in.txt / out.txtは事前に作成済み(out.txtはEmpty　file)
+importClass(Packages.java.io.BufferedReader);
+importClass(Packages.java.io.BufferedWriter);
+importClass(Packages.java.io.File);
+importClass(Packages.java.io.FileInputStream);
+importClass(Packages.java.io.FileOutputStream);
+importClass(Packages.java.io.FileNotFoundException);
+importClass(Packages.java.io.IOException);
+importClass(Packages.java.io.InputStreamReader);
+importClass(Packages.java.io.OutputStreamWriter);
+importClass(Packages.javax.swing.JOptionPane);
+	//入力用のfile objectを生成
+		inputfile = new File("c:/temp/rhino/temp/in.txt");
+	//出力用のfile objectを生成
+		outputfile = new File("c:/temp/rhino/temp/out.txt")
+	 //Finaly句にてStreamのclose処理をする為にtry句の外にstreamを定義する
+	 	reader = null;
+	 	writer = null;
+	try{
+		//入力fileからBufferInputStreamにて蓄えるstream生成
+			inFS = new FileInputStream(inputfile);
+			intext= new InputStreamReader(inFS, "SJIS");	// "UTF-8"
+			reader = new BufferedReader(intext);
+		//bufferに蓄えたbyteを出力fileへ書込むstream生成
+			outFS = new FileOutputStream(outputfile);
+			outtext = new OutputStreamWriter(outFS, "SJIS");	// "UTF-8"
+			writer = new BufferedWriter(outtext);
+		//入力fileから1 Line 分byte読込
+		//出力fileに1 Line defaultのbuffer単位で書出
+			line = null	
+			while((line=reader.readLine()) != null){
+												writer.write(line);
+												writer.newLine();												
+												} 
+		JOptionPane.showMessageDialog(null, "success");
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+		}finally{
+			// Streamのclose処理をfillay句で行う
+				if(reader != null){
+					try{
+						reader.close();
+						}catch(IOException){
+							ename1 = e.name;
+							emsg1 = e.message;
+							eDisp1= ename1 + "\n" + emsg1;
+							JOptionPane.showMessageDialog(null, eDisp1);	
+						}
+				}
+				if(writer != null){
+					try{
+						writer.close();
+						}catch(IOException){
+							ename2 = e.name;
+							emsg2 = e.message;
+							eDisp2= ename2 + "\n" + emsg2;
+							JOptionPane.showMessageDialog(null, eDisp2);	
+						}
+				}
+		JOptionPane.showMessageDialog(null, "Closed Stream");
+		}
+</code></pre><br>
+
+
+<p class="s1">Thead</p class="s1">
+<a name="OOoGRT"><h6>GRT-)<em>[General]</em>5se間実行待ち</h6></a><pre><code>
+//thread
+importClass(Packages.java.lang.Thread);
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+		sleeptime = 5000;	// 5sec
+		Thread.sleep(sleeptime);
+		JOptionPane.showMessageDialog(null, "Success");
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+		}
+</code></pre><br>
+
+<a name="OOoGRT"><h6>GRT-)<em>[General]</em></h6></a><pre><code>
+
+</code></pre><br>
+
+<a name="OOoGRT"><h6>GRT-)<em>[General]</em></h6></a><pre><code>
+
+</code></pre><br>
+
+<a name="OOoGRT"><h6>GRT-)<em>[General]</em></h6></a><pre><code>
+
+</code></pre><br>
+
+
+
+
+
+<p class="s1">Utility</p class="s1">
+<a name="OOoGRUt1"><h6>GRUt-)<em>[General]</em>HashtMap</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/Utility/01Hashmap01.png" align="right" hspace="4" vspace="4" width="25%">
+//HashMap
+	var map = new java.util.HashMap();
+		map.put("7788", "scott");
+		map.put("7839", "king");
+			a=map.get("7788");
+			b=map.keySet();
+	importClass(Packages.javax.swing.JOptionPane);
+	JOptionPane.showMessageDialog(null, a+"\n"+b);
+</code></pre><br>
+
+<a name="OOoGRUt1b"><h6>GRUt-)<em>[General]</em>Map Size</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/Utility/02MapSize01.png" align="right" hspace="4" vspace="4" width="25%">
+//Map Size
+	importPackage(java.util.map);
+	var map = new java.util.HashMap();
+		map.put("7788", "scott");
+		map.put("7839", "king");
+			a=map.get("7788");
+			b=map.keySet();
+			map_length = map.size();
+	importClass(Packages.javax.swing.JOptionPane);
+	JOptionPane.showMessageDialog(null, "Keyの値の数　：　"+map_length);
+</code></pre><br>
+
+<a name="OOoGRUt1c"><h6>GRUt-)<em>[General]</em>Map から削除</h6></a><pre><code>
+//Remove Map
+	importPackage(java.util.map);
+	importClass(Packages.javax.swing.JOptionPane);
+	// HasMap 初期化
+	var map = new java.util.HashMap();
+	//key
+		keys = new Array("060", "050", "040", "030", "020", "010");
+	//value
+		vals = new Array("1番", "2番", "3番", "4番", "5番", "6番");
+	//set HashMap
+		for( i = 0; i < keys.length; i++ ){
+				map.put(keys[i],vals[i]);  
+				}
+	//Display initial
+			map_length = map.size();
+			JOptionPane.showMessageDialog(null, "Init Keyの値の数　：　"+ map_length
+												+ "\n" +
+												"Keyの値　：　"+map);
+	//remove key="040"
+		map.remove("040");
+	//Display Modified
+			map_length = map.size();
+			JOptionPane.showMessageDialog(null, "Modified Keyの値の数　：　"+ map_length
+												+ "\n" +
+												"Keyの値　：　"+map);
+<img SRC="JavaScript_Pic/01general/Utility/03MapDelete01.png" align="Left" hspace="4" vspace="4" width="30%"><img SRC="JavaScript_Pic/01general/Utility/03MapDelete02.png" align="Left" hspace="4" vspace="4" width="30%">
+</code></pre><br>
+<br><br>
+<br><br>
+<br><br>
+
+<a name="OOoGRUt1d"><h6>GRUt-)<em>[General]</em>Map から全て削除</h6></a><pre><code>
+//Clear Map
+	importPackage(java.util.map);
+	importClass(Packages.javax.swing.JOptionPane);
+	// HasMap 初期化
+	var map = new java.util.HashMap();
+	//key
+		keys = new Array("060", "050", "040", "030", "020", "010");
+	//value
+		vals = new Array("1番", "2番", "3番", "4番", "5番", "6番");
+	//set HashMap
+		for( i = 0; i < keys.length; i++ ){
+				map.put(keys[i],vals[i]);  
+				}
+	//Display initial
+			map_length = map.size();
+			JOptionPane.showMessageDialog(null, "Init Keyの値の数　：　"+ map_length
+												+ "\n" +
+												"Keyの値　：　"+map);
+	//remove key="040"
+		map.clear();
+	//Display Modified
+			map_length = map.size();
+			JOptionPane.showMessageDialog(null, "Modified Keyの値の数　：　"+ map_length
+												+ "\n" +
+												"Keyの値　：　"+map);
+<img SRC="JavaScript_Pic/01general/Utility/04MapAllRemove01.png" align="Left" hspace="4" vspace="4" width="30%"><img SRC="JavaScript_Pic/01general/Utility/04MapAllRemove02.png" align="Left" hspace="4" vspace="4" width="25%">
+</code></pre><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+
+<a name="OOoGRUt1e"><h6>GRUt-)<em>[General]</em>Map の存在をcheckする</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/Utility/05MapExist02.png" align="right" hspace="4" vspace="4" width="25%"><img SRC="JavaScript_Pic/01general/Utility/05MapExist01.png" align="right" hspace="4" vspace="4" width="25%">
+//Check Map
+	importPackage(java.util.map);
+	importClass(Packages.javax.swing.JOptionPane);
+	// HasMap 初期化
+	var map = new java.util.HashMap();
+	//key
+		keys = new Array("060", "050", "040", "030", "020", "010");
+	//value
+		vals = new Array("1番", "2番", "3番", "4番", "5番", "6番");
+	//set HashMap
+		for( i = 0; i < keys.length; i++ ){
+				map.put(keys[i],vals[i]);  
+				}
+	//Check key
+		checkkey = "030"
+			ckey = map.containsKey(checkkey);
+			if(ckey){
+						JOptionPane.showMessageDialog(null, checkkey + " は存在します。");
+					} else {
+						JOptionPane.showMessageDialog(null, checkkey + " は存在しません。");
+						}
+					
+	//Check value
+		checkvalue = "7番"
+			cValue = map.containsValue(checkvalue);
+			if(cValue){
+						JOptionPane.showMessageDialog(null, checkvalue + " は存在します。");
+					} else {
+						JOptionPane.showMessageDialog(null, checkvalue + " は存在しません。");
+						}
+</code></pre><br>
+
+
+
+<a name="OOoGRUt2"><h6>GRUt-)<em>[General]</em>(未完成)Hashtable</h6></a><pre><code>
+// java.util.Hashtable / java.util.Enumeration
+importClass(java.util.Hashtable);
+importClass(java.util.Enumeration);
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.org.mozilla.javascript.Context);
+importClass(Packages.org.mozilla.javascript.Scriptable);
+// JavaScriptの実行に必要なObject
+ctx = Context.enter();
+scope = ctx.initStandardObjects();
+jArr = new Array(200,500,600)
+numbers = new Hashtable();
+numbers.put("mikan", jArr[0]);
+numbers.put("ringo", jArr[1]);
+numbers.put("budou", jArr[2]);
+e = numbers.elements();
+while (e.hasMoreElements()){
+	// JavaScriptを実行
+		result = ctx.evaluateString( scope, e.nextElement(),
+		"RhinoExample",0,null)
+			};
+// 実行結果を表示
+rNum = Context.toString( result );
+// JavaScriptの実行を終了
+Context.exit();
+JOptionPane.showMessageDialog(null, "Success");
+</code></pre><br>
+
+
+<a name="OOoGRUt3"><h6>GRUt-)<em>[General]</em>Text fileの圧縮、解凍</h6></a><pre><code>
+// Zip
+//in.txt は事前に作成済み
+importClass(Packages.java.io.File);
+importClass(Packages.java.io.FileInputStream);
+importClass(Packages.java.io.FileOutputStream);
+importClass(Packages.java.io.IOException);
+importClass(Packages.java.util.zip.DeflaterInputStream);
+importClass(Packages.java.util.zip.InflaterOutputStream);
+importClass(Packages.javax.swing.JOptionPane);
+	//入力用のfile objectを生成
+		inputfile = new File("c:/temp/rhino/temp/in.txt");
+	//出力用のfile objectを生成
+		outputfile = new File("c:/temp/rhino/temp/outLIB.txt")
+	//
+	 try{
+		// text file読み込み圧縮したStreamにする
+			inFS = new FileInputStream(inputfile)
+			inDeflater = new DeflaterInputStream(inFS);
+		// 圧縮されたStreamを解凍して text fileへ書込む
+			outFS = new FileOutputStream(outputfile);
+			outInflater = new InflaterOutputStream(outFS);
+		//実際にStreamを読み込み、同時に書き出す
+			while((bytes = inDeflater.read()) != -1){
+												outInflater.write(bytes);												
+												} 
+		JOptionPane.showMessageDialog(null, "success");
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+		}
+</code></pre><br>
+
+
+<a name="OOoGRUt4"><h6>GRUt-)<em>[General]</em>利用可能なMemory容量取得</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/Utility/06AvaiableMemorySize02.png" align="right" hspace="4" vspace="4" width="25%"><img SRC="JavaScript_Pic/01general/Utility/06AvaiableMemorySize01.png" align="right" hspace="4" vspace="4" width="25%">
+//merory
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.java.lang.Runtime);
+	//
+	try{
+		oruntime = Runtime.getRuntime();
+		oM1 = oruntime.totalMemory() / 1000000;	//	<=MB
+		oDisp1= "Avaiable Memory1 =>" + oM1 + "MB";
+			JOptionPane.showMessageDialog(null, oDisp1);
+		test = 0;
+		for(i=0; i<10000; i++){
+			test = test + i;		
+		}
+		oM2 = oruntime.freeMemory() / 1000000;	//	<=MB
+		oDisp2= "Avaiable Memory2 =>" + oM2 + "MB";
+			JOptionPane.showMessageDialog(null, oDisp2);
+		JOptionPane.showMessageDialog(null, "Success");
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+		}
+</code></pre><br>
+
+
+<a name="OOoGRUt5"><h6>GRUt-)<em>[General]</em>全Memory容量取得</h6></a><pre><code>
+//merory
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.java.lang.Runtime);
+	//
+	try{
+		oruntime = Runtime.getRuntime();
+		oM1 = oruntime.totalMemory() / 1000000;	//	<=MB
+		oDisp1= "Jva仮想マシンのメモリ総容量 =>" + oM1 + "MB";
+			JOptionPane.showMessageDialog(null, oDisp1);
+		test = 0;
+		for(i=0; i<10000; i++){
+			test = test + i;		
+		}
+		oM2 = oruntime.freeMemory() / 1000000;	//	<=MB
+		oDisp2= "Jva仮想マシンのFreeメモリ総容量 =>" + oM2 + "MB";
+			JOptionPane.showMessageDialog(null, oDisp2);
+		JOptionPane.showMessageDialog(null, "Success");
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+		}
+		
+<img SRC="JavaScript_Pic/01general/Utility/07JavaMemorySize01.png" align="Left" hspace="4" vspace="4" width="25%"><img SRC="JavaScript_Pic/01general/Utility/07JavaMemorySize02.png" align="Left" hspace="4" vspace="4" width="25%">
+</code></pre><br>
+<br><br>
+<br><br>
+<br><br>
+
+<a name="OOoGRUt1"><h6>GRUt-)<em>[General]</em></h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/Utility/index.html" align="right" hspace="4" vspace="4" width="25%">
+
+</code></pre><br>
+
+
+
+<p class="s1">Swing</p class="s1">
+<p class="s3">[ Frame ]</p class="s3">
+<a name="OOoGRAF1"><h6>GRAF-)<em>[General]</em>Applet Frame作成</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/swing/01Frame/01AppletFrame01.png" align="right" hspace="4" vspace="4" width="20%">
+// Rhino Aplet Frame
+importClass(Packages.org.mozilla.javascript.Context);
+importClass(Packages.org.mozilla.javascript.Scriptable);
+importClass(Packages.org.mozilla.javascript.ScriptableObject);
+importClass(Packages.javax.swing.JOptionPane);
+// JavaScriptの実行に必要なObject
+ctx = Context.enter();
+scope = ctx.initStandardObjects();
+// 表示させるFrame(Window)
+ScriptableObject.putProperty( scope, "f", new Packages.javax.swing.JFrame("Frame") );
+// Applet FrameをJavaScriptで表示
+result = ctx.evaluateString( scope, "f.setSize(200,200);"
+				+ "f.defaultCloseOperation = Packages.javax.swing.JFrame.DISPOSE_ON_CLOSE;"		// <= Appletの終了
+				+ "f.visible = true;"
+			,"RhinoExample",0,null);
+// JavaScriptの実行を終了
+Context.exit();
+//
+//	DO_NOTHING_ON_CLOSE	:	Do not do anything when the user requests that the window close.
+//	HIDE_ON_CLOSE		:	Hide the window when the user closes it.
+//	DISPOSE_ON_CLOSE	:	Hide and dispose of the window when the user closes it.
+//	EXIT_ON_CLOSE		:	Exit the application, using System.exit(0). This is recommended for applications only.
+</code></pre><br>
+
+<a name="OOoGRAF2"><h6>GRAF-)<em>[General]</em>Simile図作成1</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/swing/01Frame/02CreateSimile01.png" align="right" hspace="4" vspace="4" width="20%">
+// Color Smile Mark
+var awt = java.awt;
+var event = awt.event;
+var graphics = awt.Graphics;
+var system = java.lang.System;
+var smileyCanvas = new JavaAdapter(awt.Canvas, {
+   paint: function (g) {
+       var size = this.getSize();
+       var d = Math.min(size.width, size.height);
+       var ed = d / 20;
+       var x = (size.width - d) / 2;
+       var y = (size.height - d) / 2;
+       // draw head (color already set to foreground)
+       g.fillOval(x, y, d, d);
+       g.setColor(awt.Color.black);
+       g.drawOval(x, y, d, d);
+       // draw eyes
+       g.fillOval(x+d/3-(ed/2), y+d/3-(ed/2), ed, ed);
+       g.fillOval(x+(2*(d/3))-(ed/2), y+d/3-(ed/2), ed, ed);
+       //draw mouth
+       g.drawArc(x+d/4, y+2*(d/5), d/2, d/3, 0, -180);
+   }
+});
+smileyCanvas.setForeground(awt.Color.yellow);
+var winAdapter = new JavaAdapter(event.WindowAdapter, {
+   windowClosing: function (evt) {
+       system.exit(0);
+   }
+});
+var f = new awt.Frame('Have a nice day');
+f.addWindowListener(winAdapter);
+f.add(smileyCanvas, awt.BorderLayout.CENTER);
+f.pack();
+f.show();
+f.setSize(new awt.Dimension(320, 240));
+</code></pre><br> 
+
+<a name="OOoGRAF2b"><h6>GRAF-)<em>[General]</em>Simile図作2</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/swing/01Frame/02CreateSimile02.png" align="right" hspace="4" vspace="4" width="20%">
+// Color Smile Mark
+var awt = java.awt;
+var event = awt.event;
+var graphics = awt.Graphics;
+var system = java.lang.System;
+var smileyCanvas = new JavaAdapter(awt.Canvas, {
+   paint: function (g) {
+       var size = this.getSize();
+       var d = Math.min(size.width, size.height);
+       var ed = d / 20;
+       var x = (size.width - d) / 2;
+       var y = (size.height - d) / 2;
+       // draw head (color already set to foreground)
+       g.fillOval(x, y, d, d);
+       g.setColor(awt.Color.black);
+       g.drawOval(x, y, d, d);
+       // draw eyes
+       g.fillOval(x+d/3-(ed/2), y+d/3-(ed/2), ed, ed);
+       g.fillOval(x+(2*(d/3))-(ed/2), y+d/3-(ed/2), ed, ed);
+       //draw mouth
+       g.drawArc(x+d/4, y+2*(d/5), d/2, d/3, 0, -180);
+   }
+});
+//
+smileyCanvas.setForeground(awt.Color.yellow);
+var winAdapter = new JavaAdapter(event.WindowAdapter, {
+   windowClosing: function (evt) {
+       Context.exit();
+   }
+});
+var f = new awt.Frame('Have a nice day');
+f.addWindowListener(winAdapter);
+f.add(smileyCanvas, awt.BorderLayout.CENTER);
+f.pack();
+f.show();
+f.setSize(new awt.Dimension(320, 240));
+</code></pre><br>
+
+
+<a name="OOoGRAF3a"><h6>GRAF-)<em>[General]</em>新規Frame作成</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/swing/01Frame/03CreateAppletFrame01.png" align="right" hspace="4" vspace="4" width="15%">
+//Swing
+importClass(Packages.javax.swing.JFrame);
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+		//Basic Frame
+			basicframe = new JFrame();
+			basicframe.setBounds(10,10,200,300);		// (表示位置x,y, Frame Width, Height)
+			// Titel of Frame
+				basicframe.setTitle("Title of Frame")
+			// Display Frame
+				basicframe.setVisible(true)
+		JOptionPane.showMessageDialog(null, "Success");
+		basicframe.setVisible(false)
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+		}
+</code></pre><br> 
+
+<a name="OOoGRAF3b"><h6>GRAF-)<em>[General]</em>Labelの追加</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/swing/01Frame/04AppletLabel01.png" align="right" hspace="4" vspace="4" width="30%">
+//Swing
+importClass(Packages.javax.swing.JFrame);
+importClass(Packages.javax.swing.JPanel);
+importClass(Packages.javax.swing.JLabel);
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+		//Basic Frame
+			basicframe = new JFrame();
+			basicframe.setBounds(10,10,200,300);		// (表示位置x,y, Frame Width, Height)
+			// Titel of Frame
+				basicframe.setTitle("Title of Frame")
+			// Display Frame
+				basicframe.setVisible(true)
+		//Panel
+			// 新規Panel
+				basicPanel = new JPanel();
+				// Label
+					olavel = new JLabel("Label");
+					basicPanel.add(olavel)
+		// FrameにPanelを追加
+			basicframe.add(basicPanel)
+		JOptionPane.showMessageDialog(null, "Success");
+		basicframe.setVisible(false)
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+		}
+</code></pre><br> 
+
+<a name="OOoGRAF3c"><h6>GRAF-)<em>[General]</em>Text Boxの追加</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/swing/01Frame/05AppletTextBox01.png" align="right" hspace="4" vspace="4" width="30%">
+//Swing
+importClass(Packages.javax.swing.JFrame);
+importClass(Packages.javax.swing.JPanel);
+importClass(Packages.javax.swing.JLabel);
+importClass(Packages.javax.swing.JTextField);
+
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+		//Basic Frame
+			basicframe = new JFrame();
+			basicframe.setBounds(10,10,500,200);		// (表示位置x,y, Frame Width, Height)
+			// Titel of Frame
+				basicframe.setTitle("Title of Frame")
+			// Display Frame
+				basicframe.setVisible(true)
+		//Panel
+			// 新規Panel
+				basicPanel = new JPanel();
+				// Lavel
+					olavel = new JLabel("Label");
+					basicPanel.add(olavel);
+				//Text Box Size
+					otext = new JTextField(10);
+					basicPanel.add(otext);
+		// FrameにPanelを追加
+			basicframe.add(basicPanel)
+		JOptionPane.showMessageDialog(null, "Success");
+		basicframe.setVisible(false)
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+		}
+</code></pre><br> 
+
+<a name="OOoGRAF3d"><h6>GRAF-)<em>[General]</em>Password入力欄の追加</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/swing/01Frame/06AppletPasswordBox01.png" align="right" hspace="4" vspace="4" width="30%">
+//Swing
+importClass(Packages.javax.swing.JFrame);
+importClass(Packages.javax.swing.JPanel);
+importClass(Packages.javax.swing.JLabel);
+importClass(Packages.javax.swing.JTextField);
+importClass(Packages.javax.swing.JPasswordField);
+
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+		//Basic Frame
+			basicframe = new JFrame();
+			basicframe.setBounds(10,10,500,200);		// (表示位置x,y, Frame Width, Height)
+			// Titel of Frame
+				basicframe.setTitle("Title of Frame")
+			// Display Frame
+				basicframe.setVisible(true)
+		//Panel
+			// 新規Panel
+				basicPanel = new JPanel();
+				// Lavel
+					olavel = new JLabel("Label");
+					basicPanel.add(olavel);
+				//Text Box Size
+					otext = new JTextField(10);
+					basicPanel.add(otext);
+				//Password Box Size
+					opass = new JPasswordField(10);
+					basicPanel.add(opass)
+		// FrameにPanelを追加
+			basicframe.add(basicPanel)
+		JOptionPane.showMessageDialog(null, "Success");
+		basicframe.setVisible(false)
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+		}
+</code></pre><br> 
+
+<a name="OOoGRAF3e"><h6>GRAF-)<em>[General]</em>Text Areaの追加</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/swing/01Frame/07AppletTextArea01.png" align="right" hspace="4" vspace="4" width="30%">
+//Swing
+importClass(Packages.javax.swing.JFrame);
+importClass(Packages.javax.swing.JPanel);
+importClass(Packages.javax.swing.JLabel);
+importClass(Packages.javax.swing.JTextField);
+importClass(Packages.javax.swing.JPasswordField);
+importClass(Packages.javax.swing.JTextArea);
+
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+		//Basic Frame
+			basicframe = new JFrame();
+			basicframe.setBounds(10,10,500,200);		// (表示位置x,y, Frame Width, Height)
+			// Titel of Frame
+				basicframe.setTitle("Title of Frame")
+			// Display Frame
+				basicframe.setVisible(true)
+		//Panel
+			// 新規Panel
+				basicPanel = new JPanel();
+				// Lavel
+					olavel = new JLabel("Label");
+					basicPanel.add(olavel);
+				//Text Box Size
+					otext = new JTextField(10);
+					basicPanel.add(otext);
+				//Password Box Size
+					opass = new JPasswordField(10);
+					basicPanel.add(opass)
+				//Text Area Size (行数,幅)
+					otextarea = new JTextArea(5,10);
+					basicPanel.add(otextarea)
+		// FrameにPanelを追加
+			basicframe.add(basicPanel)
+		JOptionPane.showMessageDialog(null, "Success");
+		basicframe.setVisible(false)
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+		}
+</code></pre><br> 
+
+<a name="OOoGRAF3f"><h6>GRAF-)<em>[General]</em>Buttonの追加</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/swing/01Frame/08AppletButton01.png" align="right" hspace="4" vspace="4" width="30%">
+//Swing
+importClass(Packages.javax.swing.JFrame);
+importClass(Packages.javax.swing.JPanel);
+importClass(Packages.javax.swing.JLabel);
+importClass(Packages.javax.swing.JTextField);
+importClass(Packages.javax.swing.JPasswordField);
+importClass(Packages.javax.swing.JTextArea);
+importClass(Packages.javax.swing.JButton);
+
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+		//Basic Frame
+			basicframe = new JFrame();
+			basicframe.setBounds(10,10,500,200);		// (表示位置x,y, Frame Width, Height)
+			// Titel of Frame
+				basicframe.setTitle("Title of Frame")
+			// Display Frame
+				basicframe.setVisible(true)
+		//Panel
+			// 新規Panel
+				basicPanel = new JPanel();
+				// Lavel
+					olavel = new JLabel("Label");
+					basicPanel.add(olavel);
+				//Text Box Size
+					otext = new JTextField(10);
+					basicPanel.add(otext);
+				//Password Box Size
+					opass = new JPasswordField(10);
+					basicPanel.add(opass);
+				//Text Area Size (行数,幅)
+					otextarea = new JTextArea(5,10);
+					basicPanel.add(otextarea);
+				//Bottun
+					obutton = new JButton("Bottun");
+					basicPanel.add(obutton); 
+		// FrameにPanelを追加
+			basicframe.add(basicPanel)
+		JOptionPane.showMessageDialog(null, "Success");
+		basicframe.setVisible(false)
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+		}
+</code></pre><br> 
+
+<a name="OOoGRAF3g"><h6>GRAF-)<em>[General]</em>Check Boxの追加</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/swing/01Frame/09AppletCheckBox01.png" align="right" hspace="4" vspace="4" width="30%">
+//Swing
+importClass(Packages.javax.swing.JFrame);
+importClass(Packages.javax.swing.JPanel);
+importClass(Packages.javax.swing.JLabel);
+importClass(Packages.javax.swing.JTextField);
+importClass(Packages.javax.swing.JPasswordField);
+importClass(Packages.javax.swing.JTextArea);
+importClass(Packages.javax.swing.JButton);
+importClass(Packages.javax.swing.JCheckBox);
+//importClass(Packages.javax.swing.ButtonGroup);
+
+//importClass(Packages.javax.swing.JRadioButton);
+
+
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+		//Basic Frame
+			basicframe = new JFrame();
+			basicframe.setBounds(10,10,500,200);		// (表示位置x,y, Frame Width, Height)
+			// Titel of Frame
+				basicframe.setTitle("Title of Frame")
+			// Display Frame
+				basicframe.setVisible(true)
+		//Panel
+			// 新規Panel
+				basicPanel = new JPanel();
+				// Lavel
+					olavel = new JLabel("Label");
+					basicPanel.add(olavel);
+				//Text Box Size
+					otext = new JTextField(10);
+					basicPanel.add(otext);
+				//Password Box Size
+					opass = new JPasswordField(10);
+					basicPanel.add(opass);
+				//Text Area Size (行数,幅)
+					otextarea = new JTextArea(5,10);
+					basicPanel.add(otextarea);
+				//Bottun
+					obutton = new JButton("Bottun");
+					basicPanel.add(obutton);
+				//Check Box
+					ocheckbox = new JCheckBox("CheckBox");
+					basicPanel.add(ocheckbox);
+		// FrameにPanelを追加
+			basicframe.add(basicPanel)
+		JOptionPane.showMessageDialog(null, "Success");
+		basicframe.setVisible(false)
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+		}
+</code></pre><br> 
+
+<a name="OOoGRAF3h"><h6>GRAF-)<em>[General]</em>Radio Boxの追加</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/swing/01Frame/10AppletRadioBox01.png" align="right" hspace="4" vspace="4" width="30%">
+//Swing
+importClass(Packages.javax.swing.JFrame);
+importClass(Packages.javax.swing.JPanel);
+importClass(Packages.javax.swing.JLabel);
+importClass(Packages.javax.swing.JTextField);
+importClass(Packages.javax.swing.JPasswordField);
+importClass(Packages.javax.swing.JTextArea);
+importClass(Packages.javax.swing.JButton);
+importClass(Packages.javax.swing.JCheckBox);
+importClass(Packages.javax.swing.JRadioButton);
+//importClass(Packages.javax.swing.ButtonGroup);
+
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+		//Basic Frame
+			basicframe = new JFrame();
+			basicframe.setBounds(10,10,500,200);		// (表示位置x,y, Frame Width, Height)
+			// Titel of Frame
+				basicframe.setTitle("Title of Frame")
+			// Display Frame
+				basicframe.setVisible(true)
+		//Panel
+			// 新規Panel
+				basicPanel = new JPanel();
+				// Lavel
+					olavel = new JLabel("Label");
+					basicPanel.add(olavel);
+				//Text Box Size
+					otext = new JTextField(10);
+					basicPanel.add(otext);
+				//Password Box Size
+					opass = new JPasswordField(10);
+					basicPanel.add(opass);
+				//Text Area Size (行数,幅)
+					otextarea = new JTextArea(5,10);
+					basicPanel.add(otextarea);
+				//Bottun
+					obutton = new JButton("Bottun");
+					basicPanel.add(obutton);
+				//Check Box
+					ocheckbox = new JCheckBox("CheckBox");
+					basicPanel.add(ocheckbox);
+				//Radio Bottun
+					oradiobottun1 = new JRadioButton("Radio1");
+					basicPanel.add(oradiobottun1);
+					
+		// FrameにPanelを追加
+			basicframe.add(basicPanel)
+		JOptionPane.showMessageDialog(null, "Success");
+		basicframe.setVisible(false)
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+		}
+</code></pre><br> 
+
+<a name="OOoGRAF3i"><h6>GRAF-)<em>[General]</em>Radio BoxをGroup化する。</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/swing/01Frame/11AppletRadioBoxGr01.png" align="right" hspace="4" vspace="4" width="30%">
+//Swing
+importClass(Packages.javax.swing.JFrame);
+importClass(Packages.javax.swing.JPanel);
+importClass(Packages.javax.swing.JLabel);
+importClass(Packages.javax.swing.JTextField);
+importClass(Packages.javax.swing.JPasswordField);
+importClass(Packages.javax.swing.JTextArea);
+importClass(Packages.javax.swing.JButton);
+importClass(Packages.javax.swing.JCheckBox);
+importClass(Packages.javax.swing.JRadioButton);
+importClass(Packages.javax.swing.ButtonGroup);
+
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+		//Basic Frame
+			basicframe = new JFrame();
+			basicframe.setBounds(10,10,500,200);		// (表示位置x,y, Frame Width, Height)
+			// Titel of Frame
+				basicframe.setTitle("Title of Frame")
+			// Display Frame
+				basicframe.setVisible(true)
+		//Panel
+			// 新規Panel
+				basicPanel = new JPanel();
+				// Lavel
+					olavel = new JLabel("Label");
+					basicPanel.add(olavel);
+				//Text Box Size
+					otext = new JTextField(10);
+					basicPanel.add(otext);
+				//Password Box Size
+					opass = new JPasswordField(10);
+					basicPanel.add(opass);
+				//Text Area Size (行数,幅)
+					otextarea = new JTextArea(5,10);
+					basicPanel.add(otextarea);
+				//Bottun
+					obutton = new JButton("Bottun");
+					basicPanel.add(obutton);
+				//Check Box
+					ocheckbox = new JCheckBox("CheckBox");
+					basicPanel.add(ocheckbox);
+				//Radio Bottun
+					oradiobutton1 = new JRadioButton("Radio1");
+					oradiobutton2 = new JRadioButton("Radio2");
+				//Group化
+					radiogroup = new ButtonGroup();
+						radiogroup.add(oradiobutton1);
+						radiogroup.add(oradiobutton1);
+				//Panelに追加
+					basicPanel.add(oradiobutton1);
+					basicPanel.add(oradiobutton2);
+					
+		// FrameにPanelを追加
+			basicframe.add(basicPanel)
+		JOptionPane.showMessageDialog(null, "Success");
+		basicframe.setVisible(false)
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+		}
+</code></pre><br> 
+
+
+<a name="OOoGRAF4"><h6>GRAF-)<em>[General]</em>Menue Panel</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/swing/01Frame/12AppletManualPanel01.png" align="right" hspace="4" vspace="4" width="30%">
+//Swing
+importClass(Packages.javax.swing.JFrame);
+importClass(Packages.javax.swing.JPanel);
+importClass(Packages.javax.swing.JMenu);
+importClass(Packages.javax.swing.JMenuBar);
+importClass(Packages.javax.swing.JMenuItem);
+
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+		//Basic Frame
+			basicframe = new JFrame();
+			basicframe.setBounds(10,10,500,200);		// (表示位置x,y, Frame Width, Height)
+			// Titel of Frame
+				basicframe.setTitle("Title of Frame")
+			// Display Frame
+				basicframe.setVisible(true)
+				
+		//Panel
+			basicPanel = new JPanel();
+			// 新規Menu Bar
+				menubar = new JMenuBar();
+			// Panelに対して設定
+				basicPanel.add(menubar);
+			// menu作成
+				omenu = new JMenu("File");
+				menubar.add(omenu);
+				//menuに追加するcomponentの生成
+					oitem1 = new JMenuItem("New");
+					oitem2 = new JMenuItem("Open");		
+					oitem3 = new JMenuItem("Close");
+					oitem4 = new JMenuItem("Exit");
+						omenu.add(oitem1);
+						omenu.add(oitem2);
+						omenu.add(oitem3);
+						omenu.add(oitem4);
+		// FrameにPanelを追加
+			basicframe.add(basicPanel)
+		JOptionPane.showMessageDialog(null, "Success");
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+		}
+</code></pre><br>
+
+
+<a name="OOoGRAF5"><h6>GRAF-)<em>[General]</em>Tree表示</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/swing/tree.png" align="right" hspace="4" vspace="4" width="30%">
+//Swing
+importClass(Packages.javax.swing.JFrame);
+importClass(Packages.javax.swing.JPanel);
+importClass(Packages.javax.swing.JTree);
+
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+		//Basic Frame
+			basicframe = new JFrame();
+			basicframe.setBounds(10,10,300,500);
+			// Titel of Frame
+				basicframe.setTitle("Title of Frame")
+			// Display Frame
+				basicframe.setVisible(true)
+				
+		//Panel
+			basicPanel = new JPanel();
+			// Tree作成
+				otree = new JTree();
+			// Panelに対して設定
+				basicPanel.add(otree);
+		// FrameにPanelを追加
+			basicframe.add(basicPanel);
+		JOptionPane.showMessageDialog(null, "Success");
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+		}
+</code></pre><br>
+
+<a name="OOoGRAF6"><h6>GRAF-)<em>[General]</em>Tab作成</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/swing/01Frame/14AppletTab01.png" align="right" hspace="4" vspace="4" width="30%">
+//Swing
+importClass(Packages.javax.swing.JFrame);
+importClass(Packages.javax.swing.JLabel);
+importClass(Packages.javax.swing.JTabbedPane);
+importClass(Packages.javax.swing.SwingConstants);
+
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+		//Basic Frame
+			basicframe = new JFrame();
+			basicframe.setBounds(10,10,300,500);		// (表示位置x,y, Frame Width, Height)
+			// Titel of Frame
+				basicframe.setTitle("Title of Frame")
+			// Display Frame
+				basicframe.setVisible(true)
+				
+		//Tab Panel作成
+			tabp = new JTabbedPane(SwingConstants.BOTTOM);
+				tabp.addTab("Tab1", new JLabel("tab1の内容"));
+				tabp.addTab("Tab2", new JLabel("=>tab2の内容"));
+				tabp.addTab("Tab3", new JLabel("=>=>tab3の内容"));
+				tabp.addTab("Tab4", new JLabel("=>=>=>tab4の内容"));
+		// FrameにPanelを追加
+			basicframe.add(tabp);
+		JOptionPane.showMessageDialog(null, "Success");
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+		}
+</code></pre><br>
+
+<a name="OOoGRAF7"><h6>GRAF-)<em>[General]</em>ComboBox</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/swing/01Frame/15AppletComboBox01.png" align="right" hspace="4" vspace="4" width="30%">
+//Swing
+importClass(Packages.javax.swing.JFrame);
+importClass(Packages.javax.swing.JPanel);
+importClass(Packages.javax.swing.JComboBox);
+
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+		//Basic Frame
+			basicframe = new JFrame();
+			basicframe.setBounds(10,10,200,500);		// (表示位置x,y, Frame Width, Height)
+			// Titel of Frame
+				basicframe.setTitle("Title of Frame")
+			// Display Frame
+				basicframe.setVisible(true)
+				
+		//Panel作成
+			basicPanel = new JPanel();
+		//Combo Box Data
+			cdata = new Array();
+			cdata[0] = "徳川家康";
+			cdata[1] = "徳川秀忠";
+			cdata[2] = "徳川家光";
+			cdata[3] = "徳川家綱";
+			cdata[4] = "徳川綱吉";
+			cdata[5] = "徳川家宣";
+			cdata[6] = "徳川家継";
+			cdata[7] = "徳川吉宗";
+			cdata[8] = "徳川家重";
+			cdata[9] = "徳川家治";
+			cdata[10] = "徳川家斉";
+			cdata[11] = "徳川家慶";
+			cdata[12] = "徳川家定";
+			cdata[13] = "徳川家茂";
+			cdata[14] = "徳川慶喜";
+		//
+			oComboBox = new JComboBox(cdata);	
+		// PanelにCombo Boxを追加
+			basicPanel.add(oComboBox);
+		// FrameにPanelを追加
+			basicframe.add(basicPanel);
+		JOptionPane.showMessageDialog(null, "Success");
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+		}
+</code></pre><br>
+
+
+
+
+<p class="s3">[ Listener ]</p class="s3">
+<a name="OOoGRAL2a"><h6>GRAL-)<em>[General]</em>Action Button作成</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/swing/02actionbutton02.png" align="right" hspace="4" vspace="4"><img SRC="JavaScript_Pic/01general/swing/02actionbutton01.png" align="right" hspace="4" vspace="4">
+//Swing
+importClass(Packages.javax.swing.JFrame);
+
+importClass(Packages.java.awt.event.ActionEvent);
+importClass(Packages.java.awt.event.ActionListener);
+importClass(Packages.java.awt.Color);
+importClass(Packages.java.awt.event.MouseEvent);
+importClass(Packages.java.awt.event.MouseListener);
+importClass(Packages.java.awt.event.WindowAdapter);
+importClass(Packages.java.awt.event.WindowEvent);
+
+importClass(Packages.javax.swing.JButton);
+importClass(Packages.javax.swing.JLabel);
+importClass(Packages.javax.swing.JPanel);
+
+//importClass(Packages.javax.swing.border.LineBorder);	//	<= error
+
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+		//Basic Frame
+			basicframe = new JFrame();
+			basicframe.setBounds(10,10,200,300);		// (表示位置x,y, Frame Width, Height)
+			// Titel of Frame
+				basicframe.setTitle("Title of Frame");
+			// Display Frame
+				basicframe.setVisible(true);
+		//Panel
+			basicPanel = new JPanel();
+		//		oline = new LineBorder(Color.black, 1, true);	//	<= error
+			// Initialize Label
+				resultLabel = new JLabel("結果表示のLabelです");
+			//		resultLabel.setBorder(oline);
+				basicPanel.add(resultLabel);
+		//Button
+			//Buttonに表示する文字
+				obutton = new JButton("Push Button");
+			//Buttonが押された場合の処理
+				obutton.addActionListener(ActionListener({
+					actionPerformed : function(e){						
+							resultLabel.setText("Buttonが押されました!")
+							}
+						})
+					);
+				//
+							
+		//PanelにButton追加
+			basicPanel.add(obutton);
+		//FrameにPanel追加
+			basicframe.add(basicPanel);
+		JOptionPane.showMessageDialog(null, "Success");
+//		basicframe.setVisible(false)
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+		}
+</code></pre><br>
+
+<a name="OOoGRAL2b"><h6>GRAL-)<em>[General]</em>mouse Click</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/swing/03MouseListener_01_02.png" align="right" hspace="4" vspace="4"><img SRC="JavaScript_Pic/01general/swing/03MouseListener_01_01.png" align="right" hspace="4" vspace="4">
+//Swing
+importClass(Packages.javax.swing.JFrame);
+
+importClass(Packages.java.awt.event.ActionEvent);
+importClass(Packages.java.awt.event.ActionListener);
+importClass(Packages.java.awt.Color);
+importClass(Packages.java.awt.event.MouseEvent);
+importClass(Packages.java.awt.event.MouseListener);
+importClass(Packages.java.awt.event.WindowAdapter);
+importClass(Packages.java.awt.event.WindowEvent);
+
+importClass(Packages.javax.swing.JButton);
+importClass(Packages.javax.swing.JLabel);
+importClass(Packages.javax.swing.JPanel);
+
+//importClass(Packages.javax.swing.border.LineBorder);	//	<= error
+
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+		//Basic Frame
+			basicframe = new JFrame();
+			basicframe.setBounds(10,10,300,100);		// (表示位置x,y, Frame Width, Height)
+			// Titel of Frame
+				basicframe.setTitle("Title of Frame");
+			// Display Frame
+				basicframe.setVisible(true);
+		//Panel
+			basicPanel = new JPanel();
+		//		oline = new LineBorder(Color.black, 1, true);	//	<= error
+			// Initialize Label
+				resultLabel = new JLabel("このLabelをClickして下さい!!");
+			//		resultLabel.setBorder(oline);
+		
+		//Labelが押された場合の処理
+			resultLabel.addMouseListener(MouseListener({
+					mouseClicked : function(e){						
+							resultLabel.setText("LabelがClickされました!!")
+							}
+						})
+					);
+				//
+		//PanelにLabel追加
+			basicPanel.add(resultLabel);
+		//FrameにPanel追加
+			basicframe.add(basicPanel);							
+		
+		JOptionPane.showMessageDialog(null, "Success");
+//		basicframe.setVisible(false)
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+		}
+</code></pre><br>
+
+<a name="OOoGRAL2c"><h6>GRAL-)<em>[General]</em>mouse cursorがLabel上にあるか</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/swing/03MouseListener_02_01.png" align="right" hspace="4" vspace="4">
+//Swing
+importClass(Packages.javax.swing.JFrame);
+
+importClass(Packages.java.awt.event.ActionEvent);
+importClass(Packages.java.awt.event.ActionListener);
+importClass(Packages.java.awt.Color);
+importClass(Packages.java.awt.event.MouseEvent);
+importClass(Packages.java.awt.event.MouseListener);
+importClass(Packages.java.awt.event.WindowAdapter);
+importClass(Packages.java.awt.event.WindowEvent);
+
+importClass(Packages.javax.swing.JButton);
+importClass(Packages.javax.swing.JLabel);
+importClass(Packages.javax.swing.JPanel);
+
+//importClass(Packages.javax.swing.border.LineBorder);	//	<= error
+
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+		//Basic Frame
+			basicframe = new JFrame();
+			basicframe.setBounds(10,10,300,100);		// (表示位置x,y, Frame Width, Height)
+			// Titel of Frame
+				basicframe.setTitle("Title of Frame");
+			// Display Frame
+				basicframe.setVisible(true);
+		//Panel
+			basicPanel = new JPanel();
+		//		oline = new LineBorder(Color.black, 1, true);	//	<= error
+			// Initialize Label
+				resultLabel = new JLabel("このLabelをClickして下さい!!");
+			//		resultLabel.setBorder(oline);
+		
+		//Labelが押された場合の処理
+			resultLabel.addMouseListener(MouseListener({
+					mouseClicked : function(e){						
+						resultLabel.setText("LabelがClickされました!!")
+							}
+						})
+					);
+		//Mouse CursorがLabel上に乗った時の処理
+			resultLabel.addMouseListener(MouseListener({
+					mouseEntered : function(e){
+						resultLabel.setText("Lavel上にmouse cursorが乗っています。")
+							}
+						})
+					);
+				//
+		//PanelにLabel追加
+			basicPanel.add(resultLabel);
+		//FrameにPanel追加
+			basicframe.add(basicPanel);							
+		
+		JOptionPane.showMessageDialog(null, "Success");
+//		basicframe.setVisible(false)
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+		}
+</code></pre><br>
+
+<a name="OOoGRAL2d"><h6>GRAL-)<em>[General]</em>Mouse CursorがLabel上から外れたの処理</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/swing/03MouseListener_03_01.png" align="right" hspace="4" vspace="4">
+//Swing
+importClass(Packages.javax.swing.JFrame);
+
+importClass(Packages.java.awt.event.ActionEvent);
+importClass(Packages.java.awt.event.ActionListener);
+importClass(Packages.java.awt.Color);
+importClass(Packages.java.awt.event.MouseEvent);
+importClass(Packages.java.awt.event.MouseListener);
+importClass(Packages.java.awt.event.WindowAdapter);
+importClass(Packages.java.awt.event.WindowEvent);
+
+importClass(Packages.javax.swing.JButton);
+importClass(Packages.javax.swing.JLabel);
+importClass(Packages.javax.swing.JPanel);
+
+//importClass(Packages.javax.swing.border.LineBorder);	//	<= error
+
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+		//Basic Frame
+			basicframe = new JFrame();
+			basicframe.setBounds(10,10,300,100);		// (表示位置x,y, Frame Width, Height)
+			// Titel of Frame
+				basicframe.setTitle("Title of Frame");
+			// Display Frame
+				basicframe.setVisible(true);
+		//Panel
+			basicPanel = new JPanel();
+		//		oline = new LineBorder(Color.black, 1, true);	//	<= error
+			// Initialize Label
+				resultLabel = new JLabel("このLabelをClickして下さい!!");
+			//		resultLabel.setBorder(oline);
+		
+		//Labelが押された場合の処理
+			resultLabel.addMouseListener(
+				new MouseListener({
+					mouseClicked : function(e){						
+						resultLabel.setText("LabelがClickされました!!")
+							}
+						})
+					);
+			//Mouse CursorがLabel上に乗った時の処理
+				resultLabel.addMouseListener(MouseListener({
+					mouseEntered : function(e){
+						resultLabel.setText("Lavel上にmouse cursorが乗っています。")
+							}
+						})
+					);
+		//PanelにLabel追加
+			basicPanel.add(resultLabel);
+		//FrameにPanel追加
+			basicframe.add(basicPanel);
+		//Mouse CursorがLabel上から外れたの処理
+				resultLabel.addMouseListener(MouseListener({
+					mouseExited : function(e){
+						resultLabel.setText("Lavel上からmouse cursorが外れました。")
+							}
+						})
+					);
+				//						
+		
+		JOptionPane.showMessageDialog(null, "Success");
+//		basicframe.setVisible(false)
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+		}
+</code></pre><br>
+
+<a name="OOoGRAL2e"><h6>GRAL-)<em>[General]</em>mouse buttonが押されている事を検知</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/swing/04MouseButton01_02.png" align="right" hspace="4" vspace="4" width="20%"><img SRC="JavaScript_Pic/01general/swing/04MouseButton01_01.png" align="right" hspace="4" vspace="4" width="20%">
+//Swing
+importClass(Packages.javax.swing.JFrame);
+
+importClass(Packages.java.awt.event.ActionEvent);
+importClass(Packages.java.awt.event.ActionListener);
+importClass(Packages.java.awt.Color);
+importClass(Packages.java.awt.event.MouseEvent);
+importClass(Packages.java.awt.event.MouseListener);
+importClass(Packages.java.awt.event.WindowAdapter);
+importClass(Packages.java.awt.event.WindowEvent);
+
+importClass(Packages.javax.swing.JButton);
+importClass(Packages.javax.swing.JLabel);
+importClass(Packages.javax.swing.JPanel);
+
+//importClass(Packages.javax.swing.border.LineBorder);	//	<= error
+
+importClass(Packages.javax.swing.JOptionPane);
+	//
+	try{
+		//Basic Frame
+			basicframe = new JFrame();
+			basicframe.setBounds(10,10,300,100);		// (表示位置x,y, Frame Width, Height)
+			// Titel of Frame
+				basicframe.setTitle("Title of Frame");
+			// Display Frame
+				basicframe.setVisible(true);
+		//Panel
+			basicPanel = new JPanel();
+		//		oline = new LineBorder(Color.black, 1, true);	//	<= error
+			// Initialize Label
+				resultLabel = new JLabel("このLabelをClickして下さい!!");
+			//		resultLabel.setBorder(oline);
+		
+		//LabelがClickされた場合の処理
+			resultLabel.addMouseListener(
+				new MouseListener({
+					mouseClicked : function(e){						
+						resultLabel.setText("LabelがClickされました!!")
+							}
+						})
+					);
+			//Mouse CursorがLabel上に乗った時の処理
+				resultLabel.addMouseListener(MouseListener({
+					mouseEntered : function(e){
+						resultLabel.setText("Lavel上にmouse cursorが乗っています。")
+							}
+						})
+					);
+		//PanelにLabel追加
+			basicPanel.add(resultLabel);
+		//FrameにPanel追加
+			basicframe.add(basicPanel);
+		//Mouse CursorがLabel上から外れたの処理
+				resultLabel.addMouseListener(MouseListener({
+					mouseExited : function(e){
+						resultLabel.setText("Lavel上からmouse cursorが外れました。")
+							}
+						})
+					);
+		//MouseがLabel上で押されている時の処理
+				resultLabel.addMouseListener(MouseListener({
+					mousePressed : function(e){
+						resultLabel.setText("mouse buttonが押されています")
+							}
+						})
+					);
+		//MouseがLabel上で押された後に離された時の処理
+//				resultLabel.addMouseListener(MouseListener({
+//					mouseReleased : function(e){
+//						resultLabel.setText("mouse buttonが離されました")
+//							}
+//						})
+//					);
+				//						
+		
+		JOptionPane.showMessageDialog(null, "Success");
+//		basicframe.setVisible(false)
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+		}
+</code></pre><br>
+
+
+<a name="OOoGRAL1"><h6>GRAL-)<em>[General]</em>Listener Frame作成</h6></a><pre><code>
+// Applet Listener
+importClass(Packages.javax.swing.JFrame);
+importClass(Packages.javax.swing.JOptionPane);
+button = new Packages.javax.swing.JButton("ボタンを押して!");
+button.addActionListener(new java.awt.event.ActionListener({
+	actionPerformed : function(e) {
+			JOptionPane.showMessageDialog(e.source,"Pushed Bottun!!")
+					}
+		})
+	)
+frame = new JFrame("JavaScriptでSwing");
+frame.setSize(250,100);
+frame.defaultCloseOperation = Packages.javax.swing.JFrame.DISPOSE_ON_CLOSE;
+frame.contentPane.add( button );
+frame.visible = true;
+//	Context.exit();
+<div class="gazou">
+<img SRC="JavaScript_Pic/jAppletListener1.png" hspace="4" vspace="4"><img SRC="JavaScript_Pic/jAppletListener2.png" hspace="4" vspace="4">
+</div class="gazou">
+<br clear="left">
+</code></pre><br>
+
+<a name="OOoGRAL"><h6>GRAL-)<em>[General]</em></h6></a><pre><code>
+<img SRC="http://error.fc2.com/web/404.html" align="right" hspace="4" vspace="4">
+
+</code></pre><br>
+
+
+
+
+<p class="s1">NetWork</p class="s1">
+<a name="OOoGNW1"><h6>GNW-)<em>[General]</em>Local情報取得</h6></a><p class="s2">
+//Local Network information
+	importClass(Packages.java.net.InetAddress);
+	importClass(Packages.java.net.UnknownHostException);
+	importClass(Packages.javax.swing.JOptionPane);
+		try{
+			// get information fof Host
+				myadd =InetAddress.getLocalHost();
+			// get IP Address
+				myIPAdd = myadd.getHostAddress();
+			// get Host name
+				myHostname = myadd.getHostName();
+			// Display
+				JOptionPane.showMessageDialog(null, "IP Address : " + myIPAdd + "\n" + "HOST Name : " + myHostname);
+			}catch (UnknownHostException){
+				// 例外処理
+				JOptionPane.showMessageDialog(null, "取得失敗");
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+<a name="OOoGNW2"><h6>GNW-)<em>[General]</em>Host Nameから情報取得</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/01ipaddresshostname.png" align="right" hspace="4" vspace="4">
+//Network information
+	importClass(Packages.java.net.InetAddress);
+	importClass(Packages.java.net.UnknownHostException);
+	importClass(Packages.javax.swing.JOptionPane);
+		try{
+			// get information fof Host
+				host1 = InetAddress.getByName("www.yahoo.co.jp");
+			// get IP Address
+				hostIPAdd1 = host1.getHostAddress();
+			// get Host name
+				Hostname1 = host1.getHostName();
+			// Display
+				JOptionPane.showMessageDialog(null, "IP Address : " + hostIPAdd1 + "\n" + "HOST Name : " + Hostname1);
+			}catch (UnknownHostException){
+				// 例外処理
+				JOptionPane.showMessageDialog(null, "取得失敗");
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+<a name="OOoGNW3"><h6>GNW-)<em>[General]</em>IP Addressから情報取得</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/02ipaddresshostname02.png" align="right" hspace="4" vspace="4">
+//Network information
+	importClass(Packages.java.net.InetAddress);
+	importClass(Packages.java.net.UnknownHostException);
+	importClass(Packages.javax.swing.JOptionPane);
+		try{
+			// get information fof Host
+				host1 = InetAddress.getByName("208.71.106.43");
+			// get IP Address
+				hostIPAdd1 = host1.getHostAddress();
+			// get Host name
+				Hostname1 = host1.getHostName();
+			// Display
+				JOptionPane.showMessageDialog(null, "IP Address : " + hostIPAdd1 + "\n" + "HOST Name : " + Hostname1);
+			}catch (UnknownHostException){
+				// 例外処理
+				JOptionPane.showMessageDialog(null, "取得失敗");
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+<a name="OOoGNW4"><h6>GNW-4)<em>[General]</em>複数のIP Address取得</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/03ipaddresses.png" align="right" hspace="4" vspace="4">
+//Network informations
+	importClass(Packages.java.net.InetAddress);
+	importClass(Packages.java.net.UnknownHostException);
+	importClass(Packages.javax.swing.JOptionPane);
+		try{
+			// get informations fof Host
+				oHostName= "www.yahoo.com"
+				host = new Array()
+				host = InetAddress.getAllByName(oHostName);
+			// get IP Address
+				oDisp = "[ " + oHostName + " ]" + "\n" + "\n"
+				for(i = 0; i < host.length; i++){
+						oDisp = oDisp + "IP-" + (i+1) + " : " + host[i].getHostAddress() + "\n";
+												}
+			// Display
+				JOptionPane.showMessageDialog(null, oDisp);
+			}catch (UnknownHostException){
+				// 例外処理
+				JOptionPane.showMessageDialog(null, "取得失敗");
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+
+<a name="OOoGNW5a"><h6>GNW-)<em>[General]</em>URL Object作成1</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/04URLobject01.png" align="right" hspace="4" vspace="4">
+//URL object
+	importClass(Packages.java.net.URL);
+	importClass(Packages.java.net.MalformedURLException);
+	importClass(Packages.javax.swing.JOptionPane);
+		try{
+			//URLの文字列から生成
+				url1 = new URL("http://www.yahoo.com/");
+				oDisp = "取得成功 => " + url1;
+				oDisp = oDisp + "\n";
+			//Display
+				JOptionPane.showMessageDialog(null, oDisp);			
+			}catch (UnknownHostException){
+				// 例外処理
+				JOptionPane.showMessageDialog(null, "取得失敗");
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+
+<a name="OOoGNW5b"><h6>GNW-)<em>[General]</em>URL Object作成2</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/04URLobject02.png" align="right" hspace="4" vspace="4">
+//URL object
+	importClass(Packages.java.net.URL);
+	importClass(Packages.java.net.MalformedURLException);
+	importClass(Packages.javax.swing.JOptionPane);
+		//
+		try{
+			//URL構成要素から作成
+				url1 = new URL("http", "www.google.com", "webhp?sourceid=mozclient&ie=utf-8&oe=utf-8");
+				oDisp = "取得成功 => " + url1;
+				oDisp = oDisp + "\n";
+			//Display
+				JOptionPane.showMessageDialog(null, oDisp);			
+			}catch (UnknownHostException){
+				// 例外処理
+				JOptionPane.showMessageDialog(null, "取得失敗");
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+
+<a name="OOoGNW5c"><h6>GNW-)<em>[General]</em>URL Object作成3</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/04URLobject03.png" align="right" hspace="4" vspace="4">
+//URL object
+	importClass(Packages.java.net.URL);
+	importClass(Packages.java.net.MalformedURLException);
+	importClass(Packages.javax.swing.JOptionPane);
+		try{
+			//URLの文字列から生成
+				url1 = new URL("http://www.google.com/");
+				oDisp = "取得成功 => " + url1;
+				oDisp = oDisp + "\n";
+			//作成したObjectを利用してURL Objectを作成
+				url2 = new URL(url1, "webhp?sourceid=mozclient&ie=utf-8&oe=utf-8");
+				oDisp = oDisp + "取得成功 => " + url2;
+			//Display
+				JOptionPane.showMessageDialog(null, oDisp);			
+			}catch (UnknownHostException){
+				// 例外処理
+				JOptionPane.showMessageDialog(null, "取得失敗");
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+
+<a name="OOoGNW6a"><h6>GNW-)<em>[General]</em>URL ObjectからProtocl取得</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/05URLobjectInfo01.png" align="right" hspace="4" vspace="4">
+//URL object infomation
+	importClass(Packages.java.net.URL);
+	importClass(Packages.java.net.MalformedURLException);
+	importClass(Packages.javax.swing.JOptionPane);
+		try{
+			//URLの文字列から生成
+				url1 = new URL("http://www.google.com/");
+			//作成したObjectを利用してURL Objectを作成
+				url2 = new URL(url1, "webhp?sourceid=mozclient&ie=utf-8&oe=utf-8");
+			//get protocol
+				oNetInfo = url2.getProtocol();
+				oDisp = " protocol  =>   " + oNetInfo;
+			//Display
+				JOptionPane.showMessageDialog(null, oDisp);			
+			}catch (UnknownHostException){
+				// 例外処理
+				JOptionPane.showMessageDialog(null, "取得失敗");
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+
+<a name="OOoGNW6b"><h6>GNW-)<em>[General]</em>URL Objectからhost name取得</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/05URLobjectInfo02.png" align="right" hspace="4" vspace="4">
+//URL object infomation
+	importClass(Packages.java.net.URL);
+	importClass(Packages.java.net.MalformedURLException);
+	importClass(Packages.javax.swing.JOptionPane);
+		try{
+			//URLの文字列から生成
+				url1 = new URL("http://www.google.com/");
+			//作成したObjectを利用してURL Objectを作成
+				url2 = new URL(url1, "webhp?sourceid=mozclient&ie=utf-8&oe=utf-8");
+			//get protocol
+				oNetInfo = url2.getHost();
+				oDisp = " Host name  =>   " + oNetInfo;
+			//Display
+				JOptionPane.showMessageDialog(null, oDisp);			
+			}catch (UnknownHostException){
+				// 例外処理
+				JOptionPane.showMessageDialog(null, "取得失敗");
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+
+<a name="OOoGNW6c"><h6>GNW-)<em>[General]</em>URL ObjectからPort No.取得</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/05URLobjectInfo03.png" align="right" hspace="4" vspace="4">
+//URL object infomation
+	importClass(Packages.java.net.URL);
+	importClass(Packages.java.net.MalformedURLException);
+	importClass(Packages.javax.swing.JOptionPane);
+		try{
+			//URLの文字列から生成
+				url1 = new URL("http://www.google.com/");
+			//作成したObjectを利用してURL Objectを作成
+				url2 = new URL(url1, "webhp?sourceid=mozclient&ie=utf-8&oe=utf-8");
+			//get protocol
+				oNetInfo = url2.getPort();
+				oDisp = " Port No.  =>   " + oNetInfo;
+			//Display
+				JOptionPane.showMessageDialog(null, oDisp);			
+			}catch (UnknownHostException){
+				// 例外処理
+				JOptionPane.showMessageDialog(null, "取得失敗");
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+
+<a name="OOoGNW6d"><h6>GNW-)<em>[General]</em>URL Objectから送信文字列取得</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/05URLobjectInfo04.png" align="right" hspace="4" vspace="4">
+//URL object infomation
+	importClass(Packages.java.net.URL);
+	importClass(Packages.java.net.MalformedURLException);
+	importClass(Packages.javax.swing.JOptionPane);
+		try{
+			//URLの文字列から生成
+				url1 = new URL("http://www.google.com/");
+			//作成したObjectを利用してURL Objectを作成
+				url2 = new URL(url1, "webhp?sourceid=mozclient&ie=utf-8&oe=utf-8");
+			//get protocol
+				oNetInfo = url2.getQuery();
+				oDisp = " Query文字列  =>   " + oNetInfo;
+			//Display
+				JOptionPane.showMessageDialog(null, oDisp);			
+			}catch (UnknownHostException){
+				// 例外処理
+				JOptionPane.showMessageDialog(null, "取得失敗");
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+
+<a name="OOoGNW6e"><h6>GNW-)<em>[General]</em>URL ObjectからPath取得</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/05URLobjectInfo05.png" align="right" hspace="4" vspace="4">
+//URL object infomation
+	importClass(Packages.java.net.URL);
+	importClass(Packages.java.net.MalformedURLException);
+	importClass(Packages.javax.swing.JOptionPane);
+		try{
+			//URLの文字列から生成
+				url1 = new URL("http://www.google.com/");
+			//作成したObjectを利用してURL Objectを作成
+				url2 = new URL(url1, "webhp?sourceid=mozclient&ie=utf-8&oe=utf-8");
+			//get protocol
+				oNetInfo = url2.getPath();
+				oDisp = " Path  =>   " + oNetInfo;
+			//Display
+				JOptionPane.showMessageDialog(null, oDisp);			
+			}catch (UnknownHostException){
+				// 例外処理
+				JOptionPane.showMessageDialog(null, "取得失敗");
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+
+<a name="OOoGNW6f"><h6>GNW-)<em>[General]</em>URL ObjectからFile name取得</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/05URLobjectInfo06.png" align="right" hspace="4" vspace="4">
+//URL object infomation
+	importClass(Packages.java.net.URL);
+	importClass(Packages.java.net.MalformedURLException);
+	importClass(Packages.javax.swing.JOptionPane);
+		try{
+			//URLの文字列から生成
+				url1 = new URL("http://www.google.com/");
+			//作成したObjectを利用してURL Objectを作成
+				url2 = new URL(url1, "webhp?sourceid=mozclient&ie=utf-8&oe=utf-8");
+			//get protocol
+				oNetInfo = url2.getFile();
+				oDisp = " File Name  =>   " + oNetInfo;
+			//Display
+				JOptionPane.showMessageDialog(null, oDisp);			
+			}catch (UnknownHostException){
+				// 例外処理
+				JOptionPane.showMessageDialog(null, "取得失敗");
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+
+<a name="OOoGNW6g"><h6>GNW-)<em>[General]</em>URL ObjectからAnchor取得</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/05URLobjectInfo07.png" align="right" hspace="4" vspace="4">
+//URL object infomation
+	importClass(Packages.java.net.URL);
+	importClass(Packages.java.net.MalformedURLException);
+	importClass(Packages.javax.swing.JOptionPane);
+		try{
+			//URLの文字列から生成
+				url1 = new URL("http://www.google.com/");
+			//作成したObjectを利用してURL Objectを作成
+				url2 = new URL(url1, "webhp?sourceid=mozclient&ie=utf-8&oe=utf-8");
+			//get protocol
+				oNetInfo = url2.getRef();
+				oDisp = " Anchor　name  =>   " + oNetInfo;
+			//Display
+				JOptionPane.showMessageDialog(null, oDisp);			
+			}catch (UnknownHostException){
+				// 例外処理
+				JOptionPane.showMessageDialog(null, "取得失敗");
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+
+<a name="OOoGNW6h"><h6>GNW-)<em>[General]</em>URL ObjectからUserInfo取得</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/05URLobjectInfo08.png" align="right" hspace="4" vspace="4">
+//URL object infomation
+	importClass(Packages.java.net.URL);
+	importClass(Packages.java.net.MalformedURLException);
+	importClass(Packages.javax.swing.JOptionPane);
+		try{
+			//URLの文字列から生成
+				url1 = new URL("http://www.google.com/");
+			//作成したObjectを利用してURL Objectを作成
+				url2 = new URL(url1, "webhp?sourceid=mozclient&ie=utf-8&oe=utf-8");
+			//get protocol
+				oNetInfo = url2.getUserInfo();
+				oDisp = " UserInfo  =>   " + oNetInfo;
+			//Display
+				JOptionPane.showMessageDialog(null, oDisp);			
+			}catch (UnknownHostException){
+				// 例外処理
+				JOptionPane.showMessageDialog(null, "取得失敗");
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+
+<a name="OOoGNW6i"><h6>GNW-)<em>[General]</em>URL ObjectからUser権限取得</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/05URLobjectInfo09.png" align="right" hspace="4" vspace="4">
+//URL object infomation
+	importClass(Packages.java.net.URL);
+	importClass(Packages.java.net.MalformedURLException);
+	importClass(Packages.javax.swing.JOptionPane);
+		try{
+			//URLの文字列から生成
+				url1 = new URL("http://www.openoffice.org/servlets/StartPage");
+			//get information
+				oNetInfo = url1.getAuthority();
+				oDisp = " User権限  =>   " + oNetInfo;
+			//Display
+				JOptionPane.showMessageDialog(null, oDisp);			
+			}catch (UnknownHostException){
+				// 例外処理
+				JOptionPane.showMessageDialog(null, "取得失敗");
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+
+<a name="OOoGNW7a"><h6>GNW-)<em>[General]</em>Contentsと接続</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/06URLConnect01.png" align="right" hspace="4" vspace="4">
+//URL Connect
+	importClass(Packages.java.net.URL);
+	importClass(Packages.java.net.URLConnection);
+	importClass(Packages.javax.swing.JOptionPane);
+		try{
+			//URLの文字列から生成
+				url1 = new URL("http://www.openoffice.org");
+			//URL Connection Objectの生成
+				oURLCon =url1.openConnection();
+				oDisp = " 接続確立 ：  " + oURLCon;
+			//Display
+				JOptionPane.showMessageDialog(null, oDisp);			
+			}catch (e){
+				// Error処理
+				JOptionPane.showMessageDialog(null, "例外発生");
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+
+<a name="OOoGNW7b"><h6>GNW-)<em>[General]</em>Contnt Type取得</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/06URLConnect02.png" align="right" hspace="4" vspace="4">
+//URL Connect Contnt Info
+	importClass(Packages.java.net.URL);
+	importClass(Packages.java.net.URLConnection);
+	importClass(Packages.javax.swing.JOptionPane);
+		try{
+			//URLの文字列から生成
+				url1 = new URL("http://www.openoffice.org");
+			//URL Connection Objectの生成
+				oURLCon =url1.openConnection()
+				oConInfo = oURLCon.getContentType();
+				oDisp = " 接続確立 ：  " + oConInfo;				
+			//Display
+				JOptionPane.showMessageDialog(null, oDisp);			
+			}catch (e){
+				// Error処理
+				JOptionPane.showMessageDialog(null, "Error発生");
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+
+<a name="OOoGNW7c"><h6>GNW-)<em>[General]</em>Contnt Size取得</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/06URLConnect03.png" align="right" hspace="4" vspace="4">
+//URL Connect Contnt Info
+	importClass(Packages.java.net.URL);
+	importClass(Packages.java.net.URLConnection);
+	importClass(Packages.javax.swing.JOptionPane);
+		try{
+			//URLの文字列から生成
+				url1 = new URL("http://www.openoffice.org");
+			//URL Connection Objectの生成
+				oURLCon =url1.openConnection()
+				oConInfo = oURLCon.getContentLength();
+				oDisp = " Cobtent Size ：  " + oConInfo;				
+			//Display
+				JOptionPane.showMessageDialog(null, oDisp);			
+			}catch (e){
+				// Error処理
+				JOptionPane.showMessageDialog(null, "Error発生");
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+
+<a name="OOoGNW7d"><h6>GNW-)<em>[General]</em>ContntのEncode方式取得</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/06URLConnect04.png" align="right" hspace="4" vspace="4">
+//URL Connect Contnt Info
+	importClass(Packages.java.net.URL);
+	importClass(Packages.java.net.URLConnection);
+	importClass(Packages.javax.swing.JOptionPane);
+		try{
+			//URLの文字列から生成
+				url1 = new URL("http://www.openoffice.org");
+			//URL Connection Objectの生成
+				oURLCon =url1.openConnection()
+				oConInfo = oURLCon.getContentEncoding();
+				oDisp = " Cobtent Encoding ：  " + oConInfo;				
+			//Display
+				JOptionPane.showMessageDialog(null, oDisp);			
+			}catch (e){
+				// Error処理
+				JOptionPane.showMessageDialog(null, "Error発生");
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+
+<a name="OOoGNW7e"><h6>GNW-)<em>[General]</em>Contnt送信日時取得</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/06URLConnect05.png" align="right" hspace="4" vspace="4">
+//URL Connect Contnt Info
+	importClass(Packages.java.net.URL);
+	importClass(Packages.java.net.URLConnection);
+	importClass(Packages.java.text.SimpleDateFormat);
+	importClass(Packages.java.util.Calendar);
+	importClass(Packages.javax.swing.JOptionPane);
+	//Long type => Date Type
+		function convertDate(lo){
+			cal = Calendar.getInstance();
+			sf = new SimpleDateFormat("yyyy/MM/dd");
+			return sf.format(cal.getTime());
+									}
+		//		
+		try{
+			//URLの文字列から生成
+				url1 = new URL("http://www.openoffice.org");
+			//URL Connection Objectの生成
+				oURLCon =url1.openConnection()
+				oConInfo = oURLCon.getDate();
+				oURLDate = convertDate(oConInfo);
+				oDisp = " Cobtent 送信日 ：  " + oURLDate;				
+			//Display
+				JOptionPane.showMessageDialog(null, oDisp);			
+			}catch (e){
+				// Error処理
+				JOptionPane.showMessageDialog(null, "Error発生");
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+
+<a name="OOoGNW7f"><h6>GNW-)<em>[General]</em>Contnt有効期限取得</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/06URLConnect06.png" align="right" hspace="4" vspace="4">
+//URL Connect Contnt Info
+	importClass(Packages.java.net.URL);
+	importClass(Packages.java.net.URLConnection);
+	importClass(Packages.java.text.SimpleDateFormat);
+	importClass(Packages.java.util.Calendar);
+	importClass(Packages.javax.swing.JOptionPane);
+	//Long type => Date Type
+		function convertDate(lo){
+			cal = Calendar.getInstance();
+			sf = new SimpleDateFormat("yyyy/MM/dd");
+			return sf.format(cal.getTime());
+									}
+		//		
+		try{
+			//URLの文字列から生成
+				url1 = new URL("http://www.openoffice.org");
+			//URL Connection Objectの生成
+				oURLCon =url1.openConnection()
+				oConInfo = oURLCon.getExpiration();
+				oURLDate = convertDate(oConInfo);
+				oDisp = " Content 有効期限 ：  " + oURLDate;				
+			//Display
+				JOptionPane.showMessageDialog(null, oDisp);			
+			}catch (e){
+				// Error処理
+				JOptionPane.showMessageDialog(null, "Error発生");
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+
+<a name="OOoGNW7g"><h6>GNW-)<em>[General]</em>Contnt最終更新日取得</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/06URLConnect07.png" align="right" hspace="4" vspace="4">
+//URL Connect Contnt Info
+	importClass(Packages.java.net.URL);
+	importClass(Packages.java.net.URLConnection);
+	importClass(Packages.java.text.SimpleDateFormat);
+	importClass(Packages.java.util.Calendar);
+	importClass(Packages.javax.swing.JOptionPane);
+	//Long type => Date Type
+		function convertDate(lo){
+			cal = Calendar.getInstance();
+			sf = new SimpleDateFormat("yyyy/MM/dd");
+			return sf.format(cal.getTime());
+									}
+		//		
+		try{
+			//URLの文字列から生成
+				url1 = new URL("http://www.openoffice.org");
+			//URL Connection Objectの生成
+				oURLCon =url1.openConnection()
+				oConInfo = oURLCon.getLastModified();
+				oURLDate = convertDate(oConInfo);
+				oDisp = " Content 最終更新日 ：  " + oURLDate;				
+			//Display
+				JOptionPane.showMessageDialog(null, oDisp);			
+			}catch (e){
+				// Error処理
+				JOptionPane.showMessageDialog(null, "Error発生");
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+
+<a name="OOoGNW8a"><h6>GNW-)<em>[General]</em>Socket通信</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/07Socket01.png" align="right" hspace="4" vspace="4">
+//Socket
+	importClass(Packages.java.io.IOException);
+	importClass(Packages.java.net.Socket);
+	importClass(Packages.java.net.UnknownHostException);
+	importClass(Packages.javax.swing.JOptionPane);
+		try{
+			//Socket Connection作成
+				sc = new Socket("http://www.openoffice.org", 80);
+				oDisp = "Connection 確立" + sc		
+			//Display
+				JOptionPane.showMessageDialog(null, oDisp);			
+			}catch (UnknownHostException){
+				// 例外処理
+				JOptionPane.showMessageDialog(null, "UnknownHostException発生");
+//			}catch (IOException){
+				// 例外処理
+//				JOptionPane.showMessageDialog(null, "IOException発生");
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+
+<a name="OOoGNW8b"><h6>GNW-)<em>[General]</em>Socket通信/接続先のHOST名とIP取得</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/07Socket02.png" align="right" hspace="4" vspace="4">
+//Socket IP Address
+	importClass(Packages.java.io.IOException);
+	importClass(Packages.java.net.Socket);
+	importClass(Packages.java.net.UnknownHostException);
+	importClass(Packages.javax.swing.JOptionPane);
+		try{
+			//Socket Connection作成
+				sc = new Socket("http://www.openoffice.org", 80);
+				sIP = sc.getInetAddress();
+				oDisp = "接続先Address : " + sIP		
+			//Display
+				JOptionPane.showMessageDialog(null, oDisp);			
+			}catch (UnknownHostException){
+				// 例外処理
+				JOptionPane.showMessageDialog(null, "UnknownHostException発生");
+
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+<a name="OOoGNW8c"><h6>GNW-)<em>[General]</em>Socket通信/接続先のPort No.取得</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/07Socket03.png" align="right" hspace="4" vspace="4">
+//Socket Port
+	importClass(Packages.java.io.IOException);
+	importClass(Packages.java.net.Socket);
+	importClass(Packages.java.net.UnknownHostException);
+	importClass(Packages.javax.swing.JOptionPane);
+		try{
+			//Socket Connection作成
+				sc = new Socket("http://www.openoffice.org", 80);
+				sIP = sc.getPort();
+				oDisp = "接続先Port : " + sIP		
+			//Display
+				JOptionPane.showMessageDialog(null, oDisp);			
+			}catch (UnknownHostException){
+				// 例外処理
+				JOptionPane.showMessageDialog(null, "UnknownHostException発生");
+
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+
+<a name="OOoGNW8d"><h6>GNW-)<em>[General]</em>Socket通信/バインド先のLocal HOST名とIP取得</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/network/07Socket04.png" align="right" hspace="4" vspace="4">
+//Socket Local Host
+	importClass(Packages.java.io.IOException);
+	importClass(Packages.java.net.Socket);
+	importClass(Packages.java.net.UnknownHostException);
+	importClass(Packages.javax.swing.JOptionPane);
+		try{
+			//Socket Connection作成
+				sc = new Socket("http://www.openoffice.org", 80);
+				sIP = sc.getLocalAddress();
+				oDisp = "Local Address : " + sIP		
+			//Display
+				JOptionPane.showMessageDialog(null, oDisp);			
+			}catch (UnknownHostException){
+				// 例外処理
+				JOptionPane.showMessageDialog(null, "UnknownHostException発生");
+
+			}
+		JOptionPane.showMessageDialog(null, "Success")
+</p class="s2">
+
+
+<p class="s1">Shell関数</p class="s1">
+<a name="OOoGSh01"><h6>GSh-)<em>[General]</em></h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/Shell/01Notepad01.png" align="right" hspace="4" vspace="4" width="20%">
+//Notepad in JavaScript Macro
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.system.XSystemShellExecute);
+//
+	xCompCont = XSCRIPTCONTEXT.getComponentContext(); 
+	xMultiComponentFactory = xCompCont.getServiceManager(); 
+//
+	shell = xMultiComponentFactory.createInstanceWithContext('com.sun.star.system.SystemShellExecute', xCompCont); 
+	xshell = UnoRuntime.queryInterface(XSystemShellExecute, shell); 
+//
+	xshell.execute('notepad.exe','C:/temp/dummy.txt',0);
+//
+	JOptionPane.showMessageDialog(null, "Success");
+</code></pre>
+
+
+<a name="OOoGSh"><h6>GSh-)<em>[General]</em></h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/Shell/index.html" align="right" hspace="4" vspace="4">
+
+</code></pre>
+
+
+
+<p class="s1">Rhino定義関数</p class="s1">
+<a name="OOoGRSG01"><h6>GWeb-)<em>[General]</em>ReadURL</h6></a><pre><code>
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.org.mozilla.javascript.tools.shell.Global);
+
+s = new Array;
+s[0] = "http://openoffice3.web.fc2.com/";
+try {
+ str = Global.readUrl(null, null, s, null);
+ JOptionPane.showMessageDialog(null, str.substr(0, 100));
+} catch(e) {
+ JOptionPane.showMessageDialog(null, e.toString());
+}
+</code></pre><br>
+
+
+<p class="s1">XMLHttpRequest()</p class="s1">
+<a name="OOoGXHR01"><h6>GXHR-)<em>[General]</em></h6></a><pre><code>
+//XMLHttpRequest
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.org.mozilla.javascript.tools.shell.Global);
+// importPackage(java.org.w3c.dom);
+//
+	function XMLHttpRequest() {
+ 		this.requestURL = "";
+ 		this.responseText = "";
+ 		this.readyState = 0;
+ 		this.status = 0;
+
+		this.open = function(method, url, async) {
+  			if (method != "GET") {
+   				throw new Error("This XMLHttpRequest supports GET method only.");
+  				}
+  			if (async != false) {
+   				throw new Error("This XMLHttpRequest cannot perform asynchronous read.");
+  				}
+  			this.requestURL = url;
+  			this.responseText = "";
+  			this.readyState = 0;
+  			this.status = 0;
+ 			}
+ 			this.send = function(query) {
+  			var s;
+  			try {
+   				s = readUrl(this.requestURL);// readUrl is Rhino's primitive
+   				this.status = 200;
+  			} catch (e) {
+   				s = "";
+   				this.status = 1;
+  			}
+  			this.responseText = s;
+  			this.requestURL = null;
+  			this.readyState = 4;
+ 		}
+	}    
+//XMLHttp Object作成
+	function createXMLHttpRequest(){	
+		var XMLhttpobject = null;
+		try{
+			XMLhttpobject = new XMLHttpRequest();
+			
+		}catch(e){
+			try{
+			}catch(e){
+				try{
+					XMLhttpObject = new ActiveXObject("Msxml2.XMLHTTP");
+				}catch(e){
+					return null;
+				}
+			}
+		}
+		return XMLhttpObject;
+	}
+//
+//
+	try{
+
+		JOptionPane.showMessageDialog(null, "success");	
+	}catch(e){	
+		//Error処理
+			errorname = e.name;
+			errormsg = e.message;
+			eDisp= errorname + "\n" + errormsg;
+			JOptionPane.showMessageDialog(null, eDisp);
+	}
+</code></pre><br>
+
+
+
+
+<p class="s1">Mouse</p class="s1">
+<a name="OOoGMus1"><h6>GMus-)<em>[General]</em>Mouse座標</h6></a><p class="s2">
+<img SRC="JavaScript_Pic/01general/mouse/01mouseposition01.png" align="right" hspace="4" vspace="4">
+//mouse
+importClass(Packages.javax.swing.JOptionPane);
+importClass(Packages.java.awt.MouseInfo);
+importClass(Packages.java.awt.PointerInfo);
+importClass(Packages.org.mozilla.javascript.Context);
+importClass(Packages.org.mozilla.javascript.Scriptable);
+	try{
+		ctx = Context.enter();
+		scope = ctx.initStandardObjects();
+		pointerInfo = MouseInfo.getPointerInfo();
+		pos = pointerInfo.getLocation();
+		JOptionPane.showMessageDialog(null, pos);
+		JOptionPane.showMessageDialog(null, "Success");
+		}catch(e){
+			//Error処理
+				errorname = e.name;
+				errormsg = e.message;
+				eDisp= errorname + "\n" + errormsg;
+				JOptionPane.showMessageDialog(null, eDisp);
+				}
+</p class="s2">
+
+
+<p class="s1">ScriptEngine</p class="s1">
+<a name="OOoGJSe1"><h6>GJSe-)<em>[General]</em>ScriptEngine</h6></a><p class="s2">
+//Script Engine
+importClass(Packages.javax.script.Invocable);
+importClass(Packages.javax.script.ScriptEngine);
+importClass(Packages.javax.script.ScriptEngineManager);
+importClass(Packages.javax.script.ScriptException);
+// スクリプトエンジンマネージャの生成
+	manager = new ScriptEngineManager();
+// スクリプトエンジンの取得 (JavaScript)
+        engine = manager.getEngineByName("JavaScript");
+// スクリプトの評価
+            engine.eval("print('Hello!!')");
+importClass(Packages.javax.swing.JOptionPane);
+JOptionPane.showMessageDialog(null, "Success");
+</p class="s2">
+
+
+<p class="s1">Tips</p class="s1">
+<div class="gozou00">
+<img SRC="JavaScript_Pic/01general/tips/00MRI01.png" align="right" hspace="4" vspace="4" width="20%">
+<a name="OOoGTs0"><h6>GTs-)<em>[General]</em>MRIの使用方法</h6></a><p class="s2">
+[　入手元　]
+以下のSiteよりExtensionをDL、Install
+URL : http://hermione.s41.xrea.com/pukiwiki/pukiwiki.php?OOo%2FExt%2FMRI
+
+[ 使用例　]
+oDoc = XSCRIPTCONTEXT.getDocument();
+oDoc.～　に続くMethods / Properties / Interface を調べる。
+
+[ Sample Code ]
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.beans.XIntrospection);
+
+	oDoc = XSCRIPTCONTEXT.getDocument();
+
+	xContext = XSCRIPTCONTEXT.getComponentContext();
+	xMCF = xContext.getServiceManager();
+		oMRI = xMCF.createInstanceWithContext("mytools.Mri", xContext);
+			xIntrospection = UnoRuntime.queryInterface(XIntrospection, oMRI);
+	xIntrospection.inspect(oDoc);
+</p class="s2">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<img SRC="JavaScript_Pic/01general/tips/00MRI02.png" align="right" hspace="4" vspace="4" width="20%">
+<p class="s2">
+更に MRI Windowに表示されているmethods,propertiesを調べる時(getDrawPagesの場合)
+
+getDrawPages
+
+をDouble Clickするとそれに対応するコードが表示される。
+macroを扱うものにとって余りに素晴らし過ぎる拡張機能である。
+</p class="s2">
+<Br clear="right">
+</div>
+
+
+
+<a name="OOoGTs1"><h6>GTs-)<em>[General]</em>Internet ExplorerからNotePad起動</h6></a><p class="s2">
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+	&lt;meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS"&gt;
+	&lt;title&gt;&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;script type="text/Javascript"&gt;&lt;!--
+			//importClass(Packages.javax.swing.JOptionPane);
+				function LaunchApp() {
+				if (!document.all) {
+				alert ("Available only with Internet Explorer.");
+				return;
+				}
+			var ws = new ActiveXObject("WScript.Shell");
+			ws.Exec("C:\\WINDOWS\\NOTEPAD.EXE");
+		}
+ //--&gt;&lt;/script&gt;
+	&lt;form&gt;
+		&lt;Input type="button" value="notepad" OnClick="LaunchApp()"&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+	&lt;/html&gt;
+</p class="s2">
+
+<a name="OOoGTs2"><h6>GTs-)<em>[General]</em>Rhino Shell</h6></a><p class="s2">
+[ Rhino Shell ]
+cd \
+set CLASSPATH=Down_load/Rhino/rhino1_7R2/js.jar
+java org.mozilla.javascript.tools.shell.Main
+
+[ quit() ]
+js>quit()
+
+[ JavaScript Macro Execute ]
+java org.mozilla.javascript.tools.shell.Main -f c:\temp\Rhino\OOo_test2.js
+</p class="s2">
+
+<a name="OOoGTs3"><h6>GTs-)<em>[General]</em>Rhino Debugger</h6></a><pre><code>
+[ Rhino Debugger ]
+cd \
+set CLASSPATH=Down_load/Rhino/rhino1_7R2/js.jar
+java org.mozilla.javascript.tools.debugger.Main
+</code></pre>
+<br>
+
+
+<a name="OOoGTs4a"><h6>GTs-)<em>[General]</em>Error Handling</h6></a><pre><code>
+<img SRC="JavaScript_Pic/01general/tips/01ErrorHandling01.png" align="right" hspace="4" vspace="4" width="20%">
+// Error Handling in JavaScript
+importClass(Packages.javax.swing.JOptionPane);
+try{
+var a= CInt(10/3);
+JOptionPane.showMessageDialog(null, "a=" + a);
+}catch(e){
+//Error処理
+errorname = e.name;
+errormsg = e.message;
+eDisp= errorname + "\n" + errormsg;
+JOptionPane.showMessageDialog(null, eDisp);
+}
+</code></pre>
+<br>
+
+
+
+
+<p class="s1">RhinoからOpenOffice.org起動</p class="s1">
+<a name="OOoGRB1"><h6>GRB-)<em>[General]</em>RhinoからOpenOffice.org起動</h6></a><pre><code>
+//Boot from Rhino
+// コードを実行する前に OOo は次のような引数付きで起動済みです。
+// "-accept=socket,host=localhost,port=2083;urp;StarOffice.ServiceManager"
+// つまり
+// "c:/Program Files\OpenOffice.org 3/program/soffice" "-accept=socket,host=localhost,port=2083;urp;StarOffice.ServiceManager"
+//とする
+//
+importClass(Packages.com.sun.star.uno.XComponentContext);
+importClass(Packages.com.sun.star.comp.helper.Bootstrap);
+//importClass(Packages.com.sun.star.lang.XMultiComponentFactory);
+//importClass(Packages.ooo.connector.BootstrapSocketConnector);
+importClass(Packages.com.sun.star.uno.UnoRuntime);
+importClass(Packages.com.sun.star.bridge.XUnoUrlResolver);
+importClass(Packages.com.sun.star.frame.XComponentLoader);
+importClass(Packages.com.sun.star.beans.PropertyValue);
+importClass(Packages.com.sun.star.text.XTextDocument);
+importClass(Packages.com.sun.star.text.XTextRange);
+
+
+importClass(Packages.javax.swing.JOptionPane);
+
+try{
+	sURL = "uno:socket,host=localhost,port=2083;urp;StarOffice.ComponentContext"
+	oooFolder = "C:/Program Files/OpenOffice.org 3/program/";
+//	xRemoteContext = BootstrapSocketConnector.bootstrap(oooFolder);
+	xRemoteContext = XSCRIPTCONTEXT.getComponentContext();
+	xRemoteMcf = xRemoteContext.getServiceManager();
+	
+	xResolver = UnoRuntime.queryInterface(
+		XUnoUrlResolver, xRemoteMcf.createInstanceWithContext(
+			"com.sun.star.bridge.UnoUrlResolver", xRemoteContext));
+
+	context = xResolver.resolve(sURL);
+	if (context != null) {
+		//java.lang.System.out.println("connected.");
+		xContext = UnoRuntime.queryInterface(XComponentContext, context);
+		xMcf = xContext.getServiceManager();
+		desktop = xMcf.createInstanceWithContext("com.sun.star.frame.Desktop", xContext);
+		xLoader = UnoRuntime.queryInterface(XComponentLoader, desktop);
+		
+		doc = xLoader.loadComponentFromURL("private:factory/swriter", "_blank", 0, new Array());
+		xTextDoc = UnoRuntime.queryInterface(XTextDocument, doc);
+		xText = xTextDoc.getText();
+		xTextRange = UnoRuntime.queryInterface(XTextRange, xText);
+		xTextRange.setString("Hello.");
+}
+	JOptionPane.showMessageDialog(null, "Success");
+}catch (e){
+	JOptionPane.showMessageDialog(null, "Error");
+}
+</code></pre>
+<br><br>
+
+<br>
+<br>
+
+
+<br class="right">
+<center><h6><a href="#TopOfPage">Top of Page</a></h6></center><BR>
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/JavaScript_general.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:37:35 GMT -->
+</html>

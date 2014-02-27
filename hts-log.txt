@@ -1,0 +1,290 @@
+HTTrack3.47 launched on Thu, 27 Feb 2014 01:06:14 at http://openoffice3.web.fc2.com/
+(winhttrack http://openoffice3.web.fc2.com/ -O "/Users/flow/websites/OpenOffice-macros" -%v )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+01:06:15	Warning: 	Found for openoffice3.web.fc2.com/robots.txt
+01:06:15	Warning: 	File has moved from openoffice3.web.fc2.com/robots.txt to http://error.fc2.com/web/404.html
+01:09:08	Warning: 	file not stored in cache due to bogus state (incomplete type with OK (200), size 0): openoffice3.web.fc2.com/koeda/02writer/01gyousumojisu01.png
+01:25:10	Warning: 	file not stored in cache due to bogus state (incomplete type with OK (200), size 0): openoffice3.web.fc2.com/OOoBasic_pic/03base/02mysql/01table/03INSERT_Table02.png
+01:25:21	Warning: 	file not stored in cache due to bogus state (incomplete type with OK (200), size 0): openoffice3.web.fc2.com/OOoBasic_pic/03base/02mysql/01table/12WHERE02.png
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general/01File/04Path/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general/01File/04Path/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general/02Data/05Array/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general/02Data/05Array/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general/08Document/01Component/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general/08Document/01Component/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general/08Document/04Selection/02SelectMode/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general/08Document/04Selection/02SelectMode/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general/08Document/05Undo/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general/08Document/05Undo/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general/10DocumentProperties/05TypeDetection/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general/10DocumentProperties/05TypeDetection/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general/10DocumentProperties/06NumberFormat/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general/10DocumentProperties/06NumberFormat/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general/09View/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general/09View/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general/03style/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general/03style/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general/03style/01HeaderFooter/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general/03style/01HeaderFooter/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general/12PrintPrinter/01PrintArea/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general/12PrintPrinter/01PrintArea/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general2/02XML/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general2/02XML/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general2/16Library_Module/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general2/16Library_Module/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general2/Listen/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general2/Listen/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general2/Listen/02Handler/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general2/Listen/02Handler/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general2/08Event/01Dialog/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general2/08Event/01Dialog/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general2/08Event/02Document/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general2/08Event/02Document/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general2/10DocumentSetting/03Draw/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general2/10DocumentSetting/03Draw/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general2/10DocumentSetting/04Impress/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general2/10DocumentSetting/04Impress/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general2/Locale/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general2/Locale/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general2/12Dialog/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general2/12Dialog/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general2/20Menu/01MenuDialog/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general2/20Menu/01MenuDialog/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general2/20UserInterface/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general2/20UserInterface/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general3/Shape/07ConnectorShape/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general3/Shape/07ConnectorShape/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general3/Shape/10OLE_Shape/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general3/Shape/10OLE_Shape/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general3/Shape/11Anchor/01Writer/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general3/Shape/11Anchor/01Writer/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general3/Shape/11Anchor/02Calc/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general3/Shape/11Anchor/02Calc/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general2/14JavaScript/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general2/14JavaScript/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general2/15Python/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general2/15Python/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general3/13VBS/01FileSystemObject/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general3/13VBS/01FileSystemObject/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general3/13VBS/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general3/13VBS/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general3/13VBS/03WshShell/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general3/13VBS/03WshShell/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general3/13VBS/04ShellApp/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general3/13VBS/04ShellApp/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general3/13VBS/07WScriptNet/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general3/13VBS/07WScriptNet/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general3/13VBS/05MsOffice/01General/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general3/13VBS/05MsOffice/01General/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/01general3/13VBS/06IE/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/01general3/13VBS/06IE/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/02calc/cell/07Property/05Line/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/02calc/cell/07Property/05Line/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/02calc/cell/01autoFormat/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/02calc/cell/01autoFormat/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/02calc/cell/02Annotation/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/02calc/cell/02Annotation/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/02calc/cell/06Selection/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/02calc/cell/06Selection/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/02calc/cell/05Address/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/02calc/cell/05Address/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/02calc/cell/03Filter/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/02calc/cell/03Filter/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/02calc/cell/11CalcFunction/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/02calc/cell/11CalcFunction/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/02calc/cell/11Subtoal/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/02calc/cell/11Subtoal/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/02calc/cell/14ValidationTYpe/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/02calc/cell/14ValidationTYpe/ to http://error.fc2.com/web/404.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/02calc/cell/17Tokens/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/02calc/cell/17Tokens/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/02calc/cell/18NameRange/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/02calc/cell/18NameRange/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/02calc/06Query/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/02calc/06Query/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/02calc/sheet/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/02calc/sheet/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/02calc/sheet/02Sheet_Cursor/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/02calc/sheet/02Sheet_Cursor/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/02calc/08View/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/02calc/08View/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/02calc/datapilot/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/02calc/datapilot/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/02calc/GoalSeek/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/02calc/GoalSeek/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/02calc/08Senario/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/02calc/08Senario/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/02calc/print/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/02calc/print/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/02calc/print/02Printer/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/02calc/print/02Printer/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/03base/09DataSource/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/03base/09DataSource/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/03base/03table/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/03base/03table/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/03base/08RowSet/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/03base/08RowSet/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/03base/04Query/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/03base/04Query/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/03base/01Form/01FormButton/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/03base/01Form/01FormButton/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/03base/01Form/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/03base/01Form/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/03base/02mysql/01table/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/03base/02mysql/01table/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/03base/07MsAccess/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/03base/07MsAccess/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/04writer/Document/01count/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/04writer/Document/01count/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/04writer/Page/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/04writer/Page/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/04writer/Page/01HeaderFooter/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/04writer/Page/01HeaderFooter/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/04writer/Paragraph_Property/01Adjust/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/04writer/Paragraph_Property/01Adjust/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/04writer/SearchReplace/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/04writer/SearchReplace/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/04writer/table/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/04writer/table/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/04writer/style/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/04writer/style/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/04writer/Index/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/04writer/Index/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/04writer/HyperLink/HyperLink/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/04writer/HyperLink/HyperLink/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/04writer/Outline/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/04writer/Outline/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/04writer/Sort/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/04writer/Sort/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/04writer/printer/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/04writer/printer/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/04writer/Form/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/04writer/Form/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/06impress/02MasterPage/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/06impress/02MasterPage/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/06impress/03Page/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/06impress/03Page/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/OOoBasic_pic/06impress/01shape/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/OOoBasic_pic/06impress/01shape/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/ippo/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/ippo/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/00Def/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/00Def/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/00Class/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/00Class/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general/07Generator/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general/07Generator/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general/07Generator/01Formula/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general/07Generator/01Formula/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general/06Format/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general/06Format/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general/02Data/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general/02Data/ to http://error.fc2.com/web/403.html
+01:41:05	Error: 	"Service Temporarily Unavailable" (503) at link openoffice3.web.fc2.com/Python_pic/02general/02String/ (from openoffice3.web.fc2.com/Python_Macro_General_No2.html)
+01:41:05	Error: 	"Service Temporarily Unavailable" (503) at link openoffice3.web.fc2.com/Python_pic/02general/02Data/02Date/01Today01.png (from openoffice3.web.fc2.com/Python_Macro_General_No3.html)
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general/02Data/02Date/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general/02Data/02Date/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general/02Data/02Date/01calendar/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general/02Data/02Date/01calendar/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general/02Data/03List/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general/02Data/03List/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general/02Data/05Dictionary/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general/02Data/05Dictionary/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general/02Data/04Boolean/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general/02Data/04Boolean/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general/02Data/06Set/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general/02Data/06Set/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general/02Data/07iterable/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general/02Data/07iterable/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general/02Data/08deque/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general/02Data/08deque/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/03File/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/03File/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/05Text/00TextBinay/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/05Text/00TextBinay/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/05Text/01CSV/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/05Text/01CSV/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/13XML/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/13XML/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/16Sirialize/01Pickle/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/16Sirialize/01Pickle/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/00Module/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/00Module/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/00Python/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/00Python/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/00System/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/00System/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/00System/01Command/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/00System/01Command/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/12WindowsAPI/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/12WindowsAPI/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/06Network/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/06Network/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/06Network/01Google/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/06Network/01Google/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/06Network/99Other/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/06Network/99Other/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/09RegularExpression/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/09RegularExpression/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/10Audio/01Sound/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/10Audio/01Sound/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/10Audio/02AudioFile/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/10Audio/02AudioFile/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/04Coding/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/04Coding/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/11International_Locale/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/11International_Locale/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/14Authentication/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/14Authentication/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/07Exception/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/07Exception/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/08Other/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/08Other/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/01tips/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/01tips/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/01window/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/01window/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/01window/01Property/01Title/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/01window/01Property/01Title/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/01window/01Property/02Identification/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/01window/01Property/02Identification/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/15DocumentProperty/01TypeDetection/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/15DocumentProperty/01TypeDetection/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/02general2/02Dialog/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/02general2/02Dialog/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/03Calc/01Cell/02Property/02Font/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/03Calc/01Cell/02Property/02Font/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/04Base/02DataSource/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/04Base/02DataSource/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/04Base/03Connect/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/04Base/03Connect/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/04Base/05Table/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/04Base/05Table/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/04Base/05Table/02RowSet/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/04Base/05Table/02RowSet/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/Python_pic/04Base/04SQL/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/Python_pic/04Base/04SQL/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/JavaScript_Pic/01general/regex/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/JavaScript_Pic/01general/regex/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/JavaScript_Pic/01general/Utility/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/JavaScript_Pic/01general/Utility/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/JavaScript_Pic/01general/Shell/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/JavaScript_Pic/01general/Shell/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/JavaScript_Pic/02Calc/01sheet/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/JavaScript_Pic/02Calc/01sheet/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/JavaScript_Pic/02Calc/03Style/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/JavaScript_Pic/02Calc/03Style/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/JavaScript_Pic/03Base/02Table/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/JavaScript_Pic/03Base/02Table/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/JavaScript_Pic/03Base/01HSQL/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/JavaScript_Pic/03Base/01HSQL/ to http://error.fc2.com/web/403.html
+01:41:05	Warning: 	Found for openoffice3.web.fc2.com/JavaScript_Pic/04Writer/03Style/01Color/
+01:41:05	Warning: 	File has moved from openoffice3.web.fc2.com/JavaScript_Pic/04Writer/03Style/01Color/ to http://error.fc2.com/web/403.html
+
+HTTrack Website Copier/3.47 mirror complete in 35 minutes 1 seconds : 2144 links scanned, 2005 files written (48634307 bytes overall) [49427869 bytes received at 23525 bytes/sec]
+(2 errors, 277 warnings, 0 messages)

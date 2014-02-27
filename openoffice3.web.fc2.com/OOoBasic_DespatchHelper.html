@@ -1,0 +1,438 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/OOoBasic_DespatchHelper.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:10:00 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	
+	<SCRIPT language="JavaScript">
+		<!--
+			renew = new Date(document.lastModified);
+			y=renew.getYear();
+			m=renew.getMonth() + 1;
+			d=renew.getDate();
+			if(y<1900) {y=y+1900;}
+				oDate="更新日："+y+"/"+m+"/"+d;
+			document.write(oDate);
+		//-->
+	</SCRIPT>
+	
+	
+	<title>Macroの記録 / Record Macro( 魔法のCommand 「 DispachHelper 」編  )</title>
+</head>
+<link rel="stylesheet"
+type="text/css" href="css_DispatchHelper.css">
+<body>
+<left><p><A HREF="index-2.html">Home</a>:Close QR code before clck "Home"</p></left><br>
+<a name="TopOfPage"><h1>Macroの杜(OpenOffice.org/LibreOffice Basic編)</h1></a>
+		<h2>Macroの記録 / Record Macro<br>
+		(魔法のCommand 「 DispachHelper 」編 )</h2>
+
+<p class="s1">はじめに</p class="s1">
+<p class="s2"><code>
+LibreOfficeでは<br>
+「ツール」→「オプション」→「LibreOffice」→「全般」→「実験的(不安定)な機能を有効にする」にCheckを付ける必要があります。<br>
+</code></p class="s2">
+<br>
+<p class="s2"><code>
+<b>「OpenOffice.orgのMacroは難しい」</b>と思っている方の多くは<b>「Macroの記録」で躓いた</b>のではないでしょうか?
+一例としてCalcにてA1セルに「OpenOffice.org」と入力した場合の「Macroの記録」は以下の様になります。
+<br>
+[ Macroの記録 ]
+sub Main
+rem ----------------------------------------------------------------------
+	rem define variables
+		dim document   as object
+		dim dispatcher as object
+rem ----------------------------------------------------------------------
+	rem get access to the document
+		document   = ThisComponent.CurrentController.Frame
+		dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+rem ----------------------------------------------------------------------
+		dim args1(0) as new com.sun.star.beans.PropertyValue
+			args1(0).Name = "ToPoint"
+			args1(0).Value = "$A$1"
+		dispatcher.executeDispatch(document, ".uno:GoToCell", "", 0, args1())
+rem ----------------------------------------------------------------------
+		dim args2(0) as new com.sun.star.beans.PropertyValue
+			args2(0).Name = "StringName"
+			args2(0).Value = "OpenOffice.org"
+		dispatcher.executeDispatch(document, ".uno:EnterString", "", 0, args2())
+rem ----------------------------------------------------------------------
+		dispatcher.executeDispatch(document, ".uno:JumpToNextCell", "", 0, Array())
+end sub
+<br>
+上記作業を別の記述をすると以下の様になります。
+<br>
+[ 一例 ]
+Sub Main
+	ThisComponent.Sheets(0).getCellByPosition(0,1).String="OpenOffice.org"
+End Sub
+<br>
+です。
+なぜ、こんなにも違うのかと思う方もいるかもしれませんが、その理由はOpenOffice.orgのMacroの記録が
+<br><em class="s1">「 非常に親切 」</em class="s1"><br>
+だからです。具体的には
+<b>
+1)作業を1手づつ区切って記録される。
+2)コメント文で作業の説明が記される。
+</b>
+<br>
+論より証拠ですので上記Macroの説明を以下に記します。
+<br>
+[ Macroの記録の説明 ]
+Macro名「Main」の始まり &emsp;&emsp;&emsp;&emsp;：&emsp;sub Main
+Comment &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;：&emsp;rem ----------------------------------------------------------------------
+Comment &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;：&emsp;rem define variables
+宣言文  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;：&emsp;&emsp;dim document   as object
+宣言文  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;：&emsp;&emsp;dim dispatcher as object
+Comment &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;：&emsp;rem ----------------------------------------------------------------------
+Comment &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;：&emsp;rem get access to the document
+ActiveDocumentを使用  &emsp;&emsp;&emsp;&emsp;&emsp;：&emsp;&emsp;document   = ThisComponent.CurrentController.Frame
+Uno Service DispatchHelper作成&emsp;：&emsp;&emsp;dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+Comment &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;：&emsp;rem ----------------------------------------------------------------------
+作業内容の宣言文  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;：&emsp;&emsp;dim args1(0) as new com.sun.star.beans.PropertyValue
+Cellの種類(1つのCell) &emsp;&emsp;&emsp;&emsp;&emsp;：&emsp;&emsp;&emsp;args1(0).Name = "ToPoint"
+Cellの場所  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;：&emsp;&emsp;&emsp;args1(0).Value = "$A$1"
+Active Cellの移動 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;：&emsp;&emsp;dispatcher.executeDispatch(document, ".uno:GoToCell", "", 0, args1())
+Comment &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;：&emsp;rem ----------------------------------------------------------------------
+作業内容の宣言文  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;：&emsp;&emsp;dim args2(0) as new com.sun.star.beans.PropertyValue
+Dataの種類  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;：&emsp;&emsp;&emsp;args2(0).Name = "StringName"
+Dataの値  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;：&emsp;&emsp;&emsp;args2(0).Value = "OpenOffice.org"
+文字列を入力  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;：&emsp;&emsp;dispatcher.executeDispatch(document, ".uno:EnterString", "", 0, args2())
+Comment &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;：&emsp;rem ----------------------------------------------------------------------
+次のCellへ移動  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;：&emsp;&emsp;dispatcher.executeDispatch(document, ".uno:JumpToNextCell", "", 0, Array())
+Macroの終了 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;：&emsp;end sub
+<br>
+作業そのものがStep By Stepで記録され、使っている主Commandは「DispatchHelper」のみです。
+因みに別記したMacroの説明は以下です。
+<br>
+Active DocumentのSheet1のA1 Cellに文字列OpenOffice.orgを入力
+=>　ThisComponent.Sheets(0).getCellByPosition(0,1).String="OpenOffice.org"
+<br>
+と文法を知らないと取っ付きづらいですね。
+<br>
+まさに<b>「DispatchHelper」</b>はMacro初心者向け<b><l>「 魔法のCommand 」</l></b>ですが欠点もあります。
+<br>
+[ 欠点 ]
+1)コマンド（メニューに割り付けてある操作、UNOコマンドとも呼ばれるもの）のみの記録である。
+2)コマンドで実現できるもの以外は記録できない。
+3)Macroの実行時間が長くなる。
+<br>
+しかしながら、Macro初心者の勉強には非常に有効な記述であると思います。
+</code></p class="s2">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<center><p>*******【 Index 】*******</p></center>
+<br>
+<p>【 General 】</p>
+<p class="s1">Window</p class="s1">
+<ul>
+DHGW-)<a href="OOoBasic_General.html#OOoGW05a"><em>[General]</em>画面Zoomの設定<em>[ Zoom ]</em></a><br>
+</ul>
+
+<p class="s1">Help</p class="s1">
+<ul>
+DHGHp-)<a href="OOoBasic_General3.html#OOoGo01a"><em>[General]</em>「About LibreOffice」Logo表示<em>[ About ]</em></a><br>
+</ul>
+
+
+
+<br><br><br>
+<p>【 Writer 】</p>
+<p class="s1">Document</p class="s1">
+<p class="s3">[ Cursor移動 ]</p class="s3">
+<ul>
+DHW-)<a href="#OOoDHWm01"><em>[Writer]</em>Next Wordに移動<em>[ GoToNextWord / 英文時に有効 ]</em></a><BR>
+DHW-)<a href="#OOoDHWm02"><em>[Writer]</em>Previous Wordに移動<em>[ GoToPrevWord / 英文時に有効 ]</em></a><BR>
+DHW-)<a href="#OOoDHWm03"><em>[Writer]</em>最終行へ移動<em>[ GoToEndOfLine ]</em></a><BR>
+DHW-)<a href="#OOoDHWm04"><em>[Writer]</em>先頭行へ移動<em>[ GoToStartOfLine ]</em></a><BR>
+DHW-)<a href="#OOoDHWm05"><em>[Writer]</em>任意の次行へ移動<em>[ GoDown ]</em></a><BR>
+DHW-)<a href="#OOoDHWm06"><em>[Writer]</em>任意の前行へ移動<em>[ GoUp ]</em></a><BR>
+</ul>
+<p class="s3">[ 削除 ]</p class="s3">
+<ul>
+DHW-)<a href="#OOoDHWd01"><em>[Writer]</em>BackSpace Key<em>[ SwBackspace ]</em></a><BR>
+DHW-)<a href="#OOoDHWd01"><em>[Writer]</em>Delete key<em>[ Delete ]</em></a><BR>
+</ul>
+<p class="s3">[ 挿入 ]</p class="s3">
+<ul>
+DHW-)<a href="#OOoDHWi01"><em>[Writer]</em>Text挿入<em>[ InsertText ]</em></a><BR>
+</ul>
+<p class="s3">[ 選択 ]</p class="s3">
+<ul>
+DHW-)<a href="#OOoDHWs01"><em>[Writer]</em>次の文字先頭までの範囲を選択<em>[ WordRightSel ]</em></a><BR>
+DHW-)<a href="#OOoDHWs01"><em>[Writer]</em>前の文字語尾までの範囲を選択<em>[ WordLeftSel ]</em></a><BR>
+</ul>
+<p class="s3">[ 編集 ]</p class="s3">
+<ul>
+DHW-)<a href="#OOoDHWe01"><em>[Writer]</em>Copy<em>[ Copy ]</em></a><BR>
+DHW-)<a href="#OOoDHWe02"><em>[Writer]</em>Paste<em>[ Paste ]</em></a><BR>
+</ul>
+
+
+<br><br><br>
+<p>【 Calc 】( Calc編参照 )</p>
+<p class="s1">General</p class="s1">
+<ul>
+DHCGn-)<a href="OOoBasic_Calc.html#OOoCCB01b"><em>[Calc]</em>Cellに値(数字 ＆ 文字列 ＆ 式)を代入する<em>[ EnterString ]</em></a><br>
+DHCGn-)<a href="OOoBasic_Calc.html#OOoCCSel01b"><em>[Calc]</em>CellのSelection<em>[ GoToCell / ToPoint ]</em></a><br>
+DHCGn-)<a href="OOoBasic_Calc.html#OOoCCSel02b"><em>[Calc]</em>ColumnのSelection<em>[ GoToCell / ToPoint ]</em></a><br>
+DHCGn-)<a href="OOoBasic_Calc.html#OOoCCSel03b"><em>[Calc]</em>RowのSelection<em>[ GoToCell / ToPoint ]</em></a><br>
+DHCGn-)<a href="OOoBasic_Calc.html#OOoCCSel04b"><em>[Calc]</em>Selection解除<em>[ Deselect ]</em></a><br>
+DHCGn-)<a href="OOoBasic_Calc.html#OOoCS16b"><em>[Calc]</em>ActiveSheetを変更<em>[ JumpToTable ]</em></a><BR>
+DHCGn-)<a href="OOoBasic_Calc.html#OOoCS16d"><em>[Calc]</em>ActiveSheetを変更( Ctrl + PageDown )[ Next Sheet ]<em>[ JumpToNextTable ]</em></a><br>
+DHCGn-)<a href="OOoBasic_Calc.html#OOoCS16e"><em>[Calc]</em>ActiveSheetを変更( Ctrl + PageUp )[ Previosu Sheet ]<em>[ JumpToPrevTable ]</em></a><br>
+DHCGn-)<a href="OOoBasic_Calc.html#OOoCSC04a"><em>[Calc]</em>Ctrl + End / 入力されているDataの最終Colmn, Rowへ移動・選択<em>[ GotoEndOfData ]</em></a><br>
+DHCGn-)<a href="OOoBasic_Calc.html#OOoCS17a"><em>[Calc]</em>ActiveSheetを追加選択[ Next Sheet ]( Ctrl + Shift + PageDown )<em>[ JumpToNextTableSel ]</em></a><br>
+DHCGn-)<a href="OOoBasic_Calc.html#OOoCS17b"><em>[Calc]</em>ActiveSheetを追加選択[ Previosu Sheet ]( Ctrl + Shift + PageUp )<em>[ JumpToPrevTableSel ]</em></a><br>
+DHCGn-)<a href="OOoBasic_Calc.html#"><em>[Calc]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+
+<p class="s1">File</p class="s1">
+<ul>
+</ul>
+<br>
+
+
+<p class="s1">Edit</p class="s1">
+<ul>
+DHCEdit-)<a href="OOoBasic_Calc.html#OOoCCI04a"><em>[Calc]</em>形式を選択して貼り付け( Edit → Paste Special... )<em>[ InsertContents / Flag ]</em></a><BR>
+DHCEdit-)<a href="OOoBasic_Calc.html#OOoCp01b"><em>[Calc]</em>改Pageの解除( Insert → Manual Break /Edit → Delete Manual Break )<em>[ DeleteRowbreak / DeleteColumnbreak ]</em></a><BR>
+</ul>
+<br>
+
+
+<p class="s1">View</p class="s1">
+<ul>
+DHCVw-)<a href="OOoBasic_Calc.html#OOoCVw01a"><em>[Calc]</em>Page Preview Mode/Normal Mode表示( View → Normal/Page Break Preview )<em>[ PagebreakMode / NormalViewMode ]</em></a><BR>
+DHCVw-)<a href="OOoBasic_Calc.html#OOoCVw03a"><em>[Calc]</em>式入力Boxの表示/非表示( View → Formula Bar )<em>[ InputLineVisible ]</em></a><BR>
+DHCVw-)<a href="OOoBasic_Calc.html#OOoCVw04a"><em>[Calc]</em>関数Listの表示/非表示( View →  )<em>[ FunctionBox ]</em></a><BR>
+</ul>
+<br>
+
+
+<p class="s1">Insert</p class="s1">
+<ul>
+DHCIrt-)<a href="OOoBasic_Calc.html#OOoCp01b"><em>[Calc]</em>改Pageの挿入( Insert → Manual Break )<em>[ InsertRowBreak / InsertColumnBreak ]</em></a><BR>
+</ul>
+<br>
+
+
+<p class="s1">Format</p class="s1">
+<ul>
+DHCFmt-)<a href="OOoBasic_Calc.html#OOoCS09b"><em>[Calc]</em>Sheetの表示/非表示( Format → Sheet )<em>[ Show / Hide ]</em></a><BR>
+</ul>
+<br>
+
+
+<p class="s1">Tools</p class="s1">
+<ul>
+</ul>
+<br>
+
+
+<p class="s1">Data</p class="s1">
+<ul>
+DHCData-)<a href="OOoBasic_Calc.html#OOoCCR13a"><em>[Calc]</em>行 / 列のGroup化と解除( Data → Group and Outline )<em>[ Group / Ungroup ]</em></a><BR>
+DHCData-)<a href="OOoBasic_Calc.html#OOoCCR13e2"><em>[Calc]</em>Sheet内の全てのGoup化の削除<em>[ ClearOutline ]</em></a><BR>
+DHCData-)<a href="OOoBasic_Calc.html#OOoCCR14b"><em>[Calc]</em>Outlineの自動作成( Data → Group and Outline → AutoOutline )<em>[ AutoOutline ]</em></a><BR>
+</ul>
+<br>
+
+
+<p class="s1">Window</p class="s1">
+<ul>
+DHCWin-)<a href="OOoBasic_Calc.html#OOoCSWn01a"><em>[Calc]</em>Windowの分割( Window → Split )<em>[ SplitWindow ]</em></a><BR>
+DHCWin-)<a href="OOoBasic_Calc.html#OOoCSWn02a"><em>[Calc]</em>Windowの分割固定 / 分割解除( Window → Freeze )<em>[ FreezePanes ]</em></a><BR>
+</ul>
+<br>
+
+
+
+<br><br><br>
+<p>【 Impress 】</p>
+<p class="s3">Shape</p class="s3">
+<ul>
+ISp-)<a href="#OOoISp1"><em>[Impress]</em>OutlinerShape形式選択する。<em>[ Paste ]</em></a><BR>
+</ul>
+
+
+<br><br><br><br><br>
+<center><p>*********** 【 Macro Code 】 ************</p></center>
+<br><br>
+<p>【 Writer 】</p>
+<p class="s1">Document</p class="s1">
+<p class="s3">[ Cursor移動 ]</p class="s3">
+<a name="OOoDHWm01"><h6>DHW-)<em>[Writer]</em>Next Wordに移動</h6></a><p class="s2"><code>
+rem (2) Press Ctrl+Right Arrow to move the cursor to the start of “specifies”.
+	dispatcher.executeDispatch(document, ".uno:GoToNextWord", "", 0, Array())
+</code></p class="s2">
+<br>
+
+<a name="OOoDHWm02"><h6>DHW-)<em>[Writer]</em>Previous Wordに移動</h6></a><p class="s2"><code>
+rem (2) Press Ctrl+Left Arrow to move the cursor to the start of “specifies”.
+	dispatcher.executeDispatch(document, ".uno:GoToPrevWord", "", 0, Array())
+</code></p class="s2">
+<br>
+
+<a name="OOoDHWm03"><h6>DHW-)<em>[Writer]</em>最終行へ移動</h6></a><p class="s2"><code>
+rem (9) Press End to move the cursor to the end of the line.
+	dispatcher.executeDispatch(document, ".uno:GoToEndOfLine", "", 0, Array())
+</code></p class="s2">
+<br>
+<a name="OOoDHWm04"><h6>DHW-)<em>[Writer]</em>先頭行へ移動</h6></a><p class="s2"><code>
+rem (11) Press Home to move the cursor to the start of the line.
+	dispatcher.executeDispatch(document, ".uno:GoToStartOfLine", "", 0, Array())
+</code></p class="s2">
+<br>
+
+<a name="OOoDHWm05"><h6>DHW-)<em>[Writer]</em>任意の次行へ移動</h6></a><p class="s2"><code>
+rem (16) Press down arrow to move to the next line.
+	dim args19(1) as new com.sun.star.beans.PropertyValue
+		args19(0).Name = "Count"
+		args19(0).Value = 1
+		args19(1).Name = "Select"
+		args19(1).Value = false
+	dispatcher.executeDispatch(document, ".uno:GoDown", "", 0, args19())
+</code></p class="s2">
+<br>
+
+<a name="OOoDHWm06"><h6>DHW-)<em>[Writer]</em>任意の前行へ移動</h6></a><p class="s2"><code>
+Sub main
+	Dim oDoc
+	Dim dispatcher as object
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_blank", 0, Dummy())
+		oDocument = oDoc.CurrentController.Frame
+			oString = "ここはParagraph1 " & Chr$(13) & _
+						"ここはParagraph2 " & Chr$(13) &_
+						"ここはParagraph3 " & Chr$(13) &_
+						"ここはParagraph4 "
+		oText = oDoc.getText()
+		oText.insertString(oText.getEnd(), oString, false)
+		oCur = oText.createTextCursor
+  ' 
+		dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+	Dim args1(1) as new com.sun.star.beans.PropertyValue
+		args1(0).Name = "Count"
+		args1(0).Value = 2
+		args1(1).Name = "Select"
+		args1(1).Value = false
+	dispatcher.executeDispatch(oDocument, ".uno:GoUp", "", 0, args1())
+End Sub
+</code></p class="s2">
+<br>
+
+<p class="s3">[ 削除 ]</p class="s3">
+<a name="OOoDHWd01"><h6>DHW-)<em>[Writer]</em>BackSpace Key</h6></a><p class="s2"><code>
+rem (3) Press Backspace twice to remove the tab and the space.
+	dispatcher.executeDispatch(document, ".uno:SwBackspace", "", 0, Array())
+</code></p class="s2">
+<br>
+
+<a name="OOoDHWd02"><h6>DHW-)<em>[Writer]</em>Delete key</h6></a><p class="s2"><code>
+rem (5) Press Delete to delete the lower case s ....
+	dispatcher.executeDispatch(document, ".uno:Delete", "", 0, Array())
+</code></p class="s2">
+<br>
+
+<p class="s3">[ 挿入 ]</p class="s3">
+<a name="OOoDHWi01"><h6>DHW-)<em>[Writer]</em>Text挿入</h6></a><p class="s2"><code>
+rem (4) Press Tab to add the tab without the space after the constant name.
+	dim args4(0) as new com.sun.star.beans.PropertyValue
+		args4(0).Name = "Text"
+		args4(0).Value = CHR$(9)
+	dispatcher.executeDispatch(document, ".uno:InsertText", "", 0, args4())
+rem (5) ... and then press S to add an upper case S.
+	dim args6(0) as new com.sun.star.beans.PropertyValue
+		args6(0).Name = "Text"
+		args6(0).Value = "S"
+	dispatcher.executeDispatch(document, ".uno:InsertText", "", 0, args6())
+</code></p class="s2">
+<br>
+
+<p class="s3">[ 選択 ]</p class="s3">
+<a name="OOoDHWs01"><h6>DHW-)<em>[Writer]</em>次の文字先頭までの範囲を選択</h6></a><p class="s2"><code>
+rem (7) Press Ctrl+Shift+Right Arrow to select the number.
+	dispatcher.executeDispatch(document, ".uno:WordRightSel", "", 0, Array())
+</code></p class="s2">
+<br>
+
+<a name="OOoDHWs02"><h6>DHW-)<em>[Writer]</em>前の文字語尾までの範囲を選択</h6></a><p class="s2"><code>
+rem (7) Press Ctrl+Shift+Left Arrow to select the number.
+	dispatcher.executeDispatch(document, ".uno:WordLeftSel", "", 0, Array())
+</code></p class="s2">
+<br>
+
+
+<p class="s3">[ 編集 ]</p class="s3">
+<a name="OOoDHWe01"><h6>DHW-)<em>[Writer]</em>Copy</h6></a><p class="s2"><code>
+rem (8) Press Ctrl+C to copy the selected text to the clipboard.
+	dispatcher.executeDispatch(document, ".uno:Copy", "", 0, Array())
+</code></p class="s2">
+<br>
+
+<a name="OOoDHWe02"><h6>DHW-)<em>[Writer]</em>Paste</h6></a><p class="s2"><code>
+rem (12) Press Ctrl+V to paste the selected number to the start of the line.
+	dispatcher.executeDispatch(document, ".uno:Paste", "", 0, Array())
+</code></p class="s2"><br>
+
+
+<br><br><br><br><br>
+<p>【 Impress 】</p>
+<p class="s1">Shape</p class="s1">
+<a name="OOoISp1"><h6>ISp-)<em>[Writer]</em>OutlinerShape形式選択する。</h6></a><p class="s2"><code>
+Sub oImpressShape
+	Dim oDoc
+	Dim dispatcher as object
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_blank", 0, Dummy())
+		oDocument = oDoc.CurrentController.Frame
+			dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		dispatcher.executeDispatch(oDocument, ".uno:SendOutlineToStarImpress", "", 0, Array())		
+End Sub
+
+
+</code></p class="s2">
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+<center><h6><a href="#TopOfPage">Top of Page</a></h6></center><BR>
+
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/OOoBasic_DespatchHelper.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:10:01 GMT -->
+</html>

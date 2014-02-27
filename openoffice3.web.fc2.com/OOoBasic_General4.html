@@ -1,0 +1,5375 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/OOoBasic_General4.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:14:09 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<SCRIPT language="JavaScript">
+		<!--
+			renew = new Date(document.lastModified);
+			y=renew.getYear();
+			m=renew.getMonth() + 1;
+			d=renew.getDate();
+			if(y<1900) {y=y+1900;}
+				oDate="更新日："+y+"/"+m+"/"+d;
+			document.write(oDate);
+		//-->
+	</SCRIPT>
+	
+	<title>Macroの杜(OpenOffice.org/LibreOffice Basic編)/ General No.4</title>
+</head>
+<link rel="stylesheet"
+type="text/css" href="css_macro_Basic.css">
+
+<body>
+<a name="TopOfPage"><left><p><A HREF="index-2.html">Home of site</a></p></left></a><br>
+<h1>Macroの杜<br>
+(OpenOffice.org/LibreOffice Basic編) </h1>
+
+<h2>General No.4</h2>
+
+<center><h1>###【 Continued from <a href="OOoBasic_General3.html">General No.3</a> 】###</h1></center>
+<br>
+
+<h3><Center>**********************【 Index 】**********************</center></h3>
+
+<p class="s1">Shape</p class="s1">
+<p class="s3">[ Shape ]</p class="s3">
+<ul>
+GSh-)<a href="#OOoGSh1"><em>[General / Draw]</em>Line<em>[ com.sun.star.drawing.LineShape / .LineColor / .LineWidth / .LineTransparence ]</em></a><br>
+GSh-)<a href="#OOoGSh1b"><em>[General]</em>Line(Impress)</a><br>
+GSh-)<a href="#OOoGSh2"><em>[General]</em>Line(Writer)</a><br>
+GSh-)<a href="#OOoGSh2b"><em>[General]</em>Line(Calc)</a><br>
+GSh-)<a href="#OOoGSh3"><em>[General]</em>EllipseShape<em>[ Draw / Impress ]</em></a><br>
+GSh-)<a href="#OOoGSh3aa"><em>[General]</em>EllipseShape2<em>[ Draw / Impress ]</em></a><br>
+GSh-)<a href="#OOoGSh3b"><em>[General]</em>EllipseShape<em>[ Calc ]</em></a><br>
+GSh-)<a href="#OOoGSh3c"><em>[General]</em>EllipseShape<em>[ Writer / com.sun.star.text.TextContentAnchorType.AT_PARAGRAPH ]</em></a><br>
+GSh-)<a href="#OOoGSh3c2"><em>[General]</em>EllipseShape2( Page Anchor )<em>[ Writer / com.sun.star.text.TextContentAnchorType.AT_PAGE ]</em></a><br>
+GSh-)<a href="#OOoGSh7"><em>[General]</em>RectangleShape<em>[ Draw, Impress ]</em></a><br>
+GSh-)<a href="#OOoGSh7b"><em>[General]</em>RectangleShape<em>[ Calc ]</em></a><br>
+GSh-)<a href="#OOoGSh7c"><em>[General]</em>RectangleShape<em>[ Writer ]</em></a><br>
+GSh-)<a href="#OOoGSh4"><em>[General]</em>ClosedBezierShape / PolyPolygonBezierrShape(Draw, Impress)</a><br>
+GSh-)<a href="#OOoGSh5"><em>[General]</em>OpenBezierShape / PolyPolygonBezierrShape(Draw, Impress)</a><br>
+GSh-)<a href="#OOoGSh6"><em>[General]</em>MeasureShape1(Draw, Impress)</a><br>
+GSh-)<a href="#OOoGSh6b"><em>[General]</em>MeasureShape2[ 寸法をTextにする ](Draw, Impress)<em>[ TextAnimationKind / com.sun.star.drawing.TextAnimationKind.SCROLL ]</em></a><br>
+GSh-)<a href="#OOoGSh8a"><em>[General]</em>PolyLineShape(Draw, Impress)</a><br>
+GSh-)<a href="#OOoGSh8b"><em>[General]</em>PolyPolygonShape(Draw, Impress)</a><br>
+GSh-)<a href="#OOoGSh8c"><em>[General]</em>矢印[ PolyPolygonShape ](Draw, Impress)</a><br>
+GSh-)<a href="#OOoGSh9"><em>[General]</em>TextShape(Shadow付き)<em>[ Draw, Impress ]</em></a><br>
+GSh-)<a href="#OOoGSh9b"><em>[General]</em>TextShape(Shadow無し)<em>[ Writer ]</em></a><br>
+GSh-)<a href="#OOoGSh9c"><em>[General]</em>TextShape(Shadow付き)<em>[ Calc ]</em></a><br>
+GSh-)<a href="#OOoGSh10a"><em>[General]</em>Shape数取得( Draw )<em>[ Count ]</em></a><br>
+GSh-)<a href="#OOoGSh10b"><em>[General]</em>Shape数取得( Writer )<em>[ Count ]</em></a><br>
+GSh-)<a href="#OOoGSh10c"><em>[General]</em>Shape数取得( Calc )<em>[ Count ]</em></a><br>
+GSh-)<a href="#OOoGSh11a"><em>[General]</em>Shape選択<em>[ select() ]</em></a><br>
+GSh-)<a href="#OOoGSh11b"><em>[General]</em>複数のShape選択<em>[ com.sun.star.drawing.ShapeCollection ]</em></a><br>
+GSh-)<a href="#OOoGSh12a"><em>[General]</em>Shapeを最前面/最背面へ移動<em>[ .uno:BringToFront / .uno:SendToBack ]</em></a><br>
+GSh-)<a href="#OOoGSh13a"><em>[General]</em>複数のShapeのGroup化/Ungroup化(1)<em>[ .group() / .ungroup() ]</em></a><br>
+GSh-)<a href="#OOoGSh13b"><em>[General]</em>複数のShapeのGroup化/Ungroup化(2)<em>[ .uno:FormatGroup / .uno:FormatUngroup ]</em></a><br>
+</ul>
+<br>
+
+<p class="s3">[ ShapeProperty ]</p class="s3">
+<ul>
+GSSP-)<a href="#OOoGSSP00a"><em>[General / Draw]</em>LineShape<em>[ .LineStartName / .LineStartWidth / .LineEndName / .LineEndWidth ]</em></a><br>
+GSSP-)<a href="#OOoGSSP00b"><em>[General / Calc]</em>LineShape<em>[ .LineStartName / .LineStartWidth / .LineEndName / .LineEndWidth ]</em></a><br>
+GSSP-)<a href="#OOoGSSP00c"><em>[General / Writer]</em>LineShape<em>[ .LineStartName / .LineStartWidth / .LineEndName / .LineEndWidth ]</em></a><br>
+GSSP-)<a href="#OOoGSSP00a2"><em>[General / Draw]</em>LineShape2<em>[ .LineStyle / LineDashName ]</em></a><br>
+GSSP-)<a href="#OOoGSSP00b2"><em>[General / Calc]</em>LineShape2<em>[ .LineStyle / LineDashName ]</em></a><br>
+GSSP-)<a href="#OOoGSSP00c2"><em>[General / Writer]</em>LineShape2<em>[ .LineStyle / LineDashName ]</em></a><br>
+GSSP-)<a href="#OOoGSSP01"><em>[General / Draw]</em>EllipseShape / Fill<em>[ color / Gradiat / Hatch / Bitmap ]</em></a><br>
+GSSP-)<a href="#OOoGSSP01b"><em>[General / Calc]</em>EllipseShape / Fill<em>[ color / Gradiat / Hatch / Bitmap ]</em></a><br>
+GSSP-)<a href="#OOoGSSP01c"><em>[General / Writer]</em>EllipseShape / Fill<em>[ color / Gradiat / Hatch / Bitmap ]</em></a><br>
+GSSP-)<a href="#OOoGSSP02"><em>[General / Draw]</em>EllipseShape / Outline<em>[ LineStyle.DASH( .Style / .Dots / .DotLen / .Dashes / .DashLen / .Distance ) ]</em></a><br>
+GSSP-)<a href="#OOoGSSP02b"><em>[General / Calc]</em>EllipseShape / Outline<em>[ LineStyle.DASH( .Style / .Dots / .DotLen / .Dashes / .DashLen / .Distance ) ]</em></a><br>
+GSSP-)<a href="#OOoGSSP02c"><em>[General / Writer]</em>EllipseShape / Outline<em>[ LineStyle.DASH( .Style / .Dots / .DotLen / .Dashes / .DashLen / .Distance ) ]</em></a><br>
+GSSP-)<a href="#OOoGSSP03a"><em>[General / Draw]</em>Shadow<em>[ .ShadowXDistance / ShadowYDistance / .ShadowColor / .ShadowTransparence /.CornerRadius ]</em></a><br>
+GSSP-)<a href="#OOoGSSP03b"><em>[General / Calc]</em>Shadow<em>[ .ShadowXDistance / ShadowYDistance / .ShadowColor / .ShadowTransparence /.CornerRadius ]</em></a><br>
+GSSP-)<a href="#OOoGSSP03c"><em>[General / Writer]</em>Shadow<em>[ .ShadowXDistance / ShadowYDistance / .ShadowColor / .ShadowTransparence /.CornerRadius ]</em></a><br>
+GSSP-)<a href="#OOoGSSP04a"><em>[General / Draw]</em>RotationAngle<em>[ .RotateAngle ]</em></a><br>
+GSSP-)<a href="#OOoGSSP04b"><em>[General / Calc]</em>RotationAngle<em>[ .RotateAngle ]</em></a><br>
+GSSP-)<a href="#OOoGSSP04c"><em>[General / Writer]</em>RotationAngle<em>[ .RotateAngle ]</em></a><br>
+GSSP-)<a href="#OOoGSSP04b2"><em>[General / Calc]</em>Rotate Mode ON / OFF<em>[ .uno:ToggleObjectRotateMode ]</em></a><br>
+GSSP-)<a href="#OOoGSSP05a"><em>[General / Draw]</em>ShearAngle<em>[ .ShearAngle ]</em></a><br>
+GSSP-)<a href="#OOoGSSP05b"><em>[General / Calc]</em>ShearAngle<em>[ .ShearAngle ]</em></a><br>
+GSSP-)<a href="#OOoGSSP05c"><em>[General / Writer]</em>ShearAngle<em>[ .ShearAngle ]</em></a><br>
+GSSP-)<a href="#OOoGSSP06a"><em>[General]</em>Text Sizeを外形Sizeと一致させる( Draw )<em>[ .TextFitToSize ]</em></a><br>
+GSSP-)<a href="#OOoGSSP06b"><em>[General]</em>Text Sizeを外形Sizeと一致させる( Calc )<em>[ .TextFitToSize ]</em></a><br>
+GSSP-)<a href="#OOoGSSP06c"><em>[General]</em>Text Sizeを外形Sizeと一致させる( Writer )<em>[ .TextFitToSize ]</em></a><br>
+GSSP-)<a href="#OOoGSSP07a"><em>[General]</em>Text Box内の水平位置( Draw )<em>[ .TextHorizontalAdjust ]</em></a><br>
+GSSP-)<a href="#OOoGSSP07b"><em>[General]</em>Text Box内の水平位置( Calc )<em>[ .TextHorizontalAdjust ]</em></a><br>
+GSSP-)<a href="#OOoGSSP07c"><em>[General]</em>Text Box内の水平位置( Writer )<em>[ .TextHorizontalAdjust ]</em></a><br>
+GSSP-)<a href="#OOoGSSP08a"><em>[General]</em>Text Box内の垂直位置( Draw )<em>[ .TextVerticalAdjust ]</em></a><br>
+GSSP-)<a href="#OOoGSSP08b"><em>[General]</em>Text Box内の垂直位置( Calc )<em>[ .TextVerticalAdjust ]</em></a><br>
+GSSP-)<a href="#OOoGSSP08c"><em>[General]</em>Text Box内の垂直位置( Writer )<em>[ .TextVerticalAdjust ]</em></a><br>
+GSSP-)<a href="#OOoGSSP09a"><em>[General]</em>CircleKind( Draw )<em>[ .CircleStartAngle / .CircleEndAngle / .CircleKind ]</em></a><br>
+GSSP-)<a href="#OOoGSSP09b"><em>[General]</em>CircleKind( Calc )<em>[ .CircleStartAngle / .CircleEndAngle / .CircleKind ]</em></a><br>
+GSSP-)<a href="#OOoGSSP09c"><em>[General]</em>CircleKind( Writer )<em>[ .CircleStartAngle / .CircleEndAngle / .CircleKind ]</em></a><br>
+GSSP-)<a href="#OOoGSSP10c"><em>[General / Calc]</em>Shape反転(1)[ 水平/垂直 ]<em>[ .uno:ObjectMirrorHorizontal / .uno:ObjectMirrorVertical ]</em></a><br>
+GSSP-)<a href="#OOoGSSP10c2"><em>[General / Calc]</em>Shape反転(2)[ 垂直方向のみ ]<em>[ .uno:ObjectMirrorHorizontal / .uno:ObjectMirrorVertical ]</em></a><br>
+</ul>
+<br>
+
+<p class="s3">[ ConnectorShape ]</p class="s3">
+<ul>
+GSCS-)<a href="#OOoGSCS01a"><em>[General]</em>ConnectorShape( Draw )<em>[ com.sun.star.drawing.ConnectorType.STANDARD / com.sun.star.drawing.ConnectorType.CURVE / com.sun.star.drawing.ConnectorType.LINE / com.sun.star.drawing.ConnectorType.LINES ]</em></a><br>
+GSCS-)<a href="#OOoGSCS01b"><em>[General]</em>ConnectorShape( Calc )<em>[ com.sun.star.drawing.ConnectorType.STANDARD / com.sun.star.drawing.ConnectorType.CURVE / com.sun.star.drawing.ConnectorType.LINE / com.sun.star.drawing.ConnectorType.LINES ]</em></a><br>
+GSCS-)<a href="#OOoGSCS01c"><em>[General]</em>ConnectorShape( Writer )<em>[ com.sun.star.drawing.ConnectorType.STANDARD / com.sun.star.drawing.ConnectorType.CURVE / com.sun.star.drawing.ConnectorType.LINE / com.sun.star.drawing.ConnectorType.LINES ]</em></a><br>
+</ul>
+<br>
+
+<p class="s3">[ GraphicObjectShape ]</p class="s3">
+<ul>
+GSGOb-)<a href="#OOoGSGOb01a"><em>[General / Draw]</em>GraphicObjectShape</a><br>
+GSGOb-)<a href="#OOoGSGOb01b"><em>[General / Calc]</em>GraphicObjectShape</a><br>
+GSGOb-)<a href="#OOoGSGOb01c"><em>[General / Writer]</em>GraphicObjectShape</a><br>
+</ul>
+<br>
+
+
+
+<p class="s3">[ OLE Shape ]</p class="s3">
+<ul>
+GSOLE-)<a href="#OOoGSOLE1a"><em>[General/Writer]</em>Writer Doc挿入</a><br>
+GSOLE-)<a href="#OOoGSOLE1b"><em>[General/Writer]</em>Calc Doc挿入</a><br>
+GSOLE-)<a href="#OOoGSOLE1c"><em>[General/Writer]</em>Chart挿入</a><br>
+GSOLE-)<a href="#OOoGSOLE1d"><em>[General/Writer]</em>(未完成)Draw Doc挿入</a><br>
+GSOLE-)<a href="#OOoGSOLE1e"><em>[General/Writer]</em>(未完成)Impress Doc挿入</a><br>
+GSOLE-)<a href="#OOoGSOLE1f"><em>[General/Writer]</em>Math Doc挿入</a><br>
+GSOLE-)<a href="#OOoGSOLE02a"><em>[General]</em>OLE Objectを挿入Dialog表示<em>[ uno:InsertObject ]</em></a><br>
+</ul>
+<br>
+
+
+<p class="s3">[ Anchor ]</p class="s3">
+<p class="s4">{{ Writer }}</p class="s4">
+<ul>
+GSAhWr-)<a href="#OOoGSAhWr"><em>[General / Writer ]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+
+<p class="s4">{{ Calc }}</p class="s4">
+<ul>
+GSAhCa-)<a href="#OOoGSAhCa01a"><em>[General / Calc ]</em>AnchorをCellに設定(1)<em>[ .uno:SetAnchorToCell ]</em></a><br>
+GSAhCa-)<a href="#OOoGSAhCa01b"><em>[General / Calc ]</em>AnchorをCellに設定(2)<em>[ .Anchor / getCellRangeByName() or getCellByPosition() / .supportsService("com.sun.star.sheet.SheetCell") ]</em></a><br>
+GSAhCa-)<a href="#OOoGSAhCa02a"><em>[General / Calc ]</em>AnchorをPageに設定(1)[ Default値 ]<em>[ .uno:SetAnchorToPage ]</em></a><br>
+GSAhCa-)<a href="#OOoGSAhCa02b"><em>[General / Calc ]</em>AnchorをPageに設定(2)[ Default値 ]<em>[ .getSpreadsheet() / .HoriOrientPosition / .VertOrientPosition / .supportsService("com.sun.star.sheet.Spreadsheet") ]</em></a><br>
+</ul>
+<br>
+
+
+<br><br><br>
+<center><h1>###【 Following <a href="OOoBasic_General5.html">General No.5</a> 】###</h1></center>
+
+
+
+
+<br><br><br><br><br><br><br><br><br><br>
+<h3><Center>**********************【 Macro Code 】**********************</center></h3>
+
+<p class="s1">Shape</p class="s1">
+<p class="s3">[ Shape ]</p class="s3">
+<a name="OOoGSh1"><h6>GSh-1)<em>[General / Draw]</em>Line</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/01Line/01LineDraw01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oAddLineShape
+	Dim Dummy()
+	Dim oDoc
+	Dim oLine
+	Dim i as Long
+	Dim oPos as new com.sun.star.awt.Point
+	Dim oSize as new com.sun.star.awt.Size
+	Dim oStepsize as Double
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_default", 0, Dummy()) 
+		oDwImpPage = oDoc.getDrawPages().getByIndex(0)
+		oStepsize = CDbl(oDwImpPage.height) / 10
+		for i = 0 to 10
+			oLine = oDoc.createInstance("com.sun.star.drawing.LineShape")
+			oLine.LineColor = RGB(0, 255-20*i,  20*i)
+			oLine.LineWidth = 250
+			oPos.x = 0
+			oPos.y = CLng(CDbl(i) * oStepsize)
+			oLine.setPosition(oPos)
+			oSize.width = oDwImpPage.width
+			oSize.height = oDwImpPage.height -2 * oPos.y
+			oLine.setSize(oSize)
+			oDwImpPage.add(oLine)
+		next i 
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSh1b"><h6>GSh-1)<em>[General]</em>Line(Draw, Impress)</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/01Line/01LineImpress01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oAddLineShape
+	Dim Dummy()
+	Dim oDoc
+	Dim oLine
+	Dim i as Long
+	Dim oPos as new com.sun.star.awt.Point
+	Dim oSize as new com.sun.star.awt.Size
+	Dim oStepsize as Double
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/simpress", "_default", 0, Dummy()) 
+		oDwImpPage = oDoc.getDrawPages().getByIndex(0)
+		oStepsize = CDbl(oDwImpPage.height) / 10
+		for i = 0 to 10
+			oLine = oDoc.createInstance("com.sun.star.drawing.LineShape")
+			oLine.LineColor = RGB(0, 255-20*i,  20*i)
+			oLine.LineWidth = 250
+			oPos.x = 0
+			oPos.y = CLng(CDbl(i) * oStepsize)
+			oLine.setPosition(oPos)
+			oSize.width = oDwImpPage.width
+			oSize.height = oDwImpPage.height -2 * oPos.y
+			oLine.setSize(oSize)
+			oDwImpPage.add(oLine)
+		next i 
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSh2"><h6>GSh-2)<em>[General]</em>Line(Writer)</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/01Line/01LineWriter01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oAddLineShapeWriter
+	Dim Dummy()
+	Dim oDoc
+	Dim oLine
+	Dim i as Long
+	Dim oPos as new com.sun.star.awt.Point
+	Dim oSize as new com.sun.star.awt.Size
+	Dim oStepsize as Double
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_default", 0, Dummy()) 
+		oWriterPage = oDoc.getDrawPage()
+		oStepsize = 800		'unit : mm
+		for i = 0 to 10
+			oLine = oDoc.createInstance("com.sun.star.drawing.LineShape")
+			oLine.LineColor = RGB(0, 255-20*i,  20*i)
+			oLine.LineWidth = 50
+			
+			oSize.width = oStepsize - CLng(CDbl(i) * oStepsize /10) /2
+			oSize.height = oStepsize
+			oLine.setSize(oSize)
+			oWriterPage.add(oLine)
+		next i 
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSh2b"><h6>GSh-)<em>[General]</em>Line(Calc)</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/01Line/01LineCalc01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDrawLineInCalcDocument
+  Dim oDoc as object
+  Dim Dummy()
+  	oDoc = StarDesktop.loadComponentFromURL("private:factory/scalc", "_default", 0, Dummy()) 
+  Dim oPage as object
+  	oPage = oDoc.DrawPages(0)
+  	'
+	Dim oShape as object
+  		oShape = oDoc.createInstance( "com.sun.star.drawing.LineShape" )
+  			oShape.LineColor = RGB( 255, 0, 0 )
+  			oShape.LineWidth = 100
+	'
+	Dim oPosition As New com.sun.star.awt.Point
+		oPosition.X = 2500
+  		oPosition.Y = 2500
+  	oShape.setPosition(oPosition)
+  	'
+  	Dim oSize As New com.sun.star.awt.Size
+  		oSize.width = 2500
+  		oSize.height=5000
+  	oShape.setSize(oSize)
+  	'
+  	oPage.add( oShape )
+End Sub
+</code></pre><br>
+
+
+
+
+<a name="OOoGSh3"><h6>GSh-)<em>[General]</em>EllipseShape</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/00EllipseShape01Draw.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oShape
+	Dim oDoc
+	Dim oDrawP
+	Dim oShape
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_default", 0, Dummy())
+			oDrawP = oDoc.getDrawPages().getByIndex(0)
+			oShape = oDoc.createInstance("com.sun.star.drawing.EllipseShape")
+			' Position
+				oPoint = oShape.Position
+					oPoint.X = oDrawP.Width / 4
+					oPoint.Y = oDrawP.Height / 4 + oDrawP.BorderTop
+				oShape.Position = oPoint
+    		' Size
+    			oSize = oShape.Size
+    				oSize.Height = 6000		' unit : 1/100mm
+    				oSize.Width =  6000		' unit : 1/100mm
+    			oShape.Size = oSize
+    		oDrawP.add(oShape) 
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSh3aa"><h6>GSh-)<em>[General]</em>EllipseShape2</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/00EllipseShape01aDraw.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oDShapeProp
+	Dim oPage     'Page on which to draw
+	Dim oShape    'Shape to insert
+	Dim oCircle
+	DIm oLocs
+	Dim oDoc
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_default", 0, Dummy())
+		'
+		oLocs = Array( Array(CreatePoint(1000,1000), createSize(1000,1000)), _
+						Array(CreatePoint(3000,1000), createSize(1000,1500)), _
+						Array(CreatePoint(5000,1000), createSize(1500,1000)), _
+						Array(CreatePoint(7000,1000), createSize(1500,1000)))
+		'
+		oPage = createDrawPage(oDOc, "Test Draw", True)
+		' 
+		for i = LBound(oLocs) to UBound(oLocs)
+			oShape = oDoc.createInstance("com.sun.star.drawing.EllipseShape")
+			oPage.add(oShape)
+			oCircle = oLocs(i)
+			oShape.setPosition(oCircle(0))
+			oShape.setSize(oCircle(1))
+			oShape.setString(i)
+		next i
+		oShape.RotateAngle = 3000
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+
+'[ Function 3 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages 'All of the draw pages
+	Dim oPage  'A single draw page
+	Dim i%     'General index variable
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+		'If we require a new page then delete the page and get out of the for loop.
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+			'Did not request a new page so return the found page and then get out of the function.
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+
+	'Did not find the page, or found the page and removed it. Create a new page, set the name, and return the page.
+	'	oPages.insertNewByIndex(oPages.getCount())
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+</code></pre><br>
+
+
+
+
+<a name="OOoGSh3b"><h6>GSh-)<em>[General]</em>EllipseShape</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/00EllipseShape02Calc.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oShape
+	Dim oDoc
+	Dim oDrawP
+	Dim oShape
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/scalc", "_default", 0, Dummy())
+			oDrawP = oDoc.getDrawPages().getByIndex(0)
+			oShape = oDoc.createInstance("com.sun.star.drawing.EllipseShape")
+			' Position
+				oPoint = oShape.Position
+					oPoint.X = 4000
+					oPoint.Y = 4000
+				oShape.Position = oPoint
+    		' Size
+    			oSize = oShape.Size
+    				oSize.Height = 6000		' unit : 1/100mm
+    				oSize.Width =  6000		' unit : 1/100mm
+    			oShape.Size = oSize
+    		oDrawP.add(oShape) 
+End Sub
+</code></pre><br>
+
+
+
+<a name="OOoGSh3c"><h6>GSh-)<em>[General]</em>EllipseShape</h6></a><pre><code>
+<img src="OOoBasic_pic/01general3/Shape/00EllipseShape03Writer.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oShapeWriter()
+	Dim oDoc as Object
+	Dim oDrawP as Object
+	Dim oShape as Object
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_default", 0, Dummy())
+			oDrawP = oDoc.getDrawPage()
+			oShape = oDoc.createInstance("com.sun.star.drawing.EllipseShape")
+			'
+			oDrawP.add(oShape)
+			'
+			oPositionShape( oShape, 1000, 1500,  3000, 3000 ) 
+End Sub
+'
+'
+Sub oPositionShape( oShape as Object, X as Integer, Y as Integer, Width as Integer, Height as Integer )
+     oShape.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PARAGRAPH
+
+     Dim oPos as new com.sun.star.awt.Point
+     oPos.X = X
+     oPos.Y = Y
+     oShape.setPosition( oPos )
+     Erase oPos
+ 
+     Dim oSize as new com.sun.star.awt.Size
+     oSize.Width = Width
+     oSize.Height = Height
+     oShape.setSize( oSize )
+     Erase oSize
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSh3c2"><h6>GSh-)<em>[General]</em>EllipseShape2( Page Anchor )</h6></a><pre><code>
+<img src="OOoBasic_pic/01general3/Shape/00EllipseShape03Writer2.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oShapeWriter()
+	Dim oDoc as Object
+	Dim oDrawP as Object
+	Dim oShape as Object
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_default", 0, Dummy())
+			oDrawP = oDoc.getDrawPage()
+			oShape = oDoc.createInstance("com.sun.star.drawing.EllipseShape")
+			'
+			oDrawP.add(oShape)
+			'
+			oPositionShape( oShape, 1000, 1500,  3000, 3000 ) 
+End Sub
+'
+'
+Sub oPositionShape( oShape as Object, X as Integer, Y as Integer, Width as Integer, Height as Integer )
+	'
+	oShape.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PAGE
+	'
+	Dim oPos as new com.sun.star.awt.Point
+    	oPos.X = X
+     	oPos.Y = Y
+     	oShape.setPosition( oPos )
+    Erase oPos
+ 	'
+    Dim oSize as new com.sun.star.awt.Size
+     	oSize.Width = Width
+     	oSize.Height = Height
+     	oShape.setSize( oSize )
+    Erase oSize
+End Sub
+</code></pre><br>
+
+
+
+<a name="OOoGSh7"><h6>GSh-)<em>[General]</em>RectangleShape</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/00RectangleShape01Draw.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oDShape
+	Dim oDoc
+	Dim oDrawP
+	Dim oShape
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_default", 0, Dummy())
+			oDrawP = oDoc.getDrawPages().getByIndex(0)
+			oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			' Position
+				oPoint = oShape.Position
+					oPoint.X = oDrawP.Width / 4
+					oPoint.Y = oDrawP.Height / 4 + oDrawP.BorderTop
+				oShape.Position = oPoint
+    		' Size
+    			oSize = oShape.Size
+    				oSize.Height = 5000		' unit : 1/100mm
+    				oSize.Width =  10000		' unit : 1/100mm
+    			oShape.Size = oSize
+    		oDrawP.add(oShape) 
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSh7b"><h6>GSh-)<em>[General]</em>RectangleShape</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/00RectangleShape02Calc.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oDShape
+	Dim oDoc
+	Dim oDrawP
+	Dim oShape
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/scalc", "_default", 0, Dummy())
+			oDrawP = oDoc.getDrawPages().getByIndex(0)
+			oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			' Position
+				oPoint = oShape.Position
+					oPoint.X = 3000
+					oPoint.Y = 3000
+				oShape.Position = oPoint
+    		' Size
+    			oSize = oShape.Size
+    				oSize.Height = 5000		' unit : 1/100mm
+    				oSize.Width =  10000		' unit : 1/100mm
+    			oShape.Size = oSize
+    		oDrawP.add(oShape) 
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSh7c"><h6>GSh-)<em>[General]</em>RectangleShape</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/00RectangleShape03Writer.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oShape
+	Dim oDoc
+	Dim oDrawP
+	Dim oShape
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_default", 0, Dummy())
+			oDrawP = oDoc.getDrawPage()
+			oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			'
+			oDrawP.add(oShape)
+			'
+			oPositionShape( oShape, 1000, 1500,  5000, 2000 ) 
+End Sub
+'
+'
+Sub oPositionShape( oShape as Object, X as Integer, Y as Integer, Width as Integer, Height as Integer )
+     oShape.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PARAGRAPH
+
+     Dim oPos as new com.sun.star.awt.Point
+     oPos.X = X
+     oPos.Y = Y
+     oShape.setPosition( oPos )
+     Erase oPos
+ 
+     Dim oSize as new com.sun.star.awt.Size
+     oSize.Width = Width
+     oSize.Height = Height
+     oShape.setSize( oSize )
+     Erase oSize
+End Sub
+</code></pre><br>
+
+
+
+<a name="OOoGSh4"><h6>GSh-)<em>[General]</em>ClosedBezierShape / PolyPolygonBezierrShape</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/01ClosedBeizerShape_PolyPolygonBeizierShape01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub DrawShape
+	Dim oDoc
+	Dim oPage   'Page on which to draw
+	Dim oShape  'Shape to insert
+	Dim oCoords 'Coordinates of the polygon to insert
+		oCoords = createUnoStruct("com.sun.star.drawing.PolyPolygonBezierCoords")
+		'Fill in the actual coordinates. The first and last points are normal points and
+		' the middle points are Bezier control points.
+			oCoords.Coordinates = Array( Array( _
+      								CreatePoint( 4000, 4000 ), _
+      								CreatePoint( 12000, 16000 ), _
+      								CreatePoint( 12000, 16000 ), _
+      								CreatePoint( 20000, 4000 ) _
+												) _
+										 )
+			oCoords.Flags = Array(Array( _
+      							com.sun.star.drawing.PolygonFlags.NORMAL,_
+      							com.sun.star.drawing.PolygonFlags.CONTROL,_
+      							com.sun.star.drawing.PolygonFlags.CONTROL,_
+      							com.sun.star.drawing.PolygonFlags.NORMAL _
+    									)_
+  								)
+   
+		oDoc = ThisComponent
+		oPage = createDrawPage(ThisComponent, "Test Draw", True)
+		oShape = oDoc.createInstance("com.sun.star.drawing.ClosedBezierShape")
+		oPage.add(oShape)
+		oShape.FillStyle = com.sun.star.drawing.FillStyle.NONE
+		oShape.PolyPolygonBezier = oCoords
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages 'All of the draw pages
+	Dim oPage  'A single draw page
+	Dim i%     'General index variable
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+		'If we require a new page then delete the page and get out of the for loop.
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+			'Did not request a new page so return the found page and then get out of the function.
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+
+	'Did not find the page, or found the page and removed it. Create a new page, set the name, and return the page.
+	'	oPages.insertNewByIndex(oPages.getCount())
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+</code></pre><br>
+
+<a name="OOoGSh5"><h6>GSh-)<em>[General]</em>OpenBezierShape / PolyPolygonBezierrShape</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/02OpenedBeizerShape_PolyPolygonBeizierShape01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub DrawShape
+	Dim oDoc
+	Dim oPage   'Page on which to draw
+	Dim oShape  'Shape to insert
+	Dim oCoords 'Coordinates of the polygon to insert
+		oCoords = createUnoStruct("com.sun.star.drawing.PolyPolygonBezierCoords")
+		'Fill in the actual coordinates. The first and last points are normal points and
+		' the middle points are Bezier control points.
+			oCoords.Coordinates = Array( Array( _
+      					CreatePoint( 4000, 4000 ), _
+      					CreatePoint( 12000, 16000 ), _
+      					CreatePoint( 12000, 16000 ), _
+      					CreatePoint( 20000, 4000 ) _
+								) _
+							)
+			oCoords.Flags = Array(Array( _
+      					com.sun.star.drawing.PolygonFlags.NORMAL,_
+      					com.sun.star.drawing.PolygonFlags.CONTROL,_
+      					com.sun.star.drawing.PolygonFlags.CONTROL,_
+      					com.sun.star.drawing.PolygonFlags.NORMAL _
+								)_
+					)
+   
+		oDoc = ThisComponent
+		oPage = createDrawPage(ThisComponent, "Test Draw", True)
+		oShape = oDoc.createInstance("com.sun.star.drawing.OpenBezierShape")
+		oPage.add(oShape)
+	'	oShape.FillStyle = com.sun.star.drawing.FillStyle.GRADIENT
+		oShape.PolyPolygonBezier = oCoords
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages 'All of the draw pages
+	Dim oPage  'A single draw page
+	Dim i%     'General index variable
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+		'If we require a new page then delete the page and get out of the for loop.
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+			'Did not request a new page so return the found page and then get out of the function.
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+
+	'Did not find the page, or found the page and removed it. Create a new page, set the name, and return the page.
+	'	oPages.insertNewByIndex(oPages.getCount())
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+
+</code></pre><br>
+
+<a name="OOoGSh6"><h6>GSh-)<em>[General]</em>MeasureShape1</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/03measureShape01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub DrawShape
+	Dim oPage  'Page on which to draw
+	Dim oShape 'Shape to insert
+	Dim oStart As new com.sun.star.awt.Point
+	Dim oEnd As new com.sun.star.awt.Point
+		oPage = createDrawPage(ThisComponent, "Test Draw", True)
+		'横寸法
+			oShape = ThisComponent.createInstance("com.sun.star.drawing.MeasureShape")
+			oPage.add(oShape) 
+				oStart.X = oPage.Width / 4 : oEnd.X = oPage.Width / 2
+				oStart.Y = oPage.Height/4  : oEnd.Y = oPage.Height/4
+				oShape.StartPosition = oStart
+				oShape.EndPosition = oEnd
+		'	oShape.setString("Width")
+		'	oShape.TextAnimationKind = com.sun.star.drawing.TextAnimationKind.SCROLL
+		'縦寸法
+			oShape = ThisComponent.createInstance("com.sun.star.drawing.MeasureShape")
+			oPage.add(oShape)
+				oStart.X = oPage.Width / 5 : oEnd.X = oPage.Width / 5
+				oStart.Y = oPage.Height/4  : oEnd.Y = oPage.Height/2.5
+				oShape.StartPosition = oStart
+				oShape.EndPosition = oEnd
+End Sub
+
+'[ Function 1 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages 'All of the draw pages
+	Dim oPage  'A single draw page
+	Dim i%     'General index variable
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+		'If we require a new page then delete the page and get out of the for loop.
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+			'Did not request a new page so return the found page and then get out of the function.
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+
+	'Did not find the page, or found the page and removed it. Create a new page, set the name, and return the page.
+	'	oPages.insertNewByIndex(oPages.getCount())
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+</code></pre><br>
+
+<a name="OOoGSh6b"><h6>GSh-)<em>[General]</em>MeasureShape2</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/03measureShape02.png" align="right" hspace="4" vspace="4" width="20%">
+Sub DrawShape
+	Dim oPage  'Page on which to draw
+	Dim oShape 'Shape to insert
+	Dim oStart As new com.sun.star.awt.Point
+	Dim oEnd As new com.sun.star.awt.Point
+		oPage = createDrawPage(ThisComponent, "Test Draw", True)
+		'横寸法
+			oShape = ThisComponent.createInstance("com.sun.star.drawing.MeasureShape")
+			oPage.add(oShape) 
+				oStart.X = oPage.Width / 4 : oEnd.X = oPage.Width / 2
+				oStart.Y = oPage.Height/4  : oEnd.Y = oPage.Height/4
+				oShape.StartPosition = oStart
+				oShape.EndPosition = oEnd
+			'寸法をTextにする
+					oShape.setString("Width")
+					oShape.TextAnimationKind = com.sun.star.drawing.TextAnimationKind.SCROLL
+		'縦寸法
+			oShape = ThisComponent.createInstance("com.sun.star.drawing.MeasureShape")
+			oPage.add(oShape)
+				oStart.X = oPage.Width / 5 : oEnd.X = oPage.Width / 5
+				oStart.Y = oPage.Height/4  : oEnd.Y = oPage.Height/2.5
+				oShape.StartPosition = oStart
+				oShape.EndPosition = oEnd
+			'寸法をTextにする
+					oShape.setString("Height")
+					oShape.TextAnimationKind = com.sun.star.drawing.TextAnimationKind.SCROLL
+End Sub
+
+'[ Function 1 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages 'All of the draw pages
+	Dim oPage  'A single draw page
+	Dim i%     'General index variable
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+		'If we require a new page then delete the page and get out of the for loop.
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+			'Did not request a new page so return the found page and then get out of the function.
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+
+	'Did not find the page, or found the page and removed it. Create a new page, set the name, and return the page.
+	'	oPages.insertNewByIndex(oPages.getCount())
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+</code></pre><br>
+
+<a name="OOoGSh8a"><h6>GSh-)<em>[General]</em>PolyLineShape</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/04PolyLineShape01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub DrawShape
+	Dim oPage     'Page on which to draw	
+	Dim oShape    'Shape to insert
+	Dim oPoints_1 'First set of points to plot
+	Dim oPoints_2 'Second set of points to plot
+  
+		oPoints_1 = Array(_
+			CreatePoint( 1000, 1000 ),_
+			CreatePoint( 3000, 2000 ),_
+			CreatePoint( 1000, 2000 ),_
+			CreatePoint( 3000, 1000 )_
+						)
+		oPage = createDrawPage(ThisComponent, "Test Draw", True)
+		oShape = ThisComponent.createInstance("com.sun.star.drawing.PolyLineShape")
+			oPage.add(oShape)
+			oShape.PolyPolygon = Array(oPoints_1)
+			oShape.LineWidth = 50
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages 'All of the draw pages
+	Dim oPage  'A single draw page
+	Dim i%     'General index variable
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+		'If we require a new page then delete the page and get out of the for loop.
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+			'Did not request a new page so return the found page and then get out of the function.
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+
+	'Did not find the page, or found the page and removed it. Create a new page, set the name, and return the page.
+	'	oPages.insertNewByIndex(oPages.getCount())
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+</code></pre><br>
+
+
+<a name="OOoGSh8b"><h6>GSh-)<em>[General]</em>PolyPolygonShape</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/05PolyPolygonShape01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub DrawShape
+	Dim oPage     'Page on which to draw	
+	Dim oShape    'Shape to insert
+	Dim oPoints_1 'First set of points to plot
+	Dim oPoints_2 'Second set of points to plot
+  
+		oPoints_1 = Array(_
+			CreatePoint( 1000, 1000 ),_
+			CreatePoint( 3000, 2000 ),_
+			CreatePoint( 1000, 2000 ),_
+			CreatePoint( 3000, 1000 )_
+						)
+		oPage = createDrawPage(ThisComponent, "Test Draw", True)
+		oShape = ThisComponent.createInstance("com.sun.star.drawing.PolyPolygonShape")
+			oPage.add(oShape)
+			oShape.PolyPolygon = Array(oPoints_1)
+			oShape.FillStyle = com.sun.star.drawing.FillStyle.NONE
+			oShape.LineWidth = 50
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages 'All of the draw pages
+	Dim oPage  'A single draw page
+	Dim i%     'General index variable
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+		'If we require a new page then delete the page and get out of the for loop.
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+			'Did not request a new page so return the found page and then get out of the function.
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+
+	'Did not find the page, or found the page and removed it. Create a new page, set the name, and return the page.
+	'	oPages.insertNewByIndex(oPages.getCount())
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+</code></pre><br>
+
+
+<a name="OOoGSh8c"><h6>GSh-)<em>[General]</em>矢印</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/05PolyPolygonShapeArrow01Draw.png" align="right" hspace="4" vspace="4" width="20%">
+Sub DrawShape
+	Dim oPage     'Page on which to draw	
+	Dim oShape    'Shape to insert
+	Dim oPoints_1 'First set of points to plot
+	Dim oPoints_2 'Second set of points to plot
+  	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_default", 0, Dummy())
+		oPoints_1 = Array(_
+			CreatePoint( 2000, 2000 ),_
+			CreatePoint( 5000, 2000 )_
+						)
+		oPage = createDrawPage(oDoc, "Test Draw", True)
+		oShape = oDoc.createInstance("com.sun.star.drawing.PolyPolygonShape")
+			oPage.add(oShape)
+			oShape.PolyPolygon = Array(oPoints_1)
+			oShape.FillStyle = com.sun.star.drawing.FillStyle.NONE
+			oShape.LineWidth = 50
+		' Arrow
+			Dim oArrow
+				oArrow = oDoc.getStyleFamilies().getByName("graphics")
+				oShape.Style = oArrow.getByName("objectwitharrow")
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages 'All of the draw pages
+	Dim oPage  'A single draw page
+	Dim i%     'General index variable
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+		'If we require a new page then delete the page and get out of the for loop.
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+			'Did not request a new page so return the found page and then get out of the function.
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+
+	'Did not find the page, or found the page and removed it. Create a new page, set the name, and return the page.
+	'	oPages.insertNewByIndex(oPages.getCount())
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+</code></pre><br>
+
+
+
+<a name="OOoGSh9"><h6>GSh-)<em>[General]</em>TextShape[ Draw, Impress ]</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/06TextShape01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShape
+	Dim oPage     'Page on which to draw
+	Dim oShape    'Shape to insert
+	Dim oDoc
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_default", 0, Dummy())
+		oPage = createDrawPage(oDOc, "Test Draw", True)
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			oPage.add(oShape)
+ 			oShape.setPosition(createPoint(1000, 1000))
+			oShape.setSize(createSize(6000, 1000))
+			oShape.setString("OOoMacro")
+			oShape.FillStyle = com.sun.star.drawing.FillStyle.NONE
+		'　影付き
+				oShape.Shadow = True
+		
+		'TEXTのみ
+		oShape = oDoc.createInstance("com.sun.star.drawing.TextShape")
+			oPage.add(oShape)
+			oShape.setPosition(createPoint(1000, 2500))
+			oShape.setSize(createSize(10000, 1000))
+			oShape.setString("TextShape")
+		'　影付き		
+				oShape.Shadow = True
+End Sub
+
+
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+
+'[ Function 3 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages 'All of the draw pages
+	Dim oPage  'A single draw page
+	Dim i%     'General index variable
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+		'If we require a new page then delete the page and get out of the for loop.
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+			'Did not request a new page so return the found page and then get out of the function.
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+
+	'Did not find the page, or found the page and removed it. Create a new page, set the name, and return the page.
+	'	oPages.insertNewByIndex(oPages.getCount())
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+</code></pre><br>
+
+
+<a name="OOoGSh9b"><h6>GSh-)<em>[General]</em>TextShape[ Writer ]</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/06TextShape02Writer.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShape
+	Dim oPage     'Page on which to draw
+	Dim oShape    'Shape to insert
+	Dim oDoc
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_default", 0, Dummy())
+		oPage = oDoc.getDrawPage()
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			oPage.add(oShape)
+ 			'
+ 			oPositionShape( oShape, 1000, 1500,  3000, 1000 )
+			'
+			oShape.setString("OOoMacro")
+			oShape.FillStyle = com.sun.star.drawing.FillStyle.NONE
+		'　影付き
+			oShape.Shadow = False
+		
+		'TEXTのみ
+		oShape = oDoc.createInstance("com.sun.star.drawing.TextShape")
+			oPage.add(oShape)
+			'
+ 			oPositionShape( oShape, 1000, 3500,  3000, 1000 )
+			'
+			oShape.setString("TextShape")
+		'　影付き		
+			oShape.Shadow = False
+End Sub
+'
+'
+Sub oPositionShape( oShape as Object, X as Integer, Y as Integer, Width as Integer, Height as Integer )
+     oShape.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PARAGRAPH
+
+     Dim oPos as new com.sun.star.awt.Point
+     oPos.X = X
+     oPos.Y = Y
+     oShape.setPosition( oPos )
+     Erase oPos
+ 
+     Dim oSize as new com.sun.star.awt.Size
+     oSize.Width = Width
+     oSize.Height = Height
+     oShape.setSize( oSize )
+     Erase oSize
+End Sub
+</code></pre><br>
+
+
+
+<a name="OOoGSh9c"><h6>GSh-)<em>[General]</em>TextShape[ Calc ]</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/06TextShape03Calc.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShape
+	Dim oPage     'Page on which to draw
+	Dim oShape    'Shape to insert
+	Dim oDoc
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/scalc", "_default", 0, Dummy())
+		oPage = oDoc.DrawPages().getByIndex(0)
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			oPage.add(oShape)
+ 			oShape.setPosition(createPoint(1000, 1000))
+			oShape.setSize(createSize(6000, 1000))
+			oShape.setString("OOoMacro")
+			oShape.FillStyle = com.sun.star.drawing.FillStyle.NONE
+		'　影付き
+				oShape.Shadow = True
+		
+		'TEXTのみ
+		oShape = oDoc.createInstance("com.sun.star.drawing.TextShape")
+			oPage.add(oShape)
+			oShape.setPosition(createPoint(1000, 2500))
+			oShape.setSize(createSize(10000, 1000))
+			oShape.setString("TextShape")
+		'　影付き		
+				oShape.Shadow = True
+End Sub
+
+
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+</code></pre><br>
+
+
+<a name="OOoGSh10a"><h6>GSh-)<em>[General]</em>Shape数取得( Draw )</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/10ShapeCount01Draw.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShape
+	Dim oDoc as Object
+	Dim oDrawP as Object
+	Dim oShape as Object
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_default", 0, Dummy())
+			oDrawP = oDoc.getDrawPages().getByIndex(0)
+		' First Shape
+			oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			' Position
+				oPoint = oShape.Position
+					oPoint.X = oDrawP.Width / 10
+					oPoint.Y = oDrawP.Height / 20 + oDrawP.BorderTop
+				oShape.Position = oPoint
+    		' Size
+    			oSize = oShape.Size
+    				oSize.Height = 2500		' unit : 1/100mm
+    				oSize.Width =  4000		' unit : 1/100mm
+    			oShape.Size = oSize
+    		oDrawP.add(oShape) 
+    		'
+    	' Second Shape
+    		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+    		' Position
+				oPoint = oShape.Position
+					oPoint.X = oDrawP.Width / 8
+					oPoint.Y = oDrawP.Height / 20 + oDrawP.BorderTop + 4000 / 2  + 1000/2 + 500
+				oShape.Position = oPoint
+			' Size
+    			oSize = oShape.Size
+    				oSize.Height = 1000		' unit : 1/100mm
+    				oSize.Width =  2000		' unit : 1/100mm
+    			oShape.Size = oSize
+			oDrawP.add(oShape)
+			'
+	' Count Shape
+	Dim oShapeCnt as Long
+		oShapeCnt = oDrawP.Count
+		'
+	Dim oDisp as String
+		oDisp = oShapeCnt
+		msgbox oDisp,0,"Number of Shape in Draw" 
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSh10b"><h6>GSh-)<em>[General]</em>Shape数取得( Writer )</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/10ShapeCount01Writer.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShape
+	Dim oDoc as Object
+	Dim oDrawP as Object
+	Dim oShape as Object
+	Dim oPosX as Integer, oPosY as Integer, oWidth as Integer, oHieght as Integer
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_default", 0, Dummy())
+			oDrawP = oDoc.getDrawPage()
+		' First Shape
+			oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			oDrawP.add(oShape)
+			'
+			oPosX = 2000
+			oPosY = 1000
+			oWidth = 4000		' unit : 1/100mm
+			oHieght =  2500		' unit : 1/100mm
+			oPositionShape( oShape, oPosX, oPosY,  oWidth, oHieght )
+    		'
+    	' Second Shape
+    		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+    		oDrawP.add(oShape)
+			'
+			oPosX = 2000
+			oPosY = 1000 + 2500 + 500
+			oWidth = 2000		' unit : 1/100mm
+			oHieght =  1000		' unit : 1/100mm
+			oPositionShape( oShape, oPosX, oPosY,  oWidth, oHieght )
+			'
+	' Count Shape
+	Dim oShapeCnt as Long
+		oShapeCnt = oDrawP.Count
+		'
+	Dim oDisp as String
+		oDisp = oShapeCnt
+		msgbox oDisp,0,"Number of Shape in Writer" 
+End Sub
+'
+'
+Sub oPositionShape( oShape as Object, X as Integer, Y as Integer, Width as Integer, Height as Integer )
+     oShape.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PARAGRAPH
+
+     Dim oPos as new com.sun.star.awt.Point
+     oPos.X = X
+     oPos.Y = Y
+     oShape.setPosition( oPos )
+     Erase oPos
+ 
+     Dim oSize as new com.sun.star.awt.Size
+     oSize.Width = Width
+     oSize.Height = Height
+     oShape.setSize( oSize )
+     Erase oSize
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSh10c"><h6>GSh-)<em>[General]</em>Shape数取得( Calc )</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/10ShapeCount01Calc.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShape
+	Dim oDoc as Object
+	Dim oDrawP as Object
+	Dim oShape as Object
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/scalc", "_default", 0, Dummy())
+			oDrawP = oDoc.getDrawPages().getByIndex(0)
+		' First Shape
+			oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			' Position
+				oPoint = oShape.Position
+					oPoint.X = 3000
+					oPoint.Y = 3000
+				oShape.Position = oPoint
+    		' Size
+    			oSize = oShape.Size
+    				oSize.Height = 2500		' unit : 1/100mm
+    				oSize.Width =  4000		' unit : 1/100mm
+    			oShape.Size = oSize
+    		oDrawP.add(oShape) 
+    		'
+    	' Second Shape
+    		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+    		' Position
+				oPoint = oShape.Position
+					oPoint.X = 3000
+					oPoint.Y = 6000
+				oShape.Position = oPoint
+			' Size
+    			oSize = oShape.Size
+    				oSize.Height = 1000		' unit : 1/100mm
+    				oSize.Width =  2000		' unit : 1/100mm
+    			oShape.Size = oSize
+			oDrawP.add(oShape)
+			'
+	' Count Shape
+	Dim oShapeCnt as Long
+		oShapeCnt = oDrawP.Count
+		'
+	Dim oDisp as String
+		oDisp = oShapeCnt
+		msgbox oDisp,0,"Number of Shape in Calc Sheet"   	
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSh11a"><h6>GSh-)<em>[General]</em>Shape選択</h6></a><pre><code>
+<img src="OOoBasic_pic/01general3/Shape/11aShapeSelect01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShape()
+	Dim oDoc as Object, oCtrl as Object
+	Dim oDrawP as Object
+	Dim oShape as Object
+		oDoc = ThisComponent
+		oDrawP = oDoc.getDrawPages().getByIndex(0)
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+	' Position
+		oPoint = oShape.Position
+			oPoint.X = 1000
+			oPoint.Y = 1000
+		oShape.Position = oPoint
+    ' Size
+    	oSize = oShape.Size
+    		oSize.Height = 1200		' unit : 1/100mm
+    		oSize.Width =  1500		' unit : 1/100mm
+    	oShape.Size = oSize
+    oDrawP.add(oShape)
+    '
+    ' 作成したShapeを選択状態にする
+    	oCtrl = oDoc.CurrentController()
+    	oCtrl.select(oShape)
+    	'
+    msgbox "Success" 
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSh11b"><h6>GSh-)<em>[General]</em>複数のShape選択</h6></a><pre><code>
+<img src="OOoBasic_pic/01general3/Shape/11bMultiShapeSelect01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub DShape()
+	Dim oDoc as Object, oDrawP as Object, oShape as Object
+		oDoc = ThisComponent
+		oDrawP = oDoc.getDrawPages().getByIndex(0)
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		' Position
+		oPoint = oShape.Position
+			oPoint.X = 300
+			oPoint.Y = 300
+		oShape.Position = oPoint
+    	' Size
+    	oSize = oShape.Size
+    		oSize.Height = 500		' unit : 1/100mm
+    		oSize.Width =  2000		' unit : 1/100mm
+    	oShape.Size = oSize
+    	oDrawP.add(oShape)
+    	'
+    Dim oPosition As New com.sun.star.awt.Point
+    	oLine = oDoc.createInstance( "com.sun.star.drawing.LineShape" )
+  		oLine.LineColor = RGB( 255, 0, 0 )
+  		oLine.LineWidth = 100
+  		' Position
+		oPosition.X = 200
+  		oPosition.Y = 200
+  		oLine.setPosition(oPosition)
+  		' Size
+  		oSize.width = 1000
+  		oSize.height= 1000
+  		oLine.setSize(oSize)
+  		oDrawP.add( oLine )
+  		'
+  	' Selected Multi Object
+  	Dim oMultiShale as Object
+  	Dim oCtrl  as Object
+  		oMultiShale = CreateUnoService("com.sun.star.drawing.ShapeCollection")
+  		oMultiShale.add(oShape)
+  		oMultiShale.add(oLine)
+    	oCtrl = oDoc.getCurrentController()
+    	oCtrl.select(oMultiShale)
+    	'
+    	msgbox "Success"
+ End Sub
+</code></pre><br>
+
+
+<a name="OOoGSh12a"><h6>GSh-)<em>[General]</em>Shapeを最前面/最背面へ移動</h6></a><pre><code>
+<img src="OOoBasic_pic/01general3/Shape/12aUnoShapeToBack01.png" align="right" hspace="4" vspace="4" width="20%"><img src="OOoBasic_pic/01general3/Shape/12aUnoShapeToFront01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub DShape()
+	Dim oDoc as Object, oDrawP as Object, oShape as Object
+		oDoc = ThisComponent
+		oDrawP = oDoc.getDrawPages().getByIndex(0)
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		' Position
+		oPoint = oShape.Position
+			oPoint.X = 300
+			oPoint.Y = 300
+		oShape.Position = oPoint
+    	' Size
+    	oSize = oShape.Size
+    		oSize.Height = 500		' unit : 1/100mm
+    		oSize.Width =  1000		' unit : 1/100mm
+    	oShape.Size = oSize
+    	oDrawP.add(oShape)
+    	'
+    Dim oPosition As New com.sun.star.awt.Point
+    	oLine = oDoc.createInstance( "com.sun.star.drawing.LineShape" )
+  		oLine.LineColor = RGB( 255, 0, 0 )
+  		oLine.LineWidth = 100
+  		' Position
+		oPosition.X = 200
+  		oPosition.Y = 200
+  		oLine.setPosition(oPosition)
+  		' Size
+  		oSize.width = 1000
+  		oSize.height= 1000
+  		oLine.setSize(oSize)
+  		oDrawP.add( oLine )
+  		'
+  		' Selected Object
+  	Dim oCtrl  as Object
+    	oCtrl = oDoc.getCurrentController()
+    	oCtrl.select(oShape)
+    	'
+    Dim oFrame as Object
+	Dim oDispatcher as Object
+		oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		oDispatcher.executeDispatch(oFrame, ".uno:BringToFront", "", 0, Array())
+		msgbox ".Rectangleを最前面へ移動しました。"
+		oDispatcher.executeDispatch(oFrame, ".uno:SendToBack", "", 0, Array())
+		msgbox ".Rectangleを最背面へ移動しました。"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSh13a"><h6>GSh-)<em>[General]</em>複数のShapeのGroup化/Ungroup化(1)</h6></a><pre><code>
+<img src="OOoBasic_pic/01general3/Shape/13aGroupUnShape02.png" align="right" hspace="4" vspace="4" width="25%"><img src="OOoBasic_pic/01general3/Shape/13aGroupUnShape01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub ShapeObj()
+	Dim oDoc as Object, oDrawP as Object
+	Dim oMultiShale  as Object
+		oDoc = ThisComponent
+		oDrawP = oDoc.getDrawPages().getByIndex(0)
+		'
+		oMultiShale  = CreateUnoService("com.sun.star.drawing.ShapeCollection")
+		for i = 0 to oDrawP.getCount()-1
+			oMultiShale.add(oDrawP.getByIndex(i))
+		next i
+	' Selected Multi Object
+  	Dim oCtrl  as Object
+    	oCtrl = oDoc.getCurrentController()
+    	oCtrl.select(oMultiShale)
+		' Grouped
+		oDrawP.group(oMultiShale)
+		msgbox "Shape object Grouped !!",0,"Grouped"
+	' Select grouped shape 
+	Dim oGrShape as Object
+		oGrShape = oDrawP.getByIndex(0)
+		oCtrl.select(oGrShape)
+		' Ungroup
+		oDrawP.ungroup(oGrShape)
+		msgbox "Shape object Ungrouped !!",0,"Ungrouped"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSh13b"><h6>GSh-)<em>[General]</em>複数のShapeのGroup化/Ungroup化(2)</h6></a><pre><code>
+<img src="OOoBasic_pic/01general3/Shape/13bUnoGroupUnShape02.png" align="right" hspace="4" vspace="4" width="25%"><img src="OOoBasic_pic/01general3/Shape/13bUnoGroupUnShape01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub ShapeObj()
+	Dim oDoc as Object, oDrawP as Object
+	Dim oMultiShale  as Object
+		oDoc = ThisComponent
+		oDrawP = oDoc.getDrawPages().getByIndex(0)
+		'
+		oMultiShale  = CreateUnoService("com.sun.star.drawing.ShapeCollection")
+		for i = 0 to oDrawP.getCount()-1
+			oMultiShale.add(oDrawP.getByIndex(i))
+		next i
+	' Selected Multi Object
+  	Dim oCtrl  as Object
+    	oCtrl = oDoc.getCurrentController()
+    	oCtrl.select(oMultiShale)
+	' Grouped
+	Dim oFrame as Object
+	Dim oDispatcher as Object
+		oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		oDispatcher.executeDispatch(oFrame, ".uno:FormatGroup", "", 0, Array())
+		msgbox "Shape object Grouped" & Chr$(10) & "(dispatcher) !!",0,"Grouped"
+	' Select grouped shape 
+	Dim oGrShape as Object
+		oGrShape = oDrawP.getByIndex(0)
+		oCtrl.select(oGrShape)
+		' Ungroup
+		oDispatcher.executeDispatch(oFrame, ".uno:FormatUngroup", "", 0, Array())
+		msgbox "Shape object Ungrouped" & Chr$(10) & "(dispatcher) !!",0,"Ungrouped(Uno)"
+End Sub
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ ShapeProperty ]</p class="s3">
+<a name="OOoGSSP00a"><h6>GSSP-)<em>[General / Draw]</em>LineShape</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/00LineShape/01LineShape01Draw.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oAddLineShape
+	Dim Dummy()
+	Dim oDoc
+	Dim oLine
+	Dim i as Long
+	Dim oPos as new com.sun.star.awt.Point
+	Dim oSize as new com.sun.star.awt.Size
+	Dim oStepsize as Double
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_default", 0, Dummy()) 
+		oDwImpPage = oDoc.getDrawPages().getByIndex(0)
+		oStepsize = CDbl(oDwImpPage.height - 2000*2) / 10
+		for i = 0 to 6
+			oLine = oDoc.createInstance("com.sun.star.drawing.LineShape")
+			oLine.LineColor = RGB(0, 255-20*i,  20*i)
+			oLine.LineWidth = 75
+			oPos.x = 2000
+			oPos.y = CLng(CDbl(i) * oStepsize) + 2000
+			oLine.setPosition(oPos)
+			oSize.width = oDwImpPage.width/4
+			oSize.height = 0
+			oLine.setSize(oSize)
+			oDwImpPage.add(oLine)
+			Select case i
+				case 0
+					oLine.LineStartName = ""
+					oLine.LineEndName = "Arrow"
+					oLine.LineEndWidth = 1000
+				case 1
+					oLine.LineStartName = "Square"
+					oLine.LineStartWidth = 1000
+					oLine.LineEndName = "Small Arrow"
+					oLine.LineEndWidth = 1000
+				case 2
+					oLine.LineStartName = "Dimension Lines"
+					oLine.LineStartWidth = 1000
+					oLine.LineEndName = "Double Arrow"
+					oLine.LineEndWidth = 1000
+				case 3
+					oLine.LineStartName = "Rounded short Arrow"
+					oLine.LineStartWidth = 1000
+					oLine.LineEndName = "Symmetric Arrow"
+					oLine.LineEndWidth = 1000
+				case 4
+					oLine.LineStartName = "Line Arrow"
+					oLine.LineStartWidth = 1000
+					oLine.LineEndName = "Rounded large Arrow"
+					oLine.LineEndWidth = 1000
+				case 5
+					oLine.LineStartName = "Circle"
+					oLine.LineStartWidth = 1000
+					oLine.LineEndName = "Square 45"
+					oLine.LineEndWidth = 1000
+				case 6
+					oLine.LineStartName = ""
+					oLine.LineEndName = "Arrow concave"
+					oLine.LineEndWidth = 1000
+			End Select
+		next i 
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSSP00b"><h6>GSSP-)<em>[General / Calc]</em>LineShape</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/00LineShape/01LineShape02Calc.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oAddLineShape
+	Dim Dummy()
+	Dim oDoc
+	Dim oLine
+	Dim i as Long
+	Dim oPos as new com.sun.star.awt.Point
+	Dim oSize as new com.sun.star.awt.Size
+	Dim oStepsize as Double
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/scalc", "_default", 0, Dummy()) 
+		oDwImpPage = oDoc.getDrawPages().getByIndex(0)
+		oStepsize = (29400-2000*2) / 10
+		for i = 0 to 6
+			oLine = oDoc.createInstance("com.sun.star.drawing.LineShape")
+			oLine.LineColor = RGB(0, 255-20*i,  20*i)
+			oLine.LineWidth = 75
+			oPos.x = 2000
+			oPos.y = CLng(CDbl(i) * oStepsize) + 2000
+			oLine.setPosition(oPos)
+			oSize.width = 5000
+			oSize.height = 0
+			oLine.setSize(oSize)
+			oDwImpPage.add(oLine)
+			Select case i
+				case 0
+					oLine.LineStartName = ""
+					oLine.LineEndName = "Arrow"
+					oLine.LineEndWidth = 1000
+				case 1
+					oLine.LineStartName = "Square"
+					oLine.LineStartWidth = 1000
+					oLine.LineEndName = "Small Arrow"
+					oLine.LineEndWidth = 1000
+				case 2
+					oLine.LineStartName = "Dimension Lines"
+					oLine.LineStartWidth = 1000
+					oLine.LineEndName = "Double Arrow"
+					oLine.LineEndWidth = 1000
+				case 3
+					oLine.LineStartName = "Rounded short Arrow"
+					oLine.LineStartWidth = 1000
+					oLine.LineEndName = "Symmetric Arrow"
+					oLine.LineEndWidth = 1000
+				case 4
+					oLine.LineStartName = "Line Arrow"
+					oLine.LineStartWidth = 1000
+					oLine.LineEndName = "Rounded large Arrow"
+					oLine.LineEndWidth = 1000
+				case 5
+					oLine.LineStartName = "Circle"
+					oLine.LineStartWidth = 1000
+					oLine.LineEndName = "Square 45"
+					oLine.LineEndWidth = 1000
+				case 6
+					oLine.LineStartName = ""
+					oLine.LineEndName = "Arrow concave"
+					oLine.LineEndWidth = 1000
+			End Select
+		next i 
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSSP00c"><h6>GSSP-)<em>[General / Writer]</em>LineShape</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/00LineShape/01LineShape03Writer.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oAddLineShape
+	Dim Dummy()
+	Dim oDoc as Object
+	Dim oLine as Object
+	Dim i as Long
+	Dim oPos as new com.sun.star.awt.Point
+	Dim oSize as new com.sun.star.awt.Size
+	Dim oStepsize as Double
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_default", 0, Dummy()) 
+		oDwImpPage = oDoc.getDrawPage()
+		for i = 0 to 6
+			oLine = oDoc.createInstance("com.sun.star.drawing.LineShape")
+			oLine.LineColor = RGB(0, 255-20*i,  20*i)
+			oLine.LineWidth = 75
+			'
+			positionShape( oLine, 1000, 1000 + i * 2000, 5000, 0 )
+			'
+			oDwImpPage.add(oLine)
+			Select case i
+				case 0
+					oLine.LineStartName = ""
+					oLine.LineEndName = "Arrow"
+					oLine.LineEndWidth = 1000
+				case 1
+					oLine.LineStartName = "Square"
+					oLine.LineStartWidth = 1000
+					oLine.LineEndName = "Small Arrow"
+					oLine.LineEndWidth = 1000
+				case 2
+					oLine.LineStartName = "Dimension Lines"
+					oLine.LineStartWidth = 1000
+					oLine.LineEndName = "Double Arrow"
+					oLine.LineEndWidth = 1000
+				case 3
+					oLine.LineStartName = "Rounded short Arrow"
+					oLine.LineStartWidth = 1000
+					oLine.LineEndName = "Symmetric Arrow"
+					oLine.LineEndWidth = 1000
+				case 4
+					oLine.LineStartName = "Line Arrow"
+					oLine.LineStartWidth = 1000
+					oLine.LineEndName = "Rounded large Arrow"
+					oLine.LineEndWidth = 1000
+				case 5
+					oLine.LineStartName = "Circle"
+					oLine.LineStartWidth = 1000
+					oLine.LineEndName = "Square 45"
+					oLine.LineEndWidth = 1000
+				case 6
+					oLine.LineStartName = ""
+					oLine.LineEndName = "Arrow concave"
+					oLine.LineEndWidth = 1000
+			End Select
+		next i 
+End Sub
+
+Sub positionShape( oShape as Object, X as Integer, Y as Integer, Width as Integer, Height as Integer )
+     oShape.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PARAGRAPH
+
+     Dim oPos as new com.sun.star.awt.Point
+     oPos.X = X
+     oPos.Y = Y
+     oShape.setPosition( oPos )
+     Erase oPos
+ 
+     Dim oSize as new com.sun.star.awt.Size
+     oSize.Width = Width
+     oSize.Height = Height
+     oShape.setSize( oSize )
+     Erase oSize
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSSP00a2"><h6>GSSP-)<em>[General / Draw]</em>LineShape2</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/00LineShape/02LineShape01Draw01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oAddLineShape
+	Dim Dummy()
+	Dim oDoc
+	Dim oLine
+	Dim i as Long
+	Dim oPos as new com.sun.star.awt.Point
+	Dim oSize as new com.sun.star.awt.Size
+	Dim oStepsize as Double
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_default", 0, Dummy()) 
+		oDwImpPage = oDoc.getDrawPages().getByIndex(0)
+		oStepsize = CDbl(oDwImpPage.height - 10000*2) / 10
+		for i = 0 to 10
+			oLine = oDoc.createInstance("com.sun.star.drawing.LineShape")
+			oLine.LineColor = RGB(0, 255-20*i,  20*i)
+			oLine.LineWidth = 75
+			oPos.x = 2000
+			oPos.y = CLng(CDbl(i) * oStepsize) + 1500
+			oLine.setPosition(oPos)
+			oSize.width = oDwImpPage.width/4
+			oSize.height = 0
+			oLine.setSize(oSize)
+			oDwImpPage.add(oLine)
+			Select case i
+				case 0
+					' 実線
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+				case 1
+					' 極細の細線
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "Ultrafine Dashed"
+				case 2
+					' 細かい破線
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "Fine Dashed"
+				case 3
+					' 細かい点線
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "Fine Dotted"
+				case 4
+					' 細かい点の集まった線
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "Line with Fine Dots"
+				case 5
+					' 細かい破線(可変)
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "Fine Dashed (var)"
+				case 6
+					' 三破線三点鎖線(可変)
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "3 Dashes 3 Dots (var)"
+				case 7
+					' 極細の点線(可変)
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "Ultrafine Dotted (var)"
+				case 8
+					' 線スタイル9
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "Line Style 9"
+				case 9
+					' 二点鎖線
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "2 Dots 1 Dash"
+				case 10
+					' 破線(可変)
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "Dashed (var)"
+			End Select
+		next i 
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSSP00b2"><h6>GSSP-)<em>[General / Calc]</em>LineShape2</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/00LineShape/02LineShape02Calc01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oAddLineShape
+	Dim Dummy()
+	Dim oDoc
+	Dim oLine
+	Dim i as Long
+	Dim oPos as new com.sun.star.awt.Point
+	Dim oSize as new com.sun.star.awt.Size
+	Dim oStepsize as Double
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/scalc", "_default", 0, Dummy()) 
+		oDwImpPage = oDoc.getDrawPages().getByIndex(0)
+		oStepsize = (29400-10000*2) / 10
+		for i = 0 to 10
+			oLine = oDoc.createInstance("com.sun.star.drawing.LineShape")
+			oLine.LineColor = RGB(0, 255-20*i,  20*i)
+			oLine.LineWidth = 75
+			oPos.x = 2000
+			oPos.y = CLng(CDbl(i) * oStepsize) + 1500
+			oLine.setPosition(oPos)
+			oSize.width = 5000
+			oSize.height = 0
+			oLine.setSize(oSize)
+			oDwImpPage.add(oLine)
+			Select case i
+				case 0
+					' 実線
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+				case 1
+					' 極細の細線
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "Ultrafine Dashed"
+				case 2
+					' 細かい破線
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "Fine Dashed"
+				case 3
+					' 細かい点線
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "Fine Dotted"
+				case 4
+					' 細かい点の集まった線
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "Line with Fine Dots"
+				case 5
+					' 細かい破線(可変)
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "Fine Dashed (var)"
+				case 6
+					' 三破線三点鎖線(可変)
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "3 Dashes 3 Dots (var)"
+				case 7
+					' 極細の点線(可変)
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "Ultrafine Dotted (var)"
+				case 8
+					' 線スタイル9
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "Line Style 9"
+				case 9
+					' 二点鎖線
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "2 Dots 1 Dash"
+				case 10
+					' 破線(可変)
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "Dashed (var)"
+			End Select
+		next i 
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSSP00c2"><h6>GSSP-)<em>[General / Writer]</em>LineShape2</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/00LineShape/02LineShape03Writer01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oAddLineShape
+	Dim Dummy()
+	Dim oDoc as Object
+	Dim oLine as Object
+	Dim i as Long
+	Dim oPos as new com.sun.star.awt.Point
+	Dim oSize as new com.sun.star.awt.Size
+	Dim oStepsize as Double
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_default", 0, Dummy()) 
+		oDwImpPage = oDoc.getDrawPage()
+		for i = 0 to 10
+			oLine = oDoc.createInstance("com.sun.star.drawing.LineShape")
+			oLine.LineColor = RGB(0, 255-20*i,  20*i)
+			oLine.LineWidth = 75
+			'
+			positionShape( oLine, 1000, 1000 + i * 1000, 5000, 0 )
+			'
+			oDwImpPage.add(oLine)
+			Select case i
+				case 0
+					' 実線
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+				case 1
+					' 極細の細線
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "Ultrafine Dashed"
+				case 2
+					' 細かい破線
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "Fine Dashed"
+				case 3
+					' 細かい点線
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "Fine Dotted"
+				case 4
+					' 細かい点の集まった線
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "Line with Fine Dots"
+				case 5
+					' 細かい破線(可変)
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "Fine Dashed (var)"
+				case 6
+					' 三破線三点鎖線(可変)
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "3 Dashes 3 Dots (var)"
+				case 7
+					' 極細の点線(可変)
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "Ultrafine Dotted (var)"
+				case 8
+					' 線スタイル9
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "Line Style 9"
+				case 9
+					' 二点鎖線
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "2 Dots 1 Dash"
+				case 10
+					' 破線(可変)
+					oLine.LineStartName = ""
+					oLine.LineEndName = ""
+					oLine.LineStyle = com.sun.star.drawing.LineStyle.DASH
+					oLine.LineDashName = "Dashed (var)"
+			End Select
+		next i 
+End Sub
+'
+Sub positionShape( oShape as Object, X as Integer, Y as Integer, Width as Integer, Height as Integer )
+     oShape.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PARAGRAPH
+
+     Dim oPos as new com.sun.star.awt.Point
+     oPos.X = X
+     oPos.Y = Y
+     oShape.setPosition( oPos )
+     Erase oPos
+ 
+     Dim oSize as new com.sun.star.awt.Size
+     oSize.Width = Width
+     oSize.Height = Height
+     oShape.setSize( oSize )
+     Erase oSize
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSSP01"><h6>GSSP-1)<em>[General / Draw]</em>EllipseShape / Fill</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/02Fill/01FillProp01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShape
+	Dim oDoc
+	Dim oPage
+	Dim oShape
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_default", 0, Dummy()) 
+			oPage = oDoc.getDrawPages().getByIndex(0)
+			' Ellipse
+				oShape = oDoc.createInstance("com.sun.star.drawing.EllipseShape")
+				' Position
+					oPoint = oShape.Position
+						oPoint.X = oPage.Width / 4
+						oPoint.Y = oPage.Height / 10 + oPage.BorderTop +1000
+					oShape.Position = oPoint
+    			' Size
+    				oSize = oShape.Size
+    					oSize.Height = 2500		' unit : 1/100mm
+    					oSize.Width =  2500		' unit : 1/100mm
+    				oShape.Size = oSize
+    			oPage.add(oShape)
+    			'Fill
+    				oShape.FillStyle = com.sun.star.drawing.FillStyle.SOLID
+    				oShape.FillColor = RGB(255,255,100)
+    				oShape.FillTransparence = "50%"		'Transparency Percentage (透過度)
+    			
+    		' Rectangle
+    			oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+				' Position
+					oPoint = oShape.Position
+						oPoint.X = oPage.Width / 4
+						oPoint.Y = oPage.Height / 10 + oPage.BorderTop + 4000
+					oShape.Position = oPoint
+    			' Size
+    				oSize = oShape.Size
+    					oSize.Height = 2500		' unit : 1/100mm
+    					oSize.Width =  2500		' unit : 1/100mm
+    				oShape.Size = oSize
+    			'Draw
+					oPage.add(oShape)
+    			'Bitmap
+    				oShape.FillStyle = com.sun.star.drawing.FillStyle.BITMAP
+					oShape.FillBitmapName = "Sky"
+					oShape.FillBitmapMode = com.sun.star.drawing.BitmapMode.REPEAT
+			
+			'ClosedBezier
+				Dim oCoords 'Coordinates of the polygon to insert
+					oCoords = createUnoStruct("com.sun.star.drawing.PolyPolygonBezierCoords")
+						xP = oPage.Width / 4 + 3000
+						yP = oPage.Height / 10 + oPage.BorderTop
+							oCoords.Coordinates = Array( Array( _
+      								CreatePoint( xP+1000, yP+1000 ), _
+      								CreatePoint( xP+3000, yP+4000 ), _
+      								CreatePoint( xP+3000, yP+4000 ), _
+      								CreatePoint( xP+5000, yP+1000 ) _
+												) _
+										 )
+							oCoords.Flags = Array(Array( _
+      							com.sun.star.drawing.PolygonFlags.NORMAL,_
+      							com.sun.star.drawing.PolygonFlags.CONTROL,_
+      							com.sun.star.drawing.PolygonFlags.CONTROL,_
+      							com.sun.star.drawing.PolygonFlags.NORMAL _
+    									)_
+  								)
+						
+						oShape = oDoc.createInstance("com.sun.star.drawing.ClosedBezierShape")
+						
+						oPage.add(oShape)
+						oShape.PolyPolygonBezier = oCoords
+						
+					'Gradient
+    					oShape.FillStyle = com.sun.star.drawing.FillStyle.GRADIENT
+    					' <a href="http://api.openoffice.org/docs/common/ref/com/sun/star/awt/GradientStyle.html">GradientStyle</a>	
+					' Gradietion Style
+						oGradient = createUnoStruct("com.sun.star.awt.Gradient") 
+							With oGradient 
+      							.Style = com.sun.star.awt.GradientStyle.LINEAR
+      							.StartColor = RGB( 255, 255, 0 ) 
+      							.EndColor = RGB( 255, 0, 0 ) 
+      							.Angle = 300			' unit : 1/10 degree 
+      							.Border = 10 
+      							.XOffset = 0 
+      							.YOffset = 0 
+ 						     	.StartIntensity = 100 
+ 						     	.EndIntensity = 100 
+ 						     	.StepCount = 128 
+   							End With 
+						oShape.FillGradient = oGradient
+			'PolyPolygonShape
+				Dim oPoints_1
+					xP1 = oPage.Width / 4 + 3000
+					yP1 = oPage.Height / 10 + oPage.BorderTop + 3000
+						oPoints_1 = Array(_
+							CreatePoint( xP1+1000, yP1+1000 ),_
+							CreatePoint( xP1+3500, yP1+3500 ),_
+							CreatePoint( xP1+1000, yP1+3500 ),_
+							CreatePoint( xP1+3500, yP1+1000 )_
+							)
+					
+					oShape = oDoc.createInstance("com.sun.star.drawing.PolyPolygonShape")
+						oPage.add(oShape)
+						oShape.PolyPolygon = Array(oPoints_1)
+					'Fill
+						oShape.FillStyle = com.sun.star.drawing.FillStyle.HATCH
+					'
+						Dim oHatch As New com.sun.star.drawing.Hatch
+							oHatch.Style = com.sun.star.drawing.HatchStyle.SINGLE		'DOUBLE
+							oHatch.Color = RGB(64,64,64)
+							oHatch.Distance = 100
+							oHatch.Angle = 450
+							oShape.FillHatch = oHatch
+						oShape.FillBackground = RGB(255,255,255)
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+</code></pre><br>
+
+
+<a name="OOoGSSP01b"><h6>GSSP-1)<em>[General / Calc]</em>EllipseShape / Fill</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/02Fill/01FillPropCalc01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShape
+	Dim oDoc
+	Dim oPage
+	Dim oShape
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/scalc", "_default", 0, Dummy()) 
+			oPage = oDoc.getDrawPages().getByIndex(0)
+			' Ellipse
+				oShape = oDoc.createInstance("com.sun.star.drawing.EllipseShape")
+				' Position
+					oPoint = oShape.Position
+						oPoint.X = 2000
+						oPoint.Y = 2000
+					oShape.Position = oPoint
+    			' Size
+    				oSize = oShape.Size
+    					oSize.Height = 2500		' unit : 1/100mm
+    					oSize.Width =  2500		' unit : 1/100mm
+    				oShape.Size = oSize
+    			oPage.add(oShape)
+    			'Fill
+    				oShape.FillStyle = com.sun.star.drawing.FillStyle.SOLID
+    				oShape.FillColor = RGB(255,255,100)
+    				oShape.FillTransparence = "50%"		'Transparency Percentage (透過度)
+    			
+    		' Rectangle
+    			oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+				' Position
+					oPoint = oShape.Position
+						oPoint.X = 2000
+						oPoint.Y = 5000
+					oShape.Position = oPoint
+    			' Size
+    				oSize = oShape.Size
+    					oSize.Height = 2500		' unit : 1/100mm
+    					oSize.Width =  2500		' unit : 1/100mm
+    				oShape.Size = oSize
+    			'Draw
+					oPage.add(oShape)
+    			'Bitmap
+    				oShape.FillStyle = com.sun.star.drawing.FillStyle.BITMAP
+					oShape.FillBitmapName = "Sky"
+					oShape.FillBitmapMode = com.sun.star.drawing.BitmapMode.REPEAT
+			
+			'ClosedBezier
+				Dim oCoords 'Coordinates of the polygon to insert
+					oCoords = createUnoStruct("com.sun.star.drawing.PolyPolygonBezierCoords")
+						xP = 5000
+						yP = 2000
+							oCoords.Coordinates = Array( Array( _
+      								CreatePoint( xP+1000, yP+1000 ), _
+      								CreatePoint( xP+3000, yP+4000 ), _
+      								CreatePoint( xP+3000, yP+4000 ), _
+      								CreatePoint( xP+5000, yP+1000 ) _
+												) _
+										 )
+							oCoords.Flags = Array(Array( _
+      							com.sun.star.drawing.PolygonFlags.NORMAL,_
+      							com.sun.star.drawing.PolygonFlags.CONTROL,_
+      							com.sun.star.drawing.PolygonFlags.CONTROL,_
+      							com.sun.star.drawing.PolygonFlags.NORMAL _
+    									)_
+  								)
+						
+						oShape = oDoc.createInstance("com.sun.star.drawing.ClosedBezierShape")
+						
+						oPage.add(oShape)
+						oShape.PolyPolygonBezier = oCoords
+						
+					'Gradient
+    					oShape.FillStyle = com.sun.star.drawing.FillStyle.GRADIENT
+    					' GradientStyle	
+					' Gradietion Style
+						oGradient = createUnoStruct("com.sun.star.awt.Gradient") 
+							With oGradient 
+      							.Style = com.sun.star.awt.GradientStyle.LINEAR
+      							.StartColor = RGB( 255, 255, 0 ) 
+      							.EndColor = RGB( 255, 0, 0 ) 
+      							.Angle = 300			' unit : 1/10 degree 
+      							.Border = 10 
+      							.XOffset = 0 
+      							.YOffset = 0 
+ 						     	.StartIntensity = 100 
+ 						     	.EndIntensity = 100 
+ 						     	.StepCount = 128 
+   							End With 
+						oShape.FillGradient = oGradient
+			'PolyPolygonShape
+				Dim oPoints_1
+					xP1 = 5000
+					yP1 = 5000
+						oPoints_1 = Array(_
+							CreatePoint( xP1+1000, yP1+1000 ),_
+							CreatePoint( xP1+3500, yP1+3500 ),_
+							CreatePoint( xP1+1000, yP1+3500 ),_
+							CreatePoint( xP1+3500, yP1+1000 )_
+							)
+					
+					oShape = oDoc.createInstance("com.sun.star.drawing.PolyPolygonShape")
+						oPage.add(oShape)
+						oShape.PolyPolygon = Array(oPoints_1)
+					'Fill
+						oShape.FillStyle = com.sun.star.drawing.FillStyle.HATCH
+					'
+						Dim oHatch As New com.sun.star.drawing.Hatch
+							oHatch.Style = com.sun.star.drawing.HatchStyle.SINGLE		'DOUBLE
+							oHatch.Color = RGB(64,64,64)
+							oHatch.Distance = 100
+							oHatch.Angle = 450
+							oShape.FillHatch = oHatch
+						oShape.FillBackground = RGB(255,255,255)
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+</code></pre><br>
+
+
+
+
+<a name="OOoGSSP01c"><h6>GSSP-)<em>[General / Writer]</em>EllipseShape / Fill</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/02Fill/01FillPropWriter01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShape
+	Dim oDoc
+	Dim oPage
+	Dim oShape
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_default", 0, Dummy())
+		'
+			oWriterPage = oDoc.getDrawPage()
+		'
+			oViewCursor = oDoc.CurrentController.getViewCursor()
+			oPageStyle	= oViewCursor.PageStyleName
+			oPage = oDoc.StyleFamilies.getByName("PageStyles").getByName(oPageStyle)
+			' Ellipse
+				oShape = oDoc.createInstance("com.sun.star.drawing.EllipseShape")
+				'
+				oWriterPage.add(oShape)
+				'
+				Dim oX
+				Dim oY
+					oX = 1000
+					oY = 1000
+				oPositionShape( oShape, oX, oY,  2500, 2500 ) 
+    			'
+    			'Fill
+    				oShape.FillStyle = com.sun.star.drawing.FillStyle.SOLID
+    				oShape.FillColor = RGB(255,255,100)
+    				oShape.FillTransparence = "50%"		'Transparency Percentage (透過度)
+    			
+    		' Rectangle
+    			oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+    			'
+				oWriterPage.add(oShape)
+				'
+				oX = 1000
+				oY = 4000
+				oPositionShape( oShape, oX, oY,  2500, 2500 ) 
+				'
+    			'Bitmap
+    				oShape.FillStyle = com.sun.star.drawing.FillStyle.BITMAP
+					oShape.FillBitmapName = "Sky"
+					oShape.FillBitmapMode = com.sun.star.drawing.BitmapMode.REPEAT
+			
+			'ClosedBezier
+				Dim oCoords 'Coordinates of the polygon to insert
+					oCoords = createUnoStruct("com.sun.star.drawing.PolyPolygonBezierCoords")
+					'
+						xP = 2500
+						yP = 6000
+							oCoords.Coordinates = Array( Array( _
+      								CreatePoint( xP+1000, yP+1000 ), _
+      								CreatePoint( xP+3000, yP+4000 ), _
+      								CreatePoint( xP+3000, yP+4000 ), _
+      								CreatePoint( xP+5000, yP+1000 ) _
+												) _
+										 )
+							oCoords.Flags = Array(Array( _
+      							com.sun.star.drawing.PolygonFlags.NORMAL,_
+      							com.sun.star.drawing.PolygonFlags.CONTROL,_
+      							com.sun.star.drawing.PolygonFlags.CONTROL,_
+      							com.sun.star.drawing.PolygonFlags.NORMAL _
+    									)_
+  								)
+						
+						oShape = oDoc.createInstance("com.sun.star.drawing.ClosedBezierShape")
+						'
+						oShape.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PARAGRAPH
+						'
+						oWriterPage.add(oShape)
+						oShape.PolyPolygonBezier = oCoords
+						
+					'Gradient
+    					oShape.FillStyle = com.sun.star.drawing.FillStyle.GRADIENT
+    					' GradientStyle	
+					' Gradietion Style
+						oGradient = createUnoStruct("com.sun.star.awt.Gradient") 
+							With oGradient 
+      							.Style = com.sun.star.awt.GradientStyle.LINEAR
+      							.StartColor = RGB( 255, 255, 0 ) 
+      							.EndColor = RGB( 255, 0, 0 ) 
+      							.Angle = 300			' unit : 1/10 degree 
+      							.Border = 10 
+      							.XOffset = 0 
+      							.YOffset = 0 
+ 						     	.StartIntensity = 100 
+ 						     	.EndIntensity = 100 
+ 						     	.StepCount = 128 
+   							End With 
+						oShape.FillGradient = oGradient
+						'
+			'PolyPolygonShape
+				Dim oPoints_1
+					xP1 = 2500
+					yP1 = 8500
+						oPoints_1 = Array(_
+							CreatePoint( xP1+1000, yP1+1000 ),_
+							CreatePoint( xP1+3500, yP1+3500 ),_
+							CreatePoint( xP1+1000, yP1+3500 ),_
+							CreatePoint( xP1+3500, yP1+1000 )_
+							)
+					
+					oShape = oDoc.createInstance("com.sun.star.drawing.PolyPolygonShape")
+					'
+					oShape.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PARAGRAPH
+					'
+						oWriterPage.add(oShape)
+						oShape.PolyPolygon = Array(oPoints_1)
+					'Fill
+						oShape.FillStyle = com.sun.star.drawing.FillStyle.HATCH
+					'
+						Dim oHatch As New com.sun.star.drawing.Hatch
+							oHatch.Style = com.sun.star.drawing.HatchStyle.SINGLE		'DOUBLE
+							oHatch.Color = RGB(64,64,64)
+							oHatch.Distance = 100
+							oHatch.Angle = 450
+							oShape.FillHatch = oHatch
+						oShape.FillBackground = RGB(255,255,255)
+End Sub
+'
+'
+Sub oPositionShape( oShape as Object, X as Integer, Y as Integer, Width as Integer, Height as Integer )
+     oShape.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PARAGRAPH
+
+     Dim oPos as new com.sun.star.awt.Point
+     oPos.X = X
+     oPos.Y = Y
+     oShape.setPosition( oPos )
+     Erase oPos
+ 
+     Dim oSize as new com.sun.star.awt.Size
+     oSize.Width = Width
+     oSize.Height = Height
+     oShape.setSize( oSize )
+     Erase oSize
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+</code></pre><br>
+
+
+
+<a name="OOoGSSP02"><h6>GSSP-2)<em>[General / Draw]</em>EllipseShape / Outline</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/02Fill/02LineProp01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShape
+	Dim oDoc
+	Dim oPage
+	Dim oShape
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_default", 0, Dummy())
+			oPage = oDoc.getDrawPages().getByIndex(0)
+			' Ellipse
+				oShape = oDoc.createInstance("com.sun.star.drawing.EllipseShape")
+				' Position
+					oPoint = oShape.Position
+						oPoint.X = oPage.Width / 4
+						oPoint.Y = oPage.Height / 10 + oPage.BorderTop +1000
+					oShape.Position = oPoint
+    			' Size
+    				oSize = oShape.Size
+    					oSize.Height = 2500		' unit : 1/100mm
+    					oSize.Width =  2500		' unit : 1/100mm
+    				oShape.Size = oSize
+    			oPage.add(oShape)
+    			'Gradient
+    					oShape.FillStyle = com.sun.star.drawing.FillStyle.GRADIENT	
+					' Gradietion Style
+						oGradient = createUnoStruct("com.sun.star.awt.Gradient") 
+							With oGradient 
+      							.Style = com.sun.star.awt.GradientStyle.AXIAL
+      							.StartColor = RGB( 255, 255, 0 ) 
+      							.EndColor = RGB( 255, 0, 0 ) 
+      							.Angle = 300			' unit : 1/10 degree 
+      							.Border = 10 
+      							.XOffset = 0 
+      							.YOffset = 0 
+ 						     	.StartIntensity = 100 
+ 						     	.EndIntensity = 100 
+ 						     	.StepCount = 128 
+   							End With 
+						oShape.FillGradient = oGradient
+						
+    			'Line Propertis
+    				oShape.LineStyle = com.sun.star.drawing.LineStyle.DASH
+    				'Dash
+    					Dim oDash1 as New com.sun.star.drawing.LineDash
+		   					With oDash1
+    							.Style = com.sun.star.drawing.DashStyle.ROUND
+    							.Dashes = 1
+    							.DashLen = 100
+    							.Distance = 100
+    						End With
+    					oShape.LineDash = oDash1
+    				oShape.LineColor = RGB(0,0,255)
+    				oShape.LineWidth = 50		' Unit : 1/100 mm
+    				oShape.LineTransparence = "0%"
+    			
+    		' Rectangle
+    			oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+				' Position
+					oPoint = oShape.Position
+						oPoint.X = oPage.Width / 4
+						oPoint.Y = oPage.Height / 10 + oPage.BorderTop + 4000
+					oShape.Position = oPoint
+    			' Size
+    				oSize = oShape.Size
+    					oSize.Height = 2500		' unit : 1/100mm
+    					oSize.Width =  2500		' unit : 1/100mm
+    				oShape.Size = oSize
+    			'Draw
+					oPage.add(oShape)
+    			'Gradient
+    					oShape.FillStyle = com.sun.star.drawing.FillStyle.GRADIENT	
+					' Gradietion Style
+						oGradient = createUnoStruct("com.sun.star.awt.Gradient") 
+							With oGradient 
+      							.Style = com.sun.star.awt.GradientStyle.RADIAL
+      							.StartColor = RGB( 255, 255, 0 ) 
+      							.EndColor = RGB( 255, 0, 0 ) 
+      							.Angle = 300			' unit : 1/10 degree 
+      							.Border = 10 
+      							.XOffset = 0 
+      							.YOffset = 0 
+ 						     	.StartIntensity = 100 
+ 						     	.EndIntensity = 100 
+ 						     	.StepCount = 128 
+   							End With 
+						oShape.FillGradient = oGradient
+						
+				'Line Propertis
+    				oShape.LineStyle = com.sun.star.drawing.LineStyle.DASH
+    				'Dash
+    					Dim oDash2 as New com.sun.star.drawing.LineDash
+    						With oDash2
+    							.Style = com.sun.star.drawing.DashStyle.RECT
+    							.Dots = 2
+    							.DotLen = 50
+    							.Dashes = 1    							
+    							.DashLen = 500
+    							.Distance = 50
+    						End With
+    					oShape.LineDash = oDash2
+    			'	
+    				oShape.LineColor = RGB(0,0,255)
+    				oShape.LineWidth = 50		' Unit : 1/100 mm
+    				oShape.LineTransparence = "0%"
+    					
+			
+			'ClosedBezier
+				Dim oCoords 'Coordinates of the polygon to insert
+					oCoords = createUnoStruct("com.sun.star.drawing.PolyPolygonBezierCoords")
+						xP = oPage.Width / 4 + 3000
+						yP = oPage.Height / 10 + oPage.BorderTop
+							oCoords.Coordinates = Array( Array( _
+      								CreatePoint( xP+1000, yP+1000 ), _
+      								CreatePoint( xP+3000, yP+4000 ), _
+      								CreatePoint( xP+3000, yP+4000 ), _
+      								CreatePoint( xP+5000, yP+1000 ) _
+												) _
+										 )
+							oCoords.Flags = Array(Array( _
+      							com.sun.star.drawing.PolygonFlags.NORMAL,_
+      							com.sun.star.drawing.PolygonFlags.CONTROL,_
+      							com.sun.star.drawing.PolygonFlags.CONTROL,_
+      							com.sun.star.drawing.PolygonFlags.NORMAL _
+    									)_
+  								)
+						
+						oShape = oDoc.createInstance("com.sun.star.drawing.ClosedBezierShape")
+						
+						oPage.add(oShape)
+						oShape.PolyPolygonBezier = oCoords
+						
+					'Gradient
+    					oShape.FillStyle = com.sun.star.drawing.FillStyle.GRADIENT	
+					' Gradietion Style
+						oGradient = createUnoStruct("com.sun.star.awt.Gradient") 
+							With oGradient 
+      							.Style = com.sun.star.awt.GradientStyle.ELLIPTICAL
+      							.StartColor = RGB( 255, 255, 0 ) 
+      							.EndColor = RGB( 255, 0, 0 ) 
+      							.Angle = 300			' unit : 1/10 degree 
+      							.Border = 10 
+      							.XOffset = 0 
+      							.YOffset = 0 
+ 						     	.StartIntensity = 100 
+ 						     	.EndIntensity = 100 
+ 						     	.StepCount = 128 
+   							End With 
+						oShape.FillGradient = oGradient
+						'
+				'Line Propertis
+    				oShape.LineStyle = com.sun.star.drawing.LineStyle.DASH
+    				'Dash
+    					Dim oDash3 as New com.sun.star.drawing.LineDash
+		   					With oDash3
+    							.Style = com.sun.star.drawing.DashStyle.ROUND
+    							.Dots = 1
+    							.DotLen = 50
+    							.Dashes = 1
+    							.DashLen = 500
+    							.Distance = 100
+    						End With
+    					oShape.LineDash = oDash3	
+				'	
+    				oShape.LineColor = RGB(0,0,255)
+    				oShape.LineWidth = 50		' Unit : 1/100 mm
+    				oShape.LineTransparence = "0%"
+    			
+	'
+			'PolyPolygonShape
+				Dim oPoints_1
+					xP1 = oPage.Width / 4 + 3000
+					yP1 = oPage.Height / 10 + oPage.BorderTop + 3000
+						oPoints_1 = Array(_
+							CreatePoint( xP1+1000, yP1+1000 ),_
+							CreatePoint( xP1+3500, yP1+3500 ),_
+							CreatePoint( xP1+1000, yP1+3500 ),_
+							CreatePoint( xP1+3500, yP1+1000 )_
+							)
+					
+					oShape = ThisComponent.createInstance("com.sun.star.drawing.PolyPolygonShape")
+						oPage.add(oShape)
+						oShape.PolyPolygon = Array(oPoints_1)
+					'Fill
+						oShape.FillStyle = com.sun.star.drawing.FillStyle.HATCH
+					'
+						Dim oHatch As New com.sun.star.drawing.Hatch
+							oHatch.Style = com.sun.star.drawing.HatchStyle.DOUBLE
+							oHatch.Color = RGB(64,64,64)
+							oHatch.Distance = 100			' unit = 1/100 mm
+							oHatch.Angle = 450					' unit = 1/10 degree
+							oShape.FillHatch = oHatch
+						oShape.FillBackground = RGB(255,255,255)
+			'
+				'Line Propertis
+    				oShape.LineStyle = com.sun.star.drawing.LineStyle.DASH
+    				'Dash
+    					Dim oDash4 as New com.sun.star.drawing.LineDash
+		   					With oDash4
+    							.Style = com.sun.star.drawing.DashStyle.RECT
+    							.Dots = 3
+    							.DotLen = 50
+    							.Dashes = 1
+    							.DashLen = 500
+    							.Distance = 50
+    						End With
+    					oShape.LineDash = oDash4
+			'	
+    				oShape.LineColor = RGB(0,0,255)
+    				oShape.LineWidth = 50		' Unit : 1/100 mm
+    				oShape.LineTransparence = "0%"
+
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+</code></pre><br>
+
+
+<a name="OOoGSSP02b"><h6>GSSP-)<em>[General / Calc]</em>EllipseShape / Outline</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/02Fill/02LineProp02Calc.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShape
+	Dim oDoc
+	Dim oPage
+	Dim oShape
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/scalc", "_default", 0, Dummy())
+			oPage = oDoc.getDrawPages().getByIndex(0)
+			' Ellipse
+				oShape = oDoc.createInstance("com.sun.star.drawing.EllipseShape")
+				' Position
+					oPoint = oShape.Position
+						oPoint.X = 2000
+						oPoint.Y = 2000
+					oShape.Position = oPoint
+    			' Size
+    				oSize = oShape.Size
+    					oSize.Height = 2500		' unit : 1/100mm
+    					oSize.Width =  2500		' unit : 1/100mm
+    				oShape.Size = oSize
+    			oPage.add(oShape)
+    			'Gradient
+    					oShape.FillStyle = com.sun.star.drawing.FillStyle.GRADIENT	
+					' Gradietion Style
+						oGradient = createUnoStruct("com.sun.star.awt.Gradient") 
+							With oGradient 
+      							.Style = com.sun.star.awt.GradientStyle.AXIAL
+      							.StartColor = RGB( 255, 255, 0 ) 
+      							.EndColor = RGB( 255, 0, 0 ) 
+      							.Angle = 300			' unit : 1/10 degree 
+      							.Border = 10 
+      							.XOffset = 0 
+      							.YOffset = 0 
+ 						     	.StartIntensity = 100 
+ 						     	.EndIntensity = 100 
+ 						     	.StepCount = 128 
+   							End With 
+						oShape.FillGradient = oGradient
+						
+    			'Line Propertis
+    				oShape.LineStyle = com.sun.star.drawing.LineStyle.DASH
+    				'Dash
+    					Dim oDash1 as New com.sun.star.drawing.LineDash
+		   					With oDash1
+    							.Style = com.sun.star.drawing.DashStyle.ROUND
+    							.Dashes = 1
+    							.DashLen = 100
+    							.Distance = 100
+    						End With
+    					oShape.LineDash = oDash1
+    				oShape.LineColor = RGB(0,0,255)
+    				oShape.LineWidth = 50		' Unit : 1/100 mm
+    				oShape.LineTransparence = "0%"
+    			
+    		' Rectangle
+    			oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+				' Position
+					oPoint = oShape.Position
+						oPoint.X = 2000
+						oPoint.Y = 5000
+					oShape.Position = oPoint
+    			' Size
+    				oSize = oShape.Size
+    					oSize.Height = 2500		' unit : 1/100mm
+    					oSize.Width =  2500		' unit : 1/100mm
+    				oShape.Size = oSize
+    			'Draw
+					oPage.add(oShape)
+    			'Gradient
+    					oShape.FillStyle = com.sun.star.drawing.FillStyle.GRADIENT	
+					' Gradietion Style
+						oGradient = createUnoStruct("com.sun.star.awt.Gradient") 
+							With oGradient 
+      							.Style = com.sun.star.awt.GradientStyle.RADIAL
+      							.StartColor = RGB( 255, 255, 0 ) 
+      							.EndColor = RGB( 255, 0, 0 ) 
+      							.Angle = 300			' unit : 1/10 degree 
+      							.Border = 10 
+      							.XOffset = 0 
+      							.YOffset = 0 
+ 						     	.StartIntensity = 100 
+ 						     	.EndIntensity = 100 
+ 						     	.StepCount = 128 
+   							End With 
+						oShape.FillGradient = oGradient
+						
+				'Line Propertis
+    				oShape.LineStyle = com.sun.star.drawing.LineStyle.DASH
+    				'Dash
+    					Dim oDash2 as New com.sun.star.drawing.LineDash
+    						With oDash2
+    							.Style = com.sun.star.drawing.DashStyle.RECT
+    							.Dots = 2
+    							.DotLen = 50
+    							.Dashes = 1    							
+    							.DashLen = 500
+    							.Distance = 50
+    						End With
+    					oShape.LineDash = oDash2
+    			'	
+    				oShape.LineColor = RGB(0,0,255)
+    				oShape.LineWidth = 50		' Unit : 1/100 mm
+    				oShape.LineTransparence = "0%"
+    					
+			
+			'ClosedBezier
+				Dim oCoords 'Coordinates of the polygon to insert
+					oCoords = createUnoStruct("com.sun.star.drawing.PolyPolygonBezierCoords")
+						xP = 5000
+						yP = 2000
+							oCoords.Coordinates = Array( Array( _
+      								CreatePoint( xP+1000, yP+1000 ), _
+      								CreatePoint( xP+3000, yP+4000 ), _
+      								CreatePoint( xP+3000, yP+4000 ), _
+      								CreatePoint( xP+5000, yP+1000 ) _
+												) _
+										 )
+							oCoords.Flags = Array(Array( _
+      							com.sun.star.drawing.PolygonFlags.NORMAL,_
+      							com.sun.star.drawing.PolygonFlags.CONTROL,_
+      							com.sun.star.drawing.PolygonFlags.CONTROL,_
+      							com.sun.star.drawing.PolygonFlags.NORMAL _
+    									)_
+  								)
+						
+						oShape = oDoc.createInstance("com.sun.star.drawing.ClosedBezierShape")
+						
+						oPage.add(oShape)
+						oShape.PolyPolygonBezier = oCoords
+						
+					'Gradient
+    					oShape.FillStyle = com.sun.star.drawing.FillStyle.GRADIENT	
+					' Gradietion Style
+						oGradient = createUnoStruct("com.sun.star.awt.Gradient") 
+							With oGradient 
+      							.Style = com.sun.star.awt.GradientStyle.ELLIPTICAL
+      							.StartColor = RGB( 255, 255, 0 ) 
+      							.EndColor = RGB( 255, 0, 0 ) 
+      							.Angle = 300			' unit : 1/10 degree 
+      							.Border = 10 
+      							.XOffset = 0 
+      							.YOffset = 0 
+ 						     	.StartIntensity = 100 
+ 						     	.EndIntensity = 100 
+ 						     	.StepCount = 128 
+   							End With 
+						oShape.FillGradient = oGradient
+						'
+				'Line Propertis
+    				oShape.LineStyle = com.sun.star.drawing.LineStyle.DASH
+    				'Dash
+    					Dim oDash3 as New com.sun.star.drawing.LineDash
+		   					With oDash3
+    							.Style = com.sun.star.drawing.DashStyle.ROUND
+    							.Dots = 1
+    							.DotLen = 50
+    							.Dashes = 1
+    							.DashLen = 500
+    							.Distance = 100
+    						End With
+    					oShape.LineDash = oDash3	
+				'	
+    				oShape.LineColor = RGB(0,0,255)
+    				oShape.LineWidth = 50		' Unit : 1/100 mm
+    				oShape.LineTransparence = "0%"
+    			
+	'
+			'PolyPolygonShape
+				Dim oPoints_1
+					xP1 = 5000
+					yP1 = 5000
+						oPoints_1 = Array(_
+							CreatePoint( xP1+1000, yP1+1000 ),_
+							CreatePoint( xP1+3500, yP1+3500 ),_
+							CreatePoint( xP1+1000, yP1+3500 ),_
+							CreatePoint( xP1+3500, yP1+1000 )_
+							)
+					
+					oShape = ThisComponent.createInstance("com.sun.star.drawing.PolyPolygonShape")
+						oPage.add(oShape)
+						oShape.PolyPolygon = Array(oPoints_1)
+					'Fill
+						oShape.FillStyle = com.sun.star.drawing.FillStyle.HATCH
+					'
+						Dim oHatch As New com.sun.star.drawing.Hatch
+							oHatch.Style = com.sun.star.drawing.HatchStyle.DOUBLE
+							oHatch.Color = RGB(64,64,64)
+							oHatch.Distance = 100			' unit = 1/100 mm
+							oHatch.Angle = 450					' unit = 1/10 degree
+							oShape.FillHatch = oHatch
+						oShape.FillBackground = RGB(255,255,255)
+			'
+				'Line Propertis
+    				oShape.LineStyle = com.sun.star.drawing.LineStyle.DASH
+    				'Dash
+    					Dim oDash4 as New com.sun.star.drawing.LineDash
+		   					With oDash4
+    							.Style = com.sun.star.drawing.DashStyle.RECT
+    							.Dots = 3
+    							.DotLen = 50
+    							.Dashes = 1
+    							.DashLen = 500
+    							.Distance = 50
+    						End With
+    					oShape.LineDash = oDash4
+			'	
+    				oShape.LineColor = RGB(0,0,255)
+    				oShape.LineWidth = 50		' Unit : 1/100 mm
+    				oShape.LineTransparence = "0%"
+
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+</code></pre><br>
+
+
+<a name="OOoGSSP02c"><h6>GSSP-)<em>[General / Writer]</em>EllipseShape / Outline</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/02Fill/02LineProp03Writer.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShape
+	Dim oDoc
+	Dim oPage
+	Dim oShape
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_default", 0, Dummy())
+		'
+		oWriterPage = oDoc.getDrawPage()
+		'
+			oViewCursor = oDoc.CurrentController.getViewCursor()
+			oPageStyle	= oViewCursor.PageStyleName
+			oPage = oDoc.StyleFamilies.getByName("PageStyles").getByName(oPageStyle)
+			'oPage = oDoc.getDrawPages().getByIndex(0)
+			' Ellipse
+				oShape = oDoc.createInstance("com.sun.star.drawing.EllipseShape")
+				oWriterPage.add(oShape)
+				'
+				Dim oX
+				Dim oY
+					oX = 1000
+					oY = 1000
+				oPositionShape( oShape, oX, oY,  2500, 2500 ) 
+				'
+    			'Gradient
+    					oShape.FillStyle = com.sun.star.drawing.FillStyle.GRADIENT	
+					' Gradietion Style
+						oGradient = createUnoStruct("com.sun.star.awt.Gradient") 
+							With oGradient 
+      							.Style = com.sun.star.awt.GradientStyle.AXIAL
+      							.StartColor = RGB( 255, 255, 0 ) 
+      							.EndColor = RGB( 255, 0, 0 ) 
+      							.Angle = 300			' unit : 1/10 degree 
+      							.Border = 10 
+      							.XOffset = 0 
+      							.YOffset = 0 
+ 						     	.StartIntensity = 100 
+ 						     	.EndIntensity = 100 
+ 						     	.StepCount = 128 
+   							End With 
+						oShape.FillGradient = oGradient
+						
+    			'Line Propertis
+    				oShape.LineStyle = com.sun.star.drawing.LineStyle.DASH
+    				'Dash
+    					Dim oDash1 as New com.sun.star.drawing.LineDash
+		   					With oDash1
+    							.Style = com.sun.star.drawing.DashStyle.ROUND
+    							.Dashes = 1
+    							.DashLen = 100
+    							.Distance = 100
+    						End With
+    					oShape.LineDash = oDash1
+    				oShape.LineColor = RGB(0,0,255)
+    				oShape.LineWidth = 50		' Unit : 1/100 mm
+    				oShape.LineTransparence = "0%"
+    			
+    		' Rectangle
+    			oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+				oWriterPage.add(oShape)
+				'
+					oX = 1000
+					oY = 4000
+				oPositionShape( oShape, oX, oY,  2500, 2500 ) 
+    			'Gradient
+    					oShape.FillStyle = com.sun.star.drawing.FillStyle.GRADIENT	
+					' Gradietion Style
+						oGradient = createUnoStruct("com.sun.star.awt.Gradient") 
+							With oGradient 
+      							.Style = com.sun.star.awt.GradientStyle.RADIAL
+      							.StartColor = RGB( 255, 255, 0 ) 
+      							.EndColor = RGB( 255, 0, 0 ) 
+      							.Angle = 300			' unit : 1/10 degree 
+      							.Border = 10 
+      							.XOffset = 0 
+      							.YOffset = 0 
+ 						     	.StartIntensity = 100 
+ 						     	.EndIntensity = 100 
+ 						     	.StepCount = 128 
+   							End With 
+						oShape.FillGradient = oGradient
+						
+				'Line Propertis
+    				oShape.LineStyle = com.sun.star.drawing.LineStyle.DASH
+    				'Dash
+    					Dim oDash2 as New com.sun.star.drawing.LineDash
+    						With oDash2
+    							.Style = com.sun.star.drawing.DashStyle.RECT
+    							.Dots = 2
+    							.DotLen = 50
+    							.Dashes = 1    							
+    							.DashLen = 500
+    							.Distance = 50
+    						End With
+    					oShape.LineDash = oDash2
+    			'	
+    				oShape.LineColor = RGB(0,0,255)
+    				oShape.LineWidth = 50		' Unit : 1/100 mm
+    				oShape.LineTransparence = "0%"
+    					
+			
+			'ClosedBezier
+				Dim oCoords 'Coordinates of the polygon to insert
+					oCoords = createUnoStruct("com.sun.star.drawing.PolyPolygonBezierCoords")
+						xP = 2500
+						yP = 6000
+							oCoords.Coordinates = Array( Array( _
+      								CreatePoint( xP+1000, yP+1000 ), _
+      								CreatePoint( xP+3000, yP+4000 ), _
+      								CreatePoint( xP+3000, yP+4000 ), _
+      								CreatePoint( xP+5000, yP+1000 ) _
+												) _
+										 )
+							oCoords.Flags = Array(Array( _
+      							com.sun.star.drawing.PolygonFlags.NORMAL,_
+      							com.sun.star.drawing.PolygonFlags.CONTROL,_
+      							com.sun.star.drawing.PolygonFlags.CONTROL,_
+      							com.sun.star.drawing.PolygonFlags.NORMAL _
+    									)_
+  								)
+						
+						oShape = oDoc.createInstance("com.sun.star.drawing.ClosedBezierShape")
+						
+						oWriterPage.add(oShape)
+						'
+						oShape.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PARAGRAPH
+						'
+						oShape.PolyPolygonBezier = oCoords
+						
+					'Gradient
+    					oShape.FillStyle = com.sun.star.drawing.FillStyle.GRADIENT	
+					' Gradietion Style
+						oGradient = createUnoStruct("com.sun.star.awt.Gradient") 
+							With oGradient 
+      							.Style = com.sun.star.awt.GradientStyle.ELLIPTICAL
+      							.StartColor = RGB( 255, 255, 0 ) 
+      							.EndColor = RGB( 255, 0, 0 ) 
+      							.Angle = 300			' unit : 1/10 degree 
+      							.Border = 10 
+      							.XOffset = 0 
+      							.YOffset = 0 
+ 						     	.StartIntensity = 100 
+ 						     	.EndIntensity = 100 
+ 						     	.StepCount = 128 
+   							End With 
+						oShape.FillGradient = oGradient
+						'
+				'Line Propertis
+    				oShape.LineStyle = com.sun.star.drawing.LineStyle.DASH
+    				'Dash
+    					Dim oDash3 as New com.sun.star.drawing.LineDash
+		   					With oDash3
+    							.Style = com.sun.star.drawing.DashStyle.ROUND
+    							.Dots = 1
+    							.DotLen = 50
+    							.Dashes = 1
+    							.DashLen = 500
+    							.Distance = 100
+    						End With
+    					oShape.LineDash = oDash3	
+				'	
+    				oShape.LineColor = RGB(0,0,255)
+    				oShape.LineWidth = 50		' Unit : 1/100 mm
+    				oShape.LineTransparence = "0%"
+    			
+	'
+			'PolyPolygonShape
+				Dim oPoints_1
+					xP1 = 2500
+					yP1 = 8500
+						oPoints_1 = Array(_
+							CreatePoint( xP1+1000, yP1+1000 ),_
+							CreatePoint( xP1+3500, yP1+3500 ),_
+							CreatePoint( xP1+1000, yP1+3500 ),_
+							CreatePoint( xP1+3500, yP1+1000 )_
+							)
+					
+					oShape = oDoc.createInstance("com.sun.star.drawing.PolyPolygonShape")
+						oWriterPage.add(oShape)
+						'
+						oShape.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PARAGRAPH
+						'
+						oShape.PolyPolygon = Array(oPoints_1)
+					'Fill
+						oShape.FillStyle = com.sun.star.drawing.FillStyle.HATCH
+					'
+						Dim oHatch As New com.sun.star.drawing.Hatch
+							oHatch.Style = com.sun.star.drawing.HatchStyle.DOUBLE
+							oHatch.Color = RGB(64,64,64)
+							oHatch.Distance = 100			' unit = 1/100 mm
+							oHatch.Angle = 450					' unit = 1/10 degree
+							oShape.FillHatch = oHatch
+						oShape.FillBackground = RGB(255,255,255)
+			'
+				'Line Propertis
+    				oShape.LineStyle = com.sun.star.drawing.LineStyle.DASH
+    				'Dash
+    					Dim oDash4 as New com.sun.star.drawing.LineDash
+		   					With oDash4
+    							.Style = com.sun.star.drawing.DashStyle.RECT
+    							.Dots = 3
+    							.DotLen = 50
+    							.Dashes = 1
+    							.DashLen = 500
+    							.Distance = 50
+    						End With
+    					oShape.LineDash = oDash4
+			'	
+    				oShape.LineColor = RGB(0,0,255)
+    				oShape.LineWidth = 50		' Unit : 1/100 mm
+    				oShape.LineTransparence = "0%"
+
+End Sub
+'
+'
+Sub oPositionShape( oShape as Object, X as Integer, Y as Integer, Width as Integer, Height as Integer )
+     oShape.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PARAGRAPH
+
+     Dim oPos as new com.sun.star.awt.Point
+     oPos.X = X
+     oPos.Y = Y
+     oShape.setPosition( oPos )
+     Erase oPos
+ 
+     Dim oSize as new com.sun.star.awt.Size
+     oSize.Width = Width
+     oSize.Height = Height
+     oShape.setSize( oSize )
+     Erase oSize
+End Sub
+'
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+</code></pre><br>
+
+
+
+
+<a name="OOoGSSP03a"><h6>GSSP-)<em>[General / Draw]</em>Shadow</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/05Shadow/01ShadowProp01Draw.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShapeProp
+	Dim oPage     'Page on which to draw
+	Dim oShape    'Shape to insert
+	Dim oDoc
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_default", 0, Dummy())
+		oPage = createDrawPage(oDOc, "Test Draw", True)
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			oPage.add(oShape)
+ 			oShape.setPosition(createPoint(3000, 1000))
+			oShape.setSize(createSize(6000, 1000))
+			oShape.setString("OOoMacro")
+		'　影付き
+				oShape.Shadow = True
+		
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			oPage.add(oShape)
+ 			oShape.setPosition(createPoint(3000, 5000))
+			oShape.setSize(createSize(6000, 1000))
+			oShape.setString("OOoMacro")
+		'　影付き
+				oShape.Shadow = True
+		' Shadow Prop
+			oShape.ShadowXDistance = -1000
+			oShape.ShadowYDistance = -1000
+			oShape.ShadowColor = 255000000
+			oShape.ShadowTransparence = 50%		' 透明度
+			oShape.CornerRadius = 100
+End Sub
+
+
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+
+'[ Function 3 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages 'All of the draw pages
+	Dim oPage  'A single draw page
+	Dim i%     'General index variable
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+		'If we require a new page then delete the page and get out of the for loop.
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+			'Did not request a new page so return the found page and then get out of the function.
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+
+	'Did not find the page, or found the page and removed it. Create a new page, set the name, and return the page.
+	'	oPages.insertNewByIndex(oPages.getCount())
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+</code></pre><br>
+
+
+<a name="OOoGSSP03b"><h6>GSSP-)<em>[General / Calc]</em>Shadow</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/05Shadow/01ShadowProp02Calc.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShapeProp
+	Dim oPage     'Page on which to draw
+	Dim oShape    'Shape to insert
+	Dim oDoc
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/scalc", "_default", 0, Dummy())
+		oPage = oDoc.getDrawPages().getByIndex(0)
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			oPage.add(oShape)
+ 			oShape.setPosition(createPoint(3000, 1000))
+			oShape.setSize(createSize(6000, 1000))
+			oShape.setString("OOoMacro")
+		'　影付き
+				oShape.Shadow = True
+		
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			oPage.add(oShape)
+ 			oShape.setPosition(createPoint(3000, 5000))
+			oShape.setSize(createSize(6000, 1000))
+			oShape.setString("OOoMacro")
+		'　影付き
+				oShape.Shadow = True
+		' Shadow Prop
+			oShape.ShadowXDistance = -1000
+			oShape.ShadowYDistance = -1000
+			oShape.ShadowColor = 255000000
+			oShape.ShadowTransparence = 50%		' 透明度
+			oShape.CornerRadius = 100
+End Sub
+
+
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+</code></pre><br>
+
+
+<a name="OOoGSSP03c"><h6>GSSP-)<em>[General / Writer]</em>Shadow</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/05Shadow/01ShadowProp03Writer.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShapeProp
+	Dim oPage     'Page on which to draw
+	Dim oShape    'Shape to insert
+	Dim oDoc
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_default", 0, Dummy())
+		oPage = oDoc.getDrawPage()
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			oPage.add(oShape)
+ 			'
+ 			oPositionShape( oShape, 1000, 1500,  3000, 1000 )
+			'
+			oShape.setString("OOoMacro")
+		'　影付き
+			oShape.Shadow = True
+		
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			oPage.add(oShape)
+			'
+ 			oPositionShape( oShape, 2000, 4500,  3000, 1000 )
+			'
+			oShape.setString("OOoMacro")
+		'　影付き
+				oShape.Shadow = True
+		' Shadow Prop
+			oShape.ShadowXDistance = -1000
+			oShape.ShadowYDistance = -1000
+			oShape.ShadowColor = 255000000
+			oShape.ShadowTransparence = 50%		' 透明度
+			oShape.CornerRadius = 100
+End Sub
+'
+'
+Sub oPositionShape( oShape as Object, X as Integer, Y as Integer, Width as Integer, Height as Integer )
+     oShape.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PARAGRAPH
+
+     Dim oPos as new com.sun.star.awt.Point
+     oPos.X = X
+     oPos.Y = Y
+     oShape.setPosition( oPos )
+     Erase oPos
+ 
+     Dim oSize as new com.sun.star.awt.Size
+     oSize.Width = Width
+     oSize.Height = Height
+     oShape.setSize( oSize )
+     Erase oSize
+End Sub
+</code></pre><br>
+
+<a name="OOoGSSP04a"><h6>GSSP-)<em>[General / Draw]</em>>RotationAngle</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/06Rotation/01RotationRectangle01Draw.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShapeProp
+	Dim oPage     'Page on which to draw
+	Dim oShape    'Shape to insert
+	Dim oDoc
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_default", 0, Dummy())
+		oPage = createDrawPage(oDOc, "Test Draw", True)
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,3000))
+		oShape.setSize(createSize(4000,1500))
+		oShape.setString("OOoMacro1")
+		' 20degree RotateAngle
+		oShape.RotateAngle = 2000		' unit : 1/100 degree
+End Sub
+
+
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+
+'[ Function 3 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages 'All of the draw pages
+	Dim oPage  'A single draw page
+	Dim i%     'General index variable
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+		'If we require a new page then delete the page and get out of the for loop.
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+			'Did not request a new page so return the found page and then get out of the function.
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+
+	'Did not find the page, or found the page and removed it. Create a new page, set the name, and return the page.
+	'	oPages.insertNewByIndex(oPages.getCount())
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+</code></pre><br>
+
+<a name="OOoGSSP04b"><h6>GSSP-)<em>[General / Calc]</em>>RotationAngle</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/06Rotation/01RotationRectangle02Calc.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShapeProp
+	Dim oPage     'Page on which to draw
+	Dim oShape    'Shape to insert
+	Dim oDoc
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/scalc", "_default", 0, Dummy())
+		oPage = oDoc.getDrawPages().getByIndex(0)
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,3000))
+		oShape.setSize(createSize(4000,1500))
+		oShape.setString("OOoMacro1")
+		' 20degree RotateAngle
+		oShape.RotateAngle = 2000		' unit : 1/100 degree
+End Sub
+
+
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+</code></pre><br>
+
+<a name="OOoGSSP04c"><h6>GSSP-)<em>[General / Writer]</em>>RotationAngle</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/06Rotation/01RotationRectangle03Writer.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShapeProp
+	Dim oPage     'Page on which to draw
+	Dim oShape    'Shape to insert
+	Dim oDoc
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_default", 0, Dummy())
+		oPage = oDoc.getDrawPage()
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		'
+ 		oPositionShape( oShape, 1000, 1500,  3000, 1000 )
+		'
+		oShape.setString("OOoMacro1")
+		' 20degree RotateAngle
+		oShape.RotateAngle = 2000		' unit : 1/100 degree
+End Sub
+'
+'
+Sub oPositionShape( oShape as Object, X as Integer, Y as Integer, Width as Integer, Height as Integer )
+     oShape.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PARAGRAPH
+
+     Dim oPos as new com.sun.star.awt.Point
+     oPos.X = X
+     oPos.Y = Y
+     oShape.setPosition( oPos )
+     Erase oPos
+ 
+     Dim oSize as new com.sun.star.awt.Size
+     oSize.Width = Width
+     oSize.Height = Height
+     oShape.setSize( oSize )
+     Erase oSize
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSSP04b2"><h6>GSSP-)<em>[General / Calc]</em>Rotate Mode ON / OFF</h6></a><pre><code>
+<img src="OOoBasic_pic/01general3/Shape/06Rotation/03bUnoToggleRotateMode02.png" align="right" hspace="4" vspace="4" width="15%"><img src="OOoBasic_pic/01general3/Shape/06Rotation/03bUnoToggleRotateMode01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub ToggleOfRotateMode()
+	Dim oDoc as Object, oCtrl as Object, oFrame
+	Dim oDrawP as Object
+	Dim oShape as Object
+	Dim oDispatcher as Object
+		oDoc = ThisComponent
+		oDrawP = oDoc.getDrawPages().getByIndex(0)
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+	' Position
+		oPoint = oShape.Position
+			oPoint.X = 1000
+			oPoint.Y = 1000
+		oShape.Position = oPoint
+    ' Size
+    	oSize = oShape.Size
+    		oSize.Height = 1200		' unit : 1/100mm
+    		oSize.Width =  1500		' unit : 1/100mm
+    	oShape.Size = oSize
+    oDrawP.add(oShape)
+    '
+    ' 作成したShapeを選択状態にする
+    	oCtrl = oDoc.CurrentController()
+    	oCtrl.select(oShape)
+    	'
+    ' ObjectのRotaion Mode ON / OFF
+    	oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		oDispatcher.executeDispatch( oFrame, ".uno:ToggleObjectRotateMode", "", 0, Array())
+		msgbox "Roataion Mode = ON",0,"Toggle of Rotaion"
+		'
+		oDispatcher.executeDispatch( oFrame, ".uno:ToggleObjectRotateMode", "", 0, Array())
+		msgbox "Roataion Mode = OFF",0,"Toggle of Rotaion" 
+End Sub
+</code></pre><br>
+
+
+
+<a name="OOoGSSP05a"><h6>GSSP-)<em>[General / Draw]</em>ShearAngle</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/06Rotation/02ShaerAngle01Draw.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShapeProp
+	Dim oPage     'Page on which to draw
+	Dim oShape    'Shape to insert
+	Dim oDoc
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_default", 0, Dummy())
+		oPage = createDrawPage(oDOc, "Test Draw", True)
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,3000))
+		oShape.setSize(createSize(4000,1500))
+		oShape.setString("OOoMacro1")
+		' 30degree ShearAngle 
+		oShape.ShearAngle = 3000		' unit : 1/100 degree
+End Sub
+
+
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+
+'[ Function 3 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages 'All of the draw pages
+	Dim oPage  'A single draw page
+	Dim i%     'General index variable
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+		'If we require a new page then delete the page and get out of the for loop.
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+			'Did not request a new page so return the found page and then get out of the function.
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+
+	'Did not find the page, or found the page and removed it. Create a new page, set the name, and return the page.
+	'	oPages.insertNewByIndex(oPages.getCount())
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+</code></pre><br>
+
+<a name="OOoGSSP05b"><h6>GSSP-)<em>[General / Calc ]</em>ShearAngle</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/06Rotation/02ShaerAngle02Calc.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShapeProp
+	Dim oPage     'Page on which to draw
+	Dim oShape    'Shape to insert
+	Dim oDoc
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/scalc", "_default", 0, Dummy())
+		oPage = oDoc.getDrawPages().getByIndex(0)
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,3000))
+		oShape.setSize(createSize(4000,1500))
+		oShape.setString("OOoMacro1")
+		' 30degree ShearAngle 
+		oShape.ShearAngle = 3000		' unit : 1/100 degree
+End Sub
+
+
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+</code></pre><br>
+
+<a name="OOoGSSP05c"><h6>GSSP-)<em>[General / Writer]</em>ShearAngle</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/06Rotation/02ShaerAngle03Writer.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShapeProp
+	Dim oPage     'Page on which to draw
+	Dim oShape    'Shape to insert
+	Dim oDoc
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_default", 0, Dummy())
+		oPage = oDoc.getDrawPage()
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		'
+ 		oPositionShape( oShape, 1000, 1500,  3000, 1000 )
+		'
+		oShape.setString("OOoMacro1")
+		' 30degree ShearAngle 
+		oShape.ShearAngle = 3000		' unit : 1/100 degree
+End Sub
+'
+'
+Sub oPositionShape( oShape as Object, X as Integer, Y as Integer, Width as Integer, Height as Integer )
+     oShape.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PARAGRAPH
+
+     Dim oPos as new com.sun.star.awt.Point
+     oPos.X = X
+     oPos.Y = Y
+     oShape.setPosition( oPos )
+     Erase oPos
+ 
+     Dim oSize as new com.sun.star.awt.Size
+     oSize.Width = Width
+     oSize.Height = Height
+     oShape.setSize( oSize )
+     Erase oSize
+End Sub
+</code></pre><br>
+
+
+
+<a name="OOoGSSP06a"><h6>GSSP-)<em>[General / Draw]</em>Text Sizeを外形Sizeと一致させる</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/04Text/01TextFitToSize01Draw.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShapeProp
+	Dim oPage     'Page on which to draw
+	Dim oShape    'Shape to insert
+	Dim oDoc
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_default", 0, Dummy())
+		oPage = createDrawPage(oDOc, "Test Draw", True)
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,3000))
+		oShape.setSize(createSize(6000,2000))
+		oShape.setString("OOoMacro1")
+		'  
+		oShape.TextFitToSize = com.sun.star.drawing.TextFitToSizeType.NONE
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,6000))
+		oShape.setSize(createSize(6000,2000))
+		oShape.setString("OOoMacro2")
+		'  
+		oShape.TextFitToSize = com.sun.star.drawing.TextFitToSizeType.PROPORTIONAL
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,9000))
+		oShape.setSize(createSize(6000,2000))
+		oShape.setString("OOoMacro3")
+		'  
+		oShape.TextFitToSize = com.sun.star.drawing.TextFitToSizeType.ALLLINES
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,12000))
+		oShape.setSize(createSize(6000,2000))
+		oShape.setString("OOoMacro4")
+		'  
+		oShape.TextFitToSize = com.sun.star.drawing.TextFitToSizeType.RESIZEATTR
+End Sub
+
+
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+
+'[ Function 3 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages 'All of the draw pages
+	Dim oPage  'A single draw page
+	Dim i%     'General index variable
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+		'If we require a new page then delete the page and get out of the for loop.
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+			'Did not request a new page so return the found page and then get out of the function.
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+
+	'Did not find the page, or found the page and removed it. Create a new page, set the name, and return the page.
+	'	oPages.insertNewByIndex(oPages.getCount())
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+</code></pre><br>
+
+<a name="OOoGSSP06b"><h6>GSSP-)<em>[General / Calc]</em>Text Sizeを外形Sizeと一致させる</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/04Text/01TextFitToSize02Calc.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShapeProp
+	Dim oPage     'Page on which to draw
+	Dim oShape    'Shape to insert
+	Dim oDoc
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/scalc", "_default", 0, Dummy())
+		oPage = oDoc.getDrawPages().getByIndex(0)
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,3000))
+		oShape.setSize(createSize(6000,2000))
+		oShape.setString("OOoMacro1")
+		'  
+		oShape.TextFitToSize = com.sun.star.drawing.TextFitToSizeType.NONE
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,6000))
+		oShape.setSize(createSize(6000,2000))
+		oShape.setString("OOoMacro2")
+		'  
+		oShape.TextFitToSize = com.sun.star.drawing.TextFitToSizeType.PROPORTIONAL
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,9000))
+		oShape.setSize(createSize(6000,2000))
+		oShape.setString("OOoMacro3")
+		'  
+		oShape.TextFitToSize = com.sun.star.drawing.TextFitToSizeType.ALLLINES
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,12000))
+		oShape.setSize(createSize(6000,2000))
+		oShape.setString("OOoMacro4")
+		'  
+		oShape.TextFitToSize = com.sun.star.drawing.TextFitToSizeType.RESIZEATTR
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+</code></pre><br>
+
+<a name="OOoGSSP06c"><h6>GSSP-)<em>[General / Writer]</em>Text Sizeを外形Sizeと一致させる</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/04Text/01TextFitToSize03Writer.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShapeProp
+	Dim oPage     'Page on which to draw
+	Dim oShape    'Shape to insert
+	Dim oDoc
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_default", 0, Dummy())
+		oPage = oDoc.getDrawPage()
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			oPage.add(oShape)
+			oPositionShape( oShape, 1000, 1500,  3000, 1000 )
+			oShape.setString("OOoMacro1")
+		'  
+		oShape.TextFitToSize = com.sun.star.drawing.TextFitToSizeType.NONE
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			oPage.add(oShape)
+			oPositionShape( oShape, 1000, 3000,  3000, 1000 )
+			oShape.setString("OOoMacro2")
+		'  
+		oShape.TextFitToSize = com.sun.star.drawing.TextFitToSizeType.PROPORTIONAL
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			oPage.add(oShape)
+			oPositionShape( oShape, 1000, 4500,  3000, 1000 )
+			oShape.setString("OOoMacro3")
+		'  
+		oShape.TextFitToSize = com.sun.star.drawing.TextFitToSizeType.ALLLINES
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		oPage.add(oShape)
+		oPositionShape( oShape, 1000, 6000,  3000, 1000 )
+		oShape.setString("OOoMacro4")
+		'  
+		oShape.TextFitToSize = com.sun.star.drawing.TextFitToSizeType.RESIZEATTR
+End Sub
+'
+'
+Sub oPositionShape( oShape as Object, X as Integer, Y as Integer, Width as Integer, Height as Integer )
+     oShape.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PARAGRAPH
+
+     Dim oPos as new com.sun.star.awt.Point
+     oPos.X = X
+     oPos.Y = Y
+     oShape.setPosition( oPos )
+     Erase oPos
+ 
+     Dim oSize as new com.sun.star.awt.Size
+     oSize.Width = Width
+     oSize.Height = Height
+     oShape.setSize( oSize )
+     Erase oSize
+End Sub
+</code></pre><br>
+
+<a name="OOoGSSP07a"><h6>GSSP-)<em>[General / Draw]</em>Text Box内の水平位置</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/04Text/02TextHorizontalAdjust01Draw.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShapeProp
+	Dim oPage     'Page on which to draw
+	Dim oShape    'Shape to insert
+	Dim oDoc
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_default", 0, Dummy())
+		oPage = createDrawPage(oDOc, "Test Draw", True)
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,3000))
+		oShape.setSize(createSize(6000,2000))
+		oShape.setString("OOoMacro1")
+		'  
+		oShape.TextHorizontalAdjust = com.sun.star.drawing.TextHorizontalAdjust.LEFT
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,6000))
+		oShape.setSize(createSize(6000,2000))
+		oShape.setString("OOoMacro2")
+		'  
+		oShape.TextHorizontalAdjust = com.sun.star.drawing.TextHorizontalAdjust.CENTER
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,9000))
+		oShape.setSize(createSize(6000,2000))
+		oShape.setString("OOoMacro3")
+		'  
+		oShape.TextHorizontalAdjust = com.sun.star.drawing.TextHorizontalAdjust.RIGHT
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,12000))
+		oShape.setSize(createSize(6000,2000))
+		oShape.setString("OOoMacro4")
+		'  
+		oShape.TextHorizontalAdjust = com.sun.star.drawing.TextHorizontalAdjust.BLOCK
+End Sub
+
+
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+
+'[ Function 3 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages 'All of the draw pages
+	Dim oPage  'A single draw page
+	Dim i%     'General index variable
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+		'If we require a new page then delete the page and get out of the for loop.
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+			'Did not request a new page so return the found page and then get out of the function.
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+
+	'Did not find the page, or found the page and removed it. Create a new page, set the name, and return the page.
+	'	oPages.insertNewByIndex(oPages.getCount())
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+</code></pre><br>
+
+
+<a name="OOoGSSP07b"><h6>GSSP-)<em>[General / Calc]</em>Text Box内の水平位置</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/04Text/02TextHorizontalAdjust02Calc.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShapeProp
+	Dim oPage     'Page on which to draw
+	Dim oShape    'Shape to insert
+	Dim oDoc
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/scalc", "_default", 0, Dummy())
+		oPage = oDoc.getDrawPages().getByIndex(0)
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,3000))
+		oShape.setSize(createSize(6000,2000))
+		oShape.setString("OOoMacro1")
+		'  
+		oShape.TextHorizontalAdjust = com.sun.star.drawing.TextHorizontalAdjust.LEFT
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,6000))
+		oShape.setSize(createSize(6000,2000))
+		oShape.setString("OOoMacro2")
+		'  
+		oShape.TextHorizontalAdjust = com.sun.star.drawing.TextHorizontalAdjust.CENTER
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,9000))
+		oShape.setSize(createSize(6000,2000))
+		oShape.setString("OOoMacro3")
+		'  
+		oShape.TextHorizontalAdjust = com.sun.star.drawing.TextHorizontalAdjust.RIGHT
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,12000))
+		oShape.setSize(createSize(6000,2000))
+		oShape.setString("OOoMacro4")
+		'  
+		oShape.TextHorizontalAdjust = com.sun.star.drawing.TextHorizontalAdjust.BLOCK
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+</code></pre><br>
+
+
+<a name="OOoGSSP07c"><h6>GSSP-)<em>[General / Writer]</em>Text Box内の水平位置</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/04Text/02TextHorizontalAdjust03Writer.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShapeProp
+	Dim oPage     'Page on which to draw
+	Dim oShape    'Shape to insert
+	Dim oDoc
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_default", 0, Dummy())
+		oPage = oDoc.getDrawPage()
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			oPage.add(oShape)
+			oPositionShape( oShape, 1000, 1500,  3000, 1000 )
+			oShape.setString("OOoMacro1")
+		'  
+		oShape.TextHorizontalAdjust = com.sun.star.drawing.TextHorizontalAdjust.LEFT
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			oPage.add(oShape)
+			oPositionShape( oShape, 1000, 3000,  3000, 1000 )
+			oShape.setString("OOoMacro2")
+		'  
+		oShape.TextHorizontalAdjust = com.sun.star.drawing.TextHorizontalAdjust.CENTER
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			oPage.add(oShape)
+			oPositionShape( oShape, 1000, 4500,  3000, 1000 )
+			oShape.setString("OOoMacro3")
+		'  
+		oShape.TextHorizontalAdjust = com.sun.star.drawing.TextHorizontalAdjust.RIGHT
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			oPage.add(oShape)
+			oPositionShape( oShape, 1000, 6000,  3000, 1000 )
+			oShape.setString("OOoMacro4")
+		'  
+		oShape.TextHorizontalAdjust = com.sun.star.drawing.TextHorizontalAdjust.BLOCK
+End Sub
+'
+'
+Sub oPositionShape( oShape as Object, X as Integer, Y as Integer, Width as Integer, Height as Integer )
+     oShape.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PARAGRAPH
+
+     Dim oPos as new com.sun.star.awt.Point
+     oPos.X = X
+     oPos.Y = Y
+     oShape.setPosition( oPos )
+     Erase oPos
+ 
+     Dim oSize as new com.sun.star.awt.Size
+     oSize.Width = Width
+     oSize.Height = Height
+     oShape.setSize( oSize )
+     Erase oSize
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSSP08a"><h6>GSSP-)<em>[General / Draw]</em>Text Box内の垂直位置</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/04Text/03TextVerticalAdjust01Draw.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShapeProp
+	Dim oPage     'Page on which to draw
+	Dim oShape    'Shape to insert
+	Dim oDoc
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_default", 0, Dummy())
+		oPage = createDrawPage(oDOc, "Test Draw", True)
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,3000))
+		oShape.setSize(createSize(6000,2000))
+		oShape.setString("OOoMacro1")
+		'  
+		oShape.TextVerticalAdjust = com.sun.star.drawing.TextVerticalAdjust.TOP
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,6000))
+		oShape.setSize(createSize(6000,2000))
+		oShape.setString("OOoMacro2")
+		'  
+		oShape.TextVerticalAdjust = com.sun.star.drawing.TextVerticalAdjust.CENTER
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,9000))
+		oShape.setSize(createSize(6000,2000))
+		oShape.setString("OOoMacro3")
+		'  
+		oShape.TextVerticalAdjust = com.sun.star.drawing.TextVerticalAdjust.BOTTOM
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,12000))
+		oShape.setSize(createSize(6000,2000))
+		oShape.setString("OOoMacro4")
+		'  
+		oShape.TextVerticalAdjust = com.sun.star.drawing.TextVerticalAdjust.BLOCK
+End Sub
+
+
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+
+'[ Function 3 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages 'All of the draw pages
+	Dim oPage  'A single draw page
+	Dim i%     'General index variable
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+		'If we require a new page then delete the page and get out of the for loop.
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+			'Did not request a new page so return the found page and then get out of the function.
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+
+	'Did not find the page, or found the page and removed it. Create a new page, set the name, and return the page.
+	'	oPages.insertNewByIndex(oPages.getCount())
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+</code></pre><br>
+
+
+<a name="OOoGSSP08b"><h6>GSSP-)<em>[General / Calc]</em>Text Box内の垂直位置</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/04Text/03TextVerticalAdjust02Calc.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShapeProp
+	Dim oPage     'Page on which to draw
+	Dim oShape    'Shape to insert
+	Dim oDoc
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/scalc", "_default", 0, Dummy())
+		oPage = oDoc.getDrawPages().getByIndex(0)
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,3000))
+		oShape.setSize(createSize(6000,2000))
+		oShape.setString("OOoMacro1")
+		'  
+		oShape.TextVerticalAdjust = com.sun.star.drawing.TextVerticalAdjust.TOP
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,6000))
+		oShape.setSize(createSize(6000,2000))
+		oShape.setString("OOoMacro2")
+		'  
+		oShape.TextVerticalAdjust = com.sun.star.drawing.TextVerticalAdjust.CENTER
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,9000))
+		oShape.setSize(createSize(6000,2000))
+		oShape.setString("OOoMacro3")
+		'  
+		oShape.TextVerticalAdjust = com.sun.star.drawing.TextVerticalAdjust.BOTTOM
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+		'
+		oPage.add(oShape)
+		oShape.setPosition(createPoint(3000,12000))
+		oShape.setSize(createSize(6000,2000))
+		oShape.setString("OOoMacro4")
+		'  
+		oShape.TextVerticalAdjust = com.sun.star.drawing.TextVerticalAdjust.BLOCK
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+</code></pre><br>
+
+
+<a name="OOoGSSP08c"><h6>GSSP-)<em>[General / Writer]</em>Text Box内の垂直位置</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/04Text/03TextVerticalAdjust03Writer.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShapeProp
+	Dim oPage     'Page on which to draw
+	Dim oShape    'Shape to insert
+	Dim oDoc
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_default", 0, Dummy())
+		oPage = oDoc.getDrawPage()
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			oPage.add(oShape)
+			oPositionShape( oShape, 1000, 1500,  3000, 1500 )
+			oShape.setString("OOoMacro1")
+		'  
+		oShape.TextVerticalAdjust = com.sun.star.drawing.TextVerticalAdjust.TOP
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			oPage.add(oShape)
+			oPositionShape( oShape, 1000, 3500,  3000, 1500 )
+			oShape.setString("OOoMacro2")
+		'  
+		oShape.TextVerticalAdjust = com.sun.star.drawing.TextVerticalAdjust.CENTER
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			oPage.add(oShape)
+			oPositionShape( oShape, 1000, 5500,  3000, 1500 )
+			oShape.setString("OOoMacro3")
+		'  
+		oShape.TextVerticalAdjust = com.sun.star.drawing.TextVerticalAdjust.BOTTOM
+		'
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			oPage.add(oShape)
+			oPositionShape( oShape, 1000, 7500,  3000, 1500 )
+			oShape.setString("OOoMacro4")
+		'  
+		oShape.TextVerticalAdjust = com.sun.star.drawing.TextVerticalAdjust.BLOCK
+End Sub
+'
+'
+Sub oPositionShape( oShape as Object, X as Integer, Y as Integer, Width as Integer, Height as Integer )
+     oShape.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PARAGRAPH
+
+     Dim oPos as new com.sun.star.awt.Point
+     oPos.X = X
+     oPos.Y = Y
+     oShape.setPosition( oPos )
+     Erase oPos
+ 
+     Dim oSize as new com.sun.star.awt.Size
+     oSize.Width = Width
+     oSize.Height = Height
+     oShape.setSize( oSize )
+     Erase oSize
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSSP09a"><h6>GSSP-)<em>[General / Draw]</em>CircleKind</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/06aCicleKind/01CircleKind01Draw.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShapeProp
+	Dim oPage     'Page on which to draw
+	Dim oShape    'Shape to insert
+	DIm oLocs
+	Dim oDoc
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_default", 0, Dummy())
+		'
+		oLocs = Array( _
+						com.sun.star.drawing.CircleKind.FULL, _
+						com.sun.star.drawing.CircleKind.SECTION, _
+						com.sun.star.drawing.CircleKind.CUT, _
+						com.sun.star.drawing.CircleKind.ARC, _
+						)
+		'
+		oPage = createDrawPage(oDOc, "Test Draw", True)
+		' 
+		for i = LBound(oLocs) to UBound(oLocs)
+			oShape = oDoc.createInstance("com.sun.star.drawing.EllipseShape")
+			oPage.add(oShape)
+			oShape.setPosition(CreatePoint((i+1)*2000, 1000))
+			oShape.setSize(CreateSize(1000, 700))
+			oShape.setString(i)
+			oShape.CircleStartAngle = 9000
+			oShape.CircleEndAngle = 36000
+			oShape.CircleKind = oLocs(i)
+		next i
+		oShape.RotateAngle = 3000
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+
+'[ Function 3 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages 'All of the draw pages
+	Dim oPage  'A single draw page
+	Dim i%     'General index variable
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+		'If we require a new page then delete the page and get out of the for loop.
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+			'Did not request a new page so return the found page and then get out of the function.
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+
+	'Did not find the page, or found the page and removed it. Create a new page, set the name, and return the page.
+	'	oPages.insertNewByIndex(oPages.getCount())
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+</code></pre><br>
+
+
+<a name="OOoGSSP09b"><h6>GSSP-)<em>[General / Calc]</em>CircleKind</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/06aCicleKind/01CircleKind02Calc.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShapeProp
+	Dim oPage     'Page on which to draw
+	Dim oShape    'Shape to insert
+	DIm oLocs
+	Dim oDoc
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/scalc", "_default", 0, Dummy())
+		'
+		oLocs = Array( _
+						com.sun.star.drawing.CircleKind.FULL, _
+						com.sun.star.drawing.CircleKind.SECTION, _
+						com.sun.star.drawing.CircleKind.CUT, _
+						com.sun.star.drawing.CircleKind.ARC, _
+						)
+		'
+		oPage = oDoc.getDrawPages().getByIndex(0)
+		' 
+		for i = LBound(oLocs) to UBound(oLocs)
+			oShape = oDoc.createInstance("com.sun.star.drawing.EllipseShape")
+			oPage.add(oShape)
+			oShape.setPosition(CreatePoint((i+1)*2000, 1000))
+			oShape.setSize(CreateSize(1000, 700))
+			oShape.setString(i)
+			oShape.CircleStartAngle = 9000
+			oShape.CircleEndAngle = 36000
+			oShape.CircleKind = oLocs(i)
+		next i
+		oShape.RotateAngle = 3000
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+</code></pre><br>
+
+
+
+<a name="OOoGSSP09c"><h6>GSSP-)<em>[General / Writer]</em>CircleKind</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/06aCicleKind/01CircleKind03Writer.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShapeProp
+	Dim oPage     'Page on which to draw
+	Dim oShape    'Shape to insert
+	Dim oCircle
+	DIm oLocs
+	Dim oDoc
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_default", 0, Dummy())
+		'
+		oLocs = Array( _
+						com.sun.star.drawing.CircleKind.FULL, _
+						com.sun.star.drawing.CircleKind.SECTION, _
+						com.sun.star.drawing.CircleKind.CUT, _
+						com.sun.star.drawing.CircleKind.ARC, _
+						)
+		'
+		oPage = oDoc.getDrawPage()
+		' 
+		for i = LBound(oLocs) to UBound(oLocs)
+			oShape = oDoc.createInstance("com.sun.star.drawing.EllipseShape")
+			oPage.add(oShape)
+			oPositionShape( oShape, 1000, 1500 + i*2000 ,  3000, 1500 )
+			oShape.setString(i)
+			oShape.CircleStartAngle = 9000
+			oShape.CircleEndAngle = 36000
+			oShape.CircleKind = oLocs(i)
+		next i
+		oShape.RotateAngle = 3000
+End Sub
+'
+'
+Sub oPositionShape( oShape as Object, X as Integer, Y as Integer, Width as Integer, Height as Integer )
+     oShape.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PARAGRAPH
+
+     Dim oPos as new com.sun.star.awt.Point
+     oPos.X = X
+     oPos.Y = Y
+     oShape.setPosition( oPos )
+     Erase oPos
+ 
+     Dim oSize as new com.sun.star.awt.Size
+     oSize.Width = Width
+     oSize.Height = Height
+     oShape.setSize( oSize )
+     Erase oSize
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSSP10c"><h6>GSSP-)<em>[General / Calc]</em>Shape反転(1)[ 水平/垂直 ]</h6></a><pre><code>
+<img src="OOoBasic_pic/01general3/Shape/10_Mirror/01cLineUnoObjMirror03.png" align="right" hspace="4" vspace="4" width="10%"><img src="OOoBasic_pic/01general3/Shape/10_Mirror/01cLineUnoObjMirror02.png" align="right" hspace="4" vspace="4" width="10%"><img src="OOoBasic_pic/01general3/Shape/10_Mirror/01cLineUnoObjMirror01.png" align="right" hspace="4" vspace="4" width="10%">
+Sub  MirrorObject()
+	Dim oDoc as Object, oCtrl as Object, oFrame
+	Dim oPage as object
+	Dim oLine as Object, oShape as Object
+	Dim oPosition As New com.sun.star.awt.Point
+	Dim oSize As New com.sun.star.awt.Size
+	Dim oDispatcher as Object
+  		oDoc = ThisComponent 
+  		oPage = oDoc.DrawPages().getByIndex(0)
+  		' Line Object
+  		oLine = oDoc.createInstance( "com.sun.star.drawing.LineShape" )
+  			oLine.LineColor = RGB( 255, 0, 0 )
+  			oLine.LineWidth = 100
+  		' Position
+			oPosition.X = 500
+  			oPosition.Y = 500
+  		oLine.setPosition(oPosition)
+  		' Size
+  			oSize.width = 2500
+  			oSize.height= 2500
+  		oLine.setSize(oSize)
+  	oPage.add( oLine )
+  	' 両端形状
+  		oLine.LineStartName = "Square"
+		oLine.LineStartWidth = 500
+		oLine.LineEndName = "Small Arrow"
+		oLine.LineEndWidth = 500
+	msgbox "Draw Line !!",0,"Initial"
+	'
+	' Selected Object
+    	oCtrl = oDoc.CurrentController()
+    	oCtrl.select(oLine)
+		'
+	' The Mirroring in the horizontal direction
+		oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		oDispatcher.executeDispatch( oFrame, ".uno:ObjectMirrorHorizontal", "", 0, Array())
+		msgbox "Horizontal",0,"Mirroring"
+		'
+		oDispatcher.executeDispatch( oFrame, ".uno:ObjectMirrorVertical", "", 0, Array())
+		msgbox "Vertical",0,"Mirroring"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSSP10c2"><h6>GSSP-)<em>[General / Calc]</em>Shape反転(2)[ 垂直方向のみ ]</h6></a><pre><code>
+<img src="OOoBasic_pic/01general3/Shape/10_Mirror/01cRactTextUnoObjMirror02.png" align="right" hspace="4" vspace="4" width="15%"><img src="OOoBasic_pic/01general3/Shape/10_Mirror/01cRactTextUnoObjMirror01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub MirrorObject()
+	Dim oDoc as Object, oCtrl as Object, oFrame
+	Dim oPage as Object
+	Dim oShape as Object
+	Dim oDispatcher as Object
+		oDoc = ThisComponent
+		oPage = oDoc.DrawPages().getByIndex(0)
+		' 四角形の中にTEXT
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+			oPage.add(oShape)
+ 			oShape.setPosition(createPoint(1000, 1000))
+			oShape.setSize(createSize(3000, 1000))
+			oShape.setString("LibreOffice")
+			'
+		' Selected Object
+    	oCtrl = oDoc.CurrentController()
+    	oCtrl.select(oShape)
+    	'
+		' The Mirroring in the horizontal direction
+		oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		wait 10
+		oDispatcher.executeDispatch( oFrame, ".uno:ObjectMirrorHorizontal", "", 0, Array())
+		msgbox "文字を記入している為" & Chr$(10) & "Horizontalの反転は不可",0,"Mirroring"
+		'
+		oDispatcher.executeDispatch( oFrame, ".uno:ObjectMirrorVertical", "", 0, Array())
+		msgbox "Verticalは文字も反転する" & Chr$(10) & "180°回転した結果と同じ",0,"Mirroring"
+End Sub
+'
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+'
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ ConnectorShape ]</p class="s3">
+<a name="OOoGSCS01a"><h6>GSCS-)<em>[General / Draw]</em>ConnectorShape</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/07ConnectorShape/01ConnectorShape01Draw.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShapeProp
+	Dim oPage
+	Dim oRectangleShape
+	Dim oShape    'Shape to insert
+	DIm oConnType
+	Dim oDoc
+	Dim Dummy()
+		On Error Goto oBad
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_default", 0, Dummy())
+		'
+		oConnType = Array( _
+						com.sun.star.drawing.ConnectorType.STANDARD, _
+						com.sun.star.drawing.ConnectorType.CURVE, _
+						com.sun.star.drawing.ConnectorType.LINE, _
+						com.sun.star.drawing.ConnectorType.LINES, _
+						)
+		'
+		oRectangleShape = Array( _
+						oDoc.CreateInstance("com.sun.star.drawing.RectangleShape"), _
+						oDoc.CreateInstance("com.sun.star.drawing.RectangleShape"), _
+						oDoc.CreateInstance("com.sun.star.drawing.RectangleShape"), _
+						oDoc.CreateInstance("com.sun.star.drawing.RectangleShape"), _
+						)
+		'
+		oPage = createDrawPage(oDoc, "Test Draw", True)
+		' Create RectAngle
+		for i = 0 to 3
+			oPage.add(oRectangleShape(i))
+			oRectangleShape(i).setSize(CreateSize(2400, 2000))
+		next i
+		oRectangleShape(0).setPosition(CreatePoint(3000, 7000)
+		oRectangleShape(1).setPosition(CreatePoint(8000, 4000)
+		oRectangleShape(2).setPosition(CreatePoint(14000, 5000)
+		oRectangleShape(3).setPosition(CreatePoint(8000, 9000)
+	'
+	' Set String and GluePoint
+		for i = 0 to 3
+			oRectangleShape(i).setString(i)
+			' Connect Line( Curve )
+			oShape = oDoc.createInstance("com.sun.star.drawing.ConnectorShape")
+			oPage.add(oShape)
+			oShape.StartShape = oRectangleShape(i)
+			oShape.LineWidth = 50
+			'Dash
+			oShape.LineStyle = com.sun.star.drawing.LineStyle.DASH
+    		Dim oDash1 as New com.sun.star.drawing.LineDash
+			Select Case i
+				case 0
+		   			With oDash1
+    					.Style = com.sun.star.drawing.DashStyle.RECT
+    					.Dots = 2
+    					.DotLen = 100
+    					.Dashes = 1    							
+    					.DashLen = 750
+    					.Distance = 100
+    				End With
+    				oShape.LineDash = oDash1
+					'
+					oShape.LineColor = RGB(255,0,0)
+					'
+					oShape.StartGluePointIndex = 0
+					oShape.EndShape = oRectangleShape(i+1)
+					oShape.EdgeKind = oConnType(i)
+					oShape.EndGluePointIndex = 0
+					'
+					oShape.LineStartName = "Arrow"
+					oShape.LineStartWidth = 500
+					oShape.LineEndName = "Square"
+					oShape.LineEndWidth = 500
+				case 1
+					With oDash1
+    					.Style = com.sun.star.drawing.DashStyle.ROUND
+    					.Dots = 1
+    					.DotLen = 100
+    					.Dashes = 1
+    					.DashLen = 750
+    					.Distance = 200
+    				End With
+    				oShape.LineDash = oDash1
+    				'
+					oShape.LineColor = RGB(0,255,0)
+					'
+					oShapeStartGluePointIndex = 1
+					oShape.EndShape = oRectangleShape(i+1)
+					oShape.EdgeKind = oConnType(i)
+					oShape.EndGluePointIndex = 4
+					'
+					oShape.LineStartName = "Small Arrow"
+					oShape.LineStartWidth = 500
+					oShape.LineEndName = "Double Arrow"
+					oShape.LineEndWidth = 500
+				case 2
+					With oDash1
+    					.Style = com.sun.star.drawing.DashStyle.ROUND
+    					.Dashes = 1
+    					.DashLen = 200
+    					.Distance = 200
+    				End With
+    				oShape.LineDash = oDash1
+    				'
+					oShape.LineColor = RGB(0,0,255)
+					'
+					oShape.StartGluePointIndex = 2
+					oShape.EndShape = oRectangleShape(i+1)
+					oShape.EdgeKind = oConnType(i)
+					oShape.EndGluePointIndex = 1
+					'
+					oShape.LineStartName = "Rounded short Arrow"
+					oShape.LineStartWidth = 500
+					oShape.LineEndName = "Line Arrow"
+					oShape.LineEndWidth = 500
+				case 3
+					With oDash1
+    					.Style = com.sun.star.drawing.DashStyle.RECT
+    					.Dots = 3
+    					.DotLen = 100
+    					.Dashes = 1
+    					.DashLen = 750
+    					.Distance = 100
+    				End With
+    				oShape.LineDash = oDash1
+    				'
+					oShape.LineColor = RGB(0,0,0)
+					'
+					oShape.StartGluePointIndex = 3
+					oShape.EndShape = oRectangleShape(0)
+					oShape.EdgeKind = oConnType(i)
+					oShape.EndGluePointIndex = 1
+					'
+					oShape.LineStartName = "Square 45"
+					oShape.LineStartWidth = 500
+					oShape.LineEndName = "Arrow concave"
+					oShape.LineEndWidth = 500
+			End Select
+		next i
+		Exit Sub
+	oBad:
+		Dim oErLine As Integer
+		Dim oErNum As Integer
+		Dim oErMsg As String
+			oErLine = Erl
+			oErNum = Err
+			oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+
+'[ Function 3 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages
+	Dim oPage
+	Dim i%
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+		'
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+</code></pre><br>
+
+<a name="OOoGSCS01b"><h6>GSCS-)<em>[General / Calc]</em>(未完成)ConnectorShape</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/07ConnectorShape/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+<a name="OOoGSCS01c"><h6>GSCS-)<em>[General / Writer]</em>(未完成)ConnectorShape</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/07ConnectorShape/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ GraphicObjectShape ]</p class="s3">
+<a name="OOoGSGOb01a"><h6>GSGOb-)<em>[General / Draw]</em>GraphicObjectShape</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/09GraphicObjectShape/01GraphicObjectShape01Draw.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oGraphicObj
+	Dim oDoc
+	Dim oPage As Object
+	Dim oGraphicObjectShape As Object
+	Dim oPoint As New com.sun.star.awt.Point
+	Dim oSize As New com.sun.star.awt.Size
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_blank", 0, Dummy())
+		oPage = oDoc.getdrawPages().getByIndex(0)
+		'
+		oPoint.x = 1000        
+		oPoint.y = 1000
+		oSize.Width = 10000
+		oSize.Height = 10000
+		' 
+		oGraphicObjectShape = oDoc.createInstance("com.sun.star.drawing.GraphicObjectShape")
+			oGraphicObjectShape.Size = oSize
+			oGraphicObjectShape.Position = oPoint
+		'
+			oGraphicObjectShape.GraphicURL = "file:///c:/temp/graph.jpg"
+			oGraphicObjectShape.AdjustBlue = -50
+			oGraphicObjectShape.AdjustGreen = 5
+			oGraphicObjectShape.AdjustBlue = 10
+			oGraphicObjectShape.AdjustContrast = 20
+			oGraphicObjectShape.AdjustLuminance = 50
+			oGraphicObjectShape.Transparency = 40
+			oGraphicObjectShape.GraphicColorMode = com.sun.star.drawing.ColorMode.STANDARD
+		'
+		oPage.add(oGraphicObjectShape)
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSGOb01b"><h6>GSGOb-)<em>[General / Calc]</em>GraphicObjectShape</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/09GraphicObjectShape/01GraphicObjectShape01Calc.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oGraphicObj()
+	Dim oDoc as Object
+	Dim oPage As Object
+	Dim oGraphicObjectShape As Object
+	Dim oPoint As New com.sun.star.awt.Point
+	Dim oSize As New com.sun.star.awt.Size
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/scalc", "_blank", 0, Dummy())
+		oPage = oDoc.getdrawPages().getByIndex(0)
+		'
+		oPoint.x = 1000        
+		oPoint.y = 1000
+		oSize.Width = 10000
+		oSize.Height = 10000
+		' 
+		oGraphicObjectShape = oDoc.createInstance("com.sun.star.drawing.GraphicObjectShape")
+			oGraphicObjectShape.Size = oSize
+			oGraphicObjectShape.Position = oPoint
+		'
+			oGraphicObjectShape.GraphicURL = "file:///c:/temp/graph.jpg"
+			oGraphicObjectShape.AdjustBlue = -50
+			oGraphicObjectShape.AdjustGreen = 5
+			oGraphicObjectShape.AdjustBlue = 10
+			oGraphicObjectShape.AdjustContrast = 20
+			oGraphicObjectShape.AdjustLuminance = 50
+			oGraphicObjectShape.Transparency = 40
+			oGraphicObjectShape.GraphicColorMode = com.sun.star.drawing.ColorMode.STANDARD
+		'
+		oPage.add(oGraphicObjectShape)
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSGOb01c"><h6>GSGOb-)<em>[General / Writer]</em>GraphicObjectShape</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/09GraphicObjectShape/01GraphicObjectShape01Writer.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oGraphicObj()
+	Dim oDoc as Object
+	Dim oPage As Object
+	Dim oGraphicObjectShape As Object
+	Dim oPosX as Integer, oPosY as Integer, oWidth as Integer, oHieght as Integer
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_blank", 0, Dummy())
+		oPage = oDoc.getDrawPage()
+		'
+		oPosX = 1000        
+		oPosY = 1000
+		oWidth = 10000
+		oHieght = 10000
+		' 
+		oGraphicObjectShape = oDoc.createInstance("com.sun.star.drawing.GraphicObjectShape")
+			'
+			oGraphicObjectShape.GraphicURL = "file:///c:/temp/graph.jpg"
+			oGraphicObjectShape.AdjustBlue = -50
+			oGraphicObjectShape.AdjustGreen = 5
+			oGraphicObjectShape.AdjustBlue = 10
+			oGraphicObjectShape.AdjustContrast = 20
+			oGraphicObjectShape.AdjustLuminance = 50
+			oGraphicObjectShape.Transparency = 40
+			oGraphicObjectShape.GraphicColorMode = com.sun.star.drawing.ColorMode.STANDARD
+			'
+		oPage.add(oGraphicObjectShape)
+		'
+		oPositionShape( oGraphicObjectShape, oPosX, oPosY,  oWidth, oHieght ) 
+End Sub
+'
+'
+Sub oPositionShape( oShape as Object, X as Integer, Y as Integer, Width as Integer, Height as Integer )
+     oShape.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PARAGRAPH
+	'
+     Dim oPos as new com.sun.star.awt.Point
+     	oPos.X = X
+     	oPos.Y = Y
+     	oShape.setPosition( oPos )
+     Erase oPos
+ 	'
+     Dim oSize as new com.sun.star.awt.Size
+     	oSize.Width = Width
+     	oSize.Height = Height
+     	oShape.setSize( oSize )
+     Erase oSize
+End Sub
+</code></pre><br>
+
+
+
+<br clear="right">
+<p class="s3">[ OLE Shape ]</p class="s3">
+<a name="OOoGSOLE1a"><h6>GSOLE-)<em>[General/Writer]</em>Writer Doc挿入</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/10OLE_Shape/01WriterOLE01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub oWriterShapeOLE
+  	Dim oDoc
+  	Dim oSelections
+  	Dim oSel
+  	Dim oObj
+  	Dim Dummy()
+  		On Error Goto oBad
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_blank", 0, Dummy())
+		oSelections =  oDoc.currentController().Selection
+		oSel = oSelections.getByIndex(0)
+		'
+  		oObj   = oDoc.createInstance("com.sun.star.text.TextEmbeddedObject")
+		'
+		oObj.CLSID = "8bc6b165-b1b2-4edd-aa47-dae2ee689dd6"
+		'
+		oObj.AnchorType = com.sun.star.text.TextContentAnchorType.AS_CHARACTER	
+		oObj.attach(oSel)
+		'
+		oObjModel = oObj.Model
+		'
+		oObjModel.getText().setString("OLE Embedded Writer")
+		Exit Sub
+	oBad:
+		Dim oErLine As Integer
+		Dim oErNum As Integer
+		Dim oErMsg As String
+			oErLine = Erl
+			oErNum = Err
+			oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+
+' CLSIDの値
+' 挿入するOLE Object（　Writer / Calc / Chart / Draw / Impress / Math )によって値が異なる
+' Writer	:	8bc6b165-b1b2-4edd-aa47-dae2ee689dd6	Service name => com.sun.star.text.TextDocument
+' Calc		:	47bbb4cb-ce4c-4e80-a591-42d9ae74950f	Service name => com.sun.star.sheet.SpreadsheetDocument
+' Chart		:	12dcae26-281f-416f-a234-c3086127382e	Service name => com.sun.star.chart.ChartDocument
+' Draw		:	4bab8970-8a3b-45b3-991c-cbeeac6bd5e3	Service name => com.sun.star.drawing.DrawingDocument
+' Impress	:	9176e48a-637a-4d1f-803b-99d9bfac1047	Service name => com.sun.star.presentation.PresentationDocument
+' Math		:	078b7aba-54fc-457f-8551-6147e776a997	Service name => com.sun.star.formula.FormulaProperties
+</code></pre><br>
+
+<a name="OOoGSOLE1b"><h6>GSOLE-)<em>[General/Writer]</em>Calc Doc挿入</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/10OLE_Shape/01WriterOLECalct01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub oWriterShapeOLE
+  	Dim oDoc
+  	Dim oText
+  	Dim oCur
+  	Dim oObj
+  	Dim Dummy()
+  		On Error Goto oBad
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_blank", 0, Dummy())
+		oText = oDoc.getText()
+		oCur = oText.createTextCursor()
+		'
+  		oObj   = oDoc.createInstance("com.sun.star.text.TextEmbeddedObject")
+		'
+		oObj.CLSID = "47bbb4cb-ce4c-4e80-a591-42d9ae74950f"
+		'
+		oObj.AnchorType = com.sun.star.text.TextContentAnchorType.AS_CHARACTER	
+		'
+		' Chart 枠size
+		oSize = CreateUnoStruct("com.sun.star.awt.Size")
+  			oSize.Width = 10000
+  			oSize.Height = 5000
+  		oObj.setSize(oSize)
+		'  
+  		 oText.insertTextContent(oCur, oObj, False) 
+		'
+		Dim oSpreadSheetDoc
+			oSpreadSheetDoc = oObj.getEmbeddedObject 
+			oSheets = oSpreadSheetDoc.getSheets 
+			oSheet = oSheets.getByIndex(0) 
+			oSheet.getCellByPosition(0, 0).String = "OLE Calc Document in Writer" 
+			oSheet.getCellByPosition(0, 1).Value = 10
+			oSheet.getCellByPosition(0, 2).Value = 20
+			oSheet.getCellByPosition(0, 3).Formula = "=A2+A3"
+		Exit Sub
+	oBad:
+		Dim oErLine As Integer
+		Dim oErNum As Integer
+		Dim oErMsg As String
+			oErLine = Erl
+			oErNum = Err
+			oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+
+' CLSIDの値
+' 挿入するOLE Object（　Writer / Calc / Chart / Draw / Impress / Math )によって値が異なる
+' Writer	:	8bc6b165-b1b2-4edd-aa47-dae2ee689dd6
+' Calc		:	47bbb4cb-ce4c-4e80-a591-42d9ae74950f
+' Chart		:	12dcae26-281f-416f-a234-c3086127382e
+' Draw		:	4bab8970-8a3b-45b3-991c-cbeeac6bd5e3
+' Impress	:	9176e48a-637a-4d1f-803b-99d9bfac1047
+' Math		:	078b7aba-54fc-457f-8551-6147e776a997
+</code></pre><br>
+
+<a name="OOoGSOLE1c"><h6>GSOLE-)<em>[General/Writer]</em>Chart挿入</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/10OLE_Shape/01WriterOLEChart01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub oWriterShapeOLE
+  	Dim oDoc
+  	Dim oText
+  	Dim oCur
+  	Dim oObj
+  	Dim Dummy()
+  		On Error Goto oBad
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_blank", 0, Dummy())
+		oText = oDoc.getText()
+		oCur = oText.createTextCursor()
+		'
+  		oObj   = oDoc.createInstance("com.sun.star.text.TextEmbeddedObject")
+		'
+		oObj.CLSID = "12dcae26-281f-416f-a234-c3086127382e"
+		'
+		oObj.AnchorType = com.sun.star.text.TextContentAnchorType.AS_CHARACTER	
+		'
+		' Chart 枠size
+		oSize = CreateUnoStruct("com.sun.star.awt.Size")
+  			oSize.Width = 10000
+  			oSize.Height = 10000
+  		oObj.setSize(oSize)
+		'  
+  		oText.insertTextContent(oText.getEnd, oObj,False)
+  		'
+  		oChart = oObj.Model
+  		oDiagram = oChart.createInstance("com.sun.star.chart.StackableDiagram")
+		'
+  		oChart.setDiagram(oDiagram)
+  		oDiagram = oChart.getDiagram()
+  		With oDiagram
+    		.Stacked = True
+    		.Percent = True
+    		.Vertical = True
+  		End With
+		'
+  		oChartData = oChart.getData()
+  			Dim oData(1,3) As Double
+  			' X Axis
+  				oData(0,0) = 100.0
+  				oData(0,1) = 50.0
+  				oData(0,2) = 25.0
+  				oData(0,3) = 12.5
+  			' Y Axis
+  				oData(1,0) = 100.0
+  				oData(1,1) = 50.0
+  				oData(1,2) = 25.0
+  				oData(1,3) = 12.5
+			'  			
+  				oChartData.setData(oData)
+  			'
+  			' Cellの位置を設定
+  				oChartData.setRowDescriptions(Array("Data 1", "Data 2"))
+  				oChartData.setColumnDescriptions(Array("A", "B", "C", "D"))
+			'
+  				oChart.HasMainTitle = True
+  				oTitle = oChart.Title
+  				oTitle.String = "OLE Chart in Writer" 
+		Exit Sub
+	oBad:
+		Dim oErLine As Integer
+		Dim oErNum As Integer
+		Dim oErMsg As String
+			oErLine = Erl
+			oErNum = Err
+			oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+
+' CLSIDの値
+' 挿入するOLE Object（　Writer / Calc / Chart / Draw / Impress / Math )によって値が異なる
+' Writer	:	8bc6b165-b1b2-4edd-aa47-dae2ee689dd6
+' Calc		:	47bbb4cb-ce4c-4e80-a591-42d9ae74950f
+' Chart		:	12dcae26-281f-416f-a234-c3086127382e
+' Draw		:	4bab8970-8a3b-45b3-991c-cbeeac6bd5e3
+' Impress	:	9176e48a-637a-4d1f-803b-99d9bfac1047
+' Math		:	078b7aba-54fc-457f-8551-6147e776a997
+</code></pre><br>
+
+
+<a name="OOoGSOLE1d"><h6>GSOLE-)<em>[General/Writer]</em>Draw Doc挿入</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/10OLE_Shape/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+<a name="OOoGSOLE1e"><h6>GSOLE-)<em>[General/Writer]</em>Impress Doc挿入</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/10OLE_Shape/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br><br>
+<a name="OOoGSOLE1f"><h6>GSOLE-)<em>[General/Writer]</em>Math Doc挿入</h6></a><pre><code>
+<img SRC="OOoBasic_pic/01general3/Shape/10OLE_Shape/01WriterOLEMath01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub oWriterShapeOLE
+  	Dim oDoc
+  	Dim oText
+  	Dim oCur
+  	Dim oObj
+  	Dim Dummy()
+  		On Error Goto oBad
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/swriter", "_blank", 0, Dummy())
+		oText = oDoc.getText()
+		oCur = oText.createTextCursor()
+		'
+  		oObj   = oDoc.createInstance("com.sun.star.text.TextEmbeddedObject")
+		'
+		oObj.CLSID = "078b7aba-54fc-457f-8551-6147e776a997"
+		'
+		oObj.AnchorType = com.sun.star.text.TextContentAnchorType.AS_CHARACTER	
+		'
+		oText.insertTextContent(oCur, oObj, true)
+  		oObj.EmbeddedObject.Formula = "{1}over{2}" 
+		Exit Sub
+	oBad:
+		Dim oErLine As Integer
+		Dim oErNum As Integer
+		Dim oErMsg As String
+			oErLine = Erl
+			oErNum = Err
+			oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+
+' CLSIDの値
+' 挿入するOLE Object（　Writer / Calc / Chart / Draw / Impress / Math )によって値が異なる
+' Writer	:	8bc6b165-b1b2-4edd-aa47-dae2ee689dd6
+' Calc		:	47bbb4cb-ce4c-4e80-a591-42d9ae74950f
+' Chart		:	12dcae26-281f-416f-a234-c3086127382e
+' Draw		:	4bab8970-8a3b-45b3-991c-cbeeac6bd5e3
+' Impress	:	9176e48a-637a-4d1f-803b-99d9bfac1047
+' Math		:	078b7aba-54fc-457f-8551-6147e776a997
+</code></pre><br>
+
+
+<a name="OOoGSOLE02a"><h6>GSOLE-)<em>[General]</em>OLE Objectを挿入Dialog表示</h6></a><pre><code>
+<img src="OOoBasic_pic/01general3/Shape/10OLE_Shape/02aUnoInsertObject01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub InstOleObjDialog()
+	Dim oDoc as Object, oCtrl as Object, oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		oDispatcher.executeDispatch(oFrame, ".uno:InsertObject", "", 0, Array())
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSOLE"><h6>GSOLE-)<em>[General]</em></h6></a><pre><code>
+<img src="OOoBasic_pic/01general3/Shape/10OLE_Shape/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+<br clear="right">
+<p class="s3">[ Anchor ]</p class="s3">
+<p class="s4">{{ Writer }}</p class="s4">
+<a name="OOoGSAhWr"><h6>GSAhWr-)<em>[General / Writer ]</em></h6></a><pre><code>
+<img src="OOoBasic_pic/01general3/Shape/11Anchor/01Writer/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+
+<br clear="right">
+<p class="s4">{{ Calc }}</p class="s4">
+<a name="OOoGSAhCa01a"><h6>GSAhWr-)<em>[General / Calc ]</em>AnchorをCellに設定(1)</h6></a><pre><code>
+<img src="OOoBasic_pic/01general3/Shape/11Anchor/02Calc/01aUnoSetAnchorToCell01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShapeAnchor()
+	Dim oDoc as Object, oCtrl as Object, oFrame
+	Dim oDrawP as Object
+	Dim oShape as Object
+	Dim oDispatcher as Object
+		oDoc = ThisComponent
+		oDrawP = oDoc.getDrawPages().getByIndex(0)
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+	' Position
+		oPoint = oShape.Position
+			oPoint.X = 1000
+			oPoint.Y = 1000
+		oShape.Position = oPoint
+    ' Size
+    	oSize = oShape.Size
+    		oSize.Height = 1200		' unit : 1/100mm
+    		oSize.Width =  1500		' unit : 1/100mm
+    	oShape.Size = oSize
+    oDrawP.add(oShape)
+    '
+    ' 作成したShapeを選択状態にする
+    	oCtrl = oDoc.CurrentController()
+    	oCtrl.select(oShape)
+    	'
+    ' AnchorをCell に設定
+    	oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		oDispatcher.executeDispatch( oFrame, ".uno:SetAnchorToCell", "", 0, Array())
+		'
+	' Anchor 
+		oCtrl.ShowAnchor = true
+    msgbox "Anchorを Cell に設定" 
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSAhCa01b"><h6>GSAhWr-)<em>[General / Calc ]</em>AnchorをCellに設定(2)</h6></a><pre><code>
+<img src="OOoBasic_pic/01general3/Shape/11Anchor/02Calc/01bSetAnchorToCell01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub oDShapeAnchor()
+	Dim oDoc as Object, oCtrl as Object
+	Dim oDrawP as Object
+	Dim oShape as Object
+	Dim oObj as Object
+	Dim oObjAnchor as Object
+		oDoc = ThisComponent
+		oDrawP = oDoc.getDrawPages().getByIndex(0)
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+	' Position
+		oPoint = oShape.Position
+			oPoint.X = 1000
+			oPoint.Y = 1000
+		oShape.Position = oPoint
+    ' Size
+    	oSize = oShape.Size
+    		oSize.Height = 1200		' unit : 1/100mm
+    		oSize.Width =  1500		' unit : 1/100mm
+    	oShape.Size = oSize
+    oDrawP.add(oShape)
+    '
+    ' Anchorを　B3 Cell に設定( Shapeを移動させて設定 )
+    	oObjAnchor = oShape.Anchor
+    	with oShape
+    		.Anchor = oObjAnchor.getCellRangeByName("B3")
+    	end with
+		'
+	' Dispay Anchor
+		oCtrl = oDoc.getCurrentController()	
+		oCtrl.ShowAnchor = true
+		oCtrl.select(oShape)
+		'
+	' AnchorがCellにあるかCheck → Cellに設定後 Anchor Objectを取得する必要がある
+		oChk = oDrawP.getByindex(0).Anchor
+		if oChk.supportsService("com.sun.star.sheet.SheetCell") then
+    		oDisp = "Anchorを Cell に設定 → 成功"
+    	else
+    		oDisp = "Anchorを Cell に設定 → 失敗"
+    	end if
+    	msgbox oDisp,0,"Shape Anchor"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSAhCa02a"><h6>GSAhWr-)<em>[General / Calc ]</em>AnchorをPageに設定[Default値]</h6></a><pre><code>
+<img src="OOoBasic_pic/01general3/Shape/11Anchor/02Calc/02aUnoSetAnchorToPage01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDShapeAnchor()
+	Dim oDoc as Object, oCtrl as Object, oFrame
+	Dim oDrawP as Object
+	Dim oShape as Object
+	Dim oDispatcher as Object
+		oDoc = ThisComponent
+		oDrawP = oDoc.getDrawPages().getByIndex(0)
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+	' Position
+		oPoint = oShape.Position
+			oPoint.X = 1000
+			oPoint.Y = 1000
+		oShape.Position = oPoint
+    ' Size
+    	oSize = oShape.Size
+    		oSize.Height = 1200		' unit : 1/100mm
+    		oSize.Width =  1500		' unit : 1/100mm
+    	oShape.Size = oSize
+    oDrawP.add(oShape)
+    '
+    ' 作成したShapeを選択状態にする
+    	oCtrl = oDoc.CurrentController()
+    	oCtrl.select(oShape)
+    	'
+    ' AnchorをCell に設定
+    	oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		oDispatcher.executeDispatch( oFrame, ".uno:SetAnchorToCell", "", 0, Array())
+		'
+	' Anchor 
+		oCtrl.ShowAnchor = true
+    msgbox "Anchorを Cell に設定",0,"Shape Anchor"
+    '
+    ' Anchorを Page に設定
+    	oDispatcher.executeDispatch( oFrame, ".uno:SetAnchorToPage", "", 0, Array())
+    msgbox "Anchorを Page に設定",0,"Shape Anchor"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSAhCa02b"><h6>GSAhWr-)<em>[General / Calc ]</em>AnchorをPageに設定(2)[Default値]</h6></a><pre><code>
+<img src="OOoBasic_pic/01general3/Shape/11Anchor/02Calc/02bSetAnchorToPage01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub oDShapeAnchor()
+	Dim oDoc as Object, oCtrl as Object
+	Dim oDrawP as Object
+	Dim oShape as Object
+	Dim oObj as Object
+	Dim oObjAnchor as Object
+		oDoc = ThisComponent
+		oDrawP = oDoc.getDrawPages().getByIndex(0)
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+	' Position
+		oPoint = oShape.Position
+			oPoint.X = 1000
+			oPoint.Y = 2000
+		oShape.Position = oPoint
+    ' Size
+    	oSize = oShape.Size
+    		oSize.Height = 1200		' unit : 1/100mm
+    		oSize.Width =  1500		' unit : 1/100mm
+    	oShape.Size = oSize
+    oDrawP.add(oShape)
+    '
+    ' AnchorをCurrnt PositionにてPageに設定
+    	oObjAnchor = oShape.Anchor
+    	with oShape
+    		.Anchor = oObjAnchor.getSpreadsheet()
+  			.HoriOrientPosition = oShape.HoriOrientPosition + oObjAnchor.Position.X
+   			.VertOrientPosition = oShape.VertOrientPosition + oObjAnchor.Position.Y
+    	end with
+		'
+	' Dispay Anchor
+		oCtrl = oDoc.getCurrentController()	
+		oCtrl.ShowAnchor = true
+		oCtrl.select(oShape)
+		'
+	' AnchorがPageにあるかCheck → Cellに設定後 Anchor Objectを取得する必要がある
+		oChk = oDrawP.getByindex(0).Anchor
+		if oChk.supportsService("com.sun.star.sheet.Spreadsheet") then
+    		oDisp = "Anchorを Page に設定 → 成功"
+    	else
+    		oDisp = "Anchorを Page に設定 → 失敗"
+    	end if
+    	msgbox oDisp,0,"Shape Anchor"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoGSAhCa"><h6>GSAhWr-)<em>[General / Calc ]</em></h6></a><pre><code>
+<img src="OOoBasic_pic/01general3/Shape/11Anchor/02Calc/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+<br clear="right">
+<center><h6><a href="#TopOfPage">Top of Page</a></h6></center><BR>
+
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/OOoBasic_General4.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:16:42 GMT -->
+</html>

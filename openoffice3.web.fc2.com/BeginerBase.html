@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/BeginerBase.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:08:37 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<html lang="ja">
+	<title>初心者Memo / Base</title>
+	
+	<SCRIPT language="JavaScript">
+		<!--
+			renew = new Date(document.lastModified);
+			y=renew.getYear();
+			m=renew.getMonth() + 1;
+			d=renew.getDate();
+			if(y<1900) {y=y+1900;}
+				oDate="更新日："+y+"/"+m+"/"+d;
+			document.write(oDate);
+		//-->
+	</SCRIPT>
+	
+</head>
+<link rel="stylesheet"
+type="text/css" href="css_new_beginer.css">
+
+<body>
+<a name="TopOfPage"><left><p><A HREF="index-2.html">Home of site</a></p></left></a><br>
+<h1>初心者Memo / Base</h1>
+<br><br>
+
+
+<ul>
+<em1>Database(以後DB)について</em1><br>
+BaseはAccessの様にDB一体型Softでは無く好きなDBとConnectする事が可能です。<br>
+標準DBは組み込みのHSQLDBですがMySQL、Oracle、PostgreSQL、等の使用も可能です。<br>
+<br>
+
+<em1>他のDBのTable DataのImportについて</em1><br>
+<img SRC="beginer/03Base/01ImportMSAccess.png" align="right" hspace="4" vspace="4" width="30%">
+Baseは自前のDBを持っておらず、<br>
+<em2>「実際には既存のデータベースへのリンク」</em2><br>
+です。従って、MS-ACCESSのTbale DataをImportする場合は最初に「新規データベースの作成」では無く<em>「既存のデータベースに接続」で「MS-ACCESS」を選択</em>して保存します。<br>
+これでMS-ACCESSのTable DataはImportできます。<br>
+別の「MS-ACCESS」 FileのDataと接続したい場合は、「テーブル」画面で<br>
+「右クリック」=>「データベース」=>「プロパティ」<br>
+にて右図Dialogが表示されるので変更するMS-ACCESS Fileを選択します。<br>
+
+<br>
+
+<em1>SQL文</em1><br>
+BaseのSQL文はDB依存です。つまり使用DBによってSQL文は変わります。<br>
+HSQLDBは、ANSI標準SQL（+α）。<br>
+《例》<br>
+SELECT '1月売上' AS "雪別売上名", SUM("単価" * "注文中の数") AS "売上" FROM "納品" AS "売上"<br>
+<br>
+
+<em1>SQL文の実行</em1><br>
+<img SRC="beginer/03Base/02SQL_Execute01.png" align="right" hspace="4" vspace="4" width="30%">
+「ツール」「SQL」「SQLステートメントの実行」DialogにSQLを記述して実行します。<br>
+SQLにて新規にTableを追加した場合は<br>
+「SQLステートメントの実行」Dialogを閉じて、「表示」=>「テーブルの更新」を実行する必要があります。<br>
+<br><br><br><br><br><br>
+
+
+<em1>日付型Dataの抽出</em1><br>
+<img SRC="beginer/03Base/03DataType01.png" align="right" hspace="4" vspace="4" width="25%">
+「日付」型Dataは「#」で囲みます。<br>
+2010/04/01以前の場合<br>
+> #2010/04/01#<br>
+<br><br><br><br><br><br><br><br>
+
+<em1>Between演算子</em1><br>
+<img SRC="beginer/03Base/04Betwwen01.png" align="right" hspace="4" vspace="4" width="25%">
+2009/04/01から2010/04/01の間のDATA<br>
+BETWEEN #2009/04/01# AND #2010/04/01#<br>
+<br><br><br><br><br><br>
+</ul>
+<br>
+
+
+<center><p><a href="#TopOfPage">Top of Page</a></p></center><BR>
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/BeginerBase.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:08:42 GMT -->
+</html>

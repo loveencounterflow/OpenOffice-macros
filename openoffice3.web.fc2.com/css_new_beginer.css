@@ -1,0 +1,13 @@
+body { background: url(bg025.gif); }
+h1 { font-family: 'Times New Roman'; font-size: 30pt; color: green; text-align: center; line-height: 15pt; font-weight: bold;}
+h2 { font-family: 'Vernada',sans-serif; font-size: 25pt; color: blue; text-align: left; font-weight: bold; margin: 0px 50px 0px 50px;}
+h3 { font-family: 'Vernada',sans-serif; font-size: 16pt; color: purple; text-align: center; font-weight: bold;}
+h4 { font-family: 'Vernada',sans-serif; font-size: 16pt; color: black; text-align: left; font-weight: bold;}
+h5 { font-family: 'Vernada',sans-serif; font-size: 20pt; color: black; text-align: left; font-weight: bold;}
+p { font-family: 'Vernada',sans-serif; font-size: 20pt; color : black; text-aline: left; margin: 0px 50px 0px 40px; line-height: 20pt; letter-space: 10px;}
+p1 { font-family: 'Vernada',sans-serif; font-size: 16pt; color : black; text-aline: left; line-height: 16pt; letter-space: 10px;}
+ul { font-family: 'Vernada',sans-serif; font-size: 16pt; color:black; text-aline: left; font-weight: Normal; line-height: 30pt; margin-Left: 150px;}
+em { font-family: 'Vernada',sans-serif; font-style: normal; font-weight: bold; color: black; }
+em1 { font-family: 'Vernada',sans-serif; font-weight: bold; font-size: 20pt;}
+em2 { font-family: 'Vernada',sans-serif; font-style: normal; font-weight: bold; color:red; }
+a{ text-decoration:none; border-bottom :1px solid;}

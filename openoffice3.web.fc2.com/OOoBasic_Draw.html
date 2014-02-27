@@ -1,0 +1,1502 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/OOoBasic_Draw.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:31:04 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<SCRIPT language="JavaScript">
+		<!--
+			renew = new Date(document.lastModified);
+			y=renew.getYear();
+			m=renew.getMonth() + 1;
+			d=renew.getDate();
+			if(y<1900) {y=y+1900;}
+				oDate="更新日："+y+"/"+m+"/"+d;
+			document.write(oDate);
+		//-->
+	</SCRIPT>
+	
+	<title>Macroの杜(OpenOffice.org/LibreOffice Basic編) Draw</title>
+</head>
+<link rel="stylesheet"
+type="text/css" href="css_macro_Basic.css">
+
+<body>
+<a name="TopOfPage"><left><p><A HREF="index-2.html">Home of site</a></p></left></a><br>
+<h1>Macroの杜<br>
+(OpenOffice.org/LibreOffice Basic編)</h1>
+
+<h2>Draw( 図形描画 )</h2>
+<br>
+
+<h3><Center>**********************【 Index 】**********************</center></h3>
+
+<p class="s1">File</p class="s1">
+<ul>
+DF-1)<a href="#OOoDF1"><em>[Draw]</em>新規Draw fileの開閉(保存確認無し)</a><br>
+DF-2)<a href="#OOoDFA"><em>[Draw]</em>新規Draw fileの開閉(保存確認有り)</a><br>
+</ul>
+<br>
+
+<p class="s1">Page</p class="s1">
+<p class="s3">[ DrawPage ]</p class="s3">
+<ul>
+DP-1)<a href="#OOoDP1"><em>[Draw]</em>DrawPage追加</a><br>
+DP-2)<a href="#OOoDP2"><em>[Draw]</em>DrawPage削除</a><br>
+DP-3)<a href="#OOoDP3"><em>[Draw]</em>DrawPage名の取得</a><br>
+DP-)<a href="#OOoDP3b"><em>[Draw]</em>DrawPage名の設定</a><br>
+DP-4)<a href="#OOoDP4"><em>[Draw]</em>DrawPage総数を取得</a><br>
+DP-)<a href="#OOoDP5"><em>[Draw]</em>上下左右余白値取得<em>[ com.sun.star.drawing.GenericDrawPage ]</em></a><br>
+DP-)<a href="#OOoDP6"><em>[Draw]</em>Page Size取得</a><br>
+DP-)<a href="#OOoDP"><em>[Draw]</em></a><br>
+DP-)<a href="#OOoDP"><em>[Draw]</em></a><br>
+</ul>
+<br>
+
+<p class="s3">[ MasterPage ]</p class="s3">
+<ul>
+DPm-)<a href="#OOoDPm1"><em>[Draw]</em>MasterPage</a><br>
+</ul>
+<br>
+
+<p class="s1">Shape</p class="s1">
+<ul>
+DS-)<a href="#OOoDS01"><em>[Draw]</em>Line</a><br>
+DS-)<a href="#OOoDS02"><em>[Draw]</em>Group化</a><br>
+DS-)<a href="#OOoDS03"><em>[Draw]</em>EllipseShape</a><br>
+</ul>
+<br>
+
+<p class="s1">Form<em>[ com.sun.star.drawing.ControlShape ]</em></p class="s1">
+<ul>
+DFm-)<a href="#OOoDFm01"><em>[Draw]</em>ComboBox作成<em>[ com.sun.star.form.component.ComboBox ]</em></a><br>
+DFm-)<a href="#OOoDFm01b"><em>[Draw]</em>ComboBox値作成1<em>[ com.sun.star.form.component.ComboBox ]</em></a><br>
+DFm-)<a href="#OOoDFm01c"><em>[Draw]</em>ComboBox値作成2<em>[ com.sun.star.form.component.ComboBox ]</em></a><br>
+DFm-)<a href="#OOoDFm02"><em>[Draw]</em>ListBox(複数選択可)作成<em>[ com.sun.star.form.component.ListBox ]</em></a><br>
+DFm-)<a href="#OOoDFm02b"><em>[Draw]</em>ListBox値取得1<em>[ com.sun.star.form.component.ListBox ]</em></a><br>
+DFm-)<a href="#OOoDFm02c"><em>[Draw]</em>ListBox値取得2<em>[ com.sun.star.form.component.ListBox ]</em></a><br>
+DFm-)<a href="#OOoDFm03"><em>[Draw]</em>CheckBox作成<em>[ com.sun.star.form.component.CheckBox ]</em></a><br>
+DFm-)<a href="#OOoDFm03b"><em>[Draw]</em>CheckBox値取得<em>[ com.sun.star.form.component.CheckBox ]</em></a><br>
+DFm-)<a href="#OOoDFm04"><em>[Draw]</em>RadioButton<em>[ com.sun.star.form.component.RadioButton ]</em></a><br>
+DFm-)<a href="#OOoDFm05"><em>[Draw]</em>GroupBox(RadioButton)作成<em>[ com.sun.star.form.component.GroupBox ]</em></a><br>
+DFm-)<a href="#OOoDFm05b"><em>[Draw]</em>GroupBox(RadioButton)値取得<em>[ com.sun.star.form.component.GroupBox ]</em></a><br>
+</ul>
+<br>
+
+
+<p class="s1">Export</p class="s1">
+<ul>
+DE-1)<a href="#OOoDE1"><em>[Draw]</em>各PageをJpeg形式でExport(XDrawPageSupplier)</a><br>
+</ul>
+<br>
+
+
+
+<br><br><br><br><br><br><br><br><br><br>
+<h3><Center>**********************【 Macro Code 】**********************</center></h3>
+
+<p class="s1">File</p class="s1">
+<a name="OOoDF1"><h6>DF-1)<em>[Draw]</em>新規Draw fileの開閉(保存確認無し)</h6></a><pre><code>
+Sub oDrawOpen
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_blank", 0, Dummy())
+		oAns = Msgbox("ファイルを閉じますか?",4, "File Close確認")
+		if oAns = 6 then
+			oDoc.dispose
+		End if
+End Sub</code></pre><br>
+
+<a name="OOoDFA"><h6>DF-2)<em>[Draw]</em>新規Draw fileの開閉(保存確認有り)</h6></a><pre><code>
+Sub oDrawOpen_Save
+	Dim Dummy() 
+		oDoc = StarDesktop.loadComponentFromURL( "private:factory/sdraw", "_blank", 0, Dummy())
+ 		oAns = Msgbox("fileを保存しますか?",4, "File Save確認")
+ 		 if oAns = 6 then
+ 		 	oInp = InputBox("Full pathでFile nameを入力して下さい(例 ： C:\temp\test.odg)","保存File nameの入力")
+ 		 	If NOT IsNull(oInp) then
+ 		 		oDName = ConvertToUrl(oInp) 
+ 		 		oDoc.storeAsURL(oDName, Dummy())
+ 		 	End If
+		End If
+		oAnsC = MsgBox("Fileを閉じますか?",4,"Fileの終了確認")	
+ 		 If oAnsC = 6 then
+ 		 		oDoc.dispose
+ 		 End If
+End Sub
+</code></pre><br>
+
+<p class="s1">Page</p class="s1">
+<p class="s3">[ DrawPage ]</p class="s3">
+<a name="OOoDP1"><h6>DP-1)<em>[Draw]</em>Page追加</h6></a><pre><code>
+Sub oAddPage
+	Dim Dummy()
+		oName = "C:\temp\oMacro_test(Draw).odg"
+		oDraw_file = ConvertToUrl(oName)
+		oDoc = StarDesktop.loadComponentFromURL(oDraw_file, "_blank", 0, Dummy()) 
+		oDrawPages = oDoc.getDrawPages()
+		oDrawPages.InsertNewByIndex(0) 
+End Sub
+</code></pre><br>
+
+<a name="OOoDP2"><h6>DP-2)<em>[Draw]</em>Page削除</h6></a><pre><code>
+Sub oRemovePage
+	Dim Dummy()
+		oName = "C:\temp\oMacro_test(Draw).odg"
+		oDraw_file = ConvertToUrl(oName)
+		oDoc = StarDesktop.loadComponentFromURL(oDraw_file, "_blank", 0, Dummy()) 
+		oPages = oDoc.getDrawPages()
+		if oPages.getcount() >= 2 then
+			oDrawPage = oPages.getByIndex(1)
+			oPName = oPages.remove(oDrawPage)
+		else
+			Msgbox("削除するPageがありません。")
+			Exit Sub
+		End If
+End Sub
+</code></pre><br>
+
+<a name="OOoDP3"><h6>DP-3)<em>[Draw]</em>Page名の取得</h6></a><pre><code>
+Sub oPageName
+	Dim Dummy()
+		oName = "C:\temp\oMacro_test(Draw).odg"
+		oDraw_file = ConvertToUrl(oName)
+		oDoc = StarDesktop.loadComponentFromURL(oDraw_file, "_blank", 0, Dummy()) 
+		oDrawPage = oDoc.getDrawPages().getByIndex(1)
+		oPName = oDrawPage.Name
+		print oPName
+End Sub
+</code></pre><br>
+
+<a name="OOoDP3b"><h6>DP-3)<em>[Draw]</em>DrawPage名の設定</h6></a><pre><code>
+Sub oSetPageName
+	Dim Dummy()
+		oName = "C:\temp\Macro_draw.odg"
+		oDraw_file = ConvertToUrl(oName)
+		oDoc = StarDesktop.loadComponentFromURL(oDraw_file, "_blank", 0, Dummy()) 
+		oDrawPage = oDoc.getDrawPages().getByIndex(1)
+		oSetName = oDrawPage.setName("macro Page 2")
+		'Confirm
+		oPName = oDrawPage.Name
+		print oPName
+End Sub
+</code></pre><br>
+
+<a name="OOoDP4"><h6>DP-)<em>[Draw]</em>Page総数を取得</h6></a><pre><code>
+Sub oCountPage
+	Dim Dummy()
+		oName = "C:\temp\oMacro_test(Draw).odg"
+		oDraw_file = ConvertToUrl(oName)
+		oDoc = StarDesktop.loadComponentFromURL(oDraw_file, "_blank", 0, Dummy()) 
+		oNum_pages = oDoc.getDrawPages().getcount() 
+		Print oNum_pages + "Pages"
+End Sub
+</code></pre><br>
+
+<a name="OOoDP5"><h6>DP-)<em>[Draw]</em>上下左右余白値取</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/05draw/01page/02pagemargin01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDraw
+	Dim oDoc
+	Dim oDrawP
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_blank", 0, Dummy()) 
+		oDrawP = oDoc.getDrawPages().getByIndex(0)
+			oBT = oDrawP.BorderTop /100			' unit : 1/100mm
+			oBB = oDrawP.BorderBottom /100			' unit : 1/100mm
+			oBL = oDrawP.BorderLeft /100			' unit : 1/100mm
+			oBR = oDrawP.BorderRight /100			' unit : 1/100mm
+		oDisp = "上部余白　：　" & oBT & " mm " & Chr$(10) & _
+					"下部余白　：　" & oBB & " mm "  & Chr$(10) & _
+					"左部余白　：　" & oBL & " mm "  & Chr$(10) & _
+					"右部余白　：　" & oBR & " mm " 
+		msgbox(oDisp, 0, "Draw Page")
+End Sub
+</code></pre><br>
+
+<a name="OOoDP6"><h6>DP-)<em>[Draw]</em>Page Size取得</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/05draw/01page/01pagesize01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDwPage
+	Dim oDoc
+	Dim oDrawPage
+	Dim oPageH
+	Dim oPageW
+	DIm oDummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_blank", 0, oDummy())
+		oDrawPage = oDoc.getDrawPages().getByIndex(0)
+	'Get Size
+		oPageH = oDrawPage.Height /100		' unit : 1/100 mm
+		oPageW = oDrawPage.Width /100		' unit : 1/100 mm
+			oDisp = "[ Page Size ]" & Chr$(10) & _
+					"Height = " & oPageH & " mm" & Chr$(10) & _
+					"Width = " & oPageW & " mm"
+	'Display
+		Msgbox(oDisp,0,"Draw Page")
+End Sub
+</code></pre><br>
+
+<a name="OOoDP"><h6>DP-)<em>[Draw]</em></h6></a><pre><code>
+
+</code></pre><br>
+
+
+<p class="s3">[ MasterPage ]</p class="s3">
+<a name="OOoDPm1"><h6>DPm-)<em>[Draw]</em>MasterPage</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/05draw/02masterpage/01masterpageName01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oDraw
+	Dim oDoc
+	Dim oDisp
+	Dim oMpages
+	Dim oMaster
+	Dim oMasterName
+	Dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_blank", 0, Dummy()) 
+		oMpages = oDoc.getMasterPages()
+		oP = oMpages.getCount()-1
+		oDisp = " [ MasterPage ]" & Chr$(10)
+		for i = 0 to oP
+			oMaster = oMpages.getByIndex(i)
+			If oMaster.supportsService("com.sun.star.drawing.MasterPage") then
+				oMasterName = oMaster.getName()
+				oDisp = oDisp & "MasterPage番号 =　" & i & Chr$(10) _
+						& "   Name　:  " & oMasterName()
+			End If
+			oDisp = oDisp & Chr$(10)
+		next i
+		msgbox(oDisp, 0, "[ Master Page ] ") 
+End Sub
+</code></pre><br>
+
+
+
+<p class="s1">Shape</p class="s1">
+<a name="OOoDS01"><h6>DS-1)<em>[Draw]</em>Line</h6></a><pre><code>
+Sub oDrawShape
+	Dim oDoc
+	Dim oDrawP
+	Dim oShape
+		oDoc = ThisComponent
+		oDrawP = oDoc.getDrawPages().getByIndex(0)
+		n=20
+		for i = 0 to n
+			oShape = oDoc.createInstance("com.sun.star.drawing.LineShape")
+				oShape.LineColor = RGB( 255, 0, i*20 )
+				oShape.LineWidth = 20
+			oPoint = oShape.Position
+				oPoint.X = oDrawP.Width / 4
+    			oPoint.Y = i * oDrawP.Height / n / 4 + oDrawP.BorderTop
+    		oShape.Position = oPoint
+    		oSize = oShape.Size
+    			oSize.Height = (oDrawP.Height-2*i*oDrawP.Height / n) / 4
+    			oSize.Width = oDrawP.Width / 2
+    		oShape.Size = oSize
+    		oDrawP.add(oShape) 
+		next i 
+End Sub
+</code></pre><br>
+
+<a name="OOoDS02"><h6>DS-1)<em>[Draw]</em>Group化</h6></a><pre><code>
+Sub oDrawShape
+	Dim oDoc
+	Dim oDrawP
+	Dim oShape
+		oDoc = ThisComponent
+		oDrawP = oDoc.getDrawPages().getByIndex(0)
+		oGroup = createUnoService("com.sun.star.drawing.ShapeCollection")
+		n=20
+		for i = 0 to n
+			oShape = oDoc.createInstance("com.sun.star.drawing.LineShape")
+				oShape.LineColor = RGB( 255, 0, i*20 )
+				oShape.LineWidth = 20
+			oPoint = oShape.Position
+				oPoint.X = oDrawP.Width / 4
+    			oPoint.Y = i * oDrawP.Height / n / 4 + oDrawP.BorderTop
+    		oShape.Position = oPoint
+    		oSize = oShape.Size
+    			oSize.Height = (oDrawP.Height-2*i*oDrawP.Height / n) / 4
+    			oSize.Width = oDrawP.Width / 2
+    		oShape.Size = oSize
+    		oDrawP.add(oShape)
+    		oGroup.add(oShape)
+		next i 
+		oG = oDrawP.group(oGroup)		
+End Sub
+</code></pre><br>
+
+<a name="OOoDS03"><h6>DS-1)<em>[Draw]</em>EllipseShape</h6></a><pre><code>
+Sub oDrawShape
+	Dim oDoc
+	Dim oDrawP
+	Dim oShape
+		Globalscope.BasicLibraries.LoadLibrary( "MRILib" )
+			oDoc = ThisComponent
+			oDrawP = oDoc.getDrawPages().getByIndex(0)
+			oShape = oDoc.createInstance("com.sun.star.drawing.EllipseShape")
+			' Position
+				oPoint = oShape.Position
+					oPoint.X = oDrawP.Width / 4
+					oPoint.Y = oDrawP.Height / 4 + oDrawP.BorderTop
+				oShape.Position = oPoint
+    		' Size
+    			oSize = oShape.Size
+    				oSize.Height = 2000		' unit : 1/100mm
+    				oSize.Width =  2000		' unit : 1/100mm
+    			oShape.Size = oSize
+    		oDrawP.add(oShape) 
+End Sub
+</code></pre><br>
+
+
+
+<p class="s1">Form</p class="s1">
+<a name="OOoDFm01"><h6>DFm-)<em>[Draw]</em>ComboBox作成</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/05draw/04Form/01ControlShapeComboBox01Draw.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oControlShape
+	Dim oDoc
+	Dim Dummy()
+	Dim oPage
+	Dim oShape
+	Dim oForm
+	Dim oControlModel
+	Dim oList(5)
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_blank", 0, Dummy())
+		'
+		oPage = createDrawPage(oDoc, "Test Draw", True)
+		'
+		oShape = oDoc.createInstance("com.sun.star.drawing.ControlShape")
+		oShape.Position = createPoint(2000,2000)
+		oShape.Size = createSize(2500, 800)
+		'
+		' List
+		oList(0) = "Zero"
+		oList(1) = "One"
+		oList(2) = "Two"
+		oList(3) = "Three"
+		oList(4) = "Four"
+		oList(5) = "Five"
+		'
+		' Combo Box
+		oControlModel = oDoc.createInstance("com.sun.star.form.component.ComboBox")
+		oControlModel.Name = "NumberSelection"
+		oControlModel.Text = "Zero"
+		oControlModel.Dropdown = True
+		oControlModel.StringItemList = oList()
+		'
+		oShape.Control = oControlModel
+		'
+		oForm = oDoc.createInstance("com.sun.star.form.component.Form")
+		oForm.Name = "NumberForm"
+		oPage.Forms.insertByIndex(0, oForm)
+		'
+		oForm.insertByIndex( 0, oControlModel )
+		oPage.add( oShape ) 
+	'
+		' 念の為にCotrolDesignModeをOFFにする。(OOo3.2.1では不要、3.3Bataでは必要)
+		Dim oFrame as object
+		Dim dispatcher as object
+			oFrame   = oDoc.CurrentController.Frame
+			dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		Dim args1(0) as new com.sun.star.beans.PropertyValue
+			args1(0).Name = "SwitchControlDesignMode"
+			args1(0).Value = false
+				dispatcher.executeDispatch(oFrame, ".uno:SwitchControlDesignMode", "", 0, args1())
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+
+'[ Function 3 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages
+	Dim oPage
+	Dim i%
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+		'
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+</code></pre><br>
+
+
+<a name="OOoDFm01b"><h6>DFm-)<em>[Draw]</em>ComboBox値作成1</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/05draw/04Form/01ControlShapeComboBox02Draw.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oControlShape
+	Dim oDoc
+	Dim Dummy()
+	Dim oPage
+	Dim oShape
+	Dim oForm
+	Dim oControlModel
+	Dim oList(5)
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_blank", 0, Dummy())
+		'
+		oPage = createDrawPage(oDoc, "Test Draw", True)
+		'
+		oShape = oDoc.createInstance("com.sun.star.drawing.ControlShape")
+		oShape.Position = createPoint(2000,2000)
+		oShape.Size = createSize(2500, 800)
+		'
+		' List
+		oList(0) = "Zero"
+		oList(1) = "One"
+		oList(2) = "Two"
+		oList(3) = "Three"
+		oList(4) = "Four"
+		oList(5) = "Five"
+		'
+		' Combo Box
+		oControlModel = oDoc.createInstance("com.sun.star.form.component.ComboBox")
+		oControlModel.Name = "NumberSelection"
+		oControlModel.Text = "Zero"
+		oControlModel.Dropdown = True
+		oControlModel.StringItemList = oList()
+		'
+		oShape.Control = oControlModel
+		'
+		oForm = oDoc.createInstance("com.sun.star.form.component.Form")
+		oForm.Name = "NumberForm"
+		oPage.Forms.insertByIndex(0, oForm)
+		'
+		oForm.insertByIndex( 0, oControlModel )
+		oPage.add( oShape ) 
+	'
+		' 念の為にCotrolDesignModeをOFFにする。(OOo3.2.1では不要、3.3Bataでは必要)
+		Dim oFrame as object
+		Dim dispatcher as object
+			oFrame   = oDoc.CurrentController.Frame
+			dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		Dim args1(0) as new com.sun.star.beans.PropertyValue
+			args1(0).Name = "SwitchControlDesignMode"
+			args1(0).Value = false
+				dispatcher.executeDispatch(oFrame, ".uno:SwitchControlDesignMode", "", 0, args1())
+		'
+		' 値の取得
+		Dim oPForm
+		Dim oPFCtrlM
+		Dim oSelectItem
+			oPForm = oPage.Forms.getByIndex(0)
+			oPFCtrlM = oPForm.getControlModels()
+			for i = 0 to UBound(oPFCtrlM)
+				oSelectItem = oPFCtrlM(i).Text
+				' oSelectItem = oPFCtrlM(i).CurrentValue		' <= こちらでも取得できる。
+				oDisp = oDisp & oSelectItem & Chr(10)
+			next i			
+		' Display
+		msgbox(oDisp, 0, "ComboBox選択項目")
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+
+'[ Function 3 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages
+	Dim oPage
+	Dim i%
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+		'
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+</code></pre><br>
+
+
+<a name="OOoDFm01c"><h6>DFm-)<em>[Draw]</em>ComboBox値作成2</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/05draw/04Form/01ControlShapeComboBox03Draw.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oControlShape
+	Dim oDoc
+	Dim oPage
+	Dim oPForm
+	Dim oPFCtrlM
+	Dim oSelectItem
+		oDoc = ThisComponent
+		oPage = oDoc.getDrawPages().getByIndex(0)
+		oPForm = oPage.Forms.getByIndex(0)
+		oPFCtrlM = oPForm.getControlModels()
+		oDisp = ""
+		for i = 0 to UBound(oPFCtrlM)
+			'oSelectItem = oPFCtrlM(i).Text					' <= こちらでも取得できる。
+			oSelectItem = oPFCtrlM(i).CurrentValue
+			oDisp = oDisp & oSelectItem & Chr(10)
+		next i			
+	' Display
+	msgbox(oDisp, 0, "ComboBox選択項目")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoDFm02"><h6>DFm-)<em>[Draw]</em>ListBox(複数選択可)作成</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/05draw/04Form/03ControlShapeListBox01Draw.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oControlShape
+	Dim oDoc
+	Dim Dummy()
+	Dim oPage
+	Dim oShape
+	Dim oForm
+	Dim oControlModel
+	Dim oList(5) as String
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_blank", 0, Dummy())
+		'
+		oPage = createDrawPage(oDoc, "Test Draw", True)
+		'
+		oShape = oDoc.createInstance("com.sun.star.drawing.ControlShape")
+		oShape.Position = createPoint(2000,2000)
+		oShape.Size = createSize(2500, 4800)
+		'
+		' List
+		oList(0) = "Zero"
+		oList(1) = "One"
+		oList(2) = "Two"
+		oList(3) = "Three"
+		oList(4) = "Four"
+		oList(5) = "Five" 
+		'
+		' ControlShape
+		oControlModel = oDoc.createInstance("com.sun.star.form.component.ListBox")
+		oControlModel.reset()
+		oControlModel.commit()
+		oControlModel.refresh()
+		oControlModel.DropDown = false								' DropDown表示　MultiSelect => trueならば　falseにする
+		oControlModel.Enabled = True 
+		oControlModel.Name = "NumberSelection"
+		oControlModel.MultiSelection =  true						' 複数選択
+		oControlModel.BackgroundColor = &HC8FFB9			 'verdolino 
+		oControlModel.FontHeight = 12 
+		oControlModel.FontWeight = com.sun.star.awt.FontWeight.BOLD 
+		oControlModel.LineCount = 6			' <= 表示する項目数
+		'
+		oShape.Control = oControlModel
+		'
+		oForm = oDoc.createInstance("com.sun.star.form.component.Form")
+		oForm.Name = "NumberForm"
+		oPage.Forms.insertByIndex(0, oForm)
+		'
+		oForm.insertByIndex( 0, oControlModel )
+		oPage.add( oShape )
+		'
+		'add thelist items to the listbox 
+		frm=oPage.Forms.getByIndex(0) 
+		oListBoxModel=frm.getByName("NumberSelection") 
+		ctrl = oDoc.CurrentController 
+		oListBoxView = ctrl.getControl(oListBoxModel) 
+		oListBoxView.addItems(oList, 0, 1, 2, 3, 4, 5) 
+		oListBoxView.selectItemPos(0,false)
+		'
+		' 念の為にCotrolDesignModeをOFFにする。(OOo3.2.1では不要、3.3Bataでは必要)
+		Dim oFrame as object
+		Dim dispatcher as object
+			oFrame   = oDoc.CurrentController.Frame
+			dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		Dim args1(0) as new com.sun.star.beans.PropertyValue
+			args1(0).Name = "SwitchControlDesignMode"
+			args1(0).Value = false
+				dispatcher.executeDispatch(oFrame, ".uno:SwitchControlDesignMode", "", 0, args1())
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+
+'[ Function 3 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages
+	Dim oPage
+	Dim i%
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+		'
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+</code></pre><br>
+
+
+<a name="OOoDFm02b"><h6>DFm-)<em>[Draw]</em>ListBox値取得1</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/05draw/04Form/03ControlShapeListBox02Draw.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oControlShape
+	Dim oDoc
+	Dim Dummy()
+	Dim oPage
+	Dim oShape
+	Dim oForm
+	Dim oControlModel
+	Dim oList(5) as String
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_blank", 0, Dummy())
+		'
+		oPage = createDrawPage(oDoc, "Test Draw", True)
+		'
+		oShape = oDoc.createInstance("com.sun.star.drawing.ControlShape")
+		oShape.Position = createPoint(2000,2000)
+		oShape.Size = createSize(2500, 4800)
+		'
+		' List
+		oList(0) = "Zero"
+		oList(1) = "One"
+		oList(2) = "Two"
+		oList(3) = "Three"
+		oList(4) = "Four"
+		oList(5) = "Five" 
+		'
+		' ControlShape
+		oControlModel = oDoc.createInstance("com.sun.star.form.component.ListBox")
+		oControlModel.reset()
+		oControlModel.commit()
+		oControlModel.refresh()
+		oControlModel.DropDown = false								' DropDown表示　MultiSelect => trueならば　falseにする
+		oControlModel.Enabled = True 
+		oControlModel.Name = "NumberSelection"
+		oControlModel.MultiSelection =  true						' 複数選択
+		oControlModel.BackgroundColor = &HC8FFB9			 'verdolino 
+		oControlModel.FontHeight = 12 
+		oControlModel.FontWeight = com.sun.star.awt.FontWeight.BOLD 
+		oControlModel.LineCount = 6			' <= 表示する項目数
+		'
+		oShape.Control = oControlModel
+		'
+		oForm = oDoc.createInstance("com.sun.star.form.component.Form")
+		oForm.Name = "NumberForm"
+		oPage.Forms.insertByIndex(0, oForm)
+		'
+		oForm.insertByIndex( 0, oControlModel )
+		oPage.add( oShape )
+		'
+		'add thelist items to the listbox 
+		frm=oPage.Forms.getByIndex(0) 
+		oListBoxModel=frm.getByName("NumberSelection") 
+		ctrl = oDoc.CurrentController 
+		oListBoxView = ctrl.getControl(oListBoxModel) 
+		oListBoxView.addItems(oList,0,1,2,3,4,5) 
+		oListBoxView.selectItemPos(0,true)				' 初期設定　0を選択(falseで選択無し)
+		'
+		' 念の為にCotrolDesignModeをOFFにする。(OOo3.2.1では不要、3.3Bataでは必要)
+		Dim oFrame as object
+		Dim dispatcher as object
+			oFrame   = oDoc.CurrentController.Frame
+			dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		Dim args1(0) as new com.sun.star.beans.PropertyValue
+			args1(0).Name = "SwitchControlDesignMode"
+			args1(0).Value = false
+				dispatcher.executeDispatch(oFrame, ".uno:SwitchControlDesignMode", "", 0, args1())
+		'
+		' 値の取得
+		Dim oPForm
+		Dim oPFEltCount
+		Dim oPFElement
+		Dim oRButtonOnOff
+		Dim oSelectItem
+			oPForm = oPage.Forms.getByIndex(0)
+			oPFEltCount = oPForm.getCount()
+			If oPFEltCount < 1 then
+				oDisp = "項目が選択されていません。"
+				msgbox(oDisp, 0, "ListBoxの項目")
+				Exit Sub
+			End If
+			oDisp = ""
+			for i = 0 to oPFEltCount-1
+				oPFElement = oPForm.getByIndex(i)
+				oSelectItem = oPFElement.getCurrentValue()
+				for j = 0 to UBound(oSelectItem)
+					oDisp = oDisp & oSelectItem(j) & Chr(10)
+				next j
+			next i
+			msgbox(oDisp, 0, "ListBox 選択されている項目")
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+
+'[ Function 3 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages
+	Dim oPage
+	Dim i%
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+		'
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+</code></pre><br>
+
+
+<a name="OOoDFm02c"><h6>DFm-)<em>[Draw]</em>ListBox値取得2</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/05draw/04Form/03ControlShapeListBox03Draw.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oControlShape
+		Dim oDoc
+		Dim oPage
+		Dim oPForm
+		Dim oPFEltCount
+		Dim oPFElement
+		Dim oRButtonOnOff
+		Dim oSelectItem
+			' 値の取得
+			oDoc = ThisComponent
+			oPage = oDoc.getDrawPages().getByIndex(0)
+			oPForm = oPage.Forms.getByIndex(0)
+			oPFEltCount = oPForm.getCount()
+			If oPFEltCount < 1 then
+				oDisp = "項目が選択されていません。"
+				msgbox(oDisp, 0, "ListBoxの項目")
+				Exit Sub
+			End If
+			oDisp = ""
+			for i = 0 to oPFEltCount-1
+				oPFElement = oPForm.getByIndex(i)
+				oSelectItem = oPFElement.getCurrentValue()
+				for j = 0 to UBound(oSelectItem)
+					oDisp = oDisp & oSelectItem(j) & Chr(10)
+				next j
+			next i
+			msgbox(oDisp, 0, "ListBox 選択されている項目")
+End Sub
+</code></pre><br>
+
+
+
+<a name="OOoDFm03"><h6>DFm-)<em>[Draw]</em>CheckBox作成</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/05draw/04Form/02ControlShapeCheckBox01Draw.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oControlShape
+	Dim oDoc
+	Dim Dummy()
+	Dim oPage
+	Dim oShape
+	Dim oForm
+	Dim oControlModel
+	Dim oList(5)
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_blank", 0, Dummy())
+		'
+		oPage = createDrawPage(oDoc, "Test Draw", True)
+		oGroup = createUnoService("com.sun.star.drawing.ShapeCollection")
+		oForm = oDoc.createInstance("com.sun.star.form.component.Form")
+			oForm.Name = "NumberForm"
+		'
+		' List
+		oList(0) = "Zero"
+		oList(1) = "One"
+		oList(2) = "Two"
+		oList(3) = "Three"
+		oList(4) = "Four"
+		oList(5) = "Five"
+		'		
+		for i = 0 to 5
+			oShape = oDoc.createInstance("com.sun.star.drawing.ControlShape")
+			oShape.Position = createPoint(2000, 2000 + 900*i)
+			oShape.Size = createSize(2500, 800)
+			'
+			' RadioButton
+				oControlModel = oDoc.createInstance("com.sun.star.form.component.CheckBox")
+				oControlModel.Name = "NumberSelection" & i
+				oControlModel.Label = oList(i)
+				If i = 1 or i = 3 then
+					oControlModel.State = 1
+				End If 
+			'
+			oShape.Control = oControlModel
+			oForm.insertByIndex( i, oControlModel )
+			'
+			oPage.add( oShape )
+			oGroup.add(oShape)
+		next i
+		'
+		oPage.Forms.insertByIndex(0, oForm)
+		oPage.group(oGroup)
+		'
+		' 念の為にCotrolDesignModeをOFFにする。(OOo3.2.1では不要、3.3Bataでは必要)
+		Dim oFrame as object
+		Dim dispatcher as object
+			oFrame   = oDoc.CurrentController.Frame
+			dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		Dim args1(0) as new com.sun.star.beans.PropertyValue
+			args1(0).Name = "SwitchControlDesignMode"
+			args1(0).Value = false
+				dispatcher.executeDispatch(oFrame, ".uno:SwitchControlDesignMode", "", 0, args1())
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+
+'[ Function 3 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages
+	Dim oPage
+	Dim i%
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+		'
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+</code></pre><br>
+
+<a name="OOoDFm03b"><h6>DFm-)<em>[Draw]</em>CheckBox値取得</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/05draw/04Form/02ControlShapeCheckBox02Draw.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oControlShape
+	Dim oDoc
+	Dim Dummy()
+	Dim oPage
+	Dim oShape
+	Dim oForm
+	Dim oControlModel
+	Dim oList(5)
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_blank", 0, Dummy())
+		'
+		oPage = createDrawPage(oDoc, "Test Draw", True)
+		oGroup = createUnoService("com.sun.star.drawing.ShapeCollection")
+		oForm = oDoc.createInstance("com.sun.star.form.component.Form")
+			oForm.Name = "NumberForm"
+		'
+		' List
+		oList(0) = "Zero"
+		oList(1) = "One"
+		oList(2) = "Two"
+		oList(3) = "Three"
+		oList(4) = "Four"
+		oList(5) = "Five"
+		'		
+		for i = 0 to 5
+			oShape = oDoc.createInstance("com.sun.star.drawing.ControlShape")
+			oShape.Position = createPoint(2000, 2000 + 900*i)
+			oShape.Size = createSize(2500, 800)
+			'
+			' RadioButton
+				oControlModel = oDoc.createInstance("com.sun.star.form.component.CheckBox")
+				oControlModel.Name = "NumberSelection" & i
+				oControlModel.Label = oList(i)
+				If i = 1 or i = 3 then
+					oControlModel.State = 1
+				End If 
+			'
+			oShape.Control = oControlModel
+			oForm.insertByIndex( i, oControlModel )
+			'
+			oPage.add( oShape )
+			oGroup.add(oShape)
+		next i
+		'
+		oPage.Forms.insertByIndex(0, oForm)
+		oPage.group(oGroup)
+		'
+		' 念の為にCotrolDesignModeをOFFにする。(OOo3.2.1では不要、3.3Bataでは必要)
+		Dim oFrame as object
+		Dim dispatcher as object
+			oFrame   = oDoc.CurrentController.Frame
+			dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		Dim args1(0) as new com.sun.star.beans.PropertyValue
+			args1(0).Name = "SwitchControlDesignMode"
+			args1(0).Value = false
+				dispatcher.executeDispatch(oFrame, ".uno:SwitchControlDesignMode", "", 0, args1())
+		'
+		' 値の取得
+		Dim oPForm
+		Dim oPFEltCount
+		Dim oPFElement
+		Dim oRButtonOnOff
+		Dim oSelectItem
+			oPForm = oPage.Forms.getByIndex(0)
+			oPFEltCount = oPForm.getCount()
+			oDisp = ""
+			for i = 0 to oPFEltCount - 1
+				oPFElement = oPForm.getByIndex(i)
+				If oPFElement.supportsService("com.sun.star.form.component.CheckBox") then
+					oRButtonOnOff = oPFElement.State
+					If oRButtonOnOff = 1 then
+						oSelectItem = oPFElement.Label
+						oDisp = oDisp & oSelectItem & Chr(10)
+					End If
+				End If
+			next i
+		' Display
+			msgbox(oDisp, 0, "CheckBox選択Item")
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+
+'[ Function 3 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages
+	Dim oPage
+	Dim i%
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+		'
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+</code></pre><br>
+
+
+<a name="OOoDFm04"><h6>DFm-)<em>[Draw]</em>RadioButton</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/05draw/04Form/04ControlShapeRadioButton01Draw.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oControlShape
+	Dim oDoc
+	Dim Dummy()
+	Dim oPage
+	Dim oShape
+	Dim oForm
+	Dim oControlModel
+	Dim oList(5)
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_blank", 0, Dummy())
+		'
+		oPage = createDrawPage(oDoc, "Test Draw", True)
+		oGroup = createUnoService("com.sun.star.drawing.ShapeCollection")
+		oForm = oDoc.createInstance("com.sun.star.form.component.Form")
+			oForm.Name = "NumberForm"
+		'
+		' List
+		oList(0) = "Zero"
+		oList(1) = "One"
+		oList(2) = "Two"
+		oList(3) = "Three"
+		oList(4) = "Four"
+		oList(5) = "Five"
+		'		
+		for i = 0 to 5
+			oShape = oDoc.createInstance("com.sun.star.drawing.ControlShape")
+			oShape.Position = createPoint(2000, 2000 + 900*i)
+			oShape.Size = createSize(2500, 800)
+			'
+			' RadioButton
+				oControlModel = oDoc.createInstance("com.sun.star.form.component.RadioButton")
+				oControlModel.Name = "NumberSelection" & i
+				oControlModel.Label = oList(i)
+			'
+			oShape.Control = oControlModel
+			oForm.insertByIndex( i, oControlModel )
+			'
+			oPage.add( oShape )
+			oGroup.add(oShape)
+		next i
+		'
+		oPage.Forms.insertByIndex(0, oForm)
+		oPage.group(oGroup)
+		'
+		' 念の為にCotrolDesignModeをOFFにする。(OOo3.2.1では不要、3.3Bataでは必要)
+		Dim oFrame as object
+		Dim dispatcher as object
+			oFrame   = oDoc.CurrentController.Frame
+			dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		Dim args1(0) as new com.sun.star.beans.PropertyValue
+			args1(0).Name = "SwitchControlDesignMode"
+			args1(0).Value = false
+				dispatcher.executeDispatch(oFrame, ".uno:SwitchControlDesignMode", "", 0, args1())
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+
+'[ Function 3 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages
+	Dim oPage
+	Dim i%
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+		'
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+</code></pre><br>
+
+
+<a name="OOoDFm05"><h6>DFm-)<em>[Draw]</em>GroupBox(RadioButton)設定</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/05draw/04Form/05ControlShapeGroupBox01Draw.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oControlShape
+	Dim oDoc
+	Dim Dummy()
+	Dim oPage
+	Dim oGroup
+	Dim oForm
+	Dim oShape0, oShape1, oShape2, oShape3
+	Dim oControlModel0, oControlModel1, oControlModel2, oControlModel3
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_blank", 0, Dummy())
+		'
+		oPage = createDrawPage(oDoc, "Test Draw", True)
+		'
+		oGroup = createUnoService("com.sun.star.drawing.ShapeCollection")
+		'
+		oForm = oDoc.createInstance("com.sun.star.form.component.Form")
+			oForm.Name = "フォーム"
+		'
+		' GroupBox
+		oShape0 = oDoc.createInstance("com.sun.star.drawing.ControlShape")
+		oShape0.Position = createPoint(2000, 3280)
+		oShape0.Size = createSize(5700, 2760)
+		'
+		oControlModel0 = oDoc.createInstance("com.sun.star.form.component.GroupBox")
+		oControlModel0.Name = "グループボックス 1"
+		oControlModel0.Label = "GroupBox1"
+		'
+		oShape0.Control = oControlModel0
+		oForm.insertByIndex( 0, oControlModel0 )
+		oPage.add( oShape0 )
+		oGroup.add(oShape0)  
+		'
+		' RadioButton1
+		oShape1 = oDoc.createInstance("com.sun.star.drawing.ControlShape")
+		oShape1.Position = createPoint(2370, 3950)
+		oShape1.Size = createSize(5400, 450)
+		'
+		oControlModel1 = oDoc.createInstance("com.sun.star.form.component.RadioButton")
+		oControlModel1.Name = "RadioGroup1"
+		oControlModel1.Label = "RadioButton1"
+		oControlModel1.State = 1
+		'
+		oShape1.Control = oControlModel1
+		oForm.insertByIndex( 1, oControlModel1 )
+		oPage.add( oShape1 )
+		oGroup.add(oShape1)
+		'
+		' RadioButton2
+		oShape2 = oDoc.createInstance("com.sun.star.drawing.ControlShape")
+		oShape2.Position = createPoint(2370, 4620)
+		oShape2.Size = createSize(5700, 450)
+		'
+		oControlModel2 = oDoc.createInstance("com.sun.star.form.component.RadioButton")
+		oControlModel2.Name = "RadioGroup1"
+		oControlModel2.Label = "RadioButton2"
+		'
+		oShape2.Control = oControlModel2
+		oForm.insertByIndex( 2, oControlModel2 )
+		oPage.add( oShape2 )
+		oGroup.add(oShape2)
+		'
+		' RadioButton3
+		oShape3 = oDoc.createInstance("com.sun.star.drawing.ControlShape")
+		oShape3.Position = createPoint(2370, 5290)
+		oShape3.Size = createSize(5700, 450)
+		'
+		oControlModel3 = oDoc.createInstance("com.sun.star.form.component.RadioButton")
+		oControlModel3.Name = "RadioGroup1"
+		oControlModel3.Label = "RadioButton3"
+		'
+		oShape3.Control = oControlModel3
+		oForm.insertByIndex( 3, oControlModel3 )
+		oPage.add( oShape3 )
+		oGroup.add(oShape3)
+		'
+		oPage.Forms.insertByIndex(0, oForm)
+		oPage.group(oGroup)
+		'
+		' 念の為にCotrolDesignModeをOFFにする。(OOo3.2.1では不要、3.3Bataでは必要)
+		Dim oFrame as object
+		Dim dispatcher as object
+			oFrame   = oDoc.CurrentController.Frame
+			dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		Dim args1(0) as new com.sun.star.beans.PropertyValue
+			args1(0).Name = "SwitchControlDesignMode"
+			args1(0).Value = false
+
+			dispatcher.executeDispatch(oFrame, ".uno:SwitchControlDesignMode", "", 0, args1())
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+
+'[ Function 3 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages
+	Dim oPage
+	Dim i%
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+		'
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+</code></pre><br>
+
+<a name="OOoDFm05b"><h6>DFm-)<em>[Draw]</em>GroupBox(RadioButton)値取得</h6></a><pre><code>
+<IMG SRC="OOoBasic_pic/05draw/04Form/05ControlShapeGroupBox02Draw.png" align="right" hspace="4" vspace="4" width="20%">
+Sub oControlShape
+	Dim oDoc
+	Dim Dummy()
+	Dim oPage
+	Dim oGroup
+	Dim oForm
+	Dim oShape0, oShape1, oShape2, oShape3
+	Dim oControlModel0, oControlModel1, oControlModel2, oControlModel3
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/sdraw", "_blank", 0, Dummy())
+		'
+		oPage = createDrawPage(oDoc, "Test Draw", True)
+		'
+		oGroup = createUnoService("com.sun.star.drawing.ShapeCollection")
+		'
+		oForm = oDoc.createInstance("com.sun.star.form.component.Form")
+			oForm.Name = "フォーム"
+		'
+		' GroupBox
+		oShape0 = oDoc.createInstance("com.sun.star.drawing.ControlShape")
+		oShape0.Position = createPoint(2000, 3280)
+		oShape0.Size = createSize(5700, 2760)
+		'
+		oControlModel0 = oDoc.createInstance("com.sun.star.form.component.GroupBox")
+		oControlModel0.Name = "グループボックス 1"
+		oControlModel0.Label = "GroupBox1"
+		'
+		oShape0.Control = oControlModel0
+		oForm.insertByIndex( 0, oControlModel0 )
+		oPage.add( oShape0 )
+		oGroup.add(oShape0)  
+		'
+		' RadioButton1
+		oShape1 = oDoc.createInstance("com.sun.star.drawing.ControlShape")
+		oShape1.Position = createPoint(2370, 3950)
+		oShape1.Size = createSize(5400, 450)
+		'
+		oControlModel1 = oDoc.createInstance("com.sun.star.form.component.RadioButton")
+		oControlModel1.Name = "RadioGroup1"
+		oControlModel1.Label = "RadioButton1"
+		oControlModel1.State = 1
+		'
+		oShape1.Control = oControlModel1
+		oForm.insertByIndex( 1, oControlModel1 )
+		oPage.add( oShape1 )
+		oGroup.add(oShape1)
+		'
+		' RadioButton2
+		oShape2 = oDoc.createInstance("com.sun.star.drawing.ControlShape")
+		oShape2.Position = createPoint(2370, 4620)
+		oShape2.Size = createSize(5700, 450)
+		'
+		oControlModel2 = oDoc.createInstance("com.sun.star.form.component.RadioButton")
+		oControlModel2.Name = "RadioGroup1"
+		oControlModel2.Label = "RadioButton2"
+		'
+		oShape2.Control = oControlModel2
+		oForm.insertByIndex( 2, oControlModel2 )
+		oPage.add( oShape2 )
+		oGroup.add(oShape2)
+		'
+		' RadioButton3
+		oShape3 = oDoc.createInstance("com.sun.star.drawing.ControlShape")
+		oShape3.Position = createPoint(2370, 5290)
+		oShape3.Size = createSize(5700, 450)
+		'
+		oControlModel3 = oDoc.createInstance("com.sun.star.form.component.RadioButton")
+		oControlModel3.Name = "RadioGroup1"
+		oControlModel3.Label = "RadioButton3"
+		'
+		oShape3.Control = oControlModel3
+		oForm.insertByIndex( 3, oControlModel3 )
+		oPage.add( oShape3 )
+		oGroup.add(oShape3)
+		'
+		oPage.Forms.insertByIndex(0, oForm)
+		oPage.group(oGroup)
+		'
+		' 念の為にCotrolDesignModeをOFFにする。(OOo3.2.1では不要、3.3Bataでは必要)
+		Dim oFrame as object
+		Dim dispatcher as object
+			oFrame   = oDoc.CurrentController.Frame
+			dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		Dim args1(0) as new com.sun.star.beans.PropertyValue
+			args1(0).Name = "SwitchControlDesignMode"
+			args1(0).Value = false
+				dispatcher.executeDispatch(oFrame, ".uno:SwitchControlDesignMode", "", 0, args1())
+		'
+		' 値の取得
+		Dim oPForm
+		Dim oPFEltCount
+		Dim oPFElement
+		Dim oRButtonOnOff
+		Dim oSelectItem
+			oPForm = oPage.Forms.getByIndex(0)
+			oPFEltCount = oPForm.getCount()
+			for i = 0 to oPFEltCount - 1
+				oPFElement = oPForm.getByIndex(i)
+				If oPFElement.supportsService("com.sun.star.form.component.RadioButton") then
+					oRButtonOnOff = oPFElement.State
+					If oRButtonOnOff = 1 then
+						oSelectItem = oPFElement.Label
+					End If
+				End If
+			next i
+		' Display
+			msgbox(oSelectItem, 0, "GroupBox選択Item")
+End Sub
+
+'[ Function 1 ]
+Function CreatePoint(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Point
+	Dim oPoint
+		oPoint = createUnoStruct( "com.sun.star.awt.Point" )
+		oPoint.X = x : oPoint.Y = y
+		CreatePoint = oPoint
+End Function
+
+
+'[ Function 2 ]
+Function CreateSize(ByVal x As Long,ByVal y As Long) As com.sun.star.awt.Size
+	Dim oSize
+		oSize = createUnoStruct( "com.sun.star.awt.Size" )
+		oSize.Width = x : oSize.Height = y
+		CreateSize = oSize
+End Function
+
+'[ Function 3 ]
+Function createDrawPage(oDoc, sName$, bForceNew As boolean) As Variant
+	Dim oPages
+	Dim oPage
+	Dim i%
+		oPages = oDoc.getDrawPages()
+		If oPages.hasByName(sName) Then
+			If bForceNew Then
+				oPages.remove(oPages.getByName(sName))
+			Else
+				createDrawPage = oPages.getByName(sName)
+				Exit Function
+			End If
+		End If
+		'
+		oPage = oPages.getByIndex(oPages.getCount()-1)
+		oPage.setName(sName)
+		createDrawPage = oPage
+End Function
+</code></pre><br>
+
+
+
+<p class="s1">Export</p class="s1">
+<a name="OOoDE1"><h6>DE-1)<em>[Draw]</em>各PageをJpeg形式でExport(XDrawPageSupplier)</h6></a><pre><code>
+Sub oExportJPG_XDrawPage	
+	oFilter = CreateUnoService("com.sun.star.drawing.GraphicExportFilter")
+	Dim oExport(1) As new com.sun.star.beans.PropertyValue
+	Dim Dummy()	
+		oName = "C:\temp\oMacro_test(Draw).odg"
+		oDraw_file = ConvertToUrl(oName)
+		oDoc = StarDesktop.loadComponentFromURL(oDraw_file, "_blank", 0, Dummy()) 
+		oNum_pages = oDoc.getDrawPages().getcount() 
+		for i=0 to oNum_pages-1
+			oPage = oDoc.getDrawPages().getByIndex(i)
+			oPName = oPage.Name
+			oFilter.setSourceDocument(oPage)
+			oExport(0).Name = "URL"
+			oExport(0).Value = "file:///c|/temp/" & oPName &".jpg"
+			oExport(1).Name = "MediaType"
+			oExport(1).Value = "image/jpeg"
+			oFilter.filter(oExport())
+		next i
+		oDoc.dispose()
+End Sub
+</code></pre><br>
+
+<a name="OOoDO"><h6>DO-)<em>[Draw]</em></h6></a><pre><code>
+
+</code></pre><br>
+
+<a name="OOoDO"><h6>DO-)<em>[Draw]</em></h6></a><pre><code>
+
+</code></pre><br>
+
+<a name="OOoDO"><h6>DO-)<em>[Draw]</em></h6></a><pre><code>
+
+</code></pre><br>
+
+<br>
+<center><h6><a href="#TopOfPage">Top of Page</a></h6></center><BR>
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/OOoBasic_Draw.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:31:15 GMT -->
+</html>

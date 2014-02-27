@@ -1,0 +1,21 @@
+body { background: url(bg025.gif); }
+h1 { font-family: 'Times New Roman'; font-size: 30pt; color: green; text-align: center; line-height: 30pt; font-weight: bold; margin-top: 0px; margin-bottom: 0px; }
+h2 { font-family: 'Times New Roman',Times; font-size: 30pt; color: blue; text-align: center; font-weight: bold;}
+h3 { font-family: 'Vernada',sans-serif; font-size: 20pt; color: green; font-weight: bold; margin-top: 0px; margin-bottom: 0px; margin-left: 50px; margin-right: 0em; }
+h4 { font-family: 'Vernada',sans-serif; font-size: 12pt; color: black; text-align: left; margin: 0px 500px 0px 50px; }
+h5 { font-family: 'Vernada',sans-serif; font-size: 12pt; color: black; text-align: left; margin: 0px 0px 0px 0px; }
+h6 { font-family: 'Vernada',sans-serif; font-size: 16pt; color : blue; font-weight: bold; margin: 5px 5px 5px 120px; line-height: 20pt; }
+p { font-family: 'Vernada',sans-serif; font-size: 20pt; color : black; font-weight: bold; margin-top: 0px; margin-left: 60px; margin-bottom: 0px; line-height: 20pt; }
+p.s1 { font-family: 'Vernada',sans-serif; font-size: 20pt; color : green; font-weight: bold; margin-top: 0px; margin-left: 50px; margin-bottom: 0px; line-height: 25pt;}
+p.s3 { font-family: 'Vernada',sans-serif; font-size: 18pt; line-height: 18pt; color: green; font-weight: bold; margin-top: 0px; margin-left: 70px; margin-bottom: 0px; }
+p.s4 { font-family: 'Vernada',sans-serif; font-size: 14pt; line-height: 14pt; color: purple; font-weight: normal; margin-top: 0px; margin-left: 80px; margin-bottom: 0px;}
+pre { font-family: 'Vernada',sans-serif; font-size: 12pt; color : black; font-weight: normal; line-height: 12pt; background-color: #ffffe0; margin-top: 0px; margin-left: 150px; padding-top: 0px; padding-left: 30px; width: 1000px;}
+code { font-family: 'Vernada',sans-serif; font-family: 'Vernada',sans-serif; white-space:pre-wrap; word-wrap:break-word;}
+ul { font-family: 'Vernada',sans-serif; font-size: 14pt; line-height: 16pt; color: black; text-align: left; font-weight: bold; margin-top: 0px; margin-left: 50px; margin-right: 0px; margin-bottom: 0px; }
+ul.s1 { font-family: 'Vernada',sans-serif; list-style: decimal; font-size: 14pt; color : green; margin-top: 0px; margin-left: 50px; margin-bottom: 0px; line-height: 14pt;}
+ul.s2 { font-family: 'Vernada',sans-serif; font-size: 14pt; color: black; font-weight: nomal; margin-top: 0em; margin-left: 50px;}
+em { font-family: 'Vernada',sans-serif; font-size: 10pt; font-weight: bold; color: Black; font-style: heading; margin-right: 0.5em;}
+em.s1{ font-family: 'Vernada',sans-serif; font-size: 14pt;font-weight: Bold; color: Red; margin-right: 0.5em;}
+em.s2{ font-family: 'Vernada',sans-serif; font-size: 16pt;font-weight: Bold; color: Blue; margin-right: 0.5em;}
+em.s3 { font-family: 'Vernada',sans-serif; font-size: 14pt;font-weight: Bold; color: Green; margin-right: 0.5em;}
+a{ text-decoration:none; border-bottom :1px solid;}

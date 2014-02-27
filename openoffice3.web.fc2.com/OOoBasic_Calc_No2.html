@@ -1,0 +1,4445 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/OOoBasic_Calc_No2.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:21:36 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<SCRIPT language="JavaScript">
+		<!--
+			renew = new Date(document.lastModified);
+			y=renew.getYear();
+			m=renew.getMonth() + 1;
+			d=renew.getDate();
+			if(y<1900) {y=y+1900;}
+				oDate="更新日："+y+"/"+m+"/"+d;
+			document.write(oDate);
+		//-->
+	</SCRIPT>
+	
+	<title>Macroの杜(OpenOffice.org/LibreOffice Basic編)/Calc No.2</title>
+</head>
+<link rel="stylesheet"
+type="text/css" href="css_macro_Basic.css">
+
+<body>
+<a name="TopOfPage"><left><p><A HREF="index-2.html">Home of site</a></p></left></a><br>
+<h1>Macroの杜<br>
+(OpenOffice.org/LibreOffice Basic編)</h1>
+
+<h2>Calc No.2</h2>
+
+<center><h1>###【 Continued from <a href="OOoBasic_Calc.html">Calc No.1</a> 】###</h1></center>
+<br>
+
+<h3><Center>**********************【 Index 】**********************</center></h3>
+
+<p class="s1">Sheet操作<em>[ com.sun.star.sheet.Spreadsheets service ]</em></p class="s1">
+<ul>
+CS-)<a href="#OOoCs01a"><em>[Calc]</em>Current Sheet名を取得<em>[ getCurrentController() / getActiveSheet() ]</em></a><BR>
+CS-)<a href="#OOoCs01a2"><em>[Calc]</em>Current CellのSheet名を取得<em>[ getCurrentselection() / spreadsheet ]</em></a><BR>
+CS-)<a href="#OOoCs01b"><em>[Calc]</em>全てのSheet名を取得<em>[ createEnumeration() / hasMoreElements() / nextElement ]</em></a><br>
+CS-)<a href="#OOoCs02a"><em>[Calc]</em>Sheet名があるかどうかを調べる<em>[ hasByName() ]</em></a><br>
+CS-)<a href="#OOoCs03a"><em>[Calc]</em>Sheetの新規挿入(1)<em>[ insertNewByName(,) ]</em></a><br>
+CS-)<a href="#OOoCs03b"><em>[Calc]</em>Sheetの新規挿入(2)<em>[ insertByName(,) ]</em></a><br>
+CS-)<a href="#OOoCs03c"><em>[Calc]</em>Sheetの新規挿入(3)<em>[ .uno:Insert ]</em></a><br>
+CS-)<a href="#OOoCs04a"><em>[Calc]</em>Sheet内容の置換<em>[ replaceByName / setName / getName() ]</em></a><br>
+CS-)<a href="#OOoCs05a"><em>[Calc]</em>Sheetの保護/保護解除<em>[ protect(,) / unprotect(,) / IsProtected ]</em></a><br>
+CS-)<a href="#OOoCs05b"><em>[Calc]</em>Sheetの保護Dialog表示<em>[ .uno:Protect ]</em></a><br>
+CS-)<a href="#OOoCs06a"><em>[Calc]</em>SheetのCopy<em>[ copyByName(,) ]</em></a><br>
+CS-)<a href="#OOoCS06b"><em>[Calc]</em>Sheetの移動<em>[ moveByName(,) ]</em></a><br>
+CS-)<a href="#OOoCS06c"><em>[Calc]</em>Current SheetのCopy/移動<em>[ .uno:Move ]</em></a><br>
+CS-)<a href="#OOoCS07a"><em>[Calc]</em>Sheetの削除<em>[ removeByName() ]</em></a><br>
+CS-)<a href="#OOoCS07b"><em>[Calc]</em>Current Sheetの削除<em>[ .uno:Remove ]</em></a><br>
+CS-)<a href="#OOoCS08a"><em>[Calc]</em>Sheet名の変更(1)<em>[ Name ]</em></a><br>
+CS-)<a href="#OOoCS08b"><em>[Calc]</em>Sheet名の変更(2)[ Current Sheet ]<em>[ .uno:RenameTable ]</em></a><br>
+CS-)<a href="#OOoCS09a"><em>[Calc]</em>Sheetの表示/非表示(1)<em>[ IsVisible ]</em></a><br>
+CS-)<a href="#OOoCS09b"><em>[Calc]</em>Sheetの表示/非表示(2)<em>[ .uno:Show / .uno:Hide ]</em></a><br>
+CS-)<a href="#OOoCS10a"><em>[Calc]</em>Sheet Tab Colorの取得 / 設定<em>[ TabColor ]</em></a><br>
+CS-)<a href="#OOo40"><em>[Calc]</em>Sheet Style取得</a><br>
+CS-11b)<a href="#OOo40b"><em>[Calc]</em>Current Sheet Style取得<em>[ getActiveSheet() / PageStyle ]</em></a><br>
+CS-11c)<a href="#OOo40c"><em>[Calc]</em>Page Size取得<em>[ StyleFamilies / Weight, Width ]</em></a><br>
+CS-11d)<a href="#OOo40d"><em>[Calc]</em>上下左右余白取得<em>[ StyleFamilies / TopMargin,BottomMargin,LeftMargin,RightMargin ]</em></a><br>
+CS-11e)<a href="#OOo40e"><em>[Calc]</em>余白設定<em>[ StyleFamilies / TopMargin,BottomMargin,LeftMargin,RightMargin ]</em></a><br>
+CS-12)<a href="#OOoCS-12"><em>[Calc]</em>行と列のFontName(英数字、日本語)設定。</a><br>
+CS-13)<a href="#OOoCS-13"><em>[Calc]</em>行と列のFontStyle設定。</a><br>
+CS-)<a href="#OOoCS16a"><em>[Calc]</em>ActiveSheetを変更1<em>[ setActiveSheet() ]</em></a><BR>
+CS-)<a href="#OOoCS16b"><em>[Calc]</em>ActiveSheetを変更2<em>[ .uno:JumpToTable ]</em></a><BR>
+CS-)<a href="#OOoCS16c"><em>[Calc]</em>ActiveSheetを変更3<em>[ .uno:SelectTables ]</em></a><BR>
+CS-)<a href="#OOoCS16d"><em>[Calc]</em>ActiveSheetを変更4a( Ctrl + PageDown )[ Next Sheet ]<em>[ .uno:JumpToNextTable ]</em></a><br>
+CS-)<a href="#OOoCS16e"><em>[Calc]</em>ActiveSheetを変更4b( Ctrl + PageUp )[ Previosu Sheet ]<em>[ .uno:JumpToPrevTable ]</em></a><br>
+CS-)<a href="#OOoCS17a"><em>[Calc]</em>ActiveSheetを追加選択[ Next Sheet ]( Ctrl + Shift + PageDown )<em>[ .uno:JumpToNextTableSel ]</em></a><br>
+CS-)<a href="#OOoCS17b"><em>[Calc]</em>ActiveSheetを追加選択[ Previosu Sheet ]( Ctrl + Shift + PageUp )<em>[ .uno:JumpToPrevTableSel ]</em></a><br>
+CS-)<a href="#OOoCS18a"><em>[Calc]</em>複数のSheetを選択<em>[ .uno:SelectTables ]</em></a><br>
+CS-)<a href="#OOoCS18all"><em>[Calc]</em>全Sheetを選択<em>[ .uno:TableSelectAll ]</em></a><br>
+CS-)<a href="#OOo42"><em>[Calc]</em>別のドキュメントから持ってきたsheetを挿入する。</a><br>
+CS-)<a href="#OOoCS19"><em>[Calc]</em>Sheet枚数取得<em>[ getCount() ]</em></a><br>
+CS-)<a href="#OOoCS20"><em>[Calc]</em>Document内にSheetがあるか<em>[ hasElements() ]</em></a><br>
+CS-)<a href="#OOoCS21"><em>[Calc]</em>Document内にSheet名一覧<em>[ createEnumeration() ]</em></a><br>
+CS-)<a href="#OOoCS22a"><em>[Calc]</em>Page Style Dialogの表示<em>[ .uno:PageFormatDialog ]</em></a><br>
+CS-)<a href="#OOoCS"><em>[Calc]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+<p class="s3">[ Link ]</p class="s3">
+<ul>
+CSL-)<a href="#OOoCSL1"><em>[Calc]</em>SheetのLink1(Add and remove Link)<em>[ .link / com.sun.star.sheet.SheetLinkMode.NORMAL / .setLinkMode / com.sun.star.sheet.SheetLinkMode.NONE ]</em></a><br>
+CSL-)<a href="#OOoCSL2"><em>[Calc]</em>SheetのLink2<em>[ SheetLinks / .refresh ]</em></a><br>
+CSL-)<a href="#OOoCSL3"><em>[Calc]</em>別fileのCellとLink<em>[ setFormula ]</em></a><br>
+</ul>
+<br>
+
+<p class="s3">[ Sheet Cursors ]<em>( com.sun.star.sheet.SheetCellCursor → <a href="http://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1sheet_1_1SheetCellCursor.html">LibreOffice</a> / <a href="http://www.openoffice.org/api/docs/common/ref/com/sun/star/sheet/SheetCellCursor.html">Apache OpenOffice</a> )</em></p class="s3">
+<ul>
+CSC-)<a href="#OOoCSC01a"><em>[Calc]</em>Active Cellの移動(1)<em>[ com.sun.star.sheet.SheetCellCursor / createCursorByRange / gotoNext() / gotoEnd() / gotoPrevious() / gotoOffset()]</em></a><br>
+CSC-)<a href="#OOoCSC01b"><em>[Calc]</em>Active Cellの移動(2)<em>[ createCursor / gotoNext() / gotoEnd() / gotoPrevious() / gotoOffset() ]</em></a><br>
+CSC-)<a href="#OOoCSC01c"><em>[Calc]</em>Active Cellの移動(3)<em>[ .uno:GoLeft / GoRight / GoUp / GoDown ]</em></a><br>
+CSC-)<a href="#OOoCSC02a"><em>[Calc]</em>Selected Cellを識別( One Cell or One Area or Multi Area )<em>[ supportsService / com.sun.star.sheet.SheetCell / com.sun.star.sheet.SheetCellRange / com.sun.star.sheet.SheetCellRanges ]</em></a><br>
+CSC-)<a href="#OOoCSC03a"><em>[Calc]</em>空白で無い次のData Cell( or Area Dataの端Cell )へ移動<em>[ uno:GoDownToEndOfData / uno:GoUpToStartOfData / uno:GoRightToEndOfData / uno:GoLeftToStartOfData ]</em></a><br>
+CSC-)<a href="#OOoCSC04a"><em>[Calc]</em>Ctrl + End / 入力されているDataの最終Colmn, Rowへ移動・選択<em>[ .uno:GoToEndOfData ]</em></a><br>
+CSC-)<a href="#OOoCSC04b"><em>[Calc]</em>Ctrl + Home / A1 Cellへ移動･選択<em>[ .uno:GoToStart ]</em></a><br>
+CSC-)<a href="#OOoCSC05a"><em>[Calc]</em>相対AddressでCurosor Cell/Range指定<em>[ getCellByPosition(,) / getCellRangeByPosition(,,,) / getCellRangeByName() ]</em></a><br>
+CSC-)<a href="#OOoCSC06a"><em>[Calc]</em>Cursor範囲の拡大<em>[ collapseToCurrentRegion() ]</em></a><br>
+CSC-)<a href="#OOoCSC07a"><em>[Calc]</em>Cursor範囲の拡大( Array Formula )<em>[ collapseToCurrentArray() ]</em></a><br>
+CSC-)<a href="#OOoCSC08a"><em>[Calc]</em>Cursor範囲の拡大( Merge Area )<em>[ collapseToMergedArea() ]</em></a><br>
+CSC-)<a href="#OOoCSC09a"><em>[Calc]</em>Cursor範囲の拡大( Max row of same column )<em>[ expandToEntireColumns() ]</em></a><br>
+CSC-)<a href="#OOoCSC10a"><em>[Calc]</em>Cursor範囲の拡大( Max column of same row )<em>[ expandToEntireRows() ]</em></a><br>
+CSC-)<a href="#OOoCSC11a"><em>[Calc]</em>Curosr範囲の拡大( 任意の位置( same with upper-left ) )<em>[ collapseToSize() ]</em></a><br>
+CSC-)<a href="#OOoCSC12a"><em>[Calc]</em>任意の範囲内のCuosor移動<em>[ gotoStartOfUsedArea() / gotoEndOfUsedArea() ]</em></a><br>
+CSC-)<a href="#OOoCSC"><em>[Calc]</em><em>[  ]</em></a><br>
+</ul>
+<br><br>
+
+
+
+<p class="s3">[ Window ]</p class="s3">
+<ul>
+CSWn-)<a href="#OOoCSWn01a"><em>[Calc]</em>Windowの分割[上下]  / 解除(1)<em>[ .uno:SplitWindow ]</em></a><br>
+CSWn-)<a href="#OOoCSWn01b"><em>[Calc]</em>Windowの分割[4分割] / 解除(2)<em>[ .uno:SplitWindow ]</em></a><br>
+CSWn-)<a href="#OOoCSWn01c"><em>[Calc]</em>Windowの分割[4分割] / 解除(3)<em>[ .uno:SplitWindow ]</em></a><br>
+CSWn-)<a href="#OOoCSWn02a"><em>[Calc]</em>Windowの分割固定 / 分割解除<em>[ .uno:FreezePanes ]</em></a><br>
+CSWn-)<a href="#OOoCSWn02b"><em>[Calc]</em>Windowの分割固定<em>[ FreezeAtPosition(,) ]</em></a><br>
+CSWn-)<a href="#OOoCSWn03a"><em>[Calc]</em>Windowの分割有無及び分割位置取得(1)[ Address ]<em>[ getIsWindowSplit / getSplitColumn / getSplitRow ]</em></a><br>
+CSWn-)<a href="#OOoCSWn03b"><em>[Calc]</em>Windowの分割位置取得(2)[ Pixel ]<em>[ splitAtPosition ]</em></a><br>
+CSWn-)<a href="#OOoCSWn04a"><em>[Calc]</em>Windowの分割固定Check<em>[ hasFrozenPanes() ]</em></a><br>
+CSWn-)<a href="#OOoCSWn05a"><em>[Calc]</em>表示Area取得(1)<em>[ getVisibleRange ]</em></a><br>
+CSWn-)<a href="#OOoCSWn05b"><em>[Calc]</em>表示Area取得(2)<em>[ getReferredCells() ]</em></a><br>
+CSWn-)<a href="#OOoCSWn06a"><em>[Calc]</em>表示AreaのFirst CellのAddress取得<em>[ getFirstVisibleColumn() / getFirstVisibleRow() ]</em></a><br>
+CSWn-)<a href="#OOoCSWn07a"><em>[Calc]</em>表示AreaのFirst CellのAddress設定<em>[ setFirstVisibleColumn() / getFirstVisibleRow() ]</em></a><br>
+</ul>
+<br><br>
+
+
+<p class="s1">View<em>( com.sun.star.sheet.SpreadsheetViewSettings Service )</em></p class="s1">
+<ul>
+CVw-)<a href="#OOoCVw01a"><em>[Calc]</em>Page Preview Mode/Normal Mode表示<em>[ .uno:PagebreakMode / NormalViewMode ]</em></a><br>
+CVw-)<a href="#OOoCVw02a"><em>[Calc]</em>Page Breake Line表示/非表示<em>[ ShowPageBreaks ]</em></a><br>
+CVw-)<a href="#OOoCVw03a"><em>[Calc]</em>式入力Boxの表示/非表示<em>[ .uno:InputLineVisible ]</em></a><br>
+CVw-)<a href="#OOoCVw04a"><em>[Calc]</em>関数Listの表示/非表示<em>[ .uno:FunctionBox ]</em></a><br>
+CVw-)<a href="#OOoCVw05a"><em>[Calc]</em>行･列番号表示/非表示(1)<em>[ .uno:ViewRowColumnHeaders ]</em></a><br>
+CVw-)<a href="#OOoCVw05b"><em>[Calc]</em>行･列番号表示/非表示(2)<em>[ ColumnRowHeaders ]</em></a><br>
+CVw-)<a href="#OOoCVw05c"><em>[Calc]</em>行･列番号表示/非表示(3)<em>[ HasColumnRowHeaders ]</em></a><br>
+CVw-)<a href="#OOoCVw06a"><em>[Calc]</em>値の強調表示/非表示(1)<em>[ .uno:ViewValueHighlighting ]</em></a><br>
+CVw-)<a href="#OOoCVw06b"><em>[Calc]</em>値の強調表示/非表示(2)<em>[ ValueHighlighting ]</em></a><br>
+CVw-)<a href="#OOoCVw06c"><em>[Calc]</em>値の強調表示/非表示(3)<em>[ IsValueHighlightingEnabled ]</em></a><br>
+CVw-)<a href="#OOoCVw07a"><em>[Calc]</em>画面Zoomの設定( Only Calc )<em>[ ZoomType / ZoomValue ]</em></a><br>
+CVw-)<a href="#OOoCVw08a"><em>[Calc]</em>Gride Line表示/非表示<em>[ ShowGrid ]</em></a><br>
+CVw-)<a href="#OOoCVw09a"><em>[Calc]</em>Gride Lineの色設定<em>[ GridColor ]</em></a><br>
+CVw-)<a href="#OOoCVw10a"><em>[Calc]</em>Spell記号の表示/非表示(未完成)<em>[ HideSpellMarks ]</em></a><br>
+CVw-)<a href="#OOoCVw11a"><em>[Calc]</em>水平Scroll Bar表示/非表示<em>[ HorizontalScrollBar ]</em></a><br>
+CVw-)<a href="#OOoCVw12a"><em>[Calc]</em>垂直Scroll Bar表示/非表示<em>[ VerticalScrollBar ]</em></a><br>
+CVw-)<a href="#OOoCVw13a"><em>[Calc]</em>Outline記号の表示/非表示(1)<em>[ OutlineSymbols ]</em></a><br>
+CVw-)<a href="#OOoCVw13b"><em>[Calc]</em>Outline記号の表示/非表示(2)<em>[ IsOutlineSymbolsSet ]</em></a><br>
+CVw-)<a href="#OOoCVw14a"><em>[Calc]</em>DocumentのSheet Tabの表示/非表示(1)<em>[ SheetTabs ]</em></a><br>
+CVw-)<a href="#OOoCVw14a2"><em>[Calc]</em>DocumentのSheet Tabの表示/非表示(2)<em>[ HasSheetTabs ]</em></a><br>
+CVw-)<a href="#OOoCVw14a3"><em>[Calc]</em>DocumentのSheet Tab表示/非表示Check<em>[ HasSheetTabs / com.sun.star.sheet.DocumentSettings / com.sun.star.comp.SpreadsheetSettings ]</em></a><br>
+CVw-)<a href="#OOoCVw15a"><em>[Calc]</em>Object Anchorの表示/非表示<em>[ ShowAnchor ]</em></a><br>
+CVw-)<a href="#OOoCVw16a"><em>[Calc]</em>Objectの表示/非表示<em>[ ShowDrawing ]</em></a><br>
+CVw-)<a href="#OOoCVw16b"><em>[Calc]</em>ObjectのHelp Line表示/非表示<em>[ ShowHelpLines ]</em></a><br>
+CVw-)<a href="#OOoCVw17a"><em>[Calc]</em>Embedded Objectの表示/非表示<em>[ ShowObjects ]</em></a><br>
+CVw-)<a href="#OOoCVw18a"><em>[Calc]</em>Formula表示<em>[ ShowFormulas ]</em></a><br>
+CVw-)<a href="#OOoCVw19a"><em>[Calc]</em>Zero( = 0 )表示/非表示<em>[ ShowZeroValues ]</em></a><br>
+CVw-)<a href="#OOoCVw20a"><em>[Calc]</em>Commentの表示/非表示(1)<em>[ setIsVisible ]</em></a><br>
+CVw-)<a href="#OOoCVw20b"><em>[Calc]</em>Commentの表示/非表示(2)<em>[ .uno:NoteVisible ]</em></a><br>
+CVw-)<a href="#OOoCVw21a"><em>[Calc]</em>Comment Markの表示/非表示<em>[ ShowNotes ]</em></a><br>
+CVw-)<a href="#OOoCVw22a"><em>[Calc]</em>Option → Rasterの設定取得<em>[ IsSnapToRaster /  ]</em></a><br>
+CVw-)<a href="#OOoCVw"><em>[Calc]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+
+
+<p class="s1">Data Pilot</p class="s1">
+<ul>
+CDP-)<a href="#OOoCDP01a"><em>[Calc]</em>Data Pilot Sourceの作成<em>[ DimArray / setDataArray / NumberFormats / com.sun.star.lang.Locale / .HoriJustify ]</em></a><br>
+CDP-)<a href="#OOoCDP02a"><em>[Calc]</em>Data Pilot Tableの作成</a><br>
+<em>[ Randomize() / getRangeAddress() / getDataPilotTables() / setSourceRange / createDataPilotDescriptor() / Orientation / com.sun.star.sheet.DataPilotFieldOrientation.ROW / com.sun.star.sheet.DataPilotFieldOrientation.COLUMN / com.sun.star.sheet.DataPilotFieldOrientation.DATA / Function / com.sun.star.sheet.GeneralFunction.SUM ]</em><br>
+CDP-)<a href="#OOoCDP03a"><em>[Calc]</em>Data Pilot Tableの削除<em>[ removeByName(name) ]</em></a><br>
+CDP-)<a href="#OOoCDP04a"><em>[Calc]</em>Pilot Table作成Dialog表示<em>[ .uno:DataDataPilotRun ]</em></a><br>
+</ul>
+<br><br>
+
+<p class="s1">GoalSeek<em>[ com.sun.star.sheet.GoalResult ]</em></p class="s1">
+<ul>
+CGS-)<a href="#OOoCGS01a"><em>[Calc]</em>GoalSeek<em>[ SeekGoal() / .Result / .Divergence ]</em></a><br>
+CGS-)<a href="#OOoCGS02a"><em>[Calc]</em>GoalSeek Dialog表示<em>[ .uno:GoalSeekDialog ]</em></a><br>
+CGS-)<a href="#OOoCGS"><em>[Calc]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+<p class="s1">Scenario</p class="s1">
+<ul>
+CSro-)<a href="#OOoCSro01a"><em>[Calc]</em>Scenarioの作成/削除<em>[ getScenarios() / addNewByName(,,) / removeByName() ]</em></a><br>
+CSro-)<a href="#OOoCSro02a"><em>[Calc]</em>Properties of Service Scenario<em>[ getByName / IsActive / BorderColor / Protected / ShowBorder / PrintBorder / CopyBack / CopyStyles / CopyFormulas ]</em></a><br>
+CSro-)<a href="#OOoCSro03a"><em>[Calc]</em>ScenarioのCommnet取得/設定<em>[ getScenarioComment / setScenarioComment() ]</em></a><br>
+CSro-)<a href="#OOoCSro04a"><em>[Calc]</em>Scenarioの有無Check<em>[ hasElements() ]</em></a><br>
+CSro-)<a href="#OOoCSro04b"><em>[Calc]</em>名前を指定してScenarioの有無Check<em>[ hasByName() ]</em></a><br>
+CSro-)<a href="#OOoCSro"><em>[Calc]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+
+
+<p class="s1">Graph Chart作成</p class="s1">
+<ul>
+CGhCt-)<a href="#OOoCGhCt01a"><em>[Calc]</em>各種グラフ作成</a><br>
+CGhCt-)<a href="#OOoCGhCt02a"><em>[Calc]</em>Graph作成Wizard表示(1)<em>[ .uno:InsertObjectChart ]</em></a><br>
+CGhCt-)<a href="#OOoCGhCt02b"><em>[Calc]</em>Graph作成Wizard表示(2)<em>[ .uno:DrawChart ]</em></a><br>
+</ul>
+<br>
+
+<p class="s1">画像</p class="s1">
+<ul>
+CGrc-1)<a href="#OOoCGrc1"><em>[Calc]</em>画像dataの挿入<em>[ dispatcher / FileName / FilterName / AsLink ]</em></a><br>
+</ul>
+<br>
+
+
+<p class="s1">印刷操作</p class="s1">
+<ul>
+CP-)<a href="#OOoCp01a"><em>[Calc]</em>改Pageの挿入/解除(1)<em>[ IsStartOfNewPage ]</em></a><br>
+CP-)<a href="#OOoCp01b"><em>[Calc]</em>改Pageの挿入/解除(2)<em>[ .uno:InsertRowBreak / DeleteRowbreak / InsertColumnBreak / DeleteColumnbreak ]</em></a><br>
+CP-)<a href="#OOoCp02a"><em>[Calc]</em>印刷範囲を設定する。<em>[ setPrintAreas() / getPrintAreas() / HasUnoInterfaces() ]</em></a><br>
+CP-)<a href="#OOoCp03a"><em>[Calc]</em>Column TitleをONにする<em>[ setPrintTitleColumns(boolean) / getPrintTitleColumns() / HasUnoInterfaces() ]</em></a><br>
+CP-)<a href="#OOoCp04a"><em>[Calc]</em>Column Title範囲を設定する<em>[ setTitleColumns(ranges) / getTitleColumns() / HasUnoInterfaces() ]</em></a><br>
+CP-)<a href="#OOoCp05a"><em>[Calc]</em>Row TitleをONにする<em>[ setPrintTitleRows(boolean) / getPrintTitleRows() / HasUnoInterfaces() ]</em></a><br>
+CP-)<a href="#OOoCp06a"><em>[Calc]</em>Row Title範囲を設定する(1)<em>[ setTitleRows() / getTitleRows() / HasUnoInterfaces() ]</em></a><br>
+CP-)<a href="#OOoCP06b"><em>[Calc]</em>Row Title範囲を設定する(2)<em>[  ]</em></a><br>
+CP-)<a href="#OOoCp07a"><em>[Calc]</em>印刷倍率を設定</a><br>
+CP-)<a href="#OOoCP08a"><em>[Calc]</em>Header/Footer Dialog表示<em>[ uno:EditHeaderAndFooter ]</em></a><br>
+CP-)<a href="#OOoCP"><em>[Calc]</em><em>[  ]</em></a><br>
+</ul>
+<br>
+
+<p class="s3">[ Prinetr ]</p class="s3">
+<ul>
+CPPrt-)<a href="#OOoCPPrt01a"><em>[Calc]</em>Default Printer Name取得<em>[ PrinterName / com.sun.star.comp.SpreadsheetSettings ]</em></a><br>
+CPPrt-)<a href="#OOoCPPrt"><em>[Calc]</em><em>[  ]</em></a><br>
+CPPrt-)<a href="#OOoCPPrt"><em>[Calc]</em><em>[  ]</em></a><br>
+</ul>
+<br><br>
+
+
+<p class="s1">file操作</p class="s1">
+<ul>
+CF-1)<a href="#OOoCF1"><em>[Calc]</em>新規Calc fileの開閉(保存確認無し)</a><br>
+CF-2)<a href="#OOoCFA"><em>[Calc]</em>新規Calc fileの開閉(保存確認有り)</a><br>
+CF-3)<a href="#OOoCF2"><em>[Calc]</em>指定のCalc fileを開く(c:\temp\test.ods)</a><br>
+CF-4)<a href="#OOoCF3"><em>[Calc]</em>CSV形式fileを開く。</a><br>
+CF-)<a href="#OOoCF05a"><em>[Calc]</em>Html形式Fileを開く</a><br>
+CF-)<a href="#OOoCF06a"><em>[Calc]</em>SYLK形式( Symbolic Link File : MS-Multiplan )形式Fileを開く</a><br>
+CF-)<a href="#OOoCF07a"><em>[Calc]</em>xls形式( MS-Excel 2003 )Fileを開く</a><br>
+CF-)<a href="#OOoCF07b"><em>[Calc]</em>xlsx形式( MS-Office 2007 )Fileを開く</a><br>
+CF-)<a href="#OOoCF08a"><em>[Calc]</em>MS-Excel 2003 XML形式Fileを開く</a><br>
+CF-)<a href="#OOoCF"><em>[Calc]</em></a><br>
+</ul>
+<br><br>
+
+<p class="s1">CSV file操作</p class="s1">
+<ul>
+CCsv-1)<a href="#OOoCCsv1"><em>[Calc]</em>CSV Fileの作成</a><br>
+</ul>
+<br><br>
+
+<p class="s1">Web関係</p class="s1">
+<ul>
+CWeb-)<a href="#OOoCWeb01a"><em>[Calc]</em>Yahoo FinanceよりGoogleの株価CSVファイルを開いてExcel形式で保存(<em class="s1"> Old </em class="s1">)</a><BR>
+CWeb-)<a href="#OOoCWeb02a"><em>[Calc]</em>Yahoo FinanceよりStock( Google )のHistorical Price取得</a><BR>
+</ul>
+<br><br>
+
+<p class="s1">その他</p class="s1">
+<ul>
+CO-1)<a href="#OOoCO1"><em>[Calc]</em>全Sheetにおいてセルの背景色（Red)の累計を数える</a><BR>
+CO-2)<a href="#OOoCO2"><em>[Calc]</em>Excelのパスワード付ファイルを開ける</a><br>
+</ul>
+<br>
+
+<br><br><br><br><br><br><br><br><br><br>
+<h3><Center>**********************【 Macro Code 】**********************</center></h3>
+
+<p class="s1">Sheet操作</p class="s1">
+<a name="OOoCs01a"><h6>CS-)<em>[Calc]</em>Current Sheet名を取得</h6></a><pre><code>
+<img src ="http://error.fc2.com/web/404.html" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcSheet()
+	Dim oDoc as Object
+	Dim oCtrl as Object
+	Dim oActSht as Object
+	Dim ActiveSheetName as String
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oActSht = oCtrl.getActiveSheet()
+		ActiveSheetName = oActSht.Name
+		oDisp = "[ Active Sheet ]" & Chr$(10) & "Name : " & ActiveSheetName
+		msgbox(oDisp, 0, "Active Sheet")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCs01a2"><h6>CS-)<em>[Calc]</em>Current CellのSheet名を取得</h6></a><pre><code>
+<img src ="http://error.fc2.com/web/404.html" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcSpreadSht()
+	Dim oDoc as Object
+	Dim oActiveCell as Object
+	Dim oSht as Object
+	Dim oShtName as String
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oActiveCell = oDoc.CurrentSelection
+		oSht = oActiveCell.spreadsheet
+		oShtName = oSht.Name
+		oDisp = "Current Sheet Name" & Chr$(10) & "→ " & oShtName
+		msgbox oDisp, 0, "CellからSheet名取得"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCs01b"><h6>CS-2)<em>[Calc]</em>全てのSheet名を取得</h6></a><pre><code>
+<img src ="http://error.fc2.com/web/404.html" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcSheet()
+	Dim oDoc as Object
+	Dim oSeet as Object
+	Dim oEnum as Object
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oSeet = oDoc.getSheets()
+		oEnum = oSeet.createEnumeration()
+		'
+		oDisp = "[ Names of All Sheet ]" & Chr$(10)
+ 		While ( oEnum.hasMoreElements() )
+  			oDisp = oDisp & oEnum.nextElement.Name & Chr$(10)
+ 		WEnd
+		msgbox(oDisp, 0, "Sheet Name")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCs02a"><h6>CS-)<em>[Calc]</em>Sheet名があるかどうかを調べる。</h6></a><pre><code>
+<img src ="http://error.fc2.com/web/404.html" align="right" hspace="4" vspace="4" width="20%">
+Sub CalcSheet()
+	Dim oDoc As Object
+	Dim oSheet As Object
+	Dim oShtName As String
+	Dim oDisp as String
+   		oDoc = ThisComponent
+   		oSheet = oDoc.getSheets()
+   		oShtName = "Sheet1"
+   		oDisp = "Sheet Name = " & oShtName & Chr$(10)
+   		If oSheet.hasByName( oShtName ) Then
+     		oDisp = oDisp & "は、同名Sheetが既にあります。"
+     	else
+     		oDisp = oDisp & "の同名Sheetはありません。" 
+   		End If
+   		msgbox(oDisp, 0, "同名Sheet")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCs03a"><h6>CS-)<em>[Calc]</em>Sheetの新規挿入(1)</h6></a><pre><code>
+<img src ="http://error.fc2.com/web/404.html" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcSheet()
+	Dim oDoc As Object
+	Dim oSheet As Object
+	Dim oShtName As String
+	Dim oDisp as String
+  		oDoc = ThisComponent 				'calc doc
+  		oSheet = oDoc.getSheets()
+  		oShtName = "NewSheet" 				'←新しいsheetの名前
+  		oDisp = "新規Sheet : " & oShtName & Chr$(10)
+  		If NOT oSheet.hasByName( oShtName ) Then	'←先に同名のsheetがないかCheck
+  			oSheet.insertNewByName( oShtName, 0 )				' 0 は挿入位置( 先頭 )
+  			oDisp = oDisp & "が挿入されました"
+  		else
+  			oDisp = oDisp & "は既に同名Sheetが存在しています"
+  		End If
+  	msgbox(oDisp, 0, "Sheetの挿入")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCs03b"><h6>CS-)<em>[Calc]</em>Sheetの新規挿入(2)</h6></a><pre><code>
+<img src ="http://error.fc2.com/web/404.html" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcSheet()
+	Dim oDoc as Object
+	Dim oSheet as Object
+	Dim oSpdSht as Object
+	Dim oShtName as String
+	Dim oDisp as String
+  		oDoc = ThisComponent 				'calc doc
+  		oSheet = oDoc.getSheets()
+  		oShtName = "NewSheet(2)" 				'←新しいsheetの名前
+  		'
+  		' com.sun.star.sheet.spreadsheet serviceをInstance化
+  		oSpdSht = oDoc.createInstance("com.sun.star.sheet.Spreadsheet")
+  		'
+  		oDisp = "新規Sheet : " & oShtName & Chr$(10)
+  		If NOT oSheet.hasByName( oShtName ) Then 				' ←先に同名のsheetがないかCheck
+  			oSheet.insertByName( oShtName, oSpdSht )				' ←挿入位置は末尾
+  			oDisp = oDisp & "が挿入されました"
+  		else
+  			oDisp = oDisp & "は既に同名Sheetが存在しています"
+  		End If
+  	msgbox(oDisp, 0, "Sheetの挿入")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCs03c"><h6>CS-)<em>[Calc]</em>Sheetの新規挿入(3)</h6></a><pre><code>
+Sub CalcSheet()
+	Dim oDoc as Object, oCtrl as Object, oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(1) as new com.sun.star.beans.PropertyValue
+		oDoc = ThisComponent
+  		oCtrl = oDoc.getCurrentController()
+  		oFrame = oCtrl.getFrame()
+  		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+  			oProp(0).Name = "Name"
+  			oProp(0).Value = "AddSht"
+  			oProp(1).Name = "Index"
+  			oProp(1).Value = 2			' Sheet2 の前に挿入 / 先頭は1
+  		oDispatcher.executeDispatch( oFrame, ".uno:Insert", "", 0, oProp())
+  		msgbox "Success"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCs04a"><h6>CS-)<em>[Calc]</em>Sheet内容の置換</h6></a><pre><code>
+Sub CalcSheet()
+	Dim oDoc as Object
+	Dim oSheet as Object
+	Dim oSpdSht as Object
+	Dim oBaseShtName as String, oRplcShtName as String
+	Dim oDisp as String
+  		oDoc = ThisComponent
+  		oSheet = oDoc.getSheets()
+  		oBaseShtName = "Sheet1"
+  		oRplcShtName = "Sheet3"
+  		'
+  		oSpdSht = oDoc.createInstance("com.sun.star.sheet.Spreadsheet")
+  		'
+  		If oSheet.hasByName( oBaseShtName ) Then
+  			oSpdSht.setName(oBaseShtName)						' ← setName が設定出来ないので空白Sheetが置換元になる( 理由不明 )
+  			msgbox oSpdSht.getName()
+  		else
+  			oDisp = "置換元Sheet : " & oBaseShtName & Chr$(10) & "が存在しません。"
+  			msgbox(oDisp,0,"置換元Sheet")
+  			Exit Sub
+  		end If
+  		'
+  		If oSheet.hasByName( oRplcShtName ) Then
+  			oSheet.replaceByName( oRplcShtName, oSpdSht )
+  			oDisp = oRplcShtName & " の内容を " & Chr$(10) & oBaseShtName & Chr$(10) & "の内容 に置換しました。"
+  		else
+  			oDisp = "置換先Sheet : " & oRplcShtName & Chr$(10) & "が存在しません。"
+  			msgbox(oDisp,0,"置換先Sheet")
+  			Exit Sub
+  		end If
+  	msgbox(oDisp,0,"Sheetの置換")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCs05a"><h6>CS-)<em>[Calc]</em>Sheetの保護/保護解除</h6></a><pre><code>
+<img src ="http://error.fc2.com/web/404.html" align="right" hspace="4" vspace="4" width="15%"><img src ="http://error.fc2.com/web/404.html" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcSheet()
+	Dim oDoc as Object
+	Dim oSheet as Object
+	Dim oSpdSht as Object
+	Dim oShtName as String
+	Dim oDisp as String
+  		oDoc = ThisComponent
+  		oSheet = oDoc.getSheets()
+  		oShtName = "Sheet1"
+  		'
+  		oSpdSht = oDoc.createInstance("com.sun.star.sheet.Spreadsheet")
+  		'
+  		oDisp = "Sheet名 : " & oShtName & Chr$(10)
+  		if NOT oSheet.getByName(oShtName).IsProtected then
+  			oSpdSht.protect( oShtName, "password")
+  			oDisp = oDisp & "を 保護しました。"
+  		else
+  			oDisp = oDisp & "は既に保護されています。"
+  		end if
+  		msgbox(oDisp, 0, "Sheetの保護")
+  		'
+  		' Instance化は毎回必要
+  		oSpdSht = oDoc.createInstance("com.sun.star.sheet.Spreadsheet")
+  		oSpdSht.unprotect( oShtName, "password")
+  		oDisp = "Sheet名 : " & oShtName & Chr$(10)
+  		if NOT oSheet.getByName(oShtName).IsProtected then
+  			oDisp = oDisp & "の 保護を解除しました。"
+  		else
+  			oDisp = oDisp & "の解除に失敗しました。"
+  		end if
+  		msgbox(oDisp, 0, "Sheetの保護解除")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCs05b"><h6>CS-)<em>[Calc]</em>Sheetの保護Dialog表示</h6></a><pre><code>
+<img src ="http://error.fc2.com/web/404.html" align="right" hspace="4" vspace="4" width="25%">
+Sub CalcSht()
+    Dim oDoc as Object, oCtrl as Object, oFrame as Object
+    Dim oDispatcher as Object
+    	oDoc = ThisComponent
+    	oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		oDispatcher.executeDispatch(oFrame,  ".uno:Protect", "", 0, Array())
+		'
+		msgbox "Success"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCs06a"><h6>CS-)<em>[Calc]</em>SheetのCopy</h6></a><pre><code>
+Sub CalcSheet()
+Dim oDoc As Object
+Dim oSheets As Object
+Dim sSheetName As String
+Dim sCopyName As String
+  sSheetName = "Sheet1" '←コピー元のSheet名
+  sCopyName = "Copy"	'←コピー先のSheet名
+  oDoc = ThisComponent 'calc doc
+  oSheets = oDoc.getSheets()
+  If oSheets.hasByName( sSheetName ) Then
+    If NOT oSheets.hasByName( sCopyName ) Then
+      oSheets.copyByName( sSheetName, sCopyName, 0 )
+    End If
+  End If
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCS06b"><h6>CS-)<em>[Calc]</em>Sheetの移動</h6></a><pre><code>
+Sub CalcSheet()
+Dim oDoc As Object, oSheets As Object
+Dim sSheetName As String
+  sSheetName = "Sheet1"
+  oDoc = ThisComponent 'calc doc
+  oSheets = oDoc.getSheets()
+  If oSheets.hasByName( sSheetName ) Then
+      oSheets.moveByName( sSheetName, 0 )	'←一番前に移動
+  End If
+End Sub
+</code></pre><br>
+
+
+
+<a name="OOoCS06c"><h6>CS-)<em>[Calc]</em>Current SheetのCopy/移動</h6></a><pre><code>
+<img src ="http://error.fc2.com/web/404.html" align="right" hspace="4" vspace="4" width="20%">
+Sub CalcSheet()
+	Dim oDoc as Object, oCtrl as Object, oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(2) as new com.sun.star.beans.PropertyValue
+	Dim oDocName as String
+  		oDoc = ThisComponent
+  		oCtrl = oDoc.getCurrentController()
+  		oFrame = oCtrl.getFrame()
+  		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+  		oDocName = Replace(oDoc.getTitle(), " ", "" )		' ← 文字間のSpace削除する必要あり
+  			oProp(0).Name = "DocName"
+  			oProp(0).Value = oDocName
+  			oProp(1).Name = "Index"
+  			oProp(1).Value = 1		' 1 : 先頭 / Sheet2の前は 2
+  			oProp(2).Name = "Copy"
+  			oProp(2).Value = true		' true : Copy / false : Move
+  		oDispatcher.executeDispatch( oFrame, ".uno:Move", "", 0, oProp())
+  		msgbox "Success"
+End Sub
+</code></pre><br>
+
+
+
+<a name="OOoCS07a"><h6>CS-)<em>[Calc]</em>Sheetの削除</h6></a><pre><code>
+Sub CalcSheet()
+	Dim oSheets As Object
+	Dim oSheet As Object
+	Dim nReturnCode As Integer
+	Dim sSheetName As String
+   		sSheetName = "NewSheet2"
+   		oSheets = ThisComponent.getSheets()
+   		If oSheets.hasByName( sSheetName ) Then
+     		nReturnCode=Msgbox("本当に削除しますか?",4)
+     		if nReturnCode=6 then
+     			oSheets.removeByName( sSheetName )
+     		Endif
+    	else
+    		msgbox("削除するsheetがありません") 
+   		End If
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCS07b"><h6>CS-)<em>[Calc]</em>Current Sheetの削除</h6></a><pre><code>
+<img src ="http://error.fc2.com/web/404.html" align="right" hspace="4" vspace="4" width="20%">
+Sub CalcSheet()
+	Dim oDoc as Object, oCtrl as Object, oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp() as new com.sun.star.beans.PropertyValue
+		oDoc = ThisComponent
+  		oCtrl = oDoc.getCurrentController()
+  		oFrame = oCtrl.getFrame()
+  		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+  		oDispatcher.executeDispatch( oFrame, ".uno:Remove", "", 0, oProp())
+  		msgbox "Success"
+End Sub
+</code></pre><br>
+
+
+
+<a name="OOoCS08a"><h6>CS-)<em>[Calc]</em>Sheet名の変更(1)</h6></a><pre><code>
+Sub oChangeSheetName
+Dim oDoc As Object, oSheet1 as Object
+	oDoc = ThisComponent
+	oSheet1=oDoc.Sheets(0)
+	oSheet1.Name="Calc1"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCS08b"><h6>CS-)<em>[Calc]</em>Sheet名の変更(2)[ Current Sheet ]</h6></a><pre><code>
+<img src ="http://error.fc2.com/web/404.html" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcValidation()
+    Dim oDoc as Object, oCtrl as Object, oFrame as Object
+    Dim oDispatcher as Object
+    Dim oProp(0) as new com.sun.star.beans.PropertyValue
+    	oDoc = ThisComponent
+    	oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+			oProp(0).Name = "Name"
+			oProp(0).Value = "ChangeSht"
+		oDispatcher.executeDispatch(oFrame,  ".uno:RenameTable", "", 0, oProp())
+		'
+		msgbox "Success"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCS09a"><h6>CS-)<em>[Calc]</em>Sheetの表示/非表示(1)</h6></a><pre><code>
+<img src ="http://error.fc2.com/web/404.html" align="right" hspace="4" vspace="4" width="25%">
+Sub SheetShowHide()
+	Dim oDoc As Object
+	Dim oSheet as Object
+	Dim oShtName as String
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oShtName = "Sheet3"
+		oSheet = oDoc.getSheets().getByName(oShtName)
+		oSheet.IsVisible = false
+    	msgbox(oShtName & " は 非表示",0,"Sheet表示")
+    	'
+    	oSheet.IsVisible = true
+    	msgbox(oShtName & "Sheet は 表示",0,"Sheet表示")
+End Sub
+</code></pre><br>
+
+
+
+<a name="OOoCS09b"><h6>CS-)<em>[Calc]</em>Sheetの表示/非表示(2)</h6></a><pre><code>
+<img src ="http://error.fc2.com/web/404.html" align="right" hspace="4" vspace="4" width="25%">
+Sub SheetShowHide()
+	Dim oDoc As Object
+	Dim oCtrl as Object
+	Dim oFrame as Object
+	Dim oShtName as String
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.Frame
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+    	'
+    	oShtName = "Sheet2"
+    	' 先頭の a に注意 / "Nr" を用いる時は先に .uno:JumpToTable とset
+    	oProp(0).Name = "aTableName"		
+		oProp(0).Value = "Sheet2"				'  Propertiesを設定しないと ActiveSheet
+		'
+    	oDispatcher.executeDispatch(oFrame, ".uno:Hide", "", 0, oProp())
+    	msgbox(oShtName & " は 非表示",0,"Sheet表示")
+    	'
+    	' 表示時は oProp(0).Name = "Nr" での指定は無視される
+    	oDispatcher.executeDispatch(oFrame, ".uno:Show", "", 0, oProp())
+    	msgbox(oShtName & "Sheet は 表示",0,"Sheet表示")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCS10a"><h6>CS-11)<em>[Calc]</em>Sheet Tab Colorの取得 / 設定</h6></a><pre><code>
+<img src ="http://error.fc2.com/web/404.html" align="right" hspace="4" vspace="4" width="25%">
+Sub SheetTab()
+	Dim oDoc As Object
+	Dim oSheets as Object, oSheet1 as Object, oSheet2 as Object
+	Dim oShtColor1 as Long, oShtColor2 as Long
+	Dim oSht2Color as Long
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oSheets = oDoc.getSheets()
+		oSheet1 = oSheets.getByIndex(0)
+		oSheet2 = oSheets.getByIndex(1)
+		'
+		' TabColor to be applied after OOo3.3
+		oShtColor1 = oSheet1.TabColor
+		oSht2Color = oSheet2.TabColor
+		'
+		oSheet1.TabColor = RGB(255,0,0)
+		oShtColor2 = oSheet1.TabColor
+		'
+		oDisp = "[ Sheet Tab Color ]" & Chr$(10) & "{ Sheet1 }" & Chr$(10) & "Before = " & Hex(oShtColor1) & Chr$(10) &_
+					"After  = " & Hex(oShtColor2) & Chr$(10) & Chr$(10) & "{ Sheet2 }" & Chr$(10) & Hex(oSht2Color)
+					'
+	' macro実行中に確認する為に、Active Sheetを変更
+	Dim oCtrl as Object
+		oCtrl = oDoc.getCurrentController()
+		oCtrl.setActiveSheet(oSheets.getByName("Sheet1"))
+  		oCtrl.setActiveSheet(oSheets.getByName("Sheet3"))
+		msgbox(oDisp, 0, "Change Tab Color of Sheet")
+End Sub
+</code></pre><br>
+
+
+
+<a name="OOo40"><h6>CS-11)<em>[Calc]</em>Sheetスタイルを調べる</h6></a><pre><code>
+Sub Main
+Dim oSheets As Object
+Dim oSheet As Object
+Dim sSheetName As String
+   	sSheetName = "sheet1" '←調べるsheet名
+   	oSheets = ThisComponent.getSheets()
+	oSheet = oSheets.getByName( sSheetName ) 
+ 	PStyle=oSheet.getPropertyValue( "PageStyle" )
+Msgbox(PStyle)
+End Sub
+</code></pre><br>
+
+<a name="OOo40b"><h6>CS-11b)<em>[Calc]</em>Current Sheet Style取得</h6></a><pre><code>
+<IMG SRC="http://error.fc2.com/web/404.html" align="right" hspace="4" vspace="4" width="20%">
+Sub oSheet
+	Dim oDoc
+	Dim oSheet
+	Dim oPageStyle
+		oDoc = ThisComponent
+			oSheet = oDoc.CurrentController.getActiveSheet()
+			oSheetStyle	= oSheet.PageStyle
+			oDisp = oSheetStyle
+		msgbox(oDisp,0,"Sheet") 	
+End Sub
+</code></pre><br>
+
+
+<a name="OOo40c"><h6>CS-11c)<em>[Calc]</em>Page Size取得</h6></a><pre><code>
+<IMG SRC="http://error.fc2.com/web/404.html" align="right" hspace="4" vspace="4" width="20%">
+Sub oSheet
+	Dim oDoc
+	Dim oSheet
+	Dim oPageStyle
+		oDoc = ThisComponent
+			oSheet = oDoc.CurrentController.getActiveSheet()
+			oSheetStyle	= oSheet.PageStyle
+				oSheetStyle = oDoc.StyleFamilies.getByName("PageStyles").getByName(oSheetStyle) 
+			oPageH  = oSheetStyle.Height /100		' unit : 1/100 mm
+			oPageW = oSheetStyle.Width /100		' unit : 1/100 mm
+			oDisp = "[ Page Size in Calc ]" & Chr$(10) & _
+						"Heihgt		:	" & Int(oPageH) & " mm " & Chr$(10) & _
+						"Width		:	" & Int(oPageW) & " mm "
+		msgbox(oDisp,0,"Sheet") 	
+End Sub
+</code></pre><br>
+
+
+<a name="OOo40d"><h6>CS-11d)<em>[Calc]</em>上下左右余白取得</h6></a><pre><code>
+<IMG SRC="http://error.fc2.com/web/404.html" align="right" hspace="4" vspace="4" width="20%">
+Sub oSheet
+	Dim oDoc
+	Dim oSheet
+	Dim oPageStyle
+		oDoc = ThisComponent
+			oSheet = oDoc.CurrentController.getActiveSheet()
+			oSheetStyle	= oSheet.PageStyle
+				oSheetStyle = oDoc.StyleFamilies.getByName("PageStyles").getByName(oSheetStyle) 
+			oTopMargin = oSheetStyle.TopMargin /100		' unit : 1/100 mm
+			oBottomMargin = oSheetStyle.BottomMargin /100		' unit : 1/100 mm
+			oLeftMargin = oSheetStyle.LeftMargin /100		' unit : 1/100 mm
+			oRightMargin = oSheetStyle.RightMargin /100		' unit : 1/100 mm
+			oDisp = "[ Page Margin in Calc ]" & Chr$(10) & _
+						"Top Margin		:	" & Int(oTopMargin) & " mm " & Chr$(10) & _
+						"Bottom Margin	:	" & Int(oBottomMargin) & " mm " & Chr$(10) & _
+						"Left Margin		:	" & Int(oLeftMargin) & " mm " & Chr$(10) & _
+						"Right Margin		:	" & Int(oRightMargin) & " mm "
+		msgbox(oDisp,0,"Sheet") 	
+End Sub
+</code></pre><br>
+
+<a name="OOo40d"><h6>CS-11d)<em>[Calc]</em>余白設定</h6></a><pre><code>
+<IMG SRC="http://error.fc2.com/web/404.html" align="right" hspace="4" vspace="4" width="20%">
+Sub oSheet
+	Dim oDoc
+	Dim oSheet
+	Dim oPageStyle
+		oDoc = ThisComponent
+			oSheet = oDoc.CurrentController.getActiveSheet()
+			oSheetStyle	= oSheet.PageStyle
+				oSheetStyle = oDoc.StyleFamilies.getByName("PageStyles").getByName(oSheetStyle) 
+			'Pre Margin
+				oPreTopMargin = oSheetStyle.TopMargin /100		' unit : 1/100 mm
+			'Margin Set
+				oSheetStyle.TopMargin = 15*100
+			'Confirm
+				oTopMargin = oSheetStyle.TopMargin /100		' unit : 1/100 mm
+					oDisp = "[ Page Margin set ]" & Chr$(10) & _
+						"Top Margin : " & Int(oPreTopMargin) & " mm   =>  " & Int(oTopMargin) & " mm "
+		msgbox(oDisp,0,"Sheet") 	
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCS-12"><h6>CS-12)<em>[Calc]</em>行と列のFontName(英数字、日本語)設定。</h6></a><pre><code>
+Sub oFontsName
+Dim oDoc As Object
+	oDoc=ThisComponent
+	oDoc.Sheets(0).Rows(0).CharFontName = "Courier"
+	oDoc.Sheets(0).Rows(0).CharFontNameAsian = "HGP行書体"
+	oDoc.Sheets(0).Columns(0).CharFontName = "Arial Black"
+	oDoc.Sheets(0).Columns(0).CharFontNameAsian = "HGS明朝"
+End Sub</code></pre><br>
+
+<a name="OOoCS-13"><h6>CS-13)<em>[Calc]</em>行と列のFontStyle設定。</h6></a><pre><code>
+Sub oCellStyle
+Dim oDoc As Object
+	oDoc=ThisComponent
+	oDoc.Sheets(0).Rows(0).CharFontStyle = "Heading" 'Heading:太字斜体"
+	oDoc.Sheets(0).Columns(0).CellStyle = "Heading"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCS16a"><h6>CS-)<em>[Calc]</em>ActiveSheetを変更1</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/sheet/16setActiveSheet01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub ChangeActSheet()
+	Dim oDoc as Object
+	Dim oCntrl as Object
+	Dim oSheets as Object
+	Dim oShtName1 as String, oShtName2 as String
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oCntrl = oDoc.getCurrentController()
+		'
+		' Get Name of Current Sheet
+		oShtName1 = oCntrl.getActiveSheet().Name
+		'
+		oSheets = oDoc.getSheets()
+  		oCntrl.setActiveSheet(oSheets.getByName("Sheet1"))
+		'
+		oShtName2 = oCntrl.getActiveSheet().Name
+		oDisp = "[ Change active sheet ]" & Chr$(10) & "Before : " & oShtName1 & Chr$(10) & "After : " & oShtName2
+		'
+		msgbox(oDisp,0,"Active Sheetの変更")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCS16b"><h6>CS-)<em>[Calc]</em>ActiveSheetを変更2</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/sheet/16JumpToTable01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub ChangeActSheet()
+	Dim oDoc as Object
+	Dim oCntrl as Object
+	Dim oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+	Dim oShtName1 as String, oShtName2 as String
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oCntrl = oDoc.getCurrentController()
+		oFrame = oCntrl.Frame
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		' Get Name of Current Sheet
+		oShtName1 = oCntrl.getActiveSheet().Name
+			'
+			oProp(0).Name = "Nr"
+			oProp(0).Value = 3 				' Sheet3 / not 2 
+			'
+			'以下での指定は不可
+			' oProp(0).Name = "aTableName"
+			' oProp(0).Value = "Sheet3"
+		oDispatcher.executeDispatch( oFrame, ".uno:JumpToTable", "", 0, oProp())	
+		'
+		oShtName2 = oCntrl.getActiveSheet().Name
+		oDisp = "[ Change active sheet ]" & Chr$(10) & "Before : " & oShtName1 & Chr$(10) & "After : " & oShtName2
+		'
+		msgbox(oDisp,0,"Active Sheetの変更")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCS16c"><h6>CS-)<em>[Calc]</em>ActiveSheetを変更3</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/sheet/16SelectTables01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub ChangeActSheet()
+	Dim oDoc as Object
+	Dim oCntrl as Object
+	Dim oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+	Dim oShtName1 as String, oShtName2 as String
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oCntrl = oDoc.getCurrentController()
+		oFrame = oCntrl.Frame
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		' Get Name of Current Sheet
+		oShtName1 = oCntrl.getActiveSheet().Name
+			'
+			oProp(0).Name = "Tables"
+			oProp(0).Value = Array(2)		' Sheet3 
+		oDispatcher.executeDispatch( oFrame, ".uno:SelectTables", "", 0, oProp())	
+		'
+		oShtName2 = oCntrl.getActiveSheet().Name
+		oDisp = "[ Change active sheet(3) ]" & Chr$(10) & "Before : " & oShtName1 & Chr$(10) & "After : " & oShtName2
+		'
+		msgbox(oDisp,0,"Active Sheetの変更")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCS16d"><h6>CS-)<em>[Calc]</em>ActiveSheetを変更4a[ Next Sheet ]</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/sheet/16JumpToNextTable01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub ChageActSheet()
+	Dim oDoc as Object
+	Dim oCntrl as Object
+	Dim oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+	Dim oShtName1 as String, oShtName2 as String
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oCntrl = oDoc.getCurrentController()
+		oFrame = oCntrl.Frame
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		' Get Name of Current Sheet / must be selected sheet1 ( Sheet1をActive Sheetにしておく事 )
+		oShtName1 = oCntrl.getActiveSheet().Name
+		' Sheet1 → Sheet2
+		oDispatcher.executeDispatch( oFrame, ".uno:JumpToNextTable", "", 0, Array())
+		' Sheet2 → Sheet3
+		oDispatcher.executeDispatch( oFrame, ".uno:JumpToNextTable", "", 0, Array())
+		oShtName2 = oCntrl.getActiveSheet().Name
+		'
+		oDisp = "[ Move next sheet ]" & Chr$(10) & "Before : " & oShtName1 & Chr$(10) & "After : " & oShtName2
+		'
+		msgbox(oDisp,0,"Ctrl + PageDown")
+End Sub
+'
+' [ Note ]
+' 次のSheetが無い場合(sheet3がCurrnet Sheetの場合)、変化無し。/ Sheet1に戻る訳では無い
+</code></pre><br>
+
+
+<a name="OOoCS16e"><h6>CS-)<em>[Calc]</em>ActiveSheetを変更4b[ Previosu Sheet ]</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/sheet/16JumpToPrevTable01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub ChangeActSheet()
+	Dim oDoc as Object
+	Dim oCntrl as Object
+	Dim oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+	Dim oShtName1 as String, oShtName2 as String
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oCntrl = oDoc.getCurrentController()
+		oFrame = oCntrl.Frame
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		' Get Name of Current Sheet / must be selected sheet3 ( Sheet3をActive Sheetにしておく事 )
+		oShtName1 = oCntrl.getActiveSheet().Name
+		' Sheet3 → Sheet2
+		oDispatcher.executeDispatch( oFrame, ".uno:JumpToPrevTable", "", 0, Array())
+		' Sheet2 → Sheet1
+		oDispatcher.executeDispatch( oFrame, ".uno:JumpToPrevTable", "", 0, Array())
+		oShtName2 = oCntrl.getActiveSheet().Name
+		'
+		oDisp = "[ Move previous sheet ]" & Chr$(10) & "Before : " & oShtName1 & Chr$(10) & "After : " & oShtName2
+		'
+		msgbox(oDisp,0,"Ctrl + PageUp")
+End Sub
+'
+' [ Note ]
+' 前のSheetが無い場合(sheet1がCurrnet Sheetの場合)、変化無し。/ Sheet3には移らない。
+</code></pre><br>
+
+
+<a name="OOoCS17a"><h6>CS-)<em>[Calc]</em>ActiveSheetを追加選択[ Previosu Sheet ]( Ctrl + PageUp )</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/sheet/17aJumpToNextTableSel02.png" align="right" hspace="4" vspace="4" width="25%"><img src="OOoBasic_pic/02calc/sheet/17aJumpToNextTableSel01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub ChageActSheet()
+	Dim oDoc as Object
+	Dim oCntrl as Object
+	Dim oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+	Dim oShtName1 as String, oShtName2 as String
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oCntrl = oDoc.getCurrentController()
+		oFrame = oCntrl.Frame
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		' Get Name of Current Sheet / must be selected sheet1 ( Sheet1をActive Sheetにしておく事 )
+		oShtName1 = oCntrl.getActiveSheet().Name
+		' Sheet1 → Sheet2
+		oProp(0).Name = "Sel"
+		oProp(0).Value = true
+		oDispatcher.executeDispatch( oFrame, ".uno:JumpToNextTableSel", "", 0, Array())
+		' Sheet2 → Sheet3
+		oProp(0).Name = "Sel"
+		oProp(0).Value = true
+		oDispatcher.executeDispatch( oFrame, ".uno:JumpToNextTableSel", "", 0, Array())
+		oShtName2 = oCntrl.getActiveSheet().Name
+		'
+		oDisp = "[ Move next sheet ]" & Chr$(10) & "Before : " & oShtName1 & Chr$(10) & "After : " & oShtName2
+		'
+		msgbox(oDisp,0,"Ctrl + Shift + PageDown")
+End Sub
+'
+' [ Note ]
+' 1) IDE からの実行では追加選択されない。(JumpToNextTable と同じ結果になる)
+' 2) 次のSheetが無い場合(sheet3がCurrnet Sheetの場合)、変化無し。/ Sheet1の選択は解除されない。
+</code></pre><br>
+
+
+<a name="OOoCS17b"><h6>CS-)<em>[Calc]</em>ActiveSheetを追加選択[ Previosu Sheet ]( Ctrl + PageUp )</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/sheet/17bJumpToPrevTableSel02.png" align="right" hspace="4" vspace="4" width="25%"><img src="OOoBasic_pic/02calc/sheet/17bJumpToPrevTableSel01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub ChageActSheet()
+	Dim oDoc as Object
+	Dim oCntrl as Object
+	Dim oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+	Dim oShtName1 as String, oShtName2 as String
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oCntrl = oDoc.getCurrentController()
+		oFrame = oCntrl.Frame
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		' Get Name of Current Sheet / must be selected sheet1 ( Sheet1をActive Sheetにしておく事 )
+		oShtName1 = oCntrl.getActiveSheet().Name
+		' Sheet1 → Sheet2
+		oProp(0).Name = "Sel"
+		oProp(0).Value = true
+		oDispatcher.executeDispatch( oFrame, ".uno:JumpToPrevTableSel", "", 0, Array())
+		' Sheet2 → Sheet3
+		oProp(0).Name = "Sel"
+		oProp(0).Value = true
+		oDispatcher.executeDispatch( oFrame, ".uno:JumpToPrevTableSel", "", 0, Array())
+		oShtName2 = oCntrl.getActiveSheet().Name
+		'
+		oDisp = "[ Move next sheet ]" & Chr$(10) & "Before : " & oShtName1 & Chr$(10) & "After : " & oShtName2
+		'
+		msgbox(oDisp,0,"Ctrl + Shift + PageUp")
+End Sub
+'
+' [ Note ]
+' 1) IDE からの実行では追加選択されない。(JumpToPrevTable と同じ結果になる)
+' 2) 前のSheetが無い場合(sheet3がCurrnet Sheetの場合)、変化無し。/ Sheet3の選択は解除されない。
+</code></pre><br>
+
+
+<a name="OOoCS18a"><h6>CS-)<em>[Calc]</em>複数のSheetを選択</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/sheet/18aMultiSelectSheet01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub ChangeActSheet()
+	Dim oDoc as Object
+	Dim oCntrl as Object
+	Dim oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+		oDoc = ThisComponent
+		oCntrl = oDoc.getCurrentController()
+		oFrame = oCntrl.Frame
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		oProp(0).Name = "Tables"
+		oProp(0).Value = Array(0,2)		' Sheet1 and Sheet3 選択 
+		oDispatcher.executeDispatch( oFrame, ".uno:SelectTables", "", 0, oProp())	
+		'
+		msgbox "Success",0,"複数のSheet選択"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCS18all"><h6>CS-)<em>[Calc]</em>全Sheetを選択</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/sheet/18allUnoTableSelectAll01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub CalcValidation()
+    Dim oDoc as Object, oCtrl as Object, oFrame as Object
+    Dim oDispatcher as Object
+   		oDoc = ThisComponent
+    	oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		oDispatcher.executeDispatch(oFrame,  ".uno:TableSelectAll", "", 0, Array())
+		'
+		msgbox "Success"
+End Sub
+</code></pre><br>
+
+
+
+<a name="OOo42"><h6>CS-)<em>[Calc]</em>別のドキュメントから持ってきたsheetを挿入する。</h6></a><pre><code>
+Sub main
+Dim oDoc As Object, oSheets As Object
+Dim sSheetName As String
+Dim oNewSheet As Object
+  sSheetName = "NewSheet2"
+  oDoc = ThisComponent 'calc doc
+  oSheets = oDoc.getSheets()
+  oNewSheet = oDoc.createInstance( "com.sun.star.sheet.Spreadsheet" )	'←新規追加に比べて本行を追加
+  If NOT oSheets.hasByName( sSheetName ) Then
+    oSheets.insertByName( sSheetName, oNewSheet )						'←「0」⇒「oNewSheet」に置換
+  End If
+End Sub</code></pre><br>
+
+
+<a name="OOoCS19"><h6>CS-)<em>[Calc]</em>Sheet枚数取得</h6></a><pre><code>
+Sub oSheetSpreadsheets
+	Dim oDoc
+		oDoc = ThisComponent
+		oSheets= oDoc.Sheets
+		oNum = oSheets.getCount()
+		oDisp = "Sheet枚数 => " & oNum 
+		msgbox(oDisp,0,"Sheet枚数取得")
+End Sub
+</code></pre><br>
+
+<a name="OOoCS20"><h6>CS-)<em>[Calc]</em>Document内にSheetがあるか</h6></a><pre><code>
+Sub oSheetSpreadsheets
+	Dim oDoc
+		oDoc = ThisComponent
+		oSheets= oDoc.Sheets
+		oDisp=oSheets.hasElements()
+		msgbox(oDisp,0,"com.sun.star.sheet.Spreadsheets")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCS21"><h6>CS-)<em>[Calc]</em>Document内にSheet名一覧</h6></a><pre><code>
+Sub oSheetSpreadsheets
+	Dim oDoc
+		oDoc = ThisComponent
+		oSheets= oDoc.Sheets
+		oSEnum=oSheets.createEnumeration()
+		Do While oSEnum.hasMoreElements()
+			oSheet = oSEnum.nextElement()
+			oDisp = oDisp & oSheet.Name & Chr$(10)
+		Loop 
+		msgbox(oDisp,0,"com.sun.star.sheet.Spreadsheets")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCS22a"><h6>CS-)<em>[Calc]</em>Page Style Dialogの表示</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/sheet/22aUnoPageFormatDlg01.png" align="right" hspace="4" vspace="4" width="40%">
+Sub PageFormat()
+	Dim oDoc as Object, oCtrl as Object, oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		oDispatcher.executeDispatch(oFrame, ".uno:PageFormatDialog", "", 0, Array())
+		'
+	msgbox "Success" & Chr$(10) & "( DispatchHelper )"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCS"><h6>CS-)<em>[Calc]</em></h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/sheet/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ Link ]</p class="s3">
+<a name="OOoCSL1"><h6>CS-18)<em>[Calc]</em>SheetのLink1</h6></a><pre><code>
+Sub Main
+ oNewDoc = StarDesktop.loadComponentFromURL( _
+    "private:factory/scalc", "_blank", 0, Array() )
+ 
+ oNSheets = oNewDoc.getSheets()
+ oNSheet = oNSheets.getByIndex(0)
+ 
+ ' add link
+ oNSheet.link( _
+     "/home/name/Desktop/LinkTest.ods", _
+     "Sheet1", _
+     "", _
+     "", _
+     com.sun.star.sheet.SheetLinkMode.NORMAL )
+
+ ' remove link
+ oNSheet.setLinkMode(_
+   com.sun.star.sheet.SheetLinkMode.NONE )
+End Sub</code></pre><br>
+
+<a name="OOoCSL2"><h6>CSL-)<em>[Calc]</em>SheetのLink2</h6></a><pre><code>
+Sub oLinkSheet
+	Dim ovalSheets
+	Dim oSheet
+	Dim oSheetEnum
+	Dim oLURL as String
+		oFile = "C:\temp\oAuthor.ods"
+		oLURL = ConvertToUrl(oFile)
+		'oLURL = "oAuthor.ods"
+		oDoc = ThisComponent
+		ovalSheets = oDoc.Sheets()		'The Sheets object that contains all of the sheets
+		oLSheet = "oLinktest"
+   		If ovalSheets.hasByName( oLSheet ) Then
+			oSheet = oDoc.getSheets().getByName(oLSheet)
+			oLink = oSheet.link(oLURL, "Sheet1","","",com.sun.star.sheet.SheetLinkMode.NORMAL)
+				document   = oDoc.CurrentController.Frame
+				dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+					dispatcher.executeDispatch(document, ".uno:Refresh", "", 0, Array())
+			Msgbox("Current Frame is refreshed!!",0,"Case1 : " & oLSheet & " was Linked already")
+			Exit Sub 
+		End If
+		ovalSheets.insertNewByName("test", ovalSheets.getCount())
+		oSheet = ovalSheet.getByName(oLSheet)
+		oSheet.link(oLURL, "Sheet1","","",com.sun.star.sheet.SheetLinkMode.NORMAL)
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCSL3"><h6>CSL-)<em>[Calc]</em>別fileのCellとLink</h6></a><pre><code>
+Sub oCellLink
+	Dim oSheet
+	Dim oCell
+		oSheet = ThisComponent.Sheets(0)
+		oCell = oSheet.getCellByposition(0,0)		'	A1
+		oCell.setFormula("=" & "'file:///C:/temp/oAuthor.ods'#Sheet1.A2") 
+End Sub
+</code></pre><br>
+
+
+<p class="s3">[ Sheet Cursors ]</p class="s3">
+<a name="OOoCSC01a"><h6>CSC-)<em>[Calc]</em>Active Cellの移動(1)</h6></a><pre><code>
+<img SRC="OOoBasic_pic/02calc/sheet/02Sheet_Cursor/01SheetCursor01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub oCursor
+	Dim oCurs
+	Dim oSheet
+		oDoc = THisComponent
+		oSheet = oDoc.Sheets(1)	
+		oCurs = oSheet.createCursorByRange(oSheet.getCellByPosition(0,0))
+		'Start Address
+			oldActiveColumn=oCurs.getRangeAddress.StartColumn
+			oldActiveRow=oCurs.getRangeAddress.StartRow
+				oDisp = "[ Sheet Cursor ]" & Chr$(10)
+					oDisp = oDisp & "< Start Address >" & Chr$(10)
+					oDisp = oDisp & "(  " & oldActiveColumn & " , " & oldActiveRow & " )"  & Chr$(10)
+		'move right cell
+			oCurs.gotoNext()
+			oActiveColumn=oCurs.getRangeAddress.StartColumn
+			oActiveRow=oCurs.getRangeAddress.StartRow
+				oDisp = oDisp & Chr$(9) & " => " & Chr$(10)
+					oDisp = oDisp & "<Step1 : Move Right cell >" & Chr$(10)
+					oDisp = oDisp & "(  " & oActiveColumn & " , " & oActiveRow & " )"  & Chr$(10)
+		'move End cell
+			oCurs.gotoEnd()
+			oActiveColumn=oCurs.getRangeAddress.StartColumn
+			oActiveRow=oCurs.getRangeAddress.StartRow
+				oDisp = oDisp & Chr$(9) &  " => " & Chr$(10)
+					oDisp = oDisp & "<Step2 : Move End cell >" & Chr$(10)
+					oDisp = oDisp & "(  " & oActiveColumn & " , " & oActiveRow & " )"  & Chr$(10) 
+		'move Left Cell
+			oCurs.gotoPrevious()
+			oActiveColumn=oCurs.getRangeAddress.StartColumn
+			oActiveRow=oCurs.getRangeAddress.StartRow
+				oDisp = oDisp & Chr$(9) &  " => " & Chr$(10)
+					oDisp = oDisp & "<Step3 : Move Left cell >" & Chr$(10)
+					oDisp = oDisp & "(  " & oActiveColumn & " , " & oActiveRow & " )"  & Chr$(10)
+		'Offset Cell
+			oCurs.gotoOffset(-3,-5)
+			oActiveColumn=oCurs.getRangeAddress.StartColumn
+			oActiveRow=oCurs.getRangeAddress.StartRow
+				oDisp = oDisp & Chr$(9) &  " => " & Chr$(10)
+					oDisp = oDisp & "<Step4 : Move Offset cell >" & Chr$(10)
+					oDisp = oDisp & "(  " & oActiveColumn & " , " & oActiveRow & " )"  & Chr$(10)
+	'Display
+		msgbox(oDisp, 0, "com.sun.star.sheet.SheetCellCursor Service")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCSC01b"><h6>CSC-)<em>[Calc]</em>Active Cellの移動(2)</h6></a><pre><code>
+<img SRC="OOoBasic_pic/02calc/sheet/02Sheet_Cursor/01createCursor01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub SheetCursor()
+	Dim oDoc as Object
+	Dim oSheet as Object
+	Dim oCursor as Object
+	Dim oShtEndCol as Long, oShtEndRow as Long
+	Dim oShtStartCol as Long, oShtShartRow as Long
+	Dim oShtOftCol as Long, oShtOftRow as Long
+	Dim oShtNextCol as Long, oShtNextRow as Long
+	Dim oShtPrevCol as Long, oShtPrevRow as Long
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oSheet = oDoc.getSheets().getByIndex(0)
+		oCursor = oSheet.createCursor()
+		'
+		oDisp = "[ Simple Cursor movement(2) ]" & Chr$(10)
+		'
+		oCursor.gotoStart()		' Dataが無いって無い場合は gotoStart は機能しない???
+		oShtStartCol = oCursor.getRangeAddress().EndColumn			' 1つのCellしか選択しないので EndColumn でも同じ
+		oShtStartRow  = oCursor.getRangeAddress().EndRow
+		oDisp = oDisp & "Column of start cell = " & oShtStartCol & Chr$(10) & "Row of start cell = " & oShtStartRow & Chr$(10) & Chr$(10)
+		'
+		oCursor.gotoEnd()
+		oShtEndCol = oCursor.getRangeAddress().EndColumn			' 1つのCellしか選択しないので StartColumn でも同じ
+		oShtEndRow  = oCursor.getRangeAddress().EndRow
+		oDisp = oDisp & "Column of end cell = " & oShtEndCol & Chr$(10) & "Row of end cell = " & oShtEndRow & Chr$(10) & Chr$(10)
+		'
+		oCursor.gotoOffset(-2,-2)
+		oShtOftCol = oCursor.getRangeAddress().StartColumn			' 1つのCellしか選択しないので EndColumn でも同じ
+		oShtOftRow  = oCursor.getRangeAddress().StartRow
+		oDisp = oDisp & "Column of offset( -2, -2 ) = " & oShtOftCol & Chr$(10) & "Row of end offset( -2, -2 ) = " & oShtOftRow & Chr$(10) & Chr$(10)
+		'
+		oCursor.gotoNext()
+		oShtNextCol = oCursor.getRangeAddress().EndColumn	
+		oShtNextRow  = oCursor.getRangeAddress().EndRow
+		oDisp = oDisp & "Column of next cell = " & oShtNextCol & Chr$(10) & "Row of next cell = " & oShtNextRow & Chr$(10) & Chr$(10)
+		'
+		oCursor.gotoPrevious()
+		oShtPrevCol = oCursor.getRangeAddress().StartColumn	
+		oShtPrevRow  = oCursor.getRangeAddress().StartRow
+		oDisp = oDisp & "Column of next cell = " & oShtPrevCol & Chr$(10) & "Row of next cell = " & oShtPrevRow & Chr$(10) & Chr$(10)
+		'
+		msgbox(oDisp,0,"createCursor")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCSC01c"><h6>CSC-)<em>[Calc]</em>Active Cellの移動(3)</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/sheet/02Sheet_Cursor/01cUnoGoLeftRightDownUp01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oCursor()
+	Dim oDoc as Object, oCtrl as Object
+	Dim oSel as Object 
+	Dim oCurs as Object
+	Dim oldActiveColumn as Long, oldActiveRow as Long
+	Dim oActiveColumn as Long, oActiveRow as Long
+	Dim oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		'
+		oFrame = oCtrl.Frame
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		'Start Address
+			oSel = oCtrl.getSelection()
+			oldActiveColumn = oSel.getCellAddress.Column
+			oldActiveRow = oSel.getCellAddress.Row
+				oDisp = "[ Sheet Cursor ]" & Chr$(10)
+					oDisp = oDisp & "\\\ Start Address \\\" & Chr$(10)
+					oDisp = oDisp & "(  " & oldActiveColumn & " , " & oldActiveRow & " )"  & Chr$(10)
+					'
+		'move right  7 cell
+		oProp(0).Name = "By"		' Writerでは 無意味
+		oProp(0).Value = 7
+		oDispatcher.executeDispatch(oFrame,  ".uno:GoRight", "", 0, oProp())
+			oSel = oCtrl.getSelection()
+			oActiveColumn = oSel.getCellAddress.Column
+			oActiveRow = oSel.getCellAddress.Row
+			oDisp = oDisp & Chr$(9) & " ↓ "
+			oDisp = oDisp & "" & Chr$(10)
+			oDisp = oDisp & "(  " & oActiveColumn & " , " & oActiveRow & " )"  & Chr$(10)
+		'move Down 5 cell
+		oProp(0).Name = "By"		' Writerでは 無意味
+		oProp(0).Value = 5
+		oDispatcher.executeDispatch(oFrame,  ".uno:GoDown", "", 0, oProp())
+			oSel = oCtrl.getSelection()
+			oActiveColumn = oSel.getCellAddress.Column
+			oActiveRow = oSel.getCellAddress.Row
+			oDisp = oDisp & Chr$(9) & " ↓ "
+			oDisp = oDisp & "" & Chr$(10)
+			oDisp = oDisp & "(  " & oActiveColumn & " , " & oActiveRow & " )"  & Chr$(10)
+		'move Left 3 cell
+		oProp(0).Name = "By"		' Writerでは 無意味
+		oProp(0).Value = 3
+		oDispatcher.executeDispatch(oFrame,  ".uno:GoLeft", "", 0, oProp())		' 1 time
+			oSel = oCtrl.getSelection()
+			oActiveColumn = oSel.getCellAddress.Column
+			oActiveRow = oSel.getCellAddress.Row
+			oDisp = oDisp & Chr$(9) & " ↓ "
+			oDisp = oDisp & "" & Chr$(10)
+			oDisp = oDisp & "(  " & oActiveColumn & " , " & oActiveRow & " )"  & Chr$(10)
+		'move Up 2 cell
+		oProp(0).Name = "By"		' Writerでは 無意味
+		oProp(0).Value = 2
+		oDispatcher.executeDispatch(oFrame,  ".uno:GoUp", "", 0, oProp())		' 1 time
+			oSel = oCtrl.getSelection()
+			oActiveColumn = oSel.getCellAddress.Column
+			oActiveRow = oSel.getCellAddress.Row
+			oDisp = oDisp & Chr$(9) & " ↓ "
+			oDisp = oDisp & "" & Chr$(10)
+			oDisp = oDisp & "(  " & oActiveColumn & " , " & oActiveRow & " )"  & Chr$(10)
+	'Display
+		msgbox(oDisp, 0, "Cell移動")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCSC02a"><h6>CSC-)<em>[Calc]</em>Selected Cellを識別( One Cell or One Area or Multi Area )</h6></a><pre><code>
+<img SRC="OOoBasic_pic/02calc/sheet/02Sheet_Cursor/02SelectedCell_Imp01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub oCalcIsAnythingSelected()
+	Dim oDoc as Object
+	Dim oSelection as Object
+	Dim oImpName as String
+	Dim oDisp as String
+	Dim oCount as Long
+		oDoc = ThisComponent
+		If IsNull(oDoc) then Exit Sub
+		'
+		oSelection = oDoc.getCurrentSelection()
+		oDisp = "[ 現在選択されているCellについて ]" & Chr$(10) & Chr$(10)
+		If oSelection.supportsService("com.sun.star.sheet.SheetCell") then
+			' Selected only one Cell
+			oImpName = oSelection.getImplementationName()
+			oDisp = oDisp & "One Cell Selected !!" & Chr$(10) & "ImplementationName = " & oImpName & Chr$(10) & _
+							"String : " & oString & Chr$(10)
+		ElseIf oSelection.supportsService("com.sun.star.sheet.SheetCellRange") then
+			' Selected only one area
+			oImpName = oSelection.getImplementationName()
+			oDisp = oDisp & "One Cell Range Selected !!" & Chr$(10) & "ImplementationName = "  & oImpName
+		ElseIf oSelection.supportsService("com.sun.star.sheet.SheetCellRanges") then
+			' Selected some area
+			oImpName = oSelection.getImplementationName()
+			oCount = oSelection.getCount()
+			oDisp = oDisp & "Multiple Cell Range Selected !!" & Chr$(10) & "ImplementationName = "  & oImpName & Chr$(10) & _
+							"Count : " & oCount
+		Else
+			oImpName = oSelection.getImplementationName()
+			Disp = oDisp & "Something else Selected : " & oImpName
+		End If		
+		msgbox(oDisp,0,"Is Calc anything select? ")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCSC03a"><h6>CS-)<em>[Calc]</em>空白で無い次のData Cell( or Area Dataの端Cell )へ移動</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/sheet/02Sheet_Cursor/03GoDnUpRtLtToEndStart01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub oCntrlArrow()
+	Dim oDoc as Object
+	Dim oCntrl as Object
+	Dim oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(1) as new com.sun.star.beans.PropertyValue
+	Dim oColAddr1 as Long, oRowAddr1 as Long, oColAddr2 as Long, oRowAddr2 as Long
+	Dim oColAddr3 as Long, oRowAddr3 as Long, oColAddr4 as Long, oRowAddr4 as Long, oColAddr5 as Long, oRowAddr5 as Long
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oCntrl = oDoc.getCurrentController()
+		oFrame = oCntrl.Frame
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		oDisp = "[ Cntrl + ↓ / → / ↑ / ← ]" & Chr$(10)
+		'
+		oColAddr1 = oCntrl.getSelection().getRangeAddress().EndColumn 
+		oRowAddr1 = oCntrl.getSelection().getRangeAddress().EndRow
+		'
+		oProp(0).Name = "By"
+		oProp(0).Value = 1
+		oProp(1).Name = "Sel"
+		oProp(1).Value = false			' 移動先のCellを 選択( false ) / true : 選択しない( Activateのみ )
+		oDispatcher.executeDispatch( oFrame, ".uno:GoDownToEndOfData", "", 0, oProp())
+		oColAddr2 = oCntrl.getSelection().getRangeAddress().EndColumn 
+		oRowAddr2 = oCntrl.getSelection().getRangeAddress().EndRow
+		'
+		oProp(0).Name = "By"
+		oProp(0).Value = 1
+		oProp(1).Name = "Sel"
+		oProp(1).Value = false
+		oDispatcher.executeDispatch( oFrame, ".uno:GoDownToEndOfData", "", 0, oProp())
+		oColAddr3 = oCntrl.getSelection().getRangeAddress().EndColumn 
+		oRowAddr3 = oCntrl.getSelection().getRangeAddress().EndRow
+		'
+		oProp(0).Name = "By"
+		oProp(0).Value = 1
+		oProp(1).Name = "Sel"
+		oProp(1).Value = false
+		oDispatcher.executeDispatch( oFrame, ".uno:GoRightToEndOfData", "", 0, oProp())
+		oColAddr4 = oCntrl.getSelection().getRangeAddress().EndColumn 
+		oRowAddr4 = oCntrl.getSelection().getRangeAddress().EndRow
+		'
+		oProp(0).Name = "By"
+		oProp(0).Value = 1
+		oProp(1).Name = "Sel"
+		oProp(1).Value = false
+		oDispatcher.executeDispatch( oFrame, ".uno:GoUpToStartOfData", "", 0, oProp())
+		oColAddr5 = oCntrl.getSelection().getRangeAddress().EndColumn 
+		oRowAddr5 = oCntrl.getSelection().getRangeAddress().EndRow
+		'
+		oProp(0).Name = "By"
+		oProp(0).Value = 1
+		oProp(1).Name = "Sel"
+		oProp(1).Value = false
+		oDispatcher.executeDispatch( oFrame, ".uno:GoLeftToStartOfData", "", 0, oProp())
+		oColAddr6 = oCntrl.getSelection().getRangeAddress().EndColumn 
+		oRowAddr6 = oCntrl.getSelection().getRangeAddress().EndRow
+		'
+		oDisp = oDisp & "( " & oColAddr1 & " , " & oRowAddr1 & " ) " & Chr$(9) & "←" & Chr$(9) & _
+				"( " & oColAddr5 & " , " & oRowAddr5 & " ) " & Chr$(10) & Chr$(9) & "↓" & Chr$(10) & _
+				"( " & oColAddr2 & " , " & oRowAddr2 & " ) " & Chr$(9) & Chr$(9) & Chr$(9) & "↑" & Chr$(10) & Chr$(9) & "↓" & Chr$(10) & _ 
+				"( " & oColAddr3 & " , " & oRowAddr3 & " ) " & Chr$(9) & "→" & Chr$(9) & "( " & oColAddr4 & " , " & oRowAddr4 & " ) "
+				'
+		if oColAddr1 = oColAddr6 and oRowAddr1 = oRowAddr6 then
+			oDisp = oDisp & Chr$(10) & Chr$(10) & "Active Cell is Cylced !!"
+		else
+			oDisp = oDisp & Chr$(10) & Chr(10) & "Active Cell is not Cylced !!" & Chr$(10) & "Final Cell = " & "( " & oColAddr6 & " , " & oRowAddr6 & " ) "
+		end if
+		'
+		msgbox(oDisp,0,"Ctrl + Arrow")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCSC04a"><h6>CSC-)<em>[Calc]</em>Ctrl + End / 入力されているDataの最終Colmn, Rowへ移動・選択</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/sheet/02Sheet_Cursor/04aGoToEndOfData02.png" align="right" hspace="4" vspace="4" width="15%"><img src="OOoBasic_pic/02calc/sheet/02Sheet_Cursor/04aGoToEndOfData01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CellSelection()
+	Dim oDoc as Object, oCtrl as Object, oFrame as Object
+	Dim oDispatch as Object
+	Dim oProp() as new com.sun.star.beans.PropertyValue
+	Dim oSel as Object, oAddr as Object, oCol as Long, oRow as Long
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.getFrame()
+		oDispatch = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		oDispatch.executeDispatch(oFrame, ".uno:GoToEndOfData", "", 0, oProp())
+		oSel = oDoc.getCurrentSelection() 
+		'
+		oAddr = oSel.getCellAddress()	' ← Refer to Note 3)
+		oCol = oAddr.Column
+		oRow = oAddr.Row
+		oDisp = "[ .uno:GoToEndOfData ]" & Chr$(10) & "Col = " & oCol & Chr$(10) & "Row = " & oRow 
+		msgbox oDisp, 0, "GoToEndOfData"
+End Sub
+'
+' [ Note ]
+' 1)  .uno:GoToStartOfData は無い
+' 2) oDoc.getCurrentSelection() = oDoc.getCurrentContoller().getSelection()
+' 3) End Cell( 1 Cell )を選択するので getRangeAddressは不可
+' 4) Calc以外ではDocumentの末尾へ
+</code></pre><br>
+
+
+<a name="OOoCSC04b"><h6>CSC-)<em>[Calc]</em>Ctrl + Home / A1 Cellへ移動･選択</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/sheet/02Sheet_Cursor/04bGoToStart01.png" align="right" hspace="4" vspace="4" width="15%"><img src="OOoBasic_pic/02calc/sheet/02Sheet_Cursor/04aGoToEndOfData01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CellSelection()
+	Dim oDoc as Object, oCtrl as Object, oFrame as Object
+	Dim oDispatch as Object
+	Dim oProp() as new com.sun.star.beans.PropertyValue
+	Dim oSel as Object, oAddr as Object, oCol as Long, oRow as Long
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.getFrame()
+		oDispatch = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		' Ctrl + Home
+		oDispatch.executeDispatch(oFrame, ".uno:GoToStart", "", 0, oProp())
+		'
+		oSel = oDoc.getCurrentSelection()
+		oAddr = oSel.getCellAddress()
+		oCol = oAddr.Column
+		oRow = oAddr.Row
+		oDisp = "[ .uno:GoToStart ]" & Chr$(10) & Chr$(10) & _
+					"Col = " & oCol & Chr$(10) & "Row = " & oRow
+		'
+	msgbox oDisp, 0, "GoToStart "
+End Sub
+'
+' [ Note ]
+' 1)  .uno:GoToEnd は無い
+' 2) oDoc.getCurrentSelection() = oDoc.getCurrentContoller().getSelection()
+' 3) A1 Cell( 1 Cell )を選択するので getRangeAddressは不可
+' 4) Calc以外ではDocumentの先頭へ
+</code></pre><br>
+
+
+<a name="OOoCSC05a"><h6>CSC-)<em>[Calc]</em>相対AddressでCurosor Cell/Range指定</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/sheet/02Sheet_Cursor/05aSetByRelativeAddr01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub ShtCellCuror()
+	Dim oDoc as Object, oSheet as Object
+	Dim oRange as Object
+	Dim oCellAddr as Object
+		oDoc = ThisComponent
+		oSheet = oDoc.getSheets().getByIndex(0)
+		oRange = oSheet.getCellRangeByName("C3:K10")
+		'
+		oCursor = oSheet.createCursorByRange(oRange)
+		'
+		' oCursor Objectにおける相対Addressの取得
+		oRtvCell = oCursor.getCellByPosition(0, 0)		' C3 = (2,2)
+		oCellAddr = oRtvCell.getRangeAddress()
+		oDisp = "[ com.sun.star.sheet.SheetCellCursor ]" & Chr$(10) & "( 0 ,0 ) → ( " & _
+				oCellAddr.StartColumn & " , " & oCellAddr.StartRow & " )～( " & _
+				oCellAddr.EndColumn & " , " & oCellAddr.EndRow & " )"
+				'
+		oRtvCell = oCursor.getCellRangeByPosition(1,1,3,3)		' C3 = (2,2) → (2+1,2+1,2+3,2+3) = (3,3,5,5) = (3,3)～(5,5) = (D4:F6)
+		oCellAddr = oRtvCell.getRangeAddress()
+		oDisp = oDisp & Chr$(10) & "( 1,1,3,3 ) → ( " & _
+				oCellAddr.StartColumn & " , " & oCellAddr.StartRow & " )～( " & _
+				oCellAddr.EndColumn & " , " & oCellAddr.EndRow & " )"
+				'
+		oRtvCell = oCursor.getCellRangeByName("D4:F6")		' ( D4:F6) = (3,3)～(5,5)
+		oCellAddr = oRtvCell.getRangeAddress()
+		oDisp = oDisp & Chr$(10) & "( ""D4:F6"" ) → ( " & _
+				oCellAddr.StartColumn & " , " & oCellAddr.StartRow & " )～( " & _
+				oCellAddr.EndColumn & " , " & oCellAddr.EndRow & " )"
+				'
+		oIsError = IsRngErr("D4:M12")			' 範囲（C3:K10） 以上の範囲を指定するとError
+		oDisp = oDisp & Chr$(10) & "( ""D4:M12"" ) は Error → " & oIsError
+				
+		msgbox oDisp,0,"Relative Address"
+End Sub
+'
+Function IsRngErr(oRange as String) as Boolean
+	On Error Goto oBad
+	oCursor.getCellRangeByName(oRange)
+	IsRngErr = false
+	Exit Function
+oBad:
+	IsRngErr = true
+End Function
+'
+' [ Note ]
+' com.sun.star.sheet.SheetCellCursor は Cell の値はReturnしない。つまり
+' oRtvCell = oCursor.getCellByPosition(0, 0).Value としても Cell の値は取得不可である。
+</code></pre><br>
+
+
+<a name="OOoCSC06a"><h6>CSC-)<em>[Calc]</em>Cursor範囲の拡大</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/sheet/02Sheet_Cursor/06aCollapseToCurrentRegion01.png" align="right" hspace="4" vspace="4" width="35%">
+Sub ExpandCurorRegion()
+	Dim oDoc as Object, oSheet as Object, oCell as Object
+	Dim oSelection as Object
+	Dim oCursor as Object
+	Dim oRngAddr1 as Object, RngAddr2 as Object
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oSheet = oDoc.getSheets().getByIndex(0)
+		for i = 0 to 3
+			for k = 0 to 5
+				oCell = oSheet.getCellByPosition( i, k )
+				if k = 4 or k = 5 then
+					if i = 1 then
+						' Empty
+					else
+						if i = 2 or i = 3 then
+							' Empty
+						else
+							oCell.String = CStr("A" & i + k)
+						end if
+					end if
+				else
+					oCell.String = CStr( i * k )
+				end if
+			next k
+		next i
+		oCell = oSheet.getCellByPosition( 5, 6 )		' 連続Dataから外れているので、範囲に含まれない
+		oCell.String = "Test"
+		'
+		oSelection = oSheet.getCellRangeByName("C3")
+		oCursor = oSheet.createCursorByRange( oSelection )
+		' Before
+		oRngAddr1 = oCursor.getRangeAddress()
+		oDisp = "[ SheetCellCursor範囲の拡大 ]" & Chr$(10) & "[ Before ]" & Chr$(10) & _
+				"( " & oRngAddr1.StartColumn & " , " & oRngAddr1.StartRow & " )～( " & _
+				oRngAddr1.EndColumn & " ," & oRngAddr1.EndRow & " )" & Chr$(10)
+		'
+		' Dataが途切れる範囲まで拡大
+		oCursor.collapseToCurrentRegion()
+		'
+		' After
+		oRngAddr2 = oCursor.getRangeAddress()
+		oDisp = oDisp & Chr$(10) & "[ After ]" & Chr$(10) & _
+				"( " & oRngAddr2.StartColumn & " , " & oRngAddr2.StartRow & " )～( " & _
+				oRngAddr2.EndColumn & " ," & oRngAddr2.EndRow & " )"
+				'
+		msgbox oDisp,0,"Expand Range"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCSC07a"><h6>CSC-)<em>[Calc]</em>Cursor範囲の拡大( Array Formula )</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/sheet/02Sheet_Cursor/07aCollapseToCurrentArray01.png" align="right" hspace="4" vspace="4" width="35%">
+Sub CalcArrayFormula()
+	Dim oDoc as Object, oSheet as Object, oCell as Object 
+	Dim oRange as Object
+	Dim oSelection as Object, oCursor as Object
+	Dim oRngAddr1 as Object, oRngAddr2 as Object
+		oDoc = ThisComponent
+		oSheet = oDoc.getSheets().getByName("sheet1")
+	'Set the two top cells
+		oCell = oSheet.getCellByPosition(1,2)
+			oCell.setValue(1)
+		oCell = oSheet.getCellByPosition(2,2)
+			oCell.setValue(3)
+	'Fill the Values Down
+		oRange = oSheet.getCellRangeByName("B3:C8")
+		oRange.fillAuto(com.sun.star.sheet.FillDirection.TO_BOTTOM, 1)
+	'Setting each cell individually
+		for i=3 to 8
+			oCell = oSheet.getCellByPosition(3, i-1)
+			oCell.setFormula("=B" & i & "+C" & i)
+		next i
+	'Setting a single array formula
+		oRange = oSheet.getCellRangeByName("E3:E8")
+		oRange.setArrayFormula("=B3:B8+C3:C8")
+	'Title for Column
+		oRange = oSheet.getCellRangeByName("B2:E2")
+		oRange.setDataArray(Array(Array("B", "C", "Formula", "Array Formula")))
+		'
+	' Array Formula範囲以外のCursorの場合
+		oSelection = oSheet.getCellRangeByName("D4")
+		oCursor = oSheet.createCursorByRange( oSelection )
+		' Before
+		oRngAddr1 = oCursor.getRangeAddress()
+		oDisp = "[ Array Formula範囲以外 ]" & Chr$(10) & "[ Before ]" & Chr$(10) & _
+				"( " & oRngAddr1.StartColumn & " , " & oRngAddr1.StartRow & " )～( " & _
+				oRngAddr1.EndColumn & " ," & oRngAddr1.EndRow & " )" & Chr$(10)
+		'
+		' Array Formula範囲の拡大
+		oCursor.collapseToCurrentArray()
+		'
+		' After
+		oRngAddr2 = oCursor.getRangeAddress()
+		oDisp = oDisp & "[ After ]" & Chr$(10) & _
+				"( " & oRngAddr2.StartColumn & " , " & oRngAddr2.StartRow & " )～( " & _
+				oRngAddr2.EndColumn & " ," & oRngAddr2.EndRow & " )"
+				'
+	' Array Formula範囲のCursorの場合
+		oSelection = oSheet.getCellRangeByName("E4")
+		oCursor = oSheet.createCursorByRange( oSelection )
+		' Before
+		oRngAddr1 = oCursor.getRangeAddress()
+		oDisp = oDisp & Chr$(10) & Chr$(10) & "[ Array Formula範囲 ]" & Chr$(10) & "[ Before ]" & Chr$(10) & _
+				"( " & oRngAddr1.StartColumn & " , " & oRngAddr1.StartRow & " )～( " & _
+				oRngAddr1.EndColumn & " ," & oRngAddr1.EndRow & " )" & Chr$(10)
+		'
+		' Array Formula範囲の拡大
+		oCursor.collapseToCurrentArray()
+		'
+		' After
+		oRngAddr2 = oCursor.getRangeAddress()
+		oDisp = oDisp & "[ After ]" & Chr$(10) & _
+				"( " & oRngAddr2.StartColumn & " , " & oRngAddr2.StartRow & " )～( " & _
+				oRngAddr2.EndColumn & " ," & oRngAddr2.EndRow & " )"
+				'
+		msgbox oDisp,0,"collapseToCurrentArray"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCSC08a"><h6>CSC-)<em>[Calc]</em>Cursor範囲の拡大( Merge Area )</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/sheet/02Sheet_Cursor/08aCollapseToMergedArea01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub CalcExpandMergeArea()
+	Dim oDoc as Object, oSheet as Object
+	Dim oRange as Object
+	Dim oSelection as Object, oCursor as Object
+	Dim oRngAddr1 as Object, oRngAddr2 as Object
+		oDoc = ThisComponent
+		oSheet = oDoc.Sheets().getByIndex(0)
+		oRange = oSheet.getCellRangeByName("A1:B2")
+		'
+		oRange.merge(true)
+		'
+		oSelection = oSheet.getCellRangeByName("A1")
+		oCursor = oSheet.createCursorByRange( oSelection )
+		'
+		' Before
+		oRngAddr1 = oCursor.getRangeAddress()
+		oDisp = "[ SheetCellCursor範囲の拡大 ]" & Chr$(10) & "[ Before ]" & Chr$(10) & _
+				"( " & oRngAddr1.StartColumn & " , " & oRngAddr1.StartRow & " )～( " & _
+				oRngAddr1.EndColumn & " ," & oRngAddr1.EndRow & " )" & Chr$(10)
+		'
+		' Merge範囲まで拡大
+		oCursor.collapseToMergedArea()
+		'
+		' After
+		oRngAddr2 = oCursor.getRangeAddress()
+		oDisp = oDisp & Chr$(10) & "[ After ]" & Chr$(10) & _
+				"( " & oRngAddr2.StartColumn & " , " & oRngAddr2.StartRow & " )～( " & _
+				oRngAddr2.EndColumn & " ," & oRngAddr2.EndRow & " )"
+				'
+		msgbox oDisp,0,"collapseToMergedArea"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCSC09a"><h6>CSC-)<em>[Calc]</em>Cursor範囲の拡大( Max row of same column )</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/sheet/02Sheet_Cursor/09aExpandToEntireColumns01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub ExpandCurorRegion()
+	Dim oDoc as Object, oSheet as Object, oCell as Object
+	Dim oSelection as Object
+	Dim oCursor as Object
+	Dim oRngAddr1 as Object, RngAddr2 as Object
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oSheet = oDoc.getSheets().getByIndex(0)
+		for i = 0 to 3
+			for k = 0 to 5
+				oCell = oSheet.getCellByPosition( i, k )
+				if k = 4 or k = 5 then
+					if i = 1 then
+						' Empty
+					else
+						if i = 2 or i = 3 then
+							' Empty
+						else
+							oCell.String = CStr("A" & i + k)
+						end if
+					end if
+				else
+					oCell.String = CStr( i * k )
+				end if
+			next k
+		next i
+		'
+		oSelection = oSheet.getCellRangeByName("C3")
+		oCursor = oSheet.createCursorByRange( oSelection )
+		' Before
+		oRngAddr1 = oCursor.getRangeAddress()
+		oDisp = "[ SheetCellCursor範囲の拡大 ]" & Chr$(10) & "[ Before ]" & Chr$(10) & _
+				"( " & oRngAddr1.StartColumn & " , " & oRngAddr1.StartRow & " )～( " & _
+				oRngAddr1.EndColumn & " ," & oRngAddr1.EndRow & " )" & Chr$(10)
+		'
+		' 最大行まで範囲拡大
+		oCursor.expandToEntireColumns()
+		'
+		' After
+		oRngAddr2 = oCursor.getRangeAddress()
+		oDisp = oDisp & Chr$(10) & "[ After ]" & Chr$(10) & _
+				"( " & oRngAddr2.StartColumn & " , " & oRngAddr2.StartRow & " )～( " & _
+				oRngAddr2.EndColumn & " ," & oRngAddr2.EndRow & " )"
+				'
+		msgbox oDisp,0,"expandToEntireColumns"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCSC10a"><h6>CSC-)<em>[Calc]</em>Cursor範囲の拡大( Max column of same row )</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/sheet/02Sheet_Cursor/10aExpandToEntireRows01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub ExpandCurorRegion()
+	Dim oDoc as Object, oSheet as Object, oCell as Object
+	Dim oSelection as Object
+	Dim oCursor as Object
+	Dim oRngAddr1 as Object, RngAddr2 as Object
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oSheet = oDoc.getSheets().getByIndex(0)
+		for i = 0 to 3
+			for k = 0 to 5
+				oCell = oSheet.getCellByPosition( i, k )
+				if k = 4 or k = 5 then
+					if i = 1 then
+						' Empty
+					else
+						if i = 2 or i = 3 then
+							' Empty
+						else
+							oCell.String = CStr("A" & i + k)
+						end if
+					end if
+				else
+					oCell.String = CStr( i * k )
+				end if
+			next k
+		next i
+		'
+		oSelection = oSheet.getCellRangeByName("C3")
+		oCursor = oSheet.createCursorByRange( oSelection )
+		' Before
+		oRngAddr1 = oCursor.getRangeAddress()
+		oDisp = "[ SheetCellCursor範囲の拡大 ]" & Chr$(10) & "[ Before ]" & Chr$(10) & _
+				"( " & oRngAddr1.StartColumn & " , " & oRngAddr1.StartRow & " )～( " & _
+				oRngAddr1.EndColumn & " ," & oRngAddr1.EndRow & " )" & Chr$(10)
+		'
+		' 最大列まで範囲拡大
+		oCursor.expandToEntireRows()
+		'
+		' After
+		oRngAddr2 = oCursor.getRangeAddress()
+		oDisp = oDisp & Chr$(10) & "[ After ]" & Chr$(10) & _
+				"( " & oRngAddr2.StartColumn & " , " & oRngAddr2.StartRow & " )～( " & _
+				oRngAddr2.EndColumn & " ," & oRngAddr2.EndRow & " )"
+				'
+		msgbox oDisp,0,"expandToEntireRows"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCSC11a"><h6>CSC-)<em>[Calc]</em>Curosr範囲の拡大( 任意の位置( same with upper-left ) )</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/sheet/02Sheet_Cursor/11aCollapseToSize01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub ExpandCurorRegion()
+	Dim oDoc as Object, oSheet as Object, oCell as Object
+	Dim oSelection as Object
+	Dim oCursor as Object
+	Dim oRngAddr1 as Object, RngAddr2 as Object
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oSheet = oDoc.getSheets().getByIndex(0)
+		for i = 0 to 3
+			for k = 0 to 5
+				oCell = oSheet.getCellByPosition( i, k )
+				if k = 4 or k = 5 then
+					if i = 1 then
+						' Empty
+					else
+						if i = 2 or i = 3 then
+							' Empty
+						else
+							oCell.String = CStr("A" & i + k)
+						end if
+					end if
+				else
+					oCell.String = CStr( i * k )
+				end if
+			next k
+		next i
+		'
+		oSelection = oSheet.getCellRangeByName("C3")
+		oCursor = oSheet.createCursorByRange( oSelection )
+		' Before
+		oRngAddr1 = oCursor.getRangeAddress()
+		oDisp = "[ SheetCellCursor範囲の拡大 ]" & Chr$(10) & "[ Before ]" & Chr$(10) & _
+				"( " & oRngAddr1.StartColumn & " , " & oRngAddr1.StartRow & " )～( " & _
+				oRngAddr1.EndColumn & " ," & oRngAddr1.EndRow & " )" & Chr$(10)
+		'
+		' 任意の位置まで範囲拡大
+		oCursor.collapseToSize(100,100)	' ← 列、行共に +1 まで拡大
+		'
+		' After
+		oRngAddr2 = oCursor.getRangeAddress()
+		oDisp = oDisp & Chr$(10) & "[ After ]" & Chr$(10) & _
+				"( " & oRngAddr2.StartColumn & " , " & oRngAddr2.StartRow & " )～( " & _
+				oRngAddr2.EndColumn & " ," & oRngAddr2.EndRow & " )"
+				'
+		msgbox oDisp,0,"collapseToSize"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCSC12a"><h6>CSC-)<em>[Calc]</em>任意の範囲内のCuosor移動</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/sheet/02Sheet_Cursor/12agotoStartEndOfUsedArea01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub ExpandCurorRegion()
+	Dim oDoc as Object, oSheet as Object, oCell as Object
+	Dim oSelection as Object
+	Dim oCursor as Object
+	Dim oRngAddr1 as Object, RngAddr2 as Object
+	Dim oCellRangeAddr as Object
+	Dim oDisp as String
+	Dim oCurRngAddr as String
+		oDoc = ThisComponent
+		oSheet = oDoc.getSheets().getByIndex(0)
+		for i = 0 to 3
+			for k = 1 to 5
+				oCell = oSheet.getCellByPosition( i, k )
+				if k = 4 or k = 5 then
+					if i = 1 then
+						' Empty
+					else
+						if i = 2 or i = 3 then
+						  ' Empty
+						else
+						  oCell.String = CStr("A" & i + k)
+						end if
+					end if
+				else
+					if k = 1 and i = 0 then
+					  ' Empty
+					else
+					  oCell.String = CStr( i * k )
+					end if
+				end if
+			next k
+		next i
+		oCell = oSheet.getCellByPosition( 5, 6 )
+		oCell.String = "Test"
+		'
+		oSelection = oSheet.getCellRangeByName("C3")
+		oCursor = oSheet.createCursorByRange( oSelection )
+		oCellRangeAddr = oDoc.createInstance("com.sun.star.sheet.SheetCellRanges")
+		oCellRangeAddr.InsertByName( "", oCursor )
+		oCurRngAddr = oCellRangeAddr.getRangeAddressesAsString()
+		oDisp = "[ Cursoｒ Rangeの取得 ]" & Chr$(10) & "Fisrst →  " & oCurRngAddr & Chr$(10)
+		'
+		' Sheet中のCursor RangeのFirst Data Cell へ移動
+		oCursor.gotoStartOfUsedArea( false )
+		oCellRangeAddr.InsertByName( "Fisrt", oCursor )
+		oCurRngAddr = oCellRangeAddr.getRangeAddressesAsString()
+  		oDisp = oDisp & Chr$(10) & "Goto Start without Expapnd" & Chr$(10) & " →  " & oCurRngAddr
+  		'
+  		' Cursor を Sheet中のFirst Data Cell へRangeをひろげながら移動
+  		oCursor.gotoEndOfUsedArea( true )
+  		'oCellRangeAddress = oDoc.createInstance("com.sun.star.sheet.SheetCellRanges")
+  		oCellRangeAddr.InsertByName( "End", oCursor )
+  		oCurRngAddr = oCellRangeAddr.getRangeAddressesAsString()
+  		oDisp = oDisp & Chr$(10) & "Goto End with Expand" & Chr$(10) & " →  " & oCurRngAddr
+  		'
+  		msgbox oDisp,0,"Curorの移動"
+End Sub
+'
+' [ Note ]
+' gotoStartOfUsedArea( true or false ) →  true: Curosr範囲を広げる。 / false: Curosr範囲を広げない。
+' gotoEndOfUsedArea( true or false ) →  true: Curosr範囲を広げる。 / false: Curosr範囲を広げない。
+'
+' Name無しのRangeでは.getRangeAddressesAsString() の Return が Empty。InsertByName("",oCursor)でもOK
+</code></pre><br>
+
+
+<a name="OOoCSC"><h6>CSC-)<em>[Calc]</em></h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/sheet/02Sheet_Cursor/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ Window ]</p class="s3">
+<a name="OOoCSWn01a"><h6>CSWn-)<em>[Calc]</em>Windowの分割[上下]  / 解除(1)</h6></a><pre><code>
+Sub SheetWindow()
+	Dim oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+		oFrame = ThisComponent.CurrentController.Frame
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		oProp(0).Name = "ToPoint"
+		oProp(0).Value = "$A$7:ANJ$7" 
+		oDispatcher.executeDispatch(oFrame,  ".uno:GoToCell", "", 0, oProp())
+		'
+		oDispatcher.executeDispatch(oFrame,  ".uno:SplitWindow", "", 0, oProp())
+		msgbox("Window分割 OK",0,"Display")
+		'
+		oDispatcher.executeDispatch(oFrame,  ".uno:SplitWindow", "", 0, oProp())
+		msgbox("Window分割解除 OK",0,"Display")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCSWn01b"><h6>CSWn-)<em>[Calc]</em>Windowの分割[4分割] / 解除(2)</h6></a><pre><code>
+Sub SheetWindow()
+	Dim oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+		oFrame = ThisComponent.CurrentController.Frame
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		oProp(0).Name = "ToPoint"
+		oProp(0).Value = "$C$7" 
+		oDispatcher.executeDispatch(oFrame,  ".uno:GoToCell", "", 0, oProp())
+		'
+		oDispatcher.executeDispatch(oFrame,  ".uno:SplitWindow", "", 0, oProp())
+		msgbox("Window分割 OK",0,"Display")
+		'
+		oDispatcher.executeDispatch(oFrame,  ".uno:SplitWindow", "", 0, oProp())
+		msgbox("Window分割解除 OK",0,"Display")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCSWn01c"><h6>CSWn-)<em>[Calc]</em>Windowの分割[4分割] / 解除(3)</h6></a><pre><code>
+Sub SheetWindow()
+	Dim oDoc as Object, oCtrl as Object
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		'
+		oCtrl.splitAtPosition(100, 150)		' unit : Pixel  ← Cellの途中でもOK
+		msgbox("Window分割 OK",0,"Display")
+		'
+		oCtrl.splitAtPosition(0, 0)
+		msgbox("Window分割解除 OK",0,"Display")
+End Sub
+</code></pre><br>
+
+
+
+<a name="OOoCSWn02a"><h6>CSWn-)<em>[Calc]</em>Windowの分割固定 / 分割解除</h6></a><pre><code>
+Sub SheetWindow()
+	Dim oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+		oFrame = ThisComponent.CurrentController.Frame
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		oProp(0).Name = "ToPoint"
+		oProp(0).Value = "$C$7" 
+		oDispatcher.executeDispatch(oFrame,  ".uno:GoToCell", "", 0, oProp())
+		oDispatcher.executeDispatch(oFrame,  ".uno:SplitWindow", "", 0, oProp())
+		'
+		oProp(0) = CreateUnoStruct("com.sun.star.beans.PropertyValue")
+		oDispatcher.executeDispatch(oFrame, ".uno:FreezePanes", "", 0, oProp())
+		msgbox("Window分割固定 OK",0,"Display")
+		'
+		oDispatcher.executeDispatch(oFrame, ".uno:FreezePanes", "", 0, oProp())
+		msgbox("Window分割解除 OK",0,"Display")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCSWn02b"><h6>CSWn-)<em>[Calc]</em>Windowの分割固定</h6></a><pre><code>
+Sub SheetWindow()
+	Dim oDoc as Object
+	Dim oCtrl as Object
+	Dim oCol as Long, oRow as Long
+		oDoc = ThisComponent
+		oCtrl = oDoc.CurrentController
+		'
+		oCol = 3
+		oRow = 7		' ( 3, 7 ) ← D8 Cell
+		oCtrl.FreezeAtPosition(oCol , oRow)		' ( Column, Row )
+		oDisp = "( Col, Row ) = ( " & oCol & " , " & oRow & "  )の位置で" & Chr$(10) & "固定区切を設定しました。"
+		msgbox(oDisp,0,"Split Window")
+		'
+	Dim oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+		oFrame = ThisComponent.CurrentController.Frame
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		oDispatcher.executeDispatch(oFrame, ".uno:FreezePanes", "", 0, oProp())
+		'
+		oDisp = "固定区切りを解除しました。"
+		msgbox(oDisp,0,"Split Window")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCSWn03a"><h6>CSWn-)<em>[Calc]</em>Windowの分割有無及び分割位置取得(1)[ Address ]</h6></a><pre><code>
+Sub SheetWindow()
+	Dim oDoc as Object
+	Dim oCtrl as Object
+	Dim oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+	Dim oBeforeWin as Boolean
+	Dim oSplitCol as Long
+	Dim oSplitRow as Long
+		oDoc = ThisComponent
+		oCtrl = oDoc.CurrentController
+		oFrame = oCtrl.Frame
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		oProp(0).Name = "ToPoint"
+		oProp(0).Value = "$A$7:ANJ$7" 
+		oDispatcher.executeDispatch(oFrame,  ".uno:GoToCell", "", 0, oProp())
+		oDispatcher.executeDispatch(oFrame,  ".uno:SplitWindow", "", 0, oProp())
+		'
+		oBeforeWin = oCtrl.getIsWindowSplit()
+		if oBeforeWin then
+			oSplitCol = oCtrl.getSplitColumn()
+			oSplitRow  = oCtrl.getSplitRow()
+			'
+			oDisp = "[ 分割位置 ]" & CHr$(10) & "( " & oSplitCol & " , " & oSplitRow & " )"
+			msgbox(oDisp,0,"Split Window")
+			'
+			oDispatcher.executeDispatch(oFrame,  ".uno:SplitWindow", "", 0, oProp())
+			oDisp = "分割を解除しました。"
+		else
+			oDisp = "Windowは分割されていません。"
+		end if 
+		'
+		msgbox(oDisp,0,"Split Window")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCSWn03b"><h6>CSWn-)<em>[Calc]</em>Windowの分割位置取得(2)[ Pixel ]</h6></a><pre><code>
+Sub SheetWindow()
+	Dim oDoc as Object, oCtrl as Object
+	Dim oBeforeWin as Boolean
+	Dim oSplitH as Long
+	Dim oSplitV as Long
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		'
+		oCtrl.splitAtPosition(100, 150)
+		'
+		oBeforeWin = oCtrl.getIsWindowSplit()
+		if oBeforeWin then
+			oSplitH = oCtrl.getSplitHorizontal()
+			oSplitV  = oCtrl.getSplitVertical()
+			'
+			oDisp = "[ 分割位置 ]" & CHr$(10) & "( " & oSplitH & " , " & oSplitV & " )"
+			msgbox(oDisp,0,"Split Window")
+			'
+			oCtrl.splitAtPosition(0, 0)
+			oDisp = "分割を解除しました。"
+		else
+			oDisp = "Windowは分割されていません。"
+		end if 
+		'
+		msgbox(oDisp,0,"Split Window")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCSWn04a"><h6>CSWn-)<em>[Calc]</em>Windowの分割固定Check</h6></a><pre><code>
+Sub SheetWindow()
+	Dim oDoc as Object, oCtrl as Object
+	Dim oBeforeWin as Boolean
+	Dim oCol as Long, oRow as Long
+		oDoc = ThisComponent
+		oCtrl = oDoc.CurrentController
+		'
+		oBeforeWin = oCtrl.hasFrozenPanes()
+		'
+		if oBeforeWin = false then
+			oCol = 3
+			oRow = 7		' ( 3, 7 ) ← D8 Cell
+			oCtrl.FreezeAtPosition(oCol , oRow)		' ( Column, Row )
+			oDisp = "( Col, Row ) = ( " & oCol & " , " & oRow & "  )の位置で" & Chr$(10) & "固定区切を設定しました。"
+			msgbox(oDisp,0,"Split Window")
+			'
+			Dim oFrame as Object
+			Dim oDispatcher as Object
+			Dim oProp(0) as new com.sun.star.beans.PropertyValue
+				oFrame = ThisComponent.CurrentController.Frame
+				oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+				oDispatcher.executeDispatch(oFrame, ".uno:FreezePanes", "", 0, oProp())
+				'
+				oDisp = "固定区切りを解除しました。"
+		else
+			oDisp = "既に分割固定されています"
+		end if
+		msgbox(oDisp,0,"Split Window")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCSWn05a"><h6>CSWn-)<em>[Calc]</em>表示Area取得(1)</h6></a><pre><code>
+Sub SheetWindow()
+	Dim oDoc as Object, oCtrl as Object
+	Dim oDispRange as Object
+	Dim oDispSCol as Long, oDispECol as Long
+	Dim oDispSRow as Long, oDispERow as Long
+		oDoc = ThisComponent
+		oCtrl = oDoc.CurrentController
+		'
+		oDispRange = oCtrl.getVisibleRange()
+		'
+		oDispSCol = oDispRange.StartColumn
+		oDispECol = oDispRange.EndColumn
+		oDispSRow = oDispRange.StartRow
+		oDispERow = oDispRange.EndRow
+		'
+		oDisp = "[ 表示されているArea ]" & Chr$(10) & "( " & oDispSCol & ", " & oDispSRow & " ) ～ ( " & oDispECol & ", " & oDispERow & " )"
+		msgbox(oDisp, 0,"Display")
+End Sub
+'
+' [ Note ]
+' Cellが少しでもはみ出ていると対象外
+</code></pre><br>
+
+
+<a name="OOoCSWn05b"><h6>CSWn-)<em>[Calc]</em>表示Area取得(2)</h6></a><pre><code>
+Sub SheetWindow()
+	Dim oDoc as Object, oCtrl as Object
+	Dim oDispRange as Object
+	Dim oDispSCol as Long, oDispECol as Long
+	Dim oDispSRow as Long, oDispERow as Long
+		oDoc = ThisComponent
+		oCtrl = oDoc.CurrentController
+		'
+		oDispRange = oCtrl.getReferredCells()
+		'
+		oDispSCol = oDispRange.RangeAddress.StartColumn
+		oDispECol = oDispRange.RangeAddress.EndColumn
+		oDispSRow = oDispRange.RangeAddress.StartRow
+		oDispERow = oDispRange.RangeAddress.EndRow
+		'
+		oDisp = "[ 表示されているArea ]" & Chr$(10) & "( " & oDispSCol & ", " & oDispSRow & " ) ～ ( " & oDispECol & ", " & oDispERow & " )"
+		msgbox(oDisp, 0,"Display")
+End Sub
+'
+' [ Note ]
+' Cellが少しでもはみ出ていると対象外
+</code></pre><br>
+
+
+<a name="OOoCSWn06a"><h6>CSWn-)<em>[Calc]</em>表示AreaのFirst CellのAddress取得</h6></a><pre><code>
+Sub SheetWindow()
+	Dim oDoc as Object, oCtrl as Object
+	Dim oDispSCol as Long, oDispSRow as Long
+		oDoc = ThisComponent
+		oCtrl = oDoc.CurrentController
+		'
+		oDispSCol = oCtrl.getFirstVisibleColumn()
+		oDispSRow = oCtrl.getFirstVisibleRow()
+		'
+		oDisp = "[ 表示されているArea ]" & Chr$(10) & "First Cell → ( " & oDispSCol & ", " & oDispSRow & " )"
+		msgbox(oDisp, 0,"Display")
+End Sub
+'
+' [ Note ]
+' First Cellとは表示されている画面上の左上のCell
+</code></pre><br>
+
+
+<a name="OOoCSWn07a"><h6>CSWn-)<em>[Calc]</em>表示AreaのFirst CellのAddress設定</h6></a><pre><code>
+Sub SheetWindow()
+	Dim oDoc as Object, oCtrl as Object
+	Dim oDispSCol as Long, oDispSRow as Long
+	Dim oAftSCol as Long, oAftSRow as Long
+		oDoc = ThisComponent
+		oCtrl = oDoc.CurrentController
+		'
+		oDispSCol = oCtrl.getFirstVisibleColumn()
+		oDispSRow = oCtrl.getFirstVisibleRow()
+		'
+		oCtrl.setFirstVisibleColumn(4)
+		oCtrl.getFirstVisibleRow(3)
+		'
+		' Confirm
+		oAftSCol = oCtrl.getFirstVisibleColumn()
+		oAftSRow = oCtrl.getFirstVisibleRow()
+		'
+		oDisp = "[ 表示されているArea の First Cell ]" & Chr$(10) & "( " & oDispSCol & ", " & oDispSRow & " )" & "  から " & Chr$(10) & _
+				"( " & oAftSCol & ", " & oAftSRow & " ) に変更されました。"
+		msgbox(oDisp, 0,"Display")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCSWn"><h6>CSWn-)<em>[Calc]</em></h6></a><pre><code>
+
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">View</p class="s1">
+<a name="OOoCVw01a"><h6>CVw-)<em>[Calc]</em>Page Preview Mode/Normal Mode表示</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/01aPageBreakPreview01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub CalcView()
+	Dim oDoc as Object, oCtrl as Object, oFrame as Object
+	Dim oDispatcher as Object
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		' Page Preview Mode
+		oDispatcher.executeDispatch( oFrame, ".uno:PagebreakMode", "", 0, Array())
+		msgbox "Page Break Preview",0,"View"
+		' Normal Mode
+		oDispatcher.executeDispatch( oFrame, ".uno:NormalViewMode", "", 0, Array())
+		msgbox "Normal Mode",0,"View"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCVw02a"><h6>CVw-)<em>[Calc]</em>Page Breake Line表示/非表示</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/02aPageBreakLine01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub CalcView()
+	Dim oDoc as Object, oCtrl as Object
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oCtrl.ShowPageBreaks = true
+		msgbox "Page Break Line表示",0,"View"
+		' Normal Mode
+		oCtrl.ShowPageBreaks = false
+		msgbox "Page Break Line非表示",0,"View"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCVw03a"><h6>CVw-)<em>[Calc]</em>式入力Boxの表示/非表示</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/03aInputLineVisible02.png" align="right" hspace="4" vspace="4" width="20%"><img src="OOoBasic_pic/02calc/08View/03aInputLineVisible01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub CalcUnoView()
+	Dim oDoc as Object, oCtrl as Object, oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+			oProp(0).Name = "InputLineVisible"
+			oProp(0).Value = false
+		oDispatcher.executeDispatch( oFrame, ".uno:InputLineVisible", "", 0, oProp())
+		msgbox "式入力Box非表示",0,"View"
+		'
+			oProp(0).Name = "InputLineVisible"
+			oProp(0).Value = true
+		oDispatcher.executeDispatch( oFrame, ".uno:InputLineVisible", "", 0, oProp())
+		msgbox "式入力Box表示",0,"View"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCVw04a"><h6>CVw-)<em>[Calc]</em>関数Listの表示/非表示</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/04aFunctionBox01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub CalcUnoView()
+	Dim oDoc as Object, oCtrl as Object, oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+			oProp(0).Name = "FunctionBox"
+			oProp(0).Value = true
+		oDispatcher.executeDispatch( oFrame, ".uno:FunctionBox", "", 0, oProp())
+		msgbox "関数List表示",0,"View"
+		'
+			oProp(0).Name = "FunctionBox"
+			oProp(0).Value = false
+		oDispatcher.executeDispatch( oFrame, ".uno:FunctionBox", "", 0, oProp())
+		msgbox "関数List非表示",0,"View"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCVw05a"><h6>CVw-)<em>[Calc]</em>行･列番号表示/非表示(1)</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/05aUnoViewColumnHeader02.png" align="right" hspace="4" vspace="4" width="15%"><img src="OOoBasic_pic/02calc/08View/05aUnoViewColumnHeader01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcUnoView()
+	Dim oDoc as Object, oCtrl as Object, oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		oDispatcher.executeDispatch( oFrame, ".uno:ViewRowColumnHeaders", "", 0, oProp())
+		msgbox "行、列番号非表示",0,"View"
+		'
+		oDispatcher.executeDispatch( oFrame, ".uno:ViewRowColumnHeaders", "", 0, oProp())
+		msgbox "行、列番号非表示",0,"View"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCVw05b"><h6>CVw-)<em>[Calc]</em>行･列番号表示/非表示(2)</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/05bColumnHeaders02.png" align="right" hspace="4" vspace="4" width="15%"><img src="OOoBasic_pic/02calc/08View/05bColumnHeaders01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcView()
+	Dim oDoc as Object, oCtrl as Object
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		'
+		oCtrl.ColumnRowHeaders = false
+		msgbox "行、列番号非表示",0,"CalcView"
+		'
+		oCtrl.ColumnRowHeaders = true
+		msgbox "行、列番号表示",0,"ClacView"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCVw05c"><h6>CVw-)<em>[Calc]</em>行･列番号表示/非表示(3)</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/05cHasColumnHeaders02.png" align="right" hspace="4" vspace="4" width="15%"><img src="OOoBasic_pic/02calc/08View/05cHasColumnHeaders01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcView()
+	Dim oDoc as Object, oCtrl as Object
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		'
+		oCtrl.HasColumnRowHeaders = false
+		msgbox "行、列番号非表示",0,"CalcView"
+		'
+		oCtrl.HasColumnRowHeaders = true
+		msgbox "行、列番号表示",0,"ClacView"
+End Sub
+</code></pre><br>
+
+
+
+<a name="OOoCVw06a"><h6>CVw-)<em>[Calc]</em>値の強調表示/非表示(1)</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/06aUnoViewVauleHighlighting02.png" align="right" hspace="4" vspace="4" width="15%"><img src="OOoBasic_pic/02calc/08View/06aUnoViewVauleHighlighting01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcUnoView()
+	Dim oDoc as Object, oCtrl as Object, oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		oDispatcher.executeDispatch( oFrame, ".uno:ViewValueHighlighting", "", 0, oProp())
+		msgbox "値の強調表示ON" & Chr(10) & "Colorが付く",0,"View"
+		'
+		oDispatcher.executeDispatch( oFrame, ".uno:ViewValueHighlighting", "", 0, oProp())
+		msgbox "値の強調表示OFF" & Chr(10) & "Blackに戻る",0,"View"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCVw06b"><h6>CVw-)<em>[Calc]</em>値の強調表示/非表示(2)</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/06bVauleHighlight02.png" align="right" hspace="4" vspace="4" width="15%"><img src="OOoBasic_pic/02calc/08View/06bVauleHighlight01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcView()
+	Dim oDoc as Object, oCtrl as Object
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		'
+		oCtrl.ValueHighlighting = true
+		msgbox "値の強調表示ON" & Chr(10) & "Colorが付く",0,"CalcView"
+		'
+		oCtrl.ValueHighlighting = false
+		msgbox "値の強調表示OFF" & Chr(10) & "Blackに戻る",0,"ClacView"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCVw06c"><h6>CVw-)<em>[Calc]</em>値の強調表示/非表示(3)</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/06cIsValueHighlightingEnabled02.png" align="right" hspace="4" vspace="4" width="15%"><img src="OOoBasic_pic/02calc/08View/06cIsValueHighlightingEnabled01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcView()
+	Dim oDoc as Object, oCtrl as Object
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		'
+		oCtrl.IsValueHighlightingEnabled = true
+		msgbox "値の強調表示ON" & Chr(10) & "Colorが付く",0,"CalcView"
+		'
+		oCtrl.IsValueHighlightingEnabled = false
+		msgbox "値の強調表示OFF" & Chr(10) & "Blackに戻る",0,"ClacView"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCVw07a"><h6>CSVw-)<em>[Calc]</em>画面Zoomの設定( Only Calc )</h6></a><pre><code>
+<img SRC="OOoBasic_pic/02calc/08View/07aZoomType_Value01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub WindowZoom()
+	Dim oDoc as Object, oCtrl as Object
+    Dim oZoom1 as Long, oZoom2 as Long
+    Dim oDisp as String
+    	oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		' Current Zoom
+		oZoom1 = oCtrl.ZoomValue
+		'
+		oCtrl.ZoomValue = 125	' 拡大率を指定するときのみ ZoomValue を使用
+		' ZoomType は ZoomValueの後にする事.
+		'oCtrl.ZoomType = 3							' こちらでもOK	
+		oCtrl.ZoomType = com.sun.star.view.DocumentZoomType.BY_VALUE
+		'
+		oZoom2 = oCtrl.ZoomValue
+		oDisp = "[ View → Zoom ]" & Chr$(10) & "Before = " & oZoom1 & Chr$(10) & "After = " & oZoom2
+    	'
+    msgbox(oDisp,0,"画面Zoom")
+End Sub
+'
+' [ Note ]
+' 1) ZoomType の値が .uno:Zoom と異なる事に注意。
+' 
+' 		OPTIMAL						:	0	/ 選択範囲に合わせる
+' 		PAGE_WIDTH					:	1	/ ページ幅に合わせる
+' 		ENTIRE_PAGE					:	2	/ 縦横ページ全体を表示
+' 		BY_VALUE						:   3	/ 拡大率を指定してズーム
+' 		PAGE_WIDTH_EXACT		:	4	/ 正確なページ幅
+'
+' 2) Calc以外は <a href="OOoBasic_General.html#OOoGW05a">.uno:Zoom</a>使用。Calcも .uno:Zoom で設定できる。<br>
+</code></pre><br>
+
+
+<a name="OOoCVw08a"><h6>CVw-)<em>[Calc]</em>Gride Line表示/非表示</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/08aShowGrid01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub CalcView()
+	Dim oDoc as Object, oCtrl as Object
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		'
+		oCtrl.ShowGrid = false
+		msgbox "Grid線を非表示",0,"CalcView"
+		'
+		oCtrl.ShowGrid = true
+		msgbox "Grid線表示",0,"ClacView"
+End Sub
+'
+' [ Note ]
+' Calc Only / WriterではError
+</code></pre><br>
+
+
+<a name="OOoCVw09a"><h6>CVw-)<em>[Calc]</em>Gride Lineの色設定</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/09aGridColor02.png" align="right" hspace="4" vspace="4" width="15%"><img src="OOoBasic_pic/02calc/08View/09aGridColor01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub CalcView()
+	Dim oDoc as Object, oCtrl as Object
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		'
+		oCtrl.GridColor = &HFF0000	' Red
+		msgbox "Success"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCVw10a"><h6>CVw-)<em>[Calc]</em>Spell記号の表示/非表示(未完成)</h6></a><pre><code>
+Sub CalcView()
+	Dim oDoc as Object, oCtrl as Object
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		'
+		oCtrl.HideSpellMarks = false
+		msgbox "Auto Spell Check / ON",0,"Spell Check"
+		'
+		oCtrl.HideSpellMarks = false
+		msgbox "Auto Spell Check / OFF",0,"Spell Check"
+End Sub
+'
+' [ Note ]
+' Errorは生じないが、Spell記号(赤字の下波線)のON/OFF反応無し。( LibreOffice4.0.1 , Apache OpenOffice3.4 )
+' LO, AOO 共に com.sun.star.sheet.SpreadSheetViewSetting Serviceに記載有り。
+' <a href="OOoBasic_General2.html#OOoGLo01c">Auto Spell Check( Spell記号の表示/非表示 )</a>ならばOK
+</code></pre><br>
+
+
+<a name="OOoCVw11a"><h6>CVw-)<em>[Calc]</em>水平Scroll Bar表示/非表示</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/11aHorizontalScrollBar02.png" align="right" hspace="4" vspace="4" width="25%"><img src="OOoBasic_pic/02calc/08View/11aHorizontalScrollBar01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub CalcView()
+	Dim oDoc as Object, oCtrl as Object
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		'
+		oCtrl.HorizontalScrollBar = false
+		msgbox "水平Scroll Bar非表示",0,"Calc View"
+		'
+		oCtrl.HorizontalScrollBar = true
+		msgbox "水平Scroll Bar表示",0,"Calc View"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCVw12a"><h6>CVw-)<em>[Calc]</em>垂直Scroll Bar表示/非表示</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/12aVerticalScrollBar02.png" align="right" hspace="4" vspace="4" width="15%"><img src="OOoBasic_pic/02calc/08View/12aVerticalScrollBar01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcView()
+	Dim oDoc as Object, oCtrl as Object
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		'
+		oCtrl.VerticalScrollBar = false
+		msgbox "垂直Scroll Bar非表示",0,"Calc View"
+		'
+		oCtrl.VerticalScrollBar = true
+		msgbox "垂直Scroll Bar表示",0,"Calc View"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCVw13a"><h6>CVw-)<em>[Calc]</em>Outline記号の表示/非表示(1)</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/13aOutlineSymbols02.png" align="right" hspace="4" vspace="4" width="15%"><img src="OOoBasic_pic/02calc/08View/13aOutlineSymbols01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcView()
+	Dim oDoc as Object, oCtrl as Object
+	Dim oSheet as Object
+	Dim oCellAdr as Object
+		oDoc = ThisComponent
+		oSheet = oDoc.getSheets().getByIndex(0)
+		' 事前準備
+		oCellAdr = createUnoStruct("com.sun.star.table.CellRangeAddress")
+		with oCellAdr
+			.Sheet = 0
+  			.StartRow = 2			' Row No.3
+  			.EndRow = 4			' Row No.4
+		end with
+		oSheet.group( oCellAdr, com.sun.star.table.TableOrientation.ROWS )
+		msgbox "Goup化　OK",0,"Display"
+		'
+		oCtrl = oDoc.getCurrentController()
+		oCtrl.OutlineSymbols = false
+		msgbox "OutlineSymbol非表示",0,"Calc View"
+		'
+		oCtrl.OutlineSymbols = true
+		msgbox "OutlineSymbol表示",0,"Calc View"
+		'
+		oSheet.clearOutline()
+		msgbox "Success"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCVw13b"><h6>CVw-)<em>[Calc]</em>Outline記号の表示/非表示(2)</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/13bIsOutlineSymbolsSet02.png" align="right" hspace="4" vspace="4" width="15%"><img src="OOoBasic_pic/02calc/08View/13bIsOutlineSymbolsSet01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcView()
+	Dim oDoc as Object, oCtrl as Object
+	Dim oSheet as Object
+	Dim oCellAdr as Object
+		oDoc = ThisComponent
+		oSheet = oDoc.getSheets().getByIndex(0)
+		' 事前準備
+		oCellAdr = createUnoStruct("com.sun.star.table.CellRangeAddress")
+		with oCellAdr
+			.Sheet = 0
+  			.StartRow = 2			' Row No.3
+  			.EndRow = 4			' Row No.4
+		end with
+		oSheet.group( oCellAdr, com.sun.star.table.TableOrientation.ROWS )
+		msgbox "Goup化　OK",0,"Display"
+		'
+		oCtrl = oDoc.getCurrentController()
+		oCtrl.IsOutlineSymbolsSet = false
+		msgbox "OutlineSymbol非表示",0,"Calc View"
+		'
+		oCtrl.IsOutlineSymbolsSet = true
+		msgbox "OutlineSymbol表示",0,"Calc View"
+		'
+		oSheet.clearOutline()
+		msgbox "Success"
+End Sub
+</code></pre><br>
+
+
+
+<a name="OOoCVw14a"><h6>CVw-)<em>[Calc]</em>DocumentのSheet Tabの表示/非表示(1)</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/14aSheetTabs02.png" align="right" hspace="4" vspace="4" width="15%"><img src="OOoBasic_pic/02calc/08View/14aSheetTabs01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcView()
+	Dim oDoc as Object, oCtrl as Object
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oCtrl.SheetTabs = false
+		msgbox "Sheet Tab非表示",0,"Calc View"
+		'
+		oCtrl.SheetTabs = true
+		msgbox "Sheet Tab表示",0,"Calc View"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCVw14a2"><h6>CVw-)<em>[Calc]</em>DocumentのSheet Tabの表示/非表示(2)</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/14a2HasSheetTabs01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcView()
+	Dim oDoc as Object, oCtrl as Object
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oCtrl.HasSheetTabs = false
+		msgbox "Sheet Tab表示 ? = " & oCtrl.HasSheetTabs ,0,"Calc View"
+		'
+		oCtrl.HasSheetTabs = true
+		msgbox "Sheet Tab表示 ? = " & oCtrl.HasSheetTabs,0,"Calc View"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCVw14a3"><h6>CVw-)<em>[Calc]</em>DocumentのSheet Tab表示/非表示Check</h6></a><pre><code>
+Sub CalcView()
+	Dim oDoc as Object, oCtrl as Object
+	Dim oSpdSht as Object
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oCtrl.SheetTabs = false
+		'
+		oSpdSht = oDoc.createInstance("com.sun.star.sheet.DocumentSettings")
+		Rem oSpdSht = oDoc.createInstance("com.sun.star.comp.SpreadsheetSettings")	' ← こちらでもOK
+		msgbox "Sheet Tab表示 ? = " & oSpdSht.HasSheetTabs ,0,"Calc View"
+		'
+		oCtrl.SheetTabs = true
+		msgbox "Sheet Tab表示 ? = " & oSpdSht.HasSheetTabs,0,"Calc View"
+End Sub
+'
+' [ Note ]
+' com.sun.star.sheet.DocumentSettings / com.sun.star.comp.SpreadsheetSettings では設定不可
+' 設定するには CurrentController() ( つまり com.sun.star.sheet.SpreadsheetViewSettings ) を使う
+</code></pre><br>
+
+
+
+<a name="OOoCVw15a"><h6>CVw-)<em>[Calc]</em>Object Anchorの表示/非表示</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/15aShowAnchor02.png" align="right" hspace="4" vspace="4" width="15%"><img src="OOoBasic_pic/02calc/08View/15aShowAnchor01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcView()
+	Dim oDoc as Object, oCtrl as Object, oFrame
+	Dim oDrawP as Object
+	Dim oShape as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+		oDoc = ThisComponent
+		oDrawP = oDoc.getDrawPages().getByIndex(0)
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+	' Position
+		oPoint = oShape.Position
+			oPoint.X = 1000
+			oPoint.Y = 1000
+		oShape.Position = oPoint
+    ' Size
+    	oSize = oShape.Size
+    		oSize.Height = 1200		' unit : 1/100mm
+    		oSize.Width =  1500		' unit : 1/100mm
+    	oShape.Size = oSize
+    oDrawP.add(oShape)
+    '
+    ' 作成したShapeを選択状態にする
+    	oCtrl = oDoc.CurrentController()
+    	oCtrl.select(oShape)
+    	'
+    ' AnchorをCell に設定
+    	oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		oDispatcher.executeDispatch( oFrame, ".uno:SetAnchorToCell", "", 0, Array())
+		'
+	' 一度、Objectの選択を解除 / Cell を選択
+		oProp(0).Name = "ToPoint"
+		oProp(0).Value = "A10"	
+		oDispatcher.executeDispatch(oFrame, ".uno:GoToCell", "", 0, oProp())
+		'
+	' Anchor 表示/非表示 
+		oCtrl.ShowAnchor = false
+		oCtrl.select(oShape)
+		msgbox "ObjectのAnchor非表示",0,"Calc View"
+		'
+		oCtrl.ShowAnchor = true
+		oCtrl.select(oShape)
+		msgbox "ObjectのAnchor表示",0,"Calc View"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCVw16a"><h6>CVw-)<em>[Calc]</em>Objectの表示/非表示</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/16aShowDrawing02.png" align="right" hspace="4" vspace="4" width="15%"><img src="OOoBasic_pic/02calc/08View/16aShowDrawing01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcView()
+	Dim oDoc as Object, oCtrl as Object
+	Dim oDrawP as Object
+	Dim oShape as Object
+		oDoc = ThisComponent
+		oDrawP = oDoc.getDrawPages().getByIndex(0)
+		oShape = oDoc.createInstance("com.sun.star.drawing.RectangleShape")
+	' Position
+		oPoint = oShape.Position
+			oPoint.X = 1000
+			oPoint.Y = 1000
+		oShape.Position = oPoint
+    ' Size
+    	oSize = oShape.Size
+    		oSize.Height = 1200		' unit : 1/100mm
+    		oSize.Width =  1500		' unit : 1/100mm
+    	oShape.Size = oSize
+    oDrawP.add(oShape)
+	'
+	' 図形Object 表示/非表示
+		oCtrl = oDoc.getCurrentController()
+		oCtrl.ShowDrawing = true
+		msgbox "図形Objectの非表示" & Chr$(10) & "( ShowDrawing )",0,"Calc View"
+		'
+		oCtrl.ShowDrawing = false
+		msgbox "図形Objectの表示" & Chr$(10) & "( ShowDrawing )",0,"Calc View"
+End Sub
+'
+' [ Note ]( LibreOffice4.0.1 )
+' true  : Not Display
+' false : Display
+</code></pre><br>
+
+
+<a name="OOoCVw16b"><h6>CVw-)<em>[Calc]</em>ObjectのHelp Line表示/非表示</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/16bShowHelpLines01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcView()
+	Dim oDoc as Object, oCtrl as Object
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oCtrl.ShowHelpLines = false
+		msgbox "Show Help Line = " & oCtrl.ShowHelpLines ,0,"Calc View"
+		'
+		oCtrl.ShowHelpLines = true
+		msgbox "Show Help Line = " & oCtrl.ShowHelpLines,0,"Calc View"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCVw17a"><h6>CVw-)<em>[Calc]</em>Embedded Objectの表示/非表示</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/17aShowObjects02.png" align="right" hspace="4" vspace="4" width="15%"><img src="OOoBasic_pic/02calc/08View/17aShowObjects01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcView()
+	Dim oDoc as Object, oCtrl as Object
+	Dim oDrawP as Object
+	Dim oShape as Object
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		' 事前に Embedded Objectを作成
+		oCtrl.ShowObjects = 1
+		msgbox "Embed Objectの非表示",0,"Calc View"
+		'
+		oCtrl.ShowObjects = 2	
+		msgbox "Image 枠 表示",0,"Calc View"
+		'
+		oCtrl.ShowObjects = 0
+		msgbox "Embed Objectの表示",0,"Calc View"
+End Sub
+'
+' [ Note ]
+' oCtrl.ShowObjects = 2 では Image枠のみで無く、全体が表示されてしまう( LO4.0.1 )
+</code></pre><br>
+
+
+<a name="OOoCVw18a"><h6>CVw-)<em>[Calc]</em>Formula表示</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/18aShowFormulas01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcView()
+	Dim oDoc as Object, oCtrl as Object
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		'
+		oCtrl.ShowFormulas = true
+		msgbox "数式表示",0,"CalcView"
+		'
+		oCtrl.ShowFormulas = false
+		msgbox "値表示",0,"ClacView"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCVw19a"><h6>CVw-)<em>[Calc]</em>Zero( = 0 )表示/非表示</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/19aShowZeroValues02.png" align="right" hspace="4" vspace="4" width="15%"><img src="OOoBasic_pic/02calc/08View/19aShowZeroValues01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcView()
+	Dim oDoc as Object, oCtrl as Object
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		'
+		oCtrl.ShowZeroValues = false
+		msgbox "Zero( = 0 ) 非表示",0,"CalcView"
+		'
+		oCtrl.ShowZeroValues = true
+		msgbox "Zero( = 0 ) 表示",0,"ClacView"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCVw20a"><h6>CVw-)<em>[Calc]</em>Commentの表示/非表示(1)</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/20aSetIsVisible02.png" align="right" hspace="4" vspace="4" width="15%"><img src="OOoBasic_pic/02calc/08View/20aSetIsVisible01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcView()
+	Dim oDoc as Object
+	Dim oSheet as Object, oCell as Object
+	Dim oCmt as Object
+		oDoc = ThisComponent
+		oSheet = oDoc.getSheets().getByIndex(0)
+		oCell = oSheet.getCellByPosition(0,0)
+		' Annotation Object 作成
+		oCmt = oCell.getAnnotation()
+		' 新規Commentの挿入
+		oSheet.getAnnotations().insertNew(oCell.getCellAddress(), "Commentの挿入")
+		'
+		' Commentの非表示
+		oCmt.setIsVisible( false )
+		msgbox "Comment非表示",0,"ClacView"
+		'
+		' Commentの表示
+		oCmt.setIsVisible( true )
+		msgbox "Comment表示",0,"ClacView"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCVw20b"><h6>CVw-)<em>[Calc]</em>Commentの表示/非表示(2)</h6></a><pre><code>
+Sub DocUnoCalc()
+	Dim oDoc As Object, oCtrl as Object, oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+		'
+		oDoc = ThisComponent
+  		oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		' A1 Cellへ
+			oProp(0).Name = "ToPoint"
+			oProp(0).Value = "A1"
+		oDispatcher.executeDispatch(oFrame, ".uno:GoToCell", "", 0, oProp())
+		 ' Commnet常時表示
+		 	oProp(0).Name = "NoteVisible"
+			oProp(0).Value = true
+		oDispatcher.executeDispatch(oFrame, ".uno:NoteVisible", "", 0, oProp())
+		msgbox "Commnet常時表示",0,"Comment"
+		' Commnet通常表示
+		 	oProp(0).Name = "NoteVisible"
+			oProp(0).Value = ｆａｌｓｅ
+		oDispatcher.executeDispatch(oFrame, ".uno:NoteVisible", "", 0, oProp())
+		msgbox "Commnet通常表示",0,"Comment"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCVw21a"><h6>CVw-)<em>[Calc]</em>Comment Markの表示/非表示</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/21aShowNotes02.png" align="right" hspace="4" vspace="4" width="20%"><img src="OOoBasic_pic/02calc/08View/21aShowNotes01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcView()
+	Dim oDoc as Object, oCtrl as Object
+	Dim oSheet as Object, oCell as Object
+	Dim oCmt as Object
+		oDoc = ThisComponent
+		oSheet = oDoc.getSheets().getByIndex(0)
+		oCell = oSheet.getCellByPosition(0,0)
+		' Annotation Object 作成
+		oCmt = oCell.getAnnotation()
+		' 新規Commentの挿入
+		oSheet.getAnnotations().insertNew(oCell.getCellAddress(), "Commentの表示")
+		'
+		' Comment Markの非表示
+		oCtrl = oDoc.getCurrentController()
+		oCtrl.ShowNotes = false
+		msgbox "Comment Mark非表示" & Chr$(10) & "(右上角の■ 無し",0,"ClacView"
+		'
+		' Commentの表示
+		oCtrl.ShowNotes = true
+		msgbox "Comment Mark非表示" & Chr$(10) & "右上角の■有り",0,"ClacView"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCVw22a"><h6>CVw-)<em>[Calc]</em>Option → Grid Lineの設定取得</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/22aOptionRaster01.png" align="right" hspace="4" vspace="4" width="40%"><img src="OOoBasic_pic/02calc/08View/22aOptionRaster02.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcView()
+	Dim oDoc as Object
+	Dim oSnapRst as Boolean
+	Dim oRstIsVisi as Boolean
+	Dim oRstX as Long, oRstY as Long
+	Dim oRstSubX as Long, oRstSubY as Long
+	Dim oSynRst as Boolean
+	 oDoc = ThisComponent
+	 '
+	 oSpdSht = oDoc.createInstance("com.sun.star.sheet.DocumentSettings")
+	 ' こちらでも OK
+	 Rem oSpdSht = oDoc.createInstance("com.sun.star.comp.SpreadsheetSettings")
+	 	'
+		' オプション → Calc → グリッド線 / Readonly 
+		' 「 グリッド線で位置合わせ 」設定取得
+		oSnapRst = oSpdSht.IsSnapToRaster
+		' 「 グリッド線の表示 」設定取得
+		oRstIsVisi = oSpdSht.RasterIsVisible
+		' 「 解像度 」
+		oRstX = oSpdSht.RasterResolutionX
+		oRstY = oSpdSht.RasterResolutionY
+		' 「 サブ目盛 」
+		oRstSubX = oSpdSht.RasterSubdivisionX
+		oRstSubY = oSpdSht.RasterSubdivisionY
+		' 「 軸を同期させる 」
+		oSynRst = oSpdSht.IsRasterAxisSynchronized
+		'
+		oDisp = "[ Option : Grid設定取得 ]" & Chr$(10) & "「 グリッド線で位置合わせ 」 = " & oSnapRst & Chr$(10) & _
+					 " 「 グリッド線の表示 」 = " & oRstIsVisi & Chr$(10) & _
+					 "解像度 / 「横に」 =  " & oRstX & Chr$(10) & "解像度 / 「縦に」 =  " & oRstY & Chr$(10) & _
+					 "サブ目盛 / 「横に」 =  " & oRstSubX & Chr$(10) & "サブ目盛 / 「縦に」 =  " & oRstSubY & Chr$(10) & _
+					 "「 軸を同期させる 」 = " & oSynRst
+		'
+		msgbox oDisp, 0, "Option設定"
+End Sub
+'
+' [ Note ]
+' サブ目盛 の取得値は表示される値から -1
+' 4 ならば 取得値は 3
+</code></pre><br>
+
+
+<a name="OOoCVw"><h6>CVw-)<em>[Calc]</em></h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/08View/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+<br><br><br><br><br><br><br>
+<p class="s1">Data Pilot</p class="s1">
+<a name="OOoCDP01a"><h6>CDP-1)<em>[Calc]</em>Data Pilot Sourceの作成</h6></a><pre><code>
+<img SRC="OOoBasic_pic/02calc/datapilot/01oDataPilotSource.png" align="right" hspace="4" vspace="4" width="30%">
+Sub oCreateDataPilotSource()
+	Dim oName
+	Dim oItem()
+	Dim oTeam()
+	Dim oCity()
+	Dim oInvCompany
+	Dim ovalSheets
+	Dim oSheet
+	Dim i as Integer
+	Dim nItem as Integer
+	Dim nCity as integer
+	Dim nTeam as Integer
+	Dim d2007 as Double
+	Dim d2008 as Double
+	Dim d2009 as Double
+		oName = "DataPilot"
+		ovalSheets = ThisComponent.Sheets
+		If NOT ovalSheets.hasByName(oName) then
+			ovalSheets.insertNewByName(oName, ovalSheets.getCount())		' ← 最後尾にsheetを追加
+		End If
+		oSheet = ovalSheets.getByName(oName)
+			
+		oItem = Array("Books","Candy","Pens")
+		oTeam = Array("Jean","Bob","Ilsub","Alan","Chelle","Andy")
+		oCity = Array("Michigan","Ohio","Kentucky")
+		
+		oData = DimArray((UBound(oItem)+1) * (UBound(oTeam)+1))
+		oData(0) = Array("Item",  "State",  "Team",  "2007", "2008", "2009")
+		Dim a()
+					a = oData(0,0)
+					oDisp = oDisp & a(0) & Chr$(9) & a(1) & Chr$(9) & a(2) & Chr$(9) & a(3) & Chr$(9) & a(4) & Chr$(9) & a(5)
+					oDisp= oDisp & Chr$(10)
+		i=0
+		for nTeam = 0 to UBound(oTeam)
+			for nItem = 0 to UBound(oItem)
+			'print UBound(oItem)
+				i=i+1
+				d2007 =	1000.0 + 2000.0* Rnd
+				d2008 =	1500.0 + 2000.0* Rnd
+				d2009 =	2000.0 + 2000.0* Rnd 
+				oData(i) = Array(oItem(nItem), oCity(nIem),  oTeam(nTeam), Int(d2007),  Int(d2008), Int(d2009))
+					a = oData(i)
+					oDisp = oDisp & a(0) & Chr$(9) & a(1) & Chr$(9) & a(2) & Chr$(9) & a(3) & Chr$(9) & a(4) & Chr$(9) & a(5)
+					oDisp= oDisp & Chr$(10)
+			next nItem
+		next nTeam
+		msgbox(oDisp)
+		oRange = oSheet.getCellRangeByName("A1:F" & (UBound(oData)+1))
+		oRange.setDataArray(oData)
+	'
+		Dim oFormats
+		Dim oTempRange
+			oTempRange = oSheet.getCellRangeByName("D2:F" & (UBound(oData)+1))
+			oFormats = ThisComponent.NumberFormats
+		Dim oLocale as new com.sun.star.lang.Locale
+			oTempRange.NumberFormat = oFormats.getStandardFormat(com.sun.star.util.NumberFormat.CURRENCY, oLocale)
+			oTempRange = oSheet.getCellRangeByName("A1:F1")
+			oTempRange.CellBackColor = RGB(200,200,200)
+			oTempRange.HoriJustify = com.sun.star.table.CellHoriJustify.CENTER
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCDP02a"><h6>CDP-)<em>[Calc]</em>Data Pilot Tableの作成</h6></a><pre><code>
+<img SRC="OOoBasic_pic/02calc/datapilot/02oFirstDataPilo.png" align="right" hspace="4" vspace="4" width="40%">
+Sub oCreateDataPilotTable
+	Dim oSheet
+	Dim oRange
+	Dim oRangeAddress
+	Dim oTables
+	Dim oTDescriptor
+	Dim oAllFields
+	Dim oField
+	Dim oCellAddress as new com.sun.star.table.CellAddress
+		Randomize(37)
+		oRange = oDataPilotSource("Pilot")
+	'
+		oRangeAddress = oRange.getRangeAddress()
+			oCellAddress.Sheet = oRangeAddress.Sheet
+			oCellAddress.Column = oRangeAddress.StartColumn
+			oCellAddress.Row = oRangeAddress.EndRow + 2
+			
+		oSheet = ThisComponent.Sheets.getByName("Pilot")
+		oTables = oSheet.getDataPilotTables()
+	' Step1	Create the descriptor
+		oTDescriptor = oTables.createDataPilotDescriptor()
+	' Sep2	Set the Source Range
+		oTdescriptor.setSourceRange(oRangeAddress)
+	' Step3	Set the fileds
+		oAllFields = oTDescriptor.getDataPilotFields()
+'Define to be the Column0 as a row item
+	oField = oAllFields.getByIndex(0)
+	oField.Orientation = com.sun.star.sheet.DataPilotFieldOrientation.ROW
+'Define to be the Column1 as a Column item
+	oField = oAllFields.getByIndex(1)
+	oField.Orientation = com.sun.star.sheet.DataPilotFieldOrientation.COLUMN
+'Define to be Created a sum in the data for the Column3
+	oField = oAllFields.getByIndex(3)
+	oField.Orientation = com.sun.star.sheet.DataPilotFieldOrientation.DATA
+	oField.Function = com.sun.star.sheet.GeneralFunction.SUM
+'
+	oTables.insertNewByName("MyFirstDataPilot", oCellAddress, oTDescriptor)
+		
+End Sub
+'
+'[ Function1 ]
+Function oDataPilotSource(oName) as Varient
+	Dim oItem()
+	Dim oTeam()
+	Dim oCity()
+	Dim oInvCompany
+	Dim ovalSheets
+	Dim oSheet
+	Dim i as Integer
+	Dim nItem as Integer
+	Dim nCity as integer
+	Dim nTeam as Integer
+	Dim d2007 as Double
+	Dim d2008 as Double
+	Dim d2009 as Double
+		ovalSheets = ThisComponent.Sheets
+		If NOT ovalSheets.hasByName(oName) then
+			ovalSheets.insertNewByName(oName, ovalSheets.getCount())		' ← 最後尾にsheetを追加
+		End If
+		oSheet = ovalSheets.getByName(oName)
+			
+		oItem = Array("Books","Candy","Pens")
+		oTeam = Array("Jean","Bob","Ilsub","Alan","Chelle","Andy")
+		oCity = Array("Michigan","Ohio","Kentucky")
+		
+		oData = DimArray((UBound(oItem)+1) * (UBound(oTeam)+1))
+		oData(0) = Array("Item",  "State",  "Team",  "2007", "2008", "2009")
+		dim a()
+					a = oData(0,0)
+					oDisp = oDisp & a(0) & Chr$(9) & a(1) & Chr$(9) & a(2) & Chr$(9) & a(3) & Chr$(9) & a(4) & Chr$(9) & a(5)
+					oDisp= oDisp & Chr$(10)
+		i=0
+		for nTeam = 0 to UBound(oTeam)
+			for nItem = 0 to UBound(oItem)
+				i=i+1
+				d2007 =	1000.0 + 2000.0* Rnd
+				d2008 =	1500.0 + 2000.0* Rnd
+				d2009 =	2000.0 + 2000.0* Rnd 
+				oData(i) = Array(oItem(nItem), oCity(nIem),  oTeam(nTeam), Int(d2007),  Int(d2008), Int(d2009))
+			next nItem
+		next nTeam
+		
+		oRange = oSheet.getCellRangeByName("A1:F" & (UBound(oData)+1))
+		oRange.setDataArray(oData)
+	'
+		Dim oFormats
+		Dim oTempRange
+			oTempRange = oSheet.getCellRangeByName("D2:F" & (UBound(oData)+1))
+			oFormats = ThisComponent.NumberFormats
+		Dim oLocale as new com.sun.star.lang.Locale
+			oTempRange.NumberFormat = oFormats.getStandardFormat(com.sun.star.util.NumberFormat.CURRENCY, oLocale)
+			oTempRange = oSheet.getCellRangeByName("A1:F1")
+			oTempRange.CellBackColor = RGB(200,200,200)
+			oTempRange.HoriJustify = com.sun.star.table.CellHoriJustify.CENTER
+		'Return
+			oDataPilotSource = oRange
+End Function
+</code></pre><br>
+
+
+<a name="OOoCDP03a"><h6>CDP-)<em>[Calc]</em>Data Pilot Tableの削除</h6></a><pre><code>
+Sub oRemoveDataPilot
+	Dim oSheet
+		oSheet = ThisComponent.Sheets.getByName("Pilot")
+		oTables = oSheet.getDataPilotTables()
+		oRDescriptor = oTables.removeByName("MyFirstDataPilot")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCDP04a"><h6>CDP-)<em>[Calc]</em>Pilot Table作成Dialog表示</h6></a><pre><code>
+<img SRC="OOoBasic_pic/02calc/datapilot/04aPiloTbtCreateDialog01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub GeneralMenu()
+	Dim oDoc as Object, oCtrl as Object, oFrame as Object
+	Dim oDispatcher as Object
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		oDispatcher.executeDispatch( oFrame, ".uno:DataDataPilotRun", "", 0, Array())
+		msgbox "Success"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCDP"><h6>CDP-)<em>[Calc]</em></h6></a><pre><code>
+<img SRC="OOoBasic_pic/02calc/datapilot/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+<br clear="right">
+<p class="s1">GoalSeek</p class="s1">
+<a name="OOoCGS01a"><h6>CGS-)<em>[Calc]</em>GoalSeek</h6></a><pre><code>
+<img SRC="OOoBasic_pic/02calc/GoalSeek/01GoalSeek01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub oGoakSeek
+	Dim oDoc as Object
+	Dim oSheet as Object
+	Dim oTCell as Object
+	Dim oRCell as Object
+	Dim oGoal as Object
+		oDoc = ThisComponent
+		oSheet = oDoc.getSheets().getByIndex(0)
+		'
+		oTCell = oSheet.getCellByPosition(1,0)
+		oTCell.Value = 1
+		'
+		oRCell = oSheet.getCellByPosition(0,0)
+		oRCell.Formula= "=10*B1"
+	'GoalSeek
+		oGoal = oDoc.seekGoal(oRCell.CellAddress, oTCell.CellAddress, "100")	
+	'Display
+		msgbox("Result = " & oGoal.Result & Chr$(10) & _
+				"The result changed by " & oGoal.Divergence & " in the last iteration", 0, "Goal Seek")			
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCGS02a"><h6>CGS-)<em>[Calc]</em>GoalSeek Dialog表示</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/GoalSeek/02aUnoGoalSeekDialog01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub UnoGoakSeek()
+	Dim oDoc as Object, oCtrl as Object, oFrame as Object
+    Dim oDispatcher as Object
+    	oDoc = ThisComponent
+    	oCtrl = oDoc.getCurrentController()
+    	oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		oDispatcher.executeDispatch(oFrame,  ".uno:GoalSeekDialog", "", 0, Array())
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCGS"><h6>CGS-)<em>[Calc]</em></h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/GoalSeek/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">Scenario</p class="s1">
+<a name="OOoCSro01a"><h6>CGS-)<em>[Calc]</em>シナリオの作成/削除</h6></a><pre><code>
+<img SRC="OOoBasic_pic/02calc/08Senario/01AddNewByName01.png" align="right" hspace="4" vspace="4" width="20%">
+Sub CalcScenario()
+	Dim oDoc As Object
+	Dim oSheet as Object
+	Dim oSnr as Object
+	Dim oCellRange as Object, oCellRangeAddr as Object
+	Dim oSnrName as String
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oSheet = oDoc.getSheets().getByName("Sheet1")
+		' 前準備
+		oSheet.getCellByPosition(0,0).String = "定価"
+		oSheet.getCellByPosition(0,1).String = "割引率"
+		oSheet.getCellByPosition(0,2).String = "税金"
+		oSheet.getCellByPosition(0,3).String = "送料"
+		oSheet.getCellByPosition(0,4).String = "購入価格"
+		' 
+		oSheet.getCellByPosition(1,0).Value = 10000
+		oSheet.getCellByPosition(1,1).Value = 0.1
+		oSheet.getCellByPosition(1,2).Formula = "= $B$1*(1-$B$2) * 0.05"
+		oSheet.getCellByPosition(1,3).Value = 500
+		oSheet.getCellByPosition(1,4).Formula = "= $B$1 * (1- $B$2) + $B$3 + $B$4"
+		' 
+		' Scenario作成 ( シナリオ1 )
+		oSnrName = "Scenario_1"
+		oSnr = oSheet.getScenarios()
+		oCellRange = oSheet.getCellRangeByPosition(1,0,1,4)
+		oCellRangeAddr = oCellRange.getRangeAddress()
+		oSnr.addNewByName( oSnrName, Array(oCellRangeAddr), "Commnet")
+		oDisp = "シナリオ名 : " & oSnrName & Chr$(10) & "を作成しました。"
+		msgbox(oDisp, 0, "Scenario")
+		'
+		' Scenarioの削除
+		oSnr.removeByName(oSnrName)
+		oDisp = "シナリオ名 : " & oSnrName & Chr$(10) & "を削除しました。"
+		msgbox(oDisp , 0,"Scenario")
+End Sub
+'
+' [ 参考 ]
+' シナリオの作成方法は<a href="http://japanism.info/calc-scenario.html">ようこそ Cafi Net カフィネットへ</a>のBlog Pageに詳しく記されています。
+</code></pre><br>
+
+
+<a name="OOoCSro02a"><h6>CGS-)<em>[Calc]</em>Properties of Service Scenario</h6></a><pre><code>
+<img SRC="OOoBasic_pic/02calc/08Senario/02Service_Scenario01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub CalcScenario()
+	Dim oDoc As Object
+	Dim oSheet as Object
+	Dim oSnr as Object
+	Dim oCellRange as Object, oCellRangeAddr as Object
+	Dim oSnrName as String
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oSheet = oDoc.getSheets().getByName("Sheet1")
+		' 前準備
+		oSheet.getCellByPosition(0,0).String = "定価"
+		oSheet.getCellByPosition(0,1).String = "割引率"
+		oSheet.getCellByPosition(0,2).String = "税金"
+		oSheet.getCellByPosition(0,3).String = "送料"
+		oSheet.getCellByPosition(0,4).String = "購入価格"
+		' 
+		oSheet.getCellByPosition(1,0).Value = 10000
+		oSheet.getCellByPosition(1,1).Value = 0.1
+		oSheet.getCellByPosition(1,2).Formula = "= $B$1*(1-$B$2) * 0.05"
+		oSheet.getCellByPosition(1,3).Value = 500
+		oSheet.getCellByPosition(1,4).Formula = "= $B$1 * (1- $B$2) + $B$3 + $B$4"
+		' 
+		' Scenario作成 ( シナリオ1 )
+		oSnrName = "Scenario_1"
+		oSnr = oSheet.getScenarios()
+		oCellRange = oSheet.getCellRangeByPosition(1,0,1,4)
+		oCellRangeAddr = oCellRange.getRangeAddress()
+		oSnr.addNewByName( oSnrName, Array(oCellRangeAddr), "Commnet")
+		'
+	' Scenario の各種設定
+	Dim oSnrObj as Object
+	Dim oSnrShow as Boolean, oSnrPct as Boolean, oSnrPrtBrdr as Boolean, oSnrCyBk as Boolean, oSnrCpStyle as Boolean, oSnrCpFormula as Boolean
+		oSnrObj = oSnr.getByName(oSnrName)
+		if oSnrObj.IsActive = true then
+			oSnrObj.BorderColor = RGB(0,255,0)			' 色によっては 削除時にError が発生( 理由不明 )
+			oSnrPct = oSnrObj.Protected
+			oSnrShow = oSnrObj.ShowBorder
+			oSnrPrtBrdr = oSnrObj.PrintBorder
+			oSnrCyBk = oSnrObj.CopyBack
+			oSnrCpStyle = oSnrObj.CopyStyles
+			oSnrCpFormula = oSnrObj.CopyFormulas
+			oDisp = "oSnrPct = " & oSnrPct & Chr$(10) & "oSnrShow = " & oSnrShow & Chr$(10) & _
+						"oSnrPrtBrdr = " & oSnrPrtBrdr & Chr$(10) & "oSnrCyBk = " & oSnrCyBk & Chr$(10) & _
+						"oSnrCpStyle = " & oSnrCpStyle & Chr$(10) & "oSnrCpFormula = " & oSnrCpFormula
+		end if
+		msgbox(oDisp, 0, "Scenario")			' msgbox を移動させると 削除時に Errorが発生
+		'
+		' Scenarioの削除
+		oSnrObj.Protected = false
+		oSnr.removeByName(oSnrName)
+		oDisp = "シナリオ名 : " & oSnrName & Chr$(10) & "を削除しました。"
+		msgbox(oDisp , 0,"Scenario")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCSro03a"><h6>CGS-)<em>[Calc]</em>ScenarioのCommnet取得/設定</h6></a><pre><code>
+<img SRC="OOoBasic_pic/02calc/08Senario/03ScenarioComment01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcScenario()
+	Dim oDoc As Object
+	Dim oSheet as Object
+	Dim oSnr as Object
+	Dim oCellRange as Object, oCellRangeAddr as Object
+	Dim oSnrName as String
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oSheet = oDoc.getSheets().getByName("Sheet1")
+		' 前準備
+		oSheet.getCellByPosition(0,0).String = "定価"
+		oSheet.getCellByPosition(0,1).String = "割引率"
+		oSheet.getCellByPosition(0,2).String = "税金"
+		oSheet.getCellByPosition(0,3).String = "送料"
+		oSheet.getCellByPosition(0,4).String = "購入価格"
+		' 
+		oSheet.getCellByPosition(1,0).Value = 10000
+		oSheet.getCellByPosition(1,1).Value = 0.1
+		oSheet.getCellByPosition(1,2).Formula = "= $B$1*(1-$B$2) * 0.05"
+		oSheet.getCellByPosition(1,3).Value = 500
+		oSheet.getCellByPosition(1,4).Formula = "= $B$1 * (1- $B$2) + $B$3 + $B$4"
+		' 
+		' Scenario作成 ( シナリオ1 )
+		oSnrName = "Scenario_1"
+		oSnr = oSheet.getScenarios()
+		oCellRange = oSheet.getCellRangeByPosition(1,0,1,4)
+		oCellRangeAddr = oCellRange.getRangeAddress()
+		oSnr.addNewByName( oSnrName, Array(oCellRangeAddr), "これはシナリオのコメント")
+		'
+	' Scenario のComment取得
+	Dim oSnrCmt as String
+		oSnrObj = oSnr.getByName(oSnrName)
+		oSnrCmt = oSnrObj.getScenarioComment()
+		oDisp = "[ Comment ]" & Chr$(10) & oSnrCmt
+		'
+		' Commentの変更
+		oSnrObj.setScenarioComment("変更したコメント")
+		oSnrCmt = oSnrObj.getScenarioComment()
+		oDisp = oDisp & Chr$(10) & Chr$(9) & "↓" & Chr$(10) & oSnrCmt
+		msgbox(oDisp, 0, "Scenario")
+		'
+		' Scenarioの削除
+		oSnrObj.Protected = false
+		oSnr.removeByName(oSnrName)			'たまに、 原因不明の Error が生じる事がある。
+		oDisp = "シナリオ名 : " & oSnrName & Chr$(10) & "を削除しました。"
+		msgbox(oDisp , 0,"Scenario")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCSro04a"><h6>CGS-)<em>[Calc]</em>Scenarioの有無Check</h6></a><pre><code>
+<img SRC="OOoBasic_pic/02calc/08Senario/04hasElements02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="OOoBasic_pic/02calc/08Senario/04hasElements01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcScenario()
+	Dim oDoc As Object
+	Dim oSheet as Object
+	Dim oSnr as Object
+	Dim oCellRange as Object, oCellRangeAddr as Object
+	Dim oSnrName as String
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oSheet = oDoc.getSheets().getByName("Sheet1")
+		' 前準備
+		oSheet.getCellByPosition(0,0).String = "定価"
+		oSheet.getCellByPosition(0,1).String = "割引率"
+		oSheet.getCellByPosition(0,2).String = "税金"
+		oSheet.getCellByPosition(0,3).String = "送料"
+		oSheet.getCellByPosition(0,4).String = "購入価格"
+		' 
+		oSheet.getCellByPosition(1,0).Value = 10000
+		oSheet.getCellByPosition(1,1).Value = 0.1
+		oSheet.getCellByPosition(1,2).Formula = "= $B$1*(1-$B$2) * 0.05"
+		oSheet.getCellByPosition(1,3).Value = 500
+		oSheet.getCellByPosition(1,4).Formula = "= $B$1 * (1- $B$2) + $B$3 + $B$4"
+		' 
+		' Scenario作成 ( シナリオ1 )
+		oSnrName = "Scenario_1"
+		oSnr = oSheet.getScenarios()
+		oCellRange = oSheet.getCellRangeByPosition(1,0,1,4)
+		oCellRangeAddr = oCellRange.getRangeAddress()
+		oSnr.addNewByName( oSnrName, Array(oCellRangeAddr), "Commnet")
+		'
+		oDisp = "Scenarioの有無" & Chr$(10) & " → " & oSnr.hasElements()
+		msgbox(oDisp, 0, "Scenario作成")
+		'
+		' Scenarioの削除
+		oSnr.removeByName(oSnrName)
+		oDisp = "Scenarioの有無" & Chr$(10) & " → " & oSnr.hasElements()
+		msgbox(oDisp , 0,"Scenario削除")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCSro04b"><h6>CGS-)<em>[Calc]</em>名前を指定してScenarioの有無Check</h6></a><pre><code>
+<img SRC="OOoBasic_pic/02calc/08Senario/04hasByName02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="OOoBasic_pic/02calc/08Senario/04hasByName01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcScenario()
+	Dim oDoc As Object
+	Dim oSheet as Object
+	Dim oSnr as Object
+	Dim oCellRange as Object, oCellRangeAddr as Object
+	Dim oSnrName as String, oSnrName2 as String
+	Dim oDisp as String
+		oDoc = ThisComponent
+		oSheet = oDoc.getSheets().getByName("Sheet1")
+		' 前準備
+		oSheet.getCellByPosition(0,0).String = "定価"
+		oSheet.getCellByPosition(0,1).String = "割引率"
+		oSheet.getCellByPosition(0,2).String = "税金"
+		oSheet.getCellByPosition(0,3).String = "送料"
+		oSheet.getCellByPosition(0,4).String = "購入価格"
+		' 
+		oSheet.getCellByPosition(1,0).Value = 10000
+		oSheet.getCellByPosition(1,1).Value = 0.1
+		oSheet.getCellByPosition(1,2).Formula = "= $B$1*(1-$B$2) * 0.05"
+		oSheet.getCellByPosition(1,3).Value = 500
+		oSheet.getCellByPosition(1,4).Formula = "= $B$1 * (1- $B$2) + $B$3 + $B$4"
+		' 
+		' Scenario作成 ( シナリオ1 )
+		oSnrName = "Scenario_1"
+		oSnr = oSheet.getScenarios()
+		oCellRange = oSheet.getCellRangeByPosition(1,0,1,4)
+		oCellRangeAddr = oCellRange.getRangeAddress()
+		oSnr.addNewByName( oSnrName, Array(oCellRangeAddr), "Commnet")
+		'
+		oSnrName2 = "Scenario_2"
+		oDisp = "[ Scenarioの有無 ]" & Chr$(10) & oSnrName & " → " & oSnr.hasByName(oSnrName) & Chr$(10) & _
+					oSnrName2 & " → " & oSnr.hasByName(oSnrName2)
+		msgbox(oDisp, 0, "Scenario作成")
+		'
+		' Scenarioの削除
+		oSnr.removeByName(oSnrName)			' 時々Error発生
+		oDisp = "[ Scenarioの有無 ]" & Chr$(10) & oSnrName & " → " & oSnr.hasByName(oSnrName) & Chr$(10) & _
+					oSnrName2 & " → " & oSnr.hasByName(oSnrName2)
+		msgbox(oDisp , 0,"Scenario削除")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCSro"><h6>CGS-)<em>[Calc]</em></h6></a><pre><code>
+<img SRC="OOoBasic_pic/02calc/08Senario/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">Graph Chart作成</p class="s1">
+<a name="OOoCGhCt01a"><h6>CG-)<em>[Calc]</em>各種グラフ作成</h6></a><pre><code>
+Sub oSimple_Chart
+Dim oRange As Object
+Dim oSheet As Object
+Dim oCharts As Object
+Dim oChart_Line As Object
+Dim oTitle As String
+Dim oRect As New com.sun.star.awt.Rectangle
+Dim oRangeAddress(1) As New com.sun.star.table.CellRangeAddress
+	oDoc=ThisComponent
+	oTitle="Simple Chart"
+	oRect.Height=5000  'Unit : 1/100mm
+	oRect.Width=10000  'Unit : 1/100mm
+	oRect.x = 5000  'Unit : 1/100mm
+	oRect.y = 5000  'Unit : 1/100mm
+	oRange=oDoc.getCurrentSelection.getRangeAddress
+	oSheet=oDoc.CurrentSelection.getSpreadsheet
+	oCharts=oSheet.Charts
+	'Set Y axis Data
+		oRangeAddress(1).sheet = oRange.Sheet
+		oRangeAddress(1).StartColumn = oRange.StartColumn
+		oRangeAddress(1).EndColumn = oRange.EndColumn
+		oRangeAddress(1).StartRow = oRange.StartRow
+		oRangeAddress(1).EndRow = oRange.EndRow
+	'Set X axis Data
+		oRangeAddress(0).sheet = oRange.Sheet
+		oRangeAddress(0).StartColumn = oRange.StartColumn+1
+		oRangeAddress(0).EndColumn = oRange.EndColumn
+		oRangeAddress(0).StartRow = oRange.StartRow
+		oRangeAddress(0).EndRow = oRange.EndRow
+	'同名のChartは消す
+		if oCharts.hasByName(oTitle) Then
+			oCharts.RemoveByName(oTitle)
+		end if
+	'Draw Chart
+		oCharts.addNewByName(oTitle,oRect,oRangeAddress(),True,True)
+	'Chart Title表示
+		oChart_Line=oCharts.getByName(oTitle).embeddedObject
+		oChart_Line.HasMainTitle = True
+		oChart_Line.Title.String = oTitle
+	'軸Title表示
+		oChart_Line.diagram.HasXAxisTitle = true
+		oChart_Line.diagram.XAxisTitle.String = "Data"
+		oChart_Line.diagram.HasYAxisTitle = true
+		oChart_Line.diagram.YAxisTitle.String = "Number of Cases"
+	'X目盛の傾きset
+		oChart_Line.diagram.XAxis.TextBreak = false
+		oChart_Line.diagram.XAxis.TextRotation =2700 'Unit: 1/100th of degree
+		'Chartの種類を変更
+		'oChart_Line.diagram = oChart_Line.createInstance("com.sun.star.chart.LineDiagram")	'折れ線グラフ
+		'oChart_Line.diagram = oChart_Line.createInstance("com.sun.star.chart.AreaDiagram")	'折れ線の下範囲に色付きグラフ
+		'oChart_Line.diagram = oChart_Line.createInstance("com.sun.star.chart.BarDiagram")		'棒グラフ(Default)
+		'oChart_Line.diagram = oChart_Line.createInstance("com.sun.star.chart.DonutDiagram")	'円グラフ(中心空洞)
+		'oChart_Line.diagram = oChart_Line.createInstance("com.sun.star.chart.NetDiagram")		'円折れ線グラフ
+		'oChart_Line.diagram = oChart_Line.createInstance("com.sun.star.chart.PieDiagram")		'円グラフ
+		'oChart_Line.diagram = oChart_Line.createInstance("com.sun.star.chart.StackableDiagram")	'棒グラフ(="BarDiagram")
+		'oChart_Line.diagram = oChart_Line.createInstance("com.sun.star.chart.StockDiagram")		'ローソク線
+		oChart_Line.diagram = oChart_Line.createInstance("com.sun.star.chart.XYkDiagram")		'棒グラフ(="BarDiagram")
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCGhCt02a"><h6>CGhCt-)<em>[Calc]</em>Graph作成Wizard表示(1)</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/10Graph/02aUnoInsertObjCht01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub CalcGraph()
+	Dim oDoc as Object, oCtrl as Object, oFrame as Object
+	Dim oDispatcher as Object
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		oDispatcher.executeDispatch(oFrame, ".uno:InsertObjectChart", "", 0, Array())
+		msgbox "Success"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCGhCt02b"><h6>CGhCt-)<em>[Calc]</em>Graph作成Wizard表示(2)</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/10Graph/02bUnoDrawChart01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub CalcGraph()
+	Dim oDoc as Object, oCtrl as Object, oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		oDispatcher.executeDispatch(oFrame, ".uno:DrawChart", "", 0, Array())
+		msgbox "Success"
+End Sub
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">画像</p class="s1">
+<a name="OOoCGrc1"><h6>CGrc-1)<em>[Calc]</em>画像dataの挿入</h6></a><pre><code>
+Sub oInsertPic
+	Dim document as Object
+    Dim dispather as Object
+    	oDoc = ThisComponent
+    		document = oDoc.CurrentController.Frame
+    		dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+
+    ' ファイル選択ダイアログの初期化
+    	Dim oFilePickerDlg as Object
+    		oFilePickerDlg = createUnoService("com.sun.star.ui.dialogs.FilePicker")
+    		oFilePickerDlg.appendFilter("JPEG画像ファイル(*.jpg, *.jpeg)", "*.jpg", "*.jpeg")
+			
+			If oFilePickerDlg.execute = 1 then
+        		'ファイルが指定された場合
+					Dim selFiles() as String
+        				selFiles() = oFilePickerDlg.getFiles()
+
+        			Dim picInfo(2) as new com.sun.star.beans.PropertyValue
+        				picInfo(0).Name = "FileName"
+        				picInfo(0).Value = selFiles(0)
+        				picInfo(1).Name = "FilterName"
+        				picInfo(1).Value = "JPEG - Joint Photograhpic Experts Group"
+        				picInfo(2).Name = "AsLink"
+        				picInfo(2).Value = false
+
+	'ダイアログで指定された画像をアクティブセルへ挿入
+        dispatcher.executeDispatch(document, ".uno:InsertGraphic","", 0, picInfo())
+    End if
+End Sub
+'
+' [ Note ]
+BMP		:	Windows Bitmap
+DXF		:	AutoCad Interchange Format
+EMF		:	Enhanced Metafile
+EPS		:	Encapsulated PostScript
+GIF		:	Graphics Interface Format
+JPEG	:	Joint Photographic Experts Group
+MET		:	OS/2 Metafile
+PBM		:	Portable Bitmap
+PCD		:	Kodac Photo CD
+PCT		:	Mac Pict
+PCX		:	Zsoft Paintbrush
+PGM		:	Portable Graymap
+PNG		:	Portable Network Graphics
+PPM		:	Portable Pixelmap
+PSD		:	Adobe Photoshop
+RAS		:	Sun Raster Image
+SGF		:	StarWriter Graphic Format
+SGV		:	StarDraw
+SVM		:	StarView
+TGA		:	Truevision
+TIFF	:	Tagged Image File Format
+WMF		:	Windows Metafile Format
+XBM		:	X Bitmap
+XPM		:	X Pixmap
+</code></pre><br>
+
+
+<p class="s1">印刷操作</p class="s1">
+<a name="OOoCp01a"><h6>CP-)<em>[Calc]</em>改Pageの挿入/解除(1)</h6></a><pre><code>
+Sub oPage_Break()
+	Dim oDoc as Object, oSheet as Object
+		oDoc = ThisComponent
+		oSheet = oDoc.getSheets().getByIndex(0)
+		oSheet.Rows(9).IsStartOfNewPage = true 		'10行目の前(9行目の後)に改Pageを設定
+		msgbox "改Page( 行 )設定",0,"改Page"
+		'
+		oSheet.Rows(9).IsStartOfNewPage = false
+		msgbox "改Page( 行 )解除",0,"改Page"
+		'
+		oSheet.Columns(1).IsStartOfNewPage = true		' B列の前に改Page設定
+		msgbox "改Page( 列 )設定",0,"改Page"
+		'
+		oSheet.Columns(1).IsStartOfNewPage = false
+		msgbox "改Page( 列 )解除",0,"改Page"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCp01b"><h6>CP-)<em>[Calc]</em>改Pageの挿入/解除(2)</h6></a><pre><code>
+Sub oPage_Break()
+	Dim oDoc as Object, oCtrl as Object, oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+			oProp(0).Name = "ToPoint"
+			oProp(0).Value = "9:9" 		'10行目の前(9行目の後)に改Pageを設定
+		oDispatcher.executeDispatch( oFrame, ".uno:GoToCell", "", 0, oProp())
+		oDispatcher.executeDispatch( oFrame, ".uno:InsertRowBreak", "", 0, Array())		' InsertRowbreak 不可
+		msgbox "改Page( 行 )設定",0,"改Page"
+		'
+			oProp(0).Name = "ToPoint"
+			oProp(0).Value = "9:9" 		'	毎回選択が必要
+		oDispatcher.executeDispatch( oFrame, ".uno:GoToCell", "", 0, oProp())
+		oDispatcher.executeDispatch( oFrame, ".uno:DeleteRowbreak", "", 0, Array())		' DeleteRowBreak 不可
+		msgbox "改Page( 行 )解除",0,"改Page"
+		'
+			oProp(0).Name = "ToPoint"
+			oProp(0).Value = "B:B" 		' B列の前に改Page設定
+		oDispatcher.executeDispatch( oFrame, ".uno:GoToCell", "", 0, oProp())
+		oDispatcher.executeDispatch( oFrame, ".uno:InsertColumnBreak", "", 0, Array())
+		msgbox "改Page( 列 )設定",0,"改Page"
+		'
+			oProp(0).Name = "ToPoint"
+			oProp(0).Value = "B:B"
+		oDispatcher.executeDispatch( oFrame, ".uno:GoToCell", "", 0, oProp())
+		oDispatcher.executeDispatch( oFrame, ".uno:DeleteColumnbreak", "", 0, Array())
+		msgbox "改Page( 列 )解除",0,"改Page"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCp02a"><h6>CP-)<em>[Calc]</em>印刷範囲を設定する。</h6></a><pre><code>
+<img SRC="OOoBasic_pic/02calc/print/01printarea.png" align="right" hspace="4" vspace="4">
+Sub oPrintArea
+	Dim oPrintArea(0) as new com.sun.star.table.CellRangeAddress
+	Dim oprops 		' com.sun.star.table.CellRangeAddress
+	Dim oDummy()
+   		On Error Goto oBad
+			sName = "c:\temp\oDocProp.ods"
+			sURL = ConvertToUrl(sName)
+		oDoc = StarDesktop.loadComponentFromURL(sURL, "_default", 0, oDummy())
+		oSheet = oDoc.Sheets(0)
+		ouno = "com.sun.star.sheet.XPrintAreas"
+	'set Print Area
+   			oPrintArea(0).StartColumn = 0
+   			oPrintArea(0).StartRow = 0
+   			oPrintArea(0).EndColumn = 9
+   			oPrintArea(0).EndRow = 9
+   		oDoc.Sheets(0).setPrintAreas( oPrintArea())
+	'Store
+		Dim oStore(0) as new com.sun.star.beans.PropertyValue
+			oStore(0).name = "Overwrite"
+			oStore(0).Value = true
+		oDoc.storeAsURL(sURL, oStore())
+		wait(10)
+   	'get Print Area
+   		If HasUnoInterfaces(oSheet, ouno) then
+   			oprops = oSheet.getPrintAreas()
+   				oDisp = "[ " & sName & " ]" & Chr$(10) & Chr$(10)
+   				oDisp = oDisp & "Sheet No" & Chr$(9) & Chr$(9) & " = " & oprops(0).Sheet & Chr$(10)
+   				oDisp = oDisp & "Start Column " & Chr$(9) & " = " &  oprops(0).StartColumn & Chr$(10)
+   				oDisp = oDisp & "End Column " & Chr$(9) & Chr$(9) & " = " &  oprops(0).EndColumn & Chr$(10)
+   				oDisp = oDisp & "Start Row " & Chr$(9) & Chr$(9) & " = " & oprops(0).StartRow & Chr$(10)
+   				oDisp = oDisp & "End Row  " & Chr$(9) & Chr$(9) & " = " &  oprops(0).EndRow & Chr$(10)
+   			msgbox(oDisp,0,"Print Area")
+   		else
+   			msgbox("This Document does not support" & Chr$(10) & _
+						"the XPrintAreas interface",0,"Caution!!")
+   		end If
+   		oDoc.dispose
+   		Exit sub
+   oBad: 
+		mErr = Error
+		lErr =Erl
+		msgbox(mErr & " : i = " & i  & Chr$(10) & "Error Line = " &lErr )
+		oDoc.dispose
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCp03a"><h6>CP-)<em>[Calc]</em>Column TitleをONにする</h6></a><pre><code>
+<img SRC="OOoBasic_pic/02calc/print/02printtitlecolumns.png" align="right" hspace="4" vspace="4">
+Sub oPrintTitle
+	Dim oPrintArea(0) as new com.sun.star.table.CellRangeAddress
+	Dim oprops 		' com.sun.star.table.CellRangeAddress
+	Dim oDummy()
+   		On Error Goto oBad
+			sName = "c:\temp\oDocProp.ods"
+			sURL = ConvertToUrl(sName)
+		oDoc = StarDesktop.loadComponentFromURL(sURL, "_default", 0, oDummy())
+		oSheet = oDoc.Sheets(0)
+		ouno = "com.sun.star.sheet.XPrintAreas"
+	'set
+   		oDoc.Sheets(0).setPrintTitleColumns( true)
+	'Store
+		Dim oStore(0) as new com.sun.star.beans.PropertyValue
+			oStore(0).name = "Overwrite"
+			oStore(0).Value = true
+		oDoc.storeAsURL(sURL, oStore())
+		wait(10)
+   	'get Print Area
+   		If HasUnoInterfaces(oSheet, ouno) then
+   			oprops = oSheet.getPrintTitleColumns()
+   				oDisp = "[ " & sName & " ]" & Chr$(10) & Chr$(10)
+   				oDisp = "Print Title for Columns => "
+   				oDIsp = oDisp & oprops
+   			msgbox(oDisp,0,"Print Title")
+   		else
+   			msgbox("This Document does not support" & Chr$(10) & _
+						"the XPrintAreas interface",0,"Caution!!")
+   		end If
+   		oDoc.dispose
+   		Exit sub
+   oBad: 
+		mErr = Error
+		lErr =Erl
+		msgbox(mErr & " : i = " & i  & Chr$(10) & "Error Line = " &lErr )
+		oDoc.dispose
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCp04a"><h6>CP-)<em>[Calc]</em>Column Title範囲を設定する</h6></a><pre><code>
+<img SRC="OOoBasic_pic/02calc/print/03titlecolumns.png" align="right" hspace="4" vspace="4">
+Sub oPrintTitle
+	Dim oTitleArea(0) as new com.sun.star.table.CellRangeAddress
+	Dim oprops 		' com.sun.star.table.CellRangeAddress
+	Dim oDummy()
+   		On Error Goto oBad
+			sName = "c:\temp\oDocProp.ods"
+			sURL = ConvertToUrl(sName)
+		oDoc = StarDesktop.loadComponentFromURL(sURL, "_default", 0, oDummy())
+		oSheet = oDoc.Sheets(0)
+		ouno = "com.sun.star.sheet.XPrintAreas"
+	'set
+   			oTitleArea(0).StartColumn = 0
+   			oTitleArea(0).StartRow = 0
+   			oTitleArea(0).EndColumn = 15
+   			oTitleArea(0).EndRow = 20
+   		oSheet.setTitleColumns( oTitleArea(0))
+	'Store
+		Dim oStore(0) as new com.sun.star.beans.PropertyValue
+			oStore(0).name = "Overwrite"
+			oStore(0).Value = true
+		oDoc.storeAsURL(sURL, oStore())
+		wait(10)
+   	'get Print Area
+   		If HasUnoInterfaces(oSheet, ouno) then
+   			oprops = oSheet.getTitleColumns()
+   				oDisp = "[ " & sName & " ]" & Chr$(10) & Chr$(10)
+   			'	oDisp = "Print Title for Rows => "
+   			'	oDIsp = oDisp & oprops
+   				oDisp = oDisp & "Sheet No" & Chr$(9) & Chr$(9) & " = " & oprops(0).Sheet & Chr$(10)
+   				oDisp = oDisp & "Start Column " & Chr$(9) & " = " &  oprops(0).StartColumn & Chr$(10)
+   				oDisp = oDisp & "End Column " & Chr$(9) & Chr$(9) & " = " &  oprops(0).EndColumn & Chr$(10)
+   			'	oDisp = oDisp & "Start Row " & Chr$(9) & Chr$(9) & " = " & oprops(0).StartRow & Chr$(10)
+   			'	oDisp = oDisp & "End Row  " & Chr$(9) & Chr$(9) & " = " &  oprops(0).EndRow & Chr$(10)
+   			msgbox(oDisp,0,"Print Title")
+   		else
+   			msgbox("This Document does not support" & Chr$(10) & _
+						"the XPrintAreas interface",0,"Caution!!")
+   		end If
+   		oDoc.dispose
+   		Exit sub
+   oBad: 
+		mErr = Error
+		lErr =Erl
+		msgbox(mErr & " : i = " & i  & Chr$(10) & "Error Line = " &lErr )
+		oDoc.dispose
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCp05a"><h6>CP-)<em>[Calc]</em>Row TitleをONにする</h6></a><pre><code>
+<img SRC="OOoBasic_pic/02calc/print/04printtitlerows.png" align="right" hspace="4" vspace="4">
+Sub oPrintTitle
+	Dim oPrintArea(0) as new com.sun.star.table.CellRangeAddress
+	Dim oprops 		' com.sun.star.table.CellRangeAddress
+	Dim oDummy()
+   		On Error Goto oBad
+			sName = "c:\temp\oDocProp.ods"
+			sURL = ConvertToUrl(sName)
+		oDoc = StarDesktop.loadComponentFromURL(sURL, "_default", 0, oDummy())
+		oSheet = oDoc.Sheets(0)
+		ouno = "com.sun.star.sheet.XPrintAreas"
+	'set
+   		oDoc.Sheets(0).setPrintTitleRows( true)
+	'Store
+		Dim oStore(0) as new com.sun.star.beans.PropertyValue
+			oStore(0).name = "Overwrite"
+			oStore(0).Value = true
+		oDoc.storeAsURL(sURL, oStore())
+		wait(10)
+   	'get Print Area
+   		If HasUnoInterfaces(oSheet, ouno) then
+   			oprops = oSheet.getPrintTitleRows()
+   				oDisp = "[ " & sName & " ]" & Chr$(10) & Chr$(10)
+   				oDisp = "Print Title for Rows => "
+   				oDIsp = oDisp & oprops
+   			msgbox(oDisp,0,"Print Title")
+   		else
+   			msgbox("This Document does not support" & Chr$(10) & _
+						"the XPrintAreas interface",0,"Caution!!")
+   		end If
+   		oDoc.dispose
+   		Exit sub
+   oBad: 
+		mErr = Error
+		lErr =Erl
+		msgbox(mErr & " : i = " & i  & Chr$(10) & "Error Line = " &lErr )
+		oDoc.dispose
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCp06a"><h6>CP-)<em>[Calc]</em>Row Title範囲を設定する(1)</h6></a><pre><code>
+<img SRC="OOoBasic_pic/02calc/print/06titlerows.png" align="right" hspace="4" vspace="4">
+Sub oPrintTitle
+	Dim oTitleArea(0) as new com.sun.star.table.CellRangeAddress
+	Dim oprops 		' com.sun.star.table.CellRangeAddress
+	Dim oDummy()
+   		On Error Goto oBad
+			sName = "c:\temp\oDocProp.ods"
+			sURL = ConvertToUrl(sName)
+		oDoc = StarDesktop.loadComponentFromURL(sURL, "_default", 0, oDummy())
+		oSheet = oDoc.Sheets(0)
+		ouno = "com.sun.star.sheet.XPrintAreas"
+	'set
+   			oTitleArea(0).StartColumn = 0
+   			oTitleArea(0).StartRow = 0
+   			oTitleArea(0).EndColumn = 15
+   			oTitleArea(0).EndRow = 20
+   		oSheet.setTitleRows( oTitleArea(0))
+	'Store
+		Dim oStore(0) as new com.sun.star.beans.PropertyValue
+			oStore(0).name = "Overwrite"
+			oStore(0).Value = true
+		oDoc.storeAsURL(sURL, oStore())
+		wait(10)
+   	'get Print Area
+   		If HasUnoInterfaces(oSheet, ouno) then
+   			oprops = oSheet.getTitleRows()
+   				oDisp = "[ " & sName & " ]" & Chr$(10) & Chr$(10)
+   			'	oDisp = "Print Title for Rows => "
+   			'	oDIsp = oDisp & oprops
+   				oDisp = oDisp & "Sheet No" & Chr$(9) & Chr$(9) & " = " & oprops(0).Sheet & Chr$(10)
+   			'	oDisp = oDisp & "Start Column " & Chr$(9) & " = " &  oprops(0).StartColumn & Chr$(10)
+   			'	oDisp = oDisp & "End Column " & Chr$(9) & Chr$(9) & " = " &  oprops(0).EndColumn & Chr$(10)
+   				oDisp = oDisp & "Start Row " & Chr$(9) & Chr$(9) & " = " & oprops(0).StartRow & Chr$(10)
+   				oDisp = oDisp & "End Row  " & Chr$(9) & Chr$(9) & " = " &  oprops(0).EndRow & Chr$(10)
+   			msgbox(oDisp,0,"Print Title")
+   		else
+   			msgbox("This Document does not support" & Chr$(10) & _
+						"the XPrintAreas interface",0,"Caution!!")
+   		end If
+   		oDoc.dispose
+   		Exit sub
+   oBad: 
+		mErr = Error
+		lErr =Erl
+		msgbox(mErr & " : i = " & i  & Chr$(10) & "Error Line = " &lErr )
+		oDoc.dispose
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCP06b"><h6>CP-)<em>[Calc]</em>Row Title範囲を設定する(2)</h6></a><pre><code>
+Sub PrintArea()
+	Dim oDoc as Object, oCtrl as Object, oFrame as Object
+    Dim oDispatcher as Object
+    Dim oProp(0) as new com.sun.star.beans.PropertyValue
+    	oDoc = ThisComponent
+    	' 改Page設定
+    	oSheet = oDoc.getSheets().getByIndex(0)
+  		oSheet.Rows(5).IsStartOfNewPage = true 		'　6行目の前(5行目の後)に改ページを設定
+  		'
+		oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.Frame
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+    		oProp(0).Name = "ToPoint"
+    		oProp(0).Value = "A1:C10"
+    	oDispatcher.executeDispatch(oFrame, ".uno:GoToCell", "", 0, oProp())
+    	oDispatcher.executeDispatch(oFrame, ".uno:DeletePrintArea", "", 0, oProp())
+    	' Row Title 設定
+    		oProp(0).Name = "PrintRepeatRow"
+    		oProp(0).Value = "1:1"
+    	oDispatcher.executeDispatch(oFrame, ".uno:ChangePrintArea", "", 0, oProp())	
+    	'
+    msgbox "Success"
+End Sub
+'
+' [ Note ]
+' "PrintRepeatCol" は設定不可
+</code></pre><br>
+
+
+<a name="OOoCp07a"><h6>CP-)<em>[Calc]</em>印刷倍率を設定</h6></a><pre><code>
+Sub oPrintScale
+	Dim oPstyleName
+	Dim oStyle
+	Dim oDummy()
+   		On Error Goto oBad
+			sName = "c:\temp\oDocProp.ods"
+			sURL = ConvertToUrl(sName)
+		oDoc = StarDesktop.loadComponentFromURL(sURL, "_default", 0, oDummy())	
+			oPstyleName = oDoc.CurrentController.getActiveSheet().PageStyle
+			oStyle = oDoc.StyleFamilies.getByName("PageStyles").getByName(oPstyleName)
+			oStyle.PageScale = 80			' <= 80%
+		'Print out
+			oDoc.Print(Array())
+		'close
+		oDoc.dispose
+   		Exit sub
+   oBad: 
+		mErr = Error
+		lErr =Erl
+		msgbox(mErr & " : i = " & i  & Chr$(10) & "Error Line = " &lErr )
+		oDoc.dispose
+End Sub
+</code></pre><br>
+
+
+
+<a name="OOoCP08a"><h6>CP-)<em>[Calc]</em>Header/Footer Dialog表示</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/print/08aEditHeaderAndFooter01.png" align="right" hspace="4" vspace="4" width="30%">
+Sub HeaderFooter()
+	Dim oDoc as Object, oCtrl as Object, oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		oDispatcher.executeDispatch(oFrame, ".uno:EditHeaderAndFooter", "", 0, Array())
+End Sub
+'
+' [ Note ]
+' Calcのみ。Writerでは動作しない
+' 書式 → Page → Header/Footer
+' LO4.0.1 の UI からはHeadr or Footerの何れかのDialogのみだが、
+' 上記Codeで表示されるDialogではheader/Footerが1つのDialogのTab Page区切りで設定出来る
+</code></pre><br>
+
+
+<a name="OOoCp"><h6>CP-)<em>[Calc]</em></h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/print/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br><br>
+<p class="s3">[ Prinetr ]</p class="s3">
+<a name="OOoCPPrt01a"><h6>CPPrt-)<em>[Calc]</em>Default Printer Name取得</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/print/02Printer/01aDefaultPrinterName01.png" align="right" hspace="4" vspace="4" width="15%">
+Sub CalcSheetStting()
+	Dim oDoc as Object
+	Dim oSpdSht as Object
+	Dim oPrtName as String
+		oDoc = ThisComponent
+  		oSpdSht = oDoc.createInstance("com.sun.star.comp.SpreadsheetSettings")
+  		oPrtName = oSpdSht.PrinterName
+  		oDisp = "[ Default Printer Name ]" & Chr$(10) & oPrtName
+  		'
+  		msgbox oDisp, 0, "Printer"
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCPPrt"><h6>CPPrt-)<em>[Calc]</em>>Header/Footer Dialog表示</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/print/02Printer/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+<a name="OOoCPPrt"><h6>CPPrt-)<em>[Calc]</em></h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/print/02Printer/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">file操作</p class="s1">
+<a name="OOoCF1"><h6>CF-1)<em>[Calc]</em>新規Calc fileの開閉(保存確認無し)</h6></a><pre><code>
+Sub oCalcOpen_Dummy
+	dim Dummy()
+		oDoc = StarDesktop.loadComponentFromURL("private:factory/scalc", "_blank", 0, Dummy())
+		oAns = Msgbox("ファイルを閉じますか?",4, "File Close確認")
+		if oAns = 6 then
+			oDoc.dispose
+		End if
+End Sub</code></pre><br>
+
+<a name="OOoCFA"><h6>CF-2)<em>[Calc]</em>新規Calc fileの開閉(保存確認有り)</h6></a><pre><code>
+Sub oCalcOpen_Save
+	Dim Dummy() 
+		oDoc = StarDesktop.loadComponentFromURL( "private:factory/scalc", "_blank", 0, Dummy())
+ 		oAns = Msgbox("fileを保存しますか?",4, "File Save確認")
+ 		 if oAns = 6 then
+ 		 	oInp = InputBox("Full pathでFile nameを入力して下さい(例 ： C:\temp\btest.ods)","保存File nameの入力")
+ 		 	If NOT IsNull(oInp) then
+ 		 		oCName = ConvertToUrl(oInp) 
+ 		 		oDoc.storeAsURL(oCName, Dummy())
+ 		 	End If
+		End If
+		oAnsC = MsgBox("Fileを閉じますか?",4,"Fileの終了確認")	
+ 		 If oAnsC = 6 then
+ 		 		oDoc.dispose
+ 		 End If
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCF2"><h6>CF-3)<em>[Calc]</em>指定のCalc fileを開く(c:\temp\test.ods)。</h6></a><pre><code>
+Sub oCalcOpen_Name
+	Dim Dummy()
+		oName = "c:\temp\test.ods"
+		oUrl = ConvertToURL(oName)
+		oDoc = StarDesktop.loadComponentFromURL(oUrl, "_blank", 0, Dummy())
+		oAns = Msgbox("ファイルを閉じますか?",4, "File Close確認")
+		if oAns = 6 then
+			oDoc.dispose
+		End if
+End Sub</code></pre><br>
+
+
+<a name="OOoCF3"><h6>CF-4)<em>[Calc]</em>CSV形式fileを開く。</h6></a><pre><code>
+Sub oCalcOpen_CSV
+	Dim oDoc as Object
+	Dim oName as String
+	Dim oUrl as String
+	Dim oCSV(1) As New com.sun.star.beans.PropertyValue
+		oName = "c:\OOo_Macro.csv"
+		oUrl = ConvertToURL(oName)
+		oCSV(0).Name = "FilterName"
+		oCSV(0).Value = "scalc: Text - txt - csv (StarCalc)"
+		oCSV(1).Name = "FilterOptions"
+		oCSV(1).Value = "44/32,34,0,1,1/2/2/3/2/4/2"
+	oDoc = StarDesktop.loadComponentFromURL(oUrl, "_blank", 0, oCSV())
+End Sub
+'
+'[ Note ] : ASCII Value,Text Portion,CharactorSet(Default:0),1(Field_Num)/Format/2/Format/･･･/10/Format
+'[ ASCII_Value ]
+'	44	:	Comma(,)
+'	32	:	Space
+'	9	:	Tab
+'[ Format ]
+'	1	:	Standard
+'	2	:	Text
+'	3	:	MM/DD/YY
+'	4	:	DD/MM/YY
+'	5	:	YY/MM/DD
+'	9	:	Do not Import
+'	10	:	Format in the US-English locale regardless of the current locale.
+</code></pre><br>
+
+
+<a name="OOoCF05a"><h6>CF-)<em>[Calc]</em>Html形式Fileを開く</h6></a><pre><code>
+Sub oCalcOpen()
+	Dim oDoc as Object
+	Dim oFileName as String
+	Dim oFileUrl as String
+	Dim oFilterName(0) As New com.sun.star.beans.PropertyValue
+		oFileName = "c:\temp\CalcTest01.html"
+		oFileUrl = ConvertToURL(oFileName)
+		oFilterName(0).Name = "FilterName"
+		oFilterName(0).Value = "scalc: calc_HTML_WebQuery"
+	oDoc = StarDesktop.loadComponentFromURL(oFileUrl, "_blank", 0, oFilterName())
+End Sub
+'
+' [ Note ]
+' calc_HTML_WebQueryはImportのみ
+' HTML(StarCalc) ではWriterが起動
+</code></pre><br>
+
+
+
+<a name="OOoCF06a"><h6>CF-)<em>[Calc]</em>SYLK形式形式Fileを開く</h6></a><pre><code>
+Sub oCalcOpen()
+	Dim oDoc as Object
+	Dim oFileName as String
+	Dim oFileUrl as String
+	Dim oFilterName(0) As New com.sun.star.beans.PropertyValue
+		oFileName = "c:\temp\CalcTest01.slk"
+		oFileUrl = ConvertToURL(oFileName)
+		oFilterName(0).Name = "FilterName"
+		oFilterName(0).Value = "scalc: SYLK"
+	oDoc = StarDesktop.loadComponentFromURL(oFileUrl, "_blank", 0, oFilterName())
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCF07a"><h6>CF-)<em>[Calc]</em>xls形式Fileを開く</h6></a><pre><code>
+Sub oCalcOpen()
+	Dim oDoc as Object
+	Dim oFileName as String
+	Dim oFileUrl as String
+	Dim oFilterName(0) As New com.sun.star.beans.PropertyValue
+		oFileName = "c:\temp\Excel2003Test.xls"
+		oFileUrl = ConvertToURL(oFileName)
+		oFilterName(0).Name = "FilterName"
+		oFilterName(0).Value = "scalc: MS Excel 2003"
+	oDoc = StarDesktop.loadComponentFromURL(oFileUrl, "_blank", 0, oFilterName())
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCF07b"><h6>CF-)<em>[Calc]</em>xlsx形式Fileを開く</h6></a><pre><code>
+Sub oCalcOpen()
+	Dim oDoc as Object
+	Dim oFileName as String
+	Dim oFileUrl as String
+	Dim oFilterName(0) As New com.sun.star.beans.PropertyValue
+		oFileName = "c:\temp\Excel2007Test.xlsx"
+		oFileUrl = ConvertToURL(oFileName)
+		oFilterName(0).Name = "FilterName"
+		oFilterName(0).Value = "scalc: MS Excel 2007"
+	oDoc = StarDesktop.loadComponentFromURL(oFileUrl, "_blank", 0, oFilterName())
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCF08a"><h6>CF-)<em>[Calc]</em>MS-Excel 2003 XML形式Fileを開く</h6></a><pre><code>
+Sub oCalcOpen()
+	Dim oDoc as Object
+	Dim oFileName as String
+	Dim oFileUrl as String
+	Dim oFilterName(0) As New com.sun.star.beans.PropertyValue
+		oFileName = "c:\temp\CalcTest01.xml"
+		oFileUrl = ConvertToURL(oFileName)
+		oFilterName(0).Name = "FilterName"
+		oFilterName(0).Value = "scalc: MS Excel 2003 XML"
+	oDoc = StarDesktop.loadComponentFromURL(oFileUrl, "_blank", 0, oFilterName())
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCF"><h6>CF-)<em>[Calc]</em></h6></a><pre><code>
+</code></pre><br>
+
+
+
+<p class="s1">CSV file操作</p class="s1">
+<a name="OOoCCsv1"><h6>CCsv-1)<em>[Calc]</em>CSV Fileの作成</h6></a><pre><code>
+Sub oCSV
+	On Error Goto oBad
+	Dim oCSVFile as String
+	Dim oVal(10,10) as Long
+	Dim i, j as Integer
+	Dim n as Integer
+		n = 0
+		for i = 0 to 10
+			for j = 0 to 10
+				oVal(i,j) = n
+				n =  n + 1
+			next j
+		next i
+		'
+		oCSVFile = "C:\Temp\OOoTest.csv"
+		Open oCSVFile For Output As #1
+		for j = 0 to 10
+			oDisp = ""
+			for i = 0 to 10
+			 oDisp = oDisp & oVal(i, j) & ","
+			next i
+			Print #1,oDisp
+		next j 
+		' 
+		Exit Sub
+oBad:
+		Dim oErLine As Integer
+		Dim oErNum As Integer
+		Dim oErMsg As String
+			oErLine = Erl
+			oErNum = Err
+			oErMsg = Error
+		Msgbox("Error Line No. " & Chr$(9) & " : " & oErLine & Chr$(10) _
+			& "Error Number " & Chr$(9) & " : " & oErNum &Chr$(10 ) _
+			& "Error Message" & Chr$(9) & " : " & oErMsg , 0, "Error Message")
+End Sub
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">Web関係</p class="s1">
+<a name="OOoCWeb01a"><h6>CWeb-)<em>[Calc]</em>Yahoo FinanceよりGoogleの株価CSVファイルを開いてExcel形式で保存(<em class="s1"> Old </em class="s1">)</h6></a><pre><code>
+Sub Excel_Save Dim oUrl as String 
+	Dim oDoc as Object
+	Dim oPropertyValue(0) As New com.sun.star.beans.PropertyValue
+	Dim document as object Dim dispatcher as object
+	Dim args1(1) as new com.sun.star.beans.PropertyValue
+		icompany_symbol="GOOG" 
+		oUrl="http://ichart.finance.yahoo.com/table.csv" & "?s=" & icompany_symbol & "&e=.csv"
+		oPropertyValue(0).Name="FilterOptions"
+		oPropertyValue(0).Value="44"
+		oDoc=starDeskTop.LoadComponentFromURL( oUrl, "_blank", 0, oPropertyValue)
+		document = ThisComponent.CurrentController.Frame dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+			args1(0).Name = "Filename"
+			args1(0).Value = "C:\Google_Stock.xls"
+			args1(1).Name = "FilterOprtion"
+			args1(1).Value = "MS Excel 97"
+		dispatcher.executeDispatch(document, ".uno:SaveAs", "", 0, args1())
+		oDoc.close(false) 
+End Sub
+</code></pre><br>
+
+
+<a name="OOoCWeb02a"><h6>CWeb-)<em>[Calc]</em>Yahoo FinanceよりStock( Google )のHistorical Price取得</h6></a><pre><code>
+<img src="OOoBasic_pic/02calc/15Web/02aUnoInsertExternalDataSrc02.png" align="right" hspace="4" vspace="4" width="25%"><img src="OOoBasic_pic/02calc/15Web/02aUnoInsertExternalDataSrc01.png" align="right" hspace="4" vspace="4" width="25%">
+Sub YahooStock()
+	Dim oDoc As Object, oSheet As Object, oCell as Object
+	Dim oCtrl as Object, oFrame as Object
+	Dim oDispatcher as Object
+	Dim oProp(0) as new com.sun.star.beans.PropertyValue
+	Dim oProp1(2) as new com.sun.star.beans.PropertyValue
+	Dim oUrl as String, oSymbol as String
+		oDoc = ThisComponent
+		oCtrl = oDoc.getCurrentController()
+		oFrame = oCtrl.getFrame()
+		oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+		'
+		oProp(0).Name = "ToPoint"
+		oProp(0).Value = "A1"
+		oDispatcher.executeDispatch(oFrame, ".uno:GoToCell", "", 0, oProp())
+		'
+		oSymbol = "GOOG"		' Google
+		oUrl = "http://finance.yahoo.com/q/hp?s=" & oSymbol & "+Historical+Prices"
+		'
+		oProp1(0).Name = "FileName"
+		oProp1(0).Value = oUrl
+		oProp1(1).Name = "FilterName"
+		oProp1(1).Value = "calc_HTML_WebQuery"
+		oProp1(2).Name = "Source"
+		oProp1(2).Value = "HTML_14"
+		oDispatcher.executeDispatch(oFrame, ".uno:InsertExternalDataSource", "", 0, oProp1())
+		'
+		msgbox "Success"
+End Sub
+</code></pre><br>
+
+
+<p class="s1">･その他</p class="s1">
+
+<a name="OOoCO1"><h6>CO-1)<em>[Calc]</em>全Sheetにおいてセルの背景色（Red)の累計を数える</h6></a><pre><code>
+Sub Main
+	Dim oDoc As object
+ 	Dim oDescriptor as Object
+ 	Dim oFound as Object
+	dim args1(0) as new com.sun.star.beans.PropertyValue
+	dim document as object
+	dim dispatcher as object
+	dim args2(0) as new com.sun.star.beans.PropertyValue	
+		document   = ThisComponent.CurrentController.Frame
+		documentView = ThisComponent.CurrentController
+		dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")	
+	 		oDoc=ThisComponent				
+ 			oSheets1 = oDoc.Sheets	
+			oSheetcount = oSheets1.getcount() 	'sheet数を数える 
+			for i=0 to oSheetcount-1
+ 				oSheet=oDoc.Sheets(i)
+ 				args2(0).Name = "Nr"
+				args2(0).Value = i +1		'sheet番号
+			dispatcher.executeDispatch(document, ".uno:JumpToTable", "", 0, args2())
+ 				args1(0).Name = "Sel"
+				args1(0).Value = false
+			dispatcher.executeDispatch(document, ".uno:GoToEndOfData", "", 0, args1())
+			ActiveColumn=oDoc.CurrentController.getSelection().RangeAddress.StartColumn		
+ 			ActiveRow=oDoc.CurrentController.getSelection().RangeAddress.StartRow
+ 			for j=0 to ActiveColumn
+ 				for k=0 to ActiveRow
+					if oSheet.getCellByPosition(j,k).CellBackColor=RGB(255,0,0) then '全シートのcellの背景がｒｅｄの数を調べる
+						Red_Count=Red_Count+1
+					end if
+				next k
+			next j
+ 		next i
+ 	print Red_Count
+End Sub</code></pre><br>
+
+<a name="OOoCO2"><h6>CO-2)<em>[Calc]</em>Excelのパスワード付ファイルを開ける</h6></a><pre><code>
+Sub Main
+Url = "file:///C:\TEST\2-1-2_OOo_ブックを開く\読込みパスワード.xls"
+FileProperties(0).Name = "Password"
+FileProperties(0).Value ="nck1"
+Doc = StarDesktop.loadComponentFromURL(Url, "_blank", 0, FileProperties())
+End Sub
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<center><h6><a href="#TopOfPage">Top of Page</a></h6></center><BR>
+
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/OOoBasic_Calc_No2.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:23:36 GMT -->
+</html>

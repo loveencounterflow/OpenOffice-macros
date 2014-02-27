@@ -1,0 +1,723 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/Python_Macro_Base.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:36:48 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<title>Macroの杜(Python編 / Base)</title>
+</head>
+<link rel="stylesheet"
+type="text/css" href="css_macroPython.css">
+<body>
+<left><p><A HREF="index-2.html">Home of site</a></p></left><br>
+<a name="TopOfPage"><h1>Macroの杜(Python編)<br>
+[ Python for LibreOffice( Apache OpenOffice ) ]
+</h1></a>
+<h2>【 Base( データベース ) 】</h2>
+
+<h3><Center>**********************【 Index 】**********************</center></h3>
+
+
+<p class="s1">File</p class="s1">
+<ul>
+BF-)<a href="#OOoBF01"><em>[Base]</em>新規Base file起動</a><br>
+BF-)<a href="#OOoBF02"><em>[Base]</em>指定Base file起動</a><br>
+BF-)<a href="#OOoBF03"><em>[Base]</em>指定Base file保存(上書き保存)</a><br>
+</ul>
+
+<p class="s1">DataSource</p class="s1">
+<ul>
+BDS-)<a href="#OOoBDS01a"><em>[Base]</em>登録DataSourceの有無Check<em>[ .hasElements() ]</em></a><br>
+BDS-)<a href="#OOoBDS02a"><em>[Base]</em>登録されているDataSource数の取得<em>[ .getElementNames() / for ]</em></a><br>
+BDS-)<a href="#OOoBDS03a"><em>[Base]</em>登録されているDataSource名の取得<em>[ getElementNames() ]</em></a><br>
+BDS-)<a href="#OOoBDS"><em>[Base]</em><em>[  ]</em></a><br>
+BDS-)<a href="#OOoBDS"><em>[Base]</em></a><br>
+</ul>
+
+
+<p class="s1">Connect with DataSource</p class="s1">
+<ul>
+BCD-)<a href="#OOoBCD01a"><em>[Base]</em>登録されたData SourceへのConnect<em>[ com.sun.star.sdb.DatabaseContext ]</em></a><br>
+BCD-)<a href="#OOoBCD"><em>[Base]</em><em>[  ]</em></a><br>
+</ul>
+
+
+<p class="s1">Table</p class="s1">
+<ul>
+BTb-)<a href="#OOoBTb01a"><em>[Base]</em>Table Name一覧取得<em>[ getTables() / createEnumeration() / hasMoreElements() / nextElement() / Name ]</em></a><br>
+BTb-)<a href="#OOoBTb02a"><em>[Base]</em>同名Tbaleの有無Check<em>[ getTables() / hasByName ]</em></a><br>
+BTb-)<a href="#OOoBTb"><em>[Base]</em><em>[  ]</em></a><br>
+</ul>
+
+<p class="s3">[ RowSet Service ]</p class="s3">
+<ul>
+BTRw-)<a href="#OOoBTRw01a"><em>[Base]</em>RowSet Serviceを用いたParent Name取得<em>[ .ActiveConnection / .Parent / .Name ]</em></a><br>
+BTRw-)<a href="#OOoBTRw02a"><em>[Base]</em>Current Row No取得<em>[ .RowCount ]</em></a><br>
+BTRw-)<a href="#OOoBTRw"><em>[Base]</em><em>[  ]</em></a><br>
+</ul>
+
+
+<p class="s1">SQL / Query</p class="s1">
+<ul>
+BSQL-)<a href="#OOoBSQL01a"><em>[Base]</em>新規Tableの作成<em>[ createStatement() / CREATE TABLE / execute() ]</em></a><br>
+BSQL-)<a href="#OOoBSQL02a"><em>[Base]</em>新規TableへData入力<em>[ INSERT INTO / VALUES ]</em></a><br>
+BSQL-)<a href="#OOoBSQL03a"><em>[Base]</em>Tableの削除<em>[ DROP TABLE ]</em></a><br>
+BSQL-)<a href="#OOoBSQL"><em>[Base]</em><em>[  ]</em></a><br>
+</ul>
+
+
+
+
+
+<center><h3>**********[ Macro Code ]**********</h3></center>
+<br>
+
+
+<p class="s1">File</p class="s1">
+<a name="OOoBF01"><h6>BF-)<em>[Base]</em>新規Base file起動</h6></a><pre><code>
+# -*- coding: utf-8 -*-
+
+import uno
+
+def load():
+    desktop = XSCRIPTCONTEXT.getDesktop()
+    doc =desktop.loadComponentFromURL( "private:factory/sdatabase","_blank", 0, () )
+</code></pre><br>
+
+
+<a name="OOoBF02"><h6>BF-)<em>[Base]</em>指定Base file起動</h6></a><pre><code>
+# -*- coding: utf-8 -*-
+
+import uno
+import unohelper
+import os.path
+
+def oMacroTest():
+    try:
+        ofile= os.path.abspath('c:\\temp\\oBaseMacro2.odb')
+        oURL = unohelper.systemPathToFileUrl(ofile)
+    #
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        desktop.loadComponentFromURL( oURL,"_blank", 0, () )
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoBF0"><h6>BF-)<em>[Base]</em>指定Base file保存(上書き保存)</h6></a><pre><code>
+# -*- coding: utf-8 -*-
+
+import uno
+import unohelper
+import os.path
+
+def oMacroTest():
+    try:
+        ofile= os.path.abspath('c:\\temp\\oBaseMacro2.odb')
+        oURL = unohelper.systemPathToFileUrl(ofile)
+    #
+        desktop = XSCRIPTCONTEXT.getDesktop()
+        oDoc = desktop.loadComponentFromURL( oURL,"_blank", 0, () )
+    #
+        p = PropertyValue()
+        p.Name = 'Overwrite'
+        p.Value = True
+        properties = (p,)
+        oDoc.storeAsURL( oURL, properties)
+        oDoc.dispose()
+	#
+    except:
+        pass
+</code></pre><br>
+
+
+<a name="OOoBF0"><h6>BF-)<em>[Base]</em></h6></a><pre><code>
+
+</code></pre><br>
+
+
+<p class="s1">DataSource</p class="s1">
+<a name="OOoBDS01a"><h6>BDS-)<em>[Base]</em>登録DataSourceの有無Check</h6></a><pre><code>
+<img SRC="Python_pic/04Base/02DataSource/01hasElement01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: UTF-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def createUnoService(service_name):
+	"""Create a UNO Service By this name"""
+	ctx = XSCRIPTCONTEXT.getComponentContext()
+	try:
+		service = ctx.ServiceManager.createInstanceWithContext(service_name, ctx)
+	except:
+		service = NONE
+	return service
+def oTest():
+	try:
+		context = createUnoService('com.sun.star.sdb.DatabaseContext')
+		if not context.hasElements():
+			oDisp = unicode('登録されているDataSourceはありません','utf-8')
+		else:
+			oDisp = unicode('登録されているDataSourceがあります','utf-8')
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoBDS02a"><h6>BDS-)<em>[Base]</em>登録されているDataSource数の取得</h6></a><pre><code>
+<img SRC="Python_pic/04Base/02DataSource/02DataSourceCount01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: UTF-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def createUnoService(service_name):
+	"""Create a UNO Service By this name"""
+	ctx = XSCRIPTCONTEXT.getComponentContext()
+	try:
+		service = ctx.ServiceManager.createInstanceWithContext(service_name, ctx)
+	except:
+		service = NONE
+	return service
+def oTest():
+	try:
+		context = createUnoService('com.sun.star.sdb.DatabaseContext')
+		if not context.hasElements():
+			oDisp = unicode('登録されているDataSourceはありません','utf-8')
+			sys.exit()
+		oRstDataSources = context.getElementNames() 
+		oCount = 0
+		for i in oRstDataSources:
+			oCount = oCount + 1
+		oDisp = unicode('登録されているDataSource \n => ','utf-8') + str(oCount)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoBDS03a"><h6>BDS-)<em>[Base]</em>登録されているDataSource名の取得</h6></a><pre><code>
+<img SRC="Python_pic/04Base/02DataSource/03DataSourceName01.png" align="right" hspace="4" vspace="4" width="40%">
+#!
+#coding: UTF-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def createUnoService(service_name):
+	"""Create a UNO Service By this name"""
+	ctx = XSCRIPTCONTEXT.getComponentContext()
+	try:
+		service = ctx.ServiceManager.createInstanceWithContext(service_name, ctx)
+	except:
+		service = NONE
+	return service
+def oTest():
+	try:
+		context = createUnoService('com.sun.star.sdb.DatabaseContext')
+		if not context.hasElements():
+			oDisp = unicode('登録されているDataSourceはありません','utf-8')
+			sys.exit()
+		oRstDataSources = context.getElementNames() 
+		oDisp = unicode('[ 登録されているDataSource名 ]\n ','utf-8') + str(oRstDataSources)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# ReturnはTuple
+</code></pre><br>
+
+
+<a name="OOoBDS"><h6>BDS-)<em>[Base]</em></h6></a><pre><code>
+<img SRC="Python_pic/04Base/02DataSource/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+<a name="OOoBDS"><h6>BDS-)<em>[Base]</em></h6></a><pre><code>
+<img SRC="Python_pic/04Base/02DataSource/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">Connect with DataSource</p class="s1">
+<a name="OOoBCD"><h6>BCD-)<em>[Base]</em>登録されたData SourceへのConnect</h6></a><pre><code>
+<img SRC="Python_pic/04Base/03Connect/01ConnectBase_Source01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: UTF-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def createUnoService(service_name):
+	"""Create a UNO Service By this name"""
+	ctx = XSCRIPTCONTEXT.getComponentContext()
+	try:
+		service = ctx.ServiceManager.createInstanceWithContext(service_name, ctx)
+	except:
+		service = NONE
+	return service
+def oTest():
+	try:
+		context = createUnoService('com.sun.star.sdb.DatabaseContext')
+		oRst_BaseFile = 'Test'		# Macroを実行するBase File
+		db = context.getByName(oRst_BaseFile)
+		oCon = db.getConnection('','')
+		oCon.close()
+		oDisp = 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoBCD"><h6>BCD-)<em>[Base]</em></h6></a><pre><code>
+<img SRC="Python_pic/04Base/03Connect/index.html" align="right" hspace="4" vspace="4" width="15%">
+
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">Table</p class="s1">
+<a name="OOoBTb01a"><h6>BTb-)<em>[Base]</em>Table Name一覧取得</h6></a><pre><code>
+<img SRC="Python_pic/04Base/05Table/01TableName_List01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: UTF-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def createUnoService(service_name):
+	"""Create a UNO Service By this name"""
+	ctx = XSCRIPTCONTEXT.getComponentContext()
+	try:
+		service = ctx.ServiceManager.createInstanceWithContext(service_name, ctx)
+	except:
+		service = NONE
+	return service
+def oTest():
+	try:
+		context = createUnoService('com.sun.star.sdb.DatabaseContext')
+		oRst_BaseFile = 'Test'		# Macroを実行するBase File
+		db = context.getByName(oRst_BaseFile)
+		oCon = db.getConnection('','')
+		oDBTables = oCon.getTables().createEnumeration()
+		oLmt = 1
+		oDisp = ''
+		while oDBTables.hasMoreElements() and oLmt < 500:
+			oTable = oDBTables.nextElement()
+			oTableName = oTable.Name
+			oDisp = oDisp + str(oTableName) + '\n'
+			oLmt = oLmt + 1
+		oCon.close()
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoBTb02a"><h6>BTb-)<em>[Base]</em>同名Tbaleの有無Check</h6></a><pre><code>
+<img SRC="Python_pic/04Base/05Table/02hasByName01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: UTF-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def createUnoService(service_name):
+	"""Create a UNO Service By this name"""
+	ctx = XSCRIPTCONTEXT.getComponentContext()
+	try:
+		service = ctx.ServiceManager.createInstanceWithContext(service_name, ctx)
+	except:
+		service = NONE
+	return service
+def oTest():
+	try:
+		context = createUnoService('com.sun.star.sdb.DatabaseContext')
+		oRst_BaseFile = 'Test'		# Macroを実行するBase File
+		db = context.getByName(oRst_BaseFile)
+		oCon = db.getConnection('','')
+		oDBTables = oCon.getTables()
+		oTbName = 'OPYTHONTB'
+		oCheck = oDBTables.hasByName(oTbName)
+		oCon.close()
+		oDisp = unicode('[ 同名Tbaleの有無Check ]\n ','utf-8')\
+		+ oTbName + ' => ' + str(oCheck)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoBTb"><h6>BTb-)<em>[Base]</em></h6></a><pre><code>
+<img SRC="Python_pic/04Base/05Table/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<p class="s3">[ RowSet Service ]</p class="s3">
+<a name="OOoBTRw01a"><h6>BTRw-)<em>[Base]</em>RowSet Serviceを用いたParent Name取得</h6></a><pre><code>
+<img SRC="Python_pic/04Base/05Table/02RowSet/01ActiveConnection01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: UTF-8
+# python Marco
+import unohelper
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def createUnoService(service_name):
+	"""Create a UNO Service By this name"""
+	ctx = XSCRIPTCONTEXT.getComponentContext()
+	try:
+		service = ctx.ServiceManager.createInstanceWithContext(service_name, ctx)
+	except:
+		service = NONE
+	return service
+def oTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		oDBSource = oDoc.getURL()
+		#
+		oRowSet = createUnoService('com.sun.star.sdb.RowSet')
+		oTableName = 'CITY_LIST'
+		#
+		oRowSet.DataSourceName = oDBSource
+		oRowSet.CommandType = 2
+		oRowSet.Command = 'SELECT * FROM ' + oTableName
+		oRowSet.execute()
+		#
+		oParentURL = oRowSet.ActiveConnection.Parent.Name
+		oParentName = unohelper.fileUrlToSystemPath(oParentURL)
+		#
+		# Close Rowset
+		oRowSet.close
+		#
+		oDisp= str(oParentName)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+#
+# [ CommandType ]
+#&emsp;0&emsp;:&emsp;com.sun.star.sdb.CommandType.TABLE
+#&emsp;1&emsp;:&emsp;com.sun.star.sdb.CommandType.QUERY
+#&emsp;2&emsp;:&emsp;com.sun.star.sdb.CommandType.COMMAND
+</code></pre><br>
+
+
+<a name="OOoBTRw02a"><h6>BTRw-)<em>[Base]</em>Current Row No取得</h6></a><pre><code>
+<img SRC="Python_pic/04Base/05Table/02RowSet/02RowCount01.png" align="right" hspace="4" vspace="4" width="15%">
+#!
+#coding: UTF-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def createUnoService(service_name):
+	"""Create a UNO Service By this name"""
+	ctx = XSCRIPTCONTEXT.getComponentContext()
+	try:
+		service = ctx.ServiceManager.createInstanceWithContext(service_name, ctx)
+	except:
+		service = NONE
+	return service
+def oTest():
+	try:
+		oDoc = XSCRIPTCONTEXT.getDocument()
+		oDBSource = oDoc.getURL()
+		# ResultSet
+		dbContext = createUnoService('com.sun.star.sdb.DatabaseContext')
+		oDataSource = dbContext.getByName(oDBSource)
+		oCon = oDataSource.getConnection('','')
+		# RowSet
+		oRowSet = createUnoService('com.sun.star.sdb.RowSet')
+		oTableName = 'ADDRESS'
+		oSQL = 'SELECT * FROM ' + oTableName
+		#
+		oRowSet.ActiveConnection = oCon
+		oRowSet.Command = oSQL
+		oRowSet.execute()
+		# Count Row
+		dbTableRow = oRowSet.RowCount
+		# Close Rowset
+		oRowSet.close()
+		#
+		# Close ResultSet
+		oCon.close()
+		#
+		oDisp= u'接続しているBase Table情報' + '\n' + u'Table名 　：　' + unicode(oTableName,'utf-8') + '\n' + u'Data数(行数)　：　' + str(dbTableRow)
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoBTRw"><h6>BTRw-)<em>[Base]</em></h6></a><pre><code>
+<img SRC="Python_pic/04Base/05Table/02RowSet/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+<br><br><br><br><br><br><br>
+<p class="s1">SQL / Query</p class="s1">
+<a name="OOoBSQL01a"><h6>BSQL-)<em>[Base]</em>新規Tableの作成</h6></a><pre><code>
+<img SRC="Python_pic/04Base/04SQL/01Create_Table02.png" align="right" hspace="4" vspace="4" width="15%"><img SRC="Python_pic/04Base/04SQL/01Create_Table01.png" align="right" hspace="4" vspace="4" width="30%">
+#!
+#coding: UTF-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def createUnoService(service_name):
+	"""Create a UNO Service By this name"""
+	ctx = XSCRIPTCONTEXT.getComponentContext()
+	try:
+		service = ctx.ServiceManager.createInstanceWithContext(service_name, ctx)
+	except:
+		service = NONE
+	return service
+def oTest():
+	try:
+		context = createUnoService('com.sun.star.sdb.DatabaseContext')
+		oRst_BaseFile = 'Test'		# Macroを実行するBase File
+		db = context.getByName(oRst_BaseFile)
+		oCon = db.getConnection('','')
+		oStm = oCon.createStatement()
+		oTableName = 'oPythonTb'
+		oSQL = 'CREATE TABLE ' + oTableName + '(ID INTEGER IDENTITY, NAME VARCHAR(32), ADDRESS VARCHAR(100), PRIMARY KEY(''ID''));'
+		oStm.execute(oSQL)
+		oCon.close()
+		oDisp = 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoBSQL02a"><h6>BSQL-)<em>[Base]</em>新規TableへData入力</h6></a><pre><code>
+<img SRC="Python_pic/04Base/04SQL/02INSERT_INTO_VALUES01.png" align="right" hspace="4" vspace="4" width="20%">
+#!
+#coding: UTF-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def createUnoService(service_name):
+	"""Create a UNO Service By this name"""
+	ctx = XSCRIPTCONTEXT.getComponentContext()
+	try:
+		service = ctx.ServiceManager.createInstanceWithContext(service_name, ctx)
+	except:
+		service = NONE
+	return service
+def oTest():
+	try:
+		context = createUnoService('com.sun.star.sdb.DatabaseContext')
+		oRst_BaseFile = 'Test'		# Macroを実行するBase File
+		db = context.getByName(oRst_BaseFile)
+		oCon = db.getConnection('','')
+		oStm = oCon.createStatement()
+		#
+		# CREATE TABLE句
+		oTableName = 'oPythonTb'
+		oSQL1 = 'CREATE TABLE ' + oTableName + '(ID INTEGER IDENTITY, NAME VARCHAR(32), TEL VARCHAR(15), PRIMARY KEY(''ID''));'
+		oStm.execute(oSQL1)
+		#
+		# INSERT句
+		for i in range(10,21):
+			oVal = "VALUES(" + str(i) + "," + "'new_OOo3-" + str(i) + "','090-1234-56" + str(i) + "');"
+			oSQL2 = "INSERT INTO " + oTableName + "(ID,NAME,TEL) " + oVal
+			oStm.executeUpdate(oSQL2)
+			#
+		oCon.close()
+		oDisp = 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoBSQL03a"><h6>BSQL-)<em>[Base]</em>Tableの削除</h6></a><pre><code>
+#!
+#coding: UTF-8
+# python Marco
+import uno
+import sys
+import traceback
+from com.sun.star.awt import Rectangle
+def omsgbox(oMessage='',oBtnType=1,oTitle='Title',oMsgType='messbox'):
+#	"""shows message."""
+		desktop = XSCRIPTCONTEXT.getDesktop()
+		frame = desktop.getCurrentFrame()
+		window = frame.getContainerWindow()
+		toolkit = window.getToolkit()
+		msgbox = toolkit.createMessageBox(window, Rectangle(), oMsgType, oBtnType, oTitle, oMessage)
+		return msgbox.execute()
+def createUnoService(service_name):
+	"""Create a UNO Service By this name"""
+	ctx = XSCRIPTCONTEXT.getComponentContext()
+	try:
+		service = ctx.ServiceManager.createInstanceWithContext(service_name, ctx)
+	except:
+		service = NONE
+	return service
+def oDropTb(cStm,cTName):
+	if cStm != None and cTName != None:
+		cSQL = 'DROP TABLE ' + cTName + ';'
+		cStm.execute(cSQL)
+def oTest():
+	try:
+		context = createUnoService('com.sun.star.sdb.DatabaseContext')
+		oRst_BaseFile = 'Test'		# Macroを実行するBase File
+		db = context.getByName(oRst_BaseFile)
+		oCon = db.getConnection('','')
+		oDBTables = oCon.getTables()
+		oTbName = 'OPYTHONTB'
+		if oDBTables.hasByName(oTbName):
+			oStm = oCon.createStatement()
+			oDropTb(oStm,oTbName)
+		oCon.close()
+		oDisp = 'Success'
+	except:
+		oDisp = traceback.format_exc(sys.exc_info()[2])
+	finally:
+		omsgbox(oDisp,1)
+</code></pre><br>
+
+
+<a name="OOoBSQL"><h6>BSQL-)<em>[Base]</em></h6></a><pre><code>
+<img SRC="Python_pic/04Base/04SQL/index.html" align="right" hspace="4" vspace="4" width="20%">
+
+</code></pre><br>
+
+
+<br>
+<center><h6><a href="#TopOfPage">Top of Page</a></h6></center><BR>
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/Python_Macro_Base.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:36:53 GMT -->
+</html>

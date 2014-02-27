@@ -1,0 +1,987 @@
+<html>
+
+<!-- Mirrored from openoffice3.web.fc2.com/OOoHowtoQA.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:38:01 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="test/html; charset=Shift_JIS">
+<SCRIPT language="JavaScript">
+<!--
+renew = new Date(document.lastModified);
+y=renew.getYear();
+m=renew.getMonth() + 1;
+d=renew.getDate();
+if(y<1900) {y=y+1900;}
+	oDate="更新日："+y+"/"+m+"/"+d;
+	document.write(oDate);
+//-->
+</SCRIPT>
+<title>OenOffice.org RC(Release Candiate)版の品質保証参加方法</title>
+<head/>
+<link rel="stylesheet" type="text/css" href="css_QA1.css">
+<body>
+<h1>OenOffice.org RC(Release Candiate)版の品質保証参加方法<br>
+
+<h2><em>[ 注意 ]</em></h2>
+<p>
+本Page( というか本Site全般 )は「 管理人の忘備録 」です。<br>
+公式なOpenOffice.org関係の如何なるProjectからの許可及び検証を受けていませんので、
+本Pageに記した内容について<em>各Projectへの問い合わせは厳禁</em>とさせて頂きます。
+</p>
+
+<h2>1.Release品質保証への参加方法</h2>
+<h3>1)「OpenOffice.org ユーザー登録」する。</h3>
+<p>
+&emsp;具体的方法は以下のpage参照<br>
+&emsp;&emsp;URL  :<a href="http://user.services.openoffice.org/ja/forum/viewtopic.php?f=42&amp;t=34&amp;start=0&amp;sid=54c60da5a12e41b7e108c2eb2da74260">OpenOffice.org ユーザー登録のやりかたとそのメリット</a><br> 
+&emsp;&emsp;&emsp;&emsp;[OpenOffice.orgコミュニティフォーラム　より]
+</p>
+<br><br>
+
+<h3>2)Login及びMailing List購読Request送信</h3>
+<div class="gozou00">
+<IMG SRC="QA_Picture/00login/01login01.png" hspace="4" vspace="4" alt="Download_05" height="25%" width="25%" align="right">
+<p class="s1">
+<em class="s1">LM-)OpenOffice.org MyPageへAccess</em><br>
+&emsp;下記URLにaccessし、Loginする。<br>
+&emsp;&emsp;URL : <a href="http://www.openoffice.org/servlets/StartPage">http://www.openoffice.org/servlets/StartPage</a><br>
+&emsp;=>「 ロッグイン 」
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/00login/01login02.png" hspace="4" vspace="4" alt="Download_05" height="25%" width="25%" align="right">
+<p class="s1">
+<em class="s1">LM-)マイページ　スタート画面</em><br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/00login/02mailinglist01.png" hspace="4" vspace="4" alt="Download_05" height="25%" width="25%" align="right">
+<p class="s1">
+<em class="s1">LM-)Mailing List購読申し込み1</em><br>
+&emsp;下記URLにAccess<br>
+&emsp;&emsp;URL : <a href="http://ja.openoffice.org/servlets/ProjectMailingListList">http://ja.openoffice.org/servlets/ProjectMailingListList</a><br>
+&emsp;画面中央　左側にある「購読ボタンを押す。<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/00login/02mailinglist02.png" hspace="4" vspace="4" alt="Download_05" height="25%" width="25%" align="right">
+<p class="s1">
+<em class="s1">LM-)Mailing List購読申し込み2</em><br>
+&emsp;Mailing List購読Request送信<br>
+&emsp=>上記1)にて登録したmail addressにOpenOffice.org QA(Quality Assurance)よりmailが届きます。<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+
+<h3>3)以下の関連Siteを読む(2分間)</h3>
+<p>
+URL  ：<a href="http://wiki.services.openoffice.org/wiki/JA/QA/Release/SanityCheck">簡単なリリース品質保証の方法(初心者向け)</a><br>
+<br>
+</p>
+<br><br>
+
+<h2>2.概略手順</h2>
+<div class="gozou00">
+<IMG SRC="QA_Picture/101watch/00watch01.png" hspace="4" vspace="4" alt="Download_05" height="25%" width="25%" align="right">
+<p>
+上記「簡単なリリース品質保証の方法(初心者向け)」Siteを読めば殆んの方には不要だと思いますが、一応に以下に記します。
+</p>
+<br>
+<h3>0.RC版評価のwatch</h3>
+<p class="s1">
+下記URLにて「OpenOffice.org ?.?.? 日本語版のリリース品質保証への参加者」募集記事を読む。<br>
+&emsp;URL : <a href="http://user.services.openoffice.org/ja/forum/viewforum.php?f=57">http://user.services.openoffice.org/ja/forum/viewforum.php?f=57</a><br>
+&emsp;&emsp;&emsp;[ OpenOffice.orgコミュニティフォーラム => QA(品質保証) ]<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<h3>1)RC版のDown Load方法</h3>
+<div class="gozou00">
+<IMG SRC="QA_Picture/01download/dw_1.png" hspace="4" vspace="4" alt="Download_01" height="30%" width="20%" align="right">
+<p class="s1">
+<em class="s1">D-1)下記URL Siteに移動</em class="s1"><br>
+&emsp;&emsp;&emsp;URL : <a href="http://ftp.jaist.ac.jp/pub/openoffice/extended/3.2.1rc2/">Index of /pub/openoffice/extended/3.2.1rc2 </a><br>
+&emsp;&emsp;&emsp;&emsp;&emsp;=> <em> 本adressはversionに依って変わります。</em><br>
+
+<br>
+<em class="s1">D-2)一覧から日本語版且つ自分のパソコンのOSと同じものを選択</em class="s1"><br>
+&emsp;［選択例］<br>
+&emsp;&emsp;OS : WindowsXP( or VISTA or 7 ) 32bit版<br>
+&emsp;&emsp;&emsp=><em class="s1">OOo_3.2.1rc2_20100521_Win_x86_install-wJRE_ja.exe</em class="s1"><br>
+
+&emsp;&emsp;OS : Mac OSX　(　Intel Mac用　)<br>
+&emsp;&emsp;&emsp;=><em class="s1">OOo_3.2.1rc2_20100521_MacOS_x86_install_ja.dmg</em class="s1"><br>
+
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/01download/dw_2.png" hspace="4" vspace="4" alt="Download_02" height="30%" width="20%" align="right">
+<p class="s1">
+
+&emsp;&emsp;OS : Debian系Linux 64bit版<br>
+&emsp;&emsp;&emsp;=><em class="s1">OOo_3.2.1rc2_20100521_Linux_x86-64_install-deb_ja.tar.gz</em class="s1"><br>
+
+&emsp;&emsp;OS : RedHat系Linux(CentOS等) 64bit版<br>
+&emsp;&emsp;&emsp;=><em class="s1">OOo_3.2.1rc2_20100521_Linux_x86-64_install-rpm-wJRE_ja.tar.gz</em class="s1"><br>
+
+&emsp;&emsp;OS : Debian系Linux 32bit版(Ubuntu Desktop版等)<br>
+&emsp;&emsp;&emsp;=><em class="s1">OOo_3.2.1rc2_20100521_Linux_x86_install-deb_ja.tar.gz</em class="s1"><br>
+
+&emsp;&emsp;OS : RedHat系Linux(Fedora等) 32bit版<br>
+&emsp;&emsp;&emsp;=><em class="s1">OOo_3.2.1rc2_20100521_Linux_x86_install-rpm-wJRE_ja.tar.gz</em class="s1"><br>
+
+&emsp;&emsp;OS : Solaris Sparc<br>
+&emsp;&emsp;&emsp;=><em class="s1">OOo_3.2.1rc2_20100521_Solaris_Sparc_install-wJRE_ja.tar.gz</em class="s1"><br>
+
+&emsp;&emsp;OS : Solaris( Intel版 )<br>
+&emsp;&emsp;&emsp;=><em class="s1">OOo_3.2.1rc2_20100521_Solaris_x86_install-wJRE_ja.tar.gz</em class="s1"><br>
+</p class="s1">
+<Br clear="right">
+</div>
+<br>
+<h3>
+以下はOSが「 WindowsXP 」のcaseを記します。
+</h3>
+<Br clear="right">
+<div class="gozou00">
+<IMG SRC="QA_Picture/01download/dw_3.png" hspace="4" vspace="4" alt="Download_03" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">D-3)DownLoad開始</em><br>
+「 OOo_3.2.1rc2_20100521_Win_x86_install-wJRE_ja.exe 」を選択すると右図の様なWindowが表示される。(図は「ver3.2.1 RC1」のものです。)<br>
+&emsp;&emsp;&emsp;=>「ファイルを保存」
+</p class="s1">
+<Br clear="right">
+</div>
+<div class="gozou00">
+<IMG SRC="QA_Picture/01download/dw_4.png" hspace="4" vspace="4" alt="Download_04" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">D-4)保存先Folderの選択</em><br>
+保存先を選択する。
+</p class="s1">
+<Br clear="right">
+</div>
+<div class="gozou00">
+<IMG SRC="QA_Picture/01download/dw_5.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">D-5)DownLoad完了</em><br>
+DownLoadが終了すると右図の様にmessageが表示される。<br>
+( Browserが「 Firefox 」の場合 )
+</p class="s1">
+<Br clear="right">
+</div>
+
+<h3>2)RC版のInstall方法</h3>
+<p>
+&emsp;&emsp;RC版なので、現在使用中の安定版は残しておきたい。<br>
+&emsp;=>そこで<em>「 安定版をのこしたままRC版をInstall 」</em>する。
+</p>
+<br>
+<div class="gozou00">
+<IMG SRC="QA_Picture/02install/ist0a0.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">I-1)Installer実行</em><br>
+DownLoadしたFileをDouble Click
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/02install/ist0a2.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">I-2)Installer実行確認</em><br>
+&emsp;=>「 実行 」
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/02install/ist0a3.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">I-3)Installerによる圧縮Fileの展開</em><br>
+&emsp;=>「 次へ 」
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/02install/ist0a4.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">I-4)展開先Folderの指定</em><br>
+&emsp;=>今回は「 C:\Down_load\OOo_RC 」 => 「 展開 」
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/02install/ist0a5.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">I-5)Installウィザード開始</em><br>
+&emsp;=>必要DIsk容量を計算。（PCに依るが他の操作に比べて少し時間がかかる。）
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/02install/ist0a.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">I-6)インストールウィザードの中断</em><br>
+&emsp;このままInstallを続けると安定版と取変わるので一旦中断する。<br>
+&emsp;=>「 キャンセル 」
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/02install/ist0aa.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">I-7)インストールウィザードの中断確認</em><br>
+&emsp;=>「 はい 」
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/02install/ist0b.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">I-8)インストールウィザード中途終了Message</em><br>
+&emsp;=>「 完了 」
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/02install/ist0ba.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">I-9)展開Folderの確認</em><br>
+&emsp;展開先Folderの内容は右図の様になる。<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/02install/ist0c.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">I-10)インストールウィザード再実行</em><br>
+&emsp;「スタート」=>「ファイル名を指定して実行」=>Option「 /a 」をつけて実行<br>
+&emsp;=>「 C:\Down_load\OOo_RC\setup.exe /a 」=>「OK」
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/02install/ist0ca01.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">I-11)インストールウィザード再開</em><br>
+&emsp;=>「次へ」
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/02install/ist0ca02.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">I-12)ProgramのInstall先の指定1</em><br>
+&emsp;=>「変更」
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/02install/ist0d01.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">I-13)ProgramのInstall先の指定2</em><br>
+&emsp;=>任意のFolderに変更(今回は「 C:\Down_load\OOo321RC 」）=>「インストール」
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/02install/ist0ca04.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">I-14)Program Install中</em><br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/02install/ist0d03a.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">I-15)Install完了</em><br>
+&emsp;=>「完了」
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/02install/ist0d03b.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">I-16)Install先Folderに新規Folderを作成</em><br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/02install/ist0d03c.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">I-17)任意のFOlder名に変更</em><br>
+&emsp;=>今回は「config」とする。
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/02install/ist0e01.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">I-18)実行File格納Folderを開く</em><br>
+&emsp;=>「 C:\Down_load\OOo321RC\OpenOffice.org 3\program 」
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/02install/ist0e02.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">I-19) bootstrap.ini を編集</em><br>
+&emsp;=>「 bootstrap.ini 」選択=>「 プログラムから開く 」
+</p class="s1">
+<Br clear="right">
+</div>
+
+
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/02install/ist0e03.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">I-120)Applicationの選択</em><br>
+&emsp;=>Editor Soft[ Notepad等 ]を選択<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/02install/ist0e00a.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">I-21)UserInstallationを変更(その1)</em><br>
+&emsp;=>「 UserInstallation=$SYSUSERCONFIG/OpenOffice.org/3 」<br>
+&emsp;&emsp;を次のように変更
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/02install/ist0e00b.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">I-22)UserInstallationを変更(その2)</em><br>
+&emsp;=>「 UserInstallation=C:/Down_Load/OOo321RC/config 」=>「 上書き保存 」<br>
+&emsp;<em>[ 注意 ]</em><br>
+&emsp;&emsp;folder間の区切りは「\」で無く「/」を使用する事。<br>
+&emsp;&emsp;「\」では起動出来ない。
+</p class="s1">
+<Br clear="right">
+</div>
+
+<h3>3)RC版の起動確認</h3>
+<div class="gozou00">
+<IMG SRC="QA_Picture/03boot/use_0.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">B-1)OpenOffice.org起動Programの実行</em><br>
+&emsp;独立としてRC版をInstallしたので、「スタート」=>「全てのプログラム」中には項目は無い。そこで直接Programを実行する。<br>
+=>以下の手順にて起動Fileを開く。<br>
+&emsp;&emsp;1)エクスプローラーを起動<br>
+&emsp;&emsp;2)下記Folderに移動<br>
+&emsp;&emsp;C:\Down_load\OOo321RC\OpenOffice.org 3\program<br>
+&emsp;&emsp;3)「 soffice.exe 」を実行<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/03boot/use_0a01.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">B-2)OpenOffice.org初期起動画面</em><br>
+&emsp;=>「 次へ 」<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/03boot/use_0a02.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">B-3)Profileの登録</em><br>
+&emsp;本ProfileはOOo Fileの作成/変更時の作成者/変更者になりますので識別可能な情報を入力しましょう。<br>
+&emsp;特にNetWorkを介して<em>Fileを共有する場合は変更者の識別が可能</em>になりますので必須と思います。<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/03boot/use_0a03.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">B-4)オンライン更新 & 完了</em><br>
+&emsp;=>「 次へ 」=>「完了」<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/03boot/use_1.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">B-6)OpenOffice.orgの起動画面</em><br>
+&emsp;以下の事柄をcheck<br>
+&emsp;&emsp;・文字化けは無いか?<br>
+&emsp;&emsp;・各Programは起動/終了するか?<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/03boot/use_2w.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">B-W)Witer起動画面</em><br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/03boot/use_3c.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">B-C)Calc起動画面</em><br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/03boot/use_4d.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">B-D)Draw起動画面</em><br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/03boot/use_5i.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">B-I)Impress起動画面</em><br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/03boot/use_6m.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">B-M)Math起動画面</em><br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/03boot/use_7b1.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">B-B1)Base起動画面1</em><br>
+&emsp;a)データベースの選択<br>
+&emsp;=>「 既存のデータベース作成 」にcheck=>「 次へ 」<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/03boot/use_7b2.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">B-B2)Base起動画面2</em><br>
+&emsp;b)データベースの選択<br>
+&emsp;=>「 完了 」<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/03boot/use_7b3.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">B-B3)Base起動画面3</em><br>
+&emsp;c)データベースの保存先指定<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/03boot/use_7b4.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">B-B4)Base起動画面4</em><br>
+&emsp;d)保存先に移動=>DataBase名(File名)を指定=>「保存」<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/03boot/use_7b5.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">B-B5)Base起動画面5</em><br>
+&emsp;e)BASE画面起動<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<h3>4)各Programの確認</h3>
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/01writer/01file.PNG" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-W1)Writer</em><br>
+&emsp;ファイルMenu<br>
+&emsp;&emsp;<em>[ Check項目例 ]</em><br>
+&emsp;&emsp;・新規/既存のOOo fileが作成/変更/保存できるか?<br>
+&emsp;&emsp;・MS-Office fileの読み込み/保存できるか?<br>
+&emsp;&emsp;・日本語の文字化け等が無いか?<br>
+&emsp;&emsp;・再読み込みできるか？<br>
+&emsp;&emsp;・XML、pdf形式にてExportできるか?<br>
+&emsp;&emsp;・プロパティの内容は合っているか?<br>
+&emsp;&emsp;・ドキュメントテンプレートはImport/Exportできるか?<br>
+&emsp;&emsp;・webブラウザーでプレビューできるか?<br>
+&emsp;&emsp;・印刷は問題無いか?&emsp;&emsp;　等々<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/01writer/01file_dialog1.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-W2)Writer</em><br>
+&emsp;「ファイル」=>「プロパティ」Dialog<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/01writer/02edit.PNG" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-W3)Writer</em><br>
+&emsp;編集Menu<br>
+&emsp;&emsp;<em>[ Check項目例 ]</em><br>
+&emsp;&emsp;・Copy/切取り/貼付けはmenu&右クリックからできるか?<br>
+&emsp;&emsp;・日本語の文字化け等が無いか?<br>
+&emsp;&emsp;・検索/置換ができるか？&emsp;&emsp;　等々<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/01writer/03view.PNG" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-W4)Writer</em><br>
+&emsp;表示Menu<br>
+&emsp;&emsp;<em>[ Check項目例 ]</em><br>
+&emsp;&emsp;・表示アイコン/menuが設定通りに表示されるか?<br>
+&emsp;&emsp;・全画面表示での作業に問題は無いか?<br>
+&emsp;&emsp;・「ズーム」はできるか？&emsp;&emsp;　等々<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/01writer/04insert.PNG" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-W5)Writer</em><br>
+&emsp;挿入Menu<br>
+&emsp;&emsp;<em>[ Check項目例 ]</em><br>
+&emsp;&emsp;・改ページはできるか?<br>
+&emsp;&emsp;・各機能に問題は無いか？&emsp;&emsp;　等々<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/01writer/05form.PNG" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-W6)Writer</em><br>
+&emsp;書式Menu<br>
+&emsp;&emsp;<em>[ Check項目例 ]</em><br>
+&emsp;&emsp;・標準書式の設定はできるか?<br>
+&emsp;&emsp;・印刷範囲は設定できるか?<br>
+&emsp;&emsp;・文字の種類の変換は出来るか?<br>
+&emsp;&emsp;・スタイルと書式設定に新規設定を追加できるか?<br>
+&emsp;&emsp;・アンカーの位置は変更できるか?<br>
+&emsp;&emsp;・配置が機能するか?&emsp;&emsp;　等々<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/01writer/06table.PNG" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-W7)Writer</em><br>
+&emsp;表Menu<br>
+&emsp;&emsp;<em>[ Check項目例 ]</em><br>
+&emsp;&emsp;・表の作成/削除/選択はできるか?<br>
+&emsp;&emsp;・セルのコピー/結合/配置はできるか?<br>
+&emsp;&emsp;・サイズの自動調整はできるか?<br>
+&emsp;&emsp;・表を文字列に変換できるか?<br>
+&emsp;&emsp;・セルに数式が入力/計算できるか?&emsp;&emsp;　等々<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/01writer/07tool.PNG" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-W8)Writer</em><br>
+&emsp;ツールMenu<br>
+&emsp;&emsp;<em>[ Check項目例 ]</em><br>
+&emsp;&emsp;・スペルチェックはできるか?<br>
+&emsp;&emsp;・マクロを実行させれるか?<br>
+&emsp;&emsp;・拡張機能は追加できるか?<br>
+&emsp;&emsp;・オプション設定ができるか?<br>
+&emsp;&emsp;・アドインが追加できるか?&emsp;&emsp;　等々<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/01writer/08window.PNG" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-W9)Writer</em><br>
+&emsp;ウィンドウMenu<br>
+&emsp;&emsp;<em>[ Check項目例 ]</em><br>
+&emsp;&emsp;・新しいウィンドウは開閉はOK?<br>
+&emsp;&emsp;・今開いているOOo fileは全て表示されるか?&emsp;&emsp;　等々<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/01writer/09help.PNG" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-W10)Writer</em><br>
+&emsp;ヘルプMenu<br>
+&emsp;&emsp;<em>[ Check項目例 ]</em><br>
+&emsp;&emsp;・ヘルプの内容を抽出読みする<br>
+&emsp;&emsp;・文字化けは無いか?&emsp;&emsp;　等々<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/02calc/01file.PNG" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-C1)Calc</em><br>
+&emsp;ファイルMenu<br>
+&emsp;&emsp;<em>[ Check項目例 ]</em><br>
+&emsp;&emsp;・新規/既存のOOo fileが作成/変更/保存できるか?<br>
+&emsp;&emsp;・MS-Office fileの読み込み/保存できるか?<br>
+&emsp;&emsp;・日本語の文字化け等が無いか?<br>
+&emsp;&emsp;・再読み込みできるか？<br>
+&emsp;&emsp;・XML、pdf形式にてExportできるか?<br>
+&emsp;&emsp;・プロパティの内容は合っているか?<br>
+&emsp;&emsp;・ドキュメントテンプレートはImport/Exportできるか?<br>
+&emsp;&emsp;・webブラウザーでプレビューできるか?<br>
+&emsp;&emsp;・印刷は問題無いか?&emsp;&emsp;　等々<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/02calc/02edit.PNG" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-C2)Calc</em><br>
+&emsp;編集Menu<br>
+&emsp;&emsp;<em>[ Check項目例 ]</em><br>
+&emsp;&emsp;・Copy/切取り/貼付けはmenu&右クリックからできるか?<br>
+&emsp;&emsp;・日本語の文字化け等が無いか?<br>
+&emsp;&emsp;・検索/置換ができるか？&emsp;&emsp;　等々<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/02calc/02view.PNG" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-C3)Calc</em><br>
+&emsp;表示Menu<br>
+&emsp;&emsp;<em>[ Check項目例 ]</em><br>
+&emsp;&emsp;・表示アイコン/menuが設定通りに表示されるか?<br>
+&emsp;&emsp;・全画面表示での作業に問題は無いか?<br>
+&emsp;&emsp;・「ズーム」はできるか？&emsp;&emsp;　等々<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/02calc/04insert.PNG" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-C4)Calc</em><br>
+&emsp;挿入Menu<br>
+&emsp;&emsp;<em>[ Check項目例 ]</em><br>
+&emsp;&emsp;・改ページはできるか?<br>
+&emsp;&emsp;・各機能に問題は無いか？&emsp;&emsp;　等々<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/02calc/05form.PNG" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-C5)Calc</em><br>
+&emsp;書式Menu<br>
+&emsp;&emsp;<em>[ Check項目例 ]</em><br>
+&emsp;&emsp;・標準書式の設定はできるか?<br>
+&emsp;&emsp;・印刷範囲は設定できるか?<br>
+&emsp;&emsp;・文字の種類の変換は出来るか?<br>
+&emsp;&emsp;・スタイルと書式設定に新規設定を追加できるか?<br>
+&emsp;&emsp;・アンカーの位置は変更できるか?<br>
+&emsp;&emsp;・配置が機能するか?&emsp;&emsp;　等々<br>
+</p class="s1">
+
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/02calc/06tool.PNG" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-C6)Calc</em><br>
+&emsp;ツールMenu<br>
+&emsp;&emsp;<em>[ Check項目例 ]</em><br>
+&emsp;&emsp;・スペルチェックはできるか?<br>
+&emsp;&emsp;・マクロを実行させれるか?<br>
+&emsp;&emsp;・拡張機能は追加できるか?<br>
+&emsp;&emsp;・オプション設定ができるか?<br>
+&emsp;&emsp;・アドインが追加できるか?&emsp;&emsp;　等々<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/02calc/07data.PNG" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-C7)Calc</em><br>
+&emsp;データMenu<br>
+&emsp;&emsp;<em>[ Check項目例 ]</em><br>
+&emsp;&emsp;・並び替えの範囲指定/選択/実行が出来るか?<br>
+&emsp;&emsp;・フィルタ機能は使えるか?<br>
+&emsp;&emsp;・入力規則は使えるか(リストからの選択等))?&emsp;&emsp;　等々<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/02calc/07data_filter.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-C8)Calc</em><br>
+&emsp;「データ」=>「フィルタ」=>「標準フィルタ」Dialog<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/03draw/01file.PNG" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-D1)Draw</em><br>
+&emsp;ファイルMenu<br>
+&emsp;&emsp;<em>[ Check項目例 ]</em><br>
+&emsp;&emsp;・新規/既存のOOo fileが作成/変更/保存できるか?<br>
+&emsp;&emsp;・日本語の文字化け等が無いか?<br>
+&emsp;&emsp;・再読み込みできるか？<br>
+&emsp;&emsp;・XML、pdf形式にてExportできるか?<br>
+&emsp;&emsp;・プロパティの内容は合っているか?<br>
+&emsp;&emsp;・ドキュメントテンプレートはImport/Exportできるか?<br>
+&emsp;&emsp;・webブラウザーでプレビューできるか?<br>
+&emsp;&emsp;・印刷は問題無いか?&emsp;&emsp;　等々<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/03draw/02edit.PNG" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-D2)Draw</em><br>
+&emsp;編集Menu<br>
+&emsp;&emsp;<em>[ Check項目例 ]</em><br>
+&emsp;&emsp;・Copy/切取り/貼付けはmenu&右クリックからできるか?<br>
+&emsp;&emsp;・日本語の文字化け等が無いか?<br>
+&emsp;&emsp;・検索/置換ができるか？&emsp;&emsp;　等々<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/03draw/03view.PNG" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-D3)Draw</em><br>
+&emsp;表示Menu<br>
+&emsp;&emsp;<em>[ Check項目例 ]</em><br>
+&emsp;&emsp;・表示アイコン/menuが設定通りに表示されるか?<br>
+&emsp;&emsp;・全画面表示での作業に問題は無いか?<br>
+&emsp;&emsp;・「ズーム」はできるか？&emsp;&emsp;　等々<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/03draw/04insert.PNG" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-D4)Draw</em><br>
+&emsp;挿入Menu<br>
+&emsp;&emsp;<em>[ Check項目例 ]</em><br>
+&emsp;&emsp;・改ページはできるか?<br>
+&emsp;&emsp;・各機能に問題は無いか？&emsp;&emsp;　等々<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/03draw/05form.PNG" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-D5)Draw</em><br>
+&emsp;書式Menu<br>
+&emsp;&emsp;<em>[ Check項目例 ]</em><br>
+&emsp;&emsp;・標準書式の設定はできるか?<br>
+&emsp;&emsp;・印刷範囲は設定できるか?<br>
+&emsp;&emsp;・文字の種類の変換は出来るか?<br>
+&emsp;&emsp;・スタイルと書式設定に新規設定を追加できるか?<br>
+&emsp;&emsp;・アンカーの位置は変更できるか?<br>
+&emsp;&emsp;・配置が機能するか?&emsp;&emsp;　等々<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/03draw/06tool.PNG" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-D6)Draw</em><br>
+&emsp;ツールMenu<br>
+&emsp;&emsp;<em>[ Check項目例 ]</em><br>
+&emsp;&emsp;・スペルチェックはできるか?<br>
+&emsp;&emsp;・マクロを実行させれるか?<br>
+&emsp;&emsp;・拡張機能は追加できるか?<br>
+&emsp;&emsp;・オプション設定ができるか?<br>
+&emsp;&emsp;・アドインが追加できるか?&emsp;&emsp;　等々<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/03draw/07mofify.PNG" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-D7)Draw</em><br>
+&emsp;変更Menu<br>
+&emsp;&emsp;<em>[ Check項目例 ]</em><br>
+&emsp;&emsp;・図形の回転/反転/変換/整列/配置ができるか?<br>
+&emsp;&emsp;・シェイプ機能(１つにする等)は使えるか?&emsp;&emsp;　等々<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/04impress/00boot01.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-I1)Impress初期起動1</em><br>
+&emsp;=>「次へ」
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/04impress/00boot02.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-I1)Impress初期起動2</em><br>
+&emsp;=>「次へ」
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/04menue/04impress/00boot03.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">M-I1)Impress初期起動3</em><br>
+&emsp;=>「作成」
+</p class="s1">
+<Br clear="right">
+</div>
+
+<p>Impress、Math、Baseも同様に行う。</p>
+
+<h3>5)UnInstall</h3>
+<div class="gozou00">
+<IMG SRC="QA_Picture/08uninstall/01uninstall0a.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">U-1)Uninstall前に再起動</em><br>
+&emsp;上記方法にてIntallした場合はOSのレジストリの変更も無いのでUninstallはInstall Folder(今回は「 C:\Down_load\OOo321RC 」)を削除するだけで良い。<br>
+&emsp;但し、再起動を行わずに削除を行った場合は右図の様なError Messageが表示されて削除出来ない場合がある。
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/08uninstall/01uninstall0b.png" hspace="4" vspace="4" alt="Download_05" height="5%" width="50%" align="right">
+<p class="s1">
+<em class="s1">U-2)クイックスタートは終了させておく</em><br>
+&emsp;右図のように「クイックスタート」が常駐されている場合も上記U-1)と同じmessageが表示される。<br>
+&emsp;「クイックスタート」は終了させてから削除を行う。<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/08uninstall/01uninstall01.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">U-3)Install Folderの削除</em><br>
+&emsp;Install Folderを選択し、削除する。<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<div class="gozou00">
+<IMG SRC="QA_Picture/08uninstall/01uninstall03.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">U-4)Install Folderの削除中</em><br>
+&emsp;本Windowが消えればUninstall終了。<br>
+</p class="s1">
+<Br clear="right">
+</div>
+
+<h3>6)報告mailの作成/送信</h3>
+<div class="gozou00">
+<IMG SRC="QA_Picture/09report_mail/01mail.png" hspace="4" vspace="4" alt="Download_05" height="30%" width="30%" align="right">
+<p class="s1">
+<em class="s1">RM-)Report mailの作成&送信</em><br>
+&emsp;下記mail宛に右図の様なReport mailを送信する。<br>
+</p class="s1">
+<Br clear="right">
+</div>
+<br><br><br>
+<p>
+以上で「 簡単なリリース品質保証の方法(初心者向け) 」は終了です。<br>
+RC版の品質保証を行う利点として以下の事柄があると思います。<br>
+&emsp;1)最新版が自分のPC環境にあっているか速く知る事ができる。<br>
+&emsp;2)普段使わないOpenOffice.orgの機能を知る可能性が高い。<br>
+&emsp;3)OpenOffice.org Projectに参加しているという満足感が得られる。<br>
+<br>
+上記3)は人それぞれ価値観が違うと思いますが、好意を寄せる異性がOpenOffice.orgの操作で困っている時に
+「私はOpenOffice Projectの一員です。」と言うと好感度がUpすると思います。<br>
+<br><br><br>
+
+<center><A HREF="index-2.html"><IMG SRC="but1_up.gif" BORDER="0" NAME="HOME_BUTTON"></A><HR WIDTH="80%" ALIGN="center"></center><BR>
+</p>
+<body/>
+<html/><script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->

@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/LotusScript_Macro.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:37:58 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<title>Macroの杜 番外編(LotusScript編)</title>
+</head>
+<link rel="stylesheet"
+type="text/css" href="css_macroPython.css">
+<body>
+<a name="TopOfPage"><left><p><A HREF="index-2.html">Home of site</a></p></left></a><br>
+<h1>Macroの杜 番外編(LotusScript編)</h1>
+
+<center><h3>【　LotusScript　】</h3></center>
+<p class="s1">Dominoとの連携</p class="s1">
+<p>
+IBM Domino/Notes上のDataをOpenOffice.orgをBaseとした統合Soft(LotusSymphony)の
+表計算Soft(SpreadSheet)へ出力するLotrusScriptのCodeを紹介します。
+</p>
+<br>
+<br>
+<br>
+
+<ul>
+Lts-1)<a href="#OOoLts01"><em>[LotusScript]</em>Domino => SpreadSheet</a><br>
+</ul>
+
+
+
+<center><h3>【　LotusScript Code　】</h3></center>
+<br>
+
+<p class="s1">Dominoとの連携</p class="s1">
+<a name="OOoLts01"><h6>Lts-1)<em>[LotusScript]</em>Domino => SpreadSheet</h6></a>
+<pre><code>
+Sub Click(Source As Button)
+	On Error Goto oBad
+	Dim ws As New NotesUIWorkspace
+	Dim uidoc As NotesUIDocument
+	Dim oDoc As NotesDocument	
+	'	
+	Set uidoc = ws.currentdocument
+	Set oDoc = uidoc.document
+	'
+	Dim oNameSei, oNameNa As Variant
+	Dim oZipcode As Variant
+	Dim oPrfct, oCity, oStreet, oApt As Variant
+	Dim oTel  As Variant
+	'
+	oNameSei = oDoc.GetItemValue("nameSei")
+	oNameNa = oDoc.GetItemValue("nameNa")
+	oZipcode = oDoc.GetItemValue("zipcode1")
+	oPrfct = oDoc.GetItemValue("todoufuken")
+	oCity = oDoc.GetItemValue("sichouson")
+	oStreet = oDoc.GetItemValue("banchi")
+	oApt = oDoc.GetItemValue("apart")
+	oTel = oDoc.GetItemValue("tel")
+	'
+	Dim oTitle(6) As String
+	Dim oCalcData(6) As String
+	oTitle(0) = Cstr("Name")
+	oTitle(1) = Cstr("Zip Code")
+	oTitle(2) = Cstr("Prefecture")
+	oTitle(3) = Cstr("City")
+	oTitle(4) = Cstr("Street")
+	oTitle(5) = Cstr("Apartment")
+	oTitle(6) = Cstr("Telephone")
+	'
+	oCalcData(0) = Cstr(oNameSei(0) & " " & oNameNa(0))
+	oCalcData(1) = Cstr(oZipcode(0))
+	oCalcData(2) = Cstr(oPrfct(0))
+	oCalcData(3) = Cstr(oCity(0))
+	oCalcData(4) = Cstr(oStreet(0))
+	oCalcData(5) = Cstr(oApt(0))
+	oCalcData(6) = Cstr(oTel(0))
+	Dim objServiceManager As Variant
+	Dim args()
+	Set objServiceManager = CreateObject("com.sun.star.ServiceManager")
+	Set objCoreReflection = objServiceManager.createInstance("com.sun.star.reflection.CoreReflection")
+	Set oDesktop = objservicemanager.createInstance("com.sun.star.frame.Desktop")
+	Set oCalcDoc = oDesktop.loadComponentFromURL("private:factory/scalc", "_blank", 0, args)
+	Set xWorksheet = oCalcDoc.Sheets.getByIndex(0)
+	'
+	Set xCell = xWorksheet.getCellByPosition(0, 0)
+	Call xCell.setString( "IBM Lotus Domino Address" )
+	xCell.CharWeight = 150
+	'
+	Dim nrow, m As Integer
+	Dim ncol As Integer
+	m = 2
+	For i = 0 To 6
+		nrow = m + i
+		ncol = 0
+		Set xCell = xWorksheet.getCellByPosition(ncol, nrow)
+		Call xCell.setString( oTitle(i) )
+	Next
+	For i = 0 To 6
+		nrow = m + i
+		ncol = 1
+		Set xCell = xWorksheet.getCellByPosition(ncol, nrow)
+		Call xCell.setString( oCalcData(i) )
+	Next
+	'
+	Exit Sub
+oBad:
+	oDisp = "プロプロシージャ　： " & Chr(9) & Getthreadinfo(1) & Chr(10) & _
+	"Error Line　：　" & Chr(9) & Erl & Chr(10) & _
+	"Message　：　" & Chr(9) & Error
+	Messagebox oDisp, 16, "Error Message"
+End Sub
+<img SRC="LotusScript_Pic/01DominoDispay01.png" align="Left" hspace="4" vspace="4" width="25%"><img SRC="LotusScript_Pic/01SpreadSheetDispay01.png" align="Left" hspace="4" vspace="4" width="25%">
+</code></pre>
+<br>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<center><h6><a href="#TopOfPage">Top of Page</a></h6></center><BR>
+
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/LotusScript_Macro.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:38:00 GMT -->
+</html>
+

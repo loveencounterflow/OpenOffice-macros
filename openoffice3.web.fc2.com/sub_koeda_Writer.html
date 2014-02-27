@@ -1,0 +1,887 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<!-- Mirrored from openoffice3.web.fc2.com/sub_koeda_Writer.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:08:47 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<SCRIPT language="JavaScript">
+		<!--
+			renew = new Date(document.lastModified);
+			y=renew.getYear();
+			m=renew.getMonth() + 1;
+			d=renew.getDate();
+			if(y<1900) {y=y+1900;}
+				oDate="更新日："+y+"/"+m+"/"+d;
+			document.write(oDate);
+		//-->
+	</SCRIPT>
+	<title>OOoの小枝(Writer編)</title>
+</head>
+<link rel="stylesheet" type="text/css" href="css_koeda.css">
+<body>
+
+<a name="TopOfPage"><left><h3><A HREF="index-2.html">Home of site</a></p></h3></left></a>
+<h1>
+OOoの小<em>枝</em>(Writer編)
+</h1>
+<center><h3>【　目次　】</h3></center>
+<ul>
+<h4>【1.ページ番号、ヘッダー、フッター関係】</h4>
+1)<a href="#wkoedaNo1">表紙にページ番号を振らず、次ページから番号を付ける</a><BR>
+2)<a href="#wkoedaNo2">次ページからページ番号を付ける</a><BR>
+3)<a href="#wkoedaNo3">次ページからページ番号を開始する</a><BR>
+13)<a href="#wkoedaNo13">目次のページ番号をアラビア数字からローマ数字に変える</a><br>
+22)<a href="#wkoedaNo22">ドキュメント内の全てのページの上部にロゴを挿入</a><br>
+34)<a href="#wkoedaNo34">ページ数をずらすには</a><br>
+39)<a href="#wkoedaNo39">縦書き原稿作成の為に、左上にページ番号を自動で付けたい</a><br>
+45)<a href="#wkoedaNo45">フッターにページ番号をいれたいのですが、数字をいれても全ページ同じになります。</a><br>
+<BR>
+
+<h4>【2.Font関係】</h4>
+4)<a href="#wkoedaNo4">新しく追加したフォントが使えない</a><BR>
+8)<a href="#wkoedaNo8">外字FontをPDF出力する方法</a><br>
+9)<a href="#wkoedaNo9">新規に入力する文字のフォントを指定する</a><br>
+10)<a href="#wkoedaNo10">縦書き時のルビ文字の距離</a><br>
+29)<a href="#wkoedaNo29">【裏技】Fontサイズを96以上にする。</a><br>
+30)<a href="#wkoedaNo30">ルビを振ると文字列が左に移動しセンターがずれる</a><br>
+35)<a href="#wkoedaNo35">特定の色を透明にするには</a><br>
+37)<a href="#wkoedaNo37">日本語フォントで傍点が振れない</a><br>
+WF-9)<a href="#wkoedaWF9">!? , ?!の縦書き記号</a><br>
+WF-10)<a href="#wkoedaWF10">ルビを振ふった時に余計スペースが入らなくする</a><br>
+<BR>
+
+<h4>【FontWork関係】</h4>
+11)<a href="#wkoedaNo11">フォントワークスの選択と文字の変更</a><br>
+FW-2)<a href="#wkoedaFW2">FontWork 文字書体変更方法</a><br>
+FW-3)<a href="#wkoedaFW3">FontWork 影を付ける</a><br>
+FW-4)<a href="#wkoedaFW4">FontWork をページ中央に配置</a><br>
+<br>
+
+<h4>【Clip art関係】</h4>
+CA-1)<a href="#wkoedaCA1">Clip artの表示方法</a><br>
+<br>
+
+<h4>【3.ページレイアウト関係】</h4>
+5)<a href="#wkoedaNo5">１ページ目は縦、２ページ目は横にしたい</a><BR>
+7)<a href="#wkoedaNo7">1つのページを真ん中から縦に半分にする</a><BR>
+14)<a href="#wkoedaNo14">ページ設定</a><br>
+15)<a href="#wkoedaNo15">図の横側に文字を記入</a><br>
+21)<a href="#wkoedaNo21">Drawの図を貼る際に余白を無くす。</a><br>
+27)<a href="#wkoedaNo27">章番号の付け方を途中で変更する</a><br>
+28)<a href="#wkoedaNo28">表の横に文字を記入</a><br>
+31)<a href="#wkoedaNo31">縦書き文書に図表番号を付けると、図の左に番号が付きます</a><br>
+36)<a href="#wkoedaNo36">自由位置にフォームを置くには</a><br>
+38)<a href="#wkoedaNo38">WEBページ(IE)を貼り付けて保存する際に画像等のリンクを埋め込みの図に変換して保存する</a><br>
+40)<a href="#wkoedaNo40">縦二段横書きの段組みを作ったが、左の段には書き込めるものの右の段には入れない</a><br>
+41)<a href="#wkoedaNo41">文書を書く際に文末脚注を用いると、脚注の内容は文書の最終頁の後に独立した頁に表示されます。これを文書の最終頁の余白に載せる。</a><br>
+42)<a href="#wkoedaNo42">ファイル名をヘッダーに入れようとしたが、 ヘッダーメニューが出ない</a><br>
+43)<a href="#wkoedaNo43">複数の書式部分をコピーした時の修正方法</a><br>
+48)<a href="#wkoedaNo48">OpenOffice.orgのwriterで「縦中横」</a><br>
+49)<a href="#wkoedaNo49">行間の遊び（リード）を無くす方法</a><br>
+WL-17)<a href="#wkoedaNoWL-17">「脚注」を使う</a><br>
+WL-18a)<a href="#wkoedaNoWL-18a">上下に2分割の段組(縦書きの場合)</a><br>
+WL-18)<a href="#wkoedaNoWL-18">段組の設定</a><br>
+WL-19)<a href="#wkoedaNoWL-19">２段組みのタグ(タブ)設定</a><br>
+WL-20)<a href="#wkoedaNoWL-20">「Tab」KeyのTab値設定</a><br>
+WL-21)<a href="#wkoedaNoWL-21">1行文字数、行数の設定</a><br>
+<BR>
+
+<h4>【4.表関係】</h4>
+6)<a href="#wkoedaNo6">表の中で文章が２行目に入ったときに１字下げるには</a><br>
+24)<a href="#wkoedaNo24">表が２ページ以上にまたがる場合，各ページの表で見出しを繰り返させる。</a><br>
+45)<a href="#wkoedaNo45">表中の数値の書式設定</a><br>
+Ta-4)<a href="#wkoedaTa4">入力通りに表中の値を表示(Defaultでは自動で小数点第2までの値に変換される。)</a><br>
+<BR>
+
+<h4>【5.印刷関係】</h4>
+17)<a href="#wkoedaNo17">拡大縮小印刷</a><br>
+26)<a href="#wkoedaNo26">A4用紙に、複数ページ分の印刷</a><br>
+<Br>
+
+<h4>【6.その他】</h4>
+12)<a href="#wkoedaNo12">各種Templateを登録する。</a><br>
+16)<a href="#wkoedaNo16">ワイルドカード使用の代わりの検索</a><br>
+18)<a href="#wkoedaNo18">年月日の自動入力</a><br>
+19)<a href="#wkoedaNo19">罫線の引き方</a><br>
+20)<a href="#wkoedaNo20">編集履歴を（赤字下線)、修正箇所を取り消し線で強調</a><br>
+23)<a href="#wkoedaNo23">語数を数える。</a><br>
+25)<a href="#wkoedaNo25">文書の一部を保護する。</a><br>
+32)<a href="#wkoedaNo32">テキスト枠ＡとＢを連結して、Ａに入りきれない分を自動的にＢに流し込むには</a><br>
+33)<a href="#wkoedaNo33">グリッド線で枠の位置合わせを行うには</a><br>
+47)<a href="#wkoedaNo47">図形描写字のアンカーマークを表示させない方法。</a><br>
+50)<a href="#wkoedaNo50">Writer中の画像ファイルを再圧縮してpdf化</a><br>
+51)<a href="#wkoedaNo51">5文字のを８文字分に均等割りにする</a><br>
+52)<a href="#wkoedaNo52">画像データ(JPEG形式)を含んだwriterファイルをXTML形式で保存する方法</a><br>
+53)<a href="#wkoedaNo53">あいさつ文の挿入</a><br>
+54)<a href="#wkoedaNo54">日本語縦書きでフッターをつけると欄外に出た”、”などが消える現象を回避する(応急処置)[ OpenOffice.orgコミュニティｰフォーラムより　]</a><br>
+<br>
+
+<h4>【7.罫線】</h4>
+WLn-)<a href="#wkoedaLn1a">「特殊文字3連続」+「Enter」 で罫線を引く</a><br>
+<br>
+
+<h4>【その他（噂）】</h4>
+WO2-1)Writer ⇔ Word 間のデータ互換を高める方法(噂です。)<BR>
+Writer及びWord共に「リッチテキスト形式」にて保存するとデータ互換性が高まるとの噂。<BR><BR>
+
+WO2-1)Word => Writerのデータ互換を高める方法(噂2です。)<BR>
+Word文章をPdf形式で出力後、writerで読む。但しwriterの拡張機能「Sun PDF Import Extension」が必要です。<BR><BR>
+<br>
+
+<h2>外部データ関係</h2>
+<BR>
+<h4>【1.ページ番号、ヘッダー、フッター関係】</h4>
+L1-25)
+<BR><a href="#OOoL1-25">目次にリンクをつける</a><BR>
+<br>
+
+<h4>【2.Font関係】</h4>
+L1-1)<a href="#OOoL1-1">OpenOffice.orgのwriterで「縦中横」(外部)</a><BR>
+L1-2)<a href="#OOoL1-2">オープンオフィスでWordでいう「網掛け」「文字を四角で囲む」</a><BR>
+L1-3)<a href="#OOoL1-3">丸文字21以降について</a><BR>
+L1-8)<a href="#OOoL1-8">クリッカブルマップを作成する</a><br>
+L1-12)<a href="#OOoL1-12">組み文字を使いたい</a><br>
+<BR>
+
+<h4>【3.ページレイアウト関係】</h4>
+L1-4)<a href="#OOoL1-4">Writerを使って「行数」や「文字数」を指定したドキュメントを作成する手順</a><BR>
+L1-5)<a href="#OOoL1-5">writerを使って小冊子を作成(サイトCloseなのでpdf化)</a><br>
+L1-16)<a href="#OOoL1-16">文章を縦書きに変更したい</a><br>
+L1-6)<a href="#OOoL1-6">縦書き文書の書式設定のコツ</a><br>
+L1-7)<a href="#OOoL1-7">余白を含んでページ全体に背景色を設定する方法</a><br>
+L1-11)<a href="#OOoL1-11">割り注(1行を二段に分割した注釈文)を使いたい</a><br>
+L1-17)<a href="#OOoL1-17">ページを段組にしたい</a><br>
+<BR>
+
+<h4>【4.表関係】</h4>
+L1-15)<a href="#OOoL1-15">表にタイトルを入れたい</a><br>
+L1-18)<a href="#OOoL1-18">オートフォーマットを使って表に装飾をする</a><br>
+L1-19)<a href="#OOoL1-19">表の並べ替えをしたい</a><br>
+L1-20)<a href="#OOoL1-20">表の枠線や背景色を変更したい</a><br>
+<BR>
+
+<h4>【5.印刷関係】</h4>
+L1-22)<a href="#OOoL1-22">Writer/Calc でハガキの宛名印刷を簡単に行う方法(その1)</a><br>
+L1-23)<a href="#OOoL1-23">Writer/Calc でハガキの宛名印刷を簡単に行う方法(その2)</a><br>
+<BR>
+
+
+<h4>【6.その他】</h4>
+L1-9)<a href="#OOoL1-9">.docxで保存する(RC版)</a><br>
+L1-10)<a href="#OOoL1-10">パスワード付でファイルを保存したい</a><br>
+L1-13)<a href="#OOoL1-13">離れている場所を選択したい</a><br>
+L1-14)<a href="#OOoL1-14">ファイルをメールに添付して送りたい(ODT形式)</a><br>
+L1-21)<a href="#OOoL1-21">OpenOffice.org1.1 Writer まとめ編(pdf file)</a><br>
+L1-24)<a href="#OOoL1-24">知っておいてもよい初期設定</a><br>
+L6-7)<a href="#OOoL6-7">使用できる色を増やしたい</a><br>
+L6-8)<a href="#OOoL6-8">横書き中に90°回転させて文字を入力</a><br>
+<BR>
+<BR>
+</ul>
+<BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
+
+<a name="wkoedaNo1"><h5># 表紙にページ番号を振らず、次ページから番号を付ける</h5><ul class="c2">
+   1. 表紙ページにカーソルを置く<BR>
+   2. 「書式」-「スタイルと書式」<BR>
+   3. 「スタイルと書式」ウィンドウで「ページスタイル」ボタンをクリック<BR>
+   4. "最初のページ"をダブルクリック<BR>
+   </ul class="c2">
+<BR>
+
+<a name="wkoedaNo2"><h5># 次ページからページ番号を付ける</h5><ul class="c2">
+   1. 2ページ目にカーソルを移動する<BR>
+   2. 「挿入」-「フッタ」-「標準」<BR>
+   3. 「挿入」-「フィールド」-「ページ番号」<BR>
+   </ul class="c2">
+<BR>
+
+<a name="wkoedaNo3"><h5># 次ページからページ番号を開始する</h5><ul class="c2">
+   1. 2ページ目の本文先頭にカーソルを移動する<BR>
+   2. 「書式」-「段落」<BR>
+   3. 「段落」ダイアログで「体裁」タブをクリック<BR>
+   4. "区切り"の"ページスタイル付き"をオン<BR>
+   5. "ページ番号"を"1"にする<BR>
+   6. 「OK」ボタンをクリック<BR>
+   </ul class="c2">
+<BR>
+
+<a name="wkoedaNo4"><h5>#新しく追加したフォントが使えない</h5><ul class="c2">
+フォントをインストールする場合は、クイック起動を終了しないといけません。クイック起動は終了しましたか。タスクバー右側に表示されるOpenOffice.orgのボタンがクイック起動です。<BR>
+</ul class="c2"><BR>
+
+<a name="wkoedaNo5"><h5>#１ページ目は縦、２ページ目は横にしたい</h5><ul class="c2">
+   1. 書式」メニューから「スタイルと書式」をクリックしてください。<BR>
+   2. 「スタイルと書式」というタイトルの小さなウィンドウが開きます。<BR>
+   3. 左上にあるアイコンの4番目「ページスタイル」をクリックして、ページスタイルの表示に切り替えます。<BR>
+    <p><IMG SRC="index1-1.gif" align="right" hspace="100px"  ></p>
+   4. 続いて、一番右側にある「選択スタイルから新規作成」というアイコンをクリックします。<BR>
+   5. 「新しいスタイルを選択」という選択メニューが出てきますので、更にそれをクリックします。<BR>
+   6. 「スタイルの作成」ダイアログが開きます。<BR>
+   7. スタイル名の箇所に任意の名前（ここでは『横ページ』とします）を入力し、OKボタンを押します。<BR>
+   8. 「スタイルと書式」ウィンドウに『横ページ』が追加されていますので『横ページ』を選択し、右クリックをして「変更」を押します。<BR>
+   9. 「ページスタイル」というウィンドウが開きますので、そこで「ページ」というタブをクリックします。<br clear="all">
+     <p><img SRC="index1-2.gif" align="right" hspace="20px" ></p>
+
+  10. 用紙サイズを設定する箇所に、「配置」の設定がありますので、そこで【横】を選択します。<BR>
+  11. 次に、「管理」というタブをクリックし、「次に続くスタイル」の箇所のプルダウンメニューで、【標準】を選択し、OKボタンを押します。<BR>
+</ul class="c2"><BR>
+<p>
+	ここまでで、新しい「横ページ」のスタイルが完成です。<BR>
+	では、次は実際に、1ページ目を縦、2ページ目を横向きにしてみましょう。<BR>
+</p>
+<BR><ul class="c2">
+   1. 横向きにするページの前のページの一番下にカーソルを移動させます。<BR>
+   2. 「挿入」メニューから「任意区切り」をクリックしてください。<BR>
+   3. 「区切りの挿入」という小さなウィンドウが開きます。<BR>
+   4. 【改ページ】にチェックを入れ、「スタイル」の箇所で先程作成したスタイルの【横ページ】を選択し、OKボタンを押します。<BR>
+   <BR>
+   参考サイト：<a href="http://oooug.jp/compati/2.0/modules/xfsection/article.php?articleid=8">ページスタイルの研究</a><br clear="all">
+   </ul class="c2"><BR><BR>
+   
+<a name="wkoedaNo6"><h5>#表の中で文章が２行目に入ったときに１字下げるには</h5><ul class="c2">
+ 	<img SRC="index2-1.gif" align="right" hspace="100px" width="30%">
+ 	1.F11キーで「スタイルと書式」を呼び出して、「表の内容」を右クリックして「変更」を選んで段落の書式を設定しています。<br>
+ </ul class="c2"><BR><BR><BR>
+<BR>
+ 	
+<a name="wkoedaNo7"><h5>#1つのページを真ん中から縦に半分にする</h5><ul class="c2">
+	書式]->[ページ]の[段組]タブの[プリセット]の欄の「段数」を2にする。<BR>
+</ul class="c2"><BR>
+	
+<a name="wkoedaNo8"><h5>#外字FontをPDF出力する方法</h5><ul class="c2">
+	外字エディタで作成したフォントはC:\WINDOWS\FONTS\EUDC.TTEに反映されます。<BR>
+	通常エクスプローラーでは表示されないので<BR>
+	スタート＞プログラム＞アクセサリ＞コマンドプロンプト　から　dir /p c:\windows\fontsキーを押す毎にファイル閲覧出来ます。<BR>
+	Writerで表示されているとの事でしたので下記の項目は済んでいるものと思いますが確認してください。XPの場合です。<BR>
+
+	1.コマンドプロンプトでEUDC.TTEをEUDC.TTFとしてコピーしておく事<BR>
+		copy /y c:\windows\fonts\eudc.tte c:\windows\fonts\eudc.ttf<BR>
+<BR>
+	2.writer起動でフォントの中にEUDCが存在する事<BR>
+<BR>
+	3.writerで入力する際、日本語入力IMEパッドの文字一覧＞シフトJIS＞外字から挿入する。もしくは、挿入＞記号と特殊文字から EUDCフォントを選んで挿入<BR>
+	上記手順だと、既存のOpenSymbol(xp、Vista)、mingliu(Vista)、mingliub(Vista)フォント等が存在してもOKです。<BR>
+<BR>
+外字エディタで追加してもEUDC.TTFには反映されないので都度、EUDC.TTEをEUDC.TTFとしてコピーし再起動の必要があります。<BR>
+<BR>
+EUDC.EUF、EUDC.TTFが同じEUDC.TTEから作成されたモノでなければIME、Writer、印刷が同じ動作をしないようです。<BR>
+確認はコマンドプロンプトから 最初の dirコマンドを使用。ここでEUDC.TTE、EUDC.TTFが同じファイルサイズなら同じ物でしょうし、EUDC.TTE EUF は外字エディタで自動生成されます<BR>
+<BR>
+Vistaの場合は、1 の作業はやってはダメです。ご注意下さい<BR>
+</ul class="c2"><BR>
+
+<a name="wkoedaNo9"><h5>#新規に入力する文字のフォントを指定する</h5><ul class="c2">
+メニューの「書式」→「文字」→「フォント」タブ内の「英数字用フォント」・「日本語用フォント」を任意のフォントに変える。<br>
+</ul class="c2"><BR>
+
+<a name="wkoedaNo10"><h5>#縦書き時のルビ文字の距離</h5><ul class="c2">
+①フォントを日本語フォント、IPA明朝などへ変更する。<br>
+②段落での設定より書式スタイルでの統一設定がお勧めです<br>
+③行間　固定　0.9cm 程度(フォントサイズで適宜修正)　にすると、ルビの有無で行間左右されません。<br>
+</ul class="c2"><BR>
+
+<a name="wkoedaNo11"><h5>#フォントワークスの選択</h5><ul class="c2">
+「Shift　+　マウスでクリック」（選択)<br>
+選択後「CTL + マウスでダブルクリック」すると中央に文字が表示されるので、それを変更（文字の変更)<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNo12"><h5>#各種Templateを登録する。</h5><ul class="c2">
+C:\Program Files\OpenOffice.org 3.0\share\template\ja にコピーすると利用可能。<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNo13"><h5>#目次のページ番号をアラビア数字からローマ数字に変える</h5><ul class="c2">
+Writerで「見出し」スタイルを設定している場合，[挿入(I)]->[目次と索引(X)]->[目次と索引(I)]で目次を作成することができます。作成された目次のページ番号が，標準ではアラビア数字で表記されます。これをローマ数字に変えたい場合，目次ページのページスタイルを変更するとできました。<br>
+・[スタイルと書式]のボックスから，目次ページのページスタイルを選択して右クリックして[変更]をクリック。<br>
+・[ページ]タブの[レイアウト設定]の[番号付け(M)]のリストから，ローマ数字のスタイルを選択してボタンをクリック<br>
+・目次のフィールドの中で右クリックして，[目次/表の更新(U)]をクリックすると数字のタイプが変わります。<br>
+<br>
+これを応用すると，目次のページ表記はローマ数字で，本文のヘッダやフッタに表記する数字はアラビア数字でというようなこともできるようですね。<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNo14"><h5>#ページ設定</h5><ul class="c2">
+「書式」－「ページ」で、ページのスタイルを決定することができます。<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNo15"><h5>#図の横側に文字を記入</h5><ul class="c2">
+「書式」⇒「画像」⇒折り返し⇒プリセットで好きな配置を選択⇒Ok<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNo16"><h5>#ワイルドカード使用の代わりの検索</h5><ul class="c2">
+曲名(アーティスト名)のデータからの検索<br>
+　　　　↓<br>
+OpenOfficeの検索では「*」をワイルドカードとは扱わないようです。<br>
+代わりに正規表現が使えますのでこれで可能です。詳細オプションで「正規表現」にチェックをつけてください。<br>
+この場合、<br>
+\(.+<br>
+で曲名のみ、<br>
+.+\(<br>
+と<br>
+\)<br>
+でアーティスト名のみになります。<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNo17"><h5>拡大縮小印刷</h5><ul class="c2">
+「プロパティ」 ⇒「拡張設定」タブに「拡大縮小を選択。「印刷用紙サイズにあわせます」を選んでユーザー定義サイズで作られたサイズを選べばよい。<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNo18"><h5>年月日の自動入力</h5><ul class="c2">
+CTL + F2 にてフィールドWindowsが表示されるので、日付を選択（日付（固定)を選ぶと変化しない。）<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNo19"><h5>罫線の引き方</h5><ul class="c2">
+メニューバーの「表示」→「ツールバー」→「図形描画(O)」の順にクリックすると、最下段のステータスバーの直ぐ上に「図形描画ツールバー」が表示されます。<br>
+左から２番目の／形アイコンをクリックするとマウスポインタが十字に／が付いた形に変化しますので、線を引きたい範囲をドラッグすると直線が描画されます。<br>
+この時、「Shift」キーを押しがらドラッグすると正確な45度刻みの直線を引くことができます。<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNo20"><h5>編集履歴を（赤字下線)、修正箇所を取り消し線で強調</h5><ul class="c2">
+メニューから「編集」->「変更」->「記録」を選択。こうすると，編集した箇所が強調されます。色付き下線で新しく入力されたテキストが強調され，また削除された文字は色付き打ち消し線で確認できます。<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNo21"><h5>Drawの図を貼る際に余白を無くす。</h5><ul class="c2">
+挿入したOLEオブジェクトをダブルクリック(右クリック->[編集])すると黒いハンドル(外枠に表示される８つの■)が現れるので、それらをドラッグして調整することで余白部分をWriter上から消すことができます。<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNo22"><h5>ドキュメント内の全てのページの上部にロゴを挿入</h5><ul class="c2">
+1)文書ドキュメントを新規作成します。<br>
+2)メニューから「挿入」->「ヘッダ」->「標準」を選択します。<br>
+3)新しくできたヘッダ領域の内部をクリックします。<br>
+4)メニューから「挿入」->「図」->「ファイルから...」を選択します。<br>
+5)ページの上部に挿入したいロゴを選んで開きます。<br>
+<br>
+もし，その図が全てのページに適用されていない場合，２つ原因が考えられます。１つは使用しているページスタイルのヘッダの設定が正しくない場合です。以下の設定を確認してください：<br>
+<br>
+a)メニューから「書式」->「ページ」を選択します。<br>
+b)「ヘッダ」タブを選択します。<br>
+c)「左右ページ同じ内容」チェックボックスがオンになっていることを確認します。もし，オフになっていると奇数ページもしくは偶数ページにのみロゴが表示され，奇数，偶数の両ページには表示されません。<br>
+<br>
+図が1つのページもしくはそれ以上のページに表示されていて，途中から表示されない場合考えられる原因として，ロゴが表示されなくなったページに表示されたページとは違うページスタイルが設定されている可能性があります。文書（あるいはドキュメントウィンドウ）の下にあるページ情報の右側にページスタイルが表示されています。違う名前のスタイルが設定されていると，文書がそこでセクションに分かれています。変更するには以下のようにします。<br>
+<br>
+A)テキストカーソルを間違ったページスタイルが設定されているページにおきます。<br>
+B)メニューから「書式」->「スタイリスト」を選択します。<br>
+C)左から4つ目のページスタイルアイコンをクリックします。<br>
+D)正常にロゴやヘッダが表示されるページのスタイルをダブルクリックします。正しく設定されたら，スタイリストダイアログは消してもかまいません。<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNo23"><h5>語数を数える</h5><ul class="c2">
+「ファイル」->「プロパティ」を選択します。「統計」タブをクリックします。語数の他の統計もダイアログに表示されます。<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNo24"><h5>表が２ページ以上にまたがる場合，各ページの表で見出しを繰り返させる。</h5><ul class="c2">
+通常は自動で繰り返されます。繰り返されない場合は以下の手順で設定。<br>
+<br>
+1)カーソルをテーブルのどこかにおきます。<br>
+2)右クリックでコンテキストメニューを表示し，「表」を選択します。<br>
+3)ダイアログが表示されたら，「体裁」タブをクリックします。<br>
+4)「体裁」ボックスで，「見出しを繰り返す」というチェックボックスをチェックします。<br>
+5)「OK」ボタンを押します。<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNo25"><h5>文書の一部を保護する。</h5><ul class="c2">
+1)文書を打つか，もしくは，挿入をします。<br>
+2)保護したいテキストを選択します。<br>
+3)メニューから「挿入」->「範囲」を選択します。<br>
+4)「書き込み保護」のチェックボックスをクリックします。<br>
+5)「新しい範囲」の名前を入力します。（あらかじめ設定されたデフォルトの名前でもかまいません）<br>
+6)「挿入」をクリックします。<br>
+この範囲にパスワードを設定できます。パスワードを設定せずにいると，誰でも保護された範囲のテキストを変更できます。<br>
+<br>
+保護された範囲にパスワードを設定するには:<br>
+<br>
+a)メニューから「書式」->「範囲」を選択します。<br>
+b)パスワードを設定したい範囲の名前を選択します。<br>
+c)「パスワードを使用」というチェックボックスをクリックします。<br>
+d)表示されたダイアログで，パスワードを入力し，確認のためにもう一度パスワードを入力します。<br>
+e)「パスワードの入力」ダイアログの「OK」ボタンをクリックします。<br>
+f)「範囲の編集」ダイアログの「OK」ボタンをクリックします。<br>
+<br>
+前に保護した範囲を変更するには以下の手順に従ってください:<br>
+<br>
+A)メニューから「書式」->「範囲」を選択します。<br>
+B)表示されたダイアログでパスワードを入力します。（パスワードで保護した場合にのみ表示されます）;「OK」をクリックします。<br>
+C)変更したい範囲の名前を選択します。<br>
+D)「解除」ボタンをクリックします。<br>
+E)「OK」をクリックします。<br>
+F)文書を変更します。<br>
+G)再度その範囲の保護を適用したい場合は，上記の「文書の一部を保護するために」の手順に従ってください。<br>
+<br>
+注意:ある範囲にパスワードを一度設定したら，ダイアログが表示される前に，その範囲の文書に変更を加えるためのパスワードが要求されます。<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNo26"><h5>A4用紙に、複数ページ分の印刷</h5><ul class="c2">
+<IMG SRC="bunktu_print.png" align="right" hspace="100px" width="30%"><BR>
+印刷プレビューから、プレビュー印刷オプション（プリンタに指のマークのボタン）を選択すると設定画面が表示されます。そこで、分割および書式により設定できます。<br>
+<br>
+そこから印刷するには、プレビュー印刷（プレビュー印刷オプションの左隣）で印刷します。<br>
+通常の印刷ボタンではだめなので注意してください。<br>
+</ul class="c2"><br>
+
+<a name="wkoeda27"><h5>章番号の付け方を途中で変更する</h5><ul class="c2">
+1)「ファイル」「新規作成」「文書ドキュメント」で新規の文書を作成し、文章を入力する。もしくは、既存のファイルを開く。<br>
+2)ツールバー上の左端にある「スタイルと書式」ボタンを押して、「スタイルと書式」ダイアログを表示する。<br>
+3)「スタイルと書式」ダイアログにて、<br>
+<ul class="c3">
+	a. 上部左端にある「段落スタイル」ボタンを押す。<br>
+	b. 下部にあるプルダウンメニューで「階層」を選択する。<br>
+	c. 「見出し」の左にある「＋」マークを押して、展開する。<br>
+	d. 「見出し１」を選択し、右クリックで「変更」を選択する。<br>
+	e. 「段落スタイル: 見出し 1」ダイアログにて、「番号付け」タブを選択する。<br>
+	f. 「番号付けスタイル」を「なし」から「番号付け 1」へ変更する。<br>
+	g. 「管理」タブを選択する。<br>
+	h. 「自動的に更新」チェックボックスにチェックをつける。<br>
+	i. 「OK」<br>
+</ul class="c3"><br>
+4)  上部左端から５つ目の「リストのスタイル」ボタンを押す。<br>
+5) 「番号付け１」を選択し、右クリックで「変更」を選択する。<br>
+6) 「番号付けスタイル: 番号付け 1」ダイアログにて、「番号付けの種類」タブを選択する。<br>
+<ul class="c3">
+	j.  「1. 2. 3.」の絵柄を選択する。<br>
+	k.  「OK」<br>
+</ul class="c3"><br>
+7) 「上部左端にある「段落スタイル」ボタンを押す。<br>
+8) 「見出し１」を選択する。<br>
+9) 上部右端から２つ目の「水やりモード」ボタンを押し、オンにする。<br>
+<ul class="c3">	
+	l. 本文中の章タイトルの行をマウスでクリックする。すると、<br>
+</ul class="c3"><br>
+<ul class="c4">
+		1. あああ<br>
+		2. いいい<br>
+		3. ううう<br>
+</ul class="c4"><br>
+<ul class="c3">
+	m. 「水やりモード」ボタンをもう一度押し、オフにする。<br>
+	n. 「あああ」などの部分をトリプルクリック（連続して３回クリック）して選択し、フォントサイズや色などを変更すると、上記手順 e.4. で「自動的に更新」をオンにしているので、「いいい」や「ううう」の部分のフォントサイズや色なども連動して自動的に変更が反映されます。<br>
+</ul class="c3">
+</ul class="c2"><br>
+
+<a name="wkoedaNo28"><h5>表の横に文字を入力</h5><ul class="c2">
+1)挿入>枠<br>
+2)枠以外を一回クリックし、四隅の緑色を消す。<br>
+3)枠の中を一回クリックし、カーソルが枠内に表示されたら、挿入>表<br>
+<ul class="c3">
+※ 枠の外枠をクリックし、右ボタンを押すとメニューが表示さます。<br>
+&emsp;・「アンカー」を「ページに」<br>
+&emsp;・「折り返し」を「両端折り返し」<br>
+&emsp;・「枠」を選択すると、「挿入>枠」の時に出で来たダイアログが表示されます。<br>
+外枠を消したり、背景色を付けたりできます。<br>
+</ul class="c3">
+［参考］<br>
+すでに表を作ってしまっている場合には、<br>
+1. 表の全体をドラッグして選択<br>
+2. 挿入>枠<br>
+<br>
+※ 表の中で、F2キーを押すと、簡単な表計算のための数式を入れることができます。<br>
+</ul class="c2"><br>
+
+<a name="wkoeda29"><h5>【裏技】Fontサイズを96以上にする。</h5><ul class="c2">
+1)文字Fontサイズを表示している枠の中でダブルクリック<br>
+2)任意の数字を入れる。<br>
+</ul class="c2"><br>
+
+<a name="wkoeda30"><h5>ルビを振ると文字列が左に移動しセンターがずれる</h5><ul class="c2">
+[書式]-[段落]-[配置](タブ)-[文字の位置]を[基線]にしてください。<br>
+</ul class="c2"><br>
+
+<a name="wkoeda31"><h5>縦書き文書に図表番号を付けると、図の左に番号が付きます</h5><ul class="c2">
+図の下に表示するには、[枠]-[オプション]-[文字方向]を[左から右へ（横書き）]に変更する必要があります。<br>
+</ul class="c2"><br>
+
+<a name="wkoeda32"><h5>テキスト枠ＡとＢを連結して、Ａに入りきれない分を自動的にＢに流し込むには</h5><ul class="c2">
+枠を連結するには、連結元の枠を選択した状態でオブジェクトバーの[連結]ボタン（鎖のアイコン）をクリックして、ポインタが鎖マークになったら連結先の枠をクリックします。<br>
+</ul class="c2"><br>
+
+<a name="wkoeda33"><h5>グリッド線で枠の位置合わせを行うには</h5><ul class="c2">
+[ツール]-[オプション]-[文書ドキュメント]-[グリッド線]で[スナップ網目スクリーンを使用する]と[グリッド線を表示する]にチェックを入れると、うまく動作するはずです<br>
+</ul class="c2"><br>
+
+<a name="wkoeda34"><h5>ページ数をずらすには</h5><ul class="c2">
+1)[挿入]-[フィールド]-[その他]でフィールドメニューを開く<br>
+2)タブ[変数]を選択<br>
+3)[フィールドタイプ]で[ページ変数の設定]を選ぶ<br>
+4)すぐ右の[選択]を[オン]にする<br>
+5)すぐ下の[修正]が入力できるようになるので[2(あるいは飛ばしたいページ数)]を入れる<br>
+6)最下段の[挿入]ボタンを押す(コントロール表示時には灰色ナカグロが表示される)<br>
+7)[フィールドタイプ]で、直下にある[ページ変数の表示]を選択<br>
+8)[書式]で[ページスタイルの設定]を選択<br>
+9)最下段の[挿入]ボタンを押す(灰色で修正されたページ数が表示される) <br>
+</ul class="c2"><br>
+
+<a name="wkoeda35"><h5>特定の色を透明にするには</h5><ul class="c2">
+１)貼り付けた画像を右クリック-[折り返し]-[輪郭の編集]をクリックする<br>
+２)出てきた[輪郭エディタ]の一番右にある[スポイト]アイコンを押してから透明にしたい色を選択 <br>
+</ul class="c2"><br>
+
+<a name="wkoeda36"><h5>自由位置にフォームを置くには</h5><ul class="c2">
+1)Writerを起動します。<br>
+2)左の[フォーム]アイコンでメニューを表示し[フォーム・ナビゲータ]を選びます<br>
+3)[フォーム・ナビゲータ]ウィンドウの中の[フォーム]を右クリックし、表示されたメニューから[新規作成]-[フォーム]を選びます<br>
+4)ナビゲータ内[Standard]という新しいフォームがつくので、よければマウスで左クリックします（[Standard]の末尾での点滅が消えるように）<br>
+5)左の[フォーム]アイコンでメニューを表示し[フォームの属性]を選びます<br>
+6)[フォームの属性]の配列タブの[データベース][内容の種類][内容]欄で目的のものを選びます。よければマウスで左クリックします（内容欄に選んだテーブル名の末尾での点滅が消えるように）<br>
+7)左の[フォーム]アイコンでメニューを表示し[フィールドの追加]を選びます<br>
+</ul class="c2"><br>
+
+<a name="wkoeda37"><h5>日本語フォントで傍点が振れない</h5><ul class="c2">
+［書式］-［ルビ］-［ルビ文字(・・・)］＋［配置(121)］＋［位置(上(縦書時も))］-［適用］にします。 <br>
+</ul class="c2"><br>
+
+<a name="wkoeda38"><h5>WEBページ(IE)を貼り付けて保存する際に画像等のリンクを埋め込みの図に変換して保存する</h5><ul class="c2">
+[編集]の[リンク]から[リンクの編集]を開き、目的のリンクを取り消してください。 <br>
+</ul class="c2"><br>
+
+<a name="wkoeda39"><h5>縦書き原稿作成の為に、左上にページ番号を自動で付けたい</h5><ul class="c2">
+[挿入]-[ヘッダ]で、そこにカーソルを合わせて[挿入]-[フィールド]-[ページ番号]です <br>
+</ul class="c2"><br>
+
+<a name="wkoeda40"><h5>縦二段横書きの段組みを作ったが、左の段には書き込めるものの右の段には入れない</h5><ul class="c2">
+1.隣の段に移るには[挿入]-[任意区切り]から[改段]とすると良いようです。<br>
+2.左の段で改行を繰り返すと、自動的に右にいきます。<br>
+3.メニューの[ツール]-[オプション]-[文書ドキュメント]-[書式サポート]と進んで[ダイレクトカーソル]にチェックをつければカーソルを自由に移動できます。 <br>
+</ul class="c2"><br>
+
+<a name="wkoeda41"><h5>文書を書く際に文末脚注を用いると、脚注の内容は文書の最終頁の後に独立した頁に表示されます。これを文書の最終頁の余白に載せる</h5><ul class="c2">
+すべての文章を選択し、[挿入]-[範囲]-[脚注／文末脚注]の項目で、[範囲末に挿入]を選択する<br>
+</ul class="c2"><br>
+
+<a name="wkoeda42"><h5>ファイル名をヘッダーに入れようとしたが、 ヘッダーメニューが出ない</h5><ul class="c2">
+ヘッダにフィールドを挿入すればできます。 [挿入]-[フィールド]-[その他]からファイル名を選択<br>
+</ul class="c2"><br>
+
+<a name="wkoeda43"><h5>複数の書式部分をコピーした時の修正方法</h5><ul class="c2">
+1)メニューの「編集」→「全て選択」で文章全体を選択します。（Ctrl+Aでも同様)<br>
+2)メニューの「書式」→「標準の書式設定」を選びます。（Ctrl+Mでも同様)<br>
+</ul class="c2"><br>
+
+<a name="wkoeda44"><h5>表中の数値の書式設定</h5><ul class="c2">
+1)まず、数値を全て記入する。<br>
+2)数値を入れた表の範囲を選択⇒マウスの右ボタンをクリックしてメニューを表示⇒「数の書式」を選択⇒「数の書式」Windowが表示されるので「分類」、「書式」を選択<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNo45"><h5>45)フッターにページ番号をいれたいのですが、数字をいれても全ページ同じになります。</h5><ul class="c2">
+「ツール」→「オプション」⇒左ペインの「OpenOffice.org Writer」→「表示」欄の「フィールド名」のチェックを外す。<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNo46"><h5>46)Microsoft XPS Document Writerでxps　fileを作成する。</h5><ul class="c2">
+1)出力するデータをPDFにてエクスポートする。<br>
+2)作成したpdf　fileをMicrosoft XPS Document Writerでxps fileに変換する。<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNo47"><h5>47)図形描写字のアンカーマークを表示させない方法。</h5><ul class="c2">
+アンカーマークとは描画した図形をどのように配置するかの基準を表し、「イカリ」形状で表示されます。<br>
+「書式」⇒「アンカー」コマンド、または右クリックして表示される「アンカー」コマンドで「ページ」「段落」「文字」「枠」などを選択できます。<br>
+ここで「文字として」を選ぶと、オブジェクトを文字として取り扱います（行の高さが拡大されて1つの文字として挿入されます）。この場合には、イカリのマークが表示されません。<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNo48"><h5>48)OpenOffice.orgのwriterで「縦中横」</h5>
+<ul class="c2">
+OpenOffice.org Writerの場合、自動的に縦中横にする機能はありませんが、文字の書式設定で90度回転させることで同様の機能を実現できます。<br><br>
+「スタイルと書式」にもあらかじめ「縦書き番号付け記号」というスタイルが登録されているので、このスタイルを使うことで簡単に縦中横にできます。<br><br>
+書式を直接変更する場合には、縦中横にしたい文字を選択した状態で、<br>
+<ul class="c3">
+	メニューバーの「書式」⇒「文字」⇒表示されたダイアログの「位置」タブ　⇒　回転と倍率を「90度」<br>
+	にします。<br>
+</ul class="c3">
+スタイルを使う場合には、<br>
+<ul class="c3">
+ツールバーの「スタイルと書式」ボタンを押す⇒「スタイルと書式」ウィンドウを表示⇒縦中横にしたい文字を選択⇒「文字スタイル」⇒「縦書き番号付け記号」<br>
+</ul class="c3">
+なお、OpenOffice.org Writerで縦中横をする場合、設定した文字の上下に余分な空白ができてしまうことがあります。<br>
+そのような場合には、<br>
+<ul class="c3">
+「段落」⇒「日本語文の体裁」タブ　⇒「日本語、英文字、および混在文章で文字間隔を調整」という項目のチェックを外す。
+</ul class="c3">
+</ul class="c2"><br>
+
+<a name="wkoedaNo49"><h5>49)行間の遊び（リード）を無くす方法</h5><ul class="c2">
+「ツール」⇒「オプション」⇒「OpenOffice.org Writer」⇒「互換」⇒「オプション」⇒「テキストの行間にリード（余分なスペース）を入れない」にチェック<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNo50"><h5>50)Writer中の画像ファイルを再圧縮してpdf化</h5><ul class="c2">
+「ファイル」⇒　「pdfとしてエクスポート」　⇒　「全般」⇒　「画像の解像度を下げる」にCheckを入れる。<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNo51"><h5>51)5文字のを８文字分に均等割りにする</h5><ul class="c2">
+「文字列選択」⇒「書式」⇒「文字」⇒「文字間隔」⇒「広く」⇒「13pt」<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNo52"><h5>52)画像データ(JPEG形式)を含んだwriterファイルをXTML形式で保存する方法</h5><ul class="c2">
+1)writerにて図を含んだファイルを「PDFとしてエクスポート」する。<br>
+2)「PDFのオプション」windowにて「ハイブリッドファイルの作成」にチェックをいれる。<br>
+3)「送信フォーマット」は何を選んでも関係無いようです。(Defaultのまま(「FDF」のまま))<br>
+4)「エクスポート」ボタンをクリック<br>
+5)適当な場所にpdfファイルとして保存。<br>
+6)保存したファイルをOOoの描画ソフトDrawにて開く。<br>
+7)「ファイル」⇒「エクスポート」⇒ファイルの種類を「XHTML」にして保存。<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNo53"><h5>53)あいさつ文の挿入</h5><ul class="c2">
+「編集」⇒「入力支援」<br>
+にて「入力支援」Windowが開く。<br>
+<br>
+[　日本語環境改善拡張機能インストール方法　]<br>
+1)以下のサイトから最新版「DefaultSettingsForJapanese.oxt」をダウンロード。<br>
+URL　：　http://sourceforge.jp/projects/openoffice-docj/releases/?package_id=9481<br>
+2)Writerを起動<br>
+3)「ツール」⇒「拡張機能マネージャー」⇒「追加」<br>
+4)ダウンロードしたファイルを指定する。<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNo54"><h5>54)日本語縦書きでフッターをつけると欄外に出た”、”などが消える現象を回避する(応急処置)[ OpenOffice.orgコミュニティｰフォーラムより　]</h5><ul class="c2">
+1)ツール＞オプション＞言語設定＞日本語レイアウト＞行末禁則処理　に　「、」「。」を追加<br>
+2)段落の書式を開く<br>
+3)日本語の体裁タブ＞句読点のぶら下げ　のチェックを外す<br>
+4)配置タブ＞両端揃え<br>
+URL : http://user.services.openoffice.org/ja/forum/viewtopic.php?f=8&p=1882<br>
+</ul class="c2"><br>
+
+<a name="wkoedaWF9"><h5>WF-9)!? , ?!の縦書き記号</h5><ul class="c2">
+<IMG SRC="koeda/02writer/02mark01.png" BORDER="0" WIDTH="30%" ALIGN="right" hspace="100">
+「挿入」 => 「記号と特殊文字」 => サブセット欄を「普通の句読点」<br>
+</ul class="c2"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<a name="wkoedaWF10"><h5>WF-10)ルビを振ふった時に余計スペースが入らなくする</h5><ul class="c2">
+「tool」=>「Option」=>「OpenOffice.org Writer」=>「Formatted Aids(書式サポート)」の「Dispay of」項目の「Non-Breaking Spaces(保護されたスペース)」のCheckを外す<br>
+</ul class="c2">
+
+
+
+
+<a name="wkoedaFW2"><h5>FW-2)FontWork 文字書体変更方法</h5><ul class="c2">
+<IMG SRC="koeda/02writer/FontWork1.jpg" BORDER="0" NAME="HOME_BUTTON" WIDTH="30%" ALIGN="right" hspace="100">
+任意のFontWorkをMouseの左ButtonにてDuble Clickする。 ⇒ 文字を選択する ⇒ 選択した文字内にMouse Cursorを持って行き、Mouseの右ButtonをClickするとMenuが現れるので「文字」を選択 ⇒ 「文字」Windowが現れるので、任意の書体を指定する(右図参照)<br>
+</ul class="c2"><br><br><br><br><br>
+
+<a name="wkoedaFW3"><h5>FW-3)FontWork 影を付ける</h5><ul class="c2">
+<IMG SRC="koeda/02writer/FontWork2.png" BORDER="0" NAME="HOME_BUTTON" WIDTH="30%" ALIGN="right" hspace="100">
+任意のFontWorkをMouseの右ButtonにてClickして、menuを表示させる ⇒ 「フォントワーク」を選択する ⇒ 「フォントワーク」Windowを現れるので影のIconと影の色を設定(右図参照)<br>
+</ul class="c2"><br><br><br><br><br><br><br><br><br>
+
+<a name="wkoedaFW4"><h5>FW-4)FontWork をページ中央に配置</h5><ul class="c2">
+FontWorkをCTL+Clickで選択 => 右Click => 位置とサイズ => アンカー項目：ページ　位置項目：中央 => OK
+</ul class="c2">
+
+
+<a name="wkoedaNoWL-17"><h5>WL-17)「脚注」を使う</h5><ul class="c2">
+1)注釈をつけたい箇所を範囲指定<br>
+2)「挿入」⇒「脚注/文末脚注」<br>
+参考URL　：　<a href="http://kspc-web.com/index.php/explanation-for-public/2011-07-29-13-03-25/357-openoffice-writer">パソコン相談所 / OpenOffice Writerで文章に脚注を付ける</a><br>
+</ul class="c2"><br>
+
+
+<a name="wkoedaNoWL-18a"><h5>WL-18a)上下に2分割の段組(縦書きの場合)</h5><ul class="c2">
+<IMG SRC="koeda/02writer/03Layout/01tategaki_dangumi01.png" BORDER="0" NAME="HOME_BUTTON" WIDTH="15%" ALIGN="right" hspace="100">
+1) 「書式」=>「ページ」<br>
+2) 「ページ」Tabを選択 => 「文字の方向」欄を「右から左へ(縦書き)」を選択<br>
+3) 「段組」Tabを選択 => 「段数」欄を「2」に設定<br>
+
+</ul class="c2"><br>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+<a name="wkoedaNoWL-18"><h5>WL-18)段組の設定</h5><ul class="c2">
+<IMG SRC="koeda/02writer/03Layout/02dangumi_naka2dan03.png" BORDER="0" NAME="HOME_BUTTON" WIDTH="10%" ALIGN="right"><IMG SRC="koeda/02writer/03Layout/02dangumi_naka2dan02.png" BORDER="0" NAME="HOME_BUTTON" WIDTH="10%" ALIGN="right"><IMG SRC="koeda/02writer/03Layout/02dangumi_naka2dan01.png" BORDER="0" NAME="HOME_BUTTON" WIDTH="10%" ALIGN="right">
+1) 文字を入力する。<br>
+2) 下の段組にする範囲の文字を選択する。<br>
+3) Menu Barの「書式」→「段組み」を選択<br>
+4)「段組」windowで、「段数」欄を「２」、「設定範囲」欄を「選択範囲」を選択し、OK<br>
+5)「文字サイズ」を「6」程度にして、設定Pageの最後の行まで改行を入力する<br>
+</ul class="c2"><br><br><br><br>
+
+
+<a name="wkoedaNoWL-19"><h5>WL-19)２段組みのタグ(タブ)設定</h5><ul class="c2">
+「タグ」　=>　「タブ」<br>
+[ Case1　：　水平ルーラー上でタブを設定する方法 ]<br>
+1)タブを設定したい文字列の位置にカーソルを移動<br>
+2)「Tab」キーを押すと、カーソルの位置が移動します。<br>
+3)位置を調整するには、水平ルーラーの左端のタブの種類を希望のタブに切り替える。<br>
+4)水平ルーラーの希望の位置をマウスでクリック。<br>
+<br>
+[ Case2　：　「段落」ダイアログボックスを使ってタブを設定する方法 ]<br>
+1)タブを設定したい文字列の位置にカーソルを移動<br>
+2)「Tab」キーを押すとカーソルの位置が移動します。<br>
+3)「書式」menu Click<br>
+4)「段落」Click<br>
+5)「タブ」Tab選択<br>
+6)「種類」と「位置」を指定<br>
+7)「新規作成」Click<br>
+8)「OK」Click<br>
+<br>
+[ Note ]<br>
+MS Wordのルーラーの場合は２段組み右側も改めて0から表示されますがOOo-Writerの場合は、一段組みのルーラーの目盛りと同じです。<br>
+つまり、水平ルーラ上の右ページの数値は「１９」の位置が０で「２０」の位置が「１」となる。<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNoWL-20"><h5>WL-20)「Tab」KeyのTab値設定</h5><ul class="c2">
+1)「ツール」メニュー<br>
+2)「オプション」<br>
+3)「OpenOffice.org Writer」をクリック<br>
+4)「全般」<br>
+5)右ペインに表示される「設定」を見る。<br>
+6)「タブ間隔」で任意のTab値を設定<br>
+</ul class="c2"><br>
+
+<a name="wkoedaNoWL-21"><h5>WL-21)1行文字数、行数の設定</h5><ul class="c2">
+<img SRC="koeda/02writer/01gyousumojisu01.png" align="right" hspace="10" vspace="4" width="30%">
+例)文字サイズ10.5　40文字×30行の場合<br>
+1)「書式」=>「ページ」=>「行数と文字数」タブ<br>
+2)「ページ単位の行数」を30程度<br>
+3)「行単位の文字数」を40程度<br>
+にする。<br>
+<em>留意事項としては一発では設定し難い事を知ること。</em><br>
+4)右図の様に1行の文字数が35文字の場合は<em>マウス</em>で印刷範囲を広げて40文字にする。
+<br clear="right">
+<img SRC="koeda/02writer/01gyousumojisu02.png" align="right" hspace="10" vspace="4" width="30%">
+<br><br><br>
+<br clear="right">
+</ul class="c2"><br>
+
+
+<a name="wkoedaTa4"><h5>Ta-4)入力通りに表中の値を表示(Defaultでは自動で小数点第2までの値に変換される。)</h5><ul class="c2">
+<img SRC="koeda/02writer/table/kazunoninshiki.png" align="right" hspace="10" vspace="4" width="30%">
+1)表中で右Click<br>
+2)「数の認識」のCheckを外す<br>
+<br clear="right">
+</ul class="c2"><br>
+
+
+<a name="wkoedaCA1"><h5>CA-1)Clip artの表示方法</h5><ul class="c2">
+1)「ツール」=>「ギャラリー」を選択<br>
+2)目を細めて見ると区切り線が増えています。具体的にはFontサイズを示す「10.5」の左斜め下に薄く「△▽▽▽▽△」という記号が区切り線の上にあると思います。<br>
+その線の上にマウスカーソル持って行くとカーソル形状が変わりますので、マウスの左クリックしながら下に下ろす。<br>
+<div class="gazou01">
+<img SRC="koeda/02writer/clipart1.png" align="left" hspace="10" vspace="4" width="40%"><img SRC="koeda/02writer/clipart2.png" align="left" hspace="10" vspace="4" width="40%"><img SRC="koeda/02writer/clipart3.png" align="left" hspace="10" vspace="4" width="50%" height="50%">
+<br clear="right">
+</div class="gazou01">
+</ul class="c2"><br>
+
+
+<h4>【7.罫線】</h4>
+<a name="wkoedaLn1a"><h5>WLn-)「特殊文字3連続」+「Enter」 で罫線を引く</h5><ul class="c2">
+<img SRC="koeda/02writer/02Line/01AutoCorrectOption3.png" align="right" hspace="10" vspace="4" width="20%"><img SRC="koeda/02writer/02Line/01AutoCorrectOption2.png" align="right" hspace="10" vspace="4" width="20%"><img SRC="koeda/02writer/02Line/01AutoCorrectOption1.png" align="right" hspace="10" vspace="4" width="20%">
+「ツール」<br>
+=>「オートコレクトオプション」<br>
+=>「オプション」タブ<br>
+=>「外枠をつける」にCheckを入れる<br>
+<br>
+使える記号は<br>
+ &emsp;「 - 」<br>
+&emsp;「 _ 」<br>
+&emsp;「 = 」<br>
+&emsp;「 * 」<br>
+&emsp;「 ~ 」<br>
+&emsp;「 # 」<br>
+</ul class="c2"><br>
+
+<br><br><br><br><br>
+
+<a name="OOoL1-1"><h5>L1-1)OpenOffice.orgのwriterで「縦中横」(外部)</h5></a>
+<a href="http://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q1312400288"><h2>Yahoo知恵袋</h2></a><br><br>
+
+<a name="OOoL1-2"><h5>L1-2)オープンオフィスでWordでいう「網掛け」「文字を四角で囲む」</h5></a>
+<a href="http://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q1327813193"><h2>Yahoo知恵袋</h2></a><br><br>
+
+<a name="OOoL1-3"><h5>L1-3)丸文字21以降について</h5></a>
+<a href="http://oooug.jp/faq/index.php?faq%2F4%2F1506"><h2>OOoユーザー会回答</h2></a>
+<ul class="c4">
+	1)writerを開く<br>
+	2)挿入⇒記号と特殊文字<br>
+</ul class="c4">
+<br><br>
+
+<a name="OOoL1-4"><h5>L1-4)Writerを使って「行数」や「文字数」を指定したドキュメントを作成する手順</h5></a>
+<a href="http://oooug.jp/compati/2.0/xfsection+print.articleid+9+PHPSESSID+f2dfae14ce4a27962082fbee3fabaa9d.htm"><h2>OOo資料</h2></a><br><br>
+
+<a name="OOoL1-5"><h5>L1-5)Writerを使って小冊子を作成</h5></a>
+<a href="http://error.fc2.com/web/404.html"><h2>小冊子作成手順</h2></a><br><br>
+
+<a name="OOoL1-6"><h5>L1-6)縦書き文書の書式設定のコツ</h5></a>
+<a href="http://www.geocities.jp/imocha/lab/apolab_2007-06-24_16-30-37.html"><h2>アポラボ</h2></a><br><br>
+
+<a name="OOoL1-7"><h5>L1-7)余白を含んでページ全体に背景色を設定する方法</h5></a>
+<a href="http://www.geocities.jp/imocha/lab/apolab_2007-04-20_22-43-07.html"><h2>アポラボ</h2></a><br><br>
+
+<a name="OOoL1-8"><h5>L1-8)クリッカブルマップを作成する</h5></a>
+<a href="http://www.geocities.jp/imocha/lab/apolab_2007-05-09_17-22-51.html"><h2>アポラボ</h2></a><br><br>
+
+<a name="OOoL1-9"><h5>L1-9).docxで保存する(RC版)</h5></a>
+<a href="http://katana.oooninja.com/w/odf-converter-integrator/download"><h2>odf-converter-integrator</h2></a><br><br>
+
+<a name="OOoL1-10"><h5>L1-10)パスワード付でファイルを保存したい(Writer逆引き辞典)</h5></a>
+<a href="http://www.ma-office.org/modules/writer1/rewrite/tc_16.html"><h2>はじめてのOpenOffice.org</h2></a><br><br>
+
+<a name="OOoL1-11"><h5>L1-11)割り注(1行を二段に分割した注釈文)を使いたい(Writer逆引き辞典)</h5></a>
+<a href="http://www.ma-office.org/modules/writer1/rewrite/hensyu5.htm"><h2>はじめてのOpenOffice.org</h2></a><br><br>
+
+<a name="OOoL1-12"><h5>L1-12)組み文字を使いたい(Writer逆引き辞典)</h5></a>
+<a href="http://www.ma-office.org/modules/writer1/rewrite/hensyu6.htm"><h2>はじめてのOpenOffice.org</h2></a><br><br>
+
+<a name="OOoL1-13"><h5>L1-13)離れている場所を選択したい(Writer逆引き辞典)</h5></a>
+<a href="http://www.ma-office.org/modules/writer1/rewrite/tc_21.html"><h2>はじめてのOpenOffice.org</h2></a><br><br>
+
+<a name="OOoL1-14"><h5>L1-14)ファイルをメールに添付して送りたい(ODT形式)(Writer逆引き辞典)</h5></a>
+<a href="http://www.ma-office.org/modules/writer1/rewrite/tc_34.html"><h2>はじめてのOpenOffice.org</h2></a><br><br>
+
+<a name="OOoL1-15"><h5>L1-15)表にタイトルを入れたい(Writer逆引き辞典)</h5></a>
+<a href="http://www.ma-office.org/modules/writer1/rewrite/tc_2.html"><h2>はじめてのOpenOffice.org</h2></a><br><br>
+
+<a name="OOoL1-16"><h5>L1-16)文章を縦書きに変更したい(Writer逆引き辞典)</h5></a>
+<a href="http://www.ma-office.org/modules/writer1/rewrite/tc_6.html"><h2>はじめてのOpenOffice.org</h2></a><br><br>
+
+<a name="OOoL1-17"><h5>L1-17)ページを段組にしたい(Writer逆引き辞典)</h5></a>
+<a href="http://www.ma-office.org/modules/writer1/rewrite/tc_7.html"><h2>はじめてのOpenOffice.org</h2></a><br><br>
+
+<a name="OOoL1-18"><h5>L1-18)オートフォーマットを使って表に装飾をする(Writer逆引き辞典)</h5></a>
+<a href="http://www.ma-office.org/modules/writer1/rewrite/tc_12.html"><h2>はじめてのOpenOffice.org</h2></a><br><br>
+
+<a name="OOoL1-19"><h5>L1-19)表の並べ替えをしたい(Writer逆引き辞典)</h5></a>
+<a href="http://www.ma-office.org/modules/writer1/rewrite/tc_15.html"><h2>はじめてのOpenOffice.org</h2></a><br><br>
+
+<a name="OOoL1-20"><h5>L1-20)表の枠線や背景色を変更したい(Writer逆引き辞典)</h5></a>
+<a href="http://www.ma-office.org/modules/writer1/rewrite/tc_18.html"><h2>はじめてのOpenOffice.org</h2></a><br><br>
+
+<a name="OOoL1-21"><h5>L1-21)OpenOffice.org1.1 Writer まとめ編(pdf file)</h5></a>
+<a href="http://error.fc2.com/web/404.html"><h2>OpenOffice.org1.1 Writer まとめ編</h2></a><br><br>
+
+<a name="OOoL1-22"><h5>L1-22)Writer/Calc でハガキの宛名印刷を簡単に行う方法（その１）</h5></a>
+<a href="http://oooug.jp/faq/index.php?GreetingCards-HOWTO"><h2>宛名印刷(表書き)を行う簡単な方法</h2></a><br><br>
+
+<a name="OOoL1-23"><h5>L1-23)Writer/Calc でハガキの宛名印刷を簡単に行う方法(その２）</h5></a>
+<a href="http://oooug.jp/faq/index.php?GreetingCards-HOWTO_2"><h2>宛名印刷(表書き)を行う簡単な方法</h2></a><br><br>
+
+<a name="OOoL1-24"><h5>L1-24)知っておいてもよい初期設定</h5></a>
+<a href="http://technolog.jp/software/office/427"><h2>Technolog.jp</h2></a><br><br>
+
+<a name="OOoL1-25"><h5>L1-25)目次にリンクをつける</h5></a>
+<a href="http://smil.exblog.jp/4382176/"><h2>こぶたのラッパ</h2></a><br><br>
+
+<a name="OOoL6-7"><h5>L6-7)使用できる色を増やしたい</h5></a>
+<a href="http://www.ma-office.org/modules/writer1/rewrite/tc_28.html"><h2>はじめてのOpenOffice.org</h2></a><br><br>
+
+<a name="OOoL6-8"><h5>L6-8)横書き中に90°回転させて文字を入力</h5></a>
+<a href="http://oooug.jp/faq/index.php?faq/6/80"><h2>OpenOffice.org日本ユーザー会</h2></a><br><br>
+
+
+<br>
+<center><h3><a href="#TopOfPage">Top of Page</a></h3></center><BR>
+<script type="text/javascript"><!--
+var fhp_c_pc = navigator.userAgent.toLowerCase();
+var fhp_ie = ((fhp_c_pc.indexOf("msie") != -1) && (fhp_c_pc.indexOf("opera") == -1));
+var fhp_cs, fhp_wt, fhp_dm;
+var fhp_rnd = Math.floor(Math.random()*99999999999);
+if (fhp_ie) {
+	fhp_cs = document.charset;
+}else{
+	fhp_cs = document.characterSet;
+}
+fhp_dm = document.location;
+fhp_wt = '<' + 'script src="http://web.fc2.com/footer/footer.php?cs=' + fhp_cs + '&dm=' + fhp_dm + '&rnd=' + fhp_rnd + '" charset="UTF-8"><' + '/script>';
+document.write(fhp_wt);
+//--></script>
+<!-- FC2, inc.-->
+<img src="http://media.fc2.com/counter_img.php?id=50" style="visibility:hidden" alt="inserted by FC2 system" width="0" height="0" />
+<!-- FC2, inc.-->
+</body>
+
+<!-- Mirrored from openoffice3.web.fc2.com/sub_koeda_Writer.html by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 27 Feb 2014 00:09:22 GMT -->
+</html>
